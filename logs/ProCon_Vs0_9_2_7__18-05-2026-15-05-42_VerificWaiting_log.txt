@@ -1,0 +1,115 @@
+2026-05-18 15:09:46.789 INFO  verific_waiting:1058 - btnWaitingBayStartOnClick : Invoked:
+2026-05-18 15:09:46.789 INFO  verific_waiting:1060 - WAITING BAY : STARTED
+2026-05-18 15:09:46.792 INFO  verific_waiting:1114 - btnWaitingBayStartOnClick : Exit:
+2026-05-18 15:09:46.892 DEBUG verific_waiting:33 - WaitingBay2 : Entry
+2026-05-18 15:09:46.892 DEBUG verific_waiting:41 - WaitingBay2 : manageWaitingBayStates : Entry
+2026-05-18 15:09:46.893 DEBUG verific_waiting:61 - WaitingBay2 : manageWaitingBayStates : getTableStatePlanner2 : Size : 4
+2026-05-18 15:09:46.893 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-05-18 15:09:46.894 INFO  verific_waiting:34 - S01_check_for_all_pallets_at_Waiting_Bay : Entry
+2026-05-18 15:09:46.894 INFO  verific_waiting:52 - S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay
+2026-05-18 15:09:46.894 DEBUG verific_waiting:162 - isPalletAvailableAt_WaitingBay : Entry
+2026-05-18 15:09:46.894 DEBUG verific_waiting:175 - isPalletAvailableAt_WaitingBay : getClusterId: 2 -> getBayId: 5 -> getPortId: ip35
+2026-05-18 15:09:46.996 DEBUG verific_waiting:193 - isPalletAvailableAt_WaitingBay : state : Off
+2026-05-18 15:09:46.996 DEBUG verific_waiting:201 - isPalletAvailableAt_WaitingBay : status : false
+2026-05-18 15:09:46.996 DEBUG verific_waiting:206 - isPalletAvailableAt_WaitingBay : Exit
+2026-05-18 15:09:46.996 INFO  verific_waiting:76 - S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay
+2026-05-18 15:30:24.694 INFO  verific_waiting:84 - S01_check_for_all_pallets_at_Waiting_Bay : All Pallets Available at Waiting Bay
+2026-05-18 15:30:24.694 INFO  verific_waiting:153 - S01_check_for_all_pallets_at_Waiting_Bay : Exit
+2026-05-18 15:30:24.694 DEBUG verific_waiting:168 - processCurrentState : S01_check_for_all_pallets_at_Waiting_Bay : Status     : true
+2026-05-18 15:30:24.694 DEBUG verific_waiting:169 - processCurrentState : S01_check_for_all_pallets_at_Waiting_Bay : Error Code : ERROR_CODE_601
+2026-05-18 15:30:24.694 DEBUG verific_waiting:69 - WaitingBay2 : manageWaitingBayStates : isStopProcessRequestedWaitingBay : false
+2026-05-18 15:30:24.694 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-05-18 15:30:24.694 INFO  verific_waiting:39 - S02_check_for_pallets_at_Verific_Bay : Entry
+2026-05-18 15:30:24.694 DEBUG verific_waiting:130 - isPalletAvailableAt_VerificBay : Entry
+2026-05-18 15:30:24.694 DEBUG verific_waiting:145 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-18 15:30:24.796 DEBUG verific_waiting:162 - isPalletAvailableAt_VerificBay : state : Off
+2026-05-18 15:30:24.796 DEBUG verific_waiting:170 - isPalletAvailableAt_VerificBay : status : false
+2026-05-18 15:30:24.796 DEBUG verific_waiting:175 - isPalletAvailableAt_VerificBay : Exit
+2026-05-18 15:30:24.796 DEBUG verific_waiting:72 - S02_check_for_pallets_at_Verific_Bay : ALL_LOOP_BREAK_FLAG-2: false
+2026-05-18 15:30:24.796 DEBUG verific_waiting:73 - S02_check_for_pallets_at_Verific_Bay : isPalletAvailableAt_VerificBay-2: false
+2026-05-18 15:30:24.796 DEBUG verific_waiting:74 - S02_check_for_pallets_at_Verific_Bay : isVerific1PalletsAllCleared()-2: true
+2026-05-18 15:30:24.796 DEBUG verific_waiting:77 - S02_check_for_pallets_at_Verific_Bay : No Pallet Available at Verific Bay and existing cleared
+2026-05-18 15:30:24.796 INFO  verific_waiting:123 - S02_check_for_pallets_at_Verific_Bay : Exit
+2026-05-18 15:30:24.796 DEBUG verific_waiting:168 - processCurrentState : S02_check_for_pallets_at_Verific_Bay : Status     : true
+2026-05-18 15:30:24.796 DEBUG verific_waiting:169 - processCurrentState : S02_check_for_pallets_at_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-18 15:30:24.796 DEBUG verific_waiting:69 - WaitingBay2 : manageWaitingBayStates : isStopProcessRequestedWaitingBay : false
+2026-05-18 15:30:24.796 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-05-18 15:30:24.796 INFO  verific_waiting:34 - S07_open_stop_latch_Waiting_Bay : Entry
+2026-05-18 15:30:24.796 INFO  verific_waiting:40 - S07_open_stop_latch_Waiting_Bay: Waiting for Halt Pallet at Verific1Waiting-Entry
+2026-05-18 15:30:24.796 INFO  verific_waiting:47 - S07_open_stop_latch_Waiting_Bay: Waiting for Halt Pallet at Verific1Waiting-Exit
+2026-05-18 15:30:24.796 INFO  verific_waiting:49 - S07_open_stop_latch_Waiting_Bay: Waiting for NoEntry at Verific1Waiting-Entry for Verific1
+2026-05-18 15:30:24.796 INFO  verific_waiting:55 - S07_open_stop_latch_Waiting_Bay: Waiting for NoEntry at Verific1Waiting-Exit for Verific1
+2026-05-18 15:30:24.796 DEBUG verific_waiting:111 - S07_open_stop_latch_Waiting_Bay : waitingBay_StopLatch_Status : Entry
+2026-05-18 15:30:24.797 DEBUG verific_waiting:121 - PortId    : op8
+2026-05-18 15:30:24.797 DEBUG verific_waiting:122 - ClusterId : 2
+2026-05-18 15:30:24.797 DEBUG verific_waiting:123 - BayId     : 5
+2026-05-18 15:30:25.000 DEBUG verific_waiting:133 - S07_open_stop_latch_Waiting_Bay : open_StopLatch_Waiting_Bay : state : Off
+2026-05-18 15:30:25.000 DEBUG verific_waiting:148 - S07_open_stop_latch_Waiting_Bay : open_StopLatch_Waiting_Bay : status : true
+2026-05-18 15:30:25.000 DEBUG verific_waiting:158 - S07_open_stop_latch_Waiting_Bay : waitingBay_StopLatch_Status : status : true
+2026-05-18 15:30:25.000 DEBUG verific_waiting:159 - S07_open_stop_latch_Waiting_Bay : waitingBay_StopLatch_Status : Exit
+2026-05-18 15:30:25.000 INFO  verific_waiting:65 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened
+2026-05-18 15:30:27.101 INFO  verific_waiting:79 - S02_check_for_pallets_at_Verific_Bay : set_motor_required : Success
+2026-05-18 15:30:27.101 INFO  verific_waiting:90 - S07_open_stop_latch_Waiting_Bay : palletMoveMentWaiting start:
+2026-05-18 15:30:27.101 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 12
+2026-05-18 15:30:28.101 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 11
+2026-05-18 15:30:29.101 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 10
+2026-05-18 15:30:30.102 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 9
+2026-05-18 15:30:31.102 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 8
+2026-05-18 15:30:32.102 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 7
+2026-05-18 15:30:33.103 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 6
+2026-05-18 15:30:34.103 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 5
+2026-05-18 15:30:35.103 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 4
+2026-05-18 15:30:36.103 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 3
+2026-05-18 15:30:37.104 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 2
+2026-05-18 15:30:38.104 INFO  verific_waiting:92 - S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: 1
+2026-05-18 15:30:39.104 INFO  verific_waiting:96 - S07_open_stop_latch_Waiting_Bay : palletMoveMentWaiting stop:
+2026-05-18 15:30:40.198 INFO  verific_waiting:106 - S07_open_stop_latch_Waiting_Bay : Exit
+2026-05-18 15:30:40.198 DEBUG verific_waiting:168 - processCurrentState : S07_open_stop_latch_Waiting_Bay : Status     : true
+2026-05-18 15:30:40.198 DEBUG verific_waiting:169 - processCurrentState : S07_open_stop_latch_Waiting_Bay : Error Code : ERROR_CODE_601
+2026-05-18 15:30:40.198 DEBUG verific_waiting:69 - WaitingBay2 : manageWaitingBayStates : isStopProcessRequestedWaitingBay : false
+2026-05-18 15:30:40.198 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-05-18 15:30:40.198 INFO  verific_waiting:25 - S08_close_stop_latch_Waiting_Bay : Entry
+2026-05-18 15:30:42.199 DEBUG verific_waiting:72 - S08_close_stop_latch_Waiting_Bay : waitingBay_StopLatch_Status : Entry
+2026-05-18 15:30:42.199 DEBUG verific_waiting:82 - PortId    : op8
+2026-05-18 15:30:42.199 DEBUG verific_waiting:83 - ClusterId : 2
+2026-05-18 15:30:42.199 DEBUG verific_waiting:84 - BayId     : 5
+2026-05-18 15:30:42.301 DEBUG verific_waiting:94 - S08_close_stop_latch_Waiting_Bay : close_StopLatch_Waiting_Bay : state : On
+2026-05-18 15:30:42.301 DEBUG verific_waiting:104 - S08_close_stop_latch_Waiting_Bay : close_StopLatch_Waiting_Bay : status : true
+2026-05-18 15:30:42.301 DEBUG verific_waiting:114 - S08_close_stop_latch_Waiting_Bay : waitingBay_StopLatch_Status : status : true
+2026-05-18 15:30:42.301 DEBUG verific_waiting:115 - S08_close_stop_latch_Waiting_Bay : waitingBay_StopLatch_Status : Exit
+2026-05-18 15:30:42.301 INFO  verific_waiting:36 - S08_close_stop_latch_Waiting_Bay : Stop Latch Closed
+2026-05-18 15:30:42.402 INFO  verific_waiting:45 - S04_ensure_all_pallets_reached_Verific_Bay : set_motor_not_required : Success
+2026-05-18 15:30:42.402 INFO  verific_waiting:67 - S08_close_stop_latch_Waiting_Bay : Exit
+2026-05-18 15:30:42.402 DEBUG verific_waiting:168 - processCurrentState : S08_close_stop_latch_Waiting_Bay : Status     : true
+2026-05-18 15:30:42.402 DEBUG verific_waiting:169 - processCurrentState : S08_close_stop_latch_Waiting_Bay : Error Code : ERROR_CODE_601
+2026-05-18 15:30:42.402 DEBUG verific_waiting:69 - WaitingBay2 : manageWaitingBayStates : isStopProcessRequestedWaitingBay : false
+2026-05-18 15:30:42.402 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-05-18 15:30:42.402 INFO  verific_waiting:34 - S01_check_for_all_pallets_at_Waiting_Bay : Entry
+2026-05-18 15:30:42.402 INFO  verific_waiting:52 - S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay
+2026-05-18 15:30:42.402 DEBUG verific_waiting:162 - isPalletAvailableAt_WaitingBay : Entry
+2026-05-18 15:30:42.402 DEBUG verific_waiting:175 - isPalletAvailableAt_WaitingBay : getClusterId: 2 -> getBayId: 5 -> getPortId: ip35
+2026-05-18 15:30:42.504 DEBUG verific_waiting:193 - isPalletAvailableAt_WaitingBay : state : Off
+2026-05-18 15:30:42.504 DEBUG verific_waiting:201 - isPalletAvailableAt_WaitingBay : status : false
+2026-05-18 15:30:42.504 DEBUG verific_waiting:206 - isPalletAvailableAt_WaitingBay : Exit
+2026-05-18 15:30:42.504 INFO  verific_waiting:76 - S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay
+2026-05-18 15:53:06.490 INFO  verific_waiting:84 - S01_check_for_all_pallets_at_Waiting_Bay : All Pallets Available at Waiting Bay
+2026-05-18 15:53:06.490 INFO  verific_waiting:153 - S01_check_for_all_pallets_at_Waiting_Bay : Exit
+2026-05-18 15:53:06.490 DEBUG verific_waiting:168 - processCurrentState : S01_check_for_all_pallets_at_Waiting_Bay : Status     : true
+2026-05-18 15:53:06.490 DEBUG verific_waiting:169 - processCurrentState : S01_check_for_all_pallets_at_Waiting_Bay : Error Code : ERROR_CODE_601
+2026-05-18 15:53:06.490 DEBUG verific_waiting:69 - WaitingBay2 : manageWaitingBayStates : isStopProcessRequestedWaitingBay : false
+2026-05-18 15:53:06.490 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-05-18 15:53:06.490 INFO  verific_waiting:39 - S02_check_for_pallets_at_Verific_Bay : Entry
+2026-05-18 15:53:06.490 DEBUG verific_waiting:130 - isPalletAvailableAt_VerificBay : Entry
+2026-05-18 15:53:06.490 DEBUG verific_waiting:145 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-18 15:53:06.598 DEBUG verific_waiting:162 - isPalletAvailableAt_VerificBay : state : On
+2026-05-18 15:53:06.598 DEBUG verific_waiting:170 - isPalletAvailableAt_VerificBay : status : true
+2026-05-18 15:53:06.598 DEBUG verific_waiting:175 - isPalletAvailableAt_VerificBay : Exit
+2026-05-18 15:53:06.598 INFO  verific_waiting:58 - S02_check_for_pallets_at_Verific_Bay : Pallet Available at Verific Bay
+2026-05-18 15:53:07.599 DEBUG verific_waiting:130 - isPalletAvailableAt_VerificBay : Entry
+2026-05-18 15:53:07.599 DEBUG verific_waiting:145 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-18 15:53:07.706 DEBUG verific_waiting:162 - isPalletAvailableAt_VerificBay : state : On
+2026-05-18 15:53:07.706 DEBUG verific_waiting:170 - isPalletAvailableAt_VerificBay : status : true
+2026-05-18 15:53:07.706 DEBUG verific_waiting:175 - isPalletAvailableAt_VerificBay : Exit
+2026-05-18 15:53:07.706 DEBUG verific_waiting:65 - S02_check_for_pallets_at_Verific_Bay : ALL_LOOP_BREAK_FLAG-1: false
+2026-05-18 15:53:07.706 DEBUG verific_waiting:66 - S02_check_for_pallets_at_Verific_Bay : isVerific1PalletsAllCleared()-1: false
+2026-05-18 15:53:07.706 DEBUG verific_waiting:67 - S02_check_for_pallets_at_Verific_Bay : isPalletAvailableAt_VerificBay-1: true

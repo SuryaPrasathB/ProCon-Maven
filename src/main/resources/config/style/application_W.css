@@ -1,0 +1,25 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+
+
+.text-input:readonly {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+	-fx-cursor: default ;
+}
+
+.combo-box:disabled, .combo-box:disabled > * {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+	-fx-opacity: 0.9 ;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: lightgrey;
+    -fx-background-insets: 0;
+	-fx-background-radius: 1;
+	-fx-table-cell-border-color:lightgrey;
+}
+
+
+

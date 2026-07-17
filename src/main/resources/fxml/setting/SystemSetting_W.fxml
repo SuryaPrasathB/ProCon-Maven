@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="DeviceSubMenupane" prefHeight="1042.0" prefWidth="1762.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.SystemSettingController">
+   <children>
+      <TabPane layoutX="5.0" layoutY="3.0" prefHeight="1019.0" prefWidth="1739.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Source Setting">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion fx:id="deviceAccordian" focusTraversable="false" layoutX="8.0" layoutY="6.0" prefHeight="818.0" prefWidth="870.0">
+                          <panes>
+                              <TitledPane fx:id="dutSettingsTitledPane" animated="false" text="DUT Comm Settings">
+                                <content>
+                                  <AnchorPane fx:id="dut_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </TitledPane>
+                              <TitledPane focusTraversable="false" text="About">
+                                <content>
+                                  <AnchorPane fx:id="about_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </TitledPane>
+                            <TitledPane fx:id="deviceSettingTitlePane" focusTraversable="false" prefHeight="484.0" prefWidth="744.0" text="Device Comm Settings">
+                              <content>
+                                <AnchorPane fx:id="device_childpane" prefHeight="651.0" prefWidth="742.0" />
+                              </content>
+                            </TitledPane>
+                              <TitledPane fx:id="titlepane_admin" focusTraversable="false" text="Admin Settings">
+                                <content>
+                                  <AnchorPane fx:id="admin_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </TitledPane>
+                              <TitledPane fx:id="titledPaneStability" focusTraversable="false" prefHeight="614.0" prefWidth="744.0" text="Stability Settings">
+                                <content>
+                                  <AnchorPane fx:id="stability_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </TitledPane>
+                              <TitledPane fx:id="titledPaneReportConfiguration" text="Report Configuration">
+                                <content>
+                                  <AnchorPane fx:id="reportconfig_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </TitledPane>
+                              <TitledPane fx:id="titledpane_backupresults" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" text="Backup Settings">
+                                 <content>
+                                    <AnchorPane fx:id="backup_results_childpane" prefHeight="200.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane fx:id="titledPaneRefConst" focusTraversable="false" text="Reference Standard - Pulse Constant">
+                                <content>
+                                  <AnchorPane fx:id="ref_std_const_childpane" minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="869.0" />
+                                </content>
+                              </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Conveyor Setting">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion fx:id="deviceAccordian1" focusTraversable="false" layoutX="5.0" layoutY="5.0" prefHeight="963.0" prefWidth="1698.0">
+                           <panes>
+                              <TitledPane fx:id="deviceSettingTitlePane1" focusTraversable="false" prefHeight="612.0" prefWidth="1698.0" text="Server Settings">
+                                 <content>
+                                    <AnchorPane fx:id="serverSettingChildPane" prefHeight="141.0" prefWidth="1697.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane fx:id="titledPaneStability1" focusTraversable="false" prefHeight="810.0" prefWidth="1698.0" text="Qr Scanner Port Settings">
+                                 <content>
+                                    <AnchorPane fx:id="qrScanner_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane prefHeight="773.0" prefWidth="1698.0" text="Dut Port Settings">
+                                 <content>
+                                    <AnchorPane fx:id="dut_conveyor_childpane" minHeight="0.0" minWidth="0.0" prefHeight="542.0" prefWidth="1697.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane prefHeight="761.0" prefWidth="1698.0" text="MegaOhm Meter Port Settings">
+                                 <content>
+                                    <AnchorPane fx:id="megaohmmeter_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane text="Volt Meter Port Settings">
+                                 <content>
+                                    <AnchorPane fx:id="voltmeter_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane text="Ldu Port Settings">
+                                 <content>
+                                    <AnchorPane fx:id="ldu_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane text="Terminal Profile Setting">
+                                 <content>
+                                    <AnchorPane fx:id="terminalProfileSettingChildPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane text="Bay Device Config">
+                                 <content>
+                                    <AnchorPane fx:id="bayDeviceConfigChildPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane prefHeight="744.0" prefWidth="1698.0" text="Diagnostic Tool">
+                                 <content>
+                                    <AnchorPane fx:id="diagChildpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                              <TitledPane prefHeight="746.0" prefWidth="1698.0" text="Firmware Upgrade">
+                                 <content>
+                                    <AnchorPane fx:id="firmwareUpgradeChildpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </TitledPane>
+                           </panes>
+                        </Accordion>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

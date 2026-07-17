@@ -1,0 +1,770 @@
+2026-05-22 15:48:02.445 INFO  verific:1238 - btnVerificTestStartOnClick : Invoked:
+2026-05-22 15:48:02.445 INFO  verific:1240 - VERIFICATION TEST BAY : STARTED
+2026-05-22 15:48:02.446 INFO  verific:1296 - btnVerificTestStartOnClick : Exit:
+2026-05-22 15:48:02.547 DEBUG verific:36 - VerificationTestBay2 : Entry
+2026-05-22 15:48:02.547 DEBUG verific:44 - VerificationTestBay2 : manageVerificationTestBayStates : Entry
+2026-05-22 15:48:02.548 DEBUG verific:63 - VerificationTestBay2 : manageVerificationTestBayStates : getTableStatePlanner2 : Size : 24
+2026-05-22 15:48:02.548 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:02.549 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:02.549 INFO  verific:37 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:48:02.549 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:48:02.549 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:48:02.651 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:48:02.651 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:48:02.651 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:48:03.652 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:48:03.652 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:48:03.754 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:48:03.754 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:48:03.754 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:48:04.754 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:48:04.754 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:48:04.855 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:48:04.855 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:48:04.855 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:48:05.855 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:48:05.855 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:48:05.956 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:48:05.956 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:48:05.956 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:48:05.956 INFO  verific:124 - S01_check_for_pallets_at_Verific_Bay : Pallet Available
+2026-05-22 15:48:05.956 INFO  verific:125 - S01_check_for_pallets_at_Verific_Bay : Sleep
+2026-05-22 15:48:06.956 INFO  verific:172 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:48:06.956 DEBUG verific:171 - processCurrentState : S01_check_for_pallets_at_Verific_Bay : Status     : true
+2026-05-22 15:48:06.956 DEBUG verific:172 - processCurrentState : S01_check_for_pallets_at_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-22 15:48:06.956 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:06.957 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:06.957 INFO  verific:35 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-22 15:48:06.957 INFO  verific:65 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-22 15:48:06.957 INFO  verific:78 - S02_qR_Code_Scanning_of_Pallet :  waitingVerificToVerificTransitTimeInSec: 15
+2026-05-22 15:48:06.957 INFO  verific:79 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-22 15:48:06.957 INFO  verific:80 - S02_qR_Code_Scanning_of_Pallet :  isStopProcessRequestedVerificBay(): false
+2026-05-22 15:48:06.957 DEBUG verific:123 - qrCodePalletScanning : Entry : VERIFICB
+2026-05-22 15:48:12.018 DEBUG verific:174 - qrCodePalletScanning : scannedData: LSCSM06P22
+
+2026-05-22 15:48:12.018 DEBUG verific:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-22 15:48:12.018 DEBUG verific:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260522T144820_0016_LSCSM06P22  selectedBayTypeKey: VERIFICB
+2026-05-22 15:48:12.025 DEBUG verific:284 - qrCodePalletScanning: refreshDashBoard: verification bay
+2026-05-22 15:48:12.038 DEBUG verific:289 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 4
+2026-05-22 15:48:12.038 DEBUG verific:466 - qrCodePalletScanning: batch update 
+2026-05-22 15:48:12.039 INFO  verific:470 - qrCodePalletScanning: batch update: all verific removed
+2026-05-22 15:48:12.139 DEBUG verific:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-05-22 15:48:12.139 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P07
+2026-05-22 15:48:12.139 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:48:12.189 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P07
+2026-05-22 15:48:12.189 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P03
+2026-05-22 15:48:12.189 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:48:12.239 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P03
+2026-05-22 15:48:12.239 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P020
+2026-05-22 15:48:12.239 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:48:12.290 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P020
+2026-05-22 15:48:12.290 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P22
+2026-05-22 15:48:12.290 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:48:12.340 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P22
+2026-05-22 15:48:12.340 DEBUG verific:220 - qrCodePalletScanning : palletDistinctId:  : 20260522T144820_0016_LSCSM06P22 : bay: VERIFICB : qrCode: LSCSM06P22
+2026-05-22 15:48:12.340 DEBUG verific:248 - qrCodePalletScanning : status : GOOD : VERIFICB
+2026-05-22 15:48:12.340 DEBUG verific:250 - qrCodePalletScanning : Exit : VERIFICB
+2026-05-22 15:48:12.340 INFO  verific:82 - qrCodePalletScanningProcess : QR Code Scan Successful : VERIFICB
+2026-05-22 15:48:12.340 INFO  verific:113 - qrCodePalletScanningProcess : Exit : VERIFICB
+2026-05-22 15:48:12.340 INFO  verific:92 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-22 15:48:12.340 DEBUG verific:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-05-22 15:48:12.340 DEBUG verific:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-05-22 15:48:12.340 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:12.340 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:12.341 INFO  verific:26 - S03_close_the_fingerTip_Latch : Entry
+2026-05-22 15:48:12.341 DEBUG verific:50 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : Entry
+2026-05-22 15:48:12.341 DEBUG verific:60 - PortId    : op11
+2026-05-22 15:48:12.341 DEBUG verific:61 - ClusterId : 2
+2026-05-22 15:48:12.341 DEBUG verific:62 - BayId     : 6
+2026-05-22 15:48:12.443 DEBUG verific:80 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : status : true
+2026-05-22 15:48:12.443 DEBUG verific:85 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : Exit
+2026-05-22 15:48:12.443 INFO  verific:35 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-22 15:48:12.443 INFO  verific:44 - S03_close_the_fingerTip_Latch : Exit
+2026-05-22 15:48:12.443 DEBUG verific:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-05-22 15:48:12.443 DEBUG verific:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-22 15:48:12.444 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:12.444 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:13.444 INFO  verific:32 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-22 15:48:13.444 DEBUG verific:81 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : Entry
+2026-05-22 15:48:13.444 DEBUG verific:89 - PortId    : ip37
+2026-05-22 15:48:13.444 DEBUG verific:90 - ClusterId : 2
+2026-05-22 15:48:13.444 DEBUG verific:91 - BayId     : 6
+2026-05-22 15:48:13.548 DEBUG verific:112 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : state : On
+2026-05-22 15:48:13.548 DEBUG verific:116 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : Exit
+2026-05-22 15:48:13.548 DEBUG verific:46 - S04_ensure_the_fingerTip_Latch_Closed : getMyBayKey(): VERIFICB
+2026-05-22 15:48:13.649 INFO  verific:55 - set_motor_not_required : Success
+2026-05-22 15:48:13.649 INFO  verific:75 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-22 15:48:13.649 DEBUG verific:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-05-22 15:48:13.649 DEBUG verific:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-05-22 15:48:13.649 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:13.649 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:13.649 INFO  verific:20 - S29_turn_on_tower_lamp_Verific_Bay : Entry
+2026-05-22 15:48:13.649 DEBUG verific:61 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-05-22 15:48:13.649 DEBUG verific:71 - PortId    : op14
+2026-05-22 15:48:13.649 DEBUG verific:72 - ClusterId : 2
+2026-05-22 15:48:13.649 DEBUG verific:73 - BayId     : 6
+2026-05-22 15:48:13.751 DEBUG verific:88 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-05-22 15:48:13.751 DEBUG verific:97 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:48:13.751 INFO  verific:29 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-05-22 15:48:13.751 DEBUG verific:104 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-05-22 15:48:13.751 DEBUG verific:114 - PortId    : op13
+2026-05-22 15:48:13.751 DEBUG verific:115 - ClusterId : 2
+2026-05-22 15:48:13.751 DEBUG verific:116 - BayId     : 6
+2026-05-22 15:48:13.853 DEBUG verific:131 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-05-22 15:48:13.853 DEBUG verific:140 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:48:13.853 INFO  verific:37 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-05-22 15:48:13.853 INFO  verific:54 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:48:13.853 DEBUG verific:171 - processCurrentState : S29_turn_on_tower_lamp_Verific_Bay : Status     : true
+2026-05-22 15:48:13.853 DEBUG verific:172 - processCurrentState : S29_turn_on_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-22 15:48:13.853 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:13.853 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:13.853 INFO  verific:52 - S045_Select_Run_Project : Entry
+2026-05-22 15:48:13.853 INFO  verific:199 - S045_Select_Run_Project : getMeterSerialNumberMap : Entry
+2026-05-22 15:48:13.868 INFO  verific:230 - Enough pallets (4) found. Proceeding with meter mapping.
+2026-05-22 15:48:13.904 INFO  verific:274 - Mapped globalPos=1 => palletIndex=3, rackPos=1 => Serial=00000001
+2026-05-22 15:48:13.917 INFO  verific:274 - Mapped globalPos=2 => palletIndex=3, rackPos=2 => Serial=01013263
+2026-05-22 15:48:13.929 INFO  verific:274 - Mapped globalPos=3 => palletIndex=3, rackPos=3 => Serial=01013141
+2026-05-22 15:48:13.945 INFO  verific:274 - Mapped globalPos=4 => palletIndex=3, rackPos=4 => Serial=01013278
+2026-05-22 15:48:13.958 INFO  verific:274 - Mapped globalPos=5 => palletIndex=3, rackPos=5 => Serial=01013268
+2026-05-22 15:48:13.976 INFO  verific:274 - Mapped globalPos=6 => palletIndex=3, rackPos=6 => Serial=01013271
+2026-05-22 15:48:13.989 INFO  verific:274 - Mapped globalPos=7 => palletIndex=2, rackPos=1 => Serial=01013299
+2026-05-22 15:48:14.004 INFO  verific:274 - Mapped globalPos=8 => palletIndex=2, rackPos=2 => Serial=01013222
+2026-05-22 15:48:14.018 INFO  verific:274 - Mapped globalPos=9 => palletIndex=2, rackPos=3 => Serial=01013272
+2026-05-22 15:48:14.038 INFO  verific:274 - Mapped globalPos=10 => palletIndex=2, rackPos=4 => Serial=01012012
+2026-05-22 15:48:14.050 INFO  verific:274 - Mapped globalPos=11 => palletIndex=2, rackPos=5 => Serial=01012068
+2026-05-22 15:48:14.066 INFO  verific:274 - Mapped globalPos=12 => palletIndex=2, rackPos=6 => Serial=01012026
+2026-05-22 15:48:14.079 INFO  verific:274 - Mapped globalPos=13 => palletIndex=1, rackPos=1 => Serial=01013323
+2026-05-22 15:48:14.094 INFO  verific:274 - Mapped globalPos=14 => palletIndex=1, rackPos=2 => Serial=01013310
+2026-05-22 15:48:14.107 INFO  verific:274 - Mapped globalPos=15 => palletIndex=1, rackPos=3 => Serial=01013324
+2026-05-22 15:48:14.120 INFO  verific:274 - Mapped globalPos=16 => palletIndex=1, rackPos=4 => Serial=01013321
+2026-05-22 15:48:14.133 INFO  verific:274 - Mapped globalPos=17 => palletIndex=1, rackPos=5 => Serial=01012080
+2026-05-22 15:48:14.146 INFO  verific:274 - Mapped globalPos=18 => palletIndex=1, rackPos=6 => Serial=01013305
+2026-05-22 15:48:14.174 INFO  verific:274 - Mapped globalPos=19 => palletIndex=0, rackPos=1 => Serial=01012003
+2026-05-22 15:48:14.187 INFO  verific:274 - Mapped globalPos=20 => palletIndex=0, rackPos=2 => Serial=01012005
+2026-05-22 15:48:14.203 INFO  verific:274 - Mapped globalPos=21 => palletIndex=0, rackPos=3 => Serial=01013293
+2026-05-22 15:48:14.219 INFO  verific:274 - Mapped globalPos=22 => palletIndex=0, rackPos=4 => Serial=01013280
+2026-05-22 15:48:14.231 INFO  verific:274 - Mapped globalPos=23 => palletIndex=0, rackPos=5 => Serial=01013281
+2026-05-22 15:48:14.244 INFO  verific:274 - Mapped globalPos=24 => palletIndex=0, rackPos=6 => Serial=01012044
+2026-05-22 15:48:14.244 INFO  verific:283 - S045_Select_Run_Project : Final meterSerialNumberMap = {1=00000001, 2=01013263, 3=01013141, 4=01013278, 5=01013268, 6=01013271, 7=01013299, 8=01013222, 9=01013272, 10=01012012, 11=01012068, 12=01012026, 13=01013323, 14=01013310, 15=01013324, 16=01013321, 17=01012080, 18=01013305, 19=01012003, 20=01012005, 21=01013293, 22=01013280, 23=01013281, 24=01012044}
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 1, Value: 00000001
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 2, Value: 01013263
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 3, Value: 01013141
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 4, Value: 01013278
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 5, Value: 01013268
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 6, Value: 01013271
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 7, Value: 01013299
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 8, Value: 01013222
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 9, Value: 01013272
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 10, Value: 01012012
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 11, Value: 01012068
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 12, Value: 01012026
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 13, Value: 01013323
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 14, Value: 01013310
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 15, Value: 01013324
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 16, Value: 01013321
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 17, Value: 01012080
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 18, Value: 01013305
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 19, Value: 01012003
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 20, Value: 01012005
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 21, Value: 01013293
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 22, Value: 01013280
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 23, Value: 01013281
+2026-05-22 15:48:14.244 INFO  verific:77 - Key: 24, Value: 01012044
+2026-05-22 15:48:14.244 INFO  verific:288 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap : Entry
+2026-05-22 15:48:14.258 INFO  verific:309 - Enough pallets (4) found. Proceeding with meter mapping.
+2026-05-22 15:48:14.272 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=1 => palletIndex=3, configPalletRackPos=1 => Serial=00000001, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=1
+2026-05-22 15:48:14.284 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=2 => palletIndex=3, configPalletRackPos=2 => Serial=01013263, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=2
+2026-05-22 15:48:14.297 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=3 => palletIndex=3, configPalletRackPos=3 => Serial=01013141, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=3
+2026-05-22 15:48:14.311 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=4 => palletIndex=3, configPalletRackPos=4 => Serial=01013278, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=4
+2026-05-22 15:48:14.336 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=5 => palletIndex=3, configPalletRackPos=5 => Serial=01013268, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=5
+2026-05-22 15:48:14.350 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=6 => palletIndex=3, configPalletRackPos=6 => Serial=01013271, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=6
+2026-05-22 15:48:14.374 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=7 => palletIndex=2, configPalletRackPos=1 => Serial=01013299, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=1
+2026-05-22 15:48:14.391 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=8 => palletIndex=2, configPalletRackPos=2 => Serial=01013222, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=2
+2026-05-22 15:48:14.405 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=9 => palletIndex=2, configPalletRackPos=3 => Serial=01013272, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=3
+2026-05-22 15:48:14.424 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=10 => palletIndex=2, configPalletRackPos=4 => Serial=01012012, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=4
+2026-05-22 15:48:14.437 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=11 => palletIndex=2, configPalletRackPos=5 => Serial=01012068, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=5
+2026-05-22 15:48:14.451 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=12 => palletIndex=2, configPalletRackPos=6 => Serial=01012026, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=6
+2026-05-22 15:48:14.473 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=13 => palletIndex=1, configPalletRackPos=1 => Serial=01013323, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=1
+2026-05-22 15:48:14.486 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=14 => palletIndex=1, configPalletRackPos=2 => Serial=01013310, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=2
+2026-05-22 15:48:14.499 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=15 => palletIndex=1, configPalletRackPos=3 => Serial=01013324, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=3
+2026-05-22 15:48:14.512 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=16 => palletIndex=1, configPalletRackPos=4 => Serial=01013321, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=4
+2026-05-22 15:48:14.526 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=17 => palletIndex=1, configPalletRackPos=5 => Serial=01012080, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=5
+2026-05-22 15:48:14.556 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=18 => palletIndex=1, configPalletRackPos=6 => Serial=01013305, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=6
+2026-05-22 15:48:14.570 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=19 => palletIndex=0, configPalletRackPos=1 => Serial=01012003, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=1
+2026-05-22 15:48:14.583 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=20 => palletIndex=0, configPalletRackPos=2 => Serial=01012005, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=2
+2026-05-22 15:48:14.597 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=21 => palletIndex=0, configPalletRackPos=3 => Serial=01013293, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=3
+2026-05-22 15:48:14.609 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=22 => palletIndex=0, configPalletRackPos=4 => Serial=01013280, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=4
+2026-05-22 15:48:14.626 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=23 => palletIndex=0, configPalletRackPos=5 => Serial=01013281, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=5
+2026-05-22 15:48:14.640 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=24 => palletIndex=0, configPalletRackPos=6 => Serial=01012044, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=6
+2026-05-22 15:48:14.640 INFO  verific:367 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap: Final positionToMeterMap = {1={meterSerialNo=00000001, palletRackPositionNo=1, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 2={meterSerialNo=01013263, palletRackPositionNo=2, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 3={meterSerialNo=01013141, palletRackPositionNo=3, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 4={meterSerialNo=01013278, palletRackPositionNo=4, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 5={meterSerialNo=01013268, palletRackPositionNo=5, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 6={meterSerialNo=01013271, palletRackPositionNo=6, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 7={meterSerialNo=01013299, palletRackPositionNo=1, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 8={meterSerialNo=01013222, palletRackPositionNo=2, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 9={meterSerialNo=01013272, palletRackPositionNo=3, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 10={meterSerialNo=01012012, palletRackPositionNo=4, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 11={meterSerialNo=01012068, palletRackPositionNo=5, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 12={meterSerialNo=01012026, palletRackPositionNo=6, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 13={meterSerialNo=01013323, palletRackPositionNo=1, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 14={meterSerialNo=01013310, palletRackPositionNo=2, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 15={meterSerialNo=01013324, palletRackPositionNo=3, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 16={meterSerialNo=01013321, palletRackPositionNo=4, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 17={meterSerialNo=01012080, palletRackPositionNo=5, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 18={meterSerialNo=01013305, palletRackPositionNo=6, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 19={meterSerialNo=01012003, palletRackPositionNo=1, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 20={meterSerialNo=01012005, palletRackPositionNo=2, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 21={meterSerialNo=01013293, palletRackPositionNo=3, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 22={meterSerialNo=01013280, palletRackPositionNo=4, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 23={meterSerialNo=01013281, palletRackPositionNo=5, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 24={meterSerialNo=01012044, palletRackPositionNo=6, palletDistinctId=20260522T110238_0012_LSCSM06P07}}
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 1, Meter Serial No: 00000001, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 2, Meter Serial No: 01013263, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 3, Meter Serial No: 01013141, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 4, Meter Serial No: 01013278, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 5, Meter Serial No: 01013268, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 6, Meter Serial No: 01013271, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 7, Meter Serial No: 01013299, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 8, Meter Serial No: 01013222, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 9, Meter Serial No: 01013272, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 10, Meter Serial No: 01012012, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 11, Meter Serial No: 01012068, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 12, Meter Serial No: 01012026, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 13, Meter Serial No: 01013323, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 14, Meter Serial No: 01013310, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 15, Meter Serial No: 01013324, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 16, Meter Serial No: 01013321, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 17, Meter Serial No: 01012080, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 18, Meter Serial No: 01013305, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 19, Meter Serial No: 01012003, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 20, Meter Serial No: 01012005, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 21, Meter Serial No: 01013293, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 22, Meter Serial No: 01013280, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 23, Meter Serial No: 01013281, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:14.640 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 24, Meter Serial No: 01012044, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:20.653 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:48:20.666 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:48:20.678 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:48:20.689 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:48:20.701 INFO  verific:104 - S045_Select_Run_Project : updateDutSerialNo Success
+2026-05-22 15:48:22.701 INFO  verific:116 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 3
+2026-05-22 15:48:28.712 INFO  verific:122 - S045_Select_Run_Project : Select Run Project Success
+2026-05-22 15:48:28.712 INFO  verific:116 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 2
+2026-05-22 15:48:34.724 INFO  verific:122 - S045_Select_Run_Project : Select Run Project Success
+2026-05-22 15:48:34.724 INFO  verific:116 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 1
+2026-05-22 15:48:40.737 INFO  verific:122 - S045_Select_Run_Project : Select Run Project Success
+2026-05-22 15:48:40.737 INFO  verific:192 - S045_Select_Run_Project : Exit
+2026-05-22 15:48:40.737 DEBUG verific:171 - processCurrentState : S045_Select_Run_Project : Status     : true
+2026-05-22 15:48:40.737 DEBUG verific:172 - processCurrentState : S045_Select_Run_Project : Error Code : ERROR_CODE_601
+2026-05-22 15:48:40.737 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:40.737 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:40.737 INFO  verific:29 - S042_Start_Execution : Entry
+2026-05-22 15:48:47.750 INFO  verific:48 - S042_Start_Execution : Start Execution Success
+2026-05-22 15:48:52.750 INFO  verific:66 - S042_Start_Execution : Exit
+2026-05-22 15:48:52.750 DEBUG verific:171 - processCurrentState : S042_Start_Execution : Status     : true
+2026-05-22 15:48:52.750 DEBUG verific:172 - processCurrentState : S042_Start_Execution : Error Code : ERROR_CODE_601
+2026-05-22 15:48:52.752 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:48:52.752 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:48:52.752 INFO  verific:104 - S043_Get_Test_Point_Status : Entry
+2026-05-22 15:48:52.752 INFO  verific:105 - S043_Get_Test_Point_Status : Simulation Mode: NONE
+2026-05-22 15:48:53.765 INFO  verific:138 - S043_Get_Test_Point_Status : getPresentTestPointId-1 : 
+2026-05-22 15:48:53.765 INFO  verific:139 - S043_Get_Test_Point_Status : getCompletedTestPointCount-1 : -2
+2026-05-22 15:48:53.765 INFO  verific:140 - S043_Get_Test_Point_Status : getTotalTestPointCount-1 : 0
+2026-05-22 15:48:53.765 INFO  verific:141 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec-1 : 0
+2026-05-22 15:48:53.765 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:49:04.781 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:49:04.781 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:49:04.781 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:49:04.781 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:49:04.781 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:49:04.781 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:49:15.797 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:49:15.797 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:49:15.797 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:49:15.797 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:49:15.797 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:49:15.797 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:49:26.812 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:49:26.812 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:49:26.812 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:49:26.812 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:49:26.812 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:49:26.812 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:49:37.825 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:49:37.825 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:49:37.825 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:49:37.825 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:49:37.825 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:49:37.825 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:49:48.838 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:49:48.838 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:49:48.838 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:49:48.838 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:49:48.838 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:49:48.838 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:49:59.855 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:49:59.855 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:49:59.855 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:49:59.855 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:49:59.855 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:49:59.855 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:50:10.939 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:50:10.939 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:50:10.939 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:50:10.939 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:50:10.939 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:50:10.939 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:50:12.405 INFO  verific:1301 - btnVerificTestStopOnClick : Invoked:
+2026-05-22 15:50:12.405 INFO  verific:1303 - VERIFICATION TEST BAY : STOPPED
+2026-05-22 15:50:12.405 INFO  verific:1360 - btnVerificTestStopOnClick : Exit:
+2026-05-22 15:50:12.506 DEBUG verific:23 - VerificationTestBay2 : Entry
+2026-05-22 15:50:12.506 DEBUG verific:31 - VerificationTestBayStop : manageVerificationTestBayStopStates : Entry
+2026-05-22 15:50:12.507 DEBUG verific:50 - VerificationTestBayStop : manageVerificationTestBayStopStates : getTableStatePlanner2 : Size : 3
+2026-05-22 15:50:12.507 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:50:12.507 INFO  verific:29 - S046_Stop_Execution : Entry
+2026-05-22 15:50:12.940 INFO  verific:161 - S043_Get_Test_Point_Status : verific1 stop requested: break
+2026-05-22 15:50:12.940 INFO  verific:391 - S043_Get_Test_Point_Status : Execution Failed (e.g., due to stop process request or ALL_LOOP_BREAK_FLAG being set)
+2026-05-22 15:50:12.940 INFO  verific:396 - S043_Get_Test_Point_Status : Exit
+2026-05-22 15:50:12.940 DEBUG verific:171 - processCurrentState : S043_Get_Test_Point_Status : Status     : false
+2026-05-22 15:50:12.940 DEBUG verific:172 - processCurrentState : S043_Get_Test_Point_Status : Error Code : ERROR_CODE_VERIFIC_026
+2026-05-22 15:50:14.522 INFO  verific:46 - S046_Stop_Execution : Stop Execution Success
+2026-05-22 15:50:14.522 INFO  verific:57 - S046_Stop_Execution : Exit
+2026-05-22 15:50:14.522 DEBUG verific:154 - processCurrentState : S046_Stop_Execution : Status     : true
+2026-05-22 15:50:14.522 DEBUG verific:155 - processCurrentState : S046_Stop_Execution : Error Code : ERROR_CODE_601
+2026-05-22 15:50:14.522 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:50:14.523 INFO  verific:33 - S06_open_the_fingerTip_Latch : Entry
+2026-05-22 15:50:14.523 DEBUG verific:58 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Entry
+2026-05-22 15:50:14.523 DEBUG verific:68 - PortId    : op11
+2026-05-22 15:50:14.523 DEBUG verific:69 - ClusterId : 2
+2026-05-22 15:50:14.523 DEBUG verific:70 - BayId     : 6
+2026-05-22 15:50:14.625 DEBUG verific:92 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : status : true
+2026-05-22 15:50:14.625 DEBUG verific:97 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Exit
+2026-05-22 15:50:14.625 INFO  verific:43 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-22 15:50:14.625 INFO  verific:52 - S06_open_the_fingerTip_Latch : Exit
+2026-05-22 15:50:14.625 DEBUG verific:154 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-05-22 15:50:14.625 DEBUG verific:155 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-22 15:50:14.625 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:50:14.625 INFO  verific:27 - S30_turn_off_tower_lamp_Verific_Bay : Entry
+2026-05-22 15:50:14.625 DEBUG verific:111 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-05-22 15:50:14.625 DEBUG verific:121 - PortId    : op13
+2026-05-22 15:50:14.625 DEBUG verific:122 - ClusterId : 2
+2026-05-22 15:50:14.625 DEBUG verific:123 - BayId     : 6
+2026-05-22 15:50:14.729 DEBUG verific:138 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-05-22 15:50:14.729 DEBUG verific:147 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:50:14.729 INFO  verific:37 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-05-22 15:50:14.729 DEBUG verific:69 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-05-22 15:50:14.729 DEBUG verific:79 - PortId    : op14
+2026-05-22 15:50:14.729 DEBUG verific:80 - ClusterId : 2
+2026-05-22 15:50:14.729 DEBUG verific:81 - BayId     : 6
+2026-05-22 15:50:14.830 DEBUG verific:95 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-05-22 15:50:14.830 DEBUG verific:104 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:50:14.830 INFO  verific:45 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-05-22 15:50:15.844 INFO  verific:62 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:50:15.844 DEBUG verific:154 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Status     : true
+2026-05-22 15:50:15.844 DEBUG verific:155 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-22 15:50:15.844 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:50:15.844 INFO  verific:11 - S18_idle_condition : Entry
+2026-05-22 15:50:15.844 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:16.856 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:17.867 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:18.880 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:19.885 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:20.894 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:21.902 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:22.916 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:23.925 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:24.933 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:25.933 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:26.934 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:27.935 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:28.935 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:29.936 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:50:30.936 DEBUG verific:154 - processCurrentState : S18_idle_condition : Status     : true
+2026-05-22 15:50:30.936 DEBUG verific:155 - processCurrentState : S18_idle_condition : Error Code : NO_ERROR_001
+2026-05-22 15:51:12.342 INFO  verific:1238 - btnVerificTestStartOnClick : Invoked:
+2026-05-22 15:51:12.342 INFO  verific:1240 - VERIFICATION TEST BAY : STARTED
+2026-05-22 15:51:12.342 INFO  verific:1296 - btnVerificTestStartOnClick : Exit:
+2026-05-22 15:51:12.443 DEBUG verific:36 - VerificationTestBay2 : Entry
+2026-05-22 15:51:12.443 DEBUG verific:44 - VerificationTestBay2 : manageVerificationTestBayStates : Entry
+2026-05-22 15:51:12.445 DEBUG verific:63 - VerificationTestBay2 : manageVerificationTestBayStates : getTableStatePlanner2 : Size : 24
+2026-05-22 15:51:12.445 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:12.445 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:12.445 INFO  verific:37 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:51:12.446 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:51:12.446 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:51:12.547 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:51:12.547 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:51:12.547 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:51:13.547 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:51:13.547 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:51:13.648 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:51:13.648 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:51:13.648 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:51:14.648 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:51:14.648 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:51:14.750 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:51:14.750 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:51:14.750 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:51:15.750 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-05-22 15:51:15.750 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-05-22 15:51:15.852 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-05-22 15:51:15.852 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-05-22 15:51:15.852 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:51:15.852 INFO  verific:124 - S01_check_for_pallets_at_Verific_Bay : Pallet Available
+2026-05-22 15:51:15.852 INFO  verific:125 - S01_check_for_pallets_at_Verific_Bay : Sleep
+2026-05-22 15:51:16.852 INFO  verific:172 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-05-22 15:51:16.852 DEBUG verific:171 - processCurrentState : S01_check_for_pallets_at_Verific_Bay : Status     : true
+2026-05-22 15:51:16.852 DEBUG verific:172 - processCurrentState : S01_check_for_pallets_at_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-22 15:51:16.852 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:16.852 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:16.852 INFO  verific:35 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-22 15:51:16.852 INFO  verific:65 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-22 15:51:16.852 INFO  verific:78 - S02_qR_Code_Scanning_of_Pallet :  waitingVerificToVerificTransitTimeInSec: 15
+2026-05-22 15:51:16.852 INFO  verific:79 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-22 15:51:16.852 INFO  verific:80 - S02_qR_Code_Scanning_of_Pallet :  isStopProcessRequestedVerificBay(): false
+2026-05-22 15:51:16.852 DEBUG verific:123 - qrCodePalletScanning : Entry : VERIFICB
+2026-05-22 15:51:19.880 DEBUG verific:174 - qrCodePalletScanning : scannedData: LSCSM06P22
+
+2026-05-22 15:51:19.880 DEBUG verific:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-22 15:51:19.880 DEBUG verific:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260522T144820_0016_LSCSM06P22  selectedBayTypeKey: VERIFICB
+2026-05-22 15:51:19.888 DEBUG verific:284 - qrCodePalletScanning: refreshDashBoard: verification bay
+2026-05-22 15:51:19.900 DEBUG verific:289 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 4
+2026-05-22 15:51:19.900 DEBUG verific:466 - qrCodePalletScanning: batch update 
+2026-05-22 15:51:19.900 INFO  verific:470 - qrCodePalletScanning: batch update: all verific removed
+2026-05-22 15:51:20.002 DEBUG verific:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-05-22 15:51:20.002 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P07
+2026-05-22 15:51:20.002 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:51:20.053 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P07
+2026-05-22 15:51:20.053 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P03
+2026-05-22 15:51:20.053 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:51:20.103 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P03
+2026-05-22 15:51:20.103 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P020
+2026-05-22 15:51:20.103 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:51:20.153 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P020
+2026-05-22 15:51:20.153 DEBUG verific:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P22
+2026-05-22 15:51:20.153 INFO  verific:498 - qrCodePalletScanning: batch update: verific added
+2026-05-22 15:51:20.203 DEBUG verific:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P22
+2026-05-22 15:51:20.203 DEBUG verific:220 - qrCodePalletScanning : palletDistinctId:  : 20260522T144820_0016_LSCSM06P22 : bay: VERIFICB : qrCode: LSCSM06P22
+2026-05-22 15:51:20.203 DEBUG verific:248 - qrCodePalletScanning : status : GOOD : VERIFICB
+2026-05-22 15:51:20.203 DEBUG verific:250 - qrCodePalletScanning : Exit : VERIFICB
+2026-05-22 15:51:20.203 INFO  verific:82 - qrCodePalletScanningProcess : QR Code Scan Successful : VERIFICB
+2026-05-22 15:51:20.203 INFO  verific:113 - qrCodePalletScanningProcess : Exit : VERIFICB
+2026-05-22 15:51:20.203 INFO  verific:92 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-22 15:51:20.203 DEBUG verific:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-05-22 15:51:20.203 DEBUG verific:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-05-22 15:51:20.203 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:20.203 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:20.203 INFO  verific:26 - S03_close_the_fingerTip_Latch : Entry
+2026-05-22 15:51:20.203 DEBUG verific:50 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : Entry
+2026-05-22 15:51:20.203 DEBUG verific:60 - PortId    : op11
+2026-05-22 15:51:20.203 DEBUG verific:61 - ClusterId : 2
+2026-05-22 15:51:20.203 DEBUG verific:62 - BayId     : 6
+2026-05-22 15:51:20.305 DEBUG verific:80 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : status : true
+2026-05-22 15:51:20.305 DEBUG verific:85 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : Exit
+2026-05-22 15:51:20.305 INFO  verific:35 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-22 15:51:20.305 INFO  verific:44 - S03_close_the_fingerTip_Latch : Exit
+2026-05-22 15:51:20.305 DEBUG verific:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-05-22 15:51:20.305 DEBUG verific:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-22 15:51:20.305 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:20.305 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:21.305 INFO  verific:32 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-22 15:51:21.305 DEBUG verific:81 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : Entry
+2026-05-22 15:51:21.305 DEBUG verific:89 - PortId    : ip37
+2026-05-22 15:51:21.305 DEBUG verific:90 - ClusterId : 2
+2026-05-22 15:51:21.305 DEBUG verific:91 - BayId     : 6
+2026-05-22 15:51:21.407 DEBUG verific:112 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : state : On
+2026-05-22 15:51:21.407 DEBUG verific:116 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : Exit
+2026-05-22 15:51:21.407 DEBUG verific:46 - S04_ensure_the_fingerTip_Latch_Closed : getMyBayKey(): VERIFICB
+2026-05-22 15:51:21.510 INFO  verific:55 - set_motor_not_required : Success
+2026-05-22 15:51:21.510 INFO  verific:75 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-22 15:51:21.510 DEBUG verific:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-05-22 15:51:21.510 DEBUG verific:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-05-22 15:51:21.510 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:21.510 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:21.510 INFO  verific:20 - S29_turn_on_tower_lamp_Verific_Bay : Entry
+2026-05-22 15:51:21.510 DEBUG verific:61 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-05-22 15:51:21.510 DEBUG verific:71 - PortId    : op14
+2026-05-22 15:51:21.510 DEBUG verific:72 - ClusterId : 2
+2026-05-22 15:51:21.510 DEBUG verific:73 - BayId     : 6
+2026-05-22 15:51:21.613 DEBUG verific:88 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-05-22 15:51:21.613 DEBUG verific:97 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:51:21.613 INFO  verific:29 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-05-22 15:51:21.613 DEBUG verific:104 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-05-22 15:51:21.613 DEBUG verific:114 - PortId    : op13
+2026-05-22 15:51:21.613 DEBUG verific:115 - ClusterId : 2
+2026-05-22 15:51:21.613 DEBUG verific:116 - BayId     : 6
+2026-05-22 15:51:21.715 DEBUG verific:131 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-05-22 15:51:21.715 DEBUG verific:140 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:51:21.715 INFO  verific:37 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-05-22 15:51:21.715 INFO  verific:54 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:51:21.715 DEBUG verific:171 - processCurrentState : S29_turn_on_tower_lamp_Verific_Bay : Status     : true
+2026-05-22 15:51:21.715 DEBUG verific:172 - processCurrentState : S29_turn_on_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-22 15:51:21.715 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:21.715 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:21.715 INFO  verific:52 - S045_Select_Run_Project : Entry
+2026-05-22 15:51:21.715 INFO  verific:199 - S045_Select_Run_Project : getMeterSerialNumberMap : Entry
+2026-05-22 15:51:21.730 INFO  verific:230 - Enough pallets (4) found. Proceeding with meter mapping.
+2026-05-22 15:51:21.762 INFO  verific:274 - Mapped globalPos=1 => palletIndex=3, rackPos=1 => Serial=00000001
+2026-05-22 15:51:21.774 INFO  verific:274 - Mapped globalPos=2 => palletIndex=3, rackPos=2 => Serial=01013263
+2026-05-22 15:51:21.788 INFO  verific:274 - Mapped globalPos=3 => palletIndex=3, rackPos=3 => Serial=01013141
+2026-05-22 15:51:21.801 INFO  verific:274 - Mapped globalPos=4 => palletIndex=3, rackPos=4 => Serial=01013278
+2026-05-22 15:51:21.813 INFO  verific:274 - Mapped globalPos=5 => palletIndex=3, rackPos=5 => Serial=01013268
+2026-05-22 15:51:21.827 INFO  verific:274 - Mapped globalPos=6 => palletIndex=3, rackPos=6 => Serial=01013271
+2026-05-22 15:51:21.842 INFO  verific:274 - Mapped globalPos=7 => palletIndex=2, rackPos=1 => Serial=01013299
+2026-05-22 15:51:21.856 INFO  verific:274 - Mapped globalPos=8 => palletIndex=2, rackPos=2 => Serial=01013222
+2026-05-22 15:51:21.868 INFO  verific:274 - Mapped globalPos=9 => palletIndex=2, rackPos=3 => Serial=01013272
+2026-05-22 15:51:21.881 INFO  verific:274 - Mapped globalPos=10 => palletIndex=2, rackPos=4 => Serial=01012012
+2026-05-22 15:51:21.895 INFO  verific:274 - Mapped globalPos=11 => palletIndex=2, rackPos=5 => Serial=01012068
+2026-05-22 15:51:21.907 INFO  verific:274 - Mapped globalPos=12 => palletIndex=2, rackPos=6 => Serial=01012026
+2026-05-22 15:51:21.920 INFO  verific:274 - Mapped globalPos=13 => palletIndex=1, rackPos=1 => Serial=01013323
+2026-05-22 15:51:21.934 INFO  verific:274 - Mapped globalPos=14 => palletIndex=1, rackPos=2 => Serial=01013310
+2026-05-22 15:51:21.948 INFO  verific:274 - Mapped globalPos=15 => palletIndex=1, rackPos=3 => Serial=01013324
+2026-05-22 15:51:21.961 INFO  verific:274 - Mapped globalPos=16 => palletIndex=1, rackPos=4 => Serial=01013321
+2026-05-22 15:51:21.976 INFO  verific:274 - Mapped globalPos=17 => palletIndex=1, rackPos=5 => Serial=01012080
+2026-05-22 15:51:21.990 INFO  verific:274 - Mapped globalPos=18 => palletIndex=1, rackPos=6 => Serial=01013305
+2026-05-22 15:51:22.003 INFO  verific:274 - Mapped globalPos=19 => palletIndex=0, rackPos=1 => Serial=01012003
+2026-05-22 15:51:22.016 INFO  verific:274 - Mapped globalPos=20 => palletIndex=0, rackPos=2 => Serial=01012005
+2026-05-22 15:51:22.034 INFO  verific:274 - Mapped globalPos=21 => palletIndex=0, rackPos=3 => Serial=01013293
+2026-05-22 15:51:22.048 INFO  verific:274 - Mapped globalPos=22 => palletIndex=0, rackPos=4 => Serial=01013280
+2026-05-22 15:51:22.061 INFO  verific:274 - Mapped globalPos=23 => palletIndex=0, rackPos=5 => Serial=01013281
+2026-05-22 15:51:22.074 INFO  verific:274 - Mapped globalPos=24 => palletIndex=0, rackPos=6 => Serial=01012044
+2026-05-22 15:51:22.074 INFO  verific:283 - S045_Select_Run_Project : Final meterSerialNumberMap = {1=00000001, 2=01013263, 3=01013141, 4=01013278, 5=01013268, 6=01013271, 7=01013299, 8=01013222, 9=01013272, 10=01012012, 11=01012068, 12=01012026, 13=01013323, 14=01013310, 15=01013324, 16=01013321, 17=01012080, 18=01013305, 19=01012003, 20=01012005, 21=01013293, 22=01013280, 23=01013281, 24=01012044}
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 1, Value: 00000001
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 2, Value: 01013263
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 3, Value: 01013141
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 4, Value: 01013278
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 5, Value: 01013268
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 6, Value: 01013271
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 7, Value: 01013299
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 8, Value: 01013222
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 9, Value: 01013272
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 10, Value: 01012012
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 11, Value: 01012068
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 12, Value: 01012026
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 13, Value: 01013323
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 14, Value: 01013310
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 15, Value: 01013324
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 16, Value: 01013321
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 17, Value: 01012080
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 18, Value: 01013305
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 19, Value: 01012003
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 20, Value: 01012005
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 21, Value: 01013293
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 22, Value: 01013280
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 23, Value: 01013281
+2026-05-22 15:51:22.074 INFO  verific:77 - Key: 24, Value: 01012044
+2026-05-22 15:51:22.074 INFO  verific:288 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap : Entry
+2026-05-22 15:51:22.089 INFO  verific:309 - Enough pallets (4) found. Proceeding with meter mapping.
+2026-05-22 15:51:22.102 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=1 => palletIndex=3, configPalletRackPos=1 => Serial=00000001, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=1
+2026-05-22 15:51:22.116 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=2 => palletIndex=3, configPalletRackPos=2 => Serial=01013263, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=2
+2026-05-22 15:51:22.128 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=3 => palletIndex=3, configPalletRackPos=3 => Serial=01013141, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=3
+2026-05-22 15:51:22.141 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=4 => palletIndex=3, configPalletRackPos=4 => Serial=01013278, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=4
+2026-05-22 15:51:22.155 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=5 => palletIndex=3, configPalletRackPos=5 => Serial=01013268, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=5
+2026-05-22 15:51:22.168 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=6 => palletIndex=3, configPalletRackPos=6 => Serial=01013271, PalletID=20260522T144820_0016_LSCSM06P22, PalletRackPosition=6
+2026-05-22 15:51:22.182 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=7 => palletIndex=2, configPalletRackPos=1 => Serial=01013299, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=1
+2026-05-22 15:51:22.194 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=8 => palletIndex=2, configPalletRackPos=2 => Serial=01013222, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=2
+2026-05-22 15:51:22.208 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=9 => palletIndex=2, configPalletRackPos=3 => Serial=01013272, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=3
+2026-05-22 15:51:22.223 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=10 => palletIndex=2, configPalletRackPos=4 => Serial=01012012, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=4
+2026-05-22 15:51:22.235 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=11 => palletIndex=2, configPalletRackPos=5 => Serial=01012068, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=5
+2026-05-22 15:51:22.247 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=12 => palletIndex=2, configPalletRackPos=6 => Serial=01012026, PalletID=20260522T120825_0014_LSCSM06P020, PalletRackPosition=6
+2026-05-22 15:51:22.260 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=13 => palletIndex=1, configPalletRackPos=1 => Serial=01013323, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=1
+2026-05-22 15:51:22.272 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=14 => palletIndex=1, configPalletRackPos=2 => Serial=01013310, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=2
+2026-05-22 15:51:22.286 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=15 => palletIndex=1, configPalletRackPos=3 => Serial=01013324, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=3
+2026-05-22 15:51:22.298 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=16 => palletIndex=1, configPalletRackPos=4 => Serial=01013321, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=4
+2026-05-22 15:51:22.315 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=17 => palletIndex=1, configPalletRackPos=5 => Serial=01012080, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=5
+2026-05-22 15:51:22.328 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=18 => palletIndex=1, configPalletRackPos=6 => Serial=01013305, PalletID=20260522T110810_0013_LSCSM06P03, PalletRackPosition=6
+2026-05-22 15:51:22.341 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=19 => palletIndex=0, configPalletRackPos=1 => Serial=01012003, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=1
+2026-05-22 15:51:22.356 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=20 => palletIndex=0, configPalletRackPos=2 => Serial=01012005, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=2
+2026-05-22 15:51:22.370 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=21 => palletIndex=0, configPalletRackPos=3 => Serial=01013293, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=3
+2026-05-22 15:51:22.383 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=22 => palletIndex=0, configPalletRackPos=4 => Serial=01013280, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=4
+2026-05-22 15:51:22.395 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=23 => palletIndex=0, configPalletRackPos=5 => Serial=01013281, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=5
+2026-05-22 15:51:22.409 INFO  verific:358 - getMeterSerialNumberWithPalletMap: Mapped globalPos=24 => palletIndex=0, configPalletRackPos=6 => Serial=01012044, PalletID=20260522T110238_0012_LSCSM06P07, PalletRackPosition=6
+2026-05-22 15:51:22.409 INFO  verific:367 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap: Final positionToMeterMap = {1={meterSerialNo=00000001, palletRackPositionNo=1, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 2={meterSerialNo=01013263, palletRackPositionNo=2, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 3={meterSerialNo=01013141, palletRackPositionNo=3, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 4={meterSerialNo=01013278, palletRackPositionNo=4, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 5={meterSerialNo=01013268, palletRackPositionNo=5, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 6={meterSerialNo=01013271, palletRackPositionNo=6, palletDistinctId=20260522T144820_0016_LSCSM06P22}, 7={meterSerialNo=01013299, palletRackPositionNo=1, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 8={meterSerialNo=01013222, palletRackPositionNo=2, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 9={meterSerialNo=01013272, palletRackPositionNo=3, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 10={meterSerialNo=01012012, palletRackPositionNo=4, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 11={meterSerialNo=01012068, palletRackPositionNo=5, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 12={meterSerialNo=01012026, palletRackPositionNo=6, palletDistinctId=20260522T120825_0014_LSCSM06P020}, 13={meterSerialNo=01013323, palletRackPositionNo=1, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 14={meterSerialNo=01013310, palletRackPositionNo=2, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 15={meterSerialNo=01013324, palletRackPositionNo=3, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 16={meterSerialNo=01013321, palletRackPositionNo=4, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 17={meterSerialNo=01012080, palletRackPositionNo=5, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 18={meterSerialNo=01013305, palletRackPositionNo=6, palletDistinctId=20260522T110810_0013_LSCSM06P03}, 19={meterSerialNo=01012003, palletRackPositionNo=1, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 20={meterSerialNo=01012005, palletRackPositionNo=2, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 21={meterSerialNo=01013293, palletRackPositionNo=3, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 22={meterSerialNo=01013280, palletRackPositionNo=4, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 23={meterSerialNo=01013281, palletRackPositionNo=5, palletDistinctId=20260522T110238_0012_LSCSM06P07}, 24={meterSerialNo=01012044, palletRackPositionNo=6, palletDistinctId=20260522T110238_0012_LSCSM06P07}}
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 1, Meter Serial No: 00000001, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 2, Meter Serial No: 01013263, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 3, Meter Serial No: 01013141, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 4, Meter Serial No: 01013278, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 5, Meter Serial No: 01013268, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 6, Meter Serial No: 01013271, Pallet Distinct ID: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 7, Meter Serial No: 01013299, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 8, Meter Serial No: 01013222, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 9, Meter Serial No: 01013272, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 10, Meter Serial No: 01012012, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 11, Meter Serial No: 01012068, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 12, Meter Serial No: 01012026, Pallet Distinct ID: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 13, Meter Serial No: 01013323, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 14, Meter Serial No: 01013310, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 15, Meter Serial No: 01013324, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 16, Meter Serial No: 01013321, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 17, Meter Serial No: 01012080, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 18, Meter Serial No: 01013305, Pallet Distinct ID: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 19, Meter Serial No: 01012003, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 20, Meter Serial No: 01012005, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 21, Meter Serial No: 01013293, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:22.409 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 22, Meter Serial No: 01013280, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:22.410 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 23, Meter Serial No: 01013281, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:22.410 INFO  verific:88 - S045_Select_Run_Project: Verific : Position: 24, Meter Serial No: 01012044, Pallet Distinct ID: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:28.423 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T110238_0012_LSCSM06P07
+2026-05-22 15:51:28.435 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T110810_0013_LSCSM06P03
+2026-05-22 15:51:28.447 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T120825_0014_LSCSM06P020
+2026-05-22 15:51:28.459 INFO  verific:100 - S045_Select_Run_Project : clearing db results for eachPalletDistinctId: 20260522T144820_0016_LSCSM06P22
+2026-05-22 15:51:28.470 INFO  verific:104 - S045_Select_Run_Project : updateDutSerialNo Success
+2026-05-22 15:51:30.470 INFO  verific:116 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 3
+2026-05-22 15:51:36.489 INFO  verific:122 - S045_Select_Run_Project : Select Run Project Success
+2026-05-22 15:51:36.489 INFO  verific:116 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 2
+2026-05-22 15:51:42.500 INFO  verific:122 - S045_Select_Run_Project : Select Run Project Success
+2026-05-22 15:51:42.500 INFO  verific:116 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 1
+2026-05-22 15:51:48.512 INFO  verific:122 - S045_Select_Run_Project : Select Run Project Success
+2026-05-22 15:51:48.512 INFO  verific:192 - S045_Select_Run_Project : Exit
+2026-05-22 15:51:48.512 DEBUG verific:171 - processCurrentState : S045_Select_Run_Project : Status     : true
+2026-05-22 15:51:48.512 DEBUG verific:172 - processCurrentState : S045_Select_Run_Project : Error Code : ERROR_CODE_601
+2026-05-22 15:51:48.512 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:51:48.512 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:51:48.512 INFO  verific:29 - S042_Start_Execution : Entry
+2026-05-22 15:51:55.524 INFO  verific:48 - S042_Start_Execution : Start Execution Success
+2026-05-22 15:52:00.538 INFO  verific:66 - S042_Start_Execution : Exit
+2026-05-22 15:52:00.538 DEBUG verific:171 - processCurrentState : S042_Start_Execution : Status     : true
+2026-05-22 15:52:00.538 DEBUG verific:172 - processCurrentState : S042_Start_Execution : Error Code : ERROR_CODE_601
+2026-05-22 15:52:00.538 DEBUG verific:70 - VERIFIC BAY : isStopProcessRequested : false
+2026-05-22 15:52:00.538 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:52:00.538 INFO  verific:104 - S043_Get_Test_Point_Status : Entry
+2026-05-22 15:52:00.538 INFO  verific:105 - S043_Get_Test_Point_Status : Simulation Mode: NONE
+2026-05-22 15:52:01.560 INFO  verific:138 - S043_Get_Test_Point_Status : getPresentTestPointId-1 : 
+2026-05-22 15:52:01.560 INFO  verific:139 - S043_Get_Test_Point_Status : getCompletedTestPointCount-1 : -2
+2026-05-22 15:52:01.560 INFO  verific:140 - S043_Get_Test_Point_Status : getTotalTestPointCount-1 : 0
+2026-05-22 15:52:01.560 INFO  verific:141 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec-1 : 0
+2026-05-22 15:52:01.560 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:52:12.659 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:52:12.659 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:52:12.659 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:52:12.659 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:52:12.659 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:52:12.659 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:52:23.765 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:52:23.765 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:52:23.765 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:52:23.765 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:52:23.765 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:52:23.765 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:52:34.884 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:52:34.884 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:52:34.884 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:52:34.884 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:52:34.885 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:52:34.885 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:52:45.982 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:52:45.982 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:52:45.982 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:52:45.982 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:52:45.982 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:52:45.982 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:52:56.997 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:52:56.997 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:52:56.997 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:52:56.997 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:52:56.997 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:52:56.997 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:53:08.012 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:53:08.012 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:53:08.012 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:53:08.012 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:53:08.012 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:53:08.012 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:53:19.029 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:53:19.029 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:53:19.029 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:53:19.029 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:53:19.029 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:53:19.029 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:53:30.051 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:53:30.051 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:53:30.051 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:53:30.051 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:53:30.051 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:53:30.051 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:53:41.067 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:53:41.067 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:53:41.067 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:53:41.067 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:53:41.067 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:53:41.067 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:53:52.085 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:53:52.085 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:53:52.085 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:53:52.085 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:53:52.085 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:53:52.085 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:54:03.100 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:54:03.100 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:54:03.100 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:54:03.100 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:54:03.100 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:54:03.100 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:54:14.111 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:54:14.111 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:54:14.111 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:54:14.111 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:54:14.111 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:54:14.111 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:54:25.125 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:54:25.125 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:54:25.125 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:54:25.125 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:54:25.125 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:54:25.125 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:54:36.137 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:54:36.137 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:54:36.137 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:54:36.137 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:54:36.137 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:54:36.137 INFO  verific:153 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-22 15:54:46.790 INFO  verific:1301 - btnVerificTestStopOnClick : Invoked:
+2026-05-22 15:54:46.790 INFO  verific:1303 - VERIFICATION TEST BAY : STOPPED
+2026-05-22 15:54:46.791 INFO  verific:1360 - btnVerificTestStopOnClick : Exit:
+2026-05-22 15:54:46.890 DEBUG verific:23 - VerificationTestBay2 : Entry
+2026-05-22 15:54:46.890 DEBUG verific:31 - VerificationTestBayStop : manageVerificationTestBayStopStates : Entry
+2026-05-22 15:54:46.891 DEBUG verific:50 - VerificationTestBayStop : manageVerificationTestBayStopStates : getTableStatePlanner2 : Size : 3
+2026-05-22 15:54:46.891 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:54:46.891 INFO  verific:29 - S046_Stop_Execution : Entry
+2026-05-22 15:54:47.152 INFO  verific:292 - S043_Get_Test_Point_Status : getPresentTestPointId : 
+2026-05-22 15:54:47.152 INFO  verific:293 - S043_Get_Test_Point_Status : getCompletedTestPointCount : -2
+2026-05-22 15:54:47.152 INFO  verific:294 - S043_Get_Test_Point_Status : getTotalTestPointCount : 0
+2026-05-22 15:54:47.152 INFO  verific:295 - S043_Get_Test_Point_Status : getTotalTestingTimeInSec : 0
+2026-05-22 15:54:47.152 INFO  verific:296 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-22 15:54:47.152 INFO  verific:391 - S043_Get_Test_Point_Status : Execution Failed (e.g., due to stop process request or ALL_LOOP_BREAK_FLAG being set)
+2026-05-22 15:54:47.152 INFO  verific:396 - S043_Get_Test_Point_Status : Exit
+2026-05-22 15:54:47.152 DEBUG verific:171 - processCurrentState : S043_Get_Test_Point_Status : Status     : false
+2026-05-22 15:54:47.152 DEBUG verific:172 - processCurrentState : S043_Get_Test_Point_Status : Error Code : ERROR_CODE_VERIFIC_026
+2026-05-22 15:54:48.904 INFO  verific:46 - S046_Stop_Execution : Stop Execution Success
+2026-05-22 15:54:48.904 INFO  verific:57 - S046_Stop_Execution : Exit
+2026-05-22 15:54:48.904 DEBUG verific:154 - processCurrentState : S046_Stop_Execution : Status     : true
+2026-05-22 15:54:48.904 DEBUG verific:155 - processCurrentState : S046_Stop_Execution : Error Code : ERROR_CODE_601
+2026-05-22 15:54:48.904 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:54:48.904 INFO  verific:33 - S06_open_the_fingerTip_Latch : Entry
+2026-05-22 15:54:48.904 DEBUG verific:58 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Entry
+2026-05-22 15:54:48.904 DEBUG verific:68 - PortId    : op11
+2026-05-22 15:54:48.904 DEBUG verific:69 - ClusterId : 2
+2026-05-22 15:54:48.904 DEBUG verific:70 - BayId     : 6
+2026-05-22 15:54:49.006 DEBUG verific:92 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : status : true
+2026-05-22 15:54:49.006 DEBUG verific:97 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Exit
+2026-05-22 15:54:49.006 INFO  verific:43 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-22 15:54:49.006 INFO  verific:52 - S06_open_the_fingerTip_Latch : Exit
+2026-05-22 15:54:49.006 DEBUG verific:154 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-05-22 15:54:49.006 DEBUG verific:155 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-22 15:54:49.006 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:54:49.006 INFO  verific:27 - S30_turn_off_tower_lamp_Verific_Bay : Entry
+2026-05-22 15:54:49.006 DEBUG verific:111 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-05-22 15:54:49.006 DEBUG verific:121 - PortId    : op13
+2026-05-22 15:54:49.006 DEBUG verific:122 - ClusterId : 2
+2026-05-22 15:54:49.006 DEBUG verific:123 - BayId     : 6
+2026-05-22 15:54:49.109 DEBUG verific:138 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-05-22 15:54:49.109 DEBUG verific:147 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:54:49.109 INFO  verific:37 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-05-22 15:54:49.109 DEBUG verific:69 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-05-22 15:54:49.109 DEBUG verific:79 - PortId    : op14
+2026-05-22 15:54:49.109 DEBUG verific:80 - ClusterId : 2
+2026-05-22 15:54:49.109 DEBUG verific:81 - BayId     : 6
+2026-05-22 15:54:49.314 DEBUG verific:95 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-05-22 15:54:49.314 DEBUG verific:104 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:54:49.314 INFO  verific:45 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-05-22 15:54:50.315 INFO  verific:62 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-05-22 15:54:50.315 DEBUG verific:154 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Status     : true
+2026-05-22 15:54:50.315 DEBUG verific:155 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-05-22 15:54:50.315 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-05-22 15:54:50.315 INFO  verific:11 - S18_idle_condition : Entry
+2026-05-22 15:54:50.315 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:51.316 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:52.316 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:53.316 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:54.316 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:55.316 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:56.316 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:57.317 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:58.317 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:54:59.317 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:55:00.317 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:55:01.317 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:55:02.317 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:55:03.318 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:55:04.319 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-05-22 15:55:05.320 DEBUG verific:154 - processCurrentState : S18_idle_condition : Status     : true
+2026-05-22 15:55:05.320 DEBUG verific:155 - processCurrentState : S18_idle_condition : Error Code : NO_ERROR_001

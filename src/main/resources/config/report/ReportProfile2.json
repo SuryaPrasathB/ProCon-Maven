@@ -1,0 +1,117 @@
+{
+	"ConfigFileVersion" : "1.0",
+	"ConfigFileVersionComment" : "TBD",
+
+	"TemplateFileLocationPath":"",
+	"ReportProfileType":"HealthyMeterReport",
+	
+	"ExcelReportTestTypeFilter": {
+	
+		"TestTypeTotalFilter":9,
+		
+		"TestTypePrefixFilter1":"NLD",
+		"TestTypeVoltageFilter1":"115U",
+		
+		"TestTypePrefixFilter2":"STA",
+		"TestTypeVoltageFilter2":"100U",
+		"TestTypeCurrentFilter2":"0.004Ib",		
+	
+		"TestTypePrefixFilter3":"LOE",
+		"TestTypeVoltageFilter3":"100U",
+		"TestTypeCurrentFilter3":"1.0Imax",
+		"TestTypePfFilter3":"1.0",
+		"TestTypePopulateTypeFilter3":"Vertical",
+		
+		"TestTypePrefixFilter4":"LOE",
+		"TestTypeVoltageFilter4":"100U",
+		"TestTypeCurrentFilter4":"1.0Imax",
+		"TestTypePfFilter4":"1.0",
+		"TestTypePopulateTypeFilter4":"Vertical",
+		
+		"TestTypePrefixFilter5":"LOE",
+		"TestTypeVoltageFilter5":"100U",
+		"TestTypeCurrentFilter5":"1.0Imax",
+		"TestTypePfFilter5":"1.0",
+		"TestTypePopulateTypeFilter5":"Vertical",
+		
+		"TestTypePrefixFilter6":"LOE",
+		"TestTypeVoltageFilter6":"100U",
+		"TestTypeCurrentFilter6":"1.0Imax",
+		"TestTypePfFilter6":"1.0",
+		"TestTypePopulateTypeFilter6":"Vertical",
+		
+		"TestTypePrefixFilter7":"LOE",
+		"TestTypeVoltageFilter7":"100U",
+		"TestTypeCurrentFilter7":"1.0Imax",
+		"TestTypePfFilter7":"1.0",
+		"TestTypePopulateTypeFilter7":"Vertical",
+		
+		"TestTypePrefixFilter8":"LOE",
+		"TestTypeVoltageFilter8":"100U",
+		"TestTypeCurrentFilter8":"1.0Imax",
+		"TestTypePfFilter8":"1.0",
+		"TestTypePopulateTypeFilter8":"Vertical",
+		
+		"TestTypePrefixFilter9":"LOE",
+		"TestTypeVoltageFilter9":"100U",
+		"TestTypeCurrentFilter9":"1.0Imax",
+		"TestTypePfFilter9":"1.0",
+		"TestTypePopulateTypeFilter9":"Vertical"
+	},
+
+	"ExcelReportDataCellPosition": {
+	
+		"cellMeterSerialNo" : "C9",	
+		"cellMakeAndCapacity" : "D9",				
+		"cellTestTypeFilter1" : "E9",
+		"cellTestTypeFilter2" : "F9",
+		"cellTestTypeFilter3" : "G9",
+		"cellTestTypeFilter4" : "H9",
+		"cellTestTypeFilter5" : "I9",
+		"cellTestTypeFilter6" : "J9",
+		"cellTestTypeFilter7" : "K9",
+		"cellTestTypeFilter8" : "L9",
+		"cellTestTypeFilter9" : "M9"
+		
+	},
+	"ExcelReportDataDisplay" : {
+
+		"displayMeterSerialNo" : true,		
+		"displayMakeAndCapacity" : true,
+		"displayTestTypeFilter1" : true,
+		"displayTestTypeFilter2" : true,
+		"displayTestTypeFilter3" : true,
+		"displayTestTypeFilter4" : true,
+		"displayTestTypeFilter5" : true,
+		"displayTestTypeFilter6" : true,
+		"displayTestTypeFilter7" : true,
+		"displayTestTypeFilter8" : true,
+		"displayTestTypeFilter9" : true
+		
+	},
+	"ExcelReportResultData" : {
+
+		"populateResultStatusFilter1" : true,
+		"populateResultStatusFilter2" : true,
+		"populateResultStatusFilter3" : false,
+		"populateResultStatusFilter4" : false,
+		"populateResultStatusFilter5" : false,
+		"populateResultStatusFilter6" : false,
+		"populateResultStatusFilter7" : false,
+		"populateResultStatusFilter8" : false,
+		"populateResultStatusFilter9" : false,
+		
+		"populateResultValueFilter1" : false,
+		"populateResultValueFilter2" : false,
+		"populateResultValueFilter3" : true,
+		"populateResultValueFilter4" : true,
+		"populateResultValueFilter5" : true,
+		"populateResultValueFilter6" : true,
+		"populateResultValueFilter7" : true,
+		"populateResultValueFilter8" : true,
+		"populateResultValueFilter9" : true
+		
+	}
+
+	
+}

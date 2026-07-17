@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="600.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testprofiles.PropertyVoltageController">
+   <children>
+      <Button fx:id="btn_Save" layoutX="123.0" layoutY="320.0" mnemonicParsing="false" onAction="#SaveVoltageTrigger" prefHeight="33.0" prefWidth="95.0" text="Save" />
+      <TextField fx:id="txt_volt_input" layoutX="123.0" layoutY="116.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="71.0" />
+      <Button fx:id="btn_add" layoutX="201.0" layoutY="115.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#AddVoltageOnClick" prefHeight="31.0" prefWidth="50.0" text="Add" />
+      <Button fx:id="btn_remove" layoutX="260.0" layoutY="115.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#RemoveVoltageOnClick" prefHeight="31.0" prefWidth="50.0" text="Del" />
+      <ListView fx:id="listview_voltlist" layoutX="123.0" layoutY="158.0" prefHeight="146.0" prefWidth="187.0" />
+      <TextField fx:id="txtTestType" editable="false" layoutX="123.0" layoutY="32.0" />
+      <TextField fx:id="txtAlias_ID" editable="false" layoutX="123.0" layoutY="74.0" />
+      <Label layoutX="35.0" layoutY="77.0" text="Alias ID" />
+      <Label layoutX="35.0" layoutY="37.0" text="Test Type" />
+      <Label layoutX="38.0" layoutY="118.0" text="\% Un" />
+   </children>
+</AnchorPane>

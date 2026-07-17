@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root fx:id="testScriptRootPane" focusTraversable="true" minWidth="-Infinity" prefHeight="685.0" prefWidth="1217.0" stylesheets="@../../resources/config/style/application_W.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="74.0" prefWidth="1112.0">
+         <children>
+            <HBox prefHeight="79.0" prefWidth="1112.0">
+               <children>
+                  <GridPane prefHeight="69.0" prefWidth="1112.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.20001831054688" minWidth="10.0" prefWidth="102.20001831054688" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="211.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="34.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="115.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="114.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="111.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="36.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="94.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="4.0" prefWidth="41.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="234.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ComboBox fx:id="cmbBox_ChooseProject" onAction="#LoadProjectTrigger" prefHeight="35.0" prefWidth="231.0" GridPane.columnIndex="1" />
+                        <Button fx:id="btn_Save" minWidth="-Infinity" mnemonicParsing="false" onAction="#SaveAsProject" prefHeight="33.0" prefWidth="98.0" text="Save As" GridPane.columnIndex="4" />
+                        <Button fx:id="btn_Create" minWidth="-Infinity" mnemonicParsing="false" onAction="#CreateNewProject" prefHeight="33.0" prefWidth="98.0" text="Create New" GridPane.columnIndex="3" />
+                        <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="103.0" text="Meter Config" GridPane.columnIndex="7" />
+                        <ComboBox fx:id="cmbBox_model_list" prefHeight="37.0" prefWidth="228.0" GridPane.columnIndex="9" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="106.0" text="Project" />
+                        <Button fx:id="btn_Delete" mnemonicParsing="false" onAction="#DeleteSelectedProject" prefHeight="33.0" prefWidth="98.0" text="Delete" GridPane.columnIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <SplitPane fx:id="testScriptSplitPane" dividerPositions="0.16641074856046065, 0.34107485604606524, 0.5" layoutX="-8.0" layoutY="76.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="1217.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
+        <items>
+            <TitledPane fx:id="titledPaneTemplate" alignment="CENTER" animated="false" collapsible="false" contentDisplay="TOP" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="232.0" stylesheets="@../../resources/config/style/drag-node-app_W.css" text="Test Cases" SplitPane.resizableWithParent="false">
+              <content>
+                <AnchorPane fx:id="AnchorPaneTemplate" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="232.0">
+                     <children>
+                        <ScrollPane fx:id="scrollPaneTemplate" fitToHeight="true" hbarPolicy="NEVER" layoutX="3.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="225.0">
+                           <content>
+                              <VBox fx:id="testScriptLeftPane" fillWidth="false" prefHeight="581.0" prefWidth="226.0" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </padding></VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane fx:id="titledPaneTC" alignment="CENTER" animated="false" collapsible="false" contentDisplay="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="225.0" stylesheets="@../../resources/config/style/drag-node-app_W.css" text="Test Sequence" SplitPane.resizableWithParent="false">
+              <content>
+                <AnchorPane fx:id="AnchorPaneTC" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="226.0">
+                     <children>
+                        <ScrollPane fx:id="scrollPaneTC" fitToHeight="true" hbarPolicy="NEVER" minWidth="-Infinity" prefHeight="585.0" prefWidth="225.0">
+                           <content>
+                              <VBox fx:id="testScriptRightPane" fillWidth="false" maxWidth="-Infinity" prefHeight="536.0" prefWidth="219.0" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <AnchorPane fx:id="AnchorPaneProperty" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="510.0">
+               <children>
+                  <TitledPane fx:id="titledPaneProperty" animated="false" collapsible="false" prefHeight="607.0" prefWidth="512.0" text="Property">
+                    <content>
+                      <AnchorPane fx:id="testScriptPropertyChildPane" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="510.0" />
+                    </content>
+                  </TitledPane>
+               </children></AnchorPane>
+            <AnchorPane fx:id="AnchorPaneSummary" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="230.0">
+               <children>
+                  <TitledPane fx:id="titledSummaryPane" collapsible="false" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="225.0" text="Summary">
+                     <content>
+                        <AnchorPane fx:id="AnchorInnerPaneSummary" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="222.0">
+                           <children>
+                              <TableView fx:id="SummaryTable" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="225.0">
+                                 <columns>
+                                    <TableColumn fx:id="testCaseSerialno" maxWidth="40.0" minWidth="-Infinity" prefWidth="40.0" text="S.No" />
+                                    <TableColumn fx:id="testCaseNameColumn" editable="false" maxWidth="210.0" minWidth="-Infinity" prefWidth="150.0" sortable="false" text="Test Point" />
+                                    <TableColumn fx:id="testCaseSelectedColumn" editable="false" maxWidth="40.0" minWidth="-Infinity" prefWidth="40.0" sortable="false" text="Move" visible="false" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</fx:root>

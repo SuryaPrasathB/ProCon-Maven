@@ -1,0 +1,1026 @@
+{
+  "VoltageCalibration": [
+    {
+      "VoltagePhase": "R",
+      "NoOfVoltageTaps": 1,
+      "VoltageTap": [
+        {
+          "VoltageTapId": 1,
+          "VoltageTapMax": 300.0,
+          "VoltageRelayId": "199",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "30V",
+              "CalibPointValue": 30.0,
+              "rmsValue": 34320,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "64V",
+              "CalibPointValue": 64.0,
+              "rmsValue": 73176,
+              "gainValue": 1142.82,
+              "offsetValue": 35.4
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "110V",
+              "CalibPointValue": 110.0,
+              "rmsValue": 125654,
+              "gainValue": 1140.83,
+              "offsetValue": 162.88
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "160V",
+              "CalibPointValue": 160.0,
+              "rmsValue": 183383,
+              "gainValue": 1154.58,
+              "offsetValue": -1349.8
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "200V",
+              "CalibPointValue": 200.0,
+              "rmsValue": 229036,
+              "gainValue": 1141.32,
+              "offsetValue": 771.8
+            },
+            {
+              "CalibPointId": 6,
+              "CalibPointName": "240V",
+              "CalibPointValue": 240.0,
+              "rmsValue": 274978,
+              "gainValue": 1141.38,
+              "offsetValue": 760.0
+            },
+            {
+              "CalibPointId": 7,
+              "CalibPointName": "300V",
+              "CalibPointValue": 300.0,
+              "rmsValue": 343671,
+              "gainValue": 1149.12,
+              "offsetValue": -1097.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "VoltagePhase": "Y",
+      "NoOfVoltageTaps": 1,
+      "VoltageTap": [
+        {
+          "VoltageTapId": 1,
+          "VoltageTapMax": 300.0,
+          "VoltageRelayId": "199",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "30V",
+              "CalibPointValue": 30.0,
+              "rmsValue": 24116,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "64V",
+              "CalibPointValue": 64.0,
+              "rmsValue": 52904,
+              "gainValue": 846.71,
+              "offsetValue": -1285.3
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "110V",
+              "CalibPointValue": 110.0,
+              "rmsValue": 91719,
+              "gainValue": 843.8,
+              "offsetValue": -1099.2
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "160V",
+              "CalibPointValue": 160.0,
+              "rmsValue": 133938,
+              "gainValue": 844.38,
+              "offsetValue": -1162.8
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "200V",
+              "CalibPointValue": 200.0,
+              "rmsValue": 167704,
+              "gainValue": 844.15,
+              "offsetValue": -1126.0
+            },
+            {
+              "CalibPointId": 6,
+              "CalibPointName": "240V",
+              "CalibPointValue": 240.0,
+              "rmsValue": 52886,
+              "gainValue": -2870.45,
+              "offsetValue": 741794.0
+            },
+            {
+              "CalibPointId": 7,
+              "CalibPointName": "300V",
+              "CalibPointValue": 300.0,
+              "rmsValue": 252123,
+              "gainValue": 3320.62,
+              "offsetValue": -744062.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "VoltagePhase": "B",
+      "NoOfVoltageTaps": 1,
+      "VoltageTap": [
+        {
+          "VoltageTapId": 1,
+          "VoltageTapMax": 300.0,
+          "VoltageRelayId": "100",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "30V",
+              "CalibPointValue": 30.0,
+              "rmsValue": 24327,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "64V",
+              "CalibPointValue": 64.0,
+              "rmsValue": 52876,
+              "gainValue": 839.68,
+              "offsetValue": -863.4
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "110V",
+              "CalibPointValue": 110.0,
+              "rmsValue": 91672,
+              "gainValue": 843.39,
+              "offsetValue": -1100.96
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "160V",
+              "CalibPointValue": 160.0,
+              "rmsValue": 133870,
+              "gainValue": 843.96,
+              "offsetValue": -1163.6
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "200V",
+              "CalibPointValue": 200.0,
+              "rmsValue": 167582,
+              "gainValue": 842.8,
+              "offsetValue": -978.0
+            },
+            {
+              "CalibPointId": 6,
+              "CalibPointName": "240V",
+              "CalibPointValue": 240.0,
+              "rmsValue": 52886,
+              "gainValue": -2867.4,
+              "offsetValue": 741062.0
+            },
+            {
+              "CalibPointId": 7,
+              "CalibPointName": "300V",
+              "CalibPointValue": 300.0,
+              "rmsValue": 251985,
+              "gainValue": 3318.32,
+              "offsetValue": -743510.8
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "CurrentCalibration": [
+    {
+      "CurrentPhase": "R",
+      "NoOfCurrentTaps": 6,
+      "CurrentTap": [
+        {
+          "CurrentTapId": 1,
+          "CurrentTapMax": 0.05,
+          "CurrentRelayId": "210",
+          "NoOfCalibrationPoints": 3,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "1mA",
+              "CalibPointValue": 0.001,
+              "rmsValue": 20000,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "10mA",
+              "CalibPointValue": 0.01,
+              "rmsValue": 67591,
+              "gainValue": 5287889.0,
+              "offsetValue": 14712.11
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "25mA",
+              "CalibPointValue": 0.025,
+              "rmsValue": 169500,
+              "gainValue": 6793933.0,
+              "offsetValue": -348.33
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "50mA",
+              "CalibPointValue": 0.05,
+              "rmsValue": 339454,
+              "gainValue": 6798160.0,
+              "offsetValue": -454.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 2,
+          "CurrentTapMax": 0.1,
+          "CurrentRelayId": "211",
+          "NoOfCalibrationPoints": 3,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "51mA",
+              "CalibPointValue": 0.051,
+              "rmsValue": 172859,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "75mA",
+              "CalibPointValue": 0.075,
+              "rmsValue": 254477,
+              "gainValue": 3400749.5,
+              "offsetValue": -579.22
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "100mA",
+              "CalibPointValue": 0.1,
+              "rmsValue": 339527,
+              "gainValue": 3402000.25,
+              "offsetValue": -673.03
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 3,
+          "CurrentTapMax": 1.0,
+          "CurrentRelayId": "212",
+          "NoOfCalibrationPoints": 6,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "121mA",
+              "CalibPointValue": 0.121,
+              "rmsValue": 41040,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "250mA",
+              "CalibPointValue": 0.25,
+              "rmsValue": 84458,
+              "gainValue": 336573.63,
+              "offsetValue": 314.59
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "500mA",
+              "CalibPointValue": 0.5,
+              "rmsValue": 169514,
+              "gainValue": 340224.0,
+              "offsetValue": -598.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "750mA",
+              "CalibPointValue": 0.75,
+              "rmsValue": 254426,
+              "gainValue": 339648.0,
+              "offsetValue": -310.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "850mA",
+              "CalibPointValue": 0.85,
+              "rmsValue": 288295,
+              "gainValue": 338689.91,
+              "offsetValue": 408.57
+            },
+            {
+              "CalibPointId": 6,
+              "CalibPointName": "1A",
+              "CalibPointValue": 1.0,
+              "rmsValue": 339258,
+              "gainValue": 339753.38,
+              "offsetValue": -495.38
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 4,
+          "CurrentTapMax": 10.0,
+          "CurrentRelayId": "213",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "1.1A",
+              "CalibPointValue": 1.1,
+              "rmsValue": 37082,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "2.5A",
+              "CalibPointValue": 2.5,
+              "rmsValue": 84596,
+              "gainValue": 33938.57,
+              "offsetValue": -250.43
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "5A",
+              "CalibPointValue": 5.0,
+              "rmsValue": 169443,
+              "gainValue": 33938.8,
+              "offsetValue": -251.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "7.5A",
+              "CalibPointValue": 7.5,
+              "rmsValue": 254546,
+              "gainValue": 34041.2,
+              "offsetValue": -763.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "10A",
+              "CalibPointValue": 10.0,
+              "rmsValue": 339573,
+              "gainValue": 34010.8,
+              "offsetValue": -535.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 5,
+          "CurrentTapMax": 60.0,
+          "CurrentRelayId": "214",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "10.1A",
+              "CalibPointValue": 10.1,
+              "rmsValue": 68183,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "25A",
+              "CalibPointValue": 25.0,
+              "rmsValue": 169660,
+              "gainValue": 6810.54,
+              "offsetValue": -603.46
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "35A",
+              "CalibPointValue": 35.0,
+              "rmsValue": 237417,
+              "gainValue": 6775.7,
+              "offsetValue": 267.5
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "40A",
+              "CalibPointValue": 40.0,
+              "rmsValue": 271299,
+              "gainValue": 6776.4,
+              "offsetValue": 243.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "60A",
+              "CalibPointValue": 60.0,
+              "rmsValue": 407079,
+              "gainValue": 6789.0,
+              "offsetValue": -261.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 6,
+          "CurrentTapMax": 120.0,
+          "CurrentRelayId": "215",
+          "NoOfCalibrationPoints": 4,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "60.1A",
+              "CalibPointValue": 60.1,
+              "rmsValue": 203669,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "75A",
+              "CalibPointValue": 75.0,
+              "rmsValue": 254296,
+              "gainValue": 3397.78,
+              "offsetValue": -537.57
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "100A",
+              "CalibPointValue": 100.0,
+              "rmsValue": 339211,
+              "gainValue": 3396.6,
+              "offsetValue": -449.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "120A",
+              "CalibPointValue": 120.0,
+              "rmsValue": 124567,
+              "gainValue": -10732.2,
+              "offsetValue": 1412431.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "CurrentPhase": "Y",
+      "NoOfCurrentTaps": 6,
+      "CurrentTap": [
+        {
+          "CurrentTapId": 1,
+          "CurrentTapMax": 0.05,
+          "CurrentRelayId": "210",
+          "NoOfCalibrationPoints": 3,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "1mA",
+              "CalibPointValue": 0.001,
+              "rmsValue": 20000,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "10mA",
+              "CalibPointValue": 0.01,
+              "rmsValue": 49925,
+              "gainValue": 3325000.25,
+              "offsetValue": 16675.0
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "25mA",
+              "CalibPointValue": 0.025,
+              "rmsValue": 126175,
+              "gainValue": 5083333.0,
+              "offsetValue": -908.33
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "50mA",
+              "CalibPointValue": 0.05,
+              "rmsValue": 253056,
+              "gainValue": 5075240.0,
+              "offsetValue": -706.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 2,
+          "CurrentTapMax": 0.1,
+          "CurrentRelayId": "211",
+          "NoOfCalibrationPoints": 3,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "51mA",
+              "CalibPointValue": 0.051,
+              "rmsValue": 128252,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "75mA",
+              "CalibPointValue": 0.075,
+              "rmsValue": 189564,
+              "gainValue": 2554666.25,
+              "offsetValue": -2035.98
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "100mA",
+              "CalibPointValue": 0.1,
+              "rmsValue": 252942,
+              "gainValue": 2535120.25,
+              "offsetValue": -570.03
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 3,
+          "CurrentTapMax": 1.0,
+          "CurrentRelayId": "212",
+          "NoOfCalibrationPoints": 6,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "121mA",
+              "CalibPointValue": 0.121,
+              "rmsValue": 29550,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "250mA",
+              "CalibPointValue": 0.25,
+              "rmsValue": 62358,
+              "gainValue": 254325.56,
+              "offsetValue": -1223.39
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "500mA",
+              "CalibPointValue": 0.5,
+              "rmsValue": 125964,
+              "gainValue": 254424.0,
+              "offsetValue": -1248.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "750mA",
+              "CalibPointValue": 0.75,
+              "rmsValue": 189629,
+              "gainValue": 254660.0,
+              "offsetValue": -1366.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "850mA",
+              "CalibPointValue": 0.85,
+              "rmsValue": 215353,
+              "gainValue": 257239.94,
+              "offsetValue": -3300.96
+            },
+            {
+              "CalibPointId": 6,
+              "CalibPointName": "1A",
+              "CalibPointValue": 1.0,
+              "rmsValue": 253207,
+              "gainValue": 252360.05,
+              "offsetValue": 846.95
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 4,
+          "CurrentTapMax": 10.0,
+          "CurrentRelayId": "213",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "1.1A",
+              "CalibPointValue": 1.1,
+              "rmsValue": 27144,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "2.5A",
+              "CalibPointValue": 2.5,
+              "rmsValue": 62053,
+              "gainValue": 24935.0,
+              "offsetValue": -284.5
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "5A",
+              "CalibPointValue": 5.0,
+              "rmsValue": 125441,
+              "gainValue": 25355.2,
+              "offsetValue": -1335.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "7.5A",
+              "CalibPointValue": 7.5,
+              "rmsValue": 189141,
+              "gainValue": 25480.0,
+              "offsetValue": -1959.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "10A",
+              "CalibPointValue": 10.0,
+              "rmsValue": 252021,
+              "gainValue": 25152.0,
+              "offsetValue": 501.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 5,
+          "CurrentTapMax": 60.0,
+          "CurrentRelayId": "214",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "10.1A",
+              "CalibPointValue": 10.1,
+              "rmsValue": 20247,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "25A",
+              "CalibPointValue": 25.0,
+              "rmsValue": 125552,
+              "gainValue": 7067.45,
+              "offsetValue": -51134.25
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "35A",
+              "CalibPointValue": 35.0,
+              "rmsValue": 176367,
+              "gainValue": 5081.5,
+              "offsetValue": -1485.5
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "40A",
+              "CalibPointValue": 40.0,
+              "rmsValue": 201724,
+              "gainValue": 5071.4,
+              "offsetValue": -1132.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "60A",
+              "CalibPointValue": 60.0,
+              "rmsValue": 302585,
+              "gainValue": 5043.05,
+              "offsetValue": 2.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 6,
+          "CurrentTapMax": 120.0,
+          "CurrentRelayId": "215",
+          "NoOfCalibrationPoints": 4,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "60.1A",
+              "CalibPointValue": 60.1,
+              "rmsValue": 151247,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "75A",
+              "CalibPointValue": 75.0,
+              "rmsValue": 189144,
+              "gainValue": 2543.42,
+              "offsetValue": -1612.54
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "100A",
+              "CalibPointValue": 100.0,
+              "rmsValue": 252522,
+              "gainValue": 2535.12,
+              "offsetValue": -990.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "120A",
+              "CalibPointValue": 120.0,
+              "rmsValue": 124567,
+              "gainValue": -6397.75,
+              "offsetValue": 892297.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "CurrentPhase": "B",
+      "NoOfCurrentTaps": 6,
+      "CurrentTap": [
+        {
+          "CurrentTapId": 1,
+          "CurrentTapMax": 0.05,
+          "CurrentRelayId": "210",
+          "NoOfCalibrationPoints": 3,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "1mA",
+              "CalibPointValue": 0.001,
+              "rmsValue": 20000,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "10mA",
+              "CalibPointValue": 0.01,
+              "rmsValue": 49840,
+              "gainValue": 3315555.75,
+              "offsetValue": 16684.44
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "25mA",
+              "CalibPointValue": 0.025,
+              "rmsValue": 126014,
+              "gainValue": 5078266.5,
+              "offsetValue": -942.66
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "50mA",
+              "CalibPointValue": 0.05,
+              "rmsValue": 253256,
+              "gainValue": 5089680.0,
+              "offsetValue": -1228.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 2,
+          "CurrentTapMax": 0.1,
+          "CurrentRelayId": "211",
+          "NoOfCalibrationPoints": 3,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "51mA",
+              "CalibPointValue": 0.051,
+              "rmsValue": 128634,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "75mA",
+              "CalibPointValue": 0.075,
+              "rmsValue": 189915,
+              "gainValue": 2553374.5,
+              "offsetValue": -1588.1
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "100mA",
+              "CalibPointValue": 0.1,
+              "rmsValue": 253449,
+              "gainValue": 2541360.25,
+              "offsetValue": -687.03
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 3,
+          "CurrentTapMax": 1.0,
+          "CurrentRelayId": "212",
+          "NoOfCalibrationPoints": 6,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "121mA",
+              "CalibPointValue": 0.121,
+              "rmsValue": 29627,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "250mA",
+              "CalibPointValue": 0.25,
+              "rmsValue": 62550,
+              "gainValue": 255217.03,
+              "offsetValue": -1254.26
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "500mA",
+              "CalibPointValue": 0.5,
+              "rmsValue": 125781,
+              "gainValue": 252924.0,
+              "offsetValue": -681.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "750mA",
+              "CalibPointValue": 0.75,
+              "rmsValue": 189629,
+              "gainValue": 255392.0,
+              "offsetValue": -1915.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "850mA",
+              "CalibPointValue": 0.85,
+              "rmsValue": 215099,
+              "gainValue": 254699.94,
+              "offsetValue": -1395.96
+            },
+            {
+              "CalibPointId": 6,
+              "CalibPointName": "1A",
+              "CalibPointValue": 1.0,
+              "rmsValue": 253523,
+              "gainValue": 256160.05,
+              "offsetValue": -2637.05
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 4,
+          "CurrentTapMax": 10.0,
+          "CurrentRelayId": "213",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "1.1A",
+              "CalibPointValue": 1.1,
+              "rmsValue": 27066,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "2.5A",
+              "CalibPointValue": 2.5,
+              "rmsValue": 62100,
+              "gainValue": 25024.29,
+              "offsetValue": -460.72
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "5A",
+              "CalibPointValue": 5.0,
+              "rmsValue": 125337,
+              "gainValue": 25294.8,
+              "offsetValue": -1137.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "7.5A",
+              "CalibPointValue": 7.5,
+              "rmsValue": 188637,
+              "gainValue": 25320.0,
+              "offsetValue": -1263.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "10A",
+              "CalibPointValue": 10.0,
+              "rmsValue": 252113,
+              "gainValue": 25390.4,
+              "offsetValue": -1791.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 5,
+          "CurrentTapMax": 60.0,
+          "CurrentRelayId": "214",
+          "NoOfCalibrationPoints": 5,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "10.1A",
+              "CalibPointValue": 10.1,
+              "rmsValue": 20171,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "25A",
+              "CalibPointValue": 25.0,
+              "rmsValue": 125630,
+              "gainValue": 7077.79,
+              "offsetValue": -51314.68
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "35A",
+              "CalibPointValue": 35.0,
+              "rmsValue": 176450,
+              "gainValue": 5082.0,
+              "offsetValue": -1420.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "40A",
+              "CalibPointValue": 40.0,
+              "rmsValue": 201723,
+              "gainValue": 5054.6,
+              "offsetValue": -461.0
+            },
+            {
+              "CalibPointId": 5,
+              "CalibPointName": "60A",
+              "CalibPointValue": 60.0,
+              "rmsValue": 302585,
+              "gainValue": 5043.1,
+              "offsetValue": -1.0
+            }
+          ]
+        },
+        {
+          "CurrentTapId": 6,
+          "CurrentTapMax": 120.0,
+          "CurrentRelayId": "215",
+          "NoOfCalibrationPoints": 4,
+          "CalibPoints": [
+            {
+              "CalibPointId": 1,
+              "CalibPointName": "60.1A",
+              "CalibPointValue": 60.1,
+              "rmsValue": 151187,
+              "gainValue": 12.01,
+              "offsetValue": -2578.125
+            },
+            {
+              "CalibPointId": 2,
+              "CalibPointName": "75A",
+              "CalibPointValue": 75.0,
+              "rmsValue": 189042,
+              "gainValue": 2540.6,
+              "offsetValue": -1503.06
+            },
+            {
+              "CalibPointId": 3,
+              "CalibPointName": "100A",
+              "CalibPointValue": 100.0,
+              "rmsValue": 252436,
+              "gainValue": 2535.76,
+              "offsetValue": -1140.0
+            },
+            {
+              "CalibPointId": 4,
+              "CalibPointName": "120A",
+              "CalibPointValue": 120.0,
+              "rmsValue": 124567,
+              "gainValue": -6393.45,
+              "offsetValue": 891781.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

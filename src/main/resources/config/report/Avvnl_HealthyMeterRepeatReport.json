@@ -1,0 +1,186 @@
+{
+	"ConfigFileVersion" : "1.0",
+	"ConfigFileVersionComment" : "TBD",
+
+	"TemplateFileLocationPath":"C:\\TAS_Network\\Procal_Excel\\ReportTemplate\\HealthyMeterRepeat-V0_4.xlsx",
+	"ReportOutputPath": "C:\\TAS_Network\\Procal_Excel\\Output\\",
+	"ParentReportProfile":"HealthyMeterWithRepeatReport",
+	
+	"ExcelReportTestTypeFilter": {
+	
+		"TestTypeFilter": [
+
+			{
+				"PopulateResult" : true,
+				"PrefixType":"STA",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.2Ib",	
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "H6",
+				"CellStartResultStatusPosition" : "I6",
+				"PopulateResultStatus" : true,
+				"PopulateResultValue" : true
+			},
+			{		
+				"PopulateResult" : true,
+				"PrefixType":"NLD",
+				"VoltageFilter":"115U",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "J6",
+				"CellStartResultStatusPosition" : "K6",
+				"PopulateResultStatus" : true,
+				"PopulateResultValue" : true
+			},
+
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Imax",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "L6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Imax",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "L6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "M6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "N6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "O6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "P6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "Q6",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "R6",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"REP",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"1.0",
+				"ResultIterationId":"1",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "S6",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"REP",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"1.0",
+				"ResultIterationId":"2",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "T6",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			}
+		]
+	},
+
+	"ExcelReportMeterDataCellPosition": {
+		"CellStartPositionSerialNo" : "B6",
+		"CellStartPositionMeterSerialNo" : "C6",	
+		"CellStartPositionMeterType" : "D6",
+		"CellStartPositionMake" : "E6",	
+		"CellStartPositionCapacity" : "F6",
+		"CellStartPositionCustomerRefNo" : "G6",
+		"CellStartPositionDutOverAllStatus" : "V6"			
+		
+	},
+	"ExcelReportMeterDataDisplay" : {
+		
+		"PopulateSerialNo" : true,
+		"PopulateMeterSerialNo" : true,	
+		"PopulateMeterType" : true,	
+		"PopulateMeterTypeForEach" : true,	
+		"PopulateMake" : true,
+		"PopulateMakeForEach" : true,	
+		"PopulateCapacity" : true,
+		"PopulateCapacityForEach" : true,	
+		"PopulateCustomerRefNo" : true,
+		"PopulateCustomerRefNoForEach" : true,	
+		"PopulateDutOverAllStatus" : true,
+		"AppendMeterSerialNoAndRackPosition" : true
+	}
+	
+}

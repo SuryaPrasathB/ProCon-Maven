@@ -1,0 +1,523 @@
+{
+	"ConfigFileVersion" : "2.1",
+
+	"DutHardwareIdInitialValuePrevious" : "01012000",
+	"DutHardwareIdInitialValue" : "01012100",
+	"MaxDutSupported" : "6",
+	"MaxNoOfPalletsInVerific1" : 4,
+	"MaxNoOfPalletsInStaNld1" : 4,
+	"MaxNoOfPalletsInStaNld2" : 4,
+	"MaxNoOfPalletsInWaitingVerific1" : 4,
+	
+	
+	"PostDelaySta1ExitOpenStopLatch1_InSec" : 5,
+	"PostDelaySta1ExitCloseStopLatch1_InSec" : 5,
+	"PostDelaySta1ExitOpenStopLatch2_InSec" : 5,
+	"PostDelaySta1ExitCloseStopLatch2_InSec" : 5,
+	"Sta1LastPalletExitWaitTime_InSec" : 5,
+	"UnloadingPalletEmptyStableDetectionWaitTime_InSec" : 3,
+	"UnloadingQrScanningWaitTime_InSec" : 60,
+	
+	"HvExecutionTime_InSec" : 5,
+	"IrExecutionTime_InSec" : 5,
+	"Sta1ExecutionTime_InSec" : 840,
+	"Sta2ExecutionTime_InSec" : 840,
+	
+	"CalibSuperCapacitorChargeWaitTimeInSec" : 90,
+	
+	"FtRelayOnPhaseCurrentMinAccepted": "0.5", 
+	"FtRelayOnNeutralCurrentMinAccepted": "0.5",
+	"FtSetDutToDefaultCalibrationTest": true,
+	"FtDutCmdTestProjectName": "Dut-Demo.*",
+	"FtDutCmdEachTpSeqExecuteMode": false,
+	"FtDutCmdEachTpBufferTimeInSec": 10,
+	
+	"OpticalReadingInterfaceEnabled" : true,
+	"DutSerialInterfaceEnabled" : true,
+	"UseDutSerialNoAsReportSerialNo" : true,
+	"ReportSerialNoPrefix": "RT", 
+	"ReportSerialNoRegexSourceFormat": "^RT(\\d{2})(.*)$",
+	"ReportSerialNoRegexTargetFormat": "$1RT$2",
+	"DutWriteSerialNoPassword": "123456", 
+	
+	
+	"TotalTestPointInSta1" : 2,
+	"TotalTestPointInSta2" : 2,
+	"TotalTestPointInVerific1" : 16,
+	
+	"TemplateFileLocationPath1":"C:\\Reports\\Conveyor\\Template\\DevSys_RoutineTestReport_v0_2_noData.xlsx",
+	"ReportOutputPath1": "C:\\Reports\\Conveyor\\Output\\",
+	
+ 	"TemplateFileLocationPath":"D:\\Reports\\Conveyor\\Template\\DevSys_RoutineTestReport_v0_2_noData.xlsx",
+	"ReportOutputPath": "D:\\Reports\\Conveyor\\Output\\",
+	
+	
+	"ReportProcessSummaryOverAllStatusTestTypeWhiteList" : ["FT","HV","IR","NLD","STA","LOE"],
+	"ReportPrintSummaryTestTypeWhiteList" : ["FT","HV","IR","NLD","STA"],
+	"ReportPrintDetailedTestTypeWhiteList" : ["LOE"],
+	"ReportPrintDetailedTestPointWhiteList" : 
+		[
+			"LOE_XX-100U-1.0-1.0Imax",
+			"LOE_XX-100U-0.8C-1.0Imax",
+			"LOE_XX-100U-0.5L-1.0Imax",
+			"LOE_XX-100U-1.0-0.5Imax",
+			"LOE_XX-100U-0.8C-0.5Imax",
+			"LOE_XX-100U-0.5L-0.5Imax",
+			"LOE_XX-100U-1.0-1.0Ib",
+			"LOE_XX-100U-0.8C-1.0Ib",
+			"LOE_XX-100U-0.5L-1.0Ib",
+			"LOE_XX-100U-1.0-0.2Ib",
+			"LOE_XX-100U-0.8C-0.2Ib",
+			"LOE_XX-100U-0.5L-0.2Ib",
+			"LOE_XX-100U-1.0-0.1Ib",
+			"LOE_XX-100U-0.8C-0.1Ib",
+			"LOE_XX-100U-0.5L-0.1Ib",
+			"LOE_XX-100U-1.0-0.05Ib"
+		],
+	
+	
+	
+	"RoutineSummaryReportCellPosition": {
+		"reportSerialNoCell" : "C1",
+		"meterSerialNoCell" : "C12",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"executedDateCell" : "H12",
+		"descriptionCell" : "C38",
+		"propertyOfCell" : "C9",
+		"tenderNoCell" : "C10",
+		"iS_SpecCell" : "B7",
+		"categoryCell" : "D7",
+		"appendCellPositionList" : "C6,D6,E6,F6,G6,H6",
+		"mergeStartingCell" : "C6",
+		"mergeEndingCell" : "H6",
+		"routineTestOverAllResultStatusCell" : "G15",
+		"routineTestOverAllResultValueCell" : "G37"
+	},
+	
+	"RoutineSummaryReportDisplay": {
+		"displayRoutineTestInReport" : true,
+		"displayReportSerialNo" : true,
+		"displayPrefixReportSerialNo" : true,
+		"displayPostfixReportSerialNo" : true,	
+		"displayMeterSerialNo" : true,
+		"displayPrefixMeterSerialNo" : true,
+		"displayPropertyOf" : true,
+		"displayTenderNo" : true,
+		"displayIs_Spec" : true,
+		"displayPrefixIs_Spec" : true,
+		"displayPostfixIs_Spec" : true,		
+		"displayCategory" : true,
+		"displayPrefixCategory" : true,
+		"displayPostfixCategory" : true,
+		
+		"displayPrefixPropertyOf" : true,
+		"displayPrefixTenderNo" : true,
+		"displayTestExecutedDate" : true,
+		"displayPrefixTestExecutedDate" : true,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayDescription" : true,
+		"displayRoutineTestOverAllResultStatus" : false,
+		"displayRoutineTestOverAllResultStatusPrefix" : false,
+		"displayRoutineTestOverAllResultStatusPostfix" : false,
+		"displayRoutineTestOverAllOverRideResultStatus" : true,
+		"displayRoutineTestOverAllResultValue" : false,
+		"displayRoutineTestOverAllResultValuePrefix" : true,
+		"displayRoutineTestOverAllResultValuePostfix" : true,
+		"displayRoutineTestOverAllOverRideResultValue" : false,
+		"appendCellData" :   true ,
+		"mergeCells" : true,
+		"overwriteMergedCellWithAppendedData" : true
+
+	},
+	
+	"RoutineSummaryReportResultValue": {
+		"DescriptionPassValue" : "The tested sample complies with the requirement of 16444 Part 1 for the routine tests conducted",
+		"DescriptionFailValue" : "The tested sample NOT complies with the requirement of 16444 Part 1 for the routine tests conducted",
+		"TenderNoValue" : "CESC/GM(Proj)/DGM-1/AGM-4/2024-25/CYC-1320 Dt. 23.09.2024",
+		"PropertyOfValue" : "CESC, Mysuru",
+		"PrefixMeterSerialNoValue" : ":    ",
+		"PrefixTestExecutedDateValue" : ":    ",
+		"PrefixTenderNoValue" : ":    ",
+		"PrefixPropertyOfValue" : ":    ",
+		"Is_SpecValue" : "IS 16444 (Part 1)",		
+		"PrefixIs_SpecValue" : "",
+		"PostfixIs_SpecValue" : " ,",
+		"CategoryValue" : "UC1,  DLMS Meter as per IS 15959 (Part 2), Category D1",
+		"PrefixCategoryValue" : "",
+		"PostfixCategoryValue" : "",
+		"PrefixReportSerialNoValue" : ":    ",
+		"PostfixReportSerialNoValue" : "",
+		"OverAllResultValueOverRidePassValue" : "Satisfactory-value",
+		"OverAllResultValueOverRideFailValue" : "Unsatisfactory-value",
+		"OverAllResultValuePrefixValue" : "pre-value:   ",
+		"OverAllResultValuePostfixValue" : "post-value",
+		"OverAllResultStatusOverRidePassValue" : "Satisfactory",
+		"OverAllResultStatusOverRideFailValue" : "Unsatisfactory",		
+		"OverAllResultStatusPrefixValue" : ":   ",
+		"OverAllResultStatusPostfixValue" : "poststatus"
+	},
+	
+	
+	"NoLoadReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"testPeriodCell" : "A34",
+		
+		"descriptionCell" : "D36",
+		"resultStatusCell" : "G36",
+		"resultValueCell" : "G36"
+	},
+	
+	"NoLoadReportDisplay": {
+		"displayNoLoadInReport" : true,
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : false,
+		"displayTestPeriod" : false,		
+		"displayDescription" : true,
+		"displayResultStatus" : true,
+		"displayResultStatusPrefix" : true,
+		"displayResultStatusPostfix" : false,
+		"displayOverRideResultStatus" : true,
+		"displayResultValue" : false,
+		"displayResultValuePrefix" : false,
+		"displayResultValuePostfix" : true,
+		"displayOverRideResultValue" : false
+
+	},
+	
+	"NoLoadReportResultValue": {
+		"DescriptionPassValue" : "No more than one pulse",
+		"DescriptionFailValue" : "More than one pulse detected",
+		"ResultValueOverRidePassValue" : "Satisfactory",
+		"ResultValueOverRideFailValue" : "Unsatisfactory",
+		"ResultValuePrefixValue" : "pre-value:   ",
+		"ResultValuePostfixValue" : "post-value",
+		"ResultStatusOverRidePassValue" : "Satisfactory",
+		"ResultStatusOverRideFailValue" : "Unsatisfactory",		
+		"ResultStatusPrefixValue" : ":   ",
+		"ResultStatusPostfixValue" : "post-status"
+	},
+	
+	
+	
+	"StartingCurrentReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"testPeriodCell" : "A34",
+		
+		"descriptionCell" : "D37",
+		"resultStatusCell" : "G37",
+		"resultValueCell" : "G37"
+	},
+	
+	"StartingCurrentReportDisplay": {
+		"displayStartCurrentInReport" : true,
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : false,
+		"displayTestPeriod" : false,		
+		"displayDescription" : true,
+		"displayResultStatus" : true,
+		"displayResultStatusPrefix" : true,
+		"displayResultStatusPostfix" : false,
+		"displayOverRideResultStatus" : true,
+		"displayResultValue" : false,
+		"displayResultValuePrefix" : true,
+		"displayResultValuePostfix" : true,
+		"displayOverRideResultValue" : false
+
+	},
+	
+	"StartingCurrentReportResultValue": {
+		"DescriptionPassValue" : "The Meter start and continue to register at the 0.4% Ib",
+		"DescriptionFailValue" : "The Meter starting current NOT registering at 0.4% Ib",
+		"ResultValueOverRidePassValue" : "Satisfactory-value",
+		"ResultValueOverRideFailValue" : "Unsatisfactory-value",
+		"ResultValuePrefixValue" : "pre-value:   ",
+		"ResultValuePostfixValue" : "post-value",
+		"ResultStatusOverRidePassValue" : "Satisfactory",
+		"ResultStatusOverRideFailValue" : "Unsatisfactory",		
+		"ResultStatusPrefixValue" : ":   ",
+		"ResultStatusPostfixValue" : "poststatus"
+	},
+	
+	
+	"FunctionalTestReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"testPeriodCell" : "A34",
+		
+		"descriptionCell" : "E15",
+		"resultStatusCell" : "G15",
+		"resultValueCell" : "G37"
+	},
+	
+	"FunctionalTestReportDisplay": {
+		"displayFunctionTestInReport" : true,
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : false,
+		"displayTestPeriod" : false,		
+		"displayDescription" : true,
+		"displayResultStatus" : true,
+		"displayResultStatusPrefix" : false,
+		"displayResultStatusPostfix" : false,
+		"displayOverRideResultStatus" : true,
+		"displayResultValue" : false,
+		"displayResultValuePrefix" : true,
+		"displayResultValuePostfix" : true,
+		"displayOverRideResultValue" : false
+
+	},
+	
+	"FunctionalTestReportResultValue": {
+		"DescriptionPassValue" : "Function of Meter\n[Communication Test, Relay\nON/OFF, Pulse Output]",
+		"DescriptionFailValue" : "Function of Meter\n[Communication Test, Relay\nON/OFF, Pulse Output]",
+		"ResultValueOverRidePassValue" : "Satisfactory-value",
+		"ResultValueOverRideFailValue" : "Unsatisfactory-value",
+		"ResultValuePrefixValue" : "pre-value:   ",
+		"ResultValuePostfixValue" : "post-value",
+		"ResultStatusOverRidePassValue" : "Satisfactory",
+		"ResultStatusOverRideFailValue" : "Unsatisfactory",		
+		"ResultStatusPrefixValue" : ":   ",
+		"ResultStatusPostfixValue" : "poststatus"
+	},
+	
+
+
+	"HighVoltageReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"testPeriodCell" : "A34",
+		
+		"descriptionCell" : "E16",
+		"resultStatusCell" : "G16",
+		"resultValueCell" : "G37"
+	},
+	
+	"HighVoltageReportDisplay": {
+		"displayHighVoltageInReport" : true,
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : false,
+		"displayTestPeriod" : false,		
+		"displayDescription" : true,
+		"displayResultStatus" : true,
+		"displayResultStatusPrefix" : false,
+		"displayResultStatusPostfix" : false,
+		"displayOverRideResultStatus" : true,
+		"displayResultValue" : false,
+		"displayResultValuePrefix" : true,
+		"displayResultValuePostfix" : true,
+		"displayOverRideResultValue" : false
+
+	},
+	
+	"HighVoltageReportResultValue": {
+		"DescriptionPassValue" : "Test at 4kV for 5 sec",
+		"DescriptionFailValue" : "Test at 4kV for 5 sec",
+		"ResultValueOverRidePassValue" : "Satisfactory-value",
+		"ResultValueOverRideFailValue" : "Unsatisfactory-value",
+		"ResultValuePrefixValue" : "pre-value:   ",
+		"ResultValuePostfixValue" : "post-value",
+		"ResultStatusOverRidePassValue" : "Satisfactory",
+		"ResultStatusOverRideFailValue" : "Unsatisfactory",		
+		"ResultStatusPrefixValue" : ":   ",
+		"ResultStatusPostfixValue" : "poststatus"
+	},
+	
+	
+	"InsulationResistanceReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"testPeriodCell" : "A34",
+		
+		"descriptionCell" : "E17",
+		"resultStatusCell" : "G17",
+		"resultValueCell" : "G37"
+	},
+	
+	"InsulationResistanceReportDisplay": {
+		"displayInsulationResistanceInReport" : true,
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : false,
+		"displayTestPeriod" : false,		
+		"displayDescription" : true,
+		"displayResultStatus" : true,
+		"displayResultStatusPrefix" : false,
+		"displayResultStatusPostfix" : false,
+		"displayOverRideResultStatus" : true,
+		"displayResultValue" : false,
+		"displayResultValuePrefix" : true,
+		"displayResultValuePostfix" : true,
+		"displayOverRideResultValue" : false
+
+	},
+	
+	"InsulationResistanceReportResultValue": {
+		"DescriptionPassValue" : "Test at 500V DC for 5 Sec",
+		"DescriptionFailValue" : "Test at 500V DC for 5 Sec",
+		"ResultValueOverRidePassValue" : "Satisfactory-value",
+		"ResultValueOverRideFailValue" : "Unsatisfactory-value",
+		"ResultValuePrefixValue" : "pre-value:   ",
+		"ResultValuePostfixValue" : "post-value",
+		"ResultStatusOverRidePassValue" : "Satisfactory",
+		"ResultStatusOverRideFailValue" : "Unsatisfactory",		
+		"ResultStatusPrefixValue" : ":   ",
+		"ResultStatusPostfixValue" : "poststatus"
+	},
+	
+	
+
+
+
+	
+	"ReportResultDataCellPosition" : {
+	
+
+		"SerialNoBeginCell" : "C15", 
+		"TestTypeBeginCell" : "D15", 
+		"TestNameBeginCell" : "C20",
+		"AppliedVoltageBeginCell" : "B20",
+		"AppliedCurrentBeginCell" : "C20",
+		"PowerFactorBeginCell" : "E20",
+		"PermissibleLimitBeginCell" : "F20",
+		"ErrorValueBeginCell" : "G20", 
+		"ErrorStatusBeginCell" : "H20",
+		"OverAllStatusCell" : "E42",
+		"ActiveMeterProfileModelMeterConfig" : "DS 1P2W 10/60A 3200 Imp"
+	},
+	
+	"ResultDataDisplay" : {
+	
+		"DisplayAppliedVoltage" : true,	
+		"DisplayAppliedVoltageInFirstCellOnly" : true,	
+		"DisplayAppliedCurrent" : true,	
+		"DisplayPowerFactor" : true,
+		"DisplayPermissibleLimit" : true,
+		"DisplayOverAllStatus" : true,
+		"DisplayErrorStatus" : true,
+		"DisplayErrorValue" : true 
+	},
+	
+	"ResultDataPreAndPostFixDisplay" : {
+	
+		"DisplayPostFixAppliedVoltage" : true,
+		"DisplayPreFixAppliedVoltage" : true
+
+	},
+	
+	
+	"ResultDataPreAndPostFixValue" : {
+	
+		"AppliedPreFixVoltageValue" : "Volt = ",
+		"AppliedPostFixVoltageValue" : " V"
+
+	},
+	
+	
+	
+	
+	
+			
+	"MeterProfileReportCellPosition": {
+		"reportSerialNoCell" : "A33",		
+		"customerNameCell" : "D6",	
+		"meterModelNoCell" : "F12",
+		"meterTypeCell" : "D8",
+		"meterSerialNoCell" : "D4",
+		"meterClassCell" : "H6",
+		"basicCurrentCell" : "D6",
+		"maxCurrentCell" : "E6",
+		"ratedVoltageCell" : "C6",
+		"noOfImpulsesPerUnitCell" : "G6",
+		"frequencyCell" : "F6",
+		"ctTypeCell" : "D25",
+		"ctRatioCell" : "D27",
+		"ptRatioCell" : "D29",
+		"pageNumberCell" : "D31",
+		"noOfPagesCell" : "D32",
+		"executedDateCell" : "E35",
+		"reportGeneratedDateCell" : "D34",
+		"executedTimeCell" : "F35",
+		"reportGeneratedTimeCell" : "D36",
+		"testerNameCell" : "D31"
+		
+	},
+	"MeterProfileReportDisplay" : {
+		"displayReportSerialNo" : false,	
+		"displayCustomerName" : false,	
+		"displayMeterModelNo" : true,
+		"displayPrefixMeterModelNo" : true,
+		"displayMeterType" : false,
+		"displayMeterClass" : true,
+		"displayPrefixMeterClass" : true,
+		"displayPostfixMeterClass" : true,
+		"displayMeterSerialNo" : false,
+		"displayBasicCurrent" : true,
+		"displayPrefixBasicCurrent" : true,
+		"displayPostfixBasicCurrent" : true,
+		"displayMaxCurrent" : true,
+		"displayPrefixMaxCurrent" : true,
+		"displayPostfixMaxCurrent" : true,
+		"displayRatedVoltage" : true,
+		"displayPrefixRatedVoltage" : true,
+		"displayPostfixRatedVoltage" : true,
+		"displayNoOfImpulsesPerUnit" : true,
+		"displayPrefixNoOfImpulsesPerUnit" : true,
+		"displayPostfixNoOfImpulsesPerUnit" : true,
+		"displayFrequency" : true,
+		"displayPrefixFrequency" : true,
+		"displayPostfixFrequency" : true,
+		"displayCtType" : false,
+		"displayCtRatio" : false,
+		"displayPtRatio" :  false,
+		"displayPageNumber" : false,
+		"displayNoOfPages" : false,
+		"displayExecutedDate" : false,
+		"displayReportGeneratedDate" : false,
+		"displayExecutedTime" : false,
+		"displayReportGeneratedTime" : false,
+		"displayTesterName" : false
+		
+	},
+	
+	"MeterProfileReportPreAndPostFixValue" : {
+	
+		"PrefixMeterModelNoValue" : ":    ",
+		"PrefixBasicCurrentValue" : "",
+		"PostfixBasicCurrentValue" : "",
+		"PrefixMaxCurrentValue" : "-",
+		"PostfixMaxCurrentValue" : "A, ",
+		"PrefixRatedVoltageValue" : "1 X ",
+		"PostfixRatedVoltageValue" : "V, ",
+		
+		"PrefixMeterClassValue" : "CLASS-",
+		"PostfixMeterClassValue" : "",
+		"PrefixFrequencyValue" : "",
+		"PostfixFrequencyValue" : " Hz, ",
+		"PrefixNoOfImpulsesPerUnitValue" : "",
+		"PostfixNoOfImpulsesPerUnitValue" : " imp/kWh, "
+	}	
+	
+	
+}

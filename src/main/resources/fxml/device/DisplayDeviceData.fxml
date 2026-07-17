@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="884.0" prefWidth="845.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.device.DisplayDeviceDataController">
+   <children>
+      <Button fx:id="btnReadRefStdData" layoutX="22.0" layoutY="318.0" mnemonicParsing="false" onAction="#DisplayRefTimerInit" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: grey;" text="Start" textFill="WHITE" />
+      <Button fx:id="btnStopRefStdData" layoutX="96.0" layoutY="318.0" mnemonicParsing="false" onAction="#StopReadingRefStdData" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: grey;" text="Stop" textFill="WHITE" />
+      <TitledPane animated="false" collapsible="false" layoutX="570.0" layoutY="5.0" prefHeight="877.0" prefWidth="268.0" text="LDU">
+        <content>
+          <AnchorPane minHeight="-Infinity" minWidth="0.0" prefHeight="849.0" prefWidth="239.0" style="-fx-background-color: black;">
+               <children>
+                  <Button fx:id="btnLDU_ResetError" layoutX="53.0" layoutY="49.0" mnemonicParsing="false" onAction="#DisplayLDU_ResetError" text="LDU-Reset Error" />
+                  <Button fx:id="btnLDU_ErrorSetting" layoutX="53.0" layoutY="96.0" mnemonicParsing="false" onAction="#DisplayLDU_ResetSetting" prefHeight="26.0" prefWidth="129.0" text="LDU-ErrorSetting" />
+                  <Button fx:id="btnLDUInit" layoutX="53.0" layoutY="7.0" mnemonicParsing="false" onAction="#DisplayLDU_Init" prefHeight="26.0" prefWidth="102.0" text="LDU Init" />
+                  <Button fx:id="btnLDU_CommDisconnect" layoutX="53.0" layoutY="236.0" mnemonicParsing="false" onAction="#DisplayDisconnectLDU" prefHeight="26.0" prefWidth="102.0" text="LDU Disconnect" />
+                  <Button fx:id="btnLDU_StartReadError" layoutX="53.0" layoutY="142.0" mnemonicParsing="false" onAction="#DisplayLDU_ReadErrorTimerInit" prefHeight="26.0" prefWidth="129.0" text="LDU-StartReadError" />
+                  <Button fx:id="btnLDU_StopReadError" layoutX="53.0" layoutY="185.0" mnemonicParsing="false" onAction="#StopReadingLDU_ErrorReadData" prefHeight="26.0" prefWidth="128.0" text="LDU-StopReadError" />
+                  <TextField fx:id="txtDisplayErrorValue1" layoutX="137.0" layoutY="278.0" prefHeight="25.0" prefWidth="58.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font></TextField>
+                  <TextField fx:id="txtDisplayErrorValue2" layoutX="137.0" layoutY="320.0" prefHeight="25.0" prefWidth="58.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font></TextField>
+                  <Label layoutX="14.0" layoutY="278.0" prefHeight="26.0" prefWidth="77.0" text="Error Display1" textFill="WHITE" />
+                  <Label layoutX="14.0" layoutY="320.0" prefHeight="26.0" prefWidth="77.0" text="Error Display2" textFill="WHITE" />
+                  <TitledPane animated="false" collapsible="false" layoutX="-1.0" layoutY="373.0" prefHeight="474.0" prefWidth="268.0" text="PowerSource">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="447.0" prefWidth="218.0" style="-fx-background-color: black;">
+                           <children>
+                              <Button fx:id="btnSourceOn" layoutX="8.0" layoutY="2.0" mnemonicParsing="false" onAction="#DisplayPwrSrc_TurnOn" prefHeight="25.0" prefWidth="93.0" text="Source ON" />
+                              <Button fx:id="btnSourceOff" layoutX="105.0" layoutY="2.0" mnemonicParsing="false" onAction="#DisplayPwrSrc_TurnOff" prefHeight="25.0" prefWidth="93.0" text="Source OFF" />
+                              <TextField fx:id="txtPwrSrcR_PhaseVolt" layoutX="110.0" layoutY="48.0" prefHeight="25.0" prefWidth="84.0" text="210.00" />
+                              <TextField fx:id="txtPwrSrcR_PhaseCurrent" layoutX="110.0" layoutY="86.0" prefHeight="25.0" prefWidth="84.0" text="3.2" />
+                              <TextField fx:id="txtPwrSrcR_PhasePhiAngle" layoutX="110.0" layoutY="162.0" prefHeight="25.0" prefWidth="84.0" text="30.0" />
+                              <TextField fx:id="txtPwrSrcR_PhaseFreq" layoutX="110.0" layoutY="124.0" prefHeight="25.0" prefWidth="84.0" text="47" />
+                              <Label layoutX="34.0" layoutY="52.0" text="Voltage" textFill="WHITE" />
+                              <Label layoutX="34.0" layoutY="90.0" text="Current" textFill="WHITE" />
+                              <Label layoutX="34.0" layoutY="166.0" text="Phase" textFill="WHITE" />
+                              <Label layoutX="34.0" layoutY="128.0" text="Frequency" textFill="WHITE" />
+                              <RadioButton layoutX="46.0" layoutY="207.0" mnemonicParsing="false" text="Lag" textFill="WHITE" />
+                              <RadioButton layoutX="110.0" layoutY="207.0" mnemonicParsing="false" text="Lead" textFill="WHITE" />
+                              <Button fx:id="btnPwrSrcInit" layoutX="8.0" layoutY="245.0" mnemonicParsing="false" onAction="#DisplayPwrSrc_Init" text="PwrSrc Init" />
+                              <Button fx:id="btnPwrSrcDisconnect" layoutX="86.0" layoutY="246.0" mnemonicParsing="false" onAction="#DisplayDisconnectPwrSrc" text="PwrSrc Disconnect" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+                  <TextField fx:id="txtDisplayErrorStatus1" layoutX="93.0" layoutY="279.0" prefHeight="25.0" prefWidth="36.0" />
+                  <TextField fx:id="txtDisplayErrorStatus2" layoutX="93.0" layoutY="320.0" prefHeight="25.0" prefWidth="36.0" />
+                  <CheckBox fx:id="ckBxAddress1" layoutX="208.0" layoutY="282.0" mnemonicParsing="false" text="01" textFill="WHITE" />
+                  <CheckBox fx:id="ckBxAddress2" layoutX="208.0" layoutY="324.0" mnemonicParsing="false" text="02" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <HBox prefHeight="314.0" prefWidth="542.0">
+         <children>
+            <TitledPane alignment="CENTER" animated="false" collapsible="false" contentDisplay="CENTER" prefHeight="305.0" prefWidth="175.0" stylesheets="@../../resources/config/style/application.css" text="A">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="215.0" prefWidth="174.0" style="-fx-background-color: black;">
+                     <children>
+                        <GridPane layoutX="6.0" layoutY="4.0" prefHeight="265.0" prefWidth="164.0" style="-fx-background-color: black;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="41.39998168945313" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.80001831054686" minWidth="10.0" prefWidth="103.79998779296875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.20001220703125" minWidth="10.0" prefWidth="29.400012207031267" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="98.0" text="U" textFill="WHITE" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="100.0" text="I" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="106.0" text="PF" textFill="WHITE" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtR_PhaseVolt" editable="false" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtR_PhaseCurrent" editable="false" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtR_PhasePowerFactor" editable="false" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="71.0" text="V" textFill="WHITE" GridPane.columnIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="A" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="62.0" text="Freq" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Watt" textFill="#fffefe" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="VA" textFill="WHITE" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtR_PhaseFreq" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtR_PhaseWatt" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtR_PhaseVA" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Hz" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Watt" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="VA" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Degree" textFill="WHITE" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtR_PhaseDegreePhase" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane alignment="CENTER" animated="false" collapsible="false" contentDisplay="CENTER" prefHeight="305.0" prefWidth="175.0" stylesheets="@../../resources/config/style/application.css" text="B">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="176.0" style="-fx-background-color: black;">
+                     <children>
+                        <GridPane layoutX="3.0" layoutY="4.0" prefHeight="268.0" prefWidth="167.0" style="-fx-background-color: black;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="41.39998168945313" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.80001831054686" minWidth="10.0" prefWidth="103.79998779296875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.20001220703125" minWidth="10.0" prefWidth="29.400012207031267" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="98.0" text="U" textFill="WHITE" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="100.0" text="I" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="106.0" text="PF" textFill="WHITE" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtY_PhaseVolt" editable="false" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtY_PhaseCurrent" editable="false" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtY_PhasePowerFactor" editable="false" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="71.0" text="V" textFill="WHITE" GridPane.columnIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="A" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="62.0" text="Freq" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Watt" textFill="#fffefe" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="VA" textFill="WHITE" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtY_PhaseFreq" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtY_PhaseWatt" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtY_PhaseVA" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Hz" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Watt" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="VA" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Degree" textFill="WHITE" GridPane.rowIndex="6" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtY_PhaseDegreePhase" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane alignment="CENTER" animated="false" collapsible="false" contentDisplay="CENTER" prefHeight="305.0" prefWidth="175.0" stylesheets="@../../resources/config/style/application.css" text="C">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="174.0" style="-fx-background-color: black;">
+                     <children>
+                        <GridPane layoutX="8.0" layoutY="4.0" prefHeight="264.0" prefWidth="162.0" style="-fx-background-color: black;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="41.39998168945313" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.80001831054686" minWidth="10.0" prefWidth="103.79998779296875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.20001220703125" minWidth="10.0" prefWidth="29.400012207031267" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="98.0" text="U" textFill="WHITE" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="100.0" text="I" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="106.0" text="PF" textFill="WHITE" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtB_PhaseVolt" editable="false" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtB_PhaseCurrent" editable="false" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtB_PhasePowerFactor" editable="false" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="71.0" text="V" textFill="WHITE" GridPane.columnIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="A" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="62.0" text="Freq" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Watt" textFill="#fffefe" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="VA" textFill="WHITE" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtB_PhaseFreq" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtB_PhaseWatt" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtB_PhaseVA" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Hz" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Watt" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="VA" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Degree" textFill="WHITE" GridPane.rowIndex="6" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtB_PhaseDegreePhase" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+         </children>
+      </HBox>
+      <Button fx:id="btnRefStdInit" layoutX="22.0" layoutY="356.0" mnemonicParsing="false" onAction="#DisplayRefStdInit" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: grey;" text="Ref Init" textFill="WHITE" />
+      <Button fx:id="btnRefStdDisconnect" layoutX="96.0" layoutY="357.0" mnemonicParsing="false" onAction="#DisplayDisconnectRefStd" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Ref Disconnect" textFill="WHITE" />
+      <Button fx:id="btnValidateComPort" layoutX="17.0" layoutY="431.0" mnemonicParsing="false" onAction="#ValidateAllComPort" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Init All ComPort" textFill="WHITE" />
+      <Button fx:id="btnReadRefStd" layoutX="15.0" layoutY="473.0" mnemonicParsing="false" onAction="#DisplayRefTimerInit" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Read Ref Std" textFill="WHITE" />
+      <Button fx:id="btnLDU_ResetError2" layoutX="15.0" layoutY="510.0" mnemonicParsing="false" onAction="#DisplayLDU_ResetError" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="LDU-Reset Error" textFill="WHITE" />
+      <Button fx:id="btnCloseAllComPort" layoutX="17.0" layoutY="709.0" mnemonicParsing="false" onAction="#CloseAllComPort" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Close All ComPort" textFill="WHITE" />
+      <Button fx:id="btnLDU_ErrorSetting2" layoutX="17.0" layoutY="547.0" mnemonicParsing="false" onAction="#DisplayLDU_ResetSetting" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="LDU-ErrorSetting" textFill="WHITE" />
+      <Button fx:id="btnSourceOn2" layoutX="17.0" layoutY="631.0" mnemonicParsing="false" onAction="#DisplayPwrSrc_TurnOn" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Source ON" textFill="WHITE" />
+      <Button fx:id="btnSourceOff2" layoutX="15.0" layoutY="669.0" mnemonicParsing="false" onAction="#DisplayPwrSrc_TurnOff" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Source OFF" textFill="WHITE" />
+      <Button fx:id="btnLDU_StartReadError2" layoutX="17.0" layoutY="591.0" mnemonicParsing="false" onAction="#DisplayLDU_ReadErrorTimerInit" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="LDU-StartReadError" textFill="WHITE" />
+      <Button fx:id="btnValidateComPort1" layoutX="191.0" layoutY="431.0" mnemonicParsing="false" onAction="#ValidateAllComPort" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Project Init" textFill="WHITE" />
+      <Button fx:id="btnCloseAllComPort1" layoutX="191.0" layoutY="709.0" mnemonicParsing="false" onAction="#CloseAllComPort" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Project Exit" textFill="WHITE" />
+      <Button fx:id="btnWarmupExecute" layoutX="191.0" layoutY="473.0" mnemonicParsing="false" onAction="#WarmupExecuteStart" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Warmup Test" textFill="WHITE" />
+      <TextField fx:id="txtTimeLeft" editable="false" layoutX="344.0" layoutY="433.0" prefHeight="26.0" prefWidth="86.0" />
+      <Button fx:id="btnCreepExecute" layoutX="191.0" layoutY="510.0" mnemonicParsing="false" onAction="#CreepExecuteStart" prefHeight="26.0" prefWidth="128.0" style="-fx-background-color: grey;" text="Creep Test" textFill="WHITE" />
+      <TextField fx:id="txtPercentageOfVoltage" layoutX="344.0" layoutY="547.0" prefHeight="26.0" prefWidth="86.0" text="110" />
+      <Label layoutX="441.0" layoutY="437.0" text="Time Left" textFill="WHITE" />
+      <Label layoutX="441.0" layoutY="551.0" text="\% of Un" textFill="WHITE" />
+      <TextField fx:id="txtWarmupDuration" layoutX="344.0" layoutY="472.0" prefHeight="26.0" prefWidth="86.0" text="60" />
+      <Label layoutX="443.0" layoutY="476.0" text="Duration in Sec" textFill="WHITE" />
+      <TextField fx:id="txtCreepDuration" layoutX="344.0" layoutY="510.0" prefHeight="26.0" prefWidth="86.0" text="120" />
+      <Label layoutX="443.0" layoutY="514.0" text="Duration in Sec" textFill="WHITE" />
+      <TextField fx:id="txtCreepNoOfPulses" layoutX="344.0" layoutY="586.0" prefHeight="26.0" prefWidth="86.0" text="2" />
+      <Label layoutX="441.0" layoutY="590.0" text="No of Pulses" textFill="WHITE" />
+   </children>
+</AnchorPane>

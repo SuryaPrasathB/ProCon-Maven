@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="draggableTestNodePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onDragNodeClick" prefHeight="46.0" prefWidth="189.0" stylesheets="@../../config/style/drag-node-app_W.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="9.0" layoutY="7.0" prefHeight="54.0" prefWidth="153.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="-3.0">
+         <children>
+            <GridPane fx:id="lblTestType" prefHeight="31.0" prefWidth="101.0" styleClass="node-overlay">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="129.2" minWidth="17.199963378906247" prefWidth="129.2" />
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="25.0" minWidth="0.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="draggableNodeTitle" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" prefHeight="20.0" prefWidth="130.0" text="Draggable Node">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <Label fx:id="draggableNodeCloseButton" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="155.0" layoutY="7.0" prefHeight="15.0" prefWidth="28.0" text="X" textAlignment="RIGHT">
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </Label>
+   </children>
+   <styleClass>
+      <String fx:value="dragicon" />
+      <String fx:value="icon-lightblue1" />
+   </styleClass>
+</fx:root>

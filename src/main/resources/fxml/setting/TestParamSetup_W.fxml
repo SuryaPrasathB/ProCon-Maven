@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="730.0" stylesheets="/resources/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.TestParamSetupController">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="32.0" layoutY="23.0" prefHeight="461.0" prefWidth="668.0" text="Test Param Configuration">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="666.0">
+               <children>
+                  <TitledPane animated="false" collapsible="false" layoutX="12.0" layoutY="14.0" prefHeight="174.0" prefWidth="310.0" text="Reference Standard">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="7.0" layoutY="48.0" text="No of impulses/unit" />
+                              <Label layoutX="7.0" layoutY="90.0" text="No of pulses" />
+                              <TextField fx:id="txtRefStandardConstant" layoutX="154.0" layoutY="43.0" prefHeight="31.0" prefWidth="143.0" promptText="100000000" />
+                              <ComboBox fx:id="cmbBxRefStdNoOfPulses" layoutX="154.0" layoutY="85.0" prefHeight="31.0" prefWidth="78.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+                  <TitledPane fx:id="titledPaneTimerTestPoint" animated="false" collapsible="false" layoutX="342.0" layoutY="209.0" prefHeight="209.0" prefWidth="310.0" text="Timer Test Point">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="134.0" prefWidth="308.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="48.0" text="On Time" />
+                              <Label layoutX="14.0" layoutY="89.0" text="Off Time" />
+                              <Label layoutX="14.0" layoutY="131.0" text="No of cycle" />
+                              <ComboBox fx:id="cmbBxTimerTP_OnTimeMin" layoutX="123.0" layoutY="41.0" prefHeight="31.0" prefWidth="80.0" />
+                              <ComboBox fx:id="cmbBxTimerTP_OnTimeSec" layoutX="212.0" layoutY="41.0" prefHeight="31.0" prefWidth="80.0" />
+                              <ComboBox fx:id="cmbBxTimerTP_OffTimeMin" layoutX="123.0" layoutY="84.0" prefHeight="31.0" prefWidth="80.0" />
+                              <ComboBox fx:id="cmbBxTimerTP_OffTimeSec" layoutX="212.0" layoutY="84.0" prefHeight="31.0" prefWidth="80.0" />
+                              <Label layoutX="144.0" layoutY="14.0" text="Min" />
+                              <Label layoutX="236.0" layoutY="14.0" text="Sec" />
+                              <ComboBox fx:id="cmbBxTimerTP_NoOfCycle" layoutX="123.0" layoutY="126.0" prefHeight="31.0" prefWidth="80.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane fx:id="titledPaneFrequencyTestPoint" animated="false" collapsible="false" layoutX="12.0" layoutY="209.0" prefHeight="210.0" prefWidth="310.0" text="Frequency Test Point">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="6.0" layoutY="49.0" text="Pulsating DC Frequency" />
+                              <Label layoutX="273.0" layoutY="49.0" prefHeight="21.0" prefWidth="20.0" text="Hz" />
+                              <ComboBox fx:id="cmbBxFreqTP_PulsatingDC_Freq" layoutX="180.0" layoutY="44.0" prefHeight="31.0" prefWidth="80.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" collapsible="false" layoutX="342.0" layoutY="14.0" prefHeight="175.0" prefWidth="310.0" text="Auto Mode">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="10.0" layoutY="47.0" text="Occurance Time" />
+                              <Label layoutX="10.0" layoutY="88.0" text="Restoration Time" />
+                              <ComboBox fx:id="cmbBxOccuranceTimeMin" layoutX="153.0" layoutY="42.0" prefHeight="31.0" prefWidth="70.0" />
+                              <ComboBox fx:id="cmbBxOccuranceTimeSec" layoutX="230.0" layoutY="42.0" prefHeight="31.0" prefWidth="70.0" />
+                              <ComboBox fx:id="cmbBxRestorationTimeMin" layoutX="153.0" layoutY="83.0" prefHeight="31.0" prefWidth="70.0" />
+                              <ComboBox fx:id="cmbBxRestorationTimeSec" layoutX="230.0" layoutY="83.0" prefHeight="31.0" prefWidth="70.0" />
+                              <Label layoutX="175.0" layoutY="16.0" text="Min" />
+                              <Label layoutX="253.0" layoutY="16.0" text="Sec" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="btn_Save" layoutX="495.0" layoutY="500.0" mnemonicParsing="false" onAction="#SaveOnClick" prefHeight="29.0" prefWidth="118.0" text="Save" />
+   </children>
+</AnchorPane>

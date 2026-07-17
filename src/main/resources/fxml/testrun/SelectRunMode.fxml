@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="AnchorPaneRunningStatus" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1624.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testrun.SelectRunModeController">
+   <children>
+      <TitledPane animated="false" collapsible="false" layoutX="33.0" layoutY="36.0" prefHeight="194.0" prefWidth="232.0" text="Select Mode">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73727200" height="142.0" layoutX="14.0" layoutY="14.0" stroke="#dcdcdc" strokeType="INSIDE" width="200.0" />
+                  <RadioButton fx:id="rdBtnManualMode" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" text="Manual Mode" />
+                  <RadioButton fx:id="rdBtnAutoMode" layoutX="48.0" layoutY="67.0" mnemonicParsing="false" text="Auto Mode" />
+                  <Button layoutX="48.0" layoutY="112.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Proceed" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

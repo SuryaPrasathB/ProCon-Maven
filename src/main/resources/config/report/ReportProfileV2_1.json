@@ -1,0 +1,54 @@
+{
+    "ConfigFileVersion": "1.0",
+    "ConfigFileVersionComment": "For Report profileV2 input and output data name config ",
+
+    "MasterOutputDataSet": [
+    
+		{   "OperationProcessKey": "MasterOutputHdr",          "PopulateOnlyHeaders": true     		, "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet01",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet02",           "PopulateOnlyHeaders": false,    "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet03",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet04",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet05",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet06",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet07",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputConstErrorPercent",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet09",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  }, 
+		{   "OperationProcessKey": "MasterOutputDataSet10",           "PopulateOnlyHeaders": false,     "DataType": "MasterOutput"  } 
+ 
+    ],
+    
+	"LocalOutputDataSet": [
+	
+		{   "OperationProcessKey": "LocalOutputRsmEnergyDiffHdr", "PopulateOnlyHeaders": true,      "DataType": "LocalOutput"  },
+		{   "OperationProcessKey": "LocalOutputDataRepAvg",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputDataSet02",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputDataSet03",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputDataSet04",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputDataSet05",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputDataSet06",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputDataSet07",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputConstDutDiff",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputConstErrorPercent",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  }, 
+		{   "OperationProcessKey": "LocalOutputConstPulseCntResult",           "PopulateOnlyHeaders": false,     "DataType": "LocalOutput"  } 
+ 
+    ],
+    
+    "LocalInputDataSet": [
+    
+		{   "OperationProcessKey": "LocalInputRsmInitialHdr",       "PopulateOnlyHeaders": true ,     "DataType": "LocalInput"    },
+		{   "OperationProcessKey": "LocalInputRsmFinalHdr",         "PopulateOnlyHeaders": true ,     "DataType": "LocalInput"    },  
+		{   "OperationProcessKey": "LocalInputConstDutInitial",     "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputConstDutFinal",       "PopulateOnlyHeaders": false,    "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputConstDutDiff",        "PopulateOnlyHeaders": false,    "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataRep01",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataRep02",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataSet05",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataSet06",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataSet07",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataSet08",           "PopulateOnlyHeaders": false ,    "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputDataSet09",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    }, 
+		{   "OperationProcessKey": "LocalInputConstPulseCnt",           "PopulateOnlyHeaders": false,     "DataType": "LocalInput"    } 
+ 
+    ]
+}

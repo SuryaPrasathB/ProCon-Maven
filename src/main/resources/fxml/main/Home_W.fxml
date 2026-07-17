@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="831.0" prefWidth="1024.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.ApplicationHomeController">
+  <children>
+    <SplitPane dividerPositions="0.1643835616438356" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+          <children>
+                  <VBox id="testScripts" fx:id="vbox_testscript" alignment="CENTER" layoutX="-2.0" layoutY="3.0" onMouseClicked="#onTestScriptsClickAction" prefHeight="95.0" prefWidth="104.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/pen-edit-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_TestScript" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Project" textAlignment="CENTER" textFill="#090411" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x1111" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="Deployment" fx:id="vbox_deploy" alignment="CENTER" layoutX="-4.0" layoutY="107.0" onMouseClicked="#onDeploymentClickAction" prefHeight="95.0" prefWidth="104.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/deploy-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_Deployment" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Deploy" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x11111" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="Deployment" fx:id="vbox_testrun" alignment="CENTER" layoutX="-3.0" layoutY="217.0" onMouseClicked="#onRunningStatusClickAction" prefHeight="95.0" prefWidth="104.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/dvd-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_RunStatus" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Test Run" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x111112" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="devices" fx:id="vbox_system_config" alignment="CENTER" layoutX="-3.0" layoutY="443.0" onMouseClicked="#onDeviceClickAction" prefHeight="122.0" prefWidth="104.0" AnchorPane.topAnchor="443.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/compass-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_Devices" alignment="CENTER" contentDisplay="CENTER" minWidth="56.0" prefHeight="33.0" prefWidth="67.0" style="&#10;" text="Settings" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x11" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="testScripts" fx:id="vbox_metertype" alignment="CENTER" layoutX="-3.0" layoutY="321.0" onMouseClicked="#onEMModelClickAction" prefHeight="122.0" prefWidth="104.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/digitalmeter-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_EM_Model" alignment="CENTER" minWidth="60.0" prefHeight="53.0" prefWidth="98.0" style="&#10;" text="Meter&#10;Profile" textAlignment="CENTER" textFill="#141414" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x11112" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="reports" fx:id="vbox_report" alignment="CENTER" layoutX="-1.0" layoutY="569.0" onMouseClicked="#onReportsClickAction" prefHeight="95.0" prefWidth="98.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="68.0" fitWidth="95.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/chart-bar-chart-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_Report" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Report" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x111111" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="reports" fx:id="vboxManualMode" alignment="CENTER" layoutX="-3.0" layoutY="678.0" onMouseClicked="#onManualModeClickAction" prefHeight="122.0" prefWidth="98.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="68.0" fitWidth="95.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/Settings.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_ManualMode" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Debug&#10;Mode" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x1111111" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </VBox>
+          </children>
+        </AnchorPane>
+      <AnchorPane fx:id="childPane" minHeight="-1.0" minWidth="-1.0" prefHeight="673.0" prefWidth="888.0" visible="true" />
+      </items>
+    </SplitPane>
+    <Separator prefWidth="200.0" />
+    <HBox id="statusBar" alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="960.0" spacing="5.0" VBox.vgrow="NEVER">
+      <children>
+            <Label fx:id="versionLabel" prefHeight="16.0" prefWidth="96.0" text="Version:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+        <Label fx:id="navigationLabel" maxHeight="1.7976931348623157E308" maxWidth="-1.0" prefHeight="16.0" prefWidth="223.0" text="Left status" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+        </Label>
+            <Separator orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
+        <Pane prefHeight="21.0" prefWidth="390.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="labelBottomtSecStatus" layoutX="1.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="-1.0" prefHeight="16.0" prefWidth="256.0" text="Bridge Status">
+                     <font>
+                        <Font size="11.0" fx:id="x31" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Separator orientation="VERTICAL" prefHeight="36.0" prefWidth="6.0" />
+            <Label prefHeight="16.0" prefWidth="84.0" text="System Status:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+        <Label fx:id="statusLabel" font="$x3" maxWidth="-1.0" prefHeight="16.0" prefWidth="133.0" HBox.hgrow="NEVER" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+
+<!--  <fx:include source="reports.fxml" />-->
+
+</VBox>

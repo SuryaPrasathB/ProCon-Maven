@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="887.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.DutPortSetupController">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="12.0" layoutY="23.0" prefHeight="432.0" prefWidth="838.0" text="Dut Settings">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="563.0">
+               <children>
+                <AnchorPane layoutX="4.0" layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="817.0">
+                     <children>
+                        <ScrollPane layoutY="52.0" prefHeight="332.0" prefWidth="807.0">
+                           <content>
+                              <GridPane prefHeight="1923.0" prefWidth="733.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.5999755859375" minWidth="10.0" prefWidth="107.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="130.00006408691405" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="12.99994812011721" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.79998779296878" minWidth="10.0" prefWidth="116.20001220703128" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.199951171875" minWidth="10.0" prefWidth="14.399975585937511" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.6000244140625" minWidth="10.0" prefWidth="117.60000000000002" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="15.199987792968727" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="2.8000244140624773" prefWidth="103.20001220703125" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="16.000036621093727" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="102.39996337890625" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                </rowConstraints>
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #1" textFill="#222121" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #2" textFill="#222121" GridPane.rowIndex="1" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #3" textFill="#222121" GridPane.rowIndex="2" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #4" textFill="#222121" GridPane.rowIndex="3" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #5" textFill="#222121" GridPane.rowIndex="4" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #6" textFill="#222121" GridPane.rowIndex="5" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #7" textFill="#222121" GridPane.rowIndex="6" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #8" textFill="#222121" GridPane.rowIndex="7" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #9" textFill="#222121" GridPane.rowIndex="8" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #10" textFill="#222121" GridPane.rowIndex="9" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #11" textFill="#222121" GridPane.rowIndex="10" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #12" textFill="#222121" GridPane.rowIndex="11" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #13" textFill="#222121" GridPane.rowIndex="12" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #14" textFill="#222121" GridPane.rowIndex="13" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #15" textFill="#222121" GridPane.rowIndex="14" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #16" textFill="#222121" GridPane.rowIndex="15" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #17" textFill="#222121" GridPane.rowIndex="16" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #18" textFill="#222121" GridPane.rowIndex="17" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #19" textFill="#222121" GridPane.rowIndex="18" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #20" textFill="#222121" GridPane.rowIndex="19" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #21" textFill="#222121" GridPane.rowIndex="20" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #22" textFill="#222121" GridPane.rowIndex="21" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #23" textFill="#222121" GridPane.rowIndex="22" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #24" textFill="#222121" GridPane.rowIndex="23" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #25" textFill="#222121" GridPane.rowIndex="24" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #26" textFill="#222121" GridPane.rowIndex="25" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #27" textFill="#222121" GridPane.rowIndex="26" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #28" textFill="#222121" GridPane.rowIndex="27" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #29" textFill="#222121" GridPane.rowIndex="28" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #30" textFill="#222121" GridPane.rowIndex="29" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #31" textFill="#222121" GridPane.rowIndex="30" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #32" textFill="#222121" GridPane.rowIndex="31" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #33" textFill="#222121" GridPane.rowIndex="32" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #34" textFill="#222121" GridPane.rowIndex="33" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #35" textFill="#222121" GridPane.rowIndex="34" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #36" textFill="#222121" GridPane.rowIndex="35" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #37" textFill="#222121" GridPane.rowIndex="36" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #38" textFill="#222121" GridPane.rowIndex="37" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #39" textFill="#222121" GridPane.rowIndex="38" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #40" textFill="#222121" GridPane.rowIndex="39" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #41" textFill="#222121" GridPane.rowIndex="40" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #42" textFill="#222121" GridPane.rowIndex="41" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #43" textFill="#222121" GridPane.rowIndex="42" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #44" textFill="#222121" GridPane.rowIndex="43" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #45" textFill="#222121" GridPane.rowIndex="44" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #46" textFill="#222121" GridPane.rowIndex="45" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #47" textFill="#222121" GridPane.rowIndex="46" />
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="DUT #48" textFill="#222121" GridPane.rowIndex="47" />
+                                    <Button fx:id="btnValidateDUT_Cmd1" mnemonicParsing="false" onAction="#DUT1_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" />
+                                    <Button fx:id="btnValidateDUT_Cmd2" mnemonicParsing="false" onAction="#DUT2_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                    <Button fx:id="btnValidateDUT_Cmd3" mnemonicParsing="false" onAction="#DUT3_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                    <Button fx:id="btnValidateDUT_Cmd4" mnemonicParsing="false" onAction="#DUT4_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                                    <Button fx:id="btnValidateDUT_Cmd5" mnemonicParsing="false" onAction="#DUT5_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                                    <Button fx:id="btnValidateDUT_Cmd6" mnemonicParsing="false" onAction="#DUT6_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                                    <Button fx:id="btnValidateDUT_Cmd7" mnemonicParsing="false" onAction="#DUT7_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                                    <Button fx:id="btnValidateDUT_Cmd8" mnemonicParsing="false" onAction="#DUT8_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                                    <Button fx:id="btnValidateDUT_Cmd9" mnemonicParsing="false" onAction="#DUT9_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+                                    <Button fx:id="btnValidateDUT_Cmd10" mnemonicParsing="false" onAction="#DUT10_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+                                    <Button fx:id="btnValidateDUT_Cmd11" mnemonicParsing="false" onAction="#DUT11_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                                    <Button fx:id="btnValidateDUT_Cmd12" mnemonicParsing="false" onAction="#DUT12_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="11" />
+                                    <Button fx:id="btnValidateDUT_Cmd13" mnemonicParsing="false" onAction="#DUT13_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="12" />
+                                    <Button fx:id="btnValidateDUT_Cmd14" mnemonicParsing="false" onAction="#DUT14_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="13" />
+                                    <Button fx:id="btnValidateDUT_Cmd15" mnemonicParsing="false" onAction="#DUT15_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="14" />
+                                    <Button fx:id="btnValidateDUT_Cmd16" mnemonicParsing="false" onAction="#DUT16_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="15" />
+                                    <Button fx:id="btnValidateDUT_Cmd17" mnemonicParsing="false" onAction="#DUT17_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="16" />
+                                    <Button fx:id="btnValidateDUT_Cmd18" mnemonicParsing="false" onAction="#DUT18_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="17" />
+                                    <Button fx:id="btnValidateDUT_Cmd19" mnemonicParsing="false" onAction="#DUT19_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="18" />
+                                    <Button fx:id="btnValidateDUT_Cmd20" mnemonicParsing="false" onAction="#DUT20_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="19" />
+                                    <Button fx:id="btnValidateDUT_Cmd21" mnemonicParsing="false" onAction="#DUT21_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="20" />
+                                    <Button fx:id="btnValidateDUT_Cmd22" mnemonicParsing="false" onAction="#DUT22_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="21" />
+                                    <Button fx:id="btnValidateDUT_Cmd23" mnemonicParsing="false" onAction="#DUT23_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="22" />
+                                    <Button fx:id="btnValidateDUT_Cmd24" mnemonicParsing="false" onAction="#DUT24_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="23" />
+                                    <Button fx:id="btnValidateDUT_Cmd25" mnemonicParsing="false" onAction="#DUT25_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="24" />
+                                    <Button fx:id="btnValidateDUT_Cmd26" mnemonicParsing="false" onAction="#DUT26_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="25" />
+                                    <Button fx:id="btnValidateDUT_Cmd27" mnemonicParsing="false" onAction="#DUT27_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="26" />
+                                    <Button fx:id="btnValidateDUT_Cmd28" mnemonicParsing="false" onAction="#DUT28_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="27" />
+                                    <Button fx:id="btnValidateDUT_Cmd29" mnemonicParsing="false" onAction="#DUT29_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="28" />
+                                    <Button fx:id="btnValidateDUT_Cmd30" mnemonicParsing="false" onAction="#DUT30_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="29" />
+                                    <Button fx:id="btnValidateDUT_Cmd31" mnemonicParsing="false" onAction="#DUT31_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="30" />
+                                    <Button fx:id="btnValidateDUT_Cmd32" mnemonicParsing="false" onAction="#DUT32_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="31" />
+                                    <Button fx:id="btnValidateDUT_Cmd33" mnemonicParsing="false" onAction="#DUT33_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="32" />
+                                    <Button fx:id="btnValidateDUT_Cmd34" mnemonicParsing="false" onAction="#DUT34_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="33" />
+                                    <Button fx:id="btnValidateDUT_Cmd35" mnemonicParsing="false" onAction="#DUT35_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="34" />
+                                    <Button fx:id="btnValidateDUT_Cmd36" mnemonicParsing="false" onAction="#DUT36_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="35" />
+                                    <Button fx:id="btnValidateDUT_Cmd37" mnemonicParsing="false" onAction="#DUT37_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="36" />
+                                    <Button fx:id="btnValidateDUT_Cmd38" mnemonicParsing="false" onAction="#DUT38_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="37" />
+                                    <Button fx:id="btnValidateDUT_Cmd39" mnemonicParsing="false" onAction="#DUT39_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="38" />
+                                    <Button fx:id="btnValidateDUT_Cmd40" mnemonicParsing="false" onAction="#DUT40_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="39" />
+                                    
+                                    <Button fx:id="btnValidateDUT_Cmd41" mnemonicParsing="false" onAction="#DUT41_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="40" />
+                                    <Button fx:id="btnValidateDUT_Cmd42" mnemonicParsing="false" onAction="#DUT42_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="41" />
+                                    <Button fx:id="btnValidateDUT_Cmd43" mnemonicParsing="false" onAction="#DUT43_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="42" />
+                                    <Button fx:id="btnValidateDUT_Cmd44" mnemonicParsing="false" onAction="#DUT44_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="43" />
+                                    <Button fx:id="btnValidateDUT_Cmd45" mnemonicParsing="false" onAction="#DUT45_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="44" />
+                                    <Button fx:id="btnValidateDUT_Cmd46" mnemonicParsing="false" onAction="#DUT46_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="45" />
+                                    <Button fx:id="btnValidateDUT_Cmd47" mnemonicParsing="false" onAction="#DUT47_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="46" />
+                                    <Button fx:id="btnValidateDUT_Cmd48" mnemonicParsing="false" onAction="#DUT48_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="9" GridPane.rowIndex="47" />
+                                    
+                                    <ComboBox fx:id="cmbBxDUT_ModelName1" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName2" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName3" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName4" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName5" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName6" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName7" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName8" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName9" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName10" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+									<ComboBox fx:id="cmbBxDUT_ModelName11" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName12" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName13" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName14" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName15" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName16" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName17" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName18" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName19" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName20" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName21" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="20" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName22" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="21" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName23" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="22" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName24" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="23" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName25" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="24" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName26" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="25" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName27" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="26" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName28" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="27" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName29" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="28" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName30" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="29" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName31" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="30" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName32" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="31" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName33" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="32" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName34" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="33" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName35" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="34" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName36" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="35" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName37" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="36" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName38" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="37" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName39" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="38" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName40" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="39" />
+                                    
+                                    <ComboBox fx:id="cmbBxDUT_ModelName41" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="40" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName42" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="41" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName43" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="42" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName44" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="43" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName45" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="44" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName46" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="45" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName47" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="46" />
+                                    <ComboBox fx:id="cmbBxDUT_ModelName48" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="47" />
+                                    
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection1" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection2" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection3" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection4" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection5" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection6" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection7" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection8" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection9" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection10" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection11" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection12" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection13" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection14" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection15" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection16" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="15" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection17" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="16" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection18" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="17" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection19" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="18" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection20" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="19" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection21" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="20" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection22" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="21" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection23" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="22" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection24" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="23" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection25" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="24" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection26" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="25" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection27" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="26" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection28" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="27" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection29" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="28" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection30" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="29" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection31" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="30" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection32" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="31" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection33" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="32" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection34" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="33" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection35" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="34" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection36" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="35" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection37" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="36" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection38" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="37" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection39" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="38" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection40" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="39" />
+                                    
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection41" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="40" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection42" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="41" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection43" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="42" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection44" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="43" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection45" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="44" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection46" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="45" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection47" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="46" />
+                                    <ComboBox fx:id="cmbBxDUT_PortSelection48" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="47" />
+                                    
+                                    
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate1" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate2" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate3" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate4" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate5" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate6" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate7" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate8" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate9" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate10" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate11" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate12" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="11" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate13" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate14" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="13" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate15" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="14" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate16" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="15" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate17" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="16" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate18" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="17" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate19" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="18" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate20" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="19" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate21" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="20" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate22" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="21" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate23" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="22" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate24" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="23" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate25" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="24" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate26" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="25" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate27" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="26" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate28" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="27" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate29" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="28" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate30" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="29" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate31" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="30" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate32" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="31" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate33" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="32" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate34" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="33" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate35" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="34" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate36" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="35" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate37" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="36" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate38" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="37" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate39" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="38" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate40" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="39" />
+                                    
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate41" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="40" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate42" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="41" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate43" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="42" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate44" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="43" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate45" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="44" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate46" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="45" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate47" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="46" />
+                                    <ComboBox fx:id="cmbBxDUT_BaudRate48" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="47" />
+                                    
+                                    <TextField fx:id="txtValidateDUT_CmdStatus1" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus2" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus3" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus4" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus5" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus6" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                                	<TextField fx:id="txtValidateDUT_CmdStatus7" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus8" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus9" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus10" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus11" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus12" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="11" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus13" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="12" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus14" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="13" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus15" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="14" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus16" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="15" />
+                                	<TextField fx:id="txtValidateDUT_CmdStatus17" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="16" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus18" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="17" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus19" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="18" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus20" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="19" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus21" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="20" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus22" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="21" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus23" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="22" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus24" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="23" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus25" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="24" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus26" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="25" />
+                                	<TextField fx:id="txtValidateDUT_CmdStatus27" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="26" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus28" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="27" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus29" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="28" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus30" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="29" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus31" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="30" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus32" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="31" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus33" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="32" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus34" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="33" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus35" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="34" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus36" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="35" />
+                                	<TextField fx:id="txtValidateDUT_CmdStatus37" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="36" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus38" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="37" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus39" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="38" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus40" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="39" />
+                                    
+                                    <TextField fx:id="txtValidateDUT_CmdStatus41" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="40" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus42" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="41" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus43" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="42" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus44" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="43" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus45" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="44" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus46" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="45" />
+                                	<TextField fx:id="txtValidateDUT_CmdStatus47" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="46" />
+                                    <TextField fx:id="txtValidateDUT_CmdStatus48" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="7" GridPane.rowIndex="47" />
+                                    
+                                    
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="48.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="808.0" />
+                     </children>
+                  </AnchorPane>
+                  <GridPane layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="698.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.5999755859375" minWidth="10.0" prefWidth="107.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="99.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="11.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="112.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.199951171875" minWidth="10.0" prefWidth="12.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="95.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="13.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="2.8000244140624773" prefWidth="121.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="92.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="109.0" text="Model" textFill="#171717" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Description" textFill="#1b1a1a" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Status" textFill="#252424" GridPane.columnIndex="7" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Baud Rate" textFill="#252424" GridPane.columnIndex="5" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Port" textFill="#1e1d1d" GridPane.columnIndex="3" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="btn_Save" layoutX="604.0" layoutY="471.0" mnemonicParsing="false" onAction="#SaveOnClick" prefHeight="29.0" prefWidth="118.0" text="Save" />
+   </children>
+</AnchorPane>

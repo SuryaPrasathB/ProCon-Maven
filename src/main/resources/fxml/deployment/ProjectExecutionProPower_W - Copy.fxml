@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="AnchorPaneRunningStatus" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1624.0" stylesheets="@../tasworkspace/ProCAL-s4.0.3.0.9/src/resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController">
+   <children>
+      <TabPane fx:id="tabPaneRunMode" layoutX="3.0" layoutY="3.0" prefHeight="666.0" prefWidth="1617.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabSequenceMode" text="Sequence Mode">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox fx:id="hboxRunningStatus" layoutY="3.0" prefHeight="673.0" prefWidth="1599.0">
+                           <children>
+                              <VBox fx:id="vBoxRunningStatus" prefHeight="670.0" prefWidth="1536.0">
+                                 <children>
+                                    <TitledPane fx:id="titlePaneLiveStatus" animated="false" collapsible="false" prefHeight="517.0" prefWidth="1536.0" text="Execution Status">
+                                       <content>
+                                          <HBox prefHeight="582.0" prefWidth="1254.0">
+                                             <children>
+                                                <TableView fx:id="tbl_liveStatus" prefHeight="462.0" prefWidth="1234.0" stylesheets="@../tasworkspace/ProCAL-s4.0.3.0.9/src/resources/config/style/drag-node-app.css">
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                    </TitledPane>
+                                    <AnchorPane fx:id="anchorProgressStatusPane" prefHeight="168.0" prefWidth="1536.0">
+                                       <children>
+                                          <HBox fx:id="hBoxControlsDisplay" alignment="CENTER_LEFT" prefHeight="168.0" prefWidth="1527.0">
+                                             <children>
+                                                <Label prefHeight="21.0" prefWidth="14.0" text="  " />
+                                                <TitledPane fx:id="titledPaneStatus" animated="false" collapsible="false" prefHeight="154.0" prefWidth="325.0" text="Status">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <GridPane fx:id="gridPaneProjectStatus" layoutX="8.0" layoutY="74.0" prefHeight="39.0" prefWidth="317.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="65.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="164.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="14.0" minWidth="12.0" prefWidth="14.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="10.0" prefWidth="64.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <Label contentDisplay="CENTER" prefHeight="37.0" prefWidth="62.0" text="Status" />
+                                                                  <ProgressBar fx:id="barProjectStatus" prefHeight="37.0" prefWidth="187.0" progress="0.0" style="-fx-background-radius: 10,10,10,10;" GridPane.columnIndex="2" />
+                                                                  <ProgressIndicator fx:id="barPinProjectStatus" prefHeight="37.0" prefWidth="40.0" progress="0.0" GridPane.columnIndex="4" />
+                                                               </children>
+                                                            </GridPane>
+                                                            <GridPane fx:id="gridPaneTpStatus" layoutX="8.0" layoutY="21.0" prefHeight="39.0" prefWidth="300.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="65.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="10.0" prefWidth="20.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="86.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="10.0" prefWidth="20.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="111.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <ProgressBar fx:id="barTC_TimeProgressBar" prefHeight="37.0" prefWidth="112.0" progress="0.0" style="-fx-background-radius: 10,10,10,10;" GridPane.columnIndex="4" />
+                                                                  <TextField fx:id="txtTimeLeft" alignment="CENTER" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="77.0" GridPane.columnIndex="2" />
+                                                                  <Label contentDisplay="CENTER" prefHeight="37.0" prefWidth="68.0" text="TP - Time" />
+                                                               </children>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                                <Label fx:id="labelStatusGap" prefHeight="21.0" prefWidth="24.0" />
+                                                <TitledPane fx:id="titledPaneModeSelection" animated="false" collapsible="false" prefHeight="154.0" prefWidth="286.0" text="Mode Selection">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Separator layoutX="1.0" layoutY="64.0" prefHeight="7.0" prefWidth="344.0" />
+                                                            <GridPane fx:id="gridPaneModeSelect" layoutX="9.0" layoutY="79.0" prefHeight="30.0" prefWidth="276.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="57.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="22.0" minWidth="22.0" prefWidth="22.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="94.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="115.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <Label fx:id="labelMode" prefHeight="21.0" prefWidth="56.0" text="Mode" />
+                                                                  <RadioButton fx:id="radioBtnMainCt" mnemonicParsing="false" onAction="#radioBtnMainCtOnChange" prefHeight="21.0" prefWidth="83.0" text="Main CT" GridPane.columnIndex="2" />
+                                                                  <RadioButton fx:id="radioBtnNeutralCt" mnemonicParsing="false" onAction="#radioBtnNeutralCtOnChange" prefHeight="21.0" prefWidth="104.0" text="Neutral CT" GridPane.columnIndex="3" />
+                                                               </children>
+                                                            </GridPane>
+                                                            <GridPane fx:id="gridPaneProjectSelect" layoutX="7.0" layoutY="23.0" prefHeight="30.0" prefWidth="264.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.0" minWidth="10.0" prefWidth="57.0" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="22.0" minWidth="22.0" prefWidth="22.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="193.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <ComboBox fx:id="cmbBoxSelectProject" onAction="#selectProjectOnChangeTrigger" prefHeight="37.0" prefWidth="199.0" GridPane.columnIndex="2" />
+                                                                  <Label prefHeight="22.0" prefWidth="58.0" text="Project" />
+                                                               </children>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                                <Label fx:id="labelModeSelectionGap" prefHeight="21.0" prefWidth="24.0" />
+                                                <TitledPane fx:id="titledPaneControls" animated="false" collapsible="false" prefHeight="154.0" prefWidth="378.0" text="Controls">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <GridPane fx:id="gridPaneControls" layoutX="11.0" layoutY="10.0" prefHeight="109.0" prefWidth="354.0">
+                                                              <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="3.0" prefWidth="3.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="3.0" prefWidth="3.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                  <RowConstraints maxHeight="46.00003662109375" minHeight="10.0" prefHeight="46.00003662109375" vgrow="SOMETIMES" />
+                                                                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="19.79996337890625" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <Button fx:id="btn_step_run" mnemonicParsing="false" onAction="#StepRunTrigger" prefHeight="35.0" prefWidth="145.0" text="Step Run" />
+                                                                <Button fx:id="btn_Stop" minWidth="6.0" mnemonicParsing="false" onAction="#StopOnClick" prefHeight="35.0" prefWidth="120.0" text="Stop" GridPane.rowIndex="2" />
+                                                                  <Button fx:id="btnViewLogs" mnemonicParsing="false" onAction="#ViewLogsTrigger" prefHeight="35.0" prefWidth="120.0" text="View Logs" GridPane.columnIndex="4" />
+                                                                  <Button fx:id="btnCloseProject" mnemonicParsing="false" onAction="#closeProjectTrigger" prefHeight="35.0" prefWidth="126.0" text="Close Project" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                                  <Button fx:id="btnCalibConfigRefresh" mnemonicParsing="false" onAction="#calibConfigRefreshClick" prefHeight="35.0" prefWidth="114.0" text="Cfg Refresh" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                                  <Button fx:id="btnSourceRefresh" mnemonicParsing="false" onAction="#sourceRefreshClick" prefHeight="35.0" prefWidth="113.0" text="Src Refresh" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                                  <Button fx:id="btnLoadNext" mnemonicParsing="false" onAction="#loadNextClick" prefHeight="35.0" prefWidth="109.0" text="Load Next" GridPane.columnIndex="2" />
+                                                                  <Button fx:id="btn_execution_start" mnemonicParsing="false" onAction="#StartRunTrigger" prefHeight="35.0" prefWidth="124.0" text="Start" GridPane.rowIndex="1" />
+                                                                  <Button fx:id="btn_Resume" mnemonicParsing="false" onAction="#ResumeRunTrigger" prefHeight="35.0" prefWidth="110.0" text="Resume" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                               </children>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                                <Label fx:id="labelControlSelectionGap" prefHeight="21.0" prefWidth="24.0" />
+                                                <TitledPane fx:id="titledPaneInstantMetrics" animated="false" collapsible="false" prefHeight="154.0" prefWidth="452.0" text="Instant Metrics">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <GridPane fx:id="gridPaneInstantMetrics" layoutX="6.0" layoutY="5.0" prefHeight="114.0" prefWidth="431.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="30.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.80001831054686" minWidth="10.0" prefWidth="80.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.20001220703125" minWidth="10.0" prefWidth="25.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.20001220703125" minWidth="10.0" prefWidth="17.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.20001220703125" minWidth="10.0" prefWidth="27.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="80.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="28.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="4.0" prefWidth="8.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="23.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="80.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="40.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="3.0" prefHeight="3.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="3.0" prefHeight="3.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="98.0" text="U" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="100.0" text="I" GridPane.rowIndex="2" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="106.0" text="PF" GridPane.columnIndex="4" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseVolt" editable="false" GridPane.columnIndex="1" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseCurrent" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhasePowerFactor" editable="false" GridPane.columnIndex="5" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="71.0" text="V" GridPane.columnIndex="2" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="A" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="42.0" text="P" GridPane.columnIndex="8" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="S" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseWatt" editable="false" GridPane.columnIndex="9" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseVA" editable="false" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="W" GridPane.columnIndex="10" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="VA" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="ф" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseDegreePhase" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" text="°" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                                                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="42.0" text="Q" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="VAR" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseVAR" editable="false" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseWh" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                                                  <Label fx:id="labelRefStdDisplayActiveReactiveUnit_R" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="Wh" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="58.0" text="E" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                                                  <TextField fx:id="txtRefStdDisplayR_PhaseFreq" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="73.0" text="Hz" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="62.0" text="f" GridPane.rowIndex="4" />
+                                                               </children>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tabManualMode" text="Manual Mode">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" layoutX="8.0" layoutY="7.0" prefHeight="628.0" prefWidth="917.0" text="ProPower">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e0e000" height="48.0" layoutX="3.0" layoutY="79.0" stroke="#bfbfbf" strokeType="INSIDE" width="844.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="48.0" layoutX="3.0" layoutY="141.0" stroke="#bfbfbf" strokeType="INSIDE" width="844.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="48.0" layoutX="479.0" layoutY="19.0" stroke="#bfbfbf" strokeType="INSIDE" width="368.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="48.0" layoutX="3.0" layoutY="18.0" stroke="#bfbfbf" strokeType="INSIDE" width="368.0" />
+                                    <RadioButton fx:id="rdBtnManualModeSinglePhase" layoutX="116.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioBtnManualModeSinglePhaseOnChange" text="Single Phase" />
+                                    <RadioButton fx:id="rdBtnManualModeThreePhase" layoutX="256.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioBtnManualModeThreePhaseOnChange" text="Three Phase" />
+                                    <RadioButton fx:id="rdBtnManualModeImport" layoutX="620.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioBtnManualModeImportOnChange" text="Import" />
+                                    <RadioButton fx:id="rdBtnManualModeExport" layoutX="718.0" layoutY="34.0" mnemonicParsing="false" onAction="#radioBtnManualModeExportOnChange" text="Export" />
+                                    <Label layoutX="14.0" layoutY="34.0" text="DUT Type" />
+                                    <Label layoutX="525.0" layoutY="34.0" text="Mode" />
+                                    <CheckBox fx:id="chkBxManualModeBalanced" layoutX="19.0" layoutY="93.0" mnemonicParsing="false" onAction="#chkBxManualModeBalancedOnChange" prefHeight="18.0" prefWidth="94.0" text="Balanced" />
+                                    <CheckBox fx:id="chBxManualTimerMode" layoutX="185.0" layoutY="94.0" mnemonicParsing="false" onAction="#chBxManualTimerModeOnChange" text="Timer Mode" />
+                                    <TextField fx:id="txtManualSetTime" layoutX="393.0" layoutY="90.0" prefHeight="26.0" prefWidth="62.0" text="60" />
+                                    <TextField fx:id="txtManualTargetTime" editable="false" layoutX="664.0" layoutY="90.0" prefHeight="26.0" prefWidth="66.0" />
+                                    <Label layoutX="320.0" layoutY="94.0" text="Set Time" />
+                                    <Label layoutX="571.0" layoutY="94.0" text="Target Time" />
+                                    <Label layoutX="472.0" layoutY="94.0" text="Sec" />
+                                    <Label layoutX="760.0" layoutY="94.0" text="Sec" />
+                                    <GridPane layoutX="14.0" layoutY="149.0" prefHeight="406.0" prefWidth="838.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.39998779296874" minWidth="10.0" prefWidth="96.40001220703124" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.199951171875" minWidth="10.0" prefWidth="21.20001220703125" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.00003662109373" minWidth="10.0" prefWidth="30.200021362304682" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.00003662109373" minWidth="10.0" prefWidth="42.39998779296877" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.00002441406247" minWidth="10.0" prefWidth="102.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.60001220703123" minWidth="10.0" prefWidth="23.600000000000023" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.60001220703123" minWidth="10.0" prefWidth="41.20002441406251" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.60001220703123" minWidth="8.199963378906261" prefWidth="33.19997558593752" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.4000244140625" minWidth="10.0" prefWidth="87.20003662109372" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.20001220703125" minWidth="10.0" prefWidth="30.200000000000045" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.20001220703125" minWidth="10.0" prefWidth="64.59995117187498" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.199951171875" minWidth="10.0" prefWidth="76.39996337890625" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="48.60001220703125" minHeight="10.0" prefHeight="19.800010681152344" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="99.99997558593752" minHeight="10.0" prefHeight="38.19998931884766" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="84.40001525878907" minHeight="10.0" prefHeight="20.400006103515622" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="38.00000610351563" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="84.79999389648438" minHeight="6.7999847412109204" prefHeight="18.79999389648438" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="91.79999389648435" minHeight="10.0" prefHeight="36.99998779296877" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="91.79999389648435" minHeight="10.0" prefHeight="36.99998779296877" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="91.79999389648435" minHeight="10.0" prefHeight="36.99998779296877" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="91.79999389648435" minHeight="10.0" prefHeight="36.99998779296877" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="91.79999389648435" minHeight="10.0" prefHeight="36.99998779296877" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label fx:id="lbl_ManualModeRphase" text="R Phase" GridPane.rowIndex="2" />
+                                          <Label fx:id="lbl_ManualModeYphase" text="Y Phase" GridPane.rowIndex="4" />
+                                          <Label fx:id="lbl_ManualModeBphase" text="B Phase" GridPane.rowIndex="6" />
+                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Voltage" GridPane.columnIndex="1" />
+                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Current" GridPane.columnIndex="5" />
+                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Power factor" GridPane.columnIndex="9" />
+                                          <TextField fx:id="txt_ManualModeRphaseVoltage" text="230" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField fx:id="txt_ManualModeRphaseCurrent" text="5.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                          <TextField fx:id="txt_ManualModeRphasePfValue" text="1.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                          <RadioButton fx:id="rdBtnManualModeRphasePfLag" mnemonicParsing="false" onAction="#radioBtnManualModeRphasePfLagOnChange" text="Lag" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                                          <RadioButton fx:id="rdBtnManualModeRphasePfLead" mnemonicParsing="false" onAction="#radioBtnManualModeRphasePfLeadOnChange" text="Lead" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                                          <TextField fx:id="txt_ManualModeYphaseVoltage" text="230" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="txt_ManualModeYphaseCurrent" text="5.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                          <TextField fx:id="txt_ManualModeYphasePfValue" text="1.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                                          <RadioButton fx:id="rdBtnManualModeYphasePfLag" mnemonicParsing="false" onAction="#radioBtnManualModeYphasePfLagOnChange" text="Lag" GridPane.columnIndex="11" GridPane.rowIndex="4" />
+                                          <RadioButton fx:id="rdBtnManualModeYphasePfLead" mnemonicParsing="false" onAction="#radioBtnManualModeYphasePfLeadOnChange" text="Lead" GridPane.columnIndex="12" GridPane.rowIndex="4" />
+                                          <TextField fx:id="txt_ManualModeBphaseVoltage" text="230" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField fx:id="txt_ManualModeBphaseCurrent" text="5.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                                          <TextField fx:id="txt_ManualModeBphasePfValue" text="1.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                                          <RadioButton fx:id="rdBtnManualModeBphasePfLag" mnemonicParsing="false" onAction="#radioBtnManualModeBphasePfLagOnChange" text="Lag" GridPane.columnIndex="11" GridPane.rowIndex="6" />
+                                          <RadioButton fx:id="rdBtnManualModeBphasePfLead" mnemonicParsing="false" onAction="#radioBtnManualModeBphasePfLeadOnChange" text="Lead" GridPane.columnIndex="12" GridPane.rowIndex="6" />
+                                          <TextField fx:id="txt_ManualModeFrequencyValue" text="50.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <Button fx:id="btnManualModeStart" mnemonicParsing="false" onAction="#manualModeBtnStartOnClick" prefHeight="26.0" prefWidth="119.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                          <Button fx:id="btnManualModeUpdate" mnemonicParsing="false" onAction="#manualModeBtnUpdateOnClick" prefHeight="26.0" prefWidth="123.0" text="Update" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+                                          <Button fx:id="btnManualModeStop" mnemonicParsing="false" onAction="#manualModeBtnStopOnClick" prefHeight="26.0" prefWidth="122.0" text="Stop" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                                          <Label text="Frequency" GridPane.rowIndex="8" />
+                                          <Label text="Hz" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                          <Label text="V" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Label text="V" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                          <Label text="V" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                          <Label text="Amps" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                          <Label text="Amps" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                                          <Label text="Amps" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                                          <Label text="Phase" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

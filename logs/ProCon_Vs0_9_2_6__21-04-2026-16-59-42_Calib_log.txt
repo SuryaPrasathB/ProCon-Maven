@@ -1,0 +1,59 @@
+2026-04-21 17:44:42.115 INFO  calib:873 - btnCalibStartOnClick : Invoked:
+2026-04-21 17:44:42.115 INFO  calib:875 - CALIBRATION BAY : STARTED
+2026-04-21 17:44:42.117 INFO  calib:928 - btnCalibStartOnClick : Exit:
+2026-04-21 17:44:42.217 DEBUG calib:33 - Calib : Entry
+2026-04-21 17:44:42.217 DEBUG calib:41 - Calib : manageCalibrationBayStates : Entry
+2026-04-21 17:44:42.218 DEBUG calib:61 - Calib : manageCalibrationBayStates : getTableStatePlanner2 : Size : 22
+2026-04-21 17:44:42.218 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-04-21 17:44:42.219 INFO  calib:38 - S01_check_for_pallet_at_CALIB_Bay : Entry
+2026-04-21 17:44:42.219 DEBUG calib:131 - S01_check_for_pallet_at_CALIB_Bay : Entry
+2026-04-21 17:44:42.219 DEBUG calib:144 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-04-21 17:44:42.323 DEBUG calib:155 - S01_check_for_pallet_at_CALIB_Bay : state : Off
+2026-04-21 17:44:42.323 DEBUG calib:163 - S01_check_for_pallet_at_CALIB_Bay : status : false
+2026-04-21 17:44:42.323 DEBUG calib:167 - S01_check_for_pallet_at_CALIB_Bay : Exit
+2026-04-21 17:44:42.323 INFO  calib:95 - S01_check_for_pallet_at_CALIB_Bay : No pallet Available at CALIB Bay
+2026-04-21 17:48:04.138 INFO  calib:103 - S01_check_for_pallet_at_CALIB_Bay : Pallet Available
+2026-04-21 17:48:04.149 INFO  calib:125 - S01_check_for_pallet_at_CALIB_Bay : Exit
+2026-04-21 17:48:04.149 DEBUG calib:166 - processCurrentState : S01_check_for_pallet_at_CALIB_Bay : Status     : true
+2026-04-21 17:48:04.149 DEBUG calib:167 - processCurrentState : S01_check_for_pallet_at_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-04-21 17:48:04.150 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-04-21 17:48:04.150 INFO  calib:44 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-04-21 17:48:04.150 DEBUG calib:123 - qrCodePalletScanning : Entry : CALB
+2026-04-21 17:49:09.403 INFO  calib:933 - btnCalibStopOnClick : Invoked:
+2026-04-21 17:49:09.403 INFO  calib:935 - CALIBRATION BAY : STOPPED
+2026-04-21 17:49:09.404 INFO  calib:989 - btnCalibStopOnClick : Exit:
+2026-04-21 17:49:09.504 DEBUG calib:26 - CalibrationBayStop : Entry
+2026-04-21 17:49:09.504 DEBUG calib:34 - CalibrationBayStop : manageCalibrationBayStopStates : Entry
+2026-04-21 17:49:09.507 DEBUG calib:55 - CalibrationBayStop : manageCalibrationBayStopStates : getTableStatePlanner2 : Size : 3
+2026-04-21 17:49:09.507 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-04-21 17:49:09.507 INFO  calib:26 - S06_open_the_fingerTip_Latch : Entry
+2026-04-21 17:49:09.507 DEBUG calib:50 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : Entry
+2026-04-21 17:49:09.507 DEBUG calib:60 - PortId    : op2
+2026-04-21 17:49:09.507 DEBUG calib:61 - ClusterId : 2
+2026-04-21 17:49:09.507 DEBUG calib:62 - BayId     : 4
+2026-04-21 17:49:09.610 DEBUG calib:80 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : status : true
+2026-04-21 17:49:09.610 DEBUG calib:85 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : Exit
+2026-04-21 17:49:09.610 INFO  calib:35 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-21 17:49:09.610 INFO  calib:44 - S06_open_the_fingerTip_Latch : Exit
+2026-04-21 17:49:09.610 DEBUG calib:161 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-04-21 17:49:09.610 DEBUG calib:162 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 17:49:09.611 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-04-21 17:49:09.611 INFO  calib:27 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-04-21 17:49:09.611 INFO  calib:55 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-04-21 17:49:09.611 DEBUG calib:161 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-04-21 17:49:09.611 DEBUG calib:162 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-04-21 17:49:09.611 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-04-21 17:49:09.611 INFO  calib:21 - S30_turn_off_tower_lamp_CALIB_Bay : Entry
+2026-04-21 17:49:09.611 DEBUG calib:60 - S30_turn_off_tower_lamp_CALIB_Bay : turn_on_tower_lamp : Entry
+2026-04-21 17:49:09.714 INFO  calib:31 - S30_turn_off_tower_lamp_CALIB_Bay : Tower Lamp Turned On
+2026-04-21 17:49:09.714 DEBUG calib:83 - S30_turn_off_tower_lamp_CALIB_Bay : turn_off_tower_lamp : Entry
+2026-04-21 17:49:09.816 INFO  calib:41 - S30_turn_off_tower_lamp_CALIB_Bay : Tower Lamp Turned Off
+2026-04-21 17:49:09.816 INFO  calib:55 - S30_turn_off_tower_lamp_CALIB_Bay : Exit
+2026-04-21 17:49:09.816 DEBUG calib:161 - processCurrentState : S30_turn_off_tower_lamp_CALIB_Bay : Status     : true
+2026-04-21 17:49:09.816 DEBUG calib:162 - processCurrentState : S30_turn_off_tower_lamp_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-04-21 17:49:09.816 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-04-21 17:49:09.816 INFO  calib:11 - S11_idle_condition : Entry
+2026-04-21 17:49:09.817 INFO  calib:25 - S11_idle_condition : Waiting in Idle Condition : 1min 30secs CALB
+2026-04-21 17:50:39.837 DEBUG calib:161 - processCurrentState : S11_idle_condition : Status     : true
+2026-04-21 17:50:39.837 DEBUG calib:162 - processCurrentState : S11_idle_condition : Error Code : NO_ERROR_001
+2026-04-21 17:50:39.837 DEBUG calib:128 - CalibrationBayStop : manageCalibrationBayStopStates : Exit

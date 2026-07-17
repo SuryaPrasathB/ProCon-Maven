@@ -1,0 +1,10 @@
+Rack ID,Select,Serial No,CTR Ratio,PTR Ratio,Meter Constant,Make,ModelNo
+2,Yes,,102,202,2002,Ineesh2,Model2
+3,No,MT123456,103,203,2003,,Model3
+4,Y,MT123457,104,204,2004,Ineesh4,Model4
+5,,MT123458,105,205,2005,Ineesh5,
+6,y,,106,206,2006,Ineesh6,Model6
+7,n,MT123460,107,207,,Ineesh7,Model7
+8,yes,MT123461,,208,2008,Ineesh8,Model8
+9,No,MT123462,109,,2009,Ineesh9,Model9
+10,No,,110,210,2010,Ineesh10,Mode10

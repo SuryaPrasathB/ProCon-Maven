@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="1701.0" stylesheets="@../../resources/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.QrScannerPortSetupV2Controller">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="12.0" layoutY="92.0" prefHeight="432.0" prefWidth="1675.0" text="QR Scanner - Terminal 1">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="563.0">
+               <children>
+                <AnchorPane layoutX="4.0" layoutY="4.0" minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="1658.0">
+                     <children>
+                        <TableView fx:id="tvDeviceSetting" layoutX="4.0" layoutY="7.0" prefHeight="382.0" prefWidth="1652.0">
+                          <columns>
+                            <TableColumn fx:id="colDsSerialNo" prefWidth="61.59999942779541" sortable="false" text="S.No" />
+                              <TableColumn fx:id="colDsDeviceId" prefWidth="155.20001220703125" sortable="false" text="Device Id" />
+                              <TableColumn fx:id="colDsPortName" prefWidth="130.40005493164062" sortable="false" text="Port" />
+                              <TableColumn fx:id="colDsBaudRate" prefWidth="130.39996337890625" sortable="false" text="Baud rate" />
+                              <TableColumn fx:id="colDsClusterName" prefWidth="127.20001220703125" sortable="false" text="Cluster" />
+                              <TableColumn fx:id="colDsBayName" prefWidth="172.0" sortable="false" text="Bay" />
+                              <TableColumn fx:id="colDsPositionNo" prefWidth="97.5999755859375" sortable="false" text="Position" />
+                            <TableColumn fx:id="colDsCname" prefWidth="275.99993896484375" sortable="false" text="C-Name" />
+                              <TableColumn fx:id="colDsStatus" prefWidth="120.0001220703125" sortable="false" text="Status" />
+                              <TableColumn fx:id="colDsValidate" prefWidth="116.0" sortable="false" text="Validate" />
+                              <TableColumn fx:id="colDsResponseData" prefWidth="240.0001220703125" sortable="false" text="Response Data" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="btn_Save" layoutX="1532.0" layoutY="542.0" mnemonicParsing="false" onAction="#saveOnClick" prefHeight="29.0" prefWidth="118.0" text="Save" />
+      <Button fx:id="btn_AddDevice" layoutX="14.0" layoutY="542.0" mnemonicParsing="false" onAction="#addDeviceOnClick" prefHeight="29.0" prefWidth="118.0" text="Add" />
+      <GridPane layoutX="32.0" layoutY="26.0" prefHeight="39.0" prefWidth="638.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.39999389648438" minWidth="10.0" prefWidth="94.19998779296876" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="20.99999389648437" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.2" minWidth="10.0" prefWidth="175.40000610351564" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="41.19999999999999" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.4000244140625" minWidth="10.0" prefWidth="113.60001220703128" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="26.399987792968773" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="184.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="18.0" prefWidth="143.0" text="Model Type" GridPane.columnIndex="4" />
+            <Label prefHeight="18.0" prefWidth="143.0" text="Device Type" />
+            <CheckComboBox fx:id="chkCmbBxModelType" prefHeight="26.0" prefWidth="172.0" GridPane.columnIndex="6" />
+            <CheckComboBox fx:id="chkCmbBxDeviceType" prefHeight="26.0" prefWidth="204.0" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnRemove" layoutX="182.0" layoutY="542.0" mnemonicParsing="false" onAction="#removeDeviceOnClick" prefHeight="29.0" prefWidth="118.0" text="Remove" />
+   </children>
+</AnchorPane>

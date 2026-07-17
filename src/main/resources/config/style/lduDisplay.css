@@ -1,0 +1,81 @@
+
+.text-input {
+
+    -fx-effect: innershadow( one-pass-box , black , 10.0, 0.0,0.0,0.0);
+    -fx-background-insets:3.0;
+    -fx-background-radius: 4.0;
+    -fx-prompt-text-fill:black;
+    -fx-text-fill:black;
+    -fx-font-size:18.0;
+    -fx-font-weight:bold; 
+}
+
+.custom {
+  -fx-control-inner-background: orange;
+}
+
+.failStyle1 {
+  -fx-background-color: red;
+  -fx-text-fill: black;
+  -comments: "failStyle1";
+}
+
+.failStyle2 {
+	-fx-control-inner-background: red; 
+	-fx-text-fill: white;
+	-comments: "failStyle2";
+}
+
+.failStyle3 {
+	-fx-background-color: tomato;
+	-fx-text-fill: black;
+	-comments: "failStyle3";
+}
+
+.failStyle4 {
+	-fx-background-color: tomato;
+	-fx-text-fill: white;
+	-comments: "failStyle4";
+}
+
+.passStyle1 {
+	-fx-control-inner-background: lightgreen;
+	-fx-text-fill: black;
+	-comments: "passStyle1";
+}
+
+.passStyle2 {
+	-fx-background-color: greenyellow;
+	-fx-text-fill: black;
+	-comments: "passStyle2";
+}
+
+.passStyle3 {
+	-fx-background-color: limegreen;
+	-fx-text-fill: black;
+	-comments: "passStyle3";
+}
+
+.passStyle4 {
+	-fx-background-color: limegreen;
+	-fx-text-fill: white;
+	-comments: "passStyle4";
+}
+
+.passSelected{
+	-fx-background-color: greenyellow;
+	-fx-text-fill: black;
+	-comments: "passStyle2";
+}
+
+.failSelected {
+	-fx-background-color: tomato;
+	-fx-text-fill: black;
+	-comments: "failStyle3";
+}
+
+.defaultStyle {
+	-fx-background-color: white;
+	-fx-text-fill: black;
+	-comments: "defaultStyle";
+}

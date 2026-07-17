@@ -1,0 +1,62 @@
+2026-07-13 11:29:15.941 DEBUG ft:1646 - PortId    : op12
+2026-07-13 11:29:15.942 DEBUG ft:1647 - ClusterId : 2
+2026-07-13 11:29:15.942 DEBUG ft:1648 - BayId     : 6
+2026-07-13 11:30:23.693 DEBUG ft:1646 - PortId    : op8
+2026-07-13 11:30:23.694 DEBUG ft:1647 - ClusterId : 2
+2026-07-13 11:30:23.694 DEBUG ft:1648 - BayId     : 5
+2026-07-13 11:30:27.051 DEBUG ft:127 - Attempting to control motor on PortId: op23, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:30:27.154 DEBUG ft:150 - Motor control successful for PortId: op23
+2026-07-13 11:30:28.642 DEBUG ft:127 - Attempting to control motor on PortId: op24, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:30:28.746 DEBUG ft:150 - Motor control successful for PortId: op24
+2026-07-13 11:30:29.738 DEBUG ft:127 - Attempting to control motor on PortId: op15, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:30:29.842 DEBUG ft:150 - Motor control successful for PortId: op15
+2026-07-13 11:30:39.619 DEBUG ft:1646 - PortId    : op1
+2026-07-13 11:30:39.619 DEBUG ft:1647 - ClusterId : 2
+2026-07-13 11:30:39.619 DEBUG ft:1648 - BayId     : 4
+2026-07-13 11:30:52.508 DEBUG ft:1646 - PortId    : op12
+2026-07-13 11:30:52.508 DEBUG ft:1647 - ClusterId : 2
+2026-07-13 11:30:52.508 DEBUG ft:1648 - BayId     : 6
+2026-07-13 11:31:00.555 DEBUG ft:127 - Attempting to control motor on PortId: op23, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:31:00.658 DEBUG ft:150 - Motor control successful for PortId: op23
+2026-07-13 11:31:00.955 DEBUG ft:127 - Attempting to control motor on PortId: op24, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:31:01.069 DEBUG ft:150 - Motor control successful for PortId: op24
+2026-07-13 11:31:01.410 DEBUG ft:127 - Attempting to control motor on PortId: op15, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:31:01.586 DEBUG ft:150 - Motor control successful for PortId: op15
+2026-07-13 11:31:04.244 DEBUG ft:1646 - PortId    : op9
+2026-07-13 11:31:04.244 DEBUG ft:1647 - ClusterId : 2
+2026-07-13 11:31:04.244 DEBUG ft:1648 - BayId     : 6
+2026-07-13 11:31:05.284 DEBUG ft:1646 - PortId    : op10
+2026-07-13 11:31:05.284 DEBUG ft:1647 - ClusterId : 2
+2026-07-13 11:31:05.284 DEBUG ft:1648 - BayId     : 6
+2026-07-13 11:31:41.706 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:41.810 DEBUG ft:150 - Motor control successful for PortId: op22
+2026-07-13 11:31:43.843 DEBUG ft:127 - Attempting to control motor on PortId: op21, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:43.946 DEBUG ft:150 - Motor control successful for PortId: op21
+2026-07-13 11:31:45.283 DEBUG ft:127 - Attempting to control motor on PortId: op25, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:45.385 DEBUG ft:150 - Motor control successful for PortId: op25
+2026-07-13 11:31:46.466 DEBUG ft:127 - Attempting to control motor on PortId: op26, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:46.569 DEBUG ft:150 - Motor control successful for PortId: op26
+2026-07-13 11:31:48.051 DEBUG ft:127 - Attempting to control motor on PortId: op27, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:48.153 DEBUG ft:150 - Motor control successful for PortId: op27
+2026-07-13 11:31:53.916 DEBUG ft:127 - Attempting to control motor on PortId: op21, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:54.018 DEBUG ft:150 - Motor control successful for PortId: op21
+2026-07-13 11:31:56.259 DEBUG ft:127 - Attempting to control motor on PortId: op21, ClusterId: 2, BayId: 4, Action: ON
+2026-07-13 11:31:56.361 DEBUG ft:150 - Motor control successful for PortId: op21
+2026-07-13 11:33:12.243 DEBUG ft:127 - Attempting to control motor on PortId: op23, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:12.345 DEBUG ft:150 - Motor control successful for PortId: op23
+2026-07-13 11:33:12.715 DEBUG ft:127 - Attempting to control motor on PortId: op24, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:12.861 DEBUG ft:150 - Motor control successful for PortId: op24
+2026-07-13 11:33:13.121 DEBUG ft:127 - Attempting to control motor on PortId: op15, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:13.275 DEBUG ft:150 - Motor control successful for PortId: op15
+2026-07-13 11:33:13.610 DEBUG ft:127 - Attempting to control motor on PortId: op25, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:13.994 DEBUG ft:150 - Motor control successful for PortId: op25
+2026-07-13 11:33:14.130 DEBUG ft:127 - Attempting to control motor on PortId: op21, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:14.619 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:14.714 DEBUG ft:150 - Motor control successful for PortId: op21
+2026-07-13 11:33:15.115 DEBUG ft:127 - Attempting to control motor on PortId: op26, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:15.127 DEBUG ft:150 - Motor control successful for PortId: op22
+2026-07-13 11:33:15.657 DEBUG ft:127 - Attempting to control motor on PortId: op27, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:15.845 DEBUG ft:150 - Motor control successful for PortId: op26
+2026-07-13 11:33:16.259 DEBUG ft:127 - Attempting to control motor on PortId: op28, ClusterId: 2, BayId: 4, Action: OFF
+2026-07-13 11:33:16.464 DEBUG ft:150 - Motor control successful for PortId: op27
+2026-07-13 11:33:17.290 DEBUG ft:150 - Motor control successful for PortId: op28

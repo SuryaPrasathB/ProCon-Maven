@@ -1,0 +1,83 @@
+2026-04-22 11:50:17.604 INFO  sta_nld1:1421 - btnSctNlt1StartOnClick : Invoked:
+2026-04-22 11:50:17.605 INFO  sta_nld1:1423 - SCT NLT BAY 1 : STARTED
+2026-04-22 11:50:17.616 INFO  sta_nld1:1479 - btnSctNlt1StartOnClick : Exit:
+2026-04-22 11:50:17.717 DEBUG sta_nld1:40 - StaNld_Bay1 : Entry
+2026-04-22 11:50:17.717 DEBUG sta_nld1:48 - StaNld_Bay1 : manageSta_NoLoadTestBay1States : Entry
+2026-04-22 11:50:17.718 DEBUG sta_nld1:67 - StaNld_Bay1 : manageSta_NoLoadTestBay1States : getTableStatePlanner2 : Size : 23
+2026-04-22 11:50:17.718 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 11:50:17.718 INFO  sta_nld1:37 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-04-22 11:50:17.719 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-04-22 11:50:17.719 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-04-22 11:50:17.822 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : Off
+2026-04-22 11:50:17.822 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : false
+2026-04-22 11:50:17.822 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-04-22 11:50:17.822 INFO  sta_nld1:94 - S01_check_for_pallets_at_SCT_NLT_Bay1 : No pallet Available at SCT NLT Bay1
+2026-04-22 12:00:04.443 INFO  sta_nld1:1484 - btnSctNlt1StopOnClick : Invoked:
+2026-04-22 12:00:04.444 INFO  sta_nld1:1486 - SCT NLT BAY 1 : STOPPED
+2026-04-22 12:00:04.445 INFO  sta_nld1:1543 - btnSctNlt1StopOnClick : Exit:
+2026-04-22 12:00:04.544 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-04-22 12:00:04.544 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-04-22 12:00:04.545 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-04-22 12:00:04.546 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 12:00:04.546 INFO  sta_nld1:28 - S046_Stop_Execution : Entry
+2026-04-22 12:00:05.500 INFO  sta_nld1:107 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Pallet Not Available
+2026-04-22 12:00:05.500 INFO  sta_nld1:112 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-04-22 12:00:05.500 DEBUG sta_nld1:172 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay1 : Status     : false
+2026-04-22 12:00:05.500 DEBUG sta_nld1:173 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay1 : Error Code : ERROR_CODE_SCT_NLT_BAY1_001
+2026-04-22 12:00:05.600 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-04-22 12:00:05.600 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-04-22 12:00:05.601 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-04-22 12:00:05.601 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 12:00:05.601 INFO  sta_nld1:28 - S046_Stop_Execution : Entry
+2026-04-22 12:00:07.559 INFO  sta_nld1:50 - S046_Stop_Execution : Stop Execution Success
+2026-04-22 12:00:08.613 INFO  sta_nld1:50 - S046_Stop_Execution : Stop Execution Success
+2026-04-22 12:00:12.559 INFO  sta_nld1:63 - S046_Stop_Execution : Exit
+2026-04-22 12:00:12.559 DEBUG sta_nld1:161 - processCurrentState : S046_Stop_Execution_Bay1 : Status     : true
+2026-04-22 12:00:12.559 DEBUG sta_nld1:162 - processCurrentState : S046_Stop_Execution_Bay1 : Error Code : ERROR_CODE_601
+2026-04-22 12:00:12.559 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 12:00:12.559 INFO  sta_nld1:27 - S06_open_the_fingerTip_Latch : Entry
+2026-04-22 12:00:12.559 DEBUG sta_nld1:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Entry
+2026-04-22 12:00:12.559 DEBUG sta_nld1:62 - PortId    : op18
+2026-04-22 12:00:12.559 DEBUG sta_nld1:63 - ClusterId : 2
+2026-04-22 12:00:12.559 DEBUG sta_nld1:64 - BayId     : 7
+2026-04-22 12:00:12.686 DEBUG sta_nld1:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : status : true
+2026-04-22 12:00:12.686 DEBUG sta_nld1:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Exit
+2026-04-22 12:00:12.686 INFO  sta_nld1:36 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-22 12:00:12.686 INFO  sta_nld1:46 - S06_open_the_fingerTip_Latch : Exit
+2026-04-22 12:00:12.686 DEBUG sta_nld1:161 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Status     : true
+2026-04-22 12:00:12.686 DEBUG sta_nld1:162 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Error Code : ERROR_CODE_601
+2026-04-22 12:00:12.686 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 12:00:12.686 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-04-22 12:00:12.686 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:13.613 INFO  sta_nld1:63 - S046_Stop_Execution : Exit
+2026-04-22 12:00:13.613 DEBUG sta_nld1:161 - processCurrentState : S046_Stop_Execution_Bay1 : Status     : true
+2026-04-22 12:00:13.613 DEBUG sta_nld1:162 - processCurrentState : S046_Stop_Execution_Bay1 : Error Code : ERROR_CODE_601
+2026-04-22 12:00:13.613 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 12:00:13.613 INFO  sta_nld1:27 - S06_open_the_fingerTip_Latch : Entry
+2026-04-22 12:00:13.613 DEBUG sta_nld1:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Entry
+2026-04-22 12:00:13.613 DEBUG sta_nld1:62 - PortId    : op18
+2026-04-22 12:00:13.613 DEBUG sta_nld1:63 - ClusterId : 2
+2026-04-22 12:00:13.613 DEBUG sta_nld1:64 - BayId     : 7
+2026-04-22 12:00:13.686 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:13.788 DEBUG sta_nld1:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : status : true
+2026-04-22 12:00:13.788 DEBUG sta_nld1:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Exit
+2026-04-22 12:00:13.788 INFO  sta_nld1:36 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-22 12:00:13.788 INFO  sta_nld1:46 - S06_open_the_fingerTip_Latch : Exit
+2026-04-22 12:00:13.788 DEBUG sta_nld1:161 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Status     : true
+2026-04-22 12:00:13.788 DEBUG sta_nld1:162 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Error Code : ERROR_CODE_601
+2026-04-22 12:00:13.788 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-22 12:00:13.788 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-04-22 12:00:13.788 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:14.686 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:14.788 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:15.686 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:15.789 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:16.686 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:16.789 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:17.687 DEBUG sta_nld1:161 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-04-22 12:00:17.687 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-04-22 12:00:17.687 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit
+2026-04-22 12:00:17.789 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-04-22 12:00:18.789 DEBUG sta_nld1:161 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-04-22 12:00:18.789 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-04-22 12:00:18.789 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit

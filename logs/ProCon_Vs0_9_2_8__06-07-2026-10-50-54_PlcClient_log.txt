@@ -1,0 +1,822 @@
+2026-07-06 10:51:26.020 DEBUG plc:36 - ModbusTcpClientManager: modbus client : Keep-alive task scheduled!
+2026-07-06 10:51:52.548 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op23
+2026-07-06 10:51:52.557 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op23
+2026-07-06 10:51:52.598 DEBUG plc:160 - modbusConnect2 : Entry
+2026-07-06 10:51:52.598 DEBUG plc:165 - modbusConnect : address: 192.168.1.124
+2026-07-06 10:51:52.598 DEBUG plc:166 - modbusConnect : port: 502
+2026-07-06 10:51:52.601 DEBUG plc:174 - modbusConnect : address2: 192.168.1.124
+2026-07-06 10:51:53.601 INFO  plc:100 - Successfully connected to 192.168.1.124:502
+2026-07-06 10:51:53.724 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op23 : false
+2026-07-06 10:51:53.724 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:53.724 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op23
+2026-07-06 10:51:53.725 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op24
+2026-07-06 10:51:53.725 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op24
+2026-07-06 10:51:53.827 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op24 : false
+2026-07-06 10:51:53.827 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:53.827 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op24
+2026-07-06 10:51:53.827 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op15
+2026-07-06 10:51:53.827 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op15
+2026-07-06 10:51:53.930 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op15 : false
+2026-07-06 10:51:53.930 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:53.930 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op15
+2026-07-06 10:51:53.930 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op25
+2026-07-06 10:51:53.930 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op25
+2026-07-06 10:51:54.032 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op25 : false
+2026-07-06 10:51:54.032 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:54.032 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op25
+2026-07-06 10:51:54.032 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op21
+2026-07-06 10:51:54.032 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op21
+2026-07-06 10:51:54.135 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op21 : false
+2026-07-06 10:51:54.135 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:54.135 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op21
+2026-07-06 10:51:54.135 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op22
+2026-07-06 10:51:54.135 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op22
+2026-07-06 10:51:54.237 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op22 : false
+2026-07-06 10:51:54.237 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:54.237 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op22
+2026-07-06 10:51:54.237 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op26
+2026-07-06 10:51:54.237 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op26
+2026-07-06 10:51:54.339 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op26 : false
+2026-07-06 10:51:54.339 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:54.339 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op26
+2026-07-06 10:51:54.339 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op27
+2026-07-06 10:51:54.339 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op27
+2026-07-06 10:51:54.441 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op27 : false
+2026-07-06 10:51:54.441 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:54.441 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op27
+2026-07-06 10:51:54.441 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op28
+2026-07-06 10:51:54.441 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op28
+2026-07-06 10:51:54.544 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op28 : false
+2026-07-06 10:51:54.544 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:51:54.544 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op28
+2026-07-06 10:52:26.013 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 10:52:26.013 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 10:52:32.343 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 7 -> getPortId: op19
+2026-07-06 10:52:32.343 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op19
+2026-07-06 10:52:32.343 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op19
+2026-07-06 10:52:32.343 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op19
+2026-07-06 10:52:32.446 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op19 : false
+2026-07-06 10:52:32.446 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op19
+2026-07-06 10:52:32.447 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 7 -> getPortId: op20
+2026-07-06 10:52:32.447 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op20
+2026-07-06 10:52:32.447 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op20
+2026-07-06 10:52:32.447 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op20
+2026-07-06 10:52:32.550 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op20 : false
+2026-07-06 10:52:32.550 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op20
+2026-07-06 10:53:16.155 DEBUG plc:205 - getOutputPortDetails : getClusterId: 3 -> getBayId: 8 -> getPortId: op2
+2026-07-06 10:53:16.155 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 3 -> bayId :8 -> outputPortId: op2
+2026-07-06 10:53:16.155 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op2
+2026-07-06 10:53:16.155 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 3 : outputId : op2
+2026-07-06 10:53:16.155 DEBUG plc:160 - modbusConnect2 : Entry
+2026-07-06 10:53:16.155 DEBUG plc:165 - modbusConnect : address: 192.168.1.125
+2026-07-06 10:53:16.155 DEBUG plc:166 - modbusConnect : port: 502
+2026-07-06 10:53:16.158 DEBUG plc:174 - modbusConnect : address2: 192.168.1.125
+2026-07-06 10:53:17.159 INFO  plc:100 - Successfully connected to 192.168.1.125:502
+2026-07-06 10:53:17.260 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op2 : false
+2026-07-06 10:53:17.260 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 3 : outputId : op2
+2026-07-06 10:53:17.261 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip35
+2026-07-06 10:53:17.363 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip35 : false
+2026-07-06 10:53:17.363 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-07-06 10:53:17.363 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip35
+2026-07-06 10:54:09.052 DEBUG plc:205 - getOutputPortDetails : getClusterId: 3 -> getBayId: 8 -> getPortId: op1
+2026-07-06 10:54:09.053 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 3 -> bayId :8 -> outputPortId: op1
+2026-07-06 10:54:09.054 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op1
+2026-07-06 10:54:09.054 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 3 : outputId : op1
+2026-07-06 10:54:09.157 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op1 : false
+2026-07-06 10:54:09.157 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 3 : outputId : op1
+2026-07-06 10:54:12.995 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:54:12.995 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:54:12.996 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:54:13.098 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:54:13.098 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:06.362 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:06.362 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:06.362 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:06.465 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:06.465 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:06.466 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 80
+2026-07-06 10:55:06.466 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 80
+2026-07-06 10:55:06.466 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 80
+2026-07-06 10:55:06.466 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 80
+2026-07-06 10:55:06.467 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:06.569 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  80 : false
+2026-07-06 10:55:06.569 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 80
+2026-07-06 10:55:06.569 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:06.569 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 81
+2026-07-06 10:55:06.569 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 81
+2026-07-06 10:55:06.570 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 81
+2026-07-06 10:55:06.570 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 81
+2026-07-06 10:55:06.570 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:06.672 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  81 : false
+2026-07-06 10:55:06.672 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 81
+2026-07-06 10:55:06.672 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:06.672 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 82
+2026-07-06 10:55:06.673 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 82
+2026-07-06 10:55:06.673 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 82
+2026-07-06 10:55:06.673 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 82
+2026-07-06 10:55:06.673 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:06.776 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  82 : false
+2026-07-06 10:55:06.776 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 82
+2026-07-06 10:55:06.776 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:06.776 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 83
+2026-07-06 10:55:06.776 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 83
+2026-07-06 10:55:06.776 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 83
+2026-07-06 10:55:06.776 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 83
+2026-07-06 10:55:06.776 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:06.878 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  83 : false
+2026-07-06 10:55:06.878 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 83
+2026-07-06 10:55:06.878 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:06.878 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 88
+2026-07-06 10:55:06.878 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 88
+2026-07-06 10:55:06.878 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 88
+2026-07-06 10:55:06.878 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 88
+2026-07-06 10:55:06.878 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:06.980 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  88 : false
+2026-07-06 10:55:06.980 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 88
+2026-07-06 10:55:06.980 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:06.980 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 90
+2026-07-06 10:55:06.980 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 90
+2026-07-06 10:55:06.980 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 90
+2026-07-06 10:55:06.980 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 90
+2026-07-06 10:55:06.980 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:07.085 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  90 : false
+2026-07-06 10:55:07.085 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 90
+2026-07-06 10:55:07.085 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:07.085 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 86
+2026-07-06 10:55:07.085 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:55:07.085 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:55:07.085 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:55:07.085 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:07.188 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:55:07.188 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:55:07.188 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:07.188 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 87
+2026-07-06 10:55:07.188 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 87
+2026-07-06 10:55:07.188 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 87
+2026-07-06 10:55:07.188 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 87
+2026-07-06 10:55:07.188 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:07.290 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  87 : false
+2026-07-06 10:55:07.290 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 87
+2026-07-06 10:55:07.290 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:07.290 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 84
+2026-07-06 10:55:07.290 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 84
+2026-07-06 10:55:07.290 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 84
+2026-07-06 10:55:07.290 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 84
+2026-07-06 10:55:07.290 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:07.392 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  84 : false
+2026-07-06 10:55:07.392 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 84
+2026-07-06 10:55:07.392 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:07.392 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 85
+2026-07-06 10:55:07.392 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 85
+2026-07-06 10:55:07.392 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 85
+2026-07-06 10:55:07.392 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 85
+2026-07-06 10:55:07.392 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:07.495 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  85 : false
+2026-07-06 10:55:07.495 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 85
+2026-07-06 10:55:07.495 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:07.496 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId:  -> getPortId: 89
+2026-07-06 10:55:07.496 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 89
+2026-07-06 10:55:07.496 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 89
+2026-07-06 10:55:07.496 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 89
+2026-07-06 10:55:07.496 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:07.599 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  89 : false
+2026-07-06 10:55:07.599 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 89
+2026-07-06 10:55:07.599 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:21.194 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op28
+2026-07-06 10:55:21.194 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op28
+2026-07-06 10:55:21.194 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op28
+2026-07-06 10:55:21.298 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op28 : false
+2026-07-06 10:55:21.298 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op28
+2026-07-06 10:55:34.410 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:34.410 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:34.410 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:34.513 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:34.513 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:37.233 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:37.233 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:37.233 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:37.336 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:37.336 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:37.336 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 80
+2026-07-06 10:55:37.336 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 80
+2026-07-06 10:55:37.336 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 80
+2026-07-06 10:55:37.337 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:37.439 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  80 : false
+2026-07-06 10:55:37.439 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 80
+2026-07-06 10:55:37.439 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:37.439 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 81
+2026-07-06 10:55:37.440 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 81
+2026-07-06 10:55:37.440 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 81
+2026-07-06 10:55:37.440 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:37.542 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  81 : false
+2026-07-06 10:55:37.542 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 81
+2026-07-06 10:55:37.542 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:37.542 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 82
+2026-07-06 10:55:37.543 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 82
+2026-07-06 10:55:37.543 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 82
+2026-07-06 10:55:37.543 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:37.646 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  82 : false
+2026-07-06 10:55:37.646 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 82
+2026-07-06 10:55:37.646 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:37.646 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 83
+2026-07-06 10:55:37.647 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 83
+2026-07-06 10:55:37.647 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 83
+2026-07-06 10:55:37.647 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:37.750 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  83 : false
+2026-07-06 10:55:37.750 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 83
+2026-07-06 10:55:37.750 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:37.751 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 88
+2026-07-06 10:55:37.751 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 88
+2026-07-06 10:55:37.751 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 88
+2026-07-06 10:55:37.751 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:37.853 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  88 : false
+2026-07-06 10:55:37.853 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 88
+2026-07-06 10:55:37.853 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:37.854 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 90
+2026-07-06 10:55:37.854 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 90
+2026-07-06 10:55:37.854 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 90
+2026-07-06 10:55:37.854 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:37.957 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  90 : false
+2026-07-06 10:55:37.957 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 90
+2026-07-06 10:55:37.957 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:37.958 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:55:37.958 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:55:37.958 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:55:37.958 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:38.060 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:55:38.060 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:55:38.060 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:38.060 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 87
+2026-07-06 10:55:38.061 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 87
+2026-07-06 10:55:38.061 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 87
+2026-07-06 10:55:38.061 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:38.163 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  87 : false
+2026-07-06 10:55:38.163 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 87
+2026-07-06 10:55:38.163 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:38.164 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 84
+2026-07-06 10:55:38.164 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 84
+2026-07-06 10:55:38.164 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 84
+2026-07-06 10:55:38.164 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:38.267 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  84 : false
+2026-07-06 10:55:38.267 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 84
+2026-07-06 10:55:38.267 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:38.268 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 85
+2026-07-06 10:55:38.268 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 85
+2026-07-06 10:55:38.268 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 85
+2026-07-06 10:55:38.268 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:38.370 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  85 : false
+2026-07-06 10:55:38.371 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 85
+2026-07-06 10:55:38.371 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:38.372 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 89
+2026-07-06 10:55:38.372 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 89
+2026-07-06 10:55:38.372 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 89
+2026-07-06 10:55:38.372 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:38.474 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  89 : false
+2026-07-06 10:55:38.474 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 89
+2026-07-06 10:55:38.474 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:41.602 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:41.602 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:41.602 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:41.705 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:41.705 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:43.266 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:43.266 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:43.266 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:43.369 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:43.369 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:43.369 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 80
+2026-07-06 10:55:43.369 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 80
+2026-07-06 10:55:43.369 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 80
+2026-07-06 10:55:43.369 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:43.471 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  80 : false
+2026-07-06 10:55:43.471 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 80
+2026-07-06 10:55:43.471 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:43.472 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 81
+2026-07-06 10:55:43.472 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 81
+2026-07-06 10:55:43.472 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 81
+2026-07-06 10:55:43.472 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:43.575 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  81 : false
+2026-07-06 10:55:43.575 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 81
+2026-07-06 10:55:43.575 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:43.575 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 82
+2026-07-06 10:55:43.575 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 82
+2026-07-06 10:55:43.575 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 82
+2026-07-06 10:55:43.576 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:43.678 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  82 : false
+2026-07-06 10:55:43.678 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 82
+2026-07-06 10:55:43.678 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:43.679 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 83
+2026-07-06 10:55:43.679 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 83
+2026-07-06 10:55:43.679 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 83
+2026-07-06 10:55:43.679 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:43.782 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  83 : false
+2026-07-06 10:55:43.782 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 83
+2026-07-06 10:55:43.782 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:43.783 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 88
+2026-07-06 10:55:43.783 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 88
+2026-07-06 10:55:43.783 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 88
+2026-07-06 10:55:43.783 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:43.885 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  88 : false
+2026-07-06 10:55:43.885 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 88
+2026-07-06 10:55:43.885 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:43.885 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 90
+2026-07-06 10:55:43.885 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 90
+2026-07-06 10:55:43.885 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 90
+2026-07-06 10:55:43.885 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:43.988 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  90 : false
+2026-07-06 10:55:43.988 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 90
+2026-07-06 10:55:43.988 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:43.988 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:55:43.988 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:55:43.988 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:55:43.988 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:44.091 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:55:44.091 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:55:44.091 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:44.091 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 87
+2026-07-06 10:55:44.091 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 87
+2026-07-06 10:55:44.092 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 87
+2026-07-06 10:55:44.092 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:44.193 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  87 : false
+2026-07-06 10:55:44.193 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 87
+2026-07-06 10:55:44.193 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:44.193 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 84
+2026-07-06 10:55:44.193 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 84
+2026-07-06 10:55:44.194 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 84
+2026-07-06 10:55:44.194 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:44.296 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  84 : false
+2026-07-06 10:55:44.296 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 84
+2026-07-06 10:55:44.296 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:44.296 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 85
+2026-07-06 10:55:44.296 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 85
+2026-07-06 10:55:44.296 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 85
+2026-07-06 10:55:44.297 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:44.399 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  85 : false
+2026-07-06 10:55:44.399 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 85
+2026-07-06 10:55:44.399 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:44.399 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 89
+2026-07-06 10:55:44.399 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 89
+2026-07-06 10:55:44.400 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 89
+2026-07-06 10:55:44.400 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:44.501 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  89 : false
+2026-07-06 10:55:44.501 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 89
+2026-07-06 10:55:44.501 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:48.883 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:48.883 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:48.883 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:48.985 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:48.985 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:51.738 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:55:51.738 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:55:51.738 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:55:51.841 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:55:51.841 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:55:51.841 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 80
+2026-07-06 10:55:51.841 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 80
+2026-07-06 10:55:51.841 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 80
+2026-07-06 10:55:51.841 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:51.943 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  80 : false
+2026-07-06 10:55:51.943 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 80
+2026-07-06 10:55:51.943 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:51.944 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 81
+2026-07-06 10:55:51.944 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 81
+2026-07-06 10:55:51.944 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 81
+2026-07-06 10:55:51.944 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.047 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  81 : false
+2026-07-06 10:55:52.047 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 81
+2026-07-06 10:55:52.047 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.047 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 82
+2026-07-06 10:55:52.047 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 82
+2026-07-06 10:55:52.048 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 82
+2026-07-06 10:55:52.048 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.150 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  82 : false
+2026-07-06 10:55:52.150 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 82
+2026-07-06 10:55:52.150 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.150 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 83
+2026-07-06 10:55:52.150 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 83
+2026-07-06 10:55:52.150 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 83
+2026-07-06 10:55:52.151 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.252 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  83 : false
+2026-07-06 10:55:52.252 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 83
+2026-07-06 10:55:52.252 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.252 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 88
+2026-07-06 10:55:52.252 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 88
+2026-07-06 10:55:52.252 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 88
+2026-07-06 10:55:52.254 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.356 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  88 : false
+2026-07-06 10:55:52.356 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 88
+2026-07-06 10:55:52.356 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.356 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 90
+2026-07-06 10:55:52.356 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 90
+2026-07-06 10:55:52.356 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 90
+2026-07-06 10:55:52.356 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.458 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  90 : false
+2026-07-06 10:55:52.458 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 90
+2026-07-06 10:55:52.458 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.459 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:55:52.459 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:55:52.459 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:55:52.459 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.562 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:55:52.562 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:55:52.562 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.563 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 87
+2026-07-06 10:55:52.563 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 87
+2026-07-06 10:55:52.563 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 87
+2026-07-06 10:55:52.563 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.666 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  87 : false
+2026-07-06 10:55:52.666 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 87
+2026-07-06 10:55:52.666 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.666 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 84
+2026-07-06 10:55:52.666 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 84
+2026-07-06 10:55:52.666 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 84
+2026-07-06 10:55:52.666 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.768 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  84 : false
+2026-07-06 10:55:52.768 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 84
+2026-07-06 10:55:52.768 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.769 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 85
+2026-07-06 10:55:52.769 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 85
+2026-07-06 10:55:52.769 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 85
+2026-07-06 10:55:52.769 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.873 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  85 : false
+2026-07-06 10:55:52.873 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 85
+2026-07-06 10:55:52.873 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:55:52.873 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 89
+2026-07-06 10:55:52.873 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 89
+2026-07-06 10:55:52.873 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 89
+2026-07-06 10:55:52.873 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:55:52.976 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  89 : false
+2026-07-06 10:55:52.976 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 89
+2026-07-06 10:55:52.976 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:01.282 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:56:01.283 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:56:01.283 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:56:01.385 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:56:01.385 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:56:10.218 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op22
+2026-07-06 10:56:10.218 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op22
+2026-07-06 10:56:10.218 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op22
+2026-07-06 10:56:10.320 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op22 : false
+2026-07-06 10:56:10.320 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op22
+2026-07-06 10:56:10.320 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 80
+2026-07-06 10:56:10.320 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 80
+2026-07-06 10:56:10.320 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 80
+2026-07-06 10:56:10.320 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:10.423 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  80 : false
+2026-07-06 10:56:10.423 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 80
+2026-07-06 10:56:10.423 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:10.424 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 81
+2026-07-06 10:56:10.424 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 81
+2026-07-06 10:56:10.424 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 81
+2026-07-06 10:56:10.424 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:10.526 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  81 : false
+2026-07-06 10:56:10.526 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 81
+2026-07-06 10:56:10.526 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:10.527 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 82
+2026-07-06 10:56:10.527 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 82
+2026-07-06 10:56:10.527 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 82
+2026-07-06 10:56:10.527 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:10.630 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  82 : false
+2026-07-06 10:56:10.630 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 82
+2026-07-06 10:56:10.630 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:10.630 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 83
+2026-07-06 10:56:10.630 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 83
+2026-07-06 10:56:10.630 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 83
+2026-07-06 10:56:10.630 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:10.733 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  83 : false
+2026-07-06 10:56:10.733 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 83
+2026-07-06 10:56:10.733 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:10.733 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 88
+2026-07-06 10:56:10.733 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 88
+2026-07-06 10:56:10.733 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 88
+2026-07-06 10:56:10.734 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:10.836 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  88 : false
+2026-07-06 10:56:10.836 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 88
+2026-07-06 10:56:10.836 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:10.836 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 90
+2026-07-06 10:56:10.837 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 90
+2026-07-06 10:56:10.837 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 90
+2026-07-06 10:56:10.837 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:10.939 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  90 : false
+2026-07-06 10:56:10.939 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 90
+2026-07-06 10:56:10.939 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:10.940 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:56:10.940 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:56:10.940 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:56:10.940 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:11.043 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:56:11.043 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:56:11.043 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:11.043 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 87
+2026-07-06 10:56:11.043 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 87
+2026-07-06 10:56:11.043 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 87
+2026-07-06 10:56:11.043 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:11.146 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  87 : false
+2026-07-06 10:56:11.146 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 87
+2026-07-06 10:56:11.146 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:11.147 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 84
+2026-07-06 10:56:11.147 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 84
+2026-07-06 10:56:11.147 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 84
+2026-07-06 10:56:11.147 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:11.249 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  84 : false
+2026-07-06 10:56:11.249 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 84
+2026-07-06 10:56:11.249 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:11.250 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 85
+2026-07-06 10:56:11.250 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 85
+2026-07-06 10:56:11.250 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 85
+2026-07-06 10:56:11.250 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:11.353 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  85 : false
+2026-07-06 10:56:11.353 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 85
+2026-07-06 10:56:11.353 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:11.354 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 89
+2026-07-06 10:56:11.354 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 89
+2026-07-06 10:56:11.354 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 89
+2026-07-06 10:56:11.354 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:11.456 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  89 : false
+2026-07-06 10:56:11.456 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 89
+2026-07-06 10:56:11.456 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:15.347 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op19
+2026-07-06 10:56:15.347 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op19
+2026-07-06 10:56:15.348 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op19
+2026-07-06 10:56:15.450 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op19 : false
+2026-07-06 10:56:15.450 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op19
+2026-07-06 10:56:15.451 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op20
+2026-07-06 10:56:15.451 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op20
+2026-07-06 10:56:15.451 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op20
+2026-07-06 10:56:15.554 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op20 : false
+2026-07-06 10:56:15.554 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op20
+2026-07-06 10:56:20.556 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 7 -> getPortId: op17
+2026-07-06 10:56:20.556 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:56:20.557 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:56:20.557 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:56:20.659 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:56:20.659 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:56:25.660 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 7 -> getPortId: op16
+2026-07-06 10:56:25.660 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:56:25.661 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:56:25.661 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:56:25.763 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:56:25.763 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:56:27.821 DEBUG plc:205 - getOutputPortDetails : getClusterId: 3 -> getBayId: 8 -> getPortId: op5
+2026-07-06 10:56:27.821 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 3 -> bayId :8 -> outputPortId: op5
+2026-07-06 10:56:27.821 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op5
+2026-07-06 10:56:27.821 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 3 : outputId : op5
+2026-07-06 10:56:27.923 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op5 : false
+2026-07-06 10:56:27.923 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 3 : outputId : op5
+2026-07-06 10:56:28.766 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:56:28.766 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:56:28.766 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:56:28.767 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:28.869 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:56:28.869 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:56:28.869 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:31.870 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:56:31.870 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:56:31.870 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:56:31.974 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:56:31.974 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:56:33.978 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:56:33.978 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:56:33.978 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:56:34.081 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:56:34.081 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:56:38.083 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:56:38.083 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:56:38.083 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:56:38.187 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:56:38.187 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:56:43.188 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:56:43.188 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:56:43.188 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:56:43.291 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:56:43.291 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:56:46.291 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:56:46.291 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:56:46.291 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:56:46.291 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:56:46.394 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:56:46.394 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:56:46.394 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:56:49.395 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:56:49.395 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:56:49.395 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:56:49.498 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:56:49.498 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:56:51.498 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:56:51.498 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:56:51.498 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:56:51.601 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:56:51.601 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:56:55.601 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:56:55.601 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:56:55.602 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:56:55.706 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:56:55.706 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:57:00.707 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:57:00.707 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:57:00.707 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:57:00.810 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:57:00.810 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:57:03.811 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:57:03.811 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:57:03.811 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:57:03.811 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:57:03.914 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:57:03.914 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:57:03.914 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:57:06.915 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:57:06.915 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:57:06.915 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:57:07.019 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:57:07.019 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:57:09.019 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:57:09.019 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:57:09.019 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:57:09.122 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:57:09.122 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:57:13.123 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:57:13.123 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:57:13.123 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:57:13.225 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:57:13.225 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:57:18.226 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:57:18.226 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:57:18.226 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:57:18.329 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:57:18.329 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:57:21.329 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:57:21.329 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:57:21.329 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:57:21.329 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:57:21.431 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:57:21.431 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:57:21.431 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:57:24.432 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op16
+2026-07-06 10:57:24.433 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op16
+2026-07-06 10:57:24.433 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op16
+2026-07-06 10:57:24.535 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op16 : false
+2026-07-06 10:57:24.535 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op16
+2026-07-06 10:57:26.537 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:57:26.538 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:57:26.538 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:57:26.641 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:57:26.641 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:57:30.643 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :7 -> outputPortId: op17
+2026-07-06 10:57:30.644 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op17
+2026-07-06 10:57:30.644 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op17
+2026-07-06 10:57:30.745 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op17 : false
+2026-07-06 10:57:30.745 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op17
+2026-07-06 10:57:43.875 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:57:43.875 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:57:43.875 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:57:43.875 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:57:43.978 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:57:43.978 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:57:43.978 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:08.643 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 2 -> bayId :4 -> outputPortId: op28
+2026-07-06 10:58:08.643 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op28
+2026-07-06 10:58:08.643 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 2 : outputId : op28
+2026-07-06 10:58:08.747 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op28 : false
+2026-07-06 10:58:08.747 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 2 : outputId : op28
+2026-07-06 10:58:08.747 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 80
+2026-07-06 10:58:08.747 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 80
+2026-07-06 10:58:08.747 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 80
+2026-07-06 10:58:08.747 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:08.849 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  80 : false
+2026-07-06 10:58:08.849 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 80
+2026-07-06 10:58:08.849 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:08.849 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 81
+2026-07-06 10:58:08.849 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 81
+2026-07-06 10:58:08.849 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 81
+2026-07-06 10:58:08.849 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:08.952 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  81 : false
+2026-07-06 10:58:08.952 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 81
+2026-07-06 10:58:08.952 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:08.952 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 82
+2026-07-06 10:58:08.952 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 82
+2026-07-06 10:58:08.952 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 82
+2026-07-06 10:58:08.952 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.054 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  82 : false
+2026-07-06 10:58:09.054 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 82
+2026-07-06 10:58:09.054 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.054 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 83
+2026-07-06 10:58:09.055 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 83
+2026-07-06 10:58:09.055 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 83
+2026-07-06 10:58:09.055 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.158 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  83 : false
+2026-07-06 10:58:09.158 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 83
+2026-07-06 10:58:09.158 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.158 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 88
+2026-07-06 10:58:09.159 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 88
+2026-07-06 10:58:09.159 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 88
+2026-07-06 10:58:09.159 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.262 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  88 : false
+2026-07-06 10:58:09.262 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 88
+2026-07-06 10:58:09.262 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.263 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 90
+2026-07-06 10:58:09.263 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 90
+2026-07-06 10:58:09.263 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 90
+2026-07-06 10:58:09.263 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.365 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  90 : false
+2026-07-06 10:58:09.365 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 90
+2026-07-06 10:58:09.365 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.365 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 86
+2026-07-06 10:58:09.365 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 86
+2026-07-06 10:58:09.366 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 86
+2026-07-06 10:58:09.366 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.467 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  86 : false
+2026-07-06 10:58:09.467 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 86
+2026-07-06 10:58:09.467 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.468 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 87
+2026-07-06 10:58:09.468 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 87
+2026-07-06 10:58:09.468 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 87
+2026-07-06 10:58:09.468 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.571 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  87 : false
+2026-07-06 10:58:09.571 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 87
+2026-07-06 10:58:09.571 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.571 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 84
+2026-07-06 10:58:09.572 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 84
+2026-07-06 10:58:09.572 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 84
+2026-07-06 10:58:09.572 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.674 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  84 : false
+2026-07-06 10:58:09.674 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 84
+2026-07-06 10:58:09.674 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.674 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 85
+2026-07-06 10:58:09.674 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 85
+2026-07-06 10:58:09.674 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 85
+2026-07-06 10:58:09.674 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.777 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  85 : false
+2026-07-06 10:58:09.778 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 85
+2026-07-06 10:58:09.778 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:58:09.779 DEBUG plc:1045 - setOutputWordToPlcBay: clusterId: 2 -> bayId : -> outputPortId: 89
+2026-07-06 10:58:09.779 DEBUG plc:1071 - setOutputWordToPlcBay : retryCount: 9 : 89
+2026-07-06 10:58:09.779 DEBUG plc:1074 - setOutputWordToPlcBay: Processing cluster: 2 : outputId : 89
+2026-07-06 10:58:09.779 DEBUG plc:710 - modbusTcpSendWriteHoldingRegistersCmd : Entry
+2026-07-06 10:58:09.882 INFO  plc:1112 - setOutputWordToPlcBay: success : outputPortId:  89 : false
+2026-07-06 10:58:09.882 DEBUG plc:1132 - setOutputWordToPlcBay: Completed processing for cluster: 2 : outputId : 89
+2026-07-06 10:58:09.882 DEBUG plc:1136 - setOutputWordToPlcBay: Exit 
+2026-07-06 10:59:19.190 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 3 -> bayId :8 -> outputPortId: op1
+2026-07-06 10:59:19.190 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op1
+2026-07-06 10:59:19.190 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 3 : outputId : op1
+2026-07-06 10:59:19.292 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op1 : false
+2026-07-06 10:59:19.292 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 3 : outputId : op1
+2026-07-06 11:22:26.013 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 11:22:26.013 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 11:22:26.013 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 11:22:26.013 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 11:52:26.014 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 11:52:26.014 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 11:52:26.014 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 11:52:26.014 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 12:22:26.013 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 12:22:26.013 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 12:22:26.013 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 12:22:26.013 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 12:52:26.015 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 12:52:26.015 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 12:52:26.015 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 12:52:26.015 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 13:22:26.014 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 13:22:26.014 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 13:22:26.014 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 13:22:26.014 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 13:52:26.014 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 13:52:26.014 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 13:52:26.014 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 13:52:26.014 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 14:22:26.015 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 14:22:26.015 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 14:22:26.015 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 14:22:26.015 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 14:52:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 14:52:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 14:52:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 14:52:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 15:22:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 15:22:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 15:22:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 15:22:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 15:52:27.595 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 15:52:27.595 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 15:52:27.595 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 15:52:27.595 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 16:22:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 16:22:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 16:22:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 16:22:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 16:52:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 16:52:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 16:52:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 16:52:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 17:22:27.595 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 17:22:27.595 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 17:22:27.595 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 17:22:27.595 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 17:52:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 17:52:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 17:52:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 17:52:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-07-06 18:22:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-07-06 18:22:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-07-06 18:22:27.594 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-07-06 18:22:27.594 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1

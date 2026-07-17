@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="1048.0" prefWidth="1723.0" stylesheets="@@../../ProCon-d0.7.0.0/src/resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testreport.TestReportConveyorController">
+   <children>
+      <TitledPane fx:id="titlePaneSearchResult" animated="false" collapsible="false" layoutX="14.0" layoutY="14.0" prefHeight="1018.0" prefWidth="1678.0" text="Results">
+        <content>
+          <AnchorPane fx:id="anchorPaneSearchResult" minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="934.0">
+               <children>
+                  <HBox fx:id="hBoxTable" layoutX="14.0" layoutY="5.0" prefHeight="982.0" prefWidth="1654.0">
+                     <children>
+                        <TabPane prefHeight="914.0" prefWidth="1286.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Meter List">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tvReportMeterResultSummary" layoutX="9.0" layoutY="6.0" prefHeight="274.0" prefWidth="1266.0">
+                                             <columns>
+                                                <TableColumn fx:id="colMsumSerialNo" prefWidth="69.5999984741211" sortable="false" text="S.No" />
+                                                <TableColumn fx:id="colSelect" prefWidth="64.0" text="Select" />
+                                                <TableColumn fx:id="colMsumMeterSerialNo" prefWidth="123.20010375976562" sortable="false" text="Meter Serial No" />
+                                                <TableColumn fx:id="colMsumPalletQrId" prefWidth="125.60003662109375" sortable="false" text="Pallet Qr ID" />
+                                                <TableColumn fx:id="colMsumPalletBatchNo" sortable="false" text="Batch No" />
+                                                <TableColumn fx:id="colMsumTestTypeFt" minWidth="37.599945068359375" prefWidth="70.4000244140625" sortable="false" text="FT" />
+                                                <TableColumn fx:id="colMsumTestTypeHv" minWidth="56.0" prefWidth="64.7999267578125" sortable="false" text="HV" />
+                                                <TableColumn fx:id="colMsumTestTypeIr" minWidth="59.99993896484375" prefWidth="69.5999755859375" sortable="false" text="IR" />
+                                                <TableColumn fx:id="colMsumTestTypeCalib" minWidth="59.20001220703125" prefWidth="71.199951171875" sortable="false" text="Calib" />
+                                                <TableColumn fx:id="colMsumTestVerific1" maxWidth="150.0" minWidth="64.800048828125" prefWidth="76.0" text="LOE" />
+                                                <TableColumn fx:id="colMsumTestTypeSta" minWidth="51.20001220703125" prefWidth="67.20001220703125" sortable="false" text="STA" />
+                                                <TableColumn fx:id="colMsumTestTypeNoLoad" maxWidth="160.7999267578125" minWidth="55.199951171875" prefWidth="81.5999755859375" sortable="false" text="NoLoad" />
+                                                <TableColumn fx:id="colMsumTestTypeComm" maxWidth="150.0" minWidth="52.79998779296875" prefWidth="66.39996337890625" sortable="false" text="Comm" />
+                                                <TableColumn fx:id="colMsumOverAllStatus" maxWidth="120.0" prefWidth="68.800048828125" sortable="false" text="Result" />
+                                                <TableColumn fx:id="colMsumPalletDistinctId" maxWidth="284.0" prefWidth="252.7999267578125" sortable="false" text="P-Distinct Id" />
+                                             </columns>
+                                          </TableView>
+                                          <TitledPane animated="false" collapsible="false" layoutX="9.0" layoutY="339.0" prefHeight="616.0" prefWidth="1266.0" text="Detailed Result">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="tvReportMeterResultDetailed" layoutX="7.0" layoutY="13.0" prefHeight="561.0" prefWidth="814.0">
+                                                        <columns>
+                                                          <TableColumn fx:id="colMdetailedSerialNo" prefWidth="75.0" text="S.No" />
+                                                          <TableColumn fx:id="colMdetailedTestType" prefWidth="98.39996337890625" text="Test Type" />
+                                                            <TableColumn fx:id="colMdetailedTestName" prefWidth="255.2000732421875" text="Test Name" />
+                                                            <TableColumn fx:id="colMdetailedPermissibleLimitDisplay" prefWidth="140.800048828125" text="Permissible Limit" />
+                                                            <TableColumn fx:id="colMdetailedResultValue" prefWidth="94.39996337890625" text="Result Value" />
+                                                            <TableColumn fx:id="colMdetailedResultStatus" prefWidth="131.2000732421875" text="Status" />
+                                                        </columns>
+                                                      </TableView>
+                                                      <TitledPane animated="false" collapsible="false" layoutX="842.0" layoutY="14.0" prefHeight="560.0" prefWidth="410.0" text="Meter Parameter">
+                                                        <content>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <GridPane fx:id="txtMeterSerialNo" layoutX="22.0" layoutY="14.0" prefHeight="446.0" prefWidth="365.0">
+                                                                    <columnConstraints>
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.799951171875" minWidth="10.0" prefWidth="148.80015869140624" />
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.99991760253903" minWidth="10.0" prefWidth="27.999975585937506" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.6000244140625" minWidth="10.0" prefWidth="205.6000244140625" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                     <children>
+                                                                        <Label prefHeight="18.0" prefWidth="211.0" text="Meter Serial No" />
+                                                                        <Label prefHeight="18.0" prefWidth="164.0" text="Over all status" GridPane.rowIndex="2" />
+                                                                        <TextField fx:id="txtMeterSerialNoResultDetailed" editable="false" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtOverAllStatusResultDetailed" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                                        <Label prefHeight="18.0" prefWidth="164.0" text="Executed Date" GridPane.rowIndex="4" />
+                                                                        <TextField fx:id="txtTestExecutedDateResultDetailed" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                        </content>
+                                                      </TitledPane>
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </TitledPane>
+                                          <GridPane layoutX="9.0" layoutY="293.0" prefHeight="30.0" prefWidth="403.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.80001831054688" minWidth="10.0" prefWidth="128.80001831054688" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.199951171875" minWidth="10.0" prefWidth="28.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.80001831054688" minWidth="10.0" prefWidth="139.20000000000002" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.79998779296875" minWidth="10.0" prefWidth="108.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Select All" />
+                                                <Button fx:id="btnSelectAll" mnemonicParsing="false" onAction="#btnSelectAllOnClick" prefHeight="26.0" prefWidth="156.0" text="Select All" />
+                                                <Button fx:id="btnUnSelectAll" mnemonicParsing="false" onAction="#btnUnSelectAllOnClick" prefHeight="26.0" prefWidth="156.0" text="Unselect All" GridPane.columnIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab disable="true" text="Detailed Results">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane layoutY="-2.0" prefHeight="478.0" prefWidth="1150.0">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="476.0" prefWidth="1143.0">
+                                                   <children>
+                                                      <TableView layoutX="3.0" layoutY="4.0" prefHeight="470.0" prefWidth="1137.0">
+                                                         <columns>
+                                                            <TableColumn prefWidth="47.99996566772461" sortable="false" text="S.No" />
+                                                            <TableColumn fx:id="colMdetailedPalletQrId" prefWidth="106.39999389648438" sortable="false" text="Pallet Qr ID" />
+                                                            <TableColumn fx:id="colMdetailedPalletBatchNo" prefWidth="96.00009155273438" sortable="false" text="Batch No" />
+                                                            <TableColumn fx:id="colMdetailedMeterSerialNo" prefWidth="96.79998779296875" sortable="false" text="Meter &#10;Serial No" />
+                                                            <TableColumn fx:id="colMdetailedTestTypeFt" minWidth="58.39996337890625" prefWidth="60.0" sortable="false" text="FT" />
+                                                            <TableColumn fx:id="colMdetailedTestTypeHv" minWidth="78.4000244140625" prefWidth="82.39996337890625" sortable="false" text="HV" />
+                                                            <TableColumn fx:id="colMdetailedTestTypeIr" minWidth="67.99993896484375" prefWidth="84.800048828125" sortable="false" text="IR" />
+                                                            <TableColumn prefWidth="163.99993896484375" text="Calib">
+                                                               <columns>
+                                                                  <TableColumn fx:id="colMdetailedTestTypeCalibPhase" minWidth="47.199951171875" prefWidth="61.59991455078125" sortable="false" text="Phase" />
+                                                                  <TableColumn fx:id="colMdetailedTestTypeCalibNeutral" minWidth="52.0" prefWidth="61.5999755859375" sortable="false" text="Neutral" />
+                                                               </columns>
+                                                            </TableColumn>
+                                                            <TableColumn prefWidth="75.0" text="LOE">
+                                                               <columns>
+                                                                  <TableColumn fx:id="colMdetailedTestVerific1" maxWidth="150.0" minWidth="28.00006103515625" prefWidth="28.00006103515625" text="LOE-1" />
+                                                               </columns>
+                                                            </TableColumn>
+                                                            <TableColumn fx:id="colMdetailedTestTypeSta" minWidth="66.39990234375" prefWidth="66.39990234375" sortable="false" text="STA" />
+                                                            <TableColumn fx:id="colMdetailedTestTypeNoLoad" maxWidth="160.7999267578125" minWidth="55.199951171875" prefWidth="76.0" sortable="false" text="NoLoad" />
+                                                            <TableColumn fx:id="colMdetailedTestTypeComm" maxWidth="150.0" minWidth="64.7999267578125" prefWidth="64.7999267578125" sortable="false" text="Comm" />
+                                                            <TableColumn fx:id="colMdetailedOverAllStatus" maxWidth="120.0" prefWidth="56.79998779296875" sortable="false" text="Result" />
+                                                            <TableColumn fx:id="colMsumPalletDistinctId1" maxWidth="80.00006103515625" prefWidth="75.20001220703125" sortable="false" text="P-Distinct Id" />
+                                                         </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </ScrollPane>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                        <Label prefHeight="22.0" prefWidth="26.0" text="  " />
+                        <VBox prefHeight="822.0" prefWidth="340.0">
+                           <children>
+                              <TitledPane animated="false" collapsible="false" prefHeight="335.0" prefWidth="340.0" text="Search Results">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane layoutX="10.0" layoutY="14.0" prefHeight="141.0" prefWidth="317.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="43.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="11.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="122.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label text="From" />
+                                                <DatePicker fx:id="datepicker_fromdate" prefHeight="31.0" GridPane.columnIndex="1" />
+                                                <Spinner fx:id="spinner_fromtime" editable="true" prefHeight="31.0" prefWidth="118.0" GridPane.columnIndex="3" />
+                                                <Label text="To" GridPane.rowIndex="2" />
+                                                <DatePicker fx:id="datepicker_todate" editable="false" prefHeight="31.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Spinner fx:id="spinner_totime" prefHeight="31.0" prefWidth="118.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                <Button fx:id="get_projectlist" mnemonicParsing="false" onAction="#GetProjectOnClickTrigger" prefHeight="33.0" prefWidth="150.0" text="Refresh" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                <ComboBox fx:id="cmbBoxRangeSelect" onAction="#RangeSelectOnChange" prefHeight="29.0" prefWidth="232.0" promptText="Select Range ..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <Label prefHeight="21.0" prefWidth="69.0" />
+                              <TitledPane animated="false" collapsible="false" prefHeight="359.0" prefWidth="340.0" text="Reports">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane layoutX="14.0" layoutY="7.0" prefHeight="178.0" prefWidth="315.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="137.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="15.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="146.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="40.00001831054688" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="54.39998168945313" minHeight="6.0" prefHeight="35.19999542236327" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="63.600004577636724" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="36.19999999999999" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Button fx:id="btn_ExportAllResults" mnemonicParsing="false" onAction="#exportMultipleResultTrigger" prefHeight="33.0" prefWidth="148.0" text="Multiple Reports" GridPane.rowIndex="2" />
+                                                <Button fx:id="btn_GenerateReport" mnemonicParsing="false" onAction="#GenerateReportTrigger" prefHeight="33.0" prefWidth="179.0" text="Single Report" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <CheckBox fx:id="chk_bx_DetailedResults" alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="200.0" selected="true" text="Detailed" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </CheckBox>
+                                                <CheckBox fx:id="chk_bx_SummaryResults" alignment="CENTER" mnemonicParsing="false" onAction="#SummaryResultsOnClick" prefHeight="43.0" prefWidth="179.0" text="Summary" GridPane.columnIndex="2">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </CheckBox>
+                                                <Label fx:id="labelMode1" alignment="CENTER" prefHeight="43.0" prefWidth="317.0" text="Result">
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <ProgressBar fx:id="pb_resultExport" prefWidth="200.0" progress="0.0" GridPane.rowIndex="3" />
+                                                <Button mnemonicParsing="false" onAction="#exportAllResultTrigger" prefHeight="28.0" prefWidth="154.0" text="Export Summary" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <Label text="   " />
+                              <TitledPane animated="false" collapsible="false" prefHeight="388.0" prefWidth="340.0" text="Search">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane layoutX="10.0" layoutY="14.0" prefHeight="199.0" prefWidth="314.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="123.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="191.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Button fx:id="reportRefresh_btn" mnemonicParsing="false" onAction="#RefreshReportOnClick" prefHeight="33.0" prefWidth="150.0" text="Refresh All" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </Button>
+                                                <Label prefHeight="18.0" prefWidth="152.0" text="Meter Serial No" GridPane.halignment="RIGHT" />
+                                                <Label prefHeight="18.0" prefWidth="154.0" text="Batch No" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                                <TextField fx:id="tf_MeterSerialNo" prefHeight="26.0" prefWidth="198.0" promptText="XXXXXXXX" GridPane.columnIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_BatchNo" prefHeight="26.0" prefWidth="190.0" promptText="Comma Separated or Range" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <Label prefHeight="18.0" prefWidth="134.0" text="From Date" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                                <DatePicker fx:id="datepicker_palletToDate" prefHeight="26.0" prefWidth="182.0" promptText="From" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                                <DatePicker fx:id="datepicker_palletFromDate" prefHeight="26.0" prefWidth="182.0" promptText="To" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                                <Button fx:id="reportUpdate_btn" alignment="CENTER" mnemonicParsing="false" onAction="#UpdateReportOnClick" prefHeight="33.0" prefWidth="150.0" text="Update" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </Button>
+                                                <Label prefHeight="18.0" prefWidth="126.0" text="To Date" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
+                              <TitledPane animated="false" collapsible="false" prefHeight="226.0" prefWidth="340.0" text="Filtered Results" visible="false">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane layoutX="13.0" layoutY="5.0" prefHeight="131.0" prefWidth="318.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="78.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="233.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <ComboBox fx:id="cmbBoxProjectList" onAction="#ProjectListOnChange" prefHeight="30.0" prefWidth="242.0" GridPane.columnIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </GridPane.margin></ComboBox>
+                                                <Label alignment="CENTER" prefHeight="107.0" prefWidth="84.0" text="Project">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </GridPane.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding></Label>
+                                                <Label fx:id="labelMode" alignment="CENTER" prefHeight="81.0" prefWidth="84.0" text="Mode" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </GridPane.margin>
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding></Label>
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="98.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="113.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <RadioButton fx:id="radioBtnMainCt" contentDisplay="CENTER" mnemonicParsing="false" onAction="#radioBtnMainCtOnChange" prefHeight="94.0" prefWidth="101.0" selected="true" text="Main CT">
+                                                         <GridPane.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </GridPane.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </padding></RadioButton>
+                                                      <RadioButton fx:id="radioBtnNeutralCt" contentDisplay="CENTER" mnemonicParsing="false" onAction="#radioBtnNeutralCtOnChange" prefHeight="78.0" prefWidth="117.0" text="Neutral CT" GridPane.columnIndex="1">
+                                                         <GridPane.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </GridPane.margin>
+                                                         <padding>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </padding></RadioButton>
+                                                   </children>
+                                                </GridPane>
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="93.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="121.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Button fx:id="btn_get_results" mnemonicParsing="false" onAction="#getConveyorResultOnClick" prefHeight="33.0" prefWidth="287.0" text="Display Results" GridPane.columnIndex="1">
+                                                         <GridPane.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </GridPane.margin></Button>
+                                                   </children>
+                                                </GridPane>
+                                                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="98.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="113.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </GridPane>
+                                          <Label fx:id="lblReportGroup" layoutX="8.0" layoutY="137.0" prefHeight="18.0" prefWidth="102.0" text="Report Group" />
+                                          <Label layoutX="8.0" layoutY="156.0" text="Report Profile" />
+                                          <ComboBox fx:id="cmbBxReportProfileGroup" layoutX="151.0" layoutY="127.0" onAction="#cmbBxReportProfileGroupOnchange" prefHeight="30.0" prefWidth="172.0" />
+                                          <ComboBox fx:id="cmbBxReportProfile" layoutX="150.0" layoutY="151.0" onAction="#cmbBxReportProfileOnChange" prefHeight="30.0" prefWidth="192.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <Label prefHeight="21.0" prefWidth="59.0" text="   " />
+                              <TitledPane fx:id="titledPaneReportTypes" animated="false" collapsible="false" prefHeight="288.0" prefWidth="323.0" text="Report Types" visible="false">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="588.0" prefWidth="179.0">
+                                       <children>
+                                          <GridPane fx:id="gridPaneGenReport" layoutX="14.0" layoutY="6.0" prefHeight="192.0" prefWidth="313.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="129.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="9.0" prefWidth="9.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="159.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <CheckBox fx:id="chk_bx_accuracy" mnemonicParsing="false" text="Accuracy" GridPane.rowIndex="1" />
+                                                <CheckBox fx:id="chk_bx_no_load" mnemonicParsing="false" text="No Load" GridPane.rowIndex="2" />
+                                                <CheckBox fx:id="chk_bx_sta" mnemonicParsing="false" text="Starting Current" GridPane.columnIndex="2" />
+                                                <CheckBox fx:id="chk_bx_voltage_variation" mnemonicParsing="false" text="Voltage Variation" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <CheckBox fx:id="chk_bx_frequency_variation" mnemonicParsing="false" text="Frequency Variation" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <CheckBox fx:id="chk_bx_repeatability" mnemonicParsing="false" text="Repeatability" GridPane.rowIndex="3" />
+                                                <CheckBox fx:id="chk_bx_self_heating" mnemonicParsing="false" text="Self Heating" GridPane.rowIndex="5" />
+                                                <CheckBox fx:id="chk_bx_phase_reversal" mnemonicParsing="false" prefHeight="21.0" prefWidth="175.0" text="Phase Reversal" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                <CheckBox fx:id="chk_bx_constant_test" mnemonicParsing="false" text="Constant Test" GridPane.rowIndex="4" />
+                                                <CheckBox fx:id="chk_bx_harmonics" mnemonicParsing="false" text="Harmonics" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <CheckBox fx:id="chk_bx_SelectAll" mnemonicParsing="false" onAction="#SelectAllOnClick" text="Select All" />
+                                                <CheckBox fx:id="chk_bx_voltage_unbalance" mnemonicParsing="false" text="Voltage Unbalance" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

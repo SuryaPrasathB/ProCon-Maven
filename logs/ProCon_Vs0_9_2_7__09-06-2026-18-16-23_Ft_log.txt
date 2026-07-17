@@ -1,0 +1,30 @@
+2026-06-09 18:17:52.864 DEBUG ft:1646 - PortId    : op16
+2026-06-09 18:17:52.864 DEBUG ft:1647 - ClusterId : 2
+2026-06-09 18:17:52.864 DEBUG ft:1648 - BayId     : 7
+2026-06-09 18:17:52.966 DEBUG ft:1646 - PortId    : op17
+2026-06-09 18:17:52.966 DEBUG ft:1647 - ClusterId : 2
+2026-06-09 18:17:52.966 DEBUG ft:1648 - BayId     : 7
+2026-06-09 18:20:47.319 DEBUG ft:1646 - PortId    : op1
+2026-06-09 18:20:47.320 DEBUG ft:1647 - ClusterId : 3
+2026-06-09 18:20:47.320 DEBUG ft:1648 - BayId     : 8
+2026-06-09 18:20:54.423 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: ON
+2026-06-09 18:20:54.525 DEBUG ft:150 - Motor control successful for PortId: op22
+2026-06-09 18:20:57.983 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: OFF
+2026-06-09 18:20:58.086 DEBUG ft:150 - Motor control successful for PortId: op22
+2026-06-09 18:21:01.302 DEBUG ft:127 - Attempting to control motor on PortId: op21, ClusterId: 2, BayId: 4, Action: ON
+2026-06-09 18:21:01.406 DEBUG ft:150 - Motor control successful for PortId: op21
+2026-06-09 18:21:03.159 DEBUG ft:127 - Attempting to control motor on PortId: op21, ClusterId: 2, BayId: 4, Action: OFF
+2026-06-09 18:21:03.261 DEBUG ft:150 - Motor control successful for PortId: op21
+2026-06-09 18:21:04.270 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: ON
+2026-06-09 18:21:04.386 DEBUG ft:150 - Motor control successful for PortId: op22
+2026-06-09 18:21:08.446 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: OFF
+2026-06-09 18:21:08.548 DEBUG ft:150 - Motor control successful for PortId: op22
+2026-06-09 18:31:56.959 DEBUG ft:1646 - PortId    : op5
+2026-06-09 18:31:56.960 DEBUG ft:1647 - ClusterId : 3
+2026-06-09 18:31:56.960 DEBUG ft:1648 - BayId     : 8
+2026-06-09 18:32:00.776 DEBUG ft:1646 - PortId    : op5
+2026-06-09 18:32:00.776 DEBUG ft:1647 - ClusterId : 3
+2026-06-09 18:32:00.776 DEBUG ft:1648 - BayId     : 8
+2026-06-09 18:32:03.952 DEBUG ft:1646 - PortId    : op5
+2026-06-09 18:32:03.952 DEBUG ft:1647 - ClusterId : 3
+2026-06-09 18:32:03.953 DEBUG ft:1648 - BayId     : 8

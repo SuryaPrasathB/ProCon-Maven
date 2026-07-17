@@ -1,0 +1,547 @@
+2026-06-05 14:43:40.496 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-06-05 14:43:40.496 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-06-05 14:43:40.497 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-06-05 14:43:40.497 INFO  sta_nld2:33 - S08_check_for_pallets_at_outArea_1 : Entry
+2026-06-05 14:43:40.497 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:40.497 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:40.497 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:40.498 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:41.604 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:41.604 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:41.604 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:41.604 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:42.614 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:42.614 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:42.614 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:42.614 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:42.721 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:42.721 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:42.721 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:42.721 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:43.730 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:43.730 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:43.730 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:43.730 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:43.841 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:43.841 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:43.841 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:43.841 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:44.852 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:44.852 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:44.852 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:44.852 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:44.959 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:44.959 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:44.959 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:44.959 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:45.974 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:45.974 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:45.974 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:45.974 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:46.083 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:46.083 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:46.083 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:46.083 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:47.092 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:47.092 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:47.092 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:47.092 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:47.199 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:47.199 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:47.199 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:47.199 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:48.212 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:48.212 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:48.212 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:48.212 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:48.321 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:48.321 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:48.321 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:48.321 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:49.327 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:49.327 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:49.327 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:49.327 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:49.436 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:49.436 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:49.436 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:49.436 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:50.442 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:50.442 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:50.442 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:50.442 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:50.551 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:50.551 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:50.551 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:50.551 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:51.560 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:51.560 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:51.560 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:51.560 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:51.667 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:51.667 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:51.667 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:51.667 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:52.672 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:52.672 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:52.672 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:52.672 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:52.780 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:52.780 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:52.780 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:52.780 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:53.783 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:53.783 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:53.783 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:53.783 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:53.891 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:53.891 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:53.891 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:53.891 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:54.900 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:54.900 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:54.900 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:54.900 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:55.010 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:55.010 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:55.010 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:55.010 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:56.011 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:56.011 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:56.011 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:56.011 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:56.118 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:56.118 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:56.118 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:56.118 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:57.128 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:57.128 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:57.128 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:57.128 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:57.234 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:57.234 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:57.234 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:57.234 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:58.244 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:58.244 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:58.244 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:58.244 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:58.354 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:58.354 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:58.354 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:58.354 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:43:59.361 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:43:59.361 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:43:59.361 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:43:59.361 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:43:59.470 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:43:59.470 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:43:59.470 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:43:59.470 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:00.482 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:00.482 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:00.482 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:00.482 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:00.590 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:00.590 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:00.590 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:00.590 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:01.601 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:01.601 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:01.601 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:01.601 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:01.708 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:01.708 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:01.708 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:01.708 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:02.722 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:02.722 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:02.722 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:02.722 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:02.830 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:02.830 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:02.830 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:02.830 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:03.840 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:03.840 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:03.840 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:03.840 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:03.950 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:03.950 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:03.950 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:03.951 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:04.960 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:04.960 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:04.960 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:04.960 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:05.067 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:05.067 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:05.067 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:05.067 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:06.080 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:06.080 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:06.080 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:06.080 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:06.189 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:06.189 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:06.189 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:06.189 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:07.195 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:07.195 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:07.195 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:07.195 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:07.302 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:07.302 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:07.302 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:07.302 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:08.313 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:08.313 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:08.313 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:08.313 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:08.421 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:08.421 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:08.421 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:08.421 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:09.430 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:09.430 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:09.430 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:09.430 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:09.539 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:09.539 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:09.539 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:09.539 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:10.549 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:10.549 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:10.549 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:10.549 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:10.659 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:10.659 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:10.659 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:10.659 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:11.668 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:11.668 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:11.668 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:11.668 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:11.777 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:11.777 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:11.777 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:11.777 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:12.787 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:12.787 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:12.787 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:12.787 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:12.896 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:12.896 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:12.896 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:12.896 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:13.902 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:13.902 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:13.902 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:13.902 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:14.011 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:14.011 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:14.011 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:14.011 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:15.021 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:15.021 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:15.021 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:15.021 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:15.129 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:15.129 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:15.129 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:15.129 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:16.137 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:16.137 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:16.137 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:16.137 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:16.245 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:16.245 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:16.245 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:16.245 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:17.251 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:17.251 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:17.251 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:17.251 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:17.360 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:17.360 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:17.360 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:17.360 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:18.369 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:18.369 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:18.369 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:18.369 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:18.478 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:18.478 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:18.478 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:18.478 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:19.489 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:19.489 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:19.489 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:19.489 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:19.597 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:19.597 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:19.597 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:19.597 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:20.609 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:20.609 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:20.609 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:20.609 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:20.718 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:20.718 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:20.718 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:20.718 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:21.723 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:21.723 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:21.723 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:21.723 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:21.831 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:21.831 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:21.831 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:21.831 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:22.843 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:22.843 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:22.843 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:22.843 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:22.950 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:22.950 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:22.950 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:22.950 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:23.960 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:23.960 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:23.960 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:23.960 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:24.067 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:24.067 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:24.067 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:24.067 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:25.067 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:25.067 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:25.067 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:25.067 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:25.174 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:25.174 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:25.174 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:25.174 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:26.185 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:26.185 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:26.185 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:26.185 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:26.294 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:26.294 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:26.294 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:26.294 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:27.307 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:27.307 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:27.307 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:27.307 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:27.413 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:27.413 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:27.413 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:27.413 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:28.424 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:28.424 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:28.424 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:28.424 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:28.534 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:28.534 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:28.534 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:28.534 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:29.535 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:29.535 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:29.535 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:29.535 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:29.644 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:29.644 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:29.644 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:29.644 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:30.653 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:30.653 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:30.653 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:30.653 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:30.761 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:30.761 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:30.761 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:30.761 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:31.771 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:31.771 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:31.771 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:31.771 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:31.880 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:31.880 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:31.880 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:31.880 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:32.891 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:32.891 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:32.891 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:32.891 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:33.002 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:33.002 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:33.002 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:33.002 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:34.014 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:34.014 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:34.014 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:34.014 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:34.124 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : On
+2026-06-05 14:44:34.124 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : true
+2026-06-05 14:44:34.124 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:34.124 INFO  sta_nld2:90 - S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1
+2026-06-05 14:44:35.127 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:35.127 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:35.127 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:35.127 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:35.237 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:44:35.237 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:44:35.237 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:36.246 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:36.246 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:36.246 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:36.246 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:36.354 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:44:36.354 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:44:36.354 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:37.365 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:37.365 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:37.365 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:37.365 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:37.473 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:44:37.473 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:44:37.473 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:38.476 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:44:38.476 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:44:38.476 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:44:38.476 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:44:38.584 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:44:38.584 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:44:38.584 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:44:38.584 INFO  sta_nld2:87 - S08_check_for_pallets_at_outArea_1 : Pallet Not Available at Out Area 1
+2026-06-05 14:44:38.584 INFO  sta_nld2:96 - S08_check_for_pallets_at_outArea_1 : Pallet Not Available
+2026-06-05 14:44:38.584 DEBUG sta_nld2:114 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  BayResponse status : true
+2026-06-05 14:44:38.584 INFO  sta_nld2:116 - S08_check_for_pallets_at_outArea_1 : Exit
+2026-06-05 14:44:38.584 DEBUG sta_nld2:56 - processCurrentState : S08_check_for_pallets_at_outArea_1_Bay2 : Status     : true
+2026-06-05 14:44:38.584 DEBUG sta_nld2:57 - processCurrentState : S08_check_for_pallets_at_outArea_1_Bay2 : Error Code : ERROR_CODE_601
+2026-06-05 14:44:38.584 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-06-05 14:44:38.584 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-06-05 14:44:38.584 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-06-05 14:45:19.080 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-06-05 14:45:19.080 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-06-05 14:45:19.080 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-06-05 14:45:19.080 INFO  sta_nld2:33 - S08_check_for_pallets_at_outArea_1 : Entry
+2026-06-05 14:45:19.080 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:45:19.080 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:45:19.080 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:45:19.080 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:45:19.181 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:45:19.181 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:45:19.181 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:45:20.181 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:45:20.181 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:45:20.181 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:45:20.181 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:45:20.284 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:45:20.284 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:45:20.284 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:45:21.286 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:45:21.286 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:45:21.286 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:45:21.286 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:45:21.394 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:45:21.394 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:45:21.394 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:45:22.408 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 14:45:22.408 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 14:45:22.408 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 14:45:22.408 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 14:45:22.514 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 14:45:22.514 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 14:45:22.514 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 14:45:22.514 INFO  sta_nld2:87 - S08_check_for_pallets_at_outArea_1 : Pallet Not Available at Out Area 1
+2026-06-05 14:45:22.514 INFO  sta_nld2:96 - S08_check_for_pallets_at_outArea_1 : Pallet Not Available
+2026-06-05 14:45:22.514 DEBUG sta_nld2:114 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  BayResponse status : true
+2026-06-05 14:45:22.514 INFO  sta_nld2:116 - S08_check_for_pallets_at_outArea_1 : Exit
+2026-06-05 14:45:22.514 DEBUG sta_nld2:56 - processCurrentState : S08_check_for_pallets_at_outArea_1_Bay2 : Status     : true
+2026-06-05 14:45:22.514 DEBUG sta_nld2:57 - processCurrentState : S08_check_for_pallets_at_outArea_1_Bay2 : Error Code : ERROR_CODE_601
+2026-06-05 14:45:22.514 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-06-05 14:45:22.515 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-06-05 14:45:22.515 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-06-05 14:45:35.959 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-06-05 14:45:35.959 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-06-05 14:45:35.959 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-06-05 14:45:35.959 INFO  sta_nld2:33 - S09_check_for_pallets_at_outArea_2 : Entry
+2026-06-05 14:45:35.959 DEBUG sta_nld2:120 - S09_check_for_pallets_at_outArea_2 : Entry
+2026-06-05 14:45:35.959 DEBUG sta_nld2:129 - PortId    : ip34
+2026-06-05 14:45:35.959 DEBUG sta_nld2:130 - ClusterId : 3
+2026-06-05 14:45:35.959 DEBUG sta_nld2:131 - BayId     : 8
+2026-06-05 14:45:36.061 DEBUG sta_nld2:145 - S09_check_for_pallets_at_outArea_2 : state : Off
+2026-06-05 14:45:36.061 DEBUG sta_nld2:153 - S09_check_for_pallets_at_outArea_2 : status : false
+2026-06-05 14:45:36.061 DEBUG sta_nld2:158 - S09_check_for_pallets_at_outArea_2 : Exit
+2026-06-05 14:45:37.075 DEBUG sta_nld2:120 - S09_check_for_pallets_at_outArea_2 : Entry
+2026-06-05 14:45:37.075 DEBUG sta_nld2:129 - PortId    : ip34
+2026-06-05 14:45:37.075 DEBUG sta_nld2:130 - ClusterId : 3
+2026-06-05 14:45:37.075 DEBUG sta_nld2:131 - BayId     : 8
+2026-06-05 14:45:37.183 DEBUG sta_nld2:145 - S09_check_for_pallets_at_outArea_2 : state : Off
+2026-06-05 14:45:37.183 DEBUG sta_nld2:153 - S09_check_for_pallets_at_outArea_2 : status : false
+2026-06-05 14:45:37.183 DEBUG sta_nld2:158 - S09_check_for_pallets_at_outArea_2 : Exit
+2026-06-05 14:45:38.183 DEBUG sta_nld2:120 - S09_check_for_pallets_at_outArea_2 : Entry
+2026-06-05 14:45:38.183 DEBUG sta_nld2:129 - PortId    : ip34
+2026-06-05 14:45:38.183 DEBUG sta_nld2:130 - ClusterId : 3
+2026-06-05 14:45:38.183 DEBUG sta_nld2:131 - BayId     : 8
+2026-06-05 14:45:38.292 DEBUG sta_nld2:145 - S09_check_for_pallets_at_outArea_2 : state : Off
+2026-06-05 14:45:38.292 DEBUG sta_nld2:153 - S09_check_for_pallets_at_outArea_2 : status : false
+2026-06-05 14:45:38.292 DEBUG sta_nld2:158 - S09_check_for_pallets_at_outArea_2 : Exit
+2026-06-05 14:45:39.304 DEBUG sta_nld2:120 - S09_check_for_pallets_at_outArea_2 : Entry
+2026-06-05 14:45:39.304 DEBUG sta_nld2:129 - PortId    : ip34
+2026-06-05 14:45:39.304 DEBUG sta_nld2:130 - ClusterId : 3
+2026-06-05 14:45:39.304 DEBUG sta_nld2:131 - BayId     : 8
+2026-06-05 14:45:39.413 DEBUG sta_nld2:145 - S09_check_for_pallets_at_outArea_2 : state : Off
+2026-06-05 14:45:39.413 DEBUG sta_nld2:153 - S09_check_for_pallets_at_outArea_2 : status : false
+2026-06-05 14:45:39.413 DEBUG sta_nld2:158 - S09_check_for_pallets_at_outArea_2 : Exit
+2026-06-05 14:45:39.413 INFO  sta_nld2:86 - S08_check_for_pallets_at_outArea_2 : Pallet Not Available at Out Area 2
+2026-06-05 14:45:39.413 INFO  sta_nld2:95 - S09_check_for_pallets_at_outArea_2 : Pallet Available
+2026-06-05 14:45:39.413 INFO  sta_nld2:115 - S09_check_for_pallets_at_outArea_2 : Exit
+2026-06-05 14:45:39.413 DEBUG sta_nld2:56 - processCurrentState : S09_check_for_pallets_at_outArea_2_Bay2 : Status     : true
+2026-06-05 14:45:39.414 DEBUG sta_nld2:57 - processCurrentState : S09_check_for_pallets_at_outArea_2_Bay2 : Error Code : ERROR_CODE_601
+2026-06-05 14:45:39.414 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-06-05 14:45:39.414 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-06-05 14:45:39.414 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-06-05 15:01:01.120 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-06-05 15:01:01.120 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-06-05 15:01:01.120 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-06-05 15:01:01.120 INFO  sta_nld2:33 - S08_check_for_pallets_at_outArea_1 : Entry
+2026-06-05 15:01:01.120 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 15:01:01.120 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 15:01:01.120 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 15:01:01.120 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 15:01:01.222 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 15:01:01.222 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 15:01:01.222 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 15:01:02.222 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 15:01:02.222 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 15:01:02.222 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 15:01:02.222 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 15:01:02.324 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 15:01:02.324 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 15:01:02.324 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 15:01:03.337 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 15:01:03.337 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 15:01:03.337 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 15:01:03.337 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 15:01:03.444 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 15:01:03.444 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 15:01:03.444 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 15:01:04.450 DEBUG sta_nld2:121 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 : Entry
+2026-06-05 15:01:04.450 DEBUG sta_nld2:130 - PortId    : ip34
+2026-06-05 15:01:04.450 DEBUG sta_nld2:131 - ClusterId : 3
+2026-06-05 15:01:04.450 DEBUG sta_nld2:132 - BayId     : 8
+2026-06-05 15:01:04.558 DEBUG sta_nld2:154 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  state : Off
+2026-06-05 15:01:04.558 DEBUG sta_nld2:155 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  status : false
+2026-06-05 15:01:04.558 DEBUG sta_nld2:160 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  Exit
+2026-06-05 15:01:04.558 INFO  sta_nld2:87 - S08_check_for_pallets_at_outArea_1 : Pallet Not Available at Out Area 1
+2026-06-05 15:01:04.558 INFO  sta_nld2:96 - S08_check_for_pallets_at_outArea_1 : Pallet Not Available
+2026-06-05 15:01:04.558 DEBUG sta_nld2:114 - S08_check_for_pallets_at_outArea_1 : isPalletAvailableAt_outArea1 :  BayResponse status : true
+2026-06-05 15:01:04.558 INFO  sta_nld2:116 - S08_check_for_pallets_at_outArea_1 : Exit
+2026-06-05 15:01:04.558 DEBUG sta_nld2:56 - processCurrentState : S08_check_for_pallets_at_outArea_1_Bay2 : Status     : true
+2026-06-05 15:01:04.558 DEBUG sta_nld2:57 - processCurrentState : S08_check_for_pallets_at_outArea_1_Bay2 : Error Code : ERROR_CODE_601
+2026-06-05 15:01:04.558 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-06-05 15:01:04.558 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-06-05 15:01:04.558 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit

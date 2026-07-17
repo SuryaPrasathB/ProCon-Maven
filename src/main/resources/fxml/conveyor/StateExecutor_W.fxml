@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="meterparamsparentnode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="934.0" prefWidth="1838.0" stylesheets="/resources/application_W.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.StateExecutorController">
+   <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="934.0" prefWidth="1887.0">
+         <children>
+            <GridPane layoutX="15.0" layoutY="7.0" prefHeight="306.0" prefWidth="804.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="337.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="108.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="117.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="110.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="132.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="425.0" text="Functional Test :" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="411.0" text="High Voltage Test :" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="461.0" text="Insulation Resistance Test :" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnFtStop" mnemonicParsing="false" onAction="#btnFtStopOnClick" prefHeight="87.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnHvtStop" mnemonicParsing="false" onAction="#btnHvtStopOnClick" prefHeight="107.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnIrtStop" mnemonicParsing="false" onAction="#btnIrtStopOnClick" prefHeight="87.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnFtReset" mnemonicParsing="false" onAction="#btnFtResetOnClick" prefHeight="89.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnHvtReset" mnemonicParsing="false" onAction="#btnHvtResetOnClick" prefHeight="107.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnIrtReset" mnemonicParsing="false" onAction="#btnIrtResetOnClick" prefHeight="87.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnFtStart" mnemonicParsing="false" onAction="#btnFtStartOnClick" prefHeight="87.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnHvtStart" mnemonicParsing="false" onAction="#btnHvtStartOnClick" prefHeight="87.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnIrtStart" mnemonicParsing="false" onAction="#btnIrtStartOnClick" prefHeight="87.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="447.0" text="Calibration :" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnCalibStart" mnemonicParsing="false" onAction="#btnCalibStartOnClick" prefHeight="86.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnCalibStop" mnemonicParsing="false" onAction="#btnCalibStopOnClick" prefHeight="94.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnCalibReset" mnemonicParsing="false" onAction="#btnCalibResetOnClick" prefHeight="94.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="525.0" text="Verification Test :" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnVerificTestStart" mnemonicParsing="false" onAction="#btnVerificTestStartOnClick" prefHeight="123.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnVerificTestStop" mnemonicParsing="false" onAction="#btnVerificTestStopOnClick" prefHeight="118.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnVerificTestReset" mnemonicParsing="false" onAction="#btnVerificTestResetOnClick" prefHeight="118.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="438.0" text="SCT &amp; NLT Test 1 :" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnSctNlt1Start" mnemonicParsing="false" onAction="#btnSctNlt1StartOnClick" prefHeight="160.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSctNlt1Stop" mnemonicParsing="false" onAction="#btnSctNlt1StopOnClick" prefHeight="119.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSctNlt1Reset" mnemonicParsing="false" onAction="#btnSctNlt1ResetOnClick" prefHeight="119.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="385.0" text="SCT &amp; NLT Test 2 :" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnSctNlt2Start" mnemonicParsing="false" onAction="#btnSctNlt2StartOnClick" prefHeight="110.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSctNlt2Stop" mnemonicParsing="false" onAction="#btnSctNlt2StopOnClick" prefHeight="84.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSctNlt2Reset" mnemonicParsing="false" onAction="#btnSctNlt2ResetOnClick" prefHeight="84.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="328.0" text="Comm Test :" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnCommTestStart" mnemonicParsing="false" onAction="#btnCommTestStartOnClick" prefHeight="114.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnCommTestStop" mnemonicParsing="false" onAction="#btnCommTestStopOnClick" prefHeight="118.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnCommTestReset" mnemonicParsing="false" onAction="#btnCommTestResetOnClick" prefHeight="118.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="493.0" text="Waiting Bay :  " GridPane.rowIndex="5" />
+                  <Button fx:id="btnWaitingBayStart" mnemonicParsing="false" onAction="#btnWaitingBayStartOnClick" prefHeight="86.0" prefWidth="152.0" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnWaitingBayStop" mnemonicParsing="false" onAction="#btnWaitingBayStopOnClick" prefHeight="94.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnWaitingBayReset" mnemonicParsing="false" onAction="#btnWaitingBayResetOnClick" prefHeight="94.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnFtBayBypass" mnemonicParsing="false" onAction="#btnFtBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSctNlt1BayBypass" layoutX="694.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnSctNlt1BayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnVerificTestBayBypass" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnVerificTestBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnCalibBayBypass" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnCalibBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnIrtBayBypass" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnIrtBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnHvtBayBypass" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnHvtBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSctNlt2BayBypass" layoutX="684.0" layoutY="216.0" mnemonicParsing="false" onAction="#btnSctNlt2BayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnCommTestBayBypass" layoutX="694.0" layoutY="256.0" mnemonicParsing="false" onAction="#btnCommTestBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnWaitingBayBypass" layoutX="694.0" layoutY="118.0" mnemonicParsing="false" onAction="#btnWaitingBayBypassOnClick" prefHeight="89.0" prefWidth="152.0" text="Bay Bypass" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane layoutX="842.0" layoutY="16.0" prefHeight="98.0" prefWidth="614.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.20001220703125" minWidth="10.0" prefWidth="148.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.20001220703125" minWidth="10.0" prefWidth="24.199987792968756" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.40002441406247" minWidth="10.0" prefWidth="145.00001220703126" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.20001220703125" minWidth="10.0" prefWidth="23.199987792968727" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.20001220703125" minWidth="10.0" prefWidth="149.199951171875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.199951171875" minWidth="10.0" prefWidth="18.399999999999977" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="128.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="18.0" prefWidth="150.0" text="Filter Criteria" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="cmbBxFilterPosition" prefHeight="34.0" prefWidth="154.0" promptText="Select Position" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Button fx:id="btnFilter" mnemonicParsing="false" onAction="#btnFilterOnClick" prefHeight="110.0" prefWidth="152.0" text="Apply Filter" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSampleData" disable="true" mnemonicParsing="false" onAction="#btnSampleDataOnClick" opacity="0.0" prefHeight="110.0" prefWidth="152.0" text="LOAD SAMPLE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnAllStart" mnemonicParsing="false" onAction="#btnAllStartOnClick" prefHeight="87.0" prefWidth="152.0" text="Start" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnAllStop" mnemonicParsing="false" onAction="#btnAllStopOnClick" prefHeight="87.0" prefWidth="152.0" text="Stop" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <Label prefHeight="90.0" prefWidth="181.0" text="RUN ALL TESTS :" />
+                  <Button fx:id="btnAllReset" mnemonicParsing="false" onAction="#btnAllResetOnClick" prefHeight="87.0" prefWidth="152.0" text="Reset" GridPane.columnIndex="6">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
+                  <ComboBox fx:id="cmbBxFilterPosition1" prefHeight="34.0" prefWidth="154.0" promptText="Select Bay" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ComboBox>
+               </children>
+            </GridPane>
+            <GridPane layoutX="842.0" layoutY="149.0" prefHeight="138.0" prefWidth="614.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="181.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="266.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="167.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="167.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="167.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="150.0" text="CALIBRATION BAY :" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="btnSampleData1" disable="true" mnemonicParsing="false" onAction="#btnSampleDataOnClick" opacity="0.0" prefHeight="110.0" prefWidth="152.0" text="LOAD SAMPLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="181.0" text="FUNCTIONAL BAY :" />
+                  <TextField fx:id="tf_FT_prompt" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></TextField>
+                  <TextField fx:id="tf_CALIB_prompt" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></TextField>
+                  <Button fx:id="btn_FtPlace" mnemonicParsing="false" onAction="#FtPlaceOnClick" prefHeight="121.0" prefWidth="125.0" text="PLACED" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="btn_CalibPlace" mnemonicParsing="false" onAction="#CalibPlaceOnClick" prefHeight="126.0" prefWidth="125.0" text="PLACED" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="btn_FtRemove" mnemonicParsing="false" onAction="#FtRemoveOnClick" prefHeight="96.0" prefWidth="126.0" text="REMOVED" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="btn_CalibRemove" mnemonicParsing="false" onAction="#CalibRemoveOnClick" prefHeight="126.0" prefWidth="126.0" text="REMOVED" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="btn_CalibCurrentStable" mnemonicParsing="false" onAction="#CalibCurrentStableOnClick" prefHeight="126.0" prefWidth="126.0" text="STABLE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btn_Ft_LDUOK" mnemonicParsing="false" onAction="#FtLDUOKOnClick" prefHeight="126.0" prefWidth="126.0" text="LDU" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="150.0" text="VERIFICATION BAY :" GridPane.rowIndex="4" />
+                  <TextField fx:id="tf_VERIFIC_prompt" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="btn_VerificDone" mnemonicParsing="false" onAction="#VerificDoneOnClick" prefHeight="126.0" prefWidth="125.0" text="DONE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <TitledPane layoutX="1498.0" layoutY="16.0" prefHeight="306.0" prefWidth="224.0" text="MOTOR CONTROL">
+               <content>
+                  <HBox prefHeight="280.0" prefWidth="225.0">
+                     <children>
+                        <GridPane prefHeight="306.0" prefWidth="200.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Motor 1 :" />
+                              <Label text="Motor 9 :" GridPane.rowIndex="8" />
+                              <Label text="Motor 8 :" GridPane.rowIndex="7" />
+                              <Label text="Motor 7 :" GridPane.rowIndex="6" />
+                              <Label text="Motor 6 :" GridPane.rowIndex="5" />
+                              <Label text="Motor 5 :" GridPane.rowIndex="4" />
+                              <Label text="Motor 4 :" GridPane.rowIndex="3" />
+                              <Label text="Motor 3 :" GridPane.rowIndex="2" />
+                              <Label text="Motor 2 :" GridPane.rowIndex="1" />
+                              <Button fx:id="btn_onMotor1" mnemonicParsing="false" onAction="#OnMotor1OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor1" mnemonicParsing="false" onAction="#OffMotor1OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor9" mnemonicParsing="false" onAction="#OffMotor9OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor8" mnemonicParsing="false" onAction="#OffMotor8OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor7" mnemonicParsing="false" onAction="#OffMotor7OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor6" mnemonicParsing="false" onAction="#OffMotor6OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor5" mnemonicParsing="false" onAction="#OffMotor5OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor4" mnemonicParsing="false" onAction="#OffMotor4OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor3" mnemonicParsing="false" onAction="#OffMotor3OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_offMotor2" mnemonicParsing="false" onAction="#OffMotor2OnClick" text="OFF" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor9" mnemonicParsing="false" onAction="#OnMotor9OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor8" mnemonicParsing="false" onAction="#OnMotor8OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor7" mnemonicParsing="false" onAction="#OnMotor7OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor6" mnemonicParsing="false" onAction="#OnMotor6OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor5" mnemonicParsing="false" onAction="#OnMotor5OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor4" mnemonicParsing="false" onAction="#OnMotor4OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor3" mnemonicParsing="false" onAction="#OnMotor3OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="btn_onMotor2" mnemonicParsing="false" onAction="#OnMotor2OnClick" text="ON" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+               </content>
+            </TitledPane>                        
+            <TabPane layoutX="15.0" layoutY="326.0" prefHeight="515.0" prefWidth="1775.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Bay Status">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="1775.0">
+                           <children>
+                              <TitledPane animated="false" collapsible="false" layoutX="4.0" layoutY="6.0" prefHeight="476.0" prefWidth="1762.0" text="Device Test Status">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1760.0">
+                                       <children>
+                                          <TableView fx:id="tvTestStatus" layoutX="4.0" layoutY="8.0" prefHeight="418.0" prefWidth="1753.0">
+                                             <columns>
+                                                <TableColumn fx:id="colTsSerialNo" maxWidth="60.0" prefWidth="60.0" text="S.No" />
+                                                <TableColumn fx:id="colTsBayName" maxWidth="120.0" prefWidth="120.0" text="Bay &#10;Name" />
+                                                <TableColumn fx:id="colTsStateName" maxWidth="250.0" prefWidth="250.0" text="State Name" />
+                                                <TableColumn fx:id="colTsDeviceType" maxWidth="100.0" prefWidth="100.0" text="Type" />
+                                                <TableColumn fx:id="colTsPathNo" maxWidth="80.0" text="Path No." />
+                                                <TableColumn fx:id="colTsPositionNo" maxWidth="80.0" text="Pos. No" />
+                                                <TableColumn fx:id="colTsPortName" maxWidth="120.0" prefWidth="120.0" text="Port Name" />
+                                                <TableColumn fx:id="colTsCname" maxWidth="250.0" prefWidth="250.0" text="C-Name" />
+                                                <TableColumn fx:id="colTsSerialStatus" maxWidth="120.0" prefWidth="120.0" text="Serial&#10;Status" />
+                                                <TableColumn fx:id="colTsQrResponse" maxWidth="120.0" prefWidth="120.0" text="Response &#10;Status" />
+                                                <TableColumn fx:id="colTsQrData" maxWidth="2000.0" prefWidth="240.0" text="Response &#10;Data" />
+                                                <TableColumn fx:id="colTsStatus" maxWidth="241.60014648437505" prefWidth="197.599853515625" text="Test Status" />
+                                             </columns>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Summary">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TitledPane animated="false" collapsible="false" layoutX="11.0" layoutY="8.0" prefHeight="528.0" prefWidth="1752.0" text="Test Summary">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tvResultSummary" layoutX="7.0" layoutY="6.0" prefHeight="427.0" prefWidth="1370.0">
+                                            <columns>
+                                              <TableColumn fx:id="colRsSerialNo" prefWidth="75.0" text="S.No" />
+                                                <TableColumn prefWidth="148.0" text="Palette Id" />
+                                                <TableColumn prefWidth="64.79994201660156" text="Bay Name" />
+                                                <TableColumn prefWidth="85.5999755859375" text="Pos. No" />
+                                                <TableColumn prefWidth="103.199951171875" text="Dut Serial No" />
+                                                <TableColumn minWidth="0.0" prefWidth="112.0" text="Test Name" />
+                                                <TableColumn prefWidth="120.0" text="Test Result" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

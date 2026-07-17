@@ -1,0 +1,14 @@
+2026-04-21 17:59:54.854 INFO  sta_nld1:1421 - btnSctNlt1StartOnClick : Invoked:
+2026-04-21 17:59:54.854 INFO  sta_nld1:1423 - SCT NLT BAY 1 : STARTED
+2026-04-21 17:59:54.856 INFO  sta_nld1:1479 - btnSctNlt1StartOnClick : Exit:
+2026-04-21 17:59:54.957 DEBUG sta_nld1:40 - StaNld_Bay1 : Entry
+2026-04-21 17:59:54.957 DEBUG sta_nld1:48 - StaNld_Bay1 : manageSta_NoLoadTestBay1States : Entry
+2026-04-21 17:59:54.958 DEBUG sta_nld1:67 - StaNld_Bay1 : manageSta_NoLoadTestBay1States : getTableStatePlanner2 : Size : 23
+2026-04-21 17:59:54.958 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-04-21 17:59:54.960 INFO  sta_nld1:37 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-04-21 17:59:54.960 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-04-21 17:59:54.960 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-04-21 17:59:55.064 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : Off
+2026-04-21 17:59:55.064 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : false
+2026-04-21 17:59:55.064 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-04-21 17:59:55.064 INFO  sta_nld1:94 - S01_check_for_pallets_at_SCT_NLT_Bay1 : No pallet Available at SCT NLT Bay1

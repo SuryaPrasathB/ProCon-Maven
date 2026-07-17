@@ -1,0 +1,73 @@
+{
+	"ConfigFileVersion" : "2.1",
+	"MaxDutSupported" : "6",
+	"OpticalReadingInterfaceEnabled" : true,
+	"DutSerialInterfaceEnabled" : true,
+	
+	"ReportGenerationResult" : {
+	
+		"TemplateFileLocationPath":"D:\\Reports\\Conveyor\\Template\\Conveyor-MeterResult_v1_0.xlsx",
+		"ReportOutputPath": "D:\\Reports\\Conveyor\\Output\\",
+		"SerialNoBeginCell" : "C15", 
+		"TestTypeBeginCell" : "D15", 
+		"TestNameBeginCell" : "E15",
+		"ErrorValueBeginCell" : "G15", 
+		"ErrorStatusBeginCell" : "H15",
+		"OverAllStatusCell" : "E42",
+		"ExecutedDateCell" : "H42",
+		"ActiveMeterProfileModelMeterConfig" : "DS 1P2W 10/60A 3200 Imp"
+	},
+	
+	
+			
+	"MeterProfileReportCellPosition": {
+		"reportSerialNoCell" : "A33",		
+		"customerNameCell" : "D6",	
+		"meterModelNameCell" : "D9",
+		"meterTypeCell" : "D8",
+		"meterSerialNoCell" : "D4",
+		"meterClassCell" : "D10",
+		"basicCurrentCell" : "I8",
+		"maxCurrentCell" : "I10",
+		"ratedVoltageCell" : "I6",
+		"noOfImpulsesPerUnitCell" : "I4",
+		"frequencyCell" : "D23",
+		"ctTypeCell" : "D25",
+		"ctRatioCell" : "D27",
+		"ptRatioCell" : "D29",
+		"pageNumberCell" : "D31",
+		"noOfPagesCell" : "D32",
+		"executedDateCell" : "E35",
+		"reportGeneratedDateCell" : "D34",
+		"executedTimeCell" : "F35",
+		"reportGeneratedTimeCell" : "D36",
+		"testerNameCell" : "D31"
+		
+	},
+	"MeterProfileReportDisplay" : {
+		"displayReportSerialNo" : false,	
+		"displayCustomerName" : true,	
+		"displayMeterModelName" : false,
+		"displayMeterType" : true,
+		"displayMeterClass" : true,
+		"displayMeterSerialNo" : true,
+		"displayBasicCurrent" : true,
+		"displayMaxCurrent" : true,
+		"displayRatedVoltage" : true,
+		"displayNoOfImpulsesPerUnit" : true,
+		"displayFrequency" : false,
+		"displayCtType" : false,
+		"displayCtRatio" : false,
+		"displayPtRatio" :  false,
+		"displayPageNumber" : false,
+		"displayNoOfPages" : false,
+		"displayExecutedDate" : false,
+		"displayReportGeneratedDate" : false,
+		"displayExecutedTime" : false,
+		"displayReportGeneratedTime" : false,
+		"displayTesterName" : false
+		
+	}
+	
+	
+}

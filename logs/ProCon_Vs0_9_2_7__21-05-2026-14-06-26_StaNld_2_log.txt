@@ -1,0 +1,183 @@
+2026-05-21 14:08:23.541 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 14:08:23.541 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 14:08:23.543 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:08:23.544 INFO  sta_nld2:39 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Entry
+2026-05-21 14:08:23.544 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 14:08:23.545 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 14:08:24.655 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : Off
+2026-05-21 14:08:24.655 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : false
+2026-05-21 14:08:24.656 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:08:24.656 INFO  sta_nld2:98 - S01_check_for_pallets_at_SCT_NLT_Bay2 : No pallet Available at SCT NLT Bay2
+2026-05-21 14:10:17.783 INFO  sta_nld2:106 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Pallet Available
+2026-05-21 14:10:17.783 INFO  sta_nld2:148 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:10:17.783 DEBUG sta_nld2:56 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Status     : true
+2026-05-21 14:10:17.783 DEBUG sta_nld2:57 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:10:17.783 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 14:10:17.783 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 14:10:17.783 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 14:32:25.065 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 14:32:25.065 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 14:32:25.065 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:32:25.066 INFO  sta_nld2:29 - S27_turn_on_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 14:32:25.066 DEBUG sta_nld2:54 - S27_turn_on_motor_STA_NLDT_Bay2 : turn_on : Entry
+2026-05-21 14:32:27.178 INFO  sta_nld2:67 - S27_turn_on_motor_STA_NLDT_Bay2: set_motor_required : Success
+2026-05-21 14:32:27.178 DEBUG sta_nld2:109 - S27_turn_on_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:32:27.178 INFO  sta_nld2:38 - S27_turn_on_motor_STA_NLDT_Bay2 : Motor Turned On
+2026-05-21 14:32:27.178 INFO  sta_nld2:47 - S27_turn_on_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:32:27.179 DEBUG sta_nld2:56 - processCurrentState : S27_turn_on_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 14:32:27.179 DEBUG sta_nld2:57 - processCurrentState : S27_turn_on_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:32:27.179 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 14:32:27.179 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 14:32:27.179 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 14:32:43.122 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 14:32:43.122 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 14:32:43.122 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:32:43.122 INFO  sta_nld2:31 - S28_turn_off_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 14:32:43.123 DEBUG sta_nld2:57 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off : Entry
+2026-05-21 14:32:43.228 INFO  sta_nld2:69 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off: set_motor_not_required : Success
+2026-05-21 14:32:43.228 INFO  sta_nld2:41 - S28_turn_off_motor_STA_NLDT_Bay2 : Motor Turned Off
+2026-05-21 14:32:43.228 INFO  sta_nld2:50 - S28_turn_off_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:32:43.228 DEBUG sta_nld2:56 - processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 14:32:43.228 DEBUG sta_nld2:57 - processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:32:43.228 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 14:32:43.228 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 14:32:43.229 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 14:34:01.177 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 14:34:01.177 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 14:34:01.177 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:34:01.177 INFO  sta_nld2:29 - S27_turn_on_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 14:34:01.177 DEBUG sta_nld2:54 - S27_turn_on_motor_STA_NLDT_Bay2 : turn_on : Entry
+2026-05-21 14:34:03.282 INFO  sta_nld2:67 - S27_turn_on_motor_STA_NLDT_Bay2: set_motor_required : Success
+2026-05-21 14:34:03.282 DEBUG sta_nld2:109 - S27_turn_on_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:34:03.283 INFO  sta_nld2:38 - S27_turn_on_motor_STA_NLDT_Bay2 : Motor Turned On
+2026-05-21 14:34:03.283 INFO  sta_nld2:47 - S27_turn_on_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:34:03.283 DEBUG sta_nld2:56 - processCurrentState : S27_turn_on_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 14:34:03.283 DEBUG sta_nld2:57 - processCurrentState : S27_turn_on_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:34:03.283 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 14:34:03.283 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 14:34:03.283 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 14:35:02.160 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 14:35:02.161 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 14:35:02.161 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:35:02.161 INFO  sta_nld2:31 - S28_turn_off_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 14:35:02.161 DEBUG sta_nld2:57 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off : Entry
+2026-05-21 14:35:02.266 INFO  sta_nld2:69 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off: set_motor_not_required : Success
+2026-05-21 14:35:02.267 INFO  sta_nld2:41 - S28_turn_off_motor_STA_NLDT_Bay2 : Motor Turned Off
+2026-05-21 14:35:02.267 INFO  sta_nld2:50 - S28_turn_off_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:35:02.267 DEBUG sta_nld2:56 - processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 14:35:02.267 DEBUG sta_nld2:57 - processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:35:02.267 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 14:35:02.267 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 14:35:02.267 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 14:37:41.489 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 14:37:41.489 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 14:37:41.489 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:37:41.489 INFO  sta_nld2:29 - S27_turn_on_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 14:37:41.490 DEBUG sta_nld2:54 - S27_turn_on_motor_STA_NLDT_Bay2 : turn_on : Entry
+2026-05-21 14:37:43.595 INFO  sta_nld2:67 - S27_turn_on_motor_STA_NLDT_Bay2: set_motor_required : Success
+2026-05-21 14:37:43.596 DEBUG sta_nld2:109 - S27_turn_on_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:37:43.596 INFO  sta_nld2:38 - S27_turn_on_motor_STA_NLDT_Bay2 : Motor Turned On
+2026-05-21 14:37:43.596 INFO  sta_nld2:47 - S27_turn_on_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:37:43.596 DEBUG sta_nld2:56 - processCurrentState : S27_turn_on_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 14:37:43.596 DEBUG sta_nld2:57 - processCurrentState : S27_turn_on_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:37:43.596 DEBUG sta_nld2:35 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 14:37:43.596 DEBUG sta_nld2:36 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 14:37:43.596 DEBUG sta_nld2:37 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 14:38:01.573 INFO  sta_nld2:1675 - btnSctNlt2StartOnClick : Invoked:
+2026-05-21 14:38:01.573 INFO  sta_nld2:1677 - SCT NLT BAY 2 : STARTED
+2026-05-21 14:38:01.575 INFO  sta_nld2:1733 - btnSctNlt2StartOnClick : Exit:
+2026-05-21 14:38:01.674 DEBUG sta_nld2:36 - StaNld_Bay2 : Entry
+2026-05-21 14:38:01.674 DEBUG sta_nld2:44 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : Entry
+2026-05-21 14:38:01.682 DEBUG sta_nld2:63 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : getTableStatePlanner2 : Size : 18
+2026-05-21 14:38:01.682 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:01.682 INFO  sta_nld2:39 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Entry
+2026-05-21 14:38:01.682 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 14:38:01.682 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 14:38:01.784 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : Off
+2026-05-21 14:38:01.784 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : false
+2026-05-21 14:38:01.784 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:38:01.784 INFO  sta_nld2:98 - S01_check_for_pallets_at_SCT_NLT_Bay2 : No pallet Available at SCT NLT Bay2
+2026-05-21 14:38:17.288 INFO  sta_nld2:106 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Pallet Available
+2026-05-21 14:38:17.288 INFO  sta_nld2:148 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:38:17.289 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Status     : true
+2026-05-21 14:38:17.289 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:38:17.289 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:17.289 INFO  sta_nld2:36 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-21 14:38:17.289 INFO  sta_nld2:70 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-21 14:38:17.289 INFO  sta_nld2:84 - S02_qR_Code_Scanning_of_Pallet :  verificToSta2TransitTimeInSec: 15
+2026-05-21 14:38:17.289 INFO  sta_nld2:85 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-21 14:38:17.289 INFO  sta_nld2:86 - S02_qR_Code_Scanning_of_Pallet :  StaNld_Bay2.isStopProcessRequestedSctNltBay2(): false
+2026-05-21 14:38:17.292 DEBUG sta_nld2:123 - qrCodePalletScanning : Entry : STNLD2B
+2026-05-21 14:38:23.748 DEBUG sta_nld2:174 - qrCodePalletScanning : scannedData: NG
+2026-05-21 14:38:23.748 DEBUG sta_nld2:248 - qrCodePalletScanning : status : NG : STNLD2B
+2026-05-21 14:38:23.748 DEBUG sta_nld2:250 - qrCodePalletScanning : Exit : STNLD2B
+2026-05-21 14:38:23.748 INFO  sta_nld2:106 - qrCodePalletScanningProcess : QR Code Scan - not Good Read : STNLD2B
+2026-05-21 14:38:23.749 INFO  sta_nld2:113 - qrCodePalletScanningProcess : Exit : STNLD2B
+2026-05-21 14:38:23.749 INFO  sta_nld2:98 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-21 14:38:23.749 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay2 : Status     : false
+2026-05-21 14:38:23.749 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay2 : Error Code : ERROR_CODE_FT_006
+2026-05-21 14:38:23.849 DEBUG sta_nld2:36 - StaNld_Bay2 : Entry
+2026-05-21 14:38:23.849 DEBUG sta_nld2:44 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : Entry
+2026-05-21 14:38:23.851 DEBUG sta_nld2:63 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : getTableStatePlanner2 : Size : 18
+2026-05-21 14:38:23.851 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:23.851 INFO  sta_nld2:39 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Entry
+2026-05-21 14:38:23.851 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 14:38:23.851 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 14:38:23.953 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 14:38:23.953 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 14:38:23.953 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:38:24.249 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:24.249 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S13_error_Handling_Bay2 : Status     : true
+2026-05-21 14:38:24.249 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S13_error_Handling_Bay2 : Error Code : NO_ERROR_001
+2026-05-21 14:38:24.249 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:24.250 INFO  sta_nld2:26 - S03_close_the_fingerTip_Latch : Entry
+2026-05-21 14:38:24.250 DEBUG sta_nld2:51 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : Entry
+2026-05-21 14:38:24.250 DEBUG sta_nld2:61 - PortId    : op2
+2026-05-21 14:38:24.250 DEBUG sta_nld2:62 - ClusterId : 3
+2026-05-21 14:38:24.250 DEBUG sta_nld2:63 - BayId     : 8
+2026-05-21 14:38:24.354 DEBUG sta_nld2:81 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : status : true
+2026-05-21 14:38:24.354 DEBUG sta_nld2:86 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : Exit
+2026-05-21 14:38:24.354 INFO  sta_nld2:36 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-21 14:38:24.354 INFO  sta_nld2:45 - S03_close_the_fingerTip_Latch : Exit
+2026-05-21 14:38:24.354 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S03_close_the_fingerTip_Latch_Bay2 : Status     : true
+2026-05-21 14:38:24.354 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S03_close_the_fingerTip_Latch_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:38:24.354 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:24.354 INFO  sta_nld2:30 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-21 14:38:24.354 DEBUG sta_nld2:79 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Entry
+2026-05-21 14:38:24.355 DEBUG sta_nld2:87 - PortId    : ip35
+2026-05-21 14:38:24.355 DEBUG sta_nld2:88 - ClusterId : 3
+2026-05-21 14:38:24.355 DEBUG sta_nld2:89 - BayId     : 8
+2026-05-21 14:38:24.457 DEBUG sta_nld2:120 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : state : Off
+2026-05-21 14:38:24.457 DEBUG sta_nld2:122 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Exit
+2026-05-21 14:38:24.965 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 14:38:24.965 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 14:38:25.071 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 14:38:25.071 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 14:38:25.071 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:38:25.462 DEBUG sta_nld2:79 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Entry
+2026-05-21 14:38:25.462 DEBUG sta_nld2:87 - PortId    : ip35
+2026-05-21 14:38:25.462 DEBUG sta_nld2:88 - ClusterId : 3
+2026-05-21 14:38:25.463 DEBUG sta_nld2:89 - BayId     : 8
+2026-05-21 14:38:25.568 DEBUG sta_nld2:120 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : state : On
+2026-05-21 14:38:25.568 DEBUG sta_nld2:122 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Exit
+2026-05-21 14:38:25.680 INFO  sta_nld2:53 - set_motor_not_required : Success
+2026-05-21 14:38:25.680 INFO  sta_nld2:73 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-21 14:38:25.680 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay2 : Status     : true
+2026-05-21 14:38:25.680 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:38:25.680 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:25.680 INFO  sta_nld2:31 - S28_turn_off_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 14:38:25.681 DEBUG sta_nld2:57 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off : Entry
+2026-05-21 14:38:25.787 INFO  sta_nld2:69 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off: set_motor_not_required : Success
+2026-05-21 14:38:25.787 INFO  sta_nld2:41 - S28_turn_off_motor_STA_NLDT_Bay2 : Motor Turned Off
+2026-05-21 14:38:25.787 INFO  sta_nld2:50 - S28_turn_off_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 14:38:25.788 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 14:38:25.788 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 14:38:25.788 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 14:38:25.788 INFO  sta_nld2:45 - S045_Select_Run_Project : Entry
+2026-05-21 14:38:26.084 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 14:38:26.084 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 14:38:26.192 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 14:38:26.192 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 14:38:26.192 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 14:38:27.198 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 14:38:27.198 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33

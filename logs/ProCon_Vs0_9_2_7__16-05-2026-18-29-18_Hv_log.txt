@@ -1,0 +1,128 @@
+2026-05-16 18:44:34.731 DEBUG hv:20 - HighVoltageTestBayStop : Entry
+2026-05-16 18:44:34.731 DEBUG hv:28 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:34.734 DEBUG hv:48 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : getTableStatePlanner2 : Size : 3
+2026-05-16 18:44:34.735 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:34.735 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-05-16 18:44:34.735 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-05-16 18:44:34.735 DEBUG hv:107 - PortId    : op14
+2026-05-16 18:44:34.735 DEBUG hv:108 - ClusterId : 1
+2026-05-16 18:44:34.735 DEBUG hv:109 - BayId     : 2
+2026-05-16 18:44:34.867 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-05-16 18:44:34.867 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-05-16 18:44:35.368 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-05-16 18:44:35.368 DEBUG hv:147 - PortId    : op14
+2026-05-16 18:44:35.368 DEBUG hv:148 - ClusterId : 1
+2026-05-16 18:44:35.368 DEBUG hv:149 - BayId     : 2
+2026-05-16 18:44:35.550 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-05-16 18:44:35.550 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-05-16 18:44:35.550 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-05-16 18:44:35.550 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-05-16 18:44:35.550 DEBUG hv:155 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-05-16 18:44:35.550 DEBUG hv:156 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-05-16 18:44:35.551 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:35.551 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-05-16 18:44:35.551 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-05-16 18:44:35.551 DEBUG hv:66 - PortId    : op9
+2026-05-16 18:44:35.551 DEBUG hv:67 - ClusterId : 1
+2026-05-16 18:44:35.551 DEBUG hv:68 - BayId     : 2
+2026-05-16 18:44:35.754 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-05-16 18:44:35.754 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-05-16 18:44:35.754 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-16 18:44:35.754 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-05-16 18:44:35.754 DEBUG hv:155 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-05-16 18:44:35.754 DEBUG hv:156 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-16 18:44:35.754 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:35.754 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-05-16 18:44:35.755 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-05-16 18:44:35.755 DEBUG hv:71 - PortId    : ip43
+2026-05-16 18:44:35.755 DEBUG hv:72 - ClusterId : 1
+2026-05-16 18:44:35.755 DEBUG hv:73 - BayId     : 2
+2026-05-16 18:44:36.165 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-05-16 18:44:36.166 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-05-16 18:44:36.166 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-05-16 18:44:36.166 DEBUG hv:155 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-05-16 18:44:36.166 DEBUG hv:156 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-05-16 18:44:36.167 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:36.167 INFO  hv:12 - S11_idle_condition : Entry
+2026-05-16 18:44:36.167 INFO  hv:25 - S11_idle_condition : Waiting in Idle ConditionHVB
+2026-05-16 18:44:36.247 DEBUG hv:20 - HighVoltageTestBayStop : Entry
+2026-05-16 18:44:36.247 DEBUG hv:28 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:36.254 DEBUG hv:48 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : getTableStatePlanner2 : Size : 3
+2026-05-16 18:44:36.254 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:36.254 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-05-16 18:44:36.254 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-05-16 18:44:36.254 DEBUG hv:107 - PortId    : op14
+2026-05-16 18:44:36.254 DEBUG hv:108 - ClusterId : 1
+2026-05-16 18:44:36.254 DEBUG hv:109 - BayId     : 2
+2026-05-16 18:44:36.575 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-05-16 18:44:36.575 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-05-16 18:44:37.075 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-05-16 18:44:37.075 DEBUG hv:147 - PortId    : op14
+2026-05-16 18:44:37.075 DEBUG hv:148 - ClusterId : 1
+2026-05-16 18:44:37.075 DEBUG hv:149 - BayId     : 2
+2026-05-16 18:44:37.168 INFO  hv:25 - S11_idle_condition : Waiting in Idle ConditionHVB
+2026-05-16 18:44:37.193 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-05-16 18:44:37.193 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-05-16 18:44:37.193 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-05-16 18:44:37.193 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-05-16 18:44:37.193 DEBUG hv:155 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-05-16 18:44:37.193 DEBUG hv:156 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-05-16 18:44:37.193 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:37.193 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-05-16 18:44:37.193 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-05-16 18:44:37.193 DEBUG hv:66 - PortId    : op9
+2026-05-16 18:44:37.193 DEBUG hv:67 - ClusterId : 1
+2026-05-16 18:44:37.193 DEBUG hv:68 - BayId     : 2
+2026-05-16 18:44:37.501 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-05-16 18:44:37.501 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-05-16 18:44:37.501 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-16 18:44:37.501 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-05-16 18:44:37.501 DEBUG hv:155 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-05-16 18:44:37.501 DEBUG hv:156 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-16 18:44:37.502 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:37.502 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-05-16 18:44:37.502 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-05-16 18:44:37.502 DEBUG hv:71 - PortId    : ip43
+2026-05-16 18:44:37.502 DEBUG hv:72 - ClusterId : 1
+2026-05-16 18:44:37.502 DEBUG hv:73 - BayId     : 2
+2026-05-16 18:44:37.706 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-05-16 18:44:37.706 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-05-16 18:44:37.707 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-05-16 18:44:37.707 DEBUG hv:155 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-05-16 18:44:37.707 DEBUG hv:156 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-05-16 18:44:37.707 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:37.707 INFO  hv:12 - S11_idle_condition : Entry
+2026-05-16 18:44:37.708 INFO  hv:25 - S11_idle_condition : Waiting in Idle ConditionHVB
+2026-05-16 18:44:37.775 DEBUG hv:20 - HighVoltageTestBayStop : Entry
+2026-05-16 18:44:37.775 DEBUG hv:28 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:37.780 DEBUG hv:48 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : getTableStatePlanner2 : Size : 3
+2026-05-16 18:44:37.780 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-05-16 18:44:37.780 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-05-16 18:44:37.780 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-05-16 18:44:37.781 DEBUG hv:107 - PortId    : op14
+2026-05-16 18:44:37.781 DEBUG hv:108 - ClusterId : 1
+2026-05-16 18:44:37.781 DEBUG hv:109 - BayId     : 2
+2026-05-16 18:44:38.014 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-05-16 18:44:38.014 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-05-16 18:44:38.168 DEBUG hv:155 - processCurrentState : S11_idle_condition : Status     : true
+2026-05-16 18:44:38.168 DEBUG hv:156 - processCurrentState : S11_idle_condition : Error Code : NO_ERROR_001
+2026-05-16 18:44:38.168 DEBUG hv:122 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:38.514 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-05-16 18:44:38.514 DEBUG hv:147 - PortId    : op14
+2026-05-16 18:44:38.514 DEBUG hv:148 - ClusterId : 1
+2026-05-16 18:44:38.514 DEBUG hv:149 - BayId     : 2
+2026-05-16 18:44:38.617 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-05-16 18:44:38.617 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-05-16 18:44:38.617 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-05-16 18:44:38.617 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-05-16 18:44:38.617 DEBUG hv:155 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-05-16 18:44:38.617 DEBUG hv:156 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-05-16 18:44:38.617 DEBUG hv:122 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:38.708 INFO  hv:25 - S11_idle_condition : Waiting in Idle ConditionHVB
+2026-05-16 18:44:39.282 DEBUG hv:20 - HighVoltageTestBayStop : Entry
+2026-05-16 18:44:39.282 DEBUG hv:28 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:39.285 DEBUG hv:48 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : getTableStatePlanner2 : Size : 3
+2026-05-16 18:44:39.286 DEBUG hv:122 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-05-16 18:44:39.709 DEBUG hv:155 - processCurrentState : S11_idle_condition : Status     : true
+2026-05-16 18:44:39.709 DEBUG hv:156 - processCurrentState : S11_idle_condition : Error Code : NO_ERROR_001
+2026-05-16 18:44:39.709 DEBUG hv:122 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry

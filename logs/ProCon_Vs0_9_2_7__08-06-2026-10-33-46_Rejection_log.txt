@@ -1,0 +1,75 @@
+2026-06-08 10:40:43.795 INFO  rejection:157 - btnRjStartOnClick : Invoked:
+2026-06-08 10:40:43.796 INFO  rejection:159 - REJECTION BAY : STARTED
+2026-06-08 10:40:43.798 INFO  rejection:212 - btnRjStartOnClick : Exit:
+2026-06-08 10:40:43.898 DEBUG rejection:33 - RejectionBay2 : Entry
+2026-06-08 10:40:43.898 DEBUG rejection:41 - RejectionBay2 : manageRejectionBayStates : Entry
+2026-06-08 10:40:43.900 DEBUG rejection:60 - RejectionBay2 : manageRejectionBayStates : getTableStatePlanner2 : Size : 3
+2026-06-08 10:40:43.900 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-06-08 10:40:43.900 INFO  rejection:36 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-06-08 10:40:43.900 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-06-08 10:40:43.900 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-06-08 10:40:44.003 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-06-08 10:40:44.003 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-06-08 10:40:44.003 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-06-08 10:40:45.003 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-06-08 10:40:45.003 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-06-08 10:40:45.106 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-06-08 10:40:45.106 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-06-08 10:40:45.106 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-06-08 10:40:46.106 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-06-08 10:40:46.106 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-06-08 10:40:46.208 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-06-08 10:40:46.208 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-06-08 10:40:46.208 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-06-08 10:40:47.208 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-06-08 10:40:47.208 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-06-08 10:40:47.311 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-06-08 10:40:47.311 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-06-08 10:40:47.311 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-06-08 10:40:47.311 INFO  rejection:104 - S01_check_for_pallets_at_Reject_Bay : Pallet Available
+2026-06-08 10:40:47.311 DEBUG rejection:169 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Status     : true
+2026-06-08 10:40:47.311 DEBUG rejection:170 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-06-08 10:40:47.311 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-06-08 10:40:47.311 INFO  rejection:85 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-08 10:40:47.311 DEBUG rejection:123 - qrCodePalletScanning : Entry : RJTB
+2026-06-08 10:40:51.236 DEBUG rejection:174 - qrCodePalletScanning : scannedData: LSCSM06P24
+
+2026-06-08 10:40:51.236 DEBUG rejection:194 - qrCodePalletScanning : Else Hit1: 
+2026-06-08 10:40:51.236 DEBUG rejection:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: RJTB
+2026-06-08 10:40:51.242 DEBUG rejection:434 - qrCodePalletScanning: rejected bay: 
+2026-06-08 10:40:51.242 DEBUG rejection:513 - qrCodePalletScanning: individual pallet update 
+2026-06-08 10:40:51.242 DEBUG rejection:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: RJTB : qrCode: LSCSM06P24
+2026-06-08 10:40:51.242 DEBUG rejection:248 - qrCodePalletScanning : status : GOOD : RJTB
+2026-06-08 10:40:51.242 DEBUG rejection:250 - qrCodePalletScanning : Exit : RJTB
+2026-06-08 10:40:51.242 INFO  rejection:82 - qrCodePalletScanningProcess : QR Code Scan Successful : RJTB
+2026-06-08 10:40:51.242 INFO  rejection:113 - qrCodePalletScanningProcess : Exit : RJTB
+2026-06-08 10:40:51.242 DEBUG rejection:116 - S02_qR_Code_Scanning_of_Pallet: palletQrId :LSCSM06P24
+2026-06-08 10:40:51.242 INFO  rejection:149 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getRejectionBayPalletDistinctIdList
+2026-06-08 10:40:51.251 INFO  rejection:155 - S02_qR_Code_Scanning_of_Pallet : found result  in database myPalletManage : 20260608T103938_0001_LSCSM06P24
+2026-06-08 10:40:51.251 DEBUG rejection:357 - readPalletMetersData: Entry for bay: RJTB
+2026-06-08 10:40:51.260 DEBUG rejection:380 - Rejection : readPalletMetersData: result found for RJTB : palletDistinctId: 20260608T103938_0001_LSCSM06P24
+2026-06-08 10:40:51.260 DEBUG rejection:405 - readPalletMetersData: Successfully read 6 meters.
+2026-06-08 10:40:51.267 DEBUG rejection:408 - Rejection: readPalletMetersData: updated setExitAppeared to true for getPalletDistinctId: 20260608T103938_0001_LSCSM06P24
+2026-06-08 10:40:51.267 DEBUG rejection:640 - updatePalletStatusOnDisplayMonitor: Entry
+2026-06-08 10:40:51.268 DEBUG rejection:795 - metricsUpdateRejectionMeters: Entry.
+2026-06-08 10:40:51.268 DEBUG rejection:643 - updatePalletStatusOnDisplayMonitor: palletQrCode: <LSCSM06P24>
+2026-06-08 10:40:51.313 DEBUG rejection:851 - metricsUpdateRejectionMeters: Exit. All updates initiated successfully: true
+2026-06-08 10:40:51.317 INFO  rejection:238 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-08 10:40:51.317 DEBUG rejection:169 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Status     : true
+2026-06-08 10:40:51.317 DEBUG rejection:170 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Error Code : ERROR_CODE_601
+2026-06-08 10:40:51.317 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-06-08 10:40:51.317 INFO  rejection:46 - S021_check_for_pallet_removed_at_Reject_Bay : Entry
+2026-06-08 10:40:51.317 DEBUG rejection:122 - S021_check_for_pallet_removed_at_Reject_Bay : Checking pallet sensor state.
+2026-06-08 10:40:51.317 DEBUG rejection:136 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-06-08 10:40:51.421 DEBUG rejection:151 - S021_check_for_pallet_removed_at_Reject_Bay : Sensor state : On
+2026-06-08 10:40:51.421 DEBUG rejection:164 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet available status : true
+2026-06-08 10:40:51.421 DEBUG rejection:168 - S021_check_for_pallet_removed_at_Reject_Bay : Exit isPalletAvailableAt_RejectBay
+2026-06-08 10:40:51.421 INFO  rejection:91 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet still available at Reject Bay, waiting for removal.
+2026-06-08 10:40:51.746 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01012021 , status: <> : positionNo: 5
+2026-06-08 10:40:51.746 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01012075 , status: <> : positionNo: 4
+2026-06-08 10:40:51.746 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 1 , status: <FAIL> : positionNo: 1
+2026-06-08 10:40:51.746 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01012058 , status: <> : positionNo: 3
+2026-06-08 10:40:51.746 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013338 , status: <> : positionNo: 6
+2026-06-08 10:40:51.746 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013232 , status: <> : positionNo: 2
+2026-06-08 10:40:51.746 DEBUG rejection:678 - updatePalletStatusOnDisplayMonitor: resultManipulatedMetersData: [{"overallTestResultStatus":"","rackPositionNo":5,"meterSerialNo":"01012021","errorCode":"","id":5}, {"overallTestResultStatus":"","rackPositionNo":4,"meterSerialNo":"01012075","errorCode":"","id":4}, {"overallTestResultStatus":"FAIL","rackPositionNo":1,"meterSerialNo":"1","errorCode":"ERR_COMM","id":1}, {"overallTestResultStatus":"","rackPositionNo":3,"meterSerialNo":"01012058","errorCode":"","id":3}, {"overallTestResultStatus":"","rackPositionNo":6,"meterSerialNo":"01013338","errorCode":"","id":6}, {"overallTestResultStatus":"","rackPositionNo":2,"meterSerialNo":"01013232","errorCode":"","id":2}]
+2026-06-08 10:40:51.788 DEBUG rejection:683 - updatePalletStatusOnDisplayMonitor: Exit

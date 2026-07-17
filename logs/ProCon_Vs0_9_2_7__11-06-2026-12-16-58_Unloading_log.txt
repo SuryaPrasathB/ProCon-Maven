@@ -1,0 +1,82 @@
+2026-06-11 12:18:03.958 INFO  unloading:2043 - btnUnloadingStartOnClick : Invoked:
+2026-06-11 12:18:03.959 INFO  unloading:2045 - UNLOADING BAY : STARTED
+2026-06-11 12:18:03.960 INFO  unloading:2098 - btnUnloadingStartOnClick : Exit:
+2026-06-11 12:18:04.060 DEBUG unloading:33 - UnloadingBay2 : Entry
+2026-06-11 12:18:04.060 DEBUG unloading:41 - UnloadingBay2 : manageUnloadingBayStates : Entry
+2026-06-11 12:18:04.066 DEBUG unloading:62 - UnloadingBay2 : manageUnloadingBayStates : getTableStatePlanner2 : Size : 3
+2026-06-11 12:18:04.066 DEBUG unloading:23 - UnloadingBayContext: processPresentState: Entry
+2026-06-11 12:18:04.066 INFO  unloading:35 - S01_check_for_pallet_at_Unloading_Bay : Entry
+2026-06-11 12:18:04.066 DEBUG unloading:128 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Entry
+2026-06-11 12:18:04.066 DEBUG unloading:141 - isPalletAvailableAt_UnloadingBay : getClusterId: 3 -> getBayId: 10 -> getPortId: ip38
+2026-06-11 12:18:05.171 DEBUG unloading:159 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : state : On
+2026-06-11 12:18:05.171 DEBUG unloading:167 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : status : true
+2026-06-11 12:18:05.171 DEBUG unloading:171 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Exit
+2026-06-11 12:18:06.172 DEBUG unloading:128 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Entry
+2026-06-11 12:18:06.172 DEBUG unloading:141 - isPalletAvailableAt_UnloadingBay : getClusterId: 3 -> getBayId: 10 -> getPortId: ip38
+2026-06-11 12:18:06.273 DEBUG unloading:159 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : state : On
+2026-06-11 12:18:06.273 DEBUG unloading:167 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : status : true
+2026-06-11 12:18:06.273 DEBUG unloading:171 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Exit
+2026-06-11 12:18:07.273 DEBUG unloading:128 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Entry
+2026-06-11 12:18:07.273 DEBUG unloading:141 - isPalletAvailableAt_UnloadingBay : getClusterId: 3 -> getBayId: 10 -> getPortId: ip38
+2026-06-11 12:18:07.374 DEBUG unloading:159 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : state : On
+2026-06-11 12:18:07.374 DEBUG unloading:167 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : status : true
+2026-06-11 12:18:07.374 DEBUG unloading:171 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Exit
+2026-06-11 12:18:08.374 DEBUG unloading:128 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Entry
+2026-06-11 12:18:08.374 DEBUG unloading:141 - isPalletAvailableAt_UnloadingBay : getClusterId: 3 -> getBayId: 10 -> getPortId: ip38
+2026-06-11 12:18:08.475 DEBUG unloading:159 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : state : On
+2026-06-11 12:18:08.475 DEBUG unloading:167 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : status : true
+2026-06-11 12:18:08.475 DEBUG unloading:171 - S01_check_for_pallet_at_Unloading_Bay : isPalletAvailableAt_UnloadingBay : Exit
+2026-06-11 12:18:08.475 INFO  unloading:102 - S01_check_for_pallet_at_Unloading_Bay : Pallet Available
+2026-06-11 12:18:08.475 INFO  unloading:122 - S01_check_for_pallet_at_Unloading_Bay : Exit
+2026-06-11 12:18:08.475 DEBUG unloading:170 - processCurrentState : S01_check_for_pallet_at_Unloading_Bay : Status     : true
+2026-06-11 12:18:08.475 DEBUG unloading:171 - processCurrentState : S01_check_for_pallet_at_Unloading_Bay : Error Code : ERROR_CODE_601
+2026-06-11 12:18:08.477 DEBUG unloading:23 - UnloadingBayContext: processPresentState: Entry
+2026-06-11 12:18:08.477 INFO  unloading:86 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-11 12:18:08.477 INFO  unloading:102 - S02_qR_Code_Scanning_of_Pallet : isSta2PalletsExitInProgress()-X :false
+2026-06-11 12:18:08.477 INFO  unloading:103 - S02_qR_Code_Scanning_of_Pallet : isSta1PalletsExitInProgress() :false
+2026-06-11 12:18:08.477 INFO  unloading:119 - S02_qR_Code_Scanning_of_Pallet : isSta2PalletsExitInProgress()-Y :false
+2026-06-11 12:18:08.478 DEBUG unloading:123 - qrCodePalletScanning : Entry : UNLDB
+2026-06-11 12:18:12.056 DEBUG unloading:174 - qrCodePalletScanning : scannedData: LSCSM06P005
+
+2026-06-11 12:18:12.056 DEBUG unloading:194 - qrCodePalletScanning : Else Hit1: 
+2026-06-11 12:18:12.056 DEBUG unloading:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: UNLDB
+2026-06-11 12:18:12.064 DEBUG unloading:418 - qrCodePalletScanning: Unloading Bay: refreshDashBoard : AUTOMATE REPORTS
+2026-06-11 12:18:12.218 DEBUG unloading:513 - qrCodePalletScanning: individual pallet update 
+2026-06-11 12:18:12.220 DEBUG unloading:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: UNLDB : qrCode: LSCSM06P005
+2026-06-11 12:18:12.220 DEBUG unloading:248 - qrCodePalletScanning : status : GOOD : UNLDB
+2026-06-11 12:18:12.220 DEBUG unloading:250 - qrCodePalletScanning : Exit : UNLDB
+2026-06-11 12:18:12.220 INFO  unloading:82 - qrCodePalletScanningProcess : QR Code Scan Successful : UNLDB
+2026-06-11 12:18:12.220 INFO  unloading:113 - qrCodePalletScanningProcess : Exit : UNLDB
+2026-06-11 12:18:12.220 DEBUG unloading:155 - S02_qR_Code_Scanning_of_Pallet: palletQrId: LSCSM06P005
+2026-06-11 12:18:12.220 INFO  unloading:188 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getUnloadingBayPalletDistinctIdList
+2026-06-11 12:18:12.257 INFO  unloading:203 - S02_qR_Code_Scanning_of_Pallet : found result  in database myPalletManage-2 : 20260610T150438_0011_LSCSM06P005
+2026-06-11 12:18:12.384 DEBUG unloading:403 - readPalletMetersData: Entry for bay: UNLDB
+2026-06-11 12:18:12.396 DEBUG unloading:419 - Unloading : readPalletMetersData: result found for UNLDB : 20260610T150438_0011_LSCSM06P005
+2026-06-11 12:18:12.396 DEBUG unloading:420 - Unloading : readPalletMetersData: result found for 20260610T150438_0011_LSCSM06P005 : getPalletDistinctId: 20260610T150438_0011_LSCSM06P005
+2026-06-11 12:18:12.396 DEBUG unloading:430 - readPalletMetersData: getPalletDistinctId: 20260610T150438_0011_LSCSM06P005
+2026-06-11 12:18:12.396 DEBUG unloading:447 - readPalletMetersData: Successfully read 6 meters.
+2026-06-11 12:18:12.429 DEBUG unloading:450 - readPalletMetersData: updated setExitAppeared to true for getPalletDistinctId: 20260610T150438_0011_LSCSM06P005
+2026-06-11 12:18:12.429 DEBUG unloading:610 - updatePalletStatusOnDisplayMonitor: Entry
+2026-06-11 12:18:12.429 DEBUG unloading:734 - metricsUpdateUnloadingMeters: Entry.
+2026-06-11 12:18:12.430 DEBUG unloading:613 - updatePalletStatusOnDisplayMonitor: palletQrCode: <LSCSM06P005>
+2026-06-11 12:18:12.474 DEBUG unloading:790 - metricsUpdateUnloadingMeters: Exit. All updates initiated successfully: true
+2026-06-11 12:18:12.803 DEBUG unloading:639 - updatePalletStatusOnDisplayMonitor: serial number : 01013294 , status: <PASS> : positionNo: 1
+2026-06-11 12:18:12.803 DEBUG unloading:639 - updatePalletStatusOnDisplayMonitor: serial number : 01013248 , status: <PASS> : positionNo: 6
+2026-06-11 12:18:12.803 DEBUG unloading:639 - updatePalletStatusOnDisplayMonitor: serial number : 01012028 , status: <PASS> : positionNo: 5
+2026-06-11 12:18:12.803 DEBUG unloading:639 - updatePalletStatusOnDisplayMonitor: serial number : 01013189 , status: <FAIL> : positionNo: 2
+2026-06-11 12:18:12.803 DEBUG unloading:639 - updatePalletStatusOnDisplayMonitor: serial number : 01013244 , status: <PASS> : positionNo: 4
+2026-06-11 12:18:12.803 DEBUG unloading:639 - updatePalletStatusOnDisplayMonitor: serial number : 01012022 , status: <FAIL> : positionNo: 3
+2026-06-11 12:18:12.804 DEBUG unloading:648 - updatePalletStatusOnDisplayMonitor: resultManipulatedMetersData: [{"overallTestResultStatus":"PASS","rackPositionNo":1,"meterSerialNo":"01013294","errorCode":"","id":1}, {"overallTestResultStatus":"PASS","rackPositionNo":6,"meterSerialNo":"01013248","errorCode":"","id":6}, {"overallTestResultStatus":"PASS","rackPositionNo":5,"meterSerialNo":"01012028","errorCode":"","id":5}, {"overallTestResultStatus":"FAIL","rackPositionNo":2,"meterSerialNo":"01013189","errorCode":"Failed: LOE","id":2}, {"overallTestResultStatus":"PASS","rackPositionNo":4,"meterSerialNo":"01013244","errorCode":"","id":4}, {"overallTestResultStatus":"FAIL","rackPositionNo":3,"meterSerialNo":"01012022","errorCode":"Failed: LOE","id":3}]
+2026-06-11 12:18:12.842 DEBUG unloading:653 - updatePalletStatusOnDisplayMonitor: Exit
+2026-06-11 12:18:27.427 INFO  unloading:286 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-11 12:18:27.427 DEBUG unloading:170 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-06-11 12:18:27.427 DEBUG unloading:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-06-11 12:18:27.428 DEBUG unloading:23 - UnloadingBayContext: processPresentState: Entry
+2026-06-11 12:18:27.428 INFO  unloading:27 - S03_check_for_empty_pallet : handleRequest : Entry
+2026-06-11 12:18:27.428 DEBUG unloading:59 - S03_check_for_empty_pallet : check_for_empty_pallet : Entry
+2026-06-11 12:18:27.428 DEBUG unloading:135 - S03_check_for_empty_pallet : isPalletAvailableAt_UnloadingBay : Entry
+2026-06-11 12:18:27.428 DEBUG unloading:149 - isPalletAvailableAt_UnloadingBay : getClusterId: 3 -> getBayId: 10 -> getPortId: ip38
+2026-06-11 12:18:27.541 DEBUG unloading:167 - S03_check_for_empty_pallet : isPalletAvailableAt_UnloadingBay : state : On
+2026-06-11 12:18:27.541 DEBUG unloading:175 - S03_check_for_empty_pallet : isPalletAvailableAt_UnloadingBay : status : true
+2026-06-11 12:18:27.541 DEBUG unloading:179 - S03_check_for_empty_pallet : isPalletAvailableAt_UnloadingBay : Exit
+2026-06-11 12:18:27.541 INFO  unloading:99 - S03_check_for_empty_pallet : pallet Available at Unloading Bay

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.12</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.tasnetwork</groupId>
+	<artifactId>ProCon-Maven-9.2.8</artifactId>
+	<version>ProCon-S0.9.2.8-SNAPSHOT</version>
+	<name>ProCon-Maven</name>
+	<description>Spring Boot with javafx</description>
+	<properties>
+		<java.version>1.8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+	</properties>
+	<dependencies>
+	    <!-- Spring Boot Dependencies -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-data-jdbc</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-data-jpa</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-web</artifactId>
+	        <exclusions>
+	            <exclusion>
+	                <groupId>org.springframework.boot</groupId>
+	                <artifactId>spring-boot-starter-logging</artifactId> <!-- Exclude Logback -->
+	            </exclusion>
+	        </exclusions>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-validation</artifactId>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	
+	    <!-- Log4j2 Core -->
+	    <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-core</artifactId>
+	        <version>2.20.0</version><!--$NO-MVN-MAN-VER$-->
+	    </dependency>
+	
+	    <!-- Log4j2 API -->
+	    <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-api</artifactId>
+	        <version>2.20.0</version><!--$NO-MVN-MAN-VER$-->
+	    </dependency>
+	
+	    <!-- Bridge SLF4J to Log4j2 -->
+	    <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-slf4j-impl</artifactId>
+	        <version>2.20.0</version><!--$NO-MVN-MAN-VER$-->
+	    </dependency>
+	    
+	    <dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.13</version><!--$NO-MVN-MAN-VER$--> <!-- or the latest version -->
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.ning</groupId>
+		    <artifactId>async-http-client</artifactId>
+		    <version>1.9.40</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>de.re.easymodbus</groupId>
+		    <artifactId>easymodbus-tcp</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/lib/EasyModbusJava.jar</systemPath>
+		</dependency>
+	    
+	    <dependency>
+		    <groupId>org.controlsfx</groupId>
+		    <artifactId>controlsfx</artifactId>
+		    <version>8.40.18</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy</artifactId>
+		    <version>3.0.9</version><!--$NO-MVN-MAN-VER$--> <!-- or your preferred version -->
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy-json</artifactId>
+		    </dependency>
+		
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>rest-assured</artifactId>
+		   	<version>4.5.1</version>
+		    
+		</dependency>
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>json-path</artifactId>
+		    <version>4.5.1</version>
+		    
+		</dependency>
+	
+	
+	    <!-- Remove Spring Boot's Default Logging -->
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-logging</artifactId>
+	        <scope>provided</scope>
+	        <exclusions>
+		        <exclusion>
+		            <groupId>org.apache.logging.log4j</groupId>
+		            <artifactId>log4j-to-slf4j</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>ch.qos.logback</groupId>
+		            <artifactId>logback-classic</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>ch.qos.logback</groupId>
+		            <artifactId>logback-core</artifactId>
+		        </exclusion>
+		    </exclusions>
+	    </dependency>
+	
+	    <!-- JavaFX Dependencies -->
+	    <dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-controls</artifactId>
+	        <version>11.0.2</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-fxml</artifactId>
+	        <version>11.0.2</version>
+	    </dependency>
+	    
+	    <dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.12.5</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.10.1</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20241224</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		
+	    <dependency>
+	        <groupId>org.apache.poi</groupId>
+	        <artifactId>poi</artifactId>
+	        <version>5.2.4</version>
+	    </dependency>
+	
+	    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+	    <dependency>
+	        <groupId>org.apache.poi</groupId>
+	        <artifactId>poi-ooxml</artifactId>
+	        <version>5.2.4</version>
+	    </dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.13.0</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fazecast/jSerialComm -->
+		<dependency>
+		    <groupId>com.fazecast</groupId>
+		    <artifactId>jSerialComm</artifactId>
+		    <version>2.10.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/openxml4j -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>openxml4j</artifactId>
+		    <version>1.0-beta</version>
+		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.rxtx/rxtx -->
+		<dependency>
+		    <groupId>org.rxtx</groupId>
+		    <artifactId>rxtx</artifactId>
+		    <version>2.1.7</version>
+		</dependency>
+		
+		
+		
+		
+		
+		
+		
+	</dependencies>
+	<repositories>
+		    <repository>
+		        <id>jitpack.io</id>
+		        <url>https://jitpack.io</url>
+		    </repository>
+	</repositories>
+	<build>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	            <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>repackage</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	            <configuration>
+	            	<includeSystemScope>true</includeSystemScope>
+	                <mainClass>com.tasnetwork.calibration.energymeter.ApplicationLauncher</mainClass>
+	            </configuration>
+	        </plugin>
+	        
+	        
+	
+	        <!-- JavaFX Maven Plugin -->
+	        <plugin>
+	            <groupId>org.openjfx</groupId>
+	            <artifactId>javafx-maven-plugin</artifactId>
+	            <version>0.0.8</version>
+	            <configuration>
+	                <mainClass>com.tasnetwork.calibration.energymeter.ApplicationLauncher</mainClass>
+	            </configuration>
+	        </plugin>
+	        
+	        <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <version>${maven-jar-plugin.version}</version><!--$NO-MVN-MAN-VER$-->
+			</plugin>
+	    </plugins>
+	    
+	    
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <includes>
+	                <include>**/*</include>
+	            </includes>
+	            <filtering>false</filtering>
+	        </resource>
+	        <resource>
+	            <directory>lib</directory>
+	            <targetPath>${project.build.directory}/lib</targetPath>
+	            <includes>
+	                <include>*.jar</include>
+	            </includes>
+	        </resource>
+	    </resources>
+	</build>
+
+
+</project>

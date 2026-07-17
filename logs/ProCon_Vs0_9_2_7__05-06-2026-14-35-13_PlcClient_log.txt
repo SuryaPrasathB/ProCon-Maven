@@ -1,0 +1,374 @@
+2026-06-05 14:35:42.637 DEBUG plc:36 - ModbusTcpClientManager: modbus client : Keep-alive task scheduled!
+2026-06-05 14:36:02.344 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op23
+2026-06-05 14:36:02.346 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op23
+2026-06-05 14:36:02.351 DEBUG plc:160 - modbusConnect2 : Entry
+2026-06-05 14:36:02.351 DEBUG plc:165 - modbusConnect : address: 192.168.1.124
+2026-06-05 14:36:02.351 DEBUG plc:166 - modbusConnect : port: 502
+2026-06-05 14:36:02.354 DEBUG plc:174 - modbusConnect : address2: 192.168.1.124
+2026-06-05 14:36:03.354 INFO  plc:100 - Successfully connected to 192.168.1.124:502
+2026-06-05 14:36:03.456 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op23 : false
+2026-06-05 14:36:03.456 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:03.456 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op23
+2026-06-05 14:36:03.456 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op24
+2026-06-05 14:36:03.456 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op24
+2026-06-05 14:36:03.559 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op24 : false
+2026-06-05 14:36:03.559 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:03.559 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op24
+2026-06-05 14:36:03.559 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op15
+2026-06-05 14:36:03.559 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op15
+2026-06-05 14:36:03.660 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op15 : false
+2026-06-05 14:36:03.660 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:03.660 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op15
+2026-06-05 14:36:03.660 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op25
+2026-06-05 14:36:03.660 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op25
+2026-06-05 14:36:03.763 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op25 : false
+2026-06-05 14:36:03.763 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:03.763 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op25
+2026-06-05 14:36:03.763 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op21
+2026-06-05 14:36:03.763 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op21
+2026-06-05 14:36:03.865 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op21 : false
+2026-06-05 14:36:03.865 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:03.865 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op21
+2026-06-05 14:36:03.865 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op22
+2026-06-05 14:36:03.865 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op22
+2026-06-05 14:36:03.967 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op22 : false
+2026-06-05 14:36:03.967 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:03.967 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op22
+2026-06-05 14:36:03.967 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op26
+2026-06-05 14:36:03.967 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op26
+2026-06-05 14:36:04.070 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op26 : false
+2026-06-05 14:36:04.070 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:04.070 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op26
+2026-06-05 14:36:04.070 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op27
+2026-06-05 14:36:04.070 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op27
+2026-06-05 14:36:04.172 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op27 : false
+2026-06-05 14:36:04.172 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:04.172 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op27
+2026-06-05 14:36:04.172 DEBUG plc:205 - getOutputPortDetails : getClusterId: 2 -> getBayId: 4 -> getPortId: op28
+2026-06-05 14:36:04.172 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 2 -> bayId :4 -> inputPortId: op28
+2026-06-05 14:36:04.274 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  op28 : false
+2026-06-05 14:36:04.274 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  Off : Off
+2026-06-05 14:36:04.274 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 2 : inputPortId : op28
+2026-06-05 14:36:15.586 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:15.586 DEBUG plc:160 - modbusConnect2 : Entry
+2026-06-05 14:36:15.586 DEBUG plc:165 - modbusConnect : address: 192.168.1.125
+2026-06-05 14:36:15.586 DEBUG plc:166 - modbusConnect : port: 502
+2026-06-05 14:36:15.588 DEBUG plc:174 - modbusConnect : address2: 192.168.1.125
+2026-06-05 14:36:16.589 INFO  plc:100 - Successfully connected to 192.168.1.125:502
+2026-06-05 14:36:16.691 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:16.691 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:16.691 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:17.691 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:17.793 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:17.793 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:17.793 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:18.793 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:18.901 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:18.901 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:18.901 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:19.912 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:20.021 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:20.021 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:20.021 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:21.029 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:21.139 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:21.139 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:21.139 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:22.152 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:22.261 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:22.261 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:22.261 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:23.267 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:23.375 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:23.375 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:23.375 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:24.386 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:24.495 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:24.495 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:24.495 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:25.510 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:25.619 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:25.619 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:25.619 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:26.623 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:26.730 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:26.730 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:26.730 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:27.741 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:27.850 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:27.850 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:27.850 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:28.858 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:28.965 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:28.965 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:28.965 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:29.973 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:30.081 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:30.081 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:30.081 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:31.091 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:31.197 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:31.197 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:31.197 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:32.203 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:32.311 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:32.311 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:32.311 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:33.320 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:33.427 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:33.427 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:33.427 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:34.440 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:34.548 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:34.548 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:34.548 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:35.562 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:35.669 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:35.669 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:35.669 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:36.681 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:36.789 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:36.789 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:36.789 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:37.801 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:37.907 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:37.907 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:37.907 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:38.918 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:39.027 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:39.027 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:39.027 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:40.034 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:40.143 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:40.143 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:40.143 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:41.156 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:41.265 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:41.265 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:41.265 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:42.278 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:42.387 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:42.387 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:42.387 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:42.650 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.124:502
+2026-06-05 14:36:42.650 INFO  plc:66 - Sending keep-alive to 192.168.1.124:502 -> address : 1
+2026-06-05 14:36:42.651 INFO  plc:62 - modbusKeepAliveTask: Sending keep-alive to 192.168.1.125:502
+2026-06-05 14:36:42.651 INFO  plc:66 - Sending keep-alive to 192.168.1.125:502 -> address : 1
+2026-06-05 14:36:43.392 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:43.499 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:43.499 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:43.499 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:44.505 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:44.613 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:44.613 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:44.613 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:45.627 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:45.736 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:45.736 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:45.736 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:46.748 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:46.858 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:46.858 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:46.858 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:47.867 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:47.976 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:47.976 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:47.976 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:48.988 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:49.097 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:49.097 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:49.097 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:50.106 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:50.214 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:50.214 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:50.214 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:51.224 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:51.331 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:51.331 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:51.331 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:52.335 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:52.445 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:52.445 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:52.445 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:53.457 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:53.565 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:53.565 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:53.565 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:54.578 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:54.686 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:54.686 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:54.686 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:55.695 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:55.803 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:55.803 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:55.803 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:56.817 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:56.925 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:56.925 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:56.925 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:57.934 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:58.043 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:58.043 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:58.043 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:36:59.055 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:36:59.163 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:36:59.163 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:36:59.163 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:00.171 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:00.280 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:00.280 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:00.280 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:01.290 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:01.397 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:01.397 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:01.397 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:02.407 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:02.515 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:02.515 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:02.515 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:03.515 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:03.626 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:03.626 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:03.626 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:04.635 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:04.743 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:04.743 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:04.743 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:05.752 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:05.861 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:05.861 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:05.861 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:06.872 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:06.982 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:06.982 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:06.982 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:07.996 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:08.105 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:08.105 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:08.105 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:09.118 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:09.227 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:09.227 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:09.227 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:10.229 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:10.338 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:10.338 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:10.338 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:11.338 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:11.439 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:11.439 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:11.439 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:12.440 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:12.542 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:12.542 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:12.542 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:13.543 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:13.650 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:13.650 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:13.650 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:14.659 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:14.768 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:14.768 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:14.768 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:15.768 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:15.870 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:15.870 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:15.870 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:16.871 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:16.973 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:16.973 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:16.973 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:17.973 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:18.076 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:18.076 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:18.076 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:19.077 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:19.180 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:19.180 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:19.180 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:20.181 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:20.283 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:20.283 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:20.283 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:21.284 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:21.385 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:21.385 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:21.385 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:22.385 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:22.487 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:22.487 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:22.487 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:23.492 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:23.601 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:23.601 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:23.601 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:24.612 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:24.721 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:24.721 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:24.721 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:25.729 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:25.837 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:25.837 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:25.837 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:26.844 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:26.951 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:26.951 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:26.951 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:27.962 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:28.072 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:28.072 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:28.072 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:29.081 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:29.190 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:29.190 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:29.190 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:30.191 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:30.293 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:30.293 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:30.293 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:31.294 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:31.396 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:31.396 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:31.396 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:32.410 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:32.519 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:32.519 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:32.519 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:33.534 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:33.641 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:33.641 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:33.641 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:34.654 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:34.763 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:34.763 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:34.763 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:35.773 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:35.883 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:35.883 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:35.883 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:36.885 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:36.994 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:36.994 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:36.994 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:38.008 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:38.117 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:38.117 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:38.117 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:38.132 DEBUG plc:205 - getOutputPortDetails : getClusterId: 3 -> getBayId: 8 -> getPortId: op2
+2026-06-05 14:37:38.132 DEBUG plc:1142 - setOutputDataToPlcBay: clusterId: 3 -> bayId :8 -> outputPortId: op2
+2026-06-05 14:37:38.133 DEBUG plc:1194 - setOutputDataToPlcBay : retryCount: 9 : op2
+2026-06-05 14:37:38.133 DEBUG plc:1197 - setOutputDataToPlcBay: Processing cluster: 3 : outputId : op2
+2026-06-05 14:37:38.240 INFO  plc:1223 - setOutputDataToPlcBay: success : outputPortId:  op2 : false
+2026-06-05 14:37:38.240 DEBUG plc:1243 - setOutputDataToPlcBay: Completed processing for cluster: 3 : outputId : op2
+2026-06-05 14:37:39.123 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:39.232 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:39.232 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:39.232 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:40.241 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:40.349 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:40.349 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:40.349 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34
+2026-06-05 14:37:41.361 DEBUG plc:1256 - getInputDataFromPlcBay: clusterId: 3 -> bayId :8 -> inputPortId: ip34
+2026-06-05 14:37:41.467 INFO  plc:1339 - getInputDataFromPlcBay: inputPortId:  ip34 : true
+2026-06-05 14:37:41.467 INFO  plc:1343 - getInputDataFromPlcBay: inputPortId:  On : On
+2026-06-05 14:37:41.467 DEBUG plc:1374 - getInputDataFromPlcBay: Completed processing for cluster: 3 : inputPortId : ip34

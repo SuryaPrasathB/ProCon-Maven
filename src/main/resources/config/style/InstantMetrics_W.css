@@ -1,0 +1,496 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*
+.table-column {
+  -fx-alignment: CENTER_RIGHT;
+}
+
+.table-view{
+   -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: white;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #005797;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+
+
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+*/
+
+/* .table-cell:filled {
+    -fx-background-color: -fx-my-cell-background;
+}*/
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: white;
+ 	-fx-effect: null;
+ 	-fx-opacity: 0;
+}
+.root{
+	    -fx-font-size: 8pt;
+	     -fx-text-fill: white;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: #FFFF00; /* When this */
+}
+
+.date-picker > .text-field {
+    -fx-background-color:lightgrey;
+    -fx-text-fill: black;
+    
+}
+
+
+
+.spinner > .text-field {
+    -fx-background-color:lightgrey;
+    -fx-text-fill: black;
+}
+/*
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}*/
+/*
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: white;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; 
+} */
+
+
+
+
+
+/* 
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; 
+}*/
+.table-view {
+    -fx-base: white;
+    -fx-control-inner-background: white;
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent; 
+    -fx-padding: 5;
+    -fx-font-weight:bold;
+
+
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 8pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
+  /*      -fx-text-fill: black;*/
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+    -fx-font-weight:bold;
+
+}
+
+.table-view .table-cell{
+    -fx-font-weight:bold;
+    
+
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+
+
+/* 
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
+}*/
+
+
+
+.check-box .box {
+
+-fx-background-color: grey;
+-fx-border-color:white;
+-fx-border-radius:3px; 
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+-fx-background-color: #3fbfc1;
+/*-fx-background-color: #28a3f4;*/
+}
+
+/*.progress-bar .track {
+     -fx-background-color:lightgrey;
+     -fx-background-insets:  0, 1;
+}*/
+/* .progress-bar  {
+	-fx-background-color:
+        -fx-box-border,
+        linear-gradient(to bottom, derive(-fx-color,30%) 5%, derive(-fx-color,-17%));
+    -fx-border-radius: 20 20 20 20;
+        -fx-background-insets: 0, 1;
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
+}*/
+
+/*
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(
+        from 0px .75em to .75em 0px,
+        repeat,
+        -fx-accent 0%,
+        -fx-accent 49%,
+        derive(-fx-accent, 30%) 50%,
+        derive(-fx-accent, 30%) 99%
+    );
+} */
+/* 
+.progress-bar:indeterminate .bar {
+    -fx-background-color: lightgrey;
+}*/
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    /* 3:, 4: */
+    -fx-background-color: linear-gradient(#333 0%, #777 25%, #aaa 75%, #eee 100%);
+    -fx-text-fill: white; /* 5 */
+}
+.list-view { -fx-text-fill: black; /* 5 */ 
+	/*  -fx-border-radius: 5 5 5 5;*/
+    -fx-background-radius:5 5 5 5;
+        -fx-background-color: black; /* 2 */
+}
+
+.list-cell:odd { -fx-background-color: grey; 
+	/* -fx-border-radius: 5 5 5 5;*/
+    -fx-background-radius:5 5 5 5;/* 1 */ }
+.list-cell:even { -fx-background-color: lightgrey;
+	-fx-background-radius:5 5 5 5; 
+/* for information */ }
+.list-cell:filled:hover { 
+    -fx-background-color: #66ffe0; /* 2 */
+    -fx-text-fill: black; /* 5 */
+}
+.titled-pane {
+    -fx-effect: dropshadow(three-pass-box, #9F9F9F, 15, 0, 0, 0);
+    -fx-animated: true;
+    -fx-text-fill: #505050;
+    -fx-background-color: grey;
+    -fx-border-radius: 20 20 20 20;
+
+    /*-fx-background-radius: 5,5,0,0;0, 0, 0;*/
+}
+
+.titled-pane > .title  {
+   /*  -fx-background-radius: 5,5,0,0;0, 0, 0;*/
+
+   -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+    -fx-font: bold 14px System;
+    
+    /* stop the background from being blue on focus */
+    -fx-background-color: ladder(
+            red,
+            black 20%,
+            derive(#d0d0d0,-30%) 30%
+        ), 
+        linear-gradient(
+        to bottom,
+            ladder(#d0d0d0, 
+                derive(#d0d0d0,80%) 60%, 
+                white 82%) 0%,
+            ladder(#d0d0d0, 
+                derive(#d0d0d0,20%) 10%, 
+                derive(#d0d0d0,-10%) 80%) 100%
+        ), linear-gradient(
+            to bottom,
+            derive(#d0d0d0,34%) 0%,
+            derive(#d0d0d0,-18%) 100%
+           /*   derive(#3fbfc1,34%) 0%,
+            derive(#3fbfc1,-18%) 100%*/           
+            
+        );
+}
+
+.titled-pane:focused > .title > .arrow-button .arrow {
+    /* do not highlight the title pane arrow on focus */
+    -fx-background-color: #606060;
+}
+
+/* .titled-pane > *.content {
+    -fx-background-color:
+        -fx-box-border,
+        linear-gradient(to bottom, derive(-fx-color,-02%), derive(-fx-color,65%) 12%, derive(-fx-color,23%) 88%, derive(-fx-color,50%) 99%, -fx-box-border);
+    -fx-background-insets: 20, 5 1 1 1;
+    -fx-padding: 0.167em;
+    -fx-background-radius: 10 10 10 10, 20 20 20 20, 5 5 5 5;
+}*/
+
+
+
+.ts-label {
+	-fx-background-radius: 10 10 0 0;
+	-fx-background-color:
+	linear-gradient(to bottom, rgba(255,255,255,0.7) 15%, rgba(50,100,150,0.45) 100%);
+	/*linear-gradient(to bottom, rgba(rgba(50,100,150,0.45) 100%,255,255,255,0.7) 15% );*/
+	/*linear-gradient(to Top, rgba(255,255,255,0.7) 15%, rgba(50,100,150,0.45) 100%);*/
+	
+
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "System";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+.scroll-pane {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:black;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: black;
+    -fx-border-color: black;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: black;
+    -fx-border-color: black;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: grey;
+    -fx-background-radius: 5em;
+}
+
+
+
+.text-field {
+-fx-background-color: lightgrey;
+-fx-text-fill: black;
+}
+
+.text-input:readonly {
+    -fx-background-color: lightgrey;
+    -fx-text-fill: black;
+	-fx-cursor: default ;
+}
+/* 
+.combo-box .list-cell 
+{
+    -fx-background: lightgrey;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.8em; 
+}
+
+.combo-box-popup .list-view 
+{
+    -fx-background-color: lightgrey, lightgrey;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}    
+
+.combo-box-popup .list-view .list-cell 
+{
+    -fx-padding: 4 0 4 5;
+  
+    */
+
+    /* No alternate highlighting */
+ /*    -fx-background-color: lightgrey;
+}*/
+/* 
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover 
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover 
+{
+    -fx-background-color: lightgrey;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base  
+{
+
+*/
+    /*-fx-skin: "com.sun.javafx.scene.control.skin.ComboBoxBaseSkin";*/
+    /* 
+    -fx-background-color: lightgrey, lightgrey, lightgrey, lightgrey;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+.combo-box-base:hover
+{
+    -fx-color: -fx-hover-base;
+}
+
+.combo-box-base:showing 
+{
+    -fx-color: -fx-pressed-base;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+
+*/
+/* JMetroDarkTheme for buttons */
+/* 
+.button {
+    -fx-padding: 5 22 5 22;
+
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+
+    -fx-border-radius: 5,4,3;*//*0, 0;*/
+/* 
+    -fx-background-color: #d8d8d8;
+
+     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #1d1d1d;
+}
+
+.button:hover{
+    -fx-background-color: #3a3a3a;
+}
+
+.button:pressed, .button:default:hover:pressed
+{
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
+}
+
+.button:focused
+{
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 2;
+    -fx-border-style: solid, segments(1, 2);
+    /*-fx-border-radius: 0, 0;*/
+   /*  -fx-border-radius: 5,4,3;*//*0, 0;*/
+ /*    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled
+{
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: #1d1d1d;
+}
+
+.button:default
+{
+    -fx-background-color: #008287;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover{
+    -fx-background-color: #219297;
+}
+
+
+*/

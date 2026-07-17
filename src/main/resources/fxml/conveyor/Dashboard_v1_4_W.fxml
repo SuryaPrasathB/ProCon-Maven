@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1781.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dashboard.DashboardController">
+<BorderPane>
+      <left>
+        <HBox prefHeight="862.0" prefWidth="1735.0" spacing="10" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
+            <ScrollPane fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="771.0" prefWidth="1076.0" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+                <VBox prefHeight="975.0" prefWidth="1072.0" spacing="20" style="-fx-padding: 20;">
+                    <GridPane fx:id="palletGrid" hgap="10" prefHeight="982.0" prefWidth="1032.0" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                        </rowConstraints>
+                        <!-- Row 0 -->
+                        <AnchorPane fx:id="bay1Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" />
+                        <AnchorPane fx:id="pallet1Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;">
+                            <Label text="FT" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay2Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="1" />
+                        <AnchorPane fx:id="pallet2Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1">
+                            <Label text="HV" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay3Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" />
+                        <AnchorPane fx:id="pallet3Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2">
+                            <Label text="IR" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay4Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" />
+                        <AnchorPane fx:id="pallet4Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3">
+                            <Label text="Calib" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+
+                        <!-- Row 1 -->
+                        <AnchorPane fx:id="bay5Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.rowIndex="1" />
+                        <AnchorPane fx:id="pallet5Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Waiting4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay6Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <AnchorPane fx:id="pallet6Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="Waiting3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay7Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <AnchorPane fx:id="pallet7Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <Label text="Waiting2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay8Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <AnchorPane fx:id="pallet8Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <Label text="Waiting1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+
+      						<!-- Row 2 - Complete with all bay containers and properly aligned verification group -->
+						<AnchorPane fx:id="bay9Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.rowIndex="2" />
+						<AnchorPane fx:id="bay10Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+						<AnchorPane fx:id="bay11Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+						<AnchorPane fx:id="bay12Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+						
+						<!-- Verification group container with final alignment adjustments -->
+						<AnchorPane fx:id="verificationBayGroup" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="2">
+						    <children>
+						        <!-- Verification4 -->
+						        <AnchorPane fx:id="pallet9Container" layoutX="19.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
+						            <Label text="Verification4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						            <GridPane.margin>
+						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						            </GridPane.margin>
+						        </AnchorPane>
+						        
+						        <!-- Verification3 -->
+						        <AnchorPane fx:id="pallet10Container" layoutX="298.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
+						            <Label text="Verification3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						            <GridPane.margin>
+						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						            </GridPane.margin>
+						        </AnchorPane>
+						        
+						        <!-- Verification2 -->
+						        <AnchorPane fx:id="pallet11Container" layoutX="576.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
+						            <Label text="Verification2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						            <GridPane.margin>
+						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						            </GridPane.margin>
+						        </AnchorPane>
+						        
+						        <!-- Verification1 (left-shifted) -->
+						        <AnchorPane fx:id="pallet12Container" layoutX="855.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
+						            <Label text="Verification1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						            <GridPane.margin>
+						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						            </GridPane.margin>
+						        </AnchorPane>
+						    </children>
+						</AnchorPane>
+
+
+                        <!-- Row 3 -->
+                        <AnchorPane fx:id="bay13Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.rowIndex="3" />
+                        <AnchorPane fx:id="pallet13Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                            <Label text="Sta1_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay14Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <AnchorPane fx:id="pallet14Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <Label text="Sta1_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay15Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <AnchorPane fx:id="pallet15Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                            <Label text="Sta1_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay16Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <AnchorPane fx:id="pallet16Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                            <Label text="Sta1_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+
+                        <!-- Row 4 -->
+                        <AnchorPane fx:id="bay17Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.rowIndex="4" />
+                        <AnchorPane fx:id="pallet17Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                            <Label text="Sta2_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay18Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <AnchorPane fx:id="pallet18Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <Label text="Sta2_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay19Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <AnchorPane fx:id="pallet19Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                            <Label text="Sta2_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                     <AnchorPane fx:id="bay20Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <AnchorPane fx:id="pallet20Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                            <Label text="Sta2_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                            </GridPane.margin>
+                        </AnchorPane>
+                    </GridPane>
+                </VBox>
+            </ScrollPane>
+      
+            <VBox prefHeight="983.0" prefWidth="522.0" spacing="5" style="-fx-padding: 0 10 0 0;">
+            <HBox prefHeight="0.0" prefWidth="512.0">
+               <children>
+                  <Pane prefHeight="20.0" prefWidth="73.0" />
+                  <StackPane fx:id="motorControlTabContainer" alignment="CENTER_RIGHT" style="-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 1 0 1 1;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Motor Control">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <Pane prefHeight="20.0" prefWidth="24.0" />
+                  <StackPane fx:id="mainControlTabContainer" alignment="CENTER_RIGHT" style="-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 1 0 1 1;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Controls">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <Pane prefHeight="20.0" prefWidth="24.0" />
+                  <StackPane fx:id="launcherTabContainer" alignment="CENTER_RIGHT" style="-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 1 0 1 1;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="LAUNCHERS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+                <HBox prefHeight="230.0" prefWidth="512.0" spacing="10">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="rejectionBayContainer" prefHeight="230.0" prefWidth="262.0" style="-fx-border-color: black;" />
+            			        <AnchorPane fx:id="rejectionPalletContainer" layoutX="19.0" layoutY="3.0" minHeight="173.0" minWidth="200" prefHeight="199.0" prefWidth="228.0" style="-fx-border-color: red;">
+            				        <Label layoutX="6.0" layoutY="-6.0" prefHeight="39.0" prefWidth="92.0" style="-fx-font-weight: bold; -fx-text-fill: red;" text="Rejection" />
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                           </padding>
+            				    </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="unloadingBayContainer" prefHeight="230.0" prefWidth="262.0" style="-fx-border-color: black;" />
+            
+                           				    <AnchorPane fx:id="unloadingPalletContainer" layoutX="23.0" layoutY="3.0" minHeight="171.0" minWidth="200" prefHeight="197.0" prefWidth="223.0" style="-fx-border-color: green;">
+            				        <Label layoutX="7.0" layoutY="5.0" prefHeight="18.0" prefWidth="94.0" style="-fx-font-weight: bold; -fx-text-fill: green;" text="Unloading" />
+            				    </AnchorPane>
+                     </children>
+                  </AnchorPane>
+      			    </HBox>
+      
+                <Label style="-fx-font-weight: bold;" text="Event Log" />
+                <TextArea fx:id="eventLog" editable="false" prefHeight="251.0" prefWidth="260.0" style="-fx-border-color: black;" wrapText="true" />
+               <VBox prefHeight="235.0" prefWidth="535.0">
+                  <children>
+                     <Label style="-fx-font-weight: bold;" text="History" />
+                     <GridPane prefHeight="24.0" prefWidth="511.0">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.199951171875" minWidth="10.0" prefWidth="118.60004119873048" />
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.4000244140625" minWidth="10.0" prefWidth="202.59998321533203" />
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.59999999999997" minWidth="10.0" prefWidth="127.40004882812502" />
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.59999999999997" minWidth="10.0" prefWidth="157.79995117187502" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <ComboBox fx:id="periodComboBox" onAction="#onPeriodSelectionChanged" prefWidth="150.0" GridPane.columnIndex="1" />
+                           <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#refreshMetricsTable" text="Refresh" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </Button>
+                           <AnchorPane prefHeight="26.0" prefWidth="112.0">
+                              <children>
+                                 <Label layoutX="10.0" layoutY="2.0" prefHeight="18.0" prefWidth="61.0" text="Period" />
+                              </children>
+                           </AnchorPane>
+                           <Button fx:id="btnDummy" mnemonicParsing="false" onAction="#addDummySampleData" text="Dummy" GridPane.columnIndex="2" />
+                        </children>
+                        <VBox.margin>
+                           <Insets bottom="10.0" top="10.0" />
+                        </VBox.margin>
+                     </GridPane>
+                     <HBox prefHeight="178.0" prefWidth="513.0">
+                        <children>
+                           <TitledPane animated="false" collapsible="false" prefWidth="255.0" text="Rejection Bay">
+                              <content>
+                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                       <GridPane layoutX="-1.0" prefHeight="132.0" prefWidth="254.0">
+                                          <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                          <children>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Total Meters:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" text="Passed Meters :" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="52.0" text="Failed Meters :" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" text="Throughput/Hour :" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <TextField fx:id="totalNoOfMetersRJ" GridPane.columnIndex="1">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                             <TextField fx:id="passedMetersRJ" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                             <TextField fx:id="failedMetersRJ" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                             <TextField fx:id="throughputRJ" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                          </children>
+                                       </GridPane>
+                                    </children>
+                                 </AnchorPane>
+                              </content>
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </TitledPane>
+                           <Label text="    " />
+                           <TitledPane animated="false" collapsible="false" prefWidth="255.0" text="Unloading Bay">
+                              <content>
+                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                       <GridPane layoutX="-1.0" layoutY="1.0" prefHeight="132.0" prefWidth="254.0">
+                                          <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                          <children>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Total Meters:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" text="Passed Meters :" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="52.0" text="Failed Meters :" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="10.0" layoutY="18.0" text="Throughput/Hour :" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                                <GridPane.margin>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </GridPane.margin>
+                                             </Label>
+                                             <TextField fx:id="totalNoOfMetersUL" GridPane.columnIndex="1">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                             <TextField fx:id="passedMetersUL" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                             <TextField fx:id="failedMetersUL" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                             <TextField fx:id="throughputUL" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                <GridPane.margin>
+                                                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                </GridPane.margin>
+                                                <padding>
+                                                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                </padding>
+                                             </TextField>
+                                          </children>
+                                       </GridPane>
+                                    </children>
+                                 </AnchorPane>
+                              </content>
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </TitledPane>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+               <HBox prefHeight="66.0" prefWidth="535.0">
+                  <children>
+                     <GridPane prefHeight="100.0" prefWidth="529.0">
+                        <columnConstraints>
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="255.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="257.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                           <Button fx:id="btnAllStart" mnemonicParsing="false" onAction="#btnAllStartOnClick" prefHeight="152.0" prefWidth="256.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="START" textFill="WHITE">
+                              <GridPane.margin>
+                                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                              </GridPane.margin>
+                              <font>
+                                 <Font name="System Bold" size="28.0" />
+                              </font>
+                           </Button>
+                           <Button fx:id="btnAllStop" mnemonicParsing="false" onAction="#btnAllStopOnClick" prefHeight="177.0" prefWidth="256.0" style="-fx-background-color: red; -fx-background-radius: 20;" text="STOP" textFill="WHITE" GridPane.columnIndex="1">
+                              <GridPane.margin>
+                                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                              </GridPane.margin>
+                              <font>
+                                 <Font name="System Bold" size="28.0" />
+                              </font>
+                           </Button>
+                        </children>
+                     </GridPane>
+                  </children>
+               </HBox>
+            </VBox>
+        </HBox>
+      </left>
+</BorderPane>
+</AnchorPane>

@@ -1,0 +1,188 @@
+2026-05-28 16:07:30.755 INFO  sta_nld2:1675 - btnSctNlt2StartOnClick : Invoked:
+2026-05-28 16:07:30.755 INFO  sta_nld2:1677 - SCT NLT BAY 2 : STARTED
+2026-05-28 16:07:30.757 INFO  sta_nld2:1733 - btnSctNlt2StartOnClick : Exit:
+2026-05-28 16:07:30.858 DEBUG sta_nld2:36 - StaNld_Bay2 : Entry
+2026-05-28 16:07:30.858 DEBUG sta_nld2:44 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : Entry
+2026-05-28 16:07:30.863 DEBUG sta_nld2:63 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : getTableStatePlanner2 : Size : 18
+2026-05-28 16:07:30.865 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:30.865 INFO  sta_nld2:39 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Entry
+2026-05-28 16:07:30.865 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-28 16:07:30.865 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-28 16:07:31.971 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-28 16:07:31.971 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-28 16:07:31.971 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-28 16:07:32.971 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-28 16:07:32.971 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-28 16:07:33.074 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-28 16:07:33.074 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-28 16:07:33.074 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-28 16:07:34.074 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-28 16:07:34.074 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-28 16:07:34.176 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-28 16:07:34.176 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-28 16:07:34.176 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-28 16:07:35.177 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-28 16:07:35.177 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-28 16:07:35.280 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-28 16:07:35.280 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-28 16:07:35.280 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-28 16:07:35.280 INFO  sta_nld2:106 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Pallet Available
+2026-05-28 16:07:35.280 INFO  sta_nld2:148 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-28 16:07:35.280 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Status     : true
+2026-05-28 16:07:35.280 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:07:35.280 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:35.280 INFO  sta_nld2:36 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-28 16:07:35.280 INFO  sta_nld2:70 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-28 16:07:35.280 INFO  sta_nld2:84 - S02_qR_Code_Scanning_of_Pallet :  verificToSta2TransitTimeInSec: 15
+2026-05-28 16:07:35.280 INFO  sta_nld2:85 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-28 16:07:35.280 INFO  sta_nld2:86 - S02_qR_Code_Scanning_of_Pallet :  StaNld_Bay2.isStopProcessRequestedSctNltBay2(): false
+2026-05-28 16:07:35.281 DEBUG sta_nld2:123 - qrCodePalletScanning : Entry : STNLD2B
+2026-05-28 16:07:38.754 DEBUG sta_nld2:174 - qrCodePalletScanning : scannedData: LSCSM06P023
+
+2026-05-28 16:07:38.754 DEBUG sta_nld2:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-28 16:07:38.754 DEBUG sta_nld2:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260526T150419_0014_LSCSM06P023  selectedBayTypeKey: STNLD2B
+2026-05-28 16:07:38.766 DEBUG sta_nld2:371 - qrCodePalletScanning: refreshDashBoard: STA2 bay
+2026-05-28 16:07:38.795 DEBUG sta_nld2:376 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 4
+2026-05-28 16:07:38.795 DEBUG sta_nld2:466 - qrCodePalletScanning: batch update 
+2026-05-28 16:07:38.795 INFO  sta_nld2:476 - qrCodePalletScanning: batch update: all STA2 removed
+2026-05-28 16:07:38.895 DEBUG sta_nld2:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-05-28 16:07:38.895 DEBUG sta_nld2:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P019
+2026-05-28 16:07:38.896 INFO  sta_nld2:504 - qrCodePalletScanning: batch update: STA2 added
+2026-05-28 16:07:38.946 DEBUG sta_nld2:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P019
+2026-05-28 16:07:38.946 DEBUG sta_nld2:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P24
+2026-05-28 16:07:38.946 INFO  sta_nld2:504 - qrCodePalletScanning: batch update: STA2 added
+2026-05-28 16:07:38.996 DEBUG sta_nld2:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P24
+2026-05-28 16:07:38.996 DEBUG sta_nld2:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P15
+2026-05-28 16:07:38.996 INFO  sta_nld2:504 - qrCodePalletScanning: batch update: STA2 added
+2026-05-28 16:07:39.046 DEBUG sta_nld2:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P15
+2026-05-28 16:07:39.046 DEBUG sta_nld2:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P023
+2026-05-28 16:07:39.046 INFO  sta_nld2:504 - qrCodePalletScanning: batch update: STA2 added
+2026-05-28 16:07:39.096 DEBUG sta_nld2:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P023
+2026-05-28 16:07:39.096 DEBUG sta_nld2:220 - qrCodePalletScanning : palletDistinctId:  : 20260526T150419_0014_LSCSM06P023 : bay: STNLD2B : qrCode: LSCSM06P023
+2026-05-28 16:07:39.096 DEBUG sta_nld2:248 - qrCodePalletScanning : status : GOOD : STNLD2B
+2026-05-28 16:07:39.096 DEBUG sta_nld2:250 - qrCodePalletScanning : Exit : STNLD2B
+2026-05-28 16:07:39.096 INFO  sta_nld2:82 - qrCodePalletScanningProcess : QR Code Scan Successful : STNLD2B
+2026-05-28 16:07:39.096 INFO  sta_nld2:113 - qrCodePalletScanningProcess : Exit : STNLD2B
+2026-05-28 16:07:39.096 INFO  sta_nld2:98 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-28 16:07:39.097 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay2 : Status     : true
+2026-05-28 16:07:39.097 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:07:39.097 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:39.097 INFO  sta_nld2:26 - S03_close_the_fingerTip_Latch : Entry
+2026-05-28 16:07:39.097 DEBUG sta_nld2:51 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : Entry
+2026-05-28 16:07:39.097 DEBUG sta_nld2:61 - PortId    : op2
+2026-05-28 16:07:39.097 DEBUG sta_nld2:62 - ClusterId : 3
+2026-05-28 16:07:39.097 DEBUG sta_nld2:63 - BayId     : 8
+2026-05-28 16:07:39.200 DEBUG sta_nld2:81 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : status : true
+2026-05-28 16:07:39.200 DEBUG sta_nld2:86 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : Exit
+2026-05-28 16:07:39.200 INFO  sta_nld2:36 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-28 16:07:39.200 INFO  sta_nld2:45 - S03_close_the_fingerTip_Latch : Exit
+2026-05-28 16:07:39.200 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S03_close_the_fingerTip_Latch_Bay2 : Status     : true
+2026-05-28 16:07:39.200 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S03_close_the_fingerTip_Latch_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:07:39.200 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:39.200 INFO  sta_nld2:30 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-28 16:07:39.200 DEBUG sta_nld2:79 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Entry
+2026-05-28 16:07:39.200 DEBUG sta_nld2:87 - PortId    : ip35
+2026-05-28 16:07:39.200 DEBUG sta_nld2:88 - ClusterId : 3
+2026-05-28 16:07:39.200 DEBUG sta_nld2:89 - BayId     : 8
+2026-05-28 16:07:39.302 DEBUG sta_nld2:120 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : state : Off
+2026-05-28 16:07:39.302 DEBUG sta_nld2:122 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Exit
+2026-05-28 16:07:40.302 DEBUG sta_nld2:79 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Entry
+2026-05-28 16:07:40.302 DEBUG sta_nld2:87 - PortId    : ip35
+2026-05-28 16:07:40.302 DEBUG sta_nld2:88 - ClusterId : 3
+2026-05-28 16:07:40.302 DEBUG sta_nld2:89 - BayId     : 8
+2026-05-28 16:07:40.404 DEBUG sta_nld2:120 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : state : On
+2026-05-28 16:07:40.404 DEBUG sta_nld2:122 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Exit
+2026-05-28 16:07:40.508 INFO  sta_nld2:53 - set_motor_not_required : Success
+2026-05-28 16:07:40.508 INFO  sta_nld2:73 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-28 16:07:40.508 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay2 : Status     : true
+2026-05-28 16:07:40.508 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:07:40.508 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:40.508 INFO  sta_nld2:31 - S28_turn_off_motor_STA_NLDT_Bay2 : Entry
+2026-05-28 16:07:40.508 DEBUG sta_nld2:57 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off : Entry
+2026-05-28 16:07:40.611 INFO  sta_nld2:69 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off: set_motor_not_required : Success
+2026-05-28 16:07:40.611 INFO  sta_nld2:41 - S28_turn_off_motor_STA_NLDT_Bay2 : Motor Turned Off
+2026-05-28 16:07:40.611 INFO  sta_nld2:50 - S28_turn_off_motor_STA_NLDT_Bay2 : Exit
+2026-05-28 16:07:40.611 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-28 16:07:40.611 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:07:40.611 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:40.611 INFO  sta_nld2:45 - S045_Select_Run_Project : Entry
+2026-05-28 16:07:42.612 INFO  sta_nld2:153 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap : Entry
+2026-05-28 16:07:42.636 INFO  sta_nld2:174 - Enough pallets (4) found. Proceeding with meter mapping.
+2026-05-28 16:07:42.659 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=1 => palletIndex=3, configPalletRackPos=1 => Serial=01012049, PalletID=20260526T150419_0014_LSCSM06P023, PalletRackPosition=1
+2026-05-28 16:07:42.674 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=2 => palletIndex=3, configPalletRackPos=2 => Serial=01013200, PalletID=20260526T150419_0014_LSCSM06P023, PalletRackPosition=2
+2026-05-28 16:07:42.688 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=3 => palletIndex=3, configPalletRackPos=3 => Serial=01013366, PalletID=20260526T150419_0014_LSCSM06P023, PalletRackPosition=3
+2026-05-28 16:07:42.710 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=4 => palletIndex=3, configPalletRackPos=4 => Serial=01012004, PalletID=20260526T150419_0014_LSCSM06P023, PalletRackPosition=4
+2026-05-28 16:07:42.725 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=5 => palletIndex=3, configPalletRackPos=5 => Serial=01012052, PalletID=20260526T150419_0014_LSCSM06P023, PalletRackPosition=5
+2026-05-28 16:07:42.748 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=6 => palletIndex=3, configPalletRackPos=6 => Serial=01013196, PalletID=20260526T150419_0014_LSCSM06P023, PalletRackPosition=6
+2026-05-28 16:07:42.763 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=7 => palletIndex=2, configPalletRackPos=1 => Serial=01013205, PalletID=20260526T145955_0013_LSCSM06P15, PalletRackPosition=1
+2026-05-28 16:07:42.784 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=8 => palletIndex=2, configPalletRackPos=2 => Serial=01013364, PalletID=20260526T145955_0013_LSCSM06P15, PalletRackPosition=2
+2026-05-28 16:07:42.798 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=9 => palletIndex=2, configPalletRackPos=3 => Serial=01013367, PalletID=20260526T145955_0013_LSCSM06P15, PalletRackPosition=3
+2026-05-28 16:07:42.812 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=10 => palletIndex=2, configPalletRackPos=4 => Serial=01013357, PalletID=20260526T145955_0013_LSCSM06P15, PalletRackPosition=4
+2026-05-28 16:07:42.827 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=11 => palletIndex=2, configPalletRackPos=5 => Serial=01012004, PalletID=20260526T145955_0013_LSCSM06P15, PalletRackPosition=5
+2026-05-28 16:07:42.843 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=12 => palletIndex=2, configPalletRackPos=6 => Serial=01012003, PalletID=20260526T145955_0013_LSCSM06P15, PalletRackPosition=6
+2026-05-28 16:07:42.856 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=13 => palletIndex=1, configPalletRackPos=1 => Serial=01013231, PalletID=20260526T145345_0011_LSCSM06P24, PalletRackPosition=1
+2026-05-28 16:07:42.869 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=14 => palletIndex=1, configPalletRackPos=2 => Serial=01012023, PalletID=20260526T145345_0011_LSCSM06P24, PalletRackPosition=2
+2026-05-28 16:07:42.904 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=15 => palletIndex=1, configPalletRackPos=3 => Serial=01013228, PalletID=20260526T145345_0011_LSCSM06P24, PalletRackPosition=3
+2026-05-28 16:07:42.917 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=16 => palletIndex=1, configPalletRackPos=4 => Serial=01012002, PalletID=20260526T145345_0011_LSCSM06P24, PalletRackPosition=4
+2026-05-28 16:07:42.931 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=17 => palletIndex=1, configPalletRackPos=5 => Serial=01013370, PalletID=20260526T145345_0011_LSCSM06P24, PalletRackPosition=5
+2026-05-28 16:07:42.945 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=18 => palletIndex=1, configPalletRackPos=6 => Serial=01013375, PalletID=20260526T145345_0011_LSCSM06P24, PalletRackPosition=6
+2026-05-28 16:07:42.959 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=19 => palletIndex=0, configPalletRackPos=1 => Serial=01013371, PalletID=20260526T144925_0010_LSCSM06P019, PalletRackPosition=1
+2026-05-28 16:07:42.974 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=20 => palletIndex=0, configPalletRackPos=2 => Serial=01013374, PalletID=20260526T144925_0010_LSCSM06P019, PalletRackPosition=2
+2026-05-28 16:07:42.988 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=21 => palletIndex=0, configPalletRackPos=3 => Serial=01013413, PalletID=20260526T144925_0010_LSCSM06P019, PalletRackPosition=3
+2026-05-28 16:07:43.002 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=22 => palletIndex=0, configPalletRackPos=4 => Serial=01013373, PalletID=20260526T144925_0010_LSCSM06P019, PalletRackPosition=4
+2026-05-28 16:07:43.015 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=23 => palletIndex=0, configPalletRackPos=5 => Serial=01013372, PalletID=20260526T144925_0010_LSCSM06P019, PalletRackPosition=5
+2026-05-28 16:07:43.029 INFO  sta_nld2:218 - getMeterSerialNumberWithPalletMap: Mapped globalPos=24 => palletIndex=0, configPalletRackPos=6 => Serial=01013309, PalletID=20260526T144925_0010_LSCSM06P019, PalletRackPosition=6
+2026-05-28 16:07:43.029 INFO  sta_nld2:228 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap: Final positionToMeterMap = {1={meterSerialNo=01012049, palletRackPositionNo=1, palletDistinctId=20260526T150419_0014_LSCSM06P023}, 2={meterSerialNo=01013200, palletRackPositionNo=2, palletDistinctId=20260526T150419_0014_LSCSM06P023}, 3={meterSerialNo=01013366, palletRackPositionNo=3, palletDistinctId=20260526T150419_0014_LSCSM06P023}, 4={meterSerialNo=01012004, palletRackPositionNo=4, palletDistinctId=20260526T150419_0014_LSCSM06P023}, 5={meterSerialNo=01012052, palletRackPositionNo=5, palletDistinctId=20260526T150419_0014_LSCSM06P023}, 6={meterSerialNo=01013196, palletRackPositionNo=6, palletDistinctId=20260526T150419_0014_LSCSM06P023}, 7={meterSerialNo=01013205, palletRackPositionNo=1, palletDistinctId=20260526T145955_0013_LSCSM06P15}, 8={meterSerialNo=01013364, palletRackPositionNo=2, palletDistinctId=20260526T145955_0013_LSCSM06P15}, 9={meterSerialNo=01013367, palletRackPositionNo=3, palletDistinctId=20260526T145955_0013_LSCSM06P15}, 10={meterSerialNo=01013357, palletRackPositionNo=4, palletDistinctId=20260526T145955_0013_LSCSM06P15}, 11={meterSerialNo=01012004, palletRackPositionNo=5, palletDistinctId=20260526T145955_0013_LSCSM06P15}, 12={meterSerialNo=01012003, palletRackPositionNo=6, palletDistinctId=20260526T145955_0013_LSCSM06P15}, 13={meterSerialNo=01013231, palletRackPositionNo=1, palletDistinctId=20260526T145345_0011_LSCSM06P24}, 14={meterSerialNo=01012023, palletRackPositionNo=2, palletDistinctId=20260526T145345_0011_LSCSM06P24}, 15={meterSerialNo=01013228, palletRackPositionNo=3, palletDistinctId=20260526T145345_0011_LSCSM06P24}, 16={meterSerialNo=01012002, palletRackPositionNo=4, palletDistinctId=20260526T145345_0011_LSCSM06P24}, 17={meterSerialNo=01013370, palletRackPositionNo=5, palletDistinctId=20260526T145345_0011_LSCSM06P24}, 18={meterSerialNo=01013375, palletRackPositionNo=6, palletDistinctId=20260526T145345_0011_LSCSM06P24}, 19={meterSerialNo=01013371, palletRackPositionNo=1, palletDistinctId=20260526T144925_0010_LSCSM06P019}, 20={meterSerialNo=01013374, palletRackPositionNo=2, palletDistinctId=20260526T144925_0010_LSCSM06P019}, 21={meterSerialNo=01013413, palletRackPositionNo=3, palletDistinctId=20260526T144925_0010_LSCSM06P019}, 22={meterSerialNo=01013373, palletRackPositionNo=4, palletDistinctId=20260526T144925_0010_LSCSM06P019}, 23={meterSerialNo=01013372, palletRackPositionNo=5, palletDistinctId=20260526T144925_0010_LSCSM06P019}, 24={meterSerialNo=01013309, palletRackPositionNo=6, palletDistinctId=20260526T144925_0010_LSCSM06P019}}
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 1, Meter Serial No: 01012049, Pallet Distinct ID: 20260526T150419_0014_LSCSM06P023
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 2, Meter Serial No: 01013200, Pallet Distinct ID: 20260526T150419_0014_LSCSM06P023
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 3, Meter Serial No: 01013366, Pallet Distinct ID: 20260526T150419_0014_LSCSM06P023
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 4, Meter Serial No: 01012004, Pallet Distinct ID: 20260526T150419_0014_LSCSM06P023
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 5, Meter Serial No: 01012052, Pallet Distinct ID: 20260526T150419_0014_LSCSM06P023
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 6, Meter Serial No: 01013196, Pallet Distinct ID: 20260526T150419_0014_LSCSM06P023
+2026-05-28 16:07:43.029 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 7, Meter Serial No: 01013205, Pallet Distinct ID: 20260526T145955_0013_LSCSM06P15
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 8, Meter Serial No: 01013364, Pallet Distinct ID: 20260526T145955_0013_LSCSM06P15
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 9, Meter Serial No: 01013367, Pallet Distinct ID: 20260526T145955_0013_LSCSM06P15
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 10, Meter Serial No: 01013357, Pallet Distinct ID: 20260526T145955_0013_LSCSM06P15
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 11, Meter Serial No: 01012004, Pallet Distinct ID: 20260526T145955_0013_LSCSM06P15
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 12, Meter Serial No: 01012003, Pallet Distinct ID: 20260526T145955_0013_LSCSM06P15
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 13, Meter Serial No: 01013231, Pallet Distinct ID: 20260526T145345_0011_LSCSM06P24
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 14, Meter Serial No: 01012023, Pallet Distinct ID: 20260526T145345_0011_LSCSM06P24
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 15, Meter Serial No: 01013228, Pallet Distinct ID: 20260526T145345_0011_LSCSM06P24
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 16, Meter Serial No: 01012002, Pallet Distinct ID: 20260526T145345_0011_LSCSM06P24
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 17, Meter Serial No: 01013370, Pallet Distinct ID: 20260526T145345_0011_LSCSM06P24
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 18, Meter Serial No: 01013375, Pallet Distinct ID: 20260526T145345_0011_LSCSM06P24
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 19, Meter Serial No: 01013371, Pallet Distinct ID: 20260526T144925_0010_LSCSM06P019
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 20, Meter Serial No: 01013374, Pallet Distinct ID: 20260526T144925_0010_LSCSM06P019
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 21, Meter Serial No: 01013413, Pallet Distinct ID: 20260526T144925_0010_LSCSM06P019
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 22, Meter Serial No: 01013373, Pallet Distinct ID: 20260526T144925_0010_LSCSM06P019
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 23, Meter Serial No: 01013372, Pallet Distinct ID: 20260526T144925_0010_LSCSM06P019
+2026-05-28 16:07:43.030 INFO  sta_nld2:78 - S045_Select_Run_Project: Verific : Position: 24, Meter Serial No: 01013309, Pallet Distinct ID: 20260526T144925_0010_LSCSM06P019
+2026-05-28 16:07:49.113 INFO  sta_nld2:88 - S045_Select_Run_Project : updateDutSerialNo Success
+2026-05-28 16:07:51.116 INFO  sta_nld2:101 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 3
+2026-05-28 16:07:53.163 INFO  sta_nld2:107 - S045_Select_Run_Project : Close Run Project Success
+2026-05-28 16:07:53.163 INFO  sta_nld2:101 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 2
+2026-05-28 16:07:55.218 INFO  sta_nld2:107 - S045_Select_Run_Project : Close Run Project Success
+2026-05-28 16:07:55.218 INFO  sta_nld2:101 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 1
+2026-05-28 16:07:57.252 INFO  sta_nld2:107 - S045_Select_Run_Project : Close Run Project Success
+2026-05-28 16:07:57.252 INFO  sta_nld2:148 - S045_Select_Run_Project : Exit
+2026-05-28 16:07:57.252 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S045_Select_Run_Project_Bay2 : Status     : true
+2026-05-28 16:07:57.252 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S045_Select_Run_Project_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:07:57.253 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:07:57.253 INFO  sta_nld2:31 - S042_Start_Execution : Entry
+2026-05-28 16:08:00.271 INFO  sta_nld2:56 - S042_Start_Execution : Start Execution Success
+2026-05-28 16:08:05.271 INFO  sta_nld2:77 - S042_Start_Execution : Exit
+2026-05-28 16:08:05.271 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S042_Start_Execution_Bay2 : Status     : true
+2026-05-28 16:08:05.271 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S042_Start_Execution_Bay2 : Error Code : ERROR_CODE_601
+2026-05-28 16:08:05.272 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-28 16:08:05.272 INFO  sta_nld2:51 - S043_Get_Test_Point_Status : Entry
+2026-05-28 16:08:06.291 INFO  sta_nld2:79 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-28 16:08:17.349 INFO  sta_nld2:97 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-28 16:08:17.349 INFO  sta_nld2:79 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-28 16:08:28.481 INFO  sta_nld2:97 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-28 16:08:28.481 INFO  sta_nld2:79 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-28 16:08:39.599 INFO  sta_nld2:97 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-28 16:08:39.599 INFO  sta_nld2:79 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-28 16:08:50.715 INFO  sta_nld2:97 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-28 16:08:50.715 INFO  sta_nld2:79 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-28 16:09:01.847 INFO  sta_nld2:97 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-28 16:09:01.847 INFO  sta_nld2:79 - S043_Get_Test_Point_Status : Getting test point status...

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="721.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.AboutController">
+   <children>
+      <TitledPane animated="false" collapsible="false" layoutX="51.0" layoutY="26.0" prefHeight="454.0" prefWidth="600.0" text="About">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="598.0">
+               <children>
+                  <GridPane layoutX="131.0" layoutY="13.0" prefHeight="392.0" prefWidth="360.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="123.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="170.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="226.0" text="App Version" GridPane.rowIndex="1" />
+                        <Label prefHeight="17.0" prefWidth="226.0" text="DB Schema Version" GridPane.rowIndex="2" />
+                        <Label prefHeight="17.0" prefWidth="226.0" text="DB Server" GridPane.rowIndex="3" />
+                        <Label prefHeight="17.0" prefWidth="226.0" text="Product " />
+                        <TextField fx:id="txtFieldProductName" editable="false" text="ProCal" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtFieldAppVersion" editable="false" text="S1.1.1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtFieldDB_SchemaVersion" editable="false" text="1.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField editable="false" text="MySQL Server 5.7" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Power Source" GridPane.rowIndex="4" />
+                        <TextField editable="false" text="ProPower 1.4531" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtRefStd" editable="false" text="RADIAN 20 X" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txtLdu" editable="false" text="LSCS - LDU" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button mnemonicParsing="false" onAction="#TermsConditionsOnClick" prefHeight="25.0" prefWidth="245.0" text="Terms and Conditions" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="Local Display Unit" GridPane.rowIndex="6" />
+                        <Label text="Reference Standard" GridPane.rowIndex="5" />
+                        <Label text="Designed by" GridPane.rowIndex="7" />
+                        <Label text="Marketed by" GridPane.rowIndex="8" />
+                        <TextField fx:id="txtDesignedBy" editable="false" text="TAS Network" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="txtMarketedBy" editable="false" text="LS Control System" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label text="Supported Standards" GridPane.rowIndex="9" />
+                        <TextField editable="false" text="IS 14697" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

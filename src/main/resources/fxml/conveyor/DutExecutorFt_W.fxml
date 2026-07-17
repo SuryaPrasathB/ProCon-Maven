@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1781.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dut_executors.DutExecutorFtController">
+   <children>
+      <AnchorPane layoutY="12.0" prefHeight="838.0" prefWidth="1754.0">
+         <children>
+            <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="14.0" prefHeight="482.0" prefWidth="1462.0" text="Ft Execution- Present">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvFtExecutor" layoutX="5.0" layoutY="4.0" prefHeight="418.0" prefWidth="1436.0">
+                          <columns>
+                            <TableColumn fx:id="colExeSerialNo" editable="false" prefWidth="75.0" sortable="false" text="S.No" />
+                            <TableColumn fx:id="colExeTestPointName" editable="false" prefWidth="140.00001525878906" sortable="false" text="Test Point Name" />
+                              <TableColumn fx:id="colExeStatus" editable="false" prefWidth="143.9999542236328" sortable="false" text="Status" />
+                              <TableColumn fx:id="colExeResultP1" editable="false" prefWidth="130.0" sortable="false" text="U1/1" />
+                              <TableColumn fx:id="colExeResultP2" editable="false" minWidth="0.0" prefWidth="130.0" sortable="false" text="U2/2" />
+                              <TableColumn fx:id="colExeResultP3" editable="false" minWidth="5.5999755859375" prefWidth="130.0" sortable="false" text="U3/3" />
+                              <TableColumn fx:id="colExeResultP4" editable="false" prefWidth="130.0" sortable="false" text="U4/4" />
+                              <TableColumn fx:id="colExeResultP5" editable="false" prefWidth="130.0" sortable="false" text="U5/5" />
+                              <TableColumn fx:id="colExeResultP6" editable="false" prefWidth="130.0" sortable="false" text="U6/6" />
+                              <TableColumn fx:id="colExePalletDistinctId" editable="false" prefWidth="277.599853515625" sortable="false" text="Pallet Distinct Id" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <GridPane layoutX="20.0" layoutY="508.0" prefHeight="40.0" prefWidth="1442.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.20001220703125" minWidth="10.0" prefWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.6" minWidth="10.0" prefWidth="124.8" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.5999755859375" minWidth="10.0" prefWidth="30.399987792968744" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.79999999999998" minWidth="10.0" prefWidth="102.59996337890627" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.20001220703125" minWidth="10.0" prefWidth="29.80003662109374" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.60000000000002" minWidth="10.0" prefWidth="106.60000000000002" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="22.600000000000023" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="159.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.20001220703125" minWidth="10.0" prefWidth="21.799999999999955" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.9999877929688" minWidth="10.0" prefWidth="110.60000000000002" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.20000000000005" minWidth="10.0" prefWidth="74.5999755859375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.20000000000005" minWidth="10.0" prefWidth="25.000024414062523" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.20000000000005" minWidth="10.0" prefWidth="119.20003662109377" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.60000000000002" minWidth="10.0" prefWidth="60.79996337890623" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.8000244140626" minWidth="10.0" prefWidth="32.80007324218741" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.1999267578126" minWidth="10.0" prefWidth="141.4000488281249" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.8000244140626" minWidth="10.0" prefWidth="32.59995117187509" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.60009765625" minWidth="10.0" prefWidth="105.20004882812509" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.39990234375" minWidth="10.0" prefWidth="33.2000732421875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.39995117187505" minWidth="10.0" prefWidth="105.99992675781255" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnStopExecution" mnemonicParsing="false" onAction="#stopOnClick" prefHeight="25.0" prefWidth="104.0" text="Stop" GridPane.columnIndex="19" />
+                  <Button fx:id="btnStartExecution" mnemonicParsing="false" onAction="#startOnClick" prefHeight="25.0" prefWidth="101.0" text="Start" GridPane.columnIndex="17" />
+                  <ComboBox fx:id="cmbxProjectName" onAction="#selectProjectOnChangeTrigger" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="7" />
+                  <Label prefHeight="17.0" prefWidth="96.0" text="Select Project" GridPane.columnIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="96.0" text="Select Bay" />
+                  <ComboBox fx:id="cmbxBayType" onAction="#cmbxBayTypeOnChange" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtClusterName" editable="false" stylesheets="@../../config/style/application_W.css" GridPane.columnIndex="3" />
+                  <TextField fx:id="txtEachExecutionTime" editable="false" stylesheets="@../../config/style/application_W.css" GridPane.columnIndex="13" />
+                  <Label prefHeight="18.0" prefWidth="118.0" text="Execution Time" GridPane.columnIndex="12" />
+                  <ProgressBar fx:id="pBarTestExecution" prefHeight="34.0" prefWidth="154.0" progress="0.0" GridPane.columnIndex="15" />
+                  <Label prefHeight="18.0" prefWidth="118.0" text="Total RunTime" GridPane.columnIndex="9" />
+                  <TextField fx:id="txtTotalExecutionTime" editable="false" stylesheets="@../../config/style/application_W.css" GridPane.columnIndex="10" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

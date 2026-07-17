@@ -1,0 +1,872 @@
+2026-04-21 17:59:49.982 INFO  ir:692 - btnIrtStartOnClick : Invoked:
+2026-04-21 17:59:49.983 INFO  ir:694 - INSULATION RESISTANCE TEST BAY : STARTED
+2026-04-21 17:59:49.984 INFO  ir:747 - btnIrtStartOnClick : Exit:
+2026-04-21 17:59:50.085 DEBUG ir:32 - InsulationResistanceTestBay : Entry
+2026-04-21 17:59:50.085 DEBUG ir:40 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Entry
+2026-04-21 17:59:50.087 DEBUG ir:60 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : getTableStatePlanner2 : Size : 12
+2026-04-21 17:59:50.087 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 17:59:50.087 INFO  ir:38 - S01_check_for_pallet_at_IRT_Bay : Entry
+2026-04-21 17:59:50.087 DEBUG ir:143 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Entry
+2026-04-21 17:59:50.087 DEBUG ir:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-04-21 17:59:50.189 DEBUG ir:174 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : state : Off
+2026-04-21 17:59:50.189 DEBUG ir:182 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : status : false
+2026-04-21 17:59:50.189 DEBUG ir:186 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Exit
+2026-04-21 17:59:50.189 INFO  ir:99 - S01_check_for_pallet_at_IRT_Bay : No pallet Available at IRT Bay
+2026-04-21 18:01:42.995 INFO  ir:107 - S01_check_for_pallet_at_IRT_Bay : Pallet Available
+2026-04-21 18:01:43.003 INFO  ir:128 - S01_check_for_pallet_at_IRT_Bay: Waiting for Halt Pallet at Ir-Entry
+2026-04-21 18:01:43.004 INFO  ir:135 - S01_check_for_pallet_at_IRT_Bay: Waiting for Halt Pallet at Ir-Exit
+2026-04-21 18:01:43.004 INFO  ir:137 - S01_check_for_pallet_at_IRT_Bay : Exit
+2026-04-21 18:01:43.004 DEBUG ir:176 - processCurrentState : S01_check_for_pallet_at_IRT_Bay : Status     : true
+2026-04-21 18:01:43.004 DEBUG ir:177 - processCurrentState : S01_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:01:43.004 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S02_qR_Code_Scanning_of_Pallet
+2026-04-21 18:01:43.004 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S02_qR_Code_Scanning_of_Pallet
+2026-04-21 18:01:43.005 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:43.005 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:43.005 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:43.005 INFO  ir:39 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-04-21 18:01:43.005 DEBUG ir:123 - qrCodePalletScanning : Entry : IRB
+2026-04-21 18:01:46.305 DEBUG ir:174 - qrCodePalletScanning : scannedData: LSCSM06P008
+
+2026-04-21 18:01:46.305 DEBUG ir:194 - qrCodePalletScanning : Else Hit1: 
+2026-04-21 18:01:46.305 DEBUG ir:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260421T175958_0043_LSCSM06P008  selectedBayTypeKey: IRB
+2026-04-21 18:01:46.313 DEBUG ir:447 - qrCodePalletScanning: other bays: 
+2026-04-21 18:01:46.314 DEBUG ir:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: IRB
+2026-04-21 18:01:46.314 DEBUG ir:451 - getActivePalletMap() : {LSCSM06P22=20260416T175055_0073_LSCSM06P22, LSCSM06P008=20260421T175958_0043_LSCSM06P008, LSCSM06P03=20260416T174249_0068_LSCSM06P03, LSCSM06P018=20260416T174734_0071_LSCSM06P018, LSCSM06P011=20260416T174417_0069_LSCSM06P011, LSCSM06P021=20260421T174545_0041_LSCSM06P021}
+2026-04-21 18:01:46.332 DEBUG ir:513 - qrCodePalletScanning: individual pallet update 
+2026-04-21 18:01:46.332 DEBUG ir:220 - qrCodePalletScanning : palletDistinctId:  : 20260421T175958_0043_LSCSM06P008 : bay: IRB : qrCode: LSCSM06P008
+2026-04-21 18:01:46.332 DEBUG ir:248 - qrCodePalletScanning : status : GOOD : IRB
+2026-04-21 18:01:46.332 DEBUG ir:250 - qrCodePalletScanning : Exit : IRB
+2026-04-21 18:01:46.332 INFO  ir:82 - qrCodePalletScanningProcess : QR Code Scan Successful : IRB
+2026-04-21 18:01:46.332 INFO  ir:113 - qrCodePalletScanningProcess : Exit : IRB
+2026-04-21 18:01:46.332 INFO  ir:82 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-04-21 18:01:46.332 DEBUG ir:176 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-04-21 18:01:46.332 DEBUG ir:177 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-04-21 18:01:46.332 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S03_close_the_fingerTip_Latch
+2026-04-21 18:01:46.332 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S03_close_the_fingerTip_Latch
+2026-04-21 18:01:46.333 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:46.333 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:46.333 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:46.333 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:46.333 INFO  ir:26 - S03_close_the_fingerTip_Latch : Entry
+2026-04-21 18:01:46.333 DEBUG ir:50 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : Entry
+2026-04-21 18:01:46.333 DEBUG ir:60 - PortId    : op16
+2026-04-21 18:01:46.333 DEBUG ir:61 - ClusterId : 1
+2026-04-21 18:01:46.333 DEBUG ir:62 - BayId     : 3
+2026-04-21 18:01:46.435 DEBUG ir:80 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : status : true
+2026-04-21 18:01:46.435 DEBUG ir:85 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : Exit
+2026-04-21 18:01:46.435 INFO  ir:35 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-04-21 18:01:46.435 INFO  ir:44 - S03_close_the_fingerTip_Latch : Exit
+2026-04-21 18:01:46.435 DEBUG ir:176 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-04-21 18:01:46.435 DEBUG ir:177 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 18:01:46.435 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S04_ensure_the_fingerTip_Latch_Closed
+2026-04-21 18:01:46.435 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S04_ensure_the_fingerTip_Latch_Closed
+2026-04-21 18:01:46.436 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:46.436 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:46.436 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:46.436 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:46.436 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:46.436 INFO  ir:32 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-04-21 18:01:46.436 DEBUG ir:89 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:01:46.436 DEBUG ir:97 - PortId    : ip52
+2026-04-21 18:01:46.436 DEBUG ir:98 - ClusterId : 1
+2026-04-21 18:01:46.436 DEBUG ir:99 - BayId     : 3
+2026-04-21 18:01:46.540 DEBUG ir:119 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : state : Off
+2026-04-21 18:01:46.540 DEBUG ir:124 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:01:47.540 DEBUG ir:89 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:01:47.540 DEBUG ir:97 - PortId    : ip52
+2026-04-21 18:01:47.540 DEBUG ir:98 - ClusterId : 1
+2026-04-21 18:01:47.540 DEBUG ir:99 - BayId     : 3
+2026-04-21 18:01:47.641 DEBUG ir:119 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : state : On
+2026-04-21 18:01:47.641 DEBUG ir:124 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:01:47.777 INFO  ir:58 - set_motor_not_required : Success
+2026-04-21 18:01:52.777 INFO  ir:83 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-04-21 18:01:52.777 DEBUG ir:176 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-04-21 18:01:52.777 DEBUG ir:177 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-04-21 18:01:52.777 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S29_turn_on_tower_lamp_IRT_Bay
+2026-04-21 18:01:52.777 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S29_turn_on_tower_lamp_IRT_Bay
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.777 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:52.777 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:52.777 INFO  ir:20 - S29_turn_on_tower_lamp1_IRT_Bay : Entry
+2026-04-21 18:01:52.777 DEBUG ir:58 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Entry
+2026-04-21 18:01:52.777 DEBUG ir:68 - PortId    : op20
+2026-04-21 18:01:52.777 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:01:52.777 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:01:52.879 DEBUG ir:85 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : status : true
+2026-04-21 18:01:52.879 DEBUG ir:94 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:01:52.879 INFO  ir:29 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Success
+2026-04-21 18:01:52.879 DEBUG ir:101 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Entry
+2026-04-21 18:01:52.879 DEBUG ir:111 - PortId    : op19
+2026-04-21 18:01:52.879 DEBUG ir:112 - ClusterId : 1
+2026-04-21 18:01:52.879 DEBUG ir:113 - BayId     : 3
+2026-04-21 18:01:52.981 DEBUG ir:128 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : status : true
+2026-04-21 18:01:52.981 DEBUG ir:137 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:01:52.981 INFO  ir:37 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Success
+2026-04-21 18:01:52.981 INFO  ir:51 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:01:52.981 DEBUG ir:176 - processCurrentState : S29_turn_on_tower_lamp_IRT_Bay : Status     : true
+2026-04-21 18:01:52.981 DEBUG ir:177 - processCurrentState : S29_turn_on_tower_lamp_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:01:52.981 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S05_insulationResistance_Test
+2026-04-21 18:01:52.981 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S05_insulationResistance_Test
+2026-04-21 18:01:52.981 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.981 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.981 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.981 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:52.981 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:52.981 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:52.981 INFO  ir:41 - S05_insulationResistance_Test: Entry
+2026-04-21 18:01:52.981 DEBUG ir:49 - S05_insulationResistance_Test: Sim: turn off meter read enable pin: Success
+2026-04-21 18:01:52.981 DEBUG ir:51 - S05_insulationResistance_Test: Sim: IrExecutionTime_InSec: 5
+2026-04-21 18:01:52.981 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:01:53.981 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:01:54.981 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:01:55.982 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:01:56.982 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:01:57.983 DEBUG ir:61 - S05_insulationResistance_Test: Sim: IrExecutionTime_InSec: Exit
+2026-04-21 18:01:57.983 DEBUG ir:87 - S05_insulationResistance_Test: populatePassResults: Entry
+2026-04-21 18:01:58.183 DEBUG ir:138 - S05_insulationResistance_Test: populatePassResults: Exit
+2026-04-21 18:01:58.183 INFO  ir:79 - S05_insulationResistance_Test: Exit
+2026-04-21 18:01:58.183 DEBUG ir:176 - processCurrentState : S05_insulationResistance_Test : Status     : true
+2026-04-21 18:01:58.183 DEBUG ir:177 - processCurrentState : S05_insulationResistance_Test : Error Code : 
+2026-04-21 18:01:58.183 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S06_open_the_fingerTip_Latch
+2026-04-21 18:01:58.183 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S06_open_the_fingerTip_Latch
+2026-04-21 18:01:58.184 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.184 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.184 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.184 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.184 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.184 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:58.184 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:58.184 INFO  ir:27 - S06_open_the_fingerTip_Latch : Entry
+2026-04-21 18:01:58.184 DEBUG ir:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : Entry
+2026-04-21 18:01:58.184 DEBUG ir:62 - PortId    : op16
+2026-04-21 18:01:58.184 DEBUG ir:63 - ClusterId : 1
+2026-04-21 18:01:58.184 DEBUG ir:64 - BayId     : 3
+2026-04-21 18:01:58.286 DEBUG ir:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : status : true
+2026-04-21 18:01:58.286 DEBUG ir:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : Exit
+2026-04-21 18:01:58.286 INFO  ir:37 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-21 18:01:58.286 INFO  ir:46 - S06_open_the_fingerTip_Latch : Exit
+2026-04-21 18:01:58.286 DEBUG ir:176 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-04-21 18:01:58.286 DEBUG ir:177 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 18:01:58.286 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S07_ensure_the_fingerTip_Latch_Opened
+2026-04-21 18:01:58.286 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S07_ensure_the_fingerTip_Latch_Opened
+2026-04-21 18:01:58.287 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.287 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.287 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.287 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.287 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.287 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:58.287 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:58.287 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:58.287 INFO  ir:27 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-04-21 18:01:58.287 DEBUG ir:60 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:01:58.287 DEBUG ir:68 - PortId    : ip52
+2026-04-21 18:01:58.287 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:01:58.287 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:01:58.389 DEBUG ir:93 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : state : On
+2026-04-21 18:01:58.389 DEBUG ir:95 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:01:59.389 DEBUG ir:60 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:01:59.389 DEBUG ir:68 - PortId    : ip52
+2026-04-21 18:01:59.389 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:01:59.389 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:01:59.491 DEBUG ir:93 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : state : Off
+2026-04-21 18:01:59.491 DEBUG ir:95 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:01:59.491 INFO  ir:54 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-04-21 18:01:59.491 DEBUG ir:176 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-04-21 18:01:59.491 DEBUG ir:177 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-04-21 18:01:59.491 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S30_turn_off_tower_lamp_IRT_Bay
+2026-04-21 18:01:59.491 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S30_turn_off_tower_lamp_IRT_Bay
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.491 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:59.491 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:59.491 INFO  ir:19 - S30_turn_off_tower_lamp1_IRT_Bay : Entry
+2026-04-21 18:01:59.491 DEBUG ir:55 - S30_turn_off_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Entry
+2026-04-21 18:01:59.593 INFO  ir:28 - S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned On
+2026-04-21 18:01:59.593 DEBUG ir:78 - S30_turn_off_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Entry
+2026-04-21 18:01:59.799 INFO  ir:36 - S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned Off
+2026-04-21 18:01:59.799 INFO  ir:50 - S30_turn_off_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:01:59.799 DEBUG ir:176 - processCurrentState : S30_turn_off_tower_lamp_IRT_Bay : Status     : true
+2026-04-21 18:01:59.799 DEBUG ir:177 - processCurrentState : S30_turn_off_tower_lamp_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:01:59.799 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S08_check_for_pallet_at_CALIB_Bay
+2026-04-21 18:01:59.799 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S08_check_for_pallet_at_CALIB_Bay
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:01:59.799 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:01:59.799 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:01:59.799 INFO  ir:38 - S08_check_for_pallet_at_CALIB_Bay : Entry
+2026-04-21 18:01:59.799 DEBUG ir:170 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Entry
+2026-04-21 18:01:59.799 DEBUG ir:184 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-04-21 18:01:59.903 DEBUG ir:201 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : state : On
+2026-04-21 18:01:59.903 DEBUG ir:209 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : status : true
+2026-04-21 18:01:59.903 DEBUG ir:214 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Exit
+2026-04-21 18:01:59.903 INFO  ir:51 - S08_check_for_pallet_at_CALIB_Bay : Pallet Available at CALIB Bay
+2026-04-21 18:02:00.903 DEBUG ir:170 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Entry
+2026-04-21 18:02:00.903 DEBUG ir:184 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-04-21 18:02:01.006 DEBUG ir:201 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : state : On
+2026-04-21 18:02:01.006 DEBUG ir:209 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : status : true
+2026-04-21 18:02:01.006 DEBUG ir:214 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Exit
+2026-04-21 18:04:18.950 INFO  ir:61 - S08_check_for_pallet_at_CALIB_Bay : No Pallet Available
+2026-04-21 18:04:24.052 INFO  ir:70 - set_motor_required : Success
+2026-04-21 18:04:24.052 INFO  ir:164 - S08_check_for_pallet_at_CALIB_Bay : Exit
+2026-04-21 18:04:24.052 DEBUG ir:176 - processCurrentState : S08_check_for_pallet_at_CALIB_Bay : Status     : true
+2026-04-21 18:04:24.052 DEBUG ir:177 - processCurrentState : S08_check_for_pallet_at_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:04:24.052 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S13_open_stop_latch_IRT_Bay
+2026-04-21 18:04:24.052 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S13_open_stop_latch_IRT_Bay
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:24.052 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:24.052 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:24.052 INFO  ir:28 - S13_open_stop_latch_IRT_Bay : Entry
+2026-04-21 18:04:24.052 INFO  ir:33 - S13_open_stop_latch_IRT_Bay: Waiting for Halt Pallet at Ir-Entry
+2026-04-21 18:04:24.052 INFO  ir:40 - S13_open_stop_latch_IRT_Bay: Waiting for Halt Pallet at Ir-Exit
+2026-04-21 18:04:24.052 INFO  ir:42 - S13_open_stop_latch_IRT_Bay: Waiting for NoEntry at Ir-Entry for Calib
+2026-04-21 18:04:24.052 INFO  ir:48 - S13_open_stop_latch_IRT_Bay: Waiting for NoEntry at Ir-Exit for Calib
+2026-04-21 18:04:24.052 DEBUG ir:75 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Entry
+2026-04-21 18:04:24.052 DEBUG ir:85 - PortId    : op15
+2026-04-21 18:04:24.052 DEBUG ir:86 - ClusterId : 1
+2026-04-21 18:04:24.052 DEBUG ir:87 - BayId     : 3
+2026-04-21 18:04:24.234 DEBUG ir:99 - S13_open_stop_latch_IRT_Bay : open_StopLatch_IRT_Bay : state : Off
+2026-04-21 18:04:24.234 DEBUG ir:112 - S13_open_stop_latch_IRT_Bay : open_StopLatch_IRT_Bay : status : true
+2026-04-21 18:04:24.234 DEBUG ir:122 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : status : true
+2026-04-21 18:04:24.234 DEBUG ir:123 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Exit
+2026-04-21 18:04:24.234 INFO  ir:56 - S13_open_stop_latch_IRT_Bay : Stop Latch Opened
+2026-04-21 18:04:25.274 INFO  ir:70 - S13_open_stop_latch_IRT_Bay : Exit
+2026-04-21 18:04:25.274 DEBUG ir:176 - processCurrentState : S13_open_stop_latch_IRT_Bay : Status     : true
+2026-04-21 18:04:25.274 DEBUG ir:177 - processCurrentState : S13_open_stop_latch_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:04:25.274 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S12_close_stop_latch_IRT_Bay
+2026-04-21 18:04:25.274 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S12_close_stop_latch_IRT_Bay
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:25.274 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:25.274 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:25.274 INFO  ir:24 - S12_close_stop_latch_IRT_Bay : Entry
+2026-04-21 18:04:27.274 DEBUG ir:66 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Entry
+2026-04-21 18:04:27.274 DEBUG ir:76 - PortId    : op15
+2026-04-21 18:04:27.274 DEBUG ir:77 - ClusterId : 1
+2026-04-21 18:04:27.274 DEBUG ir:78 - BayId     : 3
+2026-04-21 18:04:27.376 DEBUG ir:88 - S12_close_stop_latch_IRT_Bay : close_StopLatch_IRT_Bay : state : On
+2026-04-21 18:04:27.376 DEBUG ir:99 - S12_close_stop_latch_IRT_Bay : close_StopLatch_IRT_Bay : status : true
+2026-04-21 18:04:27.376 DEBUG ir:109 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : status : true
+2026-04-21 18:04:27.376 DEBUG ir:110 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Exit
+2026-04-21 18:04:27.376 INFO  ir:35 - S12_close_stop_latch_IRT_Bay : Stop Latch Closed
+2026-04-21 18:04:27.479 INFO  ir:43 - set_motor_not_required : Success
+2026-04-21 18:04:27.479 INFO  ir:61 - S12_close_stop_latch_IRT_Bay : Exit
+2026-04-21 18:04:27.479 DEBUG ir:176 - processCurrentState : S12_close_stop_latch_IRT_Bay : Status     : true
+2026-04-21 18:04:27.479 DEBUG ir:177 - processCurrentState : S12_close_stop_latch_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:04:27.479 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S01_check_for_pallet_at_IRT_Bay
+2026-04-21 18:04:27.479 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S01_check_for_pallet_at_IRT_Bay
+2026-04-21 18:04:27.479 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:27.479 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:27.479 INFO  ir:38 - S01_check_for_pallet_at_IRT_Bay : Entry
+2026-04-21 18:04:27.479 DEBUG ir:143 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Entry
+2026-04-21 18:04:27.479 DEBUG ir:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-04-21 18:04:27.582 DEBUG ir:174 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : state : Off
+2026-04-21 18:04:27.582 DEBUG ir:182 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : status : false
+2026-04-21 18:04:27.582 DEBUG ir:186 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Exit
+2026-04-21 18:04:27.582 INFO  ir:99 - S01_check_for_pallet_at_IRT_Bay : No pallet Available at IRT Bay
+2026-04-21 18:04:33.172 INFO  ir:107 - S01_check_for_pallet_at_IRT_Bay : Pallet Available
+2026-04-21 18:04:33.181 INFO  ir:128 - S01_check_for_pallet_at_IRT_Bay: Waiting for Halt Pallet at Ir-Entry
+2026-04-21 18:04:33.181 INFO  ir:135 - S01_check_for_pallet_at_IRT_Bay: Waiting for Halt Pallet at Ir-Exit
+2026-04-21 18:04:33.181 INFO  ir:137 - S01_check_for_pallet_at_IRT_Bay : Exit
+2026-04-21 18:04:33.181 DEBUG ir:176 - processCurrentState : S01_check_for_pallet_at_IRT_Bay : Status     : true
+2026-04-21 18:04:33.181 DEBUG ir:177 - processCurrentState : S01_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:04:33.181 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S02_qR_Code_Scanning_of_Pallet
+2026-04-21 18:04:33.181 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S02_qR_Code_Scanning_of_Pallet
+2026-04-21 18:04:33.181 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:33.181 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:33.181 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:33.181 INFO  ir:39 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-04-21 18:04:33.181 DEBUG ir:123 - qrCodePalletScanning : Entry : IRB
+2026-04-21 18:04:35.966 DEBUG ir:174 - qrCodePalletScanning : scannedData: LSCSM06P023
+
+2026-04-21 18:04:35.966 DEBUG ir:194 - qrCodePalletScanning : Else Hit1: 
+2026-04-21 18:04:35.966 DEBUG ir:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260421T180159_0044_LSCSM06P023  selectedBayTypeKey: IRB
+2026-04-21 18:04:35.973 DEBUG ir:447 - qrCodePalletScanning: other bays: 
+2026-04-21 18:04:35.973 DEBUG ir:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: IRB
+2026-04-21 18:04:35.973 DEBUG ir:451 - getActivePalletMap() : {LSCSM06P22=20260416T175055_0073_LSCSM06P22, LSCSM06P008=20260421T175958_0043_LSCSM06P008, LSCSM06P03=20260416T174249_0068_LSCSM06P03, LSCSM06P018=20260416T174734_0071_LSCSM06P018, LSCSM06P023=20260421T180159_0044_LSCSM06P023, LSCSM06P021=20260421T174545_0041_LSCSM06P021}
+2026-04-21 18:04:35.987 DEBUG ir:513 - qrCodePalletScanning: individual pallet update 
+2026-04-21 18:04:35.987 DEBUG ir:220 - qrCodePalletScanning : palletDistinctId:  : 20260421T180159_0044_LSCSM06P023 : bay: IRB : qrCode: LSCSM06P023
+2026-04-21 18:04:35.987 DEBUG ir:248 - qrCodePalletScanning : status : GOOD : IRB
+2026-04-21 18:04:35.987 DEBUG ir:250 - qrCodePalletScanning : Exit : IRB
+2026-04-21 18:04:35.987 INFO  ir:82 - qrCodePalletScanningProcess : QR Code Scan Successful : IRB
+2026-04-21 18:04:35.987 INFO  ir:113 - qrCodePalletScanningProcess : Exit : IRB
+2026-04-21 18:04:35.987 INFO  ir:82 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-04-21 18:04:35.987 DEBUG ir:176 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-04-21 18:04:35.987 DEBUG ir:177 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-04-21 18:04:35.987 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S03_close_the_fingerTip_Latch
+2026-04-21 18:04:35.987 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S03_close_the_fingerTip_Latch
+2026-04-21 18:04:35.988 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:35.988 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:35.988 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:35.988 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:35.988 INFO  ir:26 - S03_close_the_fingerTip_Latch : Entry
+2026-04-21 18:04:35.988 DEBUG ir:50 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : Entry
+2026-04-21 18:04:35.988 DEBUG ir:60 - PortId    : op16
+2026-04-21 18:04:35.988 DEBUG ir:61 - ClusterId : 1
+2026-04-21 18:04:35.988 DEBUG ir:62 - BayId     : 3
+2026-04-21 18:04:36.090 DEBUG ir:80 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : status : true
+2026-04-21 18:04:36.090 DEBUG ir:85 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : Exit
+2026-04-21 18:04:36.090 INFO  ir:35 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-04-21 18:04:36.090 INFO  ir:44 - S03_close_the_fingerTip_Latch : Exit
+2026-04-21 18:04:36.090 DEBUG ir:176 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-04-21 18:04:36.090 DEBUG ir:177 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 18:04:36.090 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S04_ensure_the_fingerTip_Latch_Closed
+2026-04-21 18:04:36.090 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S04_ensure_the_fingerTip_Latch_Closed
+2026-04-21 18:04:36.090 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:36.090 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:36.090 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:36.090 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:36.090 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:36.090 INFO  ir:32 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-04-21 18:04:36.090 DEBUG ir:89 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:04:36.090 DEBUG ir:97 - PortId    : ip52
+2026-04-21 18:04:36.090 DEBUG ir:98 - ClusterId : 1
+2026-04-21 18:04:36.090 DEBUG ir:99 - BayId     : 3
+2026-04-21 18:04:36.191 DEBUG ir:119 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : state : Off
+2026-04-21 18:04:36.191 DEBUG ir:124 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:04:37.191 DEBUG ir:89 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:04:37.191 DEBUG ir:97 - PortId    : ip52
+2026-04-21 18:04:37.191 DEBUG ir:98 - ClusterId : 1
+2026-04-21 18:04:37.191 DEBUG ir:99 - BayId     : 3
+2026-04-21 18:04:37.293 DEBUG ir:119 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : state : On
+2026-04-21 18:04:37.293 DEBUG ir:124 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:04:37.396 INFO  ir:58 - set_motor_not_required : Success
+2026-04-21 18:04:42.397 INFO  ir:83 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-04-21 18:04:42.397 DEBUG ir:176 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-04-21 18:04:42.397 DEBUG ir:177 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-04-21 18:04:42.397 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S29_turn_on_tower_lamp_IRT_Bay
+2026-04-21 18:04:42.397 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S29_turn_on_tower_lamp_IRT_Bay
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.397 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:42.397 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:42.397 INFO  ir:20 - S29_turn_on_tower_lamp1_IRT_Bay : Entry
+2026-04-21 18:04:42.397 DEBUG ir:58 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Entry
+2026-04-21 18:04:42.397 DEBUG ir:68 - PortId    : op20
+2026-04-21 18:04:42.397 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:04:42.397 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:04:42.500 DEBUG ir:85 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : status : true
+2026-04-21 18:04:42.500 DEBUG ir:94 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:04:42.500 INFO  ir:29 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Success
+2026-04-21 18:04:42.500 DEBUG ir:101 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Entry
+2026-04-21 18:04:42.500 DEBUG ir:111 - PortId    : op19
+2026-04-21 18:04:42.500 DEBUG ir:112 - ClusterId : 1
+2026-04-21 18:04:42.500 DEBUG ir:113 - BayId     : 3
+2026-04-21 18:04:42.602 DEBUG ir:128 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : status : true
+2026-04-21 18:04:42.602 DEBUG ir:137 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:04:42.602 INFO  ir:37 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Success
+2026-04-21 18:04:42.602 INFO  ir:51 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:04:42.602 DEBUG ir:176 - processCurrentState : S29_turn_on_tower_lamp_IRT_Bay : Status     : true
+2026-04-21 18:04:42.602 DEBUG ir:177 - processCurrentState : S29_turn_on_tower_lamp_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:04:42.602 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S05_insulationResistance_Test
+2026-04-21 18:04:42.602 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S05_insulationResistance_Test
+2026-04-21 18:04:42.602 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.602 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.602 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.602 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:42.602 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:42.602 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:42.602 INFO  ir:41 - S05_insulationResistance_Test: Entry
+2026-04-21 18:04:42.602 DEBUG ir:49 - S05_insulationResistance_Test: Sim: turn off meter read enable pin: Success
+2026-04-21 18:04:42.602 DEBUG ir:51 - S05_insulationResistance_Test: Sim: IrExecutionTime_InSec: 5
+2026-04-21 18:04:42.602 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:04:43.602 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:04:44.602 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:04:45.602 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:04:46.602 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:04:47.603 DEBUG ir:61 - S05_insulationResistance_Test: Sim: IrExecutionTime_InSec: Exit
+2026-04-21 18:04:47.603 DEBUG ir:87 - S05_insulationResistance_Test: populatePassResults: Entry
+2026-04-21 18:04:47.787 DEBUG ir:138 - S05_insulationResistance_Test: populatePassResults: Exit
+2026-04-21 18:04:47.787 INFO  ir:79 - S05_insulationResistance_Test: Exit
+2026-04-21 18:04:47.787 DEBUG ir:176 - processCurrentState : S05_insulationResistance_Test : Status     : true
+2026-04-21 18:04:47.787 DEBUG ir:177 - processCurrentState : S05_insulationResistance_Test : Error Code : 
+2026-04-21 18:04:47.787 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S06_open_the_fingerTip_Latch
+2026-04-21 18:04:47.787 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S06_open_the_fingerTip_Latch
+2026-04-21 18:04:47.787 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.787 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.787 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.787 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.787 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.787 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:47.787 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:47.787 INFO  ir:27 - S06_open_the_fingerTip_Latch : Entry
+2026-04-21 18:04:47.787 DEBUG ir:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : Entry
+2026-04-21 18:04:47.789 DEBUG ir:62 - PortId    : op16
+2026-04-21 18:04:47.789 DEBUG ir:63 - ClusterId : 1
+2026-04-21 18:04:47.789 DEBUG ir:64 - BayId     : 3
+2026-04-21 18:04:47.890 DEBUG ir:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : status : true
+2026-04-21 18:04:47.890 DEBUG ir:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : Exit
+2026-04-21 18:04:47.890 INFO  ir:37 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-21 18:04:47.890 INFO  ir:46 - S06_open_the_fingerTip_Latch : Exit
+2026-04-21 18:04:47.890 DEBUG ir:176 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-04-21 18:04:47.890 DEBUG ir:177 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 18:04:47.890 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S07_ensure_the_fingerTip_Latch_Opened
+2026-04-21 18:04:47.890 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S07_ensure_the_fingerTip_Latch_Opened
+2026-04-21 18:04:47.890 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.890 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.890 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.890 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.890 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.890 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:47.890 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:47.890 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:47.890 INFO  ir:27 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-04-21 18:04:47.890 DEBUG ir:60 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:04:47.890 DEBUG ir:68 - PortId    : ip52
+2026-04-21 18:04:47.890 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:04:47.890 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:04:47.993 DEBUG ir:93 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : state : On
+2026-04-21 18:04:47.993 DEBUG ir:95 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:04:48.993 DEBUG ir:60 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:04:48.993 DEBUG ir:68 - PortId    : ip52
+2026-04-21 18:04:48.993 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:04:48.993 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:04:49.096 DEBUG ir:93 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : state : Off
+2026-04-21 18:04:49.096 DEBUG ir:95 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:04:49.096 INFO  ir:54 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-04-21 18:04:49.096 DEBUG ir:176 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-04-21 18:04:49.096 DEBUG ir:177 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-04-21 18:04:49.096 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S30_turn_off_tower_lamp_IRT_Bay
+2026-04-21 18:04:49.096 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S30_turn_off_tower_lamp_IRT_Bay
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.096 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:49.096 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:49.096 INFO  ir:19 - S30_turn_off_tower_lamp1_IRT_Bay : Entry
+2026-04-21 18:04:49.096 DEBUG ir:55 - S30_turn_off_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Entry
+2026-04-21 18:04:49.199 INFO  ir:28 - S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned On
+2026-04-21 18:04:49.199 DEBUG ir:78 - S30_turn_off_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Entry
+2026-04-21 18:04:49.302 INFO  ir:36 - S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned Off
+2026-04-21 18:04:49.302 INFO  ir:50 - S30_turn_off_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:04:49.302 DEBUG ir:176 - processCurrentState : S30_turn_off_tower_lamp_IRT_Bay : Status     : true
+2026-04-21 18:04:49.302 DEBUG ir:177 - processCurrentState : S30_turn_off_tower_lamp_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:04:49.302 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S08_check_for_pallet_at_CALIB_Bay
+2026-04-21 18:04:49.302 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S08_check_for_pallet_at_CALIB_Bay
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:04:49.302 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:04:49.302 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:04:49.302 INFO  ir:38 - S08_check_for_pallet_at_CALIB_Bay : Entry
+2026-04-21 18:04:49.302 DEBUG ir:170 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Entry
+2026-04-21 18:04:49.302 DEBUG ir:184 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-04-21 18:04:49.405 DEBUG ir:201 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : state : On
+2026-04-21 18:04:49.405 DEBUG ir:209 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : status : true
+2026-04-21 18:04:49.405 DEBUG ir:214 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Exit
+2026-04-21 18:04:49.405 INFO  ir:51 - S08_check_for_pallet_at_CALIB_Bay : Pallet Available at CALIB Bay
+2026-04-21 18:04:50.405 DEBUG ir:170 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Entry
+2026-04-21 18:04:50.405 DEBUG ir:184 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-04-21 18:04:50.507 DEBUG ir:201 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : state : On
+2026-04-21 18:04:50.507 DEBUG ir:209 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : status : true
+2026-04-21 18:04:50.507 DEBUG ir:214 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Exit
+2026-04-21 18:09:03.170 INFO  ir:61 - S08_check_for_pallet_at_CALIB_Bay : No Pallet Available
+2026-04-21 18:09:08.272 INFO  ir:70 - set_motor_required : Success
+2026-04-21 18:09:08.272 INFO  ir:164 - S08_check_for_pallet_at_CALIB_Bay : Exit
+2026-04-21 18:09:08.272 DEBUG ir:176 - processCurrentState : S08_check_for_pallet_at_CALIB_Bay : Status     : true
+2026-04-21 18:09:08.272 DEBUG ir:177 - processCurrentState : S08_check_for_pallet_at_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:09:08.272 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S13_open_stop_latch_IRT_Bay
+2026-04-21 18:09:08.272 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S13_open_stop_latch_IRT_Bay
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:08.272 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:09:08.272 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:09:08.272 INFO  ir:28 - S13_open_stop_latch_IRT_Bay : Entry
+2026-04-21 18:09:08.272 INFO  ir:33 - S13_open_stop_latch_IRT_Bay: Waiting for Halt Pallet at Ir-Entry
+2026-04-21 18:09:08.272 INFO  ir:40 - S13_open_stop_latch_IRT_Bay: Waiting for Halt Pallet at Ir-Exit
+2026-04-21 18:09:08.272 INFO  ir:42 - S13_open_stop_latch_IRT_Bay: Waiting for NoEntry at Ir-Entry for Calib
+2026-04-21 18:09:08.272 INFO  ir:48 - S13_open_stop_latch_IRT_Bay: Waiting for NoEntry at Ir-Exit for Calib
+2026-04-21 18:09:08.272 DEBUG ir:75 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Entry
+2026-04-21 18:09:08.272 DEBUG ir:85 - PortId    : op15
+2026-04-21 18:09:08.272 DEBUG ir:86 - ClusterId : 1
+2026-04-21 18:09:08.272 DEBUG ir:87 - BayId     : 3
+2026-04-21 18:09:08.375 DEBUG ir:99 - S13_open_stop_latch_IRT_Bay : open_StopLatch_IRT_Bay : state : Off
+2026-04-21 18:09:08.375 DEBUG ir:112 - S13_open_stop_latch_IRT_Bay : open_StopLatch_IRT_Bay : status : true
+2026-04-21 18:09:08.375 DEBUG ir:122 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : status : true
+2026-04-21 18:09:08.375 DEBUG ir:123 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Exit
+2026-04-21 18:09:08.375 INFO  ir:56 - S13_open_stop_latch_IRT_Bay : Stop Latch Opened
+2026-04-21 18:09:09.395 INFO  ir:70 - S13_open_stop_latch_IRT_Bay : Exit
+2026-04-21 18:09:09.395 DEBUG ir:176 - processCurrentState : S13_open_stop_latch_IRT_Bay : Status     : true
+2026-04-21 18:09:09.395 DEBUG ir:177 - processCurrentState : S13_open_stop_latch_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:09:09.395 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S12_close_stop_latch_IRT_Bay
+2026-04-21 18:09:09.395 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S12_close_stop_latch_IRT_Bay
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:09:09.395 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:09:09.395 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:09:09.395 INFO  ir:24 - S12_close_stop_latch_IRT_Bay : Entry
+2026-04-21 18:09:11.395 DEBUG ir:66 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Entry
+2026-04-21 18:09:11.395 DEBUG ir:76 - PortId    : op15
+2026-04-21 18:09:11.395 DEBUG ir:77 - ClusterId : 1
+2026-04-21 18:09:11.395 DEBUG ir:78 - BayId     : 3
+2026-04-21 18:09:11.497 DEBUG ir:88 - S12_close_stop_latch_IRT_Bay : close_StopLatch_IRT_Bay : state : On
+2026-04-21 18:09:11.497 DEBUG ir:99 - S12_close_stop_latch_IRT_Bay : close_StopLatch_IRT_Bay : status : true
+2026-04-21 18:09:11.497 DEBUG ir:109 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : status : true
+2026-04-21 18:09:11.497 DEBUG ir:110 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Exit
+2026-04-21 18:09:11.497 INFO  ir:35 - S12_close_stop_latch_IRT_Bay : Stop Latch Closed
+2026-04-21 18:09:11.599 INFO  ir:43 - set_motor_not_required : Success
+2026-04-21 18:09:11.599 INFO  ir:61 - S12_close_stop_latch_IRT_Bay : Exit
+2026-04-21 18:09:11.599 DEBUG ir:176 - processCurrentState : S12_close_stop_latch_IRT_Bay : Status     : true
+2026-04-21 18:09:11.599 DEBUG ir:177 - processCurrentState : S12_close_stop_latch_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:09:11.599 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S01_check_for_pallet_at_IRT_Bay
+2026-04-21 18:09:11.599 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S01_check_for_pallet_at_IRT_Bay
+2026-04-21 18:09:11.599 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:09:11.599 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:09:11.599 INFO  ir:38 - S01_check_for_pallet_at_IRT_Bay : Entry
+2026-04-21 18:09:11.599 DEBUG ir:143 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Entry
+2026-04-21 18:09:11.599 DEBUG ir:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-04-21 18:09:11.701 DEBUG ir:174 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : state : Off
+2026-04-21 18:09:11.701 DEBUG ir:182 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : status : false
+2026-04-21 18:09:11.701 DEBUG ir:186 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Exit
+2026-04-21 18:09:11.701 INFO  ir:99 - S01_check_for_pallet_at_IRT_Bay : No pallet Available at IRT Bay
+2026-04-21 18:20:12.028 INFO  ir:107 - S01_check_for_pallet_at_IRT_Bay : Pallet Available
+2026-04-21 18:20:12.035 INFO  ir:128 - S01_check_for_pallet_at_IRT_Bay: Waiting for Halt Pallet at Ir-Entry
+2026-04-21 18:20:12.035 INFO  ir:135 - S01_check_for_pallet_at_IRT_Bay: Waiting for Halt Pallet at Ir-Exit
+2026-04-21 18:20:12.035 INFO  ir:137 - S01_check_for_pallet_at_IRT_Bay : Exit
+2026-04-21 18:20:12.035 DEBUG ir:176 - processCurrentState : S01_check_for_pallet_at_IRT_Bay : Status     : true
+2026-04-21 18:20:12.035 DEBUG ir:177 - processCurrentState : S01_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:20:12.035 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S02_qR_Code_Scanning_of_Pallet
+2026-04-21 18:20:12.035 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S02_qR_Code_Scanning_of_Pallet
+2026-04-21 18:20:12.035 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:12.035 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:12.035 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:12.035 INFO  ir:39 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-04-21 18:20:12.035 DEBUG ir:123 - qrCodePalletScanning : Entry : IRB
+2026-04-21 18:20:14.986 DEBUG ir:174 - qrCodePalletScanning : scannedData: LSCSM06P011
+
+2026-04-21 18:20:14.986 DEBUG ir:194 - qrCodePalletScanning : Else Hit1: 
+2026-04-21 18:20:14.986 DEBUG ir:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260421T181828_0051_LSCSM06P011  selectedBayTypeKey: IRB
+2026-04-21 18:20:14.994 DEBUG ir:447 - qrCodePalletScanning: other bays: 
+2026-04-21 18:20:14.994 DEBUG ir:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: IRB
+2026-04-21 18:20:14.994 DEBUG ir:451 - getActivePalletMap() : {LSCSM06P22=20260416T175055_0073_LSCSM06P22, LSCSM06P008=20260421T175958_0043_LSCSM06P008, LSCSM06P03=20260416T174249_0068_LSCSM06P03, LSCSM06P018=20260416T174734_0071_LSCSM06P018, LSCSM06P023=20260421T180159_0044_LSCSM06P023, LSCSM06P011=20260421T181828_0051_LSCSM06P011, LSCSM06P021=20260421T174545_0041_LSCSM06P021}
+2026-04-21 18:20:15.012 DEBUG ir:513 - qrCodePalletScanning: individual pallet update 
+2026-04-21 18:20:15.012 DEBUG ir:220 - qrCodePalletScanning : palletDistinctId:  : 20260421T181828_0051_LSCSM06P011 : bay: IRB : qrCode: LSCSM06P011
+2026-04-21 18:20:15.012 DEBUG ir:248 - qrCodePalletScanning : status : GOOD : IRB
+2026-04-21 18:20:15.012 DEBUG ir:250 - qrCodePalletScanning : Exit : IRB
+2026-04-21 18:20:15.012 INFO  ir:82 - qrCodePalletScanningProcess : QR Code Scan Successful : IRB
+2026-04-21 18:20:15.012 INFO  ir:113 - qrCodePalletScanningProcess : Exit : IRB
+2026-04-21 18:20:15.012 INFO  ir:82 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-04-21 18:20:15.012 DEBUG ir:176 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-04-21 18:20:15.012 DEBUG ir:177 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-04-21 18:20:15.012 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S03_close_the_fingerTip_Latch
+2026-04-21 18:20:15.012 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S03_close_the_fingerTip_Latch
+2026-04-21 18:20:15.012 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:15.012 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:15.012 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:15.012 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:15.012 INFO  ir:26 - S03_close_the_fingerTip_Latch : Entry
+2026-04-21 18:20:15.012 DEBUG ir:50 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : Entry
+2026-04-21 18:20:15.012 DEBUG ir:60 - PortId    : op16
+2026-04-21 18:20:15.012 DEBUG ir:61 - ClusterId : 1
+2026-04-21 18:20:15.012 DEBUG ir:62 - BayId     : 3
+2026-04-21 18:20:15.114 DEBUG ir:80 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : status : true
+2026-04-21 18:20:15.114 DEBUG ir:85 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_IrtBay : Exit
+2026-04-21 18:20:15.114 INFO  ir:35 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-04-21 18:20:15.114 INFO  ir:44 - S03_close_the_fingerTip_Latch : Exit
+2026-04-21 18:20:15.114 DEBUG ir:176 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-04-21 18:20:15.114 DEBUG ir:177 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 18:20:15.114 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S04_ensure_the_fingerTip_Latch_Closed
+2026-04-21 18:20:15.114 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S04_ensure_the_fingerTip_Latch_Closed
+2026-04-21 18:20:15.114 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:15.114 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:15.114 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:15.114 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:15.114 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:15.114 INFO  ir:32 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-04-21 18:20:15.114 DEBUG ir:89 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:20:15.114 DEBUG ir:97 - PortId    : ip52
+2026-04-21 18:20:15.114 DEBUG ir:98 - ClusterId : 1
+2026-04-21 18:20:15.114 DEBUG ir:99 - BayId     : 3
+2026-04-21 18:20:15.217 DEBUG ir:119 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : state : Off
+2026-04-21 18:20:15.217 DEBUG ir:124 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:20:16.217 DEBUG ir:89 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:20:16.217 DEBUG ir:97 - PortId    : ip52
+2026-04-21 18:20:16.217 DEBUG ir:98 - ClusterId : 1
+2026-04-21 18:20:16.217 DEBUG ir:99 - BayId     : 3
+2026-04-21 18:20:16.319 DEBUG ir:119 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : state : On
+2026-04-21 18:20:16.319 DEBUG ir:124 - S04_ensure_the_fingerTip_Latch_Closed : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:20:16.499 INFO  ir:58 - set_motor_not_required : Success
+2026-04-21 18:20:21.499 INFO  ir:83 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-04-21 18:20:21.499 DEBUG ir:176 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-04-21 18:20:21.499 DEBUG ir:177 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-04-21 18:20:21.499 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S29_turn_on_tower_lamp_IRT_Bay
+2026-04-21 18:20:21.499 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S29_turn_on_tower_lamp_IRT_Bay
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.499 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:21.499 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:21.499 INFO  ir:20 - S29_turn_on_tower_lamp1_IRT_Bay : Entry
+2026-04-21 18:20:21.499 DEBUG ir:58 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Entry
+2026-04-21 18:20:21.499 DEBUG ir:68 - PortId    : op20
+2026-04-21 18:20:21.499 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:20:21.499 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:20:21.602 DEBUG ir:85 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : status : true
+2026-04-21 18:20:21.602 DEBUG ir:94 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:20:21.602 INFO  ir:29 - S29_turn_on_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Success
+2026-04-21 18:20:21.602 DEBUG ir:101 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Entry
+2026-04-21 18:20:21.602 DEBUG ir:111 - PortId    : op19
+2026-04-21 18:20:21.602 DEBUG ir:112 - ClusterId : 1
+2026-04-21 18:20:21.602 DEBUG ir:113 - BayId     : 3
+2026-04-21 18:20:21.705 DEBUG ir:128 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : status : true
+2026-04-21 18:20:21.705 DEBUG ir:137 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:20:21.705 INFO  ir:37 - S29_turn_on_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Success
+2026-04-21 18:20:21.705 INFO  ir:51 - S29_turn_on_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:20:21.705 DEBUG ir:176 - processCurrentState : S29_turn_on_tower_lamp_IRT_Bay : Status     : true
+2026-04-21 18:20:21.705 DEBUG ir:177 - processCurrentState : S29_turn_on_tower_lamp_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:20:21.705 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S05_insulationResistance_Test
+2026-04-21 18:20:21.705 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S05_insulationResistance_Test
+2026-04-21 18:20:21.705 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.705 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.705 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.705 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:21.705 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:21.705 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:21.705 INFO  ir:41 - S05_insulationResistance_Test: Entry
+2026-04-21 18:20:21.705 DEBUG ir:49 - S05_insulationResistance_Test: Sim: turn off meter read enable pin: Success
+2026-04-21 18:20:21.705 DEBUG ir:51 - S05_insulationResistance_Test: Sim: IrExecutionTime_InSec: 5
+2026-04-21 18:20:21.705 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:20:22.705 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:20:23.705 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:20:24.706 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:20:25.708 DEBUG ir:54 - S05_insulationResistance_Test: Sim: Waiting 1 min for IR: IRB
+2026-04-21 18:20:26.709 DEBUG ir:61 - S05_insulationResistance_Test: Sim: IrExecutionTime_InSec: Exit
+2026-04-21 18:20:26.709 DEBUG ir:87 - S05_insulationResistance_Test: populatePassResults: Entry
+2026-04-21 18:20:26.892 DEBUG ir:138 - S05_insulationResistance_Test: populatePassResults: Exit
+2026-04-21 18:20:26.892 INFO  ir:79 - S05_insulationResistance_Test: Exit
+2026-04-21 18:20:26.892 DEBUG ir:176 - processCurrentState : S05_insulationResistance_Test : Status     : true
+2026-04-21 18:20:26.892 DEBUG ir:177 - processCurrentState : S05_insulationResistance_Test : Error Code : 
+2026-04-21 18:20:26.892 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S06_open_the_fingerTip_Latch
+2026-04-21 18:20:26.892 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S06_open_the_fingerTip_Latch
+2026-04-21 18:20:26.892 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.892 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.892 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.892 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.892 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.892 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:26.892 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:26.892 INFO  ir:27 - S06_open_the_fingerTip_Latch : Entry
+2026-04-21 18:20:26.892 DEBUG ir:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : Entry
+2026-04-21 18:20:26.892 DEBUG ir:62 - PortId    : op16
+2026-04-21 18:20:26.892 DEBUG ir:63 - ClusterId : 1
+2026-04-21 18:20:26.892 DEBUG ir:64 - BayId     : 3
+2026-04-21 18:20:26.995 DEBUG ir:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : status : true
+2026-04-21 18:20:26.995 DEBUG ir:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_IrtBay : Exit
+2026-04-21 18:20:26.995 INFO  ir:37 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-21 18:20:26.995 INFO  ir:46 - S06_open_the_fingerTip_Latch : Exit
+2026-04-21 18:20:26.995 DEBUG ir:176 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-04-21 18:20:26.995 DEBUG ir:177 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-21 18:20:26.995 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S07_ensure_the_fingerTip_Latch_Opened
+2026-04-21 18:20:26.995 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S07_ensure_the_fingerTip_Latch_Opened
+2026-04-21 18:20:26.995 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.995 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.995 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.995 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.995 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.995 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:26.995 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:26.995 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:26.995 INFO  ir:27 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-04-21 18:20:26.995 DEBUG ir:60 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:20:26.995 DEBUG ir:68 - PortId    : ip52
+2026-04-21 18:20:26.995 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:20:26.995 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:20:27.096 DEBUG ir:93 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : state : On
+2026-04-21 18:20:27.096 DEBUG ir:95 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:20:28.096 DEBUG ir:60 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Entry
+2026-04-21 18:20:28.096 DEBUG ir:68 - PortId    : ip52
+2026-04-21 18:20:28.096 DEBUG ir:69 - ClusterId : 1
+2026-04-21 18:20:28.096 DEBUG ir:70 - BayId     : 3
+2026-04-21 18:20:28.198 DEBUG ir:93 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : state : Off
+2026-04-21 18:20:28.198 DEBUG ir:95 - S07_ensure_the_fingerTip_Latch_Opened : irtBay_FingerTipLatch_Status : Exit
+2026-04-21 18:20:28.198 INFO  ir:54 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-04-21 18:20:28.198 DEBUG ir:176 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-04-21 18:20:28.198 DEBUG ir:177 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-04-21 18:20:28.198 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S30_turn_off_tower_lamp_IRT_Bay
+2026-04-21 18:20:28.198 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S30_turn_off_tower_lamp_IRT_Bay
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.198 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:28.198 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:28.198 INFO  ir:19 - S30_turn_off_tower_lamp1_IRT_Bay : Entry
+2026-04-21 18:20:28.198 DEBUG ir:55 - S30_turn_off_tower_lamp1_IRT_Bay : turn_on_tower_lamp : Entry
+2026-04-21 18:20:28.301 INFO  ir:28 - S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned On
+2026-04-21 18:20:28.301 DEBUG ir:78 - S30_turn_off_tower_lamp1_IRT_Bay : turn_off_tower_lamp : Entry
+2026-04-21 18:20:28.403 INFO  ir:36 - S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned Off
+2026-04-21 18:20:28.403 INFO  ir:50 - S30_turn_off_tower_lamp1_IRT_Bay : Exit
+2026-04-21 18:20:28.403 DEBUG ir:176 - processCurrentState : S30_turn_off_tower_lamp_IRT_Bay : Status     : true
+2026-04-21 18:20:28.403 DEBUG ir:177 - processCurrentState : S30_turn_off_tower_lamp_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:20:28.403 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S08_check_for_pallet_at_CALIB_Bay
+2026-04-21 18:20:28.403 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S08_check_for_pallet_at_CALIB_Bay
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:28.403 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:28.403 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:28.403 INFO  ir:38 - S08_check_for_pallet_at_CALIB_Bay : Entry
+2026-04-21 18:20:28.403 DEBUG ir:170 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Entry
+2026-04-21 18:20:28.403 DEBUG ir:184 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-04-21 18:20:28.506 DEBUG ir:201 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : state : Off
+2026-04-21 18:20:28.506 DEBUG ir:209 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : status : false
+2026-04-21 18:20:28.506 DEBUG ir:214 - S08_check_for_pallet_at_CALIB_Bay : isPalletAvailableAt_CalibBay : Exit
+2026-04-21 18:20:28.506 INFO  ir:61 - S08_check_for_pallet_at_CALIB_Bay : No Pallet Available
+2026-04-21 18:20:33.607 INFO  ir:70 - set_motor_required : Success
+2026-04-21 18:20:33.607 INFO  ir:164 - S08_check_for_pallet_at_CALIB_Bay : Exit
+2026-04-21 18:20:33.607 DEBUG ir:176 - processCurrentState : S08_check_for_pallet_at_CALIB_Bay : Status     : true
+2026-04-21 18:20:33.607 DEBUG ir:177 - processCurrentState : S08_check_for_pallet_at_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:20:33.607 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S13_open_stop_latch_IRT_Bay
+2026-04-21 18:20:33.607 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S13_open_stop_latch_IRT_Bay
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:33.607 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:33.607 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:33.607 INFO  ir:28 - S13_open_stop_latch_IRT_Bay : Entry
+2026-04-21 18:20:33.607 INFO  ir:33 - S13_open_stop_latch_IRT_Bay: Waiting for Halt Pallet at Ir-Entry
+2026-04-21 18:20:33.607 INFO  ir:40 - S13_open_stop_latch_IRT_Bay: Waiting for Halt Pallet at Ir-Exit
+2026-04-21 18:20:33.607 INFO  ir:42 - S13_open_stop_latch_IRT_Bay: Waiting for NoEntry at Ir-Entry for Calib
+2026-04-21 18:20:33.607 INFO  ir:48 - S13_open_stop_latch_IRT_Bay: Waiting for NoEntry at Ir-Exit for Calib
+2026-04-21 18:20:33.607 DEBUG ir:75 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Entry
+2026-04-21 18:20:33.607 DEBUG ir:85 - PortId    : op15
+2026-04-21 18:20:33.607 DEBUG ir:86 - ClusterId : 1
+2026-04-21 18:20:33.607 DEBUG ir:87 - BayId     : 3
+2026-04-21 18:20:33.709 DEBUG ir:99 - S13_open_stop_latch_IRT_Bay : open_StopLatch_IRT_Bay : state : Off
+2026-04-21 18:20:33.709 DEBUG ir:112 - S13_open_stop_latch_IRT_Bay : open_StopLatch_IRT_Bay : status : true
+2026-04-21 18:20:33.709 DEBUG ir:122 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : status : true
+2026-04-21 18:20:33.709 DEBUG ir:123 - S13_open_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Exit
+2026-04-21 18:20:33.709 INFO  ir:56 - S13_open_stop_latch_IRT_Bay : Stop Latch Opened
+2026-04-21 18:20:34.725 INFO  ir:70 - S13_open_stop_latch_IRT_Bay : Exit
+2026-04-21 18:20:34.725 DEBUG ir:176 - processCurrentState : S13_open_stop_latch_IRT_Bay : Status     : true
+2026-04-21 18:20:34.725 DEBUG ir:177 - processCurrentState : S13_open_stop_latch_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:20:34.725 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S12_close_stop_latch_IRT_Bay
+2026-04-21 18:20:34.725 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S12_close_stop_latch_IRT_Bay
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:101 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOOOOOT found  
+2026-04-21 18:20:34.725 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:34.725 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:34.725 INFO  ir:24 - S12_close_stop_latch_IRT_Bay : Entry
+2026-04-21 18:20:36.725 DEBUG ir:66 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Entry
+2026-04-21 18:20:36.725 DEBUG ir:76 - PortId    : op15
+2026-04-21 18:20:36.725 DEBUG ir:77 - ClusterId : 1
+2026-04-21 18:20:36.725 DEBUG ir:78 - BayId     : 3
+2026-04-21 18:20:36.827 DEBUG ir:88 - S12_close_stop_latch_IRT_Bay : close_StopLatch_IRT_Bay : state : On
+2026-04-21 18:20:36.827 DEBUG ir:99 - S12_close_stop_latch_IRT_Bay : close_StopLatch_IRT_Bay : status : true
+2026-04-21 18:20:36.827 DEBUG ir:109 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : status : true
+2026-04-21 18:20:36.827 DEBUG ir:110 - S12_close_stop_latch_IRT_Bay : irtBay_StopLatch_Status : Exit
+2026-04-21 18:20:36.827 INFO  ir:35 - S12_close_stop_latch_IRT_Bay : Stop Latch Closed
+2026-04-21 18:20:36.930 INFO  ir:43 - set_motor_not_required : Success
+2026-04-21 18:20:36.930 INFO  ir:61 - S12_close_stop_latch_IRT_Bay : Exit
+2026-04-21 18:20:36.930 DEBUG ir:176 - processCurrentState : S12_close_stop_latch_IRT_Bay : Status     : true
+2026-04-21 18:20:36.930 DEBUG ir:177 - processCurrentState : S12_close_stop_latch_IRT_Bay : Error Code : ERROR_CODE_601
+2026-04-21 18:20:36.930 DEBUG ir:77 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : S01_check_for_pallet_at_IRT_Bay
+2026-04-21 18:20:36.930 DEBUG ir:80 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : S01_check_for_pallet_at_IRT_Bay
+2026-04-21 18:20:36.930 DEBUG ir:95 - InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  
+2026-04-21 18:20:36.930 DEBUG ir:23 - IrtBayContext: processPresentState: Entry
+2026-04-21 18:20:36.930 INFO  ir:38 - S01_check_for_pallet_at_IRT_Bay : Entry
+2026-04-21 18:20:36.930 DEBUG ir:143 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Entry
+2026-04-21 18:20:36.930 DEBUG ir:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-04-21 18:20:37.032 DEBUG ir:174 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : state : Off
+2026-04-21 18:20:37.032 DEBUG ir:182 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : status : false
+2026-04-21 18:20:37.032 DEBUG ir:186 - S01_check_for_pallet_at_IRT_Bay : isPalletAvailableAt_IRTBay : Exit
+2026-04-21 18:20:37.032 INFO  ir:99 - S01_check_for_pallet_at_IRT_Bay : No pallet Available at IRT Bay

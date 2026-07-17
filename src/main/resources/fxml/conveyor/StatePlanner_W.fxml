@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="1434.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.StatePlannerController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="1414.0">
+         <children>
+            <TitledPane animated="false" collapsible="false" layoutX="30.0" layoutY="190.0" prefHeight="402.0" prefWidth="1373.0" text="State Planner">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableStatePlanner" layoutX="5.0" layoutY="5.0" prefHeight="364.0" prefWidth="1360.0">
+                           <columns>
+                              <TableColumn fx:id="columnSerialNo" prefWidth="52.799988746643066" sortable="false" text="S.No" />
+                              <TableColumn fx:id="columnPath" prefWidth="96.80001449584961" sortable="false" text="Path" />
+                              <TableColumn fx:id="columnState" prefWidth="250.0" sortable="false" text="State" />
+                              <TableColumn fx:id="columnStateErrorCode" minWidth="0.0" prefWidth="125.0" sortable="false" text="Error Code" />
+                              <TableColumn fx:id="columnSuccess" prefWidth="253.0" sortable="false" text="If Success" />
+                              <TableColumn fx:id="columnSuccessErrorCode" prefWidth="135.0" sortable="false" text="Error Code" />
+                              <TableColumn fx:id="columnFailed" prefWidth="259.0" sortable="false" text="If Failed" />
+                              <TableColumn fx:id="columnFailedErrorCode" prefWidth="157.5999755859375" sortable="false" text="Error Code" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <GridPane layoutX="40.0" layoutY="574.0" prefHeight="91.0" prefWidth="498.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.20001220703125" minWidth="10.0" prefWidth="74.5999755859375" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.4000244140625" minWidth="10.0" prefWidth="175.4000244140625" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="ButtonSaveStateFlow" mnemonicParsing="false" onAction="#ButtonSaveStateFlowOnClick" prefHeight="26.0" prefWidth="167.0" text="Save State Flow" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="ButtonDeleteRow" mnemonicParsing="false" onAction="#buttonDeleteRowOnClick" prefHeight="26.0" prefWidth="286.0" text="Delete Row" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="ButtonAddRow" mnemonicParsing="false" onAction="#buttonAddRowOnClick" prefHeight="26.0" prefWidth="300.0" text="Add Row" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <HBox layoutX="52.0" layoutY="11.0" prefHeight="166.0" prefWidth="1215.0">
+               <children>
+                  <GridPane prefHeight="166.0" prefWidth="478.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="143.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="39.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="114.39999237060547" minHeight="10.0" prefHeight="57.59999694824219" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="82.4000030517578" minHeight="10.0" prefHeight="82.4000030517578" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="202.0" prefWidth="143.0" text="Select Bay Name :" />
+                        <ComboBox fx:id="cmbBxSelectBayType" onAction="#cmbBxSelectBayTypeOnChange" prefHeight="34.0" prefWidth="295.0" GridPane.columnIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#loadBayStateOnClick" prefHeight="30.0" prefWidth="130.0" text="Load" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="166.0" prefWidth="222.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="176.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="21.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="25.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="114.39999237060547" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="70.39999999999999" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="55.59999694824219" minHeight="10.0" prefHeight="46.40000610351561" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <RadioButton fx:id="rdBtnRunSelect" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="158.0" prefWidth="111.0" text="RUN" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="rdBtnStopSelect" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="158.0" prefWidth="111.0" text="STOP" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="rdBtnResetSelect" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="158.0" prefWidth="111.0" text="RESET" textAlignment="CENTER" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </RadioButton>
+                        <ComboBox fx:id="cmbModeSelection" prefHeight="34.0" prefWidth="156.0">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="123.0" prefWidth="509.0">
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="143.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="39.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="112.80000457763671" minHeight="10.0" prefHeight="52.00000915527343" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.19999084472656" minHeight="10.0" prefHeight="79.19999084472656" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="209.0" text="Select Single State :" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cmbBxSelectSingleState" prefHeight="34.0" prefWidth="295.0" GridPane.columnIndex="3" />
+                        <Button mnemonicParsing="false" onAction="#runSingleStateOnClick" prefHeight="31.0" prefWidth="106.0" text="Execute" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

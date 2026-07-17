@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="829.0" prefWidth="1781.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.plc.PlcServerBayTestController">
+   <children>
+      <AnchorPane layoutX="11.0" layoutY="9.0" prefHeight="821.0" prefWidth="1754.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="812.0" layoutX="-2.0" layoutY="-1.0" stroke="#0000003f" strokeType="INSIDE" width="1750.0" />
+            <GridPane layoutX="23.0" layoutY="13.0" prefHeight="90.0" prefWidth="1012.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="125.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="169.79997558593746" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.33334350585938" minWidth="10.0" prefWidth="86.80001220703127" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.33331298828125" minWidth="10.0" prefWidth="170.00001220703126" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="100.39998779296877" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.8000366210938" minWidth="10.0" prefWidth="139.80001220703127" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.1999511718751" minWidth="10.0" prefWidth="146.19998779296873" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="143.0" prefWidth="126.0" text="Server Ip Address">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtClusterIpAddress" prefHeight="70.0" prefWidth="214.0" stylesheets="@../../resources/config/style/application_W.css" text="192.168.0.103" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="98.0" prefWidth="131.0" text="Port :" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtClusterPortNo" prefHeight="102.0" prefWidth="256.0" stylesheets="@../../resources/config/style/application_W.css" text="502" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="btnStartServer" mnemonicParsing="false" onAction="#modbusStartServerTrigger" prefHeight="171.0" prefWidth="166.0" text="Start Server" GridPane.columnIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnStopServer" mnemonicParsing="false" onAction="#modbusStopServerTrigger" prefHeight="26.0" prefWidth="148.0" text="Stop Server" GridPane.columnIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="169.0" text="Status" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtComStatus" editable="false" prefHeight="22.0" prefWidth="138.0" stylesheets="@../../resources/config/style/application_W.css" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <TabPane layoutX="8.0" layoutY="121.0" prefHeight="691.0" prefWidth="856.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Output Coils-Client read from this server">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TitledPane animated="false" collapsible="false" layoutX="15.0" layoutY="7.0" prefHeight="642.0" prefWidth="822.0" text="Output Port">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tbViewOutputPortData" layoutX="-1.0" prefHeight="615.0" prefWidth="822.0">
+                                             <columns>
+                                                <TableColumn fx:id="tblColOutputSerialNo" prefWidth="75.0" sortable="false" text="S.No" />
+                                                <TableColumn fx:id="tblColOutputPortName" prefWidth="238.0" sortable="false" text="Port Name" />
+                                                <TableColumn fx:id="tblColOutputPortStateDescription" editable="false" prefWidth="197.5999755859375" sortable="false" text="State Description" />
+                                                <TableColumn fx:id="tblColOutputActive" prefWidth="144.0" sortable="false" text="Output Active" />
+                                                <TableColumn fx:id="tblColOutputUpdateBay" prefWidth="144.79998779296875" sortable="false" text="Update Bay" />
+                                             </columns>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Output Holding Registers-Client read from this server">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane layoutX="24.0" layoutY="60.0" prefHeight="91.0" prefWidth="812.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.4000244140625" minWidth="10.0" prefWidth="99.4000244140625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.20001220703125" minWidth="10.0" prefWidth="40.99998779296874" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.20001220703125" minWidth="10.0" prefWidth="73.59998779296873" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="95.20001220703125" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.20001220703125" minWidth="10.0" prefWidth="60.4000244140625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.59997558593756" minWidth="10.0" prefWidth="80.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.199951171875" minWidth="10.0" prefWidth="66.7999267578125" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.2000732421875" minWidth="10.0" prefWidth="121.2000732421875" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="94.0" text="Address" GridPane.rowIndex="1" />
+                                    <Label prefHeight="18.0" prefWidth="107.0" text="Value" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label prefHeight="18.0" prefWidth="74.0" text="Status" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtWriteAddressSample" text="201" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtWriteStatusSample" editable="false" prefHeight="22.0" prefWidth="138.0" stylesheets="@../../resources/config/style/application_W.css" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtWriteValueSample" prefHeight="22.0" prefWidth="138.0" stylesheets="@../../resources/config/style/application_W.css" text="65000" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Button fx:id="btnWriteHoldingRegister" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="update" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <TabPane layoutX="882.0" layoutY="119.0" prefHeight="691.0" prefWidth="856.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Input Coils-Client write to this Server">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TitledPane animated="false" collapsible="false" layoutX="4.0" layoutY="4.0" prefHeight="642.0" prefWidth="834.0" text="Input Port">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tbViewInputPortData" layoutX="1.0" prefHeight="615.0" prefWidth="831.0">
+                                             <columns>
+                                                <TableColumn fx:id="tblColInputSerialNo" prefWidth="64.0000581741333" resizable="false" sortable="false" text="S.No" />
+                                                <TableColumn fx:id="tblColInputPortName" prefWidth="265.59999084472656" resizable="false" sortable="false" text="Port Name" />
+                                                <TableColumn fx:id="tblColInputActive" editable="false" prefWidth="146.4000244140625" sortable="false" text="Input Active" />
+                                                <TableColumn fx:id="tblColInputPortStateDescription" editable="false" prefWidth="172.0" resizable="false" sortable="false" text="State Description" />
+                                             </columns>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </TableView>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff01" height="618.0" layoutX="345.0" stroke="TRANSPARENT" strokeType="INSIDE" width="132.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Input Holding Registers-Client write to this server">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <GridPane layoutX="22.0" layoutY="59.0" prefHeight="91.0" prefWidth="812.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="94.0" text="Address" GridPane.rowIndex="1" />
+                                    <Label prefHeight="18.0" prefWidth="107.0" text="Value" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label prefHeight="18.0" prefWidth="74.0" text="Status" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtReadAddressSample" text="301" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtReadStatusSample" editable="false" prefHeight="22.0" prefWidth="138.0" stylesheets="@../../resources/config/style/application_W.css" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtReadValueSample" editable="false" prefHeight="22.0" prefWidth="138.0" stylesheets="@../../resources/config/style/application_W.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="1701.0" stylesheets="@../../resources/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.QrScannerPortSetupController">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="12.0" layoutY="23.0" prefHeight="432.0" prefWidth="1675.0" text="QR Scanner - Terminal 1">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="563.0">
+               <children>
+                <AnchorPane layoutX="4.0" layoutY="4.0" minHeight="0.0" minWidth="0.0" prefHeight="384.0" prefWidth="1657.0">
+                     <children>
+                        <ScrollPane layoutX="5.0" layoutY="52.0" prefHeight="322.0" prefWidth="1648.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="48.0" layoutX="5.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="1662.0" />
+                     </children>
+                  </AnchorPane>
+                  <GridPane layoutX="10.0" layoutY="13.0" prefHeight="37.0" prefWidth="1638.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.5999755859375" minWidth="10.0" prefWidth="107.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="119.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="18.199972534179693" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="103.80002441406253" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.199951171875" minWidth="10.0" prefWidth="16.59998779296876" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="115.00002441406252" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="15.800000000000011" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.39999999999998" minWidth="10.0" prefWidth="149.39998779296872" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="17.4000244140625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.19997558593752" minWidth="10.0" prefWidth="120.60007324218748" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="23.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.60000000000002" minWidth="10.0" prefWidth="125.39997558593745" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="32.000048828125045" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0000000000001" minWidth="10.0" prefWidth="231.1999511718751" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="16.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="2.8000244140624773" prefWidth="111.59990234375005" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="0.199951171875" prefWidth="20.40000000000009" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="84.40000000000009" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="16.600024414062545" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.8000244140626" minWidth="10.0" prefWidth="209.39997558593745" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="109.0" text="Model" textFill="#171717" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Description" textFill="#1b1a1a" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Status" textFill="#252424" GridPane.columnIndex="15" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Baud Rate" textFill="#252424" GridPane.columnIndex="5" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Port" textFill="#1e1d1d" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="293.0" text="Read Data" textFill="#252424" GridPane.columnIndex="19" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="227.0" text="Canonical Name" textFill="#252424" GridPane.columnIndex="13" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Cluster Name" textFill="#252424" GridPane.columnIndex="7" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Bay  Name" textFill="#252424" GridPane.columnIndex="9" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="142.0" text="Position No" textFill="#252424" GridPane.columnIndex="11" />
+                     </children>
+                  </GridPane>
+                  <ScrollPane layoutX="9.0" layoutY="56.0" prefHeight="318.0" prefWidth="1661.0">
+                     <content>
+                        <GridPane prefHeight="678.0" prefWidth="1624.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.5999755859375" minWidth="10.0" prefWidth="107.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="120.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="27.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="104.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.199951171875" minWidth="10.0" prefWidth="22.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="117.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="23.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="148.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="20.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="127.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="24.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="139.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="24.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="10.0" prefWidth="229.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="0.0" prefWidth="15.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="2.8000244140624773" prefWidth="128.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="23.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="97.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="20.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="192.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #1" textFill="#222121" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #2" textFill="#222121" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #3" textFill="#222121" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #4" textFill="#222121" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #5" textFill="#222121" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #6" textFill="#222121" GridPane.rowIndex="5" />
+                              <Button fx:id="btnValidateQr1_Cmd" mnemonicParsing="false" onAction="#qr1_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" />
+                              <Button fx:id="btnValidateQr2_Cmd" mnemonicParsing="false" onAction="#qr2_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="1" />
+                              <Button fx:id="btnValidateQr3_Cmd" mnemonicParsing="false" onAction="#qr3_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="2" />
+                              <Button fx:id="btnValidateQr4_Cmd" mnemonicParsing="false" onAction="#qr4_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="3" />
+                              <Button fx:id="btnValidateQr5_Cmd" mnemonicParsing="false" onAction="#qr5_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="4" />
+                              <Button fx:id="btnValidateQr6_Cmd" mnemonicParsing="false" onAction="#qr6_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="5" />
+                              <Button fx:id="btnValidateQr7_Cmd" mnemonicParsing="false" onAction="#qr7_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="6" />
+                              <Button fx:id="btnValidateQr8_Cmd" mnemonicParsing="false" onAction="#qr8_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="7" />
+                              <Button fx:id="btnValidateQr9_Cmd" mnemonicParsing="false" onAction="#qr9_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="8" />
+                              <Button fx:id="btnValidateQr10_Cmd" mnemonicParsing="false" onAction="#qr10_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="9" />
+                              <Button fx:id="btnValidateQr11_Cmd" mnemonicParsing="false" onAction="#qr11_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="10" />
+                              <Button fx:id="btnValidateQr12_Cmd" mnemonicParsing="false" onAction="#qr12_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="11" />
+                              <Button fx:id="btnValidateQr13_Cmd" mnemonicParsing="false" onAction="#qr13_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="17" GridPane.rowIndex="12" />
+                              <ComboBox fx:id="cmbBxQr1_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cmbBxQr2_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbBxQr3_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cmbBxQr4_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbBxQr5_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <ComboBox fx:id="cmbBxQr6_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="cmbBxQr7_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="cmbBxQr8_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="cmbBxQr9_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <ComboBox fx:id="cmbBxQr10_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="cmbBxQr11_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                              <ComboBox fx:id="cmbBxQr12_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                              <ComboBox fx:id="cmbBxQr13_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                              <ComboBox fx:id="cmbBxQr1_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" />
+                              <ComboBox fx:id="cmbBxQr2_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbBxQr3_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cmbBxQr4_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbBxQr5_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <ComboBox fx:id="cmbBxQr6_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="cmbBxQr7_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="cmbBxQr8_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="cmbBxQr9_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                              <ComboBox fx:id="cmbBxQr10_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="cmbBxQr11_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                              <ComboBox fx:id="cmbBxQr12_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                              <ComboBox fx:id="cmbBxQr13_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+                              <ComboBox fx:id="cmbBxQr1_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" />
+                              <ComboBox fx:id="cmbBxQr2_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbBxQr3_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cmbBxQr4_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbBxQr5_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                              <ComboBox fx:id="cmbBxQr6_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="cmbBxQr7_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="cmbBxQr8_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="cmbBxQr9_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                              <ComboBox fx:id="cmbBxQr10_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="cmbBxQr11_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+                              <ComboBox fx:id="cmbBxQr12_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="11" />
+                              <ComboBox fx:id="cmbBxQr13_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+                              <TextField fx:id="txtValidateQr1_CmdStatus" editable="false" prefHeight="32.0" prefWidth="132.0" GridPane.columnIndex="15" />
+                              <TextField fx:id="txtValidateQr2_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtValidateQr3_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtValidateQr4_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtValidateQr5_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtValidateQr6_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtValidateQr7_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtValidateQr8_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtValidateQr9_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="8" />
+                              <TextField fx:id="txtValidateQr10_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="9" />
+                              <TextField fx:id="txtValidateQr11_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="10" />
+                              <TextField fx:id="txtValidateQr12_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="11" />
+                              <TextField fx:id="txtValidateQr13_CmdStatus" editable="false" prefHeight="31.0" prefWidth="128.0" GridPane.columnIndex="15" GridPane.rowIndex="12" />
+                           	  <TextField fx:id="txtQr1ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" />
+                              <TextField fx:id="txtQr2ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtQr3ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtQr4ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtQr5ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtQr6ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtQr7ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtQr8ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtQr9ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="8" />
+                              <TextField fx:id="txtQr10ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="9" />
+                              <TextField fx:id="txtQr11ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="10" />
+                              <TextField fx:id="txtQr12ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="11" />
+                              <TextField fx:id="txtQr13ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="19" GridPane.rowIndex="12" />
+                              <ComboBox fx:id="cmbBxQr1ClusterId" onAction="#cmbBxQr1ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" />
+                              <ComboBox fx:id="cmbBxQr2ClusterId" onAction="#cmbBxQr2ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbBxQr3ClusterId" onAction="#cmbBxQr3ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cmbBxQr4ClusterId" onAction="#cmbBxQr4ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbBxQr5ClusterId" onAction="#cmbBxQr5ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                              <ComboBox fx:id="cmbBxQr6ClusterId" onAction="#cmbBxQr6ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="cmbBxQr7ClusterId" onAction="#cmbBxQr7ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="cmbBxQr8ClusterId" onAction="#cmbBxQr8ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="cmbBxQr9ClusterId" onAction="#cmbBxQr9ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+                              <ComboBox fx:id="cmbBxQr10ClusterId" onAction="#cmbBxQr10ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="cmbBxQr11ClusterId" onAction="#cmbBxQr11ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+                              <ComboBox fx:id="cmbBxQr12ClusterId" onAction="#cmbBxQr12ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="11" />
+                              <ComboBox fx:id="cmbBxQr13ClusterId" onAction="#cmbBxQr13ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" GridPane.rowIndex="12" />
+                              <ComboBox fx:id="cmbBxQr1BayId" onAction="#cmbBxQr1BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" />
+                              <ComboBox fx:id="cmbBxQr2BayId" onAction="#cmbBxQr2BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbBxQr3BayId" onAction="#cmbBxQr3BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cmbBxQr4BayId" onAction="#cmbBxQr4BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbBxQr5BayId" onAction="#cmbBxQr5BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+                              <ComboBox fx:id="cmbBxQr6BayId" onAction="#cmbBxQr6BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="cmbBxQr7BayId" onAction="#cmbBxQr7BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="cmbBxQr8BayId" onAction="#cmbBxQr8BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="cmbBxQr9BayId" onAction="#cmbBxQr9BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+                              <ComboBox fx:id="cmbBxQr10BayId" onAction="#cmbBxQr10BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="cmbBxQr11BayId" onAction="#cmbBxQr11BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                              <ComboBox fx:id="cmbBxQr12BayId" onAction="#cmbBxQr12BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="11" />
+                              <ComboBox fx:id="cmbBxQr13BayId" onAction="#cmbBxQr13BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" GridPane.rowIndex="12" />
+                              <ComboBox fx:id="cmbBxQr1PositionId" onAction="#cmbBxQr1PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" />
+                              <ComboBox fx:id="cmbBxQr2PositionId" onAction="#cmbBxQr2PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbBxQr3PositionId" onAction="#cmbBxQr3PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cmbBxQr4PositionId" onAction="#cmbBxQr4PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbBxQr5PositionId" onAction="#cmbBxQr5PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="4" />
+                              <ComboBox fx:id="cmbBxQr6PositionId" onAction="#cmbBxQr6PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="cmbBxQr7PositionId" onAction="#cmbBxQr7PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="6" />
+                              <ComboBox fx:id="cmbBxQr8PositionId" onAction="#cmbBxQr8PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="cmbBxQr9PositionId" onAction="#cmbBxQr9PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="8" />
+                              <ComboBox fx:id="cmbBxQr10PositionId" onAction="#cmbBxQr10PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="9" />
+                              <ComboBox fx:id="cmbBxQr11PositionId" onAction="#cmbBxQr11PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="10" />
+                              <ComboBox fx:id="cmbBxQr12PositionId" onAction="#cmbBxQr12PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="11" />
+                              <ComboBox fx:id="cmbBxQr13PositionId" onAction="#cmbBxQr13PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" GridPane.rowIndex="12" />
+                              <TextField fx:id="txtQr1Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" />
+                              <TextField fx:id="txtQr2Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtQr3Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtQr4Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtQr5Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtQr6Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="5" />
+                              <TextField fx:id="txtQr7Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="6" />
+                              <TextField fx:id="txtQr8Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="7" />
+                              <TextField fx:id="txtQr9Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="8" />
+                              <TextField fx:id="txtQr10Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="9" />
+                              <TextField fx:id="txtQr11Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="10" />
+                              <TextField fx:id="txtQr12Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="11" />
+                              <TextField fx:id="txtQr13Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="13" GridPane.rowIndex="12" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #7" textFill="#222121" GridPane.rowIndex="6" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #8" textFill="#222121" GridPane.rowIndex="7" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #9" textFill="#222121" GridPane.rowIndex="8" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #10" textFill="#222121" GridPane.rowIndex="9" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #11" textFill="#222121" GridPane.rowIndex="10" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #12" textFill="#222121" GridPane.rowIndex="11" />
+                              <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="QR #13" textFill="#222121" GridPane.rowIndex="12" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="btn_Save" layoutX="732.0" layoutY="471.0" mnemonicParsing="false" onAction="#SaveOnClick" prefHeight="29.0" prefWidth="118.0" text="Save" />
+   </children>
+</AnchorPane>

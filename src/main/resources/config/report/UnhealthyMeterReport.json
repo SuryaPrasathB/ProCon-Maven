@@ -1,0 +1,49 @@
+{
+	"ConfigFileVersion" : "1.0",
+	"ConfigFileVersionComment" : "TBD",
+
+	"TemplateFileLocationPath":"C:\\TAS_Network\\Procal_Excel\\Custom\\Template\\DHBVN_UnhealthyMeter-V0_2.xlsx",
+	"ReportOutputPath": "C:\\TAS_Network\\Procal_Excel\\Custom\\Output\\",
+	"ParentReportProfile":"UnhealthyMeterReport",
+	
+	"ExcelReportTestTypeFilter": {
+	
+		"TestTypeFilter": [
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "G4",
+				"CellStartResultStatusPosition" : "F9",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true
+			}
+		]
+	},
+
+	"ExcelReportMeterDataCellPosition": {
+		"CellStartPositionSerialNo" : "B4",
+		"CellStartPositionMeterSerialNo" : "C4",	
+		"CellStartPositionMeterType" : "D4",
+		"CellStartPositionMake" : "E4",	
+		"CellStartPositionCapacity" : "F4",		
+		"CellStartPositionCustomerRefNo" : "G9",
+		"CellStartPositionDutOverAllStatus" : "S9"			
+		
+	},
+	"ExcelReportMeterDataDisplay" : {
+		
+		"PopulateSerialNo" : true,
+		"PopulateMeterSerialNo" : true,	
+		"PopulateMeterType" : true,		
+		"PopulateMake" : true,
+		"PopulateCapacity" : true,		
+		"PopulateCustomerRefNo" : false,
+		"PopulateDutOverAllStatus" : false,
+		"AppendMeterSerialNoAndRackPosition" : false
+	}
+	
+}

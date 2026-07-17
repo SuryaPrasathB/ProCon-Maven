@@ -1,0 +1,16 @@
+2026-05-21 15:44:02.040 DEBUG sta_nld2:19 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : Entry
+2026-05-21 15:44:02.040 DEBUG sta_nld2:26 - ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 15:44:02.040 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:44:02.040 INFO  sta_nld2:45 - S045_Select_Run_Project : Entry
+2026-05-21 15:44:04.044 INFO  sta_nld2:153 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap : Entry
+2026-05-21 15:44:04.051 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:05.066 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:06.077 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:07.090 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:08.101 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:09.113 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:10.125 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:11.136 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:12.152 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:13.162 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:44:14.170 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.

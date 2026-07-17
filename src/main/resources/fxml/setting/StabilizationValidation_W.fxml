@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="744.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.StabilizationValidationController">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="79.0" layoutY="21.0" prefHeight="188.0" prefWidth="600.0" text="Stability Validation">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="168.0" prefWidth="598.0">
+               <children>
+                  <Label layoutX="78.0" layoutY="36.0" prefHeight="21.0" prefWidth="207.0" text="Stabilization sampling Interval" />
+                  <Label layoutX="79.0" layoutY="73.0" prefHeight="21.0" prefWidth="177.0" text="Stabilization retry count" />
+                  <TextField fx:id="txt_time" layoutX="405.0" layoutY="31.0" prefHeight="31.0" prefWidth="101.0" />
+                  <TextField fx:id="txt_retry" layoutX="406.0" layoutY="68.0" prefHeight="31.0" prefWidth="100.0" />
+                  <Label layoutX="79.0" layoutY="113.0" prefHeight="21.0" prefWidth="178.0" text="Stabilization total time" />
+                  <TextField fx:id="txt_total_time" editable="false" layoutX="406.0" layoutY="108.0" prefHeight="31.0" prefWidth="100.0" />
+                  <Label layoutX="528.0" layoutY="36.0" text="Seconds" />
+                  <Label layoutX="528.0" layoutY="113.0" text="Seconds" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="79.0" layoutY="240.0" prefHeight="278.0" prefWidth="600.0" text="Tolerance Percentage">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane layoutX="74.0" layoutY="15.0" prefHeight="216.0" prefWidth="436.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="283.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="55.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="103.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="21.0" prefWidth="305.0" text="Voltage Accepted Percentage" />
+                        <Label prefHeight="21.0" prefWidth="358.0" text="Harmonics Current Accepted Percentage" visible="false" GridPane.rowIndex="5" />
+                        <Label prefHeight="21.0" prefWidth="316.0" text="Harmonics Voltage Accepted Percentage" visible="false" GridPane.rowIndex="4" />
+                        <Label prefHeight="21.0" prefWidth="337.0" text="Frequency Accepted Percentage" GridPane.rowIndex="3" />
+                        <Label prefHeight="21.0" prefWidth="321.0" text="Phase Accepted Percentage" GridPane.rowIndex="2" />
+                        <Label prefHeight="21.0" prefWidth="323.0" text="Current Accepted Percentage" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="+/-" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="+/-" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="+/-" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="+/-" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="+/-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="72.0" text="+/-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txt_volt" GridPane.columnIndex="2" />
+                        <TextField fx:id="txt_current" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <TextField fx:id="txt_phase" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txt_freq" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <TextField fx:id="txt_har_volt" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="txt_har_current" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Button fx:id="btn_Save" layoutX="490.0" layoutY="535.0" mnemonicParsing="false" onAction="#SaveStabilityValidation" prefHeight="31.0" prefWidth="102.0" text="Save" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="AnchorPaneScanDevice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="1470.0" stylesheets="/resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.BusyLoadingController">
+   <children>
+      <StackPane fx:id="stackPane" prefHeight="469.0" prefWidth="813.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+         </children></StackPane>
+   </children>
+</AnchorPane>

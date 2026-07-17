@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="992.0" prefWidth="1818.0" stylesheets="@../../../../ProCon-d0.5.3.2/src/resources/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="14.0" layoutY="280.0" prefHeight="372.0" prefWidth="1792.0" text="Pallett Manage">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="563.0">
+               <children>
+                <AnchorPane layoutX="4.0" layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="1778.0">
+                     <children>
+                        <TableView fx:id="tvPalletManage" layoutX="4.0" layoutY="3.0" prefHeight="330.0" prefWidth="1764.0">
+                          <columns>
+                            <TableColumn fx:id="colPmSerialNo" prefWidth="61.59999942779541" sortable="false" text="S.No" />
+                              <TableColumn fx:id="colPmPalletActive" prefWidth="73.60000610351562" sortable="false" text="Active" />
+                              <TableColumn fx:id="colPmExitAppeared" prefWidth="65.59994506835938" text="Exit" />
+                              <TableColumn fx:id="colPmPalletQrId" prefWidth="184.00009155273438" sortable="false" text="Pallet Qr ID" />
+                              <TableColumn fx:id="colPmBayType" prefWidth="84.0" sortable="false" text="Bay Key" />
+                              <TableColumn fx:id="colPmPalletBatchNo" prefWidth="96.79998779296875" sortable="false" text="Batch No" />
+                              <TableColumn fx:id="colPmNoOfMetersPresent" prefWidth="105.60003662109375" sortable="false" text="Meter Qty" />
+                              <TableColumn fx:id="colPmNoOfMetersPassed" prefWidth="92.7999267578125" sortable="false" text="Passed Qty" />
+                              <TableColumn fx:id="colPmNoOfMetersFailed" prefWidth="98.4000244140625" sortable="false" text="Failed Qty" />
+                              <TableColumn fx:id="colPmNoOfMetersRejected" prefWidth="119.199951171875" sortable="false" text="Rejected Qty" />
+                              <TableColumn fx:id="colPmPalletBatchMapId" prefWidth="195.199951171875" sortable="false" text="P-Distinct Id" />
+                              <TableColumn fx:id="colPmConvEntryTime" prefWidth="152.7999267578125" sortable="false" text="C-Entry Time" />
+                              <TableColumn fx:id="colPmConvExitTime" prefWidth="167.2000732421875" sortable="false" text="C-Exit Time" />
+                              <TableColumn fx:id="colPmConvPalletRunTime" prefWidth="137.599853515625" sortable="false" text="P-Run Time(Min)" />
+                              <TableColumn fx:id="colPmTestExecutionStatus" prefWidth="122.4000244140625" sortable="false" text="Execution Status" />
+                              <TableColumn fx:id="colPmTestResultStatus" prefWidth="100.0" sortable="false" text="P-Result Status" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TabPane layoutX="15.0" layoutY="662.0" prefHeight="322.0" prefWidth="1792.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Pallete Bay State">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvPalletBayState" layoutX="13.0" layoutY="14.0" prefHeight="267.0" prefWidth="1765.0">
+                          <columns>
+                            <TableColumn fx:id="colPbsSerialNo" prefWidth="47.99996566772461" sortable="false" text="S.No" />
+                              <TableColumn fx:id="colPbsBayType" prefWidth="78.39999389648438" sortable="false" text="Bay Key" />
+                              <TableColumn fx:id="colPbsPalletQrId" prefWidth="112.80000305175781" sortable="false" text="Pallet Qr ID" />
+                              <TableColumn fx:id="colPbsPalletBatchNo" prefWidth="76.0" sortable="false" text="Batch No" />
+                              <TableColumn fx:id="colPbsNoOfMetersPresent" prefWidth="88.00006103515625" sortable="false" text="Meter Qty" />
+                              <TableColumn fx:id="colPbsNoOfMetersPassed" prefWidth="97.59991455078125" sortable="false" text="Passed Qty" />
+                              <TableColumn fx:id="colPbsNoOfMetersFailed" prefWidth="102.40008544921875" sortable="false" text="Failed Qty" />
+                              <TableColumn fx:id="colPbsNoOfMetersRejected" prefWidth="131.20001220703125" sortable="false" text="Rejected Qty" />
+                            <TableColumn fx:id="colPbsPalletBatchMapId" prefWidth="226.4000244140625" sortable="false" text="P-Distinct Id" />
+                              <TableColumn fx:id="colPbsBayEntryTime" prefWidth="196.800048828125" sortable="false" text="B-Entry Time" />
+                              <TableColumn fx:id="colPbsBayExitTime" prefWidth="181.60009765625" sortable="false" text="B-Exit Time" />
+                              <TableColumn fx:id="colPbsBayRunTime" prefWidth="176.7999267578125" sortable="false" text="B-Run Time(Min)" />
+                              <TableColumn fx:id="colPbsBayExecutionStatus" prefWidth="140.800048828125" sortable="false" text="Execution Status" />
+                              <TableColumn fx:id="colPbsBayResultStatus" prefWidth="100.0" sortable="false" text="B-Result Status" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Meter Result">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvPalletMeterResult" layoutX="9.0" layoutY="9.0" prefHeight="267.0" prefWidth="1765.0">
+                           <columns>
+                              <TableColumn fx:id="colPmrSerialNo" prefWidth="47.99996566772461" sortable="false" text="S.No" />
+                              <TableColumn fx:id="colPmrBayType" prefWidth="78.39999389648438" sortable="false" text="Bay Key" />
+                              <TableColumn fx:id="colPmrPalletQrId" prefWidth="112.80000305175781" sortable="false" text="Pallet Qr ID" />
+                              <TableColumn fx:id="colPmrPalletBatchNo" prefWidth="76.0" sortable="false" text="Batch No" />
+                              <TableColumn fx:id="colPmrMeterSerialNo" prefWidth="113.60003662109375" sortable="false" text="Meter Serial No" />
+                              <TableColumn fx:id="colPmrPositionNo" prefWidth="72.79998779296875" sortable="false" text="Pos. No" />
+                              <TableColumn fx:id="colPmrTestType" prefWidth="75.0" sortable="false" text="Test Type" />
+                              <TableColumn fx:id="colPmrTestCaseName" prefWidth="100.0" sortable="false" text="TestCase Name" />
+                              <TableColumn fx:id="colPmrResultValue" prefWidth="102.40008544921875" sortable="false" text="Result Value" />
+                              <TableColumn fx:id="colPmrResultStatus" prefWidth="131.20001220703125" sortable="false" text="Result Status" />
+                              <TableColumn fx:id="colPmrPalletBatchMapId" prefWidth="226.4000244140625" sortable="false" text="P-Distinct Id" />
+                              <TableColumn fx:id="colPmrExpectedRangeValue" prefWidth="140.800048828125" sortable="false" text="Expected Value/Range" />
+                              <TableColumn fx:id="colPmrTestCaseEntryTime" prefWidth="196.800048828125" sortable="false" text="T-Entry Time" />
+                              <TableColumn fx:id="colPmrTestCaseExitTime" prefWidth="181.60009765625" sortable="false" text="T-Exit Time" />
+                              <TableColumn fx:id="colPmrTestCaseRunTime" prefWidth="176.7999267578125" sortable="false" text="T-Run Time(Min)" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Meter Summary">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvMeterResultSummary" layoutY="44.0" prefHeight="246.0" prefWidth="1766.0">
+                           <columns>
+                              <TableColumn fx:id="colMsumSerialNo" prefWidth="47.99996566772461" sortable="false" text="S.No" />
+                              <TableColumn fx:id="colMsumPalletQrId" prefWidth="156.80001831054688" sortable="false" text="Pallet Qr ID" />
+                              <TableColumn fx:id="colMsumPalletBatchNo" prefWidth="81.59999084472656" sortable="false" text="Batch No" />
+                              <TableColumn fx:id="colMsumMeterSerialNo" prefWidth="132.79998779296875" sortable="false" text="Meter Serial No" />
+                              <TableColumn fx:id="colMsumTestTypeFt" minWidth="130.0" prefWidth="130.0" sortable="false" text="FT" />
+                              <TableColumn fx:id="colMsumTestTypeHv" minWidth="130.0" prefWidth="130.0" sortable="false" text="HV" />
+                              <TableColumn fx:id="colMsumTestTypeIr" minWidth="130.0" prefWidth="130.0" sortable="false" text="IR" />
+                              <TableColumn fx:id="colMsumTestTypeCalib" minWidth="130.0" prefWidth="130.0" sortable="false" text="Calib" />
+                              <TableColumn fx:id="colMsumTestVerific1" maxWidth="8000.0" minWidth="140.0" prefWidth="140.0" text="LOE-Verification" />
+                              <TableColumn fx:id="colMsumTestTypeSta" minWidth="140.0" prefWidth="140.0" sortable="false" text="STA" />
+                              <TableColumn fx:id="colMsumTestTypeNoLoad" minWidth="140.0" prefWidth="140.0" sortable="false" text="NoLoad" />
+                              <TableColumn fx:id="colMsumTestTypeComm" minWidth="140.0" prefWidth="140.0" sortable="false" text="Comm" />
+                              <TableColumn fx:id="colMsumOverAllStatus" minWidth="140.0" prefWidth="140.0" sortable="false" text="Result" />
+                              <TableColumn fx:id="colMsumPalletDistinctId" minWidth="140.0" prefWidth="140.0" sortable="false" text="P-Distinct Id" />
+                           </columns>
+                        </TableView>
+                        <GridPane layoutX="9.0" layoutY="6.0" prefHeight="30.0" prefWidth="1064.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.39999389648438" minWidth="10.0" prefWidth="108.39999389648438" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.199951171875" minWidth="10.0" prefWidth="26.00000610351563" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.3999816894531" minWidth="10.0" prefWidth="243.3999816894531" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.20001220703125" minWidth="10.0" prefWidth="30.999975585937477" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.20001220703125" minWidth="10.0" prefWidth="109.60000000000002" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#meterSummaryApplyFilterOnClick" prefHeight="26.0" prefWidth="114.0" text="Filter" GridPane.columnIndex="4" />
+                              <Label prefHeight="18.0" prefWidth="100.0" text="Pallet Id" />
+                              <ComboBox fx:id="cmbBxMsumDistinctPalletId" prefHeight="26.0" prefWidth="245.0" GridPane.columnIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#computeMeterOverAllStatus" prefHeight="26.0" prefWidth="208.0" text="Compute OverAll Status" GridPane.columnIndex="5" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <TabPane layoutX="10.0" layoutY="2.0" prefHeight="273.0" prefWidth="1792.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Pallet Meter List">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvPalletMeter" layoutX="5.0" layoutY="2.0" prefHeight="238.0" prefWidth="863.0">
+                          <columns>
+                            <TableColumn fx:id="colPmtrSerialNo" prefWidth="50.400147438049316" sortable="false" text="S.No" />
+                            <TableColumn fx:id="colPmtrMeterSerialNo" prefWidth="202.3999137878418" sortable="false" text="Meter No" />
+                              <TableColumn fx:id="colPmtrPositionNo" prefWidth="63.199951171875" sortable="false" text="Pos.No" />
+                              <TableColumn fx:id="colPmtrResultStatus" prefWidth="149.5999755859375" sortable="false" text="Result Status" />
+                              <TableColumn fx:id="colPmtrErrorCode" prefWidth="109.0" text="Error Code" />
+                              <TableColumn fx:id="colPmtrPalletDistinctId" prefWidth="283.0" sortable="false" text="P-Distinct Id" />
+                          </columns>
+                        </TableView>
+                        <GridPane layoutX="896.0" layoutY="35.0" prefHeight="159.0" prefWidth="878.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.60003662109375" minWidth="10.0" prefWidth="191.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.20001220703125" minWidth="10.0" prefWidth="54.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="193.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="52.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.99995117187495" minWidth="10.0" prefWidth="172.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="60.799999999999955" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.59991455078125" minWidth="10.0" prefWidth="120.80001220703127" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#markAsCompletedOnClick" prefHeight="30.0" prefWidth="198.0" text="Mark as Completed" GridPane.columnIndex="2" />
+                              <Button fx:id="btn_Save" mnemonicParsing="false" onAction="#saveOnClick" prefHeight="29.0" prefWidth="134.0" text="Save" GridPane.columnIndex="6" />
+                              <Button mnemonicParsing="false" onAction="#switchToNextBayOnClick" prefHeight="30.0" prefWidth="210.0" text="Switch to Next Bay" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#addPalletBayState" prefHeight="30.0" prefWidth="318.0" text="Add Pallet Bay State" GridPane.rowIndex="4" />
+                              <Button mnemonicParsing="false" onAction="#switchToPreviousBayOnClick" prefHeight="30.0" prefWidth="250.0" text="Switch to Previous Bay" />
+                              <Button mnemonicParsing="false" onAction="#markAsExitAppearedOnClick" prefHeight="30.0" prefWidth="178.0" text="Mark as Exit Appeared" GridPane.columnIndex="4" />
+                              <Button mnemonicParsing="false" onAction="#revertCompletedOnClick" prefHeight="30.0" prefWidth="208.0" text="Revert Completed" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#revertExitAppearedOnClick" prefHeight="30.0" prefWidth="178.0" text="Revert Exit Appeared" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#refreshDataOnClick" prefHeight="30.0" prefWidth="131.0" text="Refresh Data" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Add Meter to Pallet">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="lvMeterList" layoutX="323.0" layoutY="12.0" prefHeight="182.0" prefWidth="223.0" />
+                        <GridPane layoutX="19.0" layoutY="11.0" prefHeight="182.0" prefWidth="282.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.79998779296875" minWidth="10.0" prefWidth="114.79998779296875" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.39996337890625" minWidth="10.0" prefWidth="24.40001220703124" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.60000610351562" minWidth="10.0" prefWidth="146.00000610351563" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.800009155273436" minHeight="10.0" prefHeight="16.800009155273436" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="35.999990844726554" minHeight="10.0" prefHeight="35.999990844726554" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="23.600004577636724" minHeight="10.0" prefHeight="15.600004577636724" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="49.9999954223633" minHeight="10.0" prefHeight="49.9999954223633" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="22.599996948242193" minHeight="10.0" prefHeight="16.199987792968756" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Pallet-Id" />
+                              <TextField fx:id="txtPalletQrId" prefHeight="46.0" prefWidth="165.0" text="Pallet-No-008" GridPane.columnIndex="2" />
+                              <Label prefHeight="18.0" prefWidth="118.0" text="Meter Serial No" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtMeterSerialNo" prefHeight="46.0" prefWidth="165.0" text="Mtr-SlNo-21" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button fx:id="btn_AddDevice1" mnemonicParsing="false" onAction="#addMeterOnClick" prefHeight="30.0" prefWidth="177.0" text="Add Meter" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Button fx:id="btn_AddDevice11" mnemonicParsing="false" onAction="#clearMeterListOnClick" prefHeight="30.0" prefWidth="174.0" text="Clear Meter List" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                        <GridPane layoutX="581.0" layoutY="23.0" prefHeight="39.0" prefWidth="638.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.39999389648438" minWidth="10.0" prefWidth="94.19998779296876" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="20.99999389648437" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.2" minWidth="10.0" prefWidth="175.40000610351564" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="41.19999999999999" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.4000244140625" minWidth="10.0" prefWidth="113.60001220703128" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="29.600012207031227" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="143.9999877929688" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="127.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="143.0" text="Bay Type" />
+                              <ComboBox fx:id="cmbBxSelectBayType" prefHeight="26.0" prefWidth="191.0" GridPane.columnIndex="2" />
+                              <Button fx:id="btn_AddDevice" mnemonicParsing="false" onAction="#addPalletManageOnClick" prefHeight="29.0" prefWidth="118.0" text="Add" GridPane.columnIndex="4" />
+                              <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#removeDeviceOnClick" prefHeight="29.0" prefWidth="118.0" text="Remove" GridPane.columnIndex="6" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Add Results to Meter">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" layoutX="4.0" layoutY="7.0" prefHeight="214.0" prefWidth="1784.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane layoutX="14.0" layoutY="41.0" prefHeight="30.0" prefWidth="1642.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.5999755859375" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.5999755859375" minWidth="10.0" prefWidth="41.199981689453125" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.5999755859375" minWidth="10.0" prefWidth="68.59998168945313" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.5999755859375" minWidth="10.0" prefWidth="52.60001220703123" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.5999755859375" minWidth="10.0" prefWidth="109.79998779296875" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.5999755859375" minWidth="10.0" prefWidth="90.60001220703128" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.19999389648444" minWidth="10.0" prefWidth="49.000012207031205" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.19999389648444" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.19999389648444" minWidth="10.0" prefWidth="93.79995117187502" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.19999389648444" minWidth="10.0" prefWidth="85.800048828125" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.400048828125" minWidth="10.0" prefWidth="106.20004882812509" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.400048828125" minWidth="10.0" prefWidth="106.20004882812509" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.400048828125" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.400048828125" minWidth="10.0" prefWidth="104.4000244140625" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.79990234375" minWidth="10.0" prefWidth="113.19997558593752" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.4000488281249" minWidth="10.0" prefWidth="108.40009765625007" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="200.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#addResultOnClick" prefHeight="30.0" prefWidth="182.0" text="Add Result &amp; Save" GridPane.columnIndex="16" />
+                                          <TextField fx:id="txtAddResultValue" promptText="value" text="1758.9" GridPane.columnIndex="5" />
+                                          <Label prefHeight="18.0" prefWidth="119.0" text="Result Value" GridPane.columnIndex="4" />
+                                          <TextField fx:id="txtAddResultStatus" prefHeight="26.0" prefWidth="149.0" promptText="Pass/Fail" text="Pass" GridPane.columnIndex="8" />
+                                          <ComboBox fx:id="cmbBxAddResultSelectBayTestType" prefHeight="29.0" prefWidth="190.0" GridPane.columnIndex="14" />
+                                          <TextField fx:id="txtAddResultTestCaseName" promptText="TestCaseName" text="STA" GridPane.columnIndex="11" />
+                                          <Label prefHeight="18.0" prefWidth="118.0" text="Position No" />
+                                          <TextField fx:id="txtAddResultPositionNo" text="2" GridPane.columnIndex="2" />
+                                          <Label prefHeight="18.0" prefWidth="88.0" text="Result Status" GridPane.columnIndex="7" />
+                                          <Label prefHeight="18.0" prefWidth="88.0" text="Test Type" GridPane.columnIndex="13" />
+                                          <Label prefHeight="18.0" prefWidth="88.0" text="Test Name" GridPane.columnIndex="10" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Add Pallet">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" layoutX="4.0" layoutY="8.0" prefHeight="226.0" prefWidth="1784.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </TitledPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

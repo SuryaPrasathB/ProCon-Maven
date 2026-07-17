@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="palletRoot" prefHeight="211.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dashboard.PalletController">
+
+<VBox spacing="5">
+
+    <Text fx:id="palletName" fill="black" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-alignment: right;" text="Pallet Name" textAlignment="CENTER" wrappingWidth="220.0" />
+
+    <AnchorPane prefHeight="149.0" prefWidth="222.0">
+        <children>
+            <Rectangle fx:id="rectEntryStopperOpen" fill="RED" height="30.0" layoutY="64.0" stroke="BLACK" width="5.0" />
+            
+            <!-- Top row -->
+            <HBox fx:id="hBoxTop" alignment="CENTER" layoutX="9.0" layoutY="5.0" spacing="10">
+                <!-- Position 1 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <TextField fx:id="serial3" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                    <Text fx:id="errorCode3" style="-fx-font-size: 9px;" />
+                    <StackPane>
+                        <Rectangle fx:id="meter3" fill="FORESTGREEN" height="30" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="8" stroke="black" />
+                            <Text text="3" />
+                        </StackPane>
+                    </StackPane>
+                </VBox>
+
+                <!-- Position 2 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <TextField fx:id="serial2" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                    <Text fx:id="errorCode2" style="-fx-font-size: 9px;" text="" />
+                    <StackPane>
+                        <Rectangle fx:id="meter2" fill="FORESTGREEN" height="30" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="8" stroke="black" />
+                            <Text text="2" />
+                        </StackPane>
+                    </StackPane>
+                </VBox>
+
+                <!-- Position 3 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <TextField fx:id="serial1" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                    <Text fx:id="errorCode1" style="-fx-font-size: 9px;" text="" />
+                    <StackPane>
+                        <Rectangle fx:id="meter1" fill="FORESTGREEN" height="30" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="8" stroke="black" />
+                            <Text text="1" />
+                        </StackPane>
+                    </StackPane>
+                </VBox>
+            </HBox>
+
+            <!-- Bottom row -->
+            <HBox fx:id="hBoxBottom" alignment="CENTER" layoutX="9.0" layoutY="80.0" spacing="10">
+                <!-- Position 4 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <StackPane>
+                        <Rectangle fx:id="meter4" fill="FORESTGREEN" height="30" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="8" stroke="black" />
+                            <Text text="4" />
+                        </StackPane>
+                    </StackPane>
+                    <Text fx:id="errorCode4" style="-fx-font-size: 9px;" text="" />
+                    <TextField fx:id="serial4" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                </VBox>
+
+                <!-- Position 5 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <StackPane>
+                        <Rectangle fx:id="meter5" fill="FORESTGREEN" height="30" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="8" stroke="black" />
+                            <Text text="5" />
+                        </StackPane>
+                    </StackPane>
+                    <Text fx:id="errorCode5" style="-fx-font-size: 9px;" text="" />
+                    <TextField fx:id="serial5" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                </VBox>
+
+                <!-- Position 6 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <StackPane>
+                        <Rectangle fx:id="meter6" fill="FORESTGREEN" height="30" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="8" stroke="black" />
+                            <Text text="6" />
+                        </StackPane>
+                    </StackPane>
+                    <Text fx:id="errorCode6" style="-fx-font-size: 9px;" text="" />
+                    <TextField fx:id="serial6" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                </VBox>
+            </HBox>
+            <Rectangle fx:id="rectExitStopperOpen" fill="#03ae2e" height="30.0" layoutX="218.0" layoutY="64.0" stroke="BLACK" width="5.0" />
+        </children>
+    </AnchorPane>
+      <GridPane prefHeight="26.0" prefWidth="222.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="25.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="9.399951171874996" prefWidth="9.399951171874996" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="149.99997558593748" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="8.600048828125011" prefWidth="9.400012207031239" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="25.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Rectangle fx:id="rectPalletsExistInQueue" arcHeight="5.0" arcWidth="5.0" fill="RED" height="12.0" layoutX="4.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <children>
+                  <Rectangle fx:id="rectAllPalletsExistInTargetBay" arcHeight="5.0" arcWidth="5.0" fill="#03ae2e" height="12.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" width="24.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="6.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Rectangle fx:id="rectAllPalletsExistInBay" fill="#03ae2e" height="5.0" layoutX="13.0" layoutY="5.0" stroke="BLACK" width="127.0" />
+               </children>
+            </AnchorPane>
+         
+                                  <ProgressBar fx:id="pBarPalletExecution" prefHeight="16.0" prefWidth="152.0" progress="0.0" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+
+</VBox>
+</AnchorPane>

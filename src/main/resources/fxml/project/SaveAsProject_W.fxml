@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="249.0" prefWidth="487.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.project.SaveAsProjectController">
+   <children>
+      <GridPane layoutX="54.0" layoutY="29.0" prefHeight="108.0" prefWidth="371.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="34.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtNewProjectName" prefHeight="39.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="New Project" GridPane.rowIndex="1" />
+            <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="103.0" text="EM Model" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbBoxModel_List" prefHeight="37.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnOkay" layoutX="261.0" layoutY="165.0" mnemonicParsing="false" onAction="#submit" prefHeight="31.0" prefWidth="115.0" text="Ok" />
+      <Button fx:id="btnCancel" layoutX="116.0" layoutY="165.0" mnemonicParsing="false" onAction="#cancel" prefHeight="31.0" prefWidth="115.0" text="Cancel" />
+   </children>
+
+</AnchorPane>

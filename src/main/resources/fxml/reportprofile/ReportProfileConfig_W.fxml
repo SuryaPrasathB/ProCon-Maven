@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="945.0" prefWidth="1759.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.reportprofile.ReportProfileConfigController">
+   <children>
+      <ComboBox fx:id="cmBxPageNumber" layoutX="-164.0" layoutY="203.0" onAction="#cmBxPageNumberOnChange" prefHeight="26.0" prefWidth="207.0" />
+      <Label fx:id="lblPageNumber" layoutX="-51.0" layoutY="184.0" prefHeight="18.0" prefWidth="98.0" text="Page Number" />
+      <AnchorPane layoutX="4.0" layoutY="239.0" prefHeight="522.0" prefWidth="1140.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="600.0" stroke="#00000033" strokeType="INSIDE" width="1131.0" />
+            <TabPane prefHeight="591.0" prefWidth="1123.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tabMeterProfileDataList" text="Meter Profile Data List">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tvMeterMetaDataList" layoutX="9.0" layoutY="10.0" prefHeight="546.0" prefWidth="1103.0">
+                                <columns>
+                                  <TableColumn fx:id="colMeterMetaDataListSerialNo" prefWidth="75.0" sortable="false" text="S.No" />
+                                    <TableColumn fx:id="colMeterMetaDataListMeterDataType" prefWidth="363.2000274658203" sortable="false" text="Meter Data Type" />
+                                    <TableColumn prefWidth="299.20001220703125" sortable="false" text="Populate">
+                                       <columns>
+                                          <TableColumn fx:id="colMeterMetaDataListPopulateOnlyHeader" prefWidth="136.0" sortable="false" text="Only On Header" />
+                                          <TableColumn fx:id="colMeterMetaDataListPopulateForEachDut" prefWidth="112.0" sortable="false" text="For Each DUT" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn fx:id="colMeterMetaDataListCellPosition" prefWidth="139.20001220703125" sortable="false" text="Cell Position" />
+                                  <TableColumn fx:id="colMeterMetaDataListPageNo" prefWidth="75.0" sortable="false" text="Page No" />
+                                </columns>
+                              </TableView>
+                              <CheckBox fx:id="chkBxDutMetaDataClubPageNoAndMaxNoOfPages" layoutX="869.0" layoutY="22.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="254.0" text="Club PageNo/Max No of pages" />
+                              <CheckBox fx:id="chkBxMeterProfileMetaDataListPageActive" disable="true" layoutX="778.0" layoutY="20.0" mnemonicParsing="false" text="Active" />
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="tabTestFilterDataList" text="Test Filter Data List">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                            <AnchorPane layoutX="10.0" layoutY="11.0" minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="1106.0">
+                                 <children>
+                                    <TableView fx:id="tvTestFilterDataList" prefHeight="542.0" prefWidth="1110.0">
+                                      <columns>
+                                        <TableColumn fx:id="colTestFilterListSerialNo" prefWidth="52.7999866604805" resizable="false" sortable="false" text="S.No" />
+                                          <TableColumn fx:id="colTestFilterListFilterName" maxWidth="200.0" prefWidth="200.0" sortable="false" text="Filter Name" />
+                                          <TableColumn fx:id="colTestFilterListPageNo" maxWidth="70.0" prefWidth="70.0" sortable="false" text="Page No" />
+                                          <TableColumn fx:id="colTestFilterListFilterActive" prefWidth="69.5999755859375" sortable="false" text="Active" />
+                                        <TableColumn fx:id="colTestFilterListTestType" maxWidth="200.0" prefWidth="200.0" sortable="false" text="Test Type" />
+                                          <TableColumn fx:id="colTestFilterListTestTypeAlias" maxWidth="100.0" prefWidth="100.0" sortable="false" text="Test Alias" />
+                                          <TableColumn fx:id="colTestFilterListFilterPreview" maxWidth="250.0" prefWidth="250.0" sortable="false" text="Filter" />
+                                          <TableColumn fx:id="colTestFilterListIterationId" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Itr-ID" />
+                                          <TableColumn maxWidth="1000.0" prefWidth="1000.0" resizable="false" sortable="false" text="Operation">
+                                             <columns>
+                                                <TableColumn fx:id="colTestFilterListOperationMode" maxWidth="90.0" prefWidth="90.0" sortable="false" text="Mode" />
+                                                <TableColumn fx:id="colTestFilterListOperationMethod" maxWidth="150.0" prefWidth="150.0" sortable="false" text="Method" />
+                                                <TableColumn fx:id="colTestFilterListInputProcessDataList" maxWidth="200.0" prefWidth="200.0" sortable="false" text="Process Data" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="colTestFilterListNonDisplayedDataSet" maxWidth="200.0" prefWidth="200.0" sortable="false" text="Non Displayed Dataset" />
+                                          <TableColumn fx:id="colTestFilterListExecutionResultType" maxWidth="150.0" prefWidth="150.0" sortable="false" text="Result Type" />
+                                          <TableColumn fx:id="colTestFilterListReplicateData" maxWidth="100.0" prefWidth="100.0" sortable="false" text="Replicate Data" />
+                                          <TableColumn fx:id="colTestFilterListMergeUpperLowerLimits" maxWidth="100.0" prefWidth="100.0" sortable="false" text="Merged Limits" />
+                                          <TableColumn fx:id="colTestFilterListResultDataType" maxWidth="200.0" prefWidth="200.0" sortable="false" text="Cell Data Type" />
+                                          <TableColumn prefWidth="75.0" sortable="false" text="Result Cell">
+                                             <columns>
+                                                <TableColumn fx:id="colTestFilterListResultValueCellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Value" />
+                                                <TableColumn fx:id="colTestFilterListResultStatusCellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Status" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="75.0" sortable="false" text="Header Cell Position">
+                                             <columns>
+                                                <TableColumn fx:id="colTestFilterListHeader1CellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Header1" />
+                                                <TableColumn fx:id="colTestFilterListHeader2CellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Header2" />
+                                                <TableColumn fx:id="colTestFilterListHeader3CellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Header3" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="75.0" sortable="false" text="Limits Cell Position">
+                                             <columns>
+                                                <TableColumn fx:id="colTestFilterListUpperLimitCellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Upper" />
+                                                <TableColumn fx:id="colTestFilterListLowerLimitCellPosition" maxWidth="75.0" prefWidth="75.0" sortable="false" text="Lower" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="colTestFilterListReplicateDataCellPosition" maxWidth="150.0" prefWidth="150.0" sortable="false" text="Replicated Cell" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1144.0" layoutY="10.0" prefHeight="918.0" prefWidth="586.0">
+         <children>
+            <TitledPane animated="false" collapsible="false" layoutX="8.0" layoutY="11.0" prefHeight="900.0" prefWidth="570.0" text="Report Filter">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion layoutX="7.0" layoutY="6.0" prefHeight="854.0" prefWidth="554.0">
+                          <panes>
+                            <TitledPane fx:id="titledPaneTestFilterData" text="Test Filter Data">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Accordion fx:id="accordTestFilter" layoutX="8.0" layoutY="7.0" prefHeight="786.0" prefWidth="534.0">
+                                            <panes>
+                                                <TitledPane fx:id="titledPanePopulateData" text="Populate Data">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="59.0" prefHeight="132.0" prefWidth="514.0" text="Operation Mode">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <GridPane layoutX="10.0" layoutY="14.0" prefHeight="26.0" prefWidth="494.0">
+                                                                          <columnConstraints>
+                                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.599951171875" minWidth="10.0" prefWidth="112.00009765625" />
+                                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.599951171875" minWidth="10.0" prefWidth="78.80008239746094" />
+                                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.40012817382816" minWidth="10.0" prefWidth="149.2000244140625" />
+                                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.59995117187503" minWidth="10.0" prefWidth="149.19997558593747" />
+                                                                          </columnConstraints>
+                                                                          <rowConstraints>
+                                                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                          </rowConstraints>
+                                                                           <children>
+                                                                              <RadioButton fx:id="rdBtnOperationNone" mnemonicParsing="false" onAction="#rdBtnOperationNoneOnChange" prefHeight="18.0" prefWidth="70.0" text="None" GridPane.columnIndex="1" />
+                                                                              <RadioButton fx:id="rdBtnOperationInput" mnemonicParsing="false" onAction="#rdBtnOperationInputOnChange" prefHeight="18.0" prefWidth="170.0" text="Operation Input" GridPane.columnIndex="2" />
+                                                                              <RadioButton fx:id="rdBtnOperationOutput" mnemonicParsing="false" onAction="#rdBtnOperationOutputOnChange" prefHeight="18.0" prefWidth="169.0" text="Operation Output" GridPane.columnIndex="3" />
+                                                                              <Label text="Operation Mode" />
+                                                                           </children>
+                                                                        </GridPane>
+                                                                        <GridPane layoutX="13.0" layoutY="62.0" prefHeight="30.0" prefWidth="486.0">
+                                                                          <columnConstraints>
+                                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.2000732421875" minWidth="10.0" prefWidth="24.999975585937506" />
+                                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0000457763672" minWidth="10.0" prefWidth="217.0000244140625" />
+                                                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.199951171875" minWidth="10.0" prefWidth="30.5999755859375" />
+                                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.4000244140625" minWidth="10.0" prefWidth="125.4000244140625" />
+                                                                          </columnConstraints>
+                                                                          <rowConstraints>
+                                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                          </rowConstraints>
+                                                                           <children>
+                                                                              <ComboBox fx:id="cmbBxTestTypeSub" prefWidth="150.0" GridPane.columnIndex="4" />
+                                                                              <ComboBox fx:id="cmbBxTestType" onAction="#cmbBxTestTypeOnChange" prefHeight="26.0" prefWidth="207.0" GridPane.columnIndex="2" />
+                                                                              <Label prefHeight="18.0" prefWidth="154.0" text="Test Type" />
+                                                                           </children>
+                                                                        </GridPane>
+                                                                        <Separator layoutX="1.0" layoutY="51.0" prefHeight="7.0" prefWidth="512.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </TitledPane>
+                                                            <GridPane layoutX="21.0" layoutY="12.0" prefHeight="30.0" prefWidth="486.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.199951171875" minWidth="10.0" prefWidth="119.199951171875" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.4000244140625" minWidth="10.0" prefWidth="163.2" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0000732421875" minWidth="10.0" prefWidth="108.80000000000001" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.19999999999999" minWidth="10.0" prefWidth="16.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.4000244140625" minWidth="10.0" prefWidth="91.99992675781249" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <CheckBox fx:id="chkBxEnableFilter" mnemonicParsing="false" prefHeight="18.0" prefWidth="123.0" selected="true" text="Filter Active" />
+                                                                  <Label prefHeight="18.0" prefWidth="101.0" text="Page Number" GridPane.columnIndex="2" />
+                                                                  <TextField fx:id="txtTestFilterPageNumber" prefHeight="26.0" prefWidth="184.0" promptText="Page number" GridPane.columnIndex="4" />
+                                                               </children>
+                                                            </GridPane>
+                                                            <Button fx:id="btnPopulateDataNext" layoutX="10.0" layoutY="609.0" mnemonicParsing="false" onAction="#btnPopulateDataNextOnClick" prefWidth="96.0" text="Next" />
+                                                            <CheckBox fx:id="chkBxReplicateData" layoutX="147.0" layoutY="612.0" mnemonicParsing="false" onAction="#chkBxReplicateDataOnChange" prefHeight="18.0" prefWidth="147.0" text="Replicate Data" />
+                                                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="106.0" layoutX="12.0" layoutY="485.0" smooth="false" stroke="#d4d4d4" strokeType="INSIDE" width="511.0" />
+                                                            <GridPane layoutX="39.0" layoutY="493.0" prefHeight="94.0" prefWidth="466.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.39990234375" minWidth="10.0" prefWidth="188.39990234375" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.4000244140625" minWidth="10.0" prefWidth="22.40008239746095" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.59990234374993" minWidth="10.0" prefWidth="264.79991760253904" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <ComboBox fx:id="cmbBxTestFilterDataPopulateType" disable="true" prefHeight="26.0" prefWidth="270.0" GridPane.columnIndex="2" />
+                                                                  <Label prefHeight="18.0" prefWidth="194.0" text="Populate type" />
+                                                                  <Label prefHeight="18.0" prefWidth="190.0" text="Operation source param" GridPane.rowIndex="1" />
+                                                                  <ComboBox fx:id="cmbBxOperationSourceParamType" onAction="#cmbBxOperationSourceParamTypeOnChange" prefHeight="26.0" prefWidth="300.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                               </children>
+                                                            </GridPane>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="206.0" prefHeight="269.0" prefWidth="258.0" text="Populate Header selection">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ScrollPane layoutY="3.0" prefHeight="238.0" prefWidth="252.0">
+                                                                          <content>
+                                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="254.0">
+                                                                                 <children>
+                                                                                    <GridPane layoutX="17.0" layoutY="4.0" prefHeight="456.0" prefWidth="197.0">
+                                                                                      <columnConstraints>
+                                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                      </columnConstraints>
+                                                                                      <rowConstraints>
+                                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                      </rowConstraints>
+                                                                                       <children>
+                                                                                          <CheckBox fx:id="chkBxPopulateHeader1" mnemonicParsing="false" onAction="#chkBxPopulateHeader1OnChange" prefHeight="18.0" prefWidth="168.0" text="Header1" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeader2" mnemonicParsing="false" onAction="#chkBxPopulateHeader2OnChange" prefHeight="18.0" prefWidth="169.0" text="Header2" GridPane.rowIndex="1" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeader3" mnemonicParsing="false" onAction="#chkBxPopulateHeader3OnChange" prefHeight="18.0" prefWidth="162.0" text="Header3" GridPane.rowIndex="2" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeader4" mnemonicParsing="false" onAction="#chkBxPopulateHeader4OnChange" text="Header4" GridPane.rowIndex="3" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeader5" mnemonicParsing="false" onAction="#chkBxPopulateHeader5OnChange" text="Header5" GridPane.rowIndex="4" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderActualVoltage" mnemonicParsing="false" prefHeight="18.0" prefWidth="193.0" text="Target Voltage" GridPane.rowIndex="5" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderActualCurrent" mnemonicParsing="false" prefHeight="18.0" prefWidth="210.0" text="Target Current" GridPane.rowIndex="6" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderActualPf" mnemonicParsing="false" prefHeight="18.0" prefWidth="194.0" text="Target PF" GridPane.rowIndex="7" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderActualFreq" mnemonicParsing="false" prefHeight="18.0" prefWidth="209.0" text="Target Frequency" GridPane.rowIndex="8" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderActualEnergy" mnemonicParsing="false" prefHeight="18.0" prefWidth="208.0" text="Target Energy" GridPane.rowIndex="9" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderTestPeriod" mnemonicParsing="false" prefHeight="18.0" prefWidth="206.0" text="Test Period" GridPane.rowIndex="10" />
+                                                                                          <CheckBox fx:id="chkBxPopulateHeaderWarmupPeriod" mnemonicParsing="false" prefHeight="18.0" prefWidth="198.0" text="Warmup Period" GridPane.rowIndex="11" />
+                                                                                          <CheckBox fx:id="chkBxPopulateRsmInitial" mnemonicParsing="false" text="RSM Initial" GridPane.rowIndex="12" />
+                                                                                          <CheckBox fx:id="chkBxPopulateRsmFinal" mnemonicParsing="false" text="RSM Final" GridPane.rowIndex="13" />
+                                                                                          <CheckBox fx:id="chkBxPopulateRsmDifference" mnemonicParsing="false" text="RSM Difference" GridPane.rowIndex="14" />
+                                                                                       </children>
+                                                                                    </GridPane>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                          </content>
+                                                                        </ScrollPane>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="279.0" layoutY="206.0" prefHeight="270.0" prefWidth="246.0" text="Populate DUT Result Type">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="245.0">
+                                                                     <children>
+                                                                        <ScrollPane layoutY="4.0" prefHeight="238.0" prefWidth="242.0">
+                                                                          <content>
+                                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="286.0" prefWidth="243.0">
+                                                                                 <children>
+                                                                                    <GridPane layoutX="14.0" layoutY="1.0" prefHeight="282.0" prefWidth="197.0">
+                                                                                      <columnConstraints>
+                                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                      </columnConstraints>
+                                                                                      <rowConstraints>
+                                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                      </rowConstraints>
+                                                                                       <children>
+                                                                                          <CheckBox fx:id="chkBxPopulateDutCalcErrorPercentage" mnemonicParsing="false" prefHeight="18.0" prefWidth="138.0" text="DUT Error Value" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutErrorResultStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="151.0" text="DUT Result status" GridPane.rowIndex="1" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutPulseCount" mnemonicParsing="false" prefHeight="18.0" prefWidth="148.0" text="DUT Pulse Count" GridPane.rowIndex="2" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutInitial" mnemonicParsing="false" prefHeight="18.0" prefWidth="155.0" text="DUT Initial" GridPane.rowIndex="3" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutFinal" mnemonicParsing="false" prefHeight="18.0" prefWidth="174.0" text="DUT Final" GridPane.rowIndex="4" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutDifference" mnemonicParsing="false" prefHeight="18.0" prefWidth="175.0" text="DUT Difference" GridPane.rowIndex="5" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutAverageValue" mnemonicParsing="false" prefHeight="18.0" prefWidth="170.0" text="DUT Average Value" GridPane.rowIndex="6" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutAverageStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="177.0" text="DUT Average Status" GridPane.rowIndex="7" />
+                                                                                          <CheckBox fx:id="chkBxPopulateDutOnePulsePeriod" mnemonicParsing="false" prefHeight="18.0" prefWidth="187.0" text="DUT 1 pulse period" GridPane.rowIndex="8" />
+                                                                                       </children>
+                                                                                    </GridPane>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                          </content>
+                                                                        </ScrollPane>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </TitledPane>
+                                                            <ComboBox fx:id="cmbBxExecutionResultType" layoutX="294.0" layoutY="608.0" onAction="#cmbBxExecutionResultTypeOnChange" prefHeight="26.0" prefWidth="158.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                              <TitledPane fx:id="titledPaneTestTypeData" text="Test Type Data">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <GridPane layoutX="8.0" layoutY="11.0" prefHeight="608.0" prefWidth="514.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.4" minWidth="10.0" prefWidth="206.4" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="16.800018310546875" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.5999816894531" minWidth="10.0" prefWidth="265.5999816894531" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <TextField fx:id="txtFilterName" GridPane.columnIndex="2" />
+                                                                  <TextField fx:id="txtHeader1Value" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                                  <TextField fx:id="txtHeader2Value" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="6">
+                                                                    <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                     <children>
+                                                                        <Label text="Voltage Filter" />
+                                                                        <CheckBox fx:id="chkBxHeader3VoltageFilter" mnemonicParsing="false" onAction="#chkBxHeader3VoltageFilterOnChange" text="Header3" GridPane.columnIndex="2" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="26.0" prefWidth="161.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.800048828125" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="10.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="8.0" prefWidth="8.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="10.0" prefWidth="88.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <ComboBox fx:id="cmbBxVoltPercentFilterUserEntry" onAction="#cmbBxVoltPercentFilterUserEntryOnChange" prefWidth="150.0" />
+                                                                        <TextField fx:id="txtVoltPercentFilterUserEntry" promptText="100" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtVoltPercentFilterData" disable="true" editable="false" GridPane.columnIndex="4" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="8">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxHeader3CurrentFilter" mnemonicParsing="false" onAction="#chkBxHeader3CurrentFilterOnChange" text="Header3" GridPane.columnIndex="2" />
+                                                                        <Label text="Current Filter" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="10.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="8.0" prefWidth="8.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="10.0" prefWidth="88.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <ComboBox fx:id="cmbBxCurrentPercentFilterUserEntry" onAction="#cmbBxCurrentPercentFilterUserEntryOnChange" prefWidth="150.0" />
+                                                                        <TextField fx:id="txtCurrentPercentFilterUserEntry" promptText="0.5" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtCurrentPercentFilterData" disable="true" editable="false" GridPane.columnIndex="4" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="10">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxHeader3PfFilter" mnemonicParsing="false" onAction="#chkBxHeader3PfFilterOnChange" text="Header3" GridPane.columnIndex="2" />
+                                                                        <Label text="PF Filter" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="10.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="8.0" prefWidth="8.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="10.0" prefWidth="88.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <ComboBox fx:id="cmbBxPfFilterUserEntry" onAction="#cmbBxPfFilterUserEntryOnChange" prefWidth="150.0" />
+                                                                        <TextField fx:id="txtPfFilterUserEntry" promptText="0.8" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtPfFilterData" disable="true" editable="false" GridPane.columnIndex="4" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="12">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxHeader3FreqFilter" mnemonicParsing="false" onAction="#chkBxHeader3FreqFilterOnChange" text="Header3" GridPane.columnIndex="2" />
+                                                                        <Label text="Freq Filter" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="12">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="10.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="8.0" prefWidth="8.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="10.0" prefWidth="88.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <ComboBox fx:id="cmbBxFreqFilterUserEntry" prefWidth="150.0" />
+                                                                        <TextField fx:id="txtFreqFilterUserEntry" promptText="50.0" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtFreqFilterData" disable="true" editable="false" GridPane.columnIndex="4" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="14">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxHeader3EnergyFilter" mnemonicParsing="false" onAction="#chkBxHeader3EnergyFilterOnChange" text="Header3" GridPane.columnIndex="2" />
+                                                                        <Label text="Energy Filter" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="14">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="10.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="8.0" prefWidth="8.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="10.0" prefWidth="88.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <ComboBox fx:id="cmbBxEnergyFilterUserEntry" onAction="#cmbBxEnergyFilterUserEntryOnChange" prefWidth="150.0" />
+                                                                        <TextField fx:id="txtEnergyFilterUserEntry" promptText="0.100" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtEnergyFilterData" disable="true" editable="false" GridPane.columnIndex="4" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="16">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <Label text="Iteration Id" />
+                                                                        <CheckBox fx:id="chkBx_IterationIdHeaderPrefix" mnemonicParsing="false" onAction="#chkBx_IterationIdHeaderPrefixOnChange" prefHeight="18.0" prefWidth="94.0" text="Print Header" GridPane.columnIndex="2">
+                                                                           <font>
+                                                                              <Font size="11.0" />
+                                                                           </font>
+                                                                        </CheckBox>
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="44.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="16">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="10.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="70.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="8.0" prefWidth="8.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.4000244140625" minWidth="10.0" prefWidth="88.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <TextField fx:id="txtIterationReadingStartingId" promptText="Start Id" GridPane.columnIndex="2" />
+                                                                        <TextField fx:id="txtIterationReadingEndingId" promptText="End Id" GridPane.columnIndex="4" />
+                                                                        <TextField fx:id="txt_IterationIdHeaderPrefix" disable="true" promptText="Hdr Prefix" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane prefHeight="30.0" prefWidth="199.0" GridPane.rowIndex="18">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="105.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.199951171875" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.4000244140625" minWidth="10.0" prefWidth="99.40001220703124" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxHeader3CustomAllowed" mnemonicParsing="false" onAction="#chkBxHeader3CustomAllowedOnChange" text="Custom " GridPane.columnIndex="2" />
+                                                                        <Label prefHeight="18.0" prefWidth="99.0" text="Header3 Value" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <TextField fx:id="txtHeader3Value" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="18" />
+                                                                  <TextField fx:id="txtHeader4Value" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="20" />
+                                                                  <TextField fx:id="txtHeader5Value" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="22" />
+                                                                  <ComboBox fx:id="cmbBxReplicateCountUserEntry" onAction="#cmbBxReplicateCountUserEntryOnChange" prefHeight="26.0" prefWidth="278.0" GridPane.columnIndex="2" GridPane.rowIndex="30" />
+                                                                  <ComboBox fx:id="cmbBxOperationInputUserEntry" disable="true" onAction="#cmbBxOperationInputUserEntryOnChange" prefHeight="26.0" prefWidth="302.0" GridPane.columnIndex="2" GridPane.rowIndex="24" />
+                                                                  <TextField fx:id="txtFilterComments" promptText="Comments" GridPane.columnIndex="2" GridPane.rowIndex="26" />
+                                                                  <GridPane prefHeight="26.0" prefWidth="161.0" GridPane.columnIndex="2" GridPane.rowIndex="28">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.4000244140625" minWidth="10.0" prefWidth="114.2" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.1999267578125" minWidth="10.0" prefWidth="17.39999999999999" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.2000732421875" minWidth="10.0" prefWidth="134.399951171875" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <TextField fx:id="txtCustomTestNameUserEntry" />
+                                                                        <TextField fx:id="txtCustomTestNameData" disable="true" editable="false" prefHeight="26.0" prefWidth="136.0" GridPane.columnIndex="2" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <Label prefHeight="18.0" prefWidth="212.0" text="Operation target input param" GridPane.rowIndex="24" />
+                                                                  <Label text="Header1 Value" GridPane.rowIndex="2" />
+                                                                  <Label text="Header2 Value" GridPane.rowIndex="4" />
+                                                                  <Label fx:id="lblReplicateCount" text="Replicate Count" GridPane.rowIndex="30" />
+                                                                  <Button fx:id="btnTestTypeDataNext" mnemonicParsing="false" onAction="#btnTestTypeDataNextOnClick" prefHeight="26.0" prefWidth="96.0" text="Next" GridPane.rowIndex="32" />
+                                                                  <Label text="Filter Name" />
+                                                                  <Label prefHeight="18.0" prefWidth="154.0" text="Comments" GridPane.rowIndex="26" />
+                                                                  <Label fx:id="lblCustomTestName" text="Custom Test Name" GridPane.rowIndex="28" />
+                                                                  <Label prefHeight="18.0" prefWidth="147.0" text="Header4 Value" GridPane.rowIndex="20" />
+                                                                  <Label prefHeight="18.0" prefWidth="147.0" text="Header5 Value" GridPane.rowIndex="22" />
+                                                               </children>
+                                                            </GridPane>
+                                                            <CheckBox fx:id="chkBxHeader3IterationIdFilter" layoutX="252.0" layoutY="620.0" mnemonicParsing="false" onAction="#chkBxHeader3IterationIdFilterOnChange" text="Header3" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                              <TitledPane fx:id="titledPaneOperation" text="Operation">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="592.0" layoutX="4.0" layoutY="4.0" stroke="#0000001b" strokeType="INSIDE" width="522.0" />
+                                                            <GridPane layoutX="16.0" layoutY="8.0" prefHeight="42.0" prefWidth="492.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.199951171875" minWidth="10.0" prefWidth="85.2000244140625" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.99995117187504" minWidth="6.600048828124997" prefWidth="20.000073242187497" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.2" minWidth="10.0" prefWidth="197.5999267578125" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.199951171875" minWidth="10.0" prefWidth="19.4000244140625" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.199951171875" minWidth="10.0" prefWidth="169.7999755859375" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <Label prefHeight="18.0" prefWidth="114.0" text="Input Data" />
+                                                                  <ComboBox fx:id="cmbBxOperationCriteriaInputData" prefHeight="26.0" prefWidth="222.0" GridPane.columnIndex="2" />
+                                                                  <GridPane GridPane.columnIndex="4">
+                                                                    <columnConstraints>
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.2000732421875" minWidth="10.0" prefWidth="71.0" />
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.5999755859375" minWidth="10.0" prefWidth="16.799975585937503" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.2000244140625" minWidth="10.0" prefWidth="75.2000244140625" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                     <children>
+                                                                        <Button fx:id="btnInputAdd" mnemonicParsing="false" onAction="#inputProcessAddClick" prefHeight="26.0" prefWidth="103.0" text="Add" />
+                                                                        <Button fx:id="btnInputDelete" mnemonicParsing="false" onAction="#inputProcessRemoveClick" prefHeight="26.0" prefWidth="102.0" text="Del" GridPane.columnIndex="2" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                               </children>
+                                                            </GridPane>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="121.0" layoutY="56.0" prefHeight="169.0" prefWidth="292.0" text="Input Process">
+                                                               <content>
+                                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <ListView fx:id="listViewInputProcessList" layoutX="7.0" layoutY="3.0" prefHeight="133.0" prefWidth="275.0" />
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </content>
+                                                            </TitledPane>
+                                                            <GridPane layoutX="14.0" layoutY="236.0" prefHeight="353.0" prefWidth="502.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.6001434326172" minWidth="10.0" prefWidth="161.599951171875" />
+                                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.20002441406248" minWidth="10.0" prefWidth="215.20002441406248" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.5999755859375" minWidth="10.0" prefWidth="127.19997558593752" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <Label prefHeight="18.0" prefWidth="151.0" text="Operation" />
+                                                                  <ComboBox fx:id="cmbBxOperationCriteriaProcessData" onAction="#cmbBxOperationCriteriaProcessDataOnChange" prefHeight="26.0" prefWidth="230.0" GridPane.columnIndex="1" />
+                                                                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.39995212554932" minWidth="10.0" prefWidth="114.399951171875" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.399951171875" minWidth="10.0" prefWidth="16.60002441406249" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.399951171875" minWidth="10.0" prefWidth="84.5999755859375" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <ComboBox fx:id="cmbBxPostOperationMethod" prefHeight="26.0" prefWidth="113.0" />
+                                                                        <TextField fx:id="txtPostOperationValue" prefHeight="26.0" prefWidth="52.0" GridPane.columnIndex="2" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="103.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPostOperationActive" mnemonicParsing="false" onAction="#chkBxPostOperationActiveOnChange" prefHeight="18.0" prefWidth="240.0" text="Active" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <ComboBox fx:id="cmbBxOperationCriteriaMasterOutputData" onAction="#cmbBxOperationCriteriaMasterOutputDataOnChange" prefHeight="26.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="103.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPopulateMasterOutputData" disable="true" mnemonicParsing="false" prefHeight="18.0" prefWidth="240.0" text="Populate" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <ComboBox fx:id="cmbBxOperationComparedMasterResultStatusOutput" disable="true" prefHeight="26.0" prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.00000190734863" minWidth="10.0" prefWidth="103.00000190734863" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPopulateComparedMasterResultStatus" disable="true" mnemonicParsing="false" onAction="#chkBxPopulateComparedMasterResultStatusOnChange" prefHeight="18.0" prefWidth="240.0" text="Populate" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <ComboBox fx:id="cmbBxOperationCriteriaLocalOutputData" onAction="#cmbBxOperationCriteriaLocalOutputDataOnChange" prefHeight="26.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                                    <columnConstraints>
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.00000190734863" minWidth="10.0" prefWidth="103.00000190734863" />
+                                                                    </columnConstraints>
+                                                                    <rowConstraints>
+                                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                    </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPopulateLocalOutputData" mnemonicParsing="false" onAction="#chkBxPopulateLocalOutputDataOnChange" prefHeight="18.0" prefWidth="240.0" text="Populate" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <ComboBox fx:id="cmbBxOperationComparedLocalResultStatusOutput" disable="true" prefHeight="26.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.00000190734863" minWidth="10.0" prefWidth="103.00000190734863" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPopulateComparedLocalResultStatus" disable="true" mnemonicParsing="false" onAction="#chkBxPopulateComparedLocalResultStatusOnChange" prefHeight="18.0" prefWidth="240.0" text="Populate" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <CheckBox fx:id="chkBxCompareWithLimits" mnemonicParsing="false" onAction="#chkBxCompareWithLimitsOnChange" prefHeight="18.0" prefWidth="161.0" text="Compare limits" GridPane.rowIndex="6" />
+                                                                  <CheckBox fx:id="chkBxMergeUpperLowerLimit" mnemonicParsing="false" onAction="#chkBxMergeUpperLowerLimitOnChange" prefHeight="18.0" prefWidth="213.0" text="Merge Upper/Lower" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                                  <TextField fx:id="txtAllowedUpperLimit" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.00000190734863" minWidth="10.0" prefWidth="103.00000190734863" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPopulateUpperLimitData" disable="true" mnemonicParsing="false" onAction="#chkBxPopulateUpperLimitDataOnChange" prefHeight="18.0" prefWidth="240.0" text="Populate" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <TextField fx:id="txtAllowedLowerLimit" disable="true" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.00000190734863" minWidth="10.0" prefWidth="103.00000190734863" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <CheckBox fx:id="chkBxPopulateLowerLimitData" disable="true" mnemonicParsing="false" onAction="#chkBxPopulateLowerLimitDataOnChange" prefHeight="18.0" prefWidth="240.0" text="Populate" GridPane.columnIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <Label prefHeight="18.0" prefWidth="176.0" text="Local result status" GridPane.rowIndex="5" />
+                                                                  <Label prefHeight="18.0" prefWidth="166.0" text="Allowed Upper Limit" GridPane.rowIndex="7" />
+                                                                  <Label prefHeight="18.0" prefWidth="164.0" text="Allowed Lower Limit" GridPane.rowIndex="8" />
+                                                                  <Label prefHeight="18.0" prefWidth="162.0" text="Local output param" GridPane.rowIndex="4" />
+                                                                  <Label prefHeight="18.0" prefWidth="170.0" text="Master output param" GridPane.rowIndex="2" />
+                                                                  <Label prefHeight="18.0" prefWidth="151.0" text="Post Operation" GridPane.rowIndex="1" />
+                                                                  <Label prefHeight="18.0" prefWidth="176.0" text="Master result status" GridPane.rowIndex="3" />
+                                                                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.00000190734863" minWidth="10.0" prefWidth="103.00000190734863" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                  </GridPane>
+                                                               </children>
+                                                            </GridPane>
+                                                            <Button fx:id="btnOperationNext" layoutX="15.0" layoutY="615.0" mnemonicParsing="false" onAction="#btnOperationNextOnClick" prefWidth="96.0" text="Next" />
+                                                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="86.0" layoutX="160.0" layoutY="595.0" stroke="TRANSPARENT" strokeType="INSIDE" width="241.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                                <TitledPane fx:id="titledPaneMeasuredData" animated="false" text="Measured Data">
+                                                  <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Button layoutX="14.0" layoutY="459.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Next" />
+                                                            <TableView fx:id="tvSelectedTestFilterMeasuredData" layoutX="14.0" layoutY="14.0" prefHeight="409.0" prefWidth="503.0">
+                                                               <columns>
+                                                                  <TableColumn fx:id="colMeasuredDataSerialNo" prefWidth="43.99998950958252" sortable="false" text="S.No" />
+                                                                  <TableColumn fx:id="colMeasuredDataKey" prefWidth="309.6000289916992" sortable="false" text="Measured Data" />
+                                                                  <TableColumn fx:id="colMeasuredDataPopulateData" prefWidth="118.4000244140625" sortable="false" text="Populate Data" />
+                                                               </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </content>
+                                                </TitledPane>
+                                              <TitledPane fx:id="titledPaneCellPosition" text="Cell Position">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TitledPane fx:id="titledPaneCellHeaderPosition" animated="false" collapsible="false" layoutX="39.0" layoutY="9.0" prefHeight="291.0" prefWidth="454.0" text="Cell Header Position">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <TableView fx:id="tvTestFilterCellHeaderPosition" layoutX="8.0" layoutY="7.0" prefHeight="250.0" prefWidth="438.0">
+                                                                          <columns>
+                                                                            <TableColumn fx:id="colTestFilterCellHeaderPositionPageHeader" prefWidth="187.19995594024658" sortable="false" text="Header" />
+                                                                              <TableColumn fx:id="colTestFilterCellHeaderPositionPageTitleValue" prefWidth="139.20013427734375" sortable="false" text="Content" />
+                                                                            <TableColumn fx:id="colTestFilterCellHeaderPositionPageCellValue" prefWidth="100.800048828125" sortable="false" text="Cell" />
+                                                                          </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="38.0" layoutY="314.0" prefHeight="245.0" prefWidth="455.0" text="Cell Start Position">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <TableView fx:id="tvTestFilterCellStartPosition" layoutX="8.0" layoutY="8.0" prefHeight="203.0" prefWidth="438.0">
+                                                                          <columns>
+                                                                            <TableColumn fx:id="colTestFilterCellStartPositionPageHeader" prefWidth="268.0000467300415" sortable="false" text="Data Type" />
+                                                                            <TableColumn fx:id="colTestFilterCellStartPositionPageCellValue" prefWidth="140.800048828125" sortable="false" text="Cell" />
+                                                                          </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </TitledPane>
+                                                            <Button fx:id="btnTestFilterDataSave" layoutX="374.0" layoutY="572.0" mnemonicParsing="false" onAction="#btnTestFilterDataSaveOnClick" prefHeight="26.0" prefWidth="122.0" text="Save" />
+                                                            <Button fx:id="btnTestFilterDataCancel" layoutX="38.0" layoutY="573.0" mnemonicParsing="false" onAction="#btnTestFilterDataCancelOnClick" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                            </panes>
+                                          </Accordion>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </TitledPane>
+                            <TitledPane fx:id="titledPaneMeterProfileMetaData" expanded="false" text="Meter Profile Meta Data">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane layoutX="44.0" layoutY="22.0" prefHeight="86.0" prefWidth="470.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.60009765625" minWidth="10.0" prefWidth="158.4" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.79994201660156" minWidth="10.0" prefWidth="56.79999999999998" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.40001525878904" minWidth="10.0" prefWidth="254.40001525878904" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="32.200003051757804" minHeight="10.0" prefHeight="32.200003051757804" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <GridPane GridPane.columnIndex="2">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.4000244140625" minWidth="10.0" prefWidth="121.4000244140625" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.80009765624999" minWidth="10.0" prefWidth="55.79997558593749" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="78.79990234375" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <TextField fx:id="txtMeterMetaDataPageNumber" prefHeight="26.0" prefWidth="338.0" />
+                                                      <CheckBox fx:id="chkBxMeterProfileMetaDataPageActive" mnemonicParsing="false" prefHeight="18.0" prefWidth="122.0" text="Active" GridPane.columnIndex="2" />
+                                                   </children>
+                                                </GridPane>
+                                                <Label prefHeight="18.0" prefWidth="159.0" text="Page Number" />
+                                                <Label prefHeight="18.0" prefWidth="156.0" text="Populate type" GridPane.rowIndex="2" />
+                                                <ComboBox fx:id="cmbBxMeterMetaDataPopulateType" disable="true" prefHeight="26.0" prefWidth="265.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                          <Accordion layoutX="14.0" layoutY="122.0" prefHeight="658.0" prefWidth="530.0">
+                                            <panes>
+                                              <TitledPane text="Meter Data Display">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <GridPane layoutX="25.0" layoutY="24.0" prefHeight="38.0" prefWidth="499.0">
+                                                              <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="299.99990234375" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints maxHeight="62.20001831054687" minHeight="10.0" prefHeight="34.00000610351562" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <CheckBox fx:id="chkBxDiscardRackPositionInDutSerialNumber" mnemonicParsing="false" prefHeight="18.0" prefWidth="409.0" text="Discard Rack Position In DUT Serial Number" />
+                                                               </children>
+                                                            </GridPane>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="6.0" layoutY="87.0" prefHeight="354.0" prefWidth="518.0" text="Selected Meter Data">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <TableView fx:id="tvSelectedMeterDataType" layoutX="8.0" layoutY="6.0" prefHeight="316.0" prefWidth="503.0">
+                                                                          <columns>
+                                                                              <TableColumn fx:id="colSelectedMeterDataSerialNo" prefWidth="47.9999942779541" sortable="false" text="S.No" />
+                                                                            <TableColumn fx:id="colSelectedMeterDataType" prefWidth="187.9999008178711" sortable="false" text="Meter Data Type" />
+                                                                              <TableColumn fx:id="colSelectedMeterPopulateData" prefWidth="130.40005493164062" sortable="false" text="Populate Data" />
+                                                                            <TableColumn fx:id="colSelectedMeterPopulateForEachDut" prefWidth="114.4000244140625" sortable="false" text="For each DUT" />
+                                                                              <TableColumn fx:id="colPopulateDataSelection" maxWidth="180.0" prefWidth="180.0" resizable="false" sortable="false" text="Populate Data" />
+                                                                          </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                              </content>
+                                                            </TitledPane>
+                                                            <Button fx:id="btnMeterDataDisplayNext" layoutX="23.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnMeterDataDisplayNextOnClick" prefHeight="26.0" prefWidth="94.0" text="Next" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                              <TitledPane fx:id="titledPaneMeterDataCellPosition" text="Meter Data Cell Position">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TitledPane fx:id="titledPaneMeterDataCellHeaderPosition" animated="false" collapsible="false" layoutX="34.0" layoutY="7.0" prefHeight="203.0" prefWidth="454.0" text="Meter Data Cell Header Position">
+                                                               <content>
+                                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <TableView fx:id="tvMeterMetaDataCellHeaderPosition" layoutX="8.0" layoutY="7.0" prefHeight="159.0" prefWidth="438.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="colMeterMetaDataCellHeaderPositionPageHeader" prefWidth="267.1999979019165" sortable="false" text="Header" />
+                                                                              <TableColumn fx:id="colMeterMetaDataCellHeaderPositionPageCellValue" prefWidth="143.2000732421875" sortable="false" text="Cell" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </content>
+                                                            </TitledPane>
+                                                            <TitledPane animated="false" collapsible="false" layoutX="34.0" layoutY="228.0" prefHeight="309.0" prefWidth="455.0" text="Meter Data Cell Start Position">
+                                                               <content>
+                                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <TableView fx:id="tvMeterMetaDataCellStartPosition" layoutX="8.0" layoutY="8.0" prefHeight="266.0" prefWidth="438.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="colMeterMetaDataCellStartPositionPageHeader" prefWidth="268.0000467300415" sortable="false" text="Data Type" />
+                                                                              <TableColumn fx:id="colMeterMetaDataCellStartPositionPageCellValue" prefWidth="140.800048828125" sortable="false" text="Cell" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </content>
+                                                            </TitledPane>
+                                                            <Button fx:id="btnMeterMetaDataSave" layoutX="365.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnMeterMetaDataSaveOnClick" prefHeight="26.0" prefWidth="124.0" text="Add/Update" />
+                                                            <Button layoutX="34.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnMeterMetaDataCancelOnClick" prefHeight="26.0" prefWidth="110.0" text="Cancel" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </TitledPane>
+                                            </panes>
+                                          </Accordion>
+                                          <GridPane layoutX="-13.0" layoutY="-14.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.4000244140625" minWidth="10.0" prefWidth="121.4000244140625" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.80009765624999" minWidth="10.0" prefWidth="55.79997558593749" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="78.79990234375" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <TextField fx:id="txtMeterMetaDataPageName" editable="false" text="Page1" />
+                                                <Label fx:id="lbl_MeterProfileMetaDataPageName" prefHeight="18.0" prefWidth="110.0" text="Page Name" GridPane.columnIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+         </children>
+      </AnchorPane>
+      <TitledPane fx:id="titledPaneExecutionMode" animated="false" collapsible="false" layoutX="644.0" layoutY="198.0" prefHeight="105.0" prefWidth="486.0" text="Execution Modes">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="49.0" layoutX="260.0" layoutY="16.0" stroke="#00000013" strokeType="INSIDE" width="207.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="49.0" layoutX="17.0" layoutY="16.0" stroke="#00000013" strokeType="INSIDE" width="224.0" />
+                  <GridPane layoutX="33.0" layoutY="31.0" prefHeight="18.0" prefWidth="428.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.800048828125" minWidth="10.0" prefWidth="94.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="126.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.199951171875" minWidth="10.0" prefWidth="34.000024414062494" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.59992675781248" minWidth="10.0" prefWidth="90.59992675781248" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.2000732421875" minWidth="10.0" prefWidth="88.2000732421875" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <RadioButton fx:id="rdBtnMainCt" mnemonicParsing="false" onAction="#rdBtnMainCtOnChange" prefHeight="18.0" prefWidth="101.0" text="Main CT" />
+                        <RadioButton fx:id="rdBtnNeutralCt" mnemonicParsing="false" onAction="#rdBtnNeutralCtOnChange" prefHeight="18.0" prefWidth="114.0" text="Neutral CT" GridPane.columnIndex="1" />
+                        <RadioButton fx:id="rdBtnImportMode" mnemonicParsing="false" onAction="#rdBtnImportModeOnChange" prefHeight="18.0" prefWidth="90.0" text="Import" GridPane.columnIndex="3" />
+                        <RadioButton fx:id="rdBtnExportMode" mnemonicParsing="false" onAction="#rdBtnExportModeOnChange" prefHeight="18.0" prefWidth="96.0" text="Export" GridPane.columnIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <GridPane fx:id="gridPaneControl" layoutX="22.0" layoutY="869.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnReportProfileAdd" mnemonicParsing="false" onAction="#btnReportProfileAddOnClick" prefHeight="42.0" prefWidth="100.0" text="Add" />
+            <Button fx:id="btnReportProfileEdit" mnemonicParsing="false" onAction="#btnReportProfileEditOnClick" prefHeight="45.0" prefWidth="100.0" text="Edit" GridPane.columnIndex="2" />
+            <Button fx:id="btnReportProfileDelete" mnemonicParsing="false" onAction="#btnReportProfileDeleteOnClick" prefHeight="62.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="4" />
+            <Button fx:id="btnReportProfileSave" mnemonicParsing="false" onAction="#reportHeaderSaveOnClick" prefHeight="31.0" prefWidth="98.0" text="Save" GridPane.columnIndex="6" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="20.0" layoutY="10.0" prefHeight="192.0" prefWidth="1107.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.60003662109375" minWidth="10.0" prefWidth="21.60003662109375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.39996337890625" minWidth="10.0" prefWidth="197.4" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="24.799963378906227" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.40003662109376" minWidth="10.0" prefWidth="158.40003662109376" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.199951171875" minWidth="10.0" prefWidth="18.200000000000045" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.1999389648438" minWidth="10.0" prefWidth="178.4000244140625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.19997558593752" minWidth="10.0" prefWidth="15.199975585937523" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.4" minWidth="10.0" prefWidth="352.0000122070313" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.00002441406241" minWidth="10.0" prefWidth="20.600024414062545" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.20007324218739" minWidth="10.0" prefWidth="26.99997558593759" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="18.0" prefWidth="102.0" text="Report Group" />
+            <ComboBox fx:id="cmbBxReportProfileGroup" onAction="#cmbBxReportProfileGroupOnchange" prefHeight="26.0" prefWidth="207.0" GridPane.columnIndex="2" />
+            <Label prefHeight="18.0" prefWidth="106.0" text="Report Profile" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbBxReportProfile" prefHeight="26.0" prefWidth="207.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbBxBaseTemplate" onAction="#cmbBxBaseTemplateOnChange" prefHeight="26.0" prefWidth="207.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbBxParameterProfileName" prefHeight="26.0" prefWidth="207.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="btnReportProfileLoad" mnemonicParsing="false" onAction="#btnReportProfileLoadOnClick" prefHeight="26.0" prefWidth="161.0" text="Load" GridPane.columnIndex="4" />
+            <Button fx:id="btnAddGroupProfile" mnemonicParsing="false" onAction="#btnAddGroupProfileOnClick" prefHeight="26.0" prefWidth="170.0" text="Add Group/Profile" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="btnSaveGroupProfile" mnemonicParsing="false" onAction="#btnSaveGroupProfileOnClick" prefHeight="26.0" prefWidth="176.0" text="Save Group" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#launchOperationDataSetProfile_GUI_Click" prefHeight="26.0" prefWidth="160.0" text="Parameter Profile" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label prefHeight="18.0" prefWidth="114.0" text="Param Profile" GridPane.rowIndex="3" />
+            <Label prefHeight="18.0" prefWidth="110.0" text="Base Template" GridPane.rowIndex="2" />
+            <Label prefHeight="18.0" prefWidth="98.0" text="Template Path" GridPane.columnIndex="6" />
+            <Label prefHeight="18.0" prefWidth="98.0" text="Output Path" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTemplateFileNameWithPath" prefHeight="26.0" prefWidth="121.0" text="C:\TAS_Network\Procal_Excel\ReportTemplate\LecsHealthyMeterReport-V0_9.xlsx" GridPane.columnIndex="8" />
+            <Button fx:id="btnTemplatePathSelect" mnemonicParsing="false" onAction="#btnTemplatePathSelectOnClick" prefHeight="26.0" prefWidth="25.0" text="..." GridPane.columnIndex="10" />
+            <TextField fx:id="txtOutputPath" prefHeight="26.0" prefWidth="122.0" text="C:\TAS_Network\Procal_Excel\Output\" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Button fx:id="btnOutputPathSelect" mnemonicParsing="false" onAction="#btnOutputPathSelectOnClick" prefHeight="26.0" prefWidth="25.0" text="..." GridPane.columnIndex="10" GridPane.rowIndex="1" />
+            <Label fx:id="lblMaxDutDisplayPerPage" prefHeight="18.0" prefWidth="182.0" text="Max Dut Display Per Page" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <GridPane GridPane.columnIndex="8" GridPane.rowIndex="2">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.20001220703125" minWidth="10.0" prefWidth="55.79998779296875" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.199951171875" minWidth="10.0" prefWidth="24.800036621093753" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.9999633789063" minWidth="10.0" prefWidth="275.9999633789063" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="txtMaxDutDisplayPerPage" prefHeight="26.0" prefWidth="82.0" text="40" />
+                  <CheckBox fx:id="chkBxSplitDutDisplayInToMultiplePage" mnemonicParsing="false" prefHeight="18.0" prefWidth="279.0" text="Split Dut Display In to Multiple Page" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
+            <Label prefHeight="18.0" prefWidth="122.0" text="Print style profile" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <GridPane GridPane.columnIndex="8" GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="110.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.4000244140625" minWidth="10.0" prefWidth="15.200000000000003" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="110.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.20001220703125" minWidth="10.0" prefWidth="17.199972534179665" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="110.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="cmbBxResultPrintStyleName" prefWidth="150.0" />
+                  <ComboBox fx:id="cmbBxGenericHeaderPrintStyleName" prefWidth="150.0" GridPane.columnIndex="2" />
+                  <ComboBox fx:id="cmbBxTableHeaderPrintStyleName" prefWidth="150.0" GridPane.columnIndex="4" />
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+      <Label fx:id="lblPageName" layoutX="83.0" layoutY="207.0" prefHeight="18.0" prefWidth="74.0" text="Page Name" />
+      <ComboBox fx:id="cmbBxMetaDataPageName" layoutX="198.0" layoutY="203.0" prefHeight="26.0" prefWidth="110.0" />
+      <CheckBox fx:id="chkBxAppendMeterSerialNoAndRackPositionListDisplay" layoutX="322.0" layoutY="207.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="409.0" text="Append Meter Serial No &amp; Rack Position" />
+      <CheckBox fx:id="chkBxDutMetaDataApplyForAllPages" layoutX="609.0" layoutY="208.0" mnemonicParsing="false" text="Apply for All pages" />
+   </children>
+</AnchorPane>

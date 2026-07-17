@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="palletRoot" prefHeight="161.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dashboard.PalletController">
+
+<VBox prefHeight="158.0" prefWidth="214.0" spacing="5.0">
+
+    <Text fx:id="palletName" fill="black" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-alignment: right;" text="Pallet Name" textAlignment="CENTER" wrappingWidth="210.39996337890625" />
+
+    <AnchorPane prefHeight="158.0" prefWidth="240.0">
+        <children>
+            
+            <!-- Top row -->
+            <HBox alignment="CENTER" layoutX="9.0" layoutY="5.0" prefHeight="126.0" prefWidth="202.0" spacing="10.0">
+                <!-- Position 1 -->
+                <VBox alignment="CENTER" spacing="2.0">
+                    <TextField fx:id="serial3" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                    <Text fx:id="errorCode3" style="-fx-font-size: 9px;" textAlignment="CENTER" wrappingWidth="59.0" />
+                    <StackPane>
+                        <Rectangle fx:id="meter3" fill="FORESTGREEN" height="20.0" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="7.0" stroke="black" />
+                            <Text text="3">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Text>
+                        </StackPane>
+                    </StackPane>
+                    <StackPane>
+                        <Rectangle fx:id="meter4" fill="FORESTGREEN" height="20.0" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="7.0" stroke="black" />
+                            <Text text="4">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Text>
+                        </StackPane>
+                    </StackPane>
+                    <Text fx:id="errorCode4" style="-fx-font-size: 9px;" text="" textAlignment="CENTER" wrappingWidth="59.0" />
+                    <TextField fx:id="serial4" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                </VBox>
+
+                <!-- Position 2 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <TextField fx:id="serial2" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                    <Text fx:id="errorCode2" style="-fx-font-size: 9px;" text="" textAlignment="CENTER" wrappingWidth="59.0" />
+                    <StackPane>
+                        <Rectangle fx:id="meter2" fill="FORESTGREEN" height="20.0" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="7.0" stroke="black" />
+                            <Text text="2">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Text>
+                        </StackPane>
+                    </StackPane>
+                    <StackPane>
+                        <Rectangle fx:id="meter5" fill="FORESTGREEN" height="20.0" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="7.0" stroke="black" />
+                            <Text text="5">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        </StackPane>
+                    </StackPane>
+                    <Text fx:id="errorCode5" style="-fx-font-size: 9px;" text="" textAlignment="CENTER" wrappingWidth="59.0" />
+                    <TextField fx:id="serial5" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                </VBox>
+
+                <!-- Position 3 -->
+                <VBox alignment="CENTER" spacing="2">
+                    <TextField fx:id="serial1" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                    <Text fx:id="errorCode1" style="-fx-font-size: 9px;" text="" textAlignment="CENTER" wrappingWidth="59.0" />
+                    <StackPane>
+                        <Rectangle fx:id="meter1" fill="FORESTGREEN" height="20.0" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="white" radius="7.0" stroke="black" />
+                            <Text text="1">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Text>
+                        </StackPane>
+                    </StackPane>
+                    <StackPane>
+                        <Rectangle fx:id="meter6" fill="FORESTGREEN" height="20.0" stroke="black" width="60" />
+                        <StackPane>
+                            <Circle fill="WHITE" radius="7.0" stroke="black" />
+                            <Text text="6">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Text>
+                        </StackPane>
+                    </StackPane>
+                    <Text fx:id="errorCode6" style="-fx-font-size: 9px;" text="" textAlignment="CENTER" wrappingWidth="59.0" />
+                    <TextField fx:id="serial6" alignment="CENTER" editable="false" maxWidth="60" promptText="Serial #" style="-fx-font-size: 10px;" />
+                </VBox>
+            </HBox>
+        </children>
+    </AnchorPane>
+
+</VBox>
+</AnchorPane>

@@ -1,0 +1,51 @@
+2026-05-20 16:47:05.873 INFO  ft:333 - btnFtStartOnClick : Invoked:
+2026-05-20 16:47:05.873 INFO  ft:334 - FUNCTIONAL TEST BAY : STARTED
+2026-05-20 16:47:05.875 INFO  ft:387 - btnFtStartOnClick : Exit:
+2026-05-20 16:47:05.976 DEBUG ft:38 - FunctionalTestBay : Entry
+2026-05-20 16:47:05.976 DEBUG ft:46 - FunctionalTestBay : manageFunctionalTestBayStates : Entry
+2026-05-20 16:47:05.982 DEBUG ft:224 - createFtBayStateInstance : stateName: S01_check_for_pallet_at_FT_Bay
+2026-05-20 16:47:05.982 DEBUG ft:68 - FunctionalTestBay : manageFunctionalTestBayStates : getTableStatePlanner2 : Size : 37
+2026-05-20 16:47:05.982 DEBUG ft:76 - FunctionalTestBay : manageFunctionalTestBayStates : isStopProcessRequestedFtBay : false
+2026-05-20 16:47:05.983 DEBUG ft:24 - FtBayContext: processPresentState: Entry 
+2026-05-20 16:47:05.983 INFO  ft:46 - [FTB] : [PALLET_DETECTION] : [SEQUENCE_ENTRY] - Starting pallet detection sequence.
+2026-05-20 16:47:05.983 INFO  ft:117 - [FTB] : [STOPPER_STATUS] : [CLOSED] - Stopper B4 is closed. Checking for pallet.
+2026-05-20 16:47:05.983 INFO  ft:176 - [FTB] : [PALLET_SENSOR] : [READ_ENTRY] - Checking pallet sensor at FT Bay.
+2026-05-20 16:47:05.983 DEBUG ft:187 - [FTB] : [PALLET_SENSOR] : [PORT_INFO] - PortId: ip39, ClusterId: 1, BayId: 1
+2026-05-20 16:47:07.089 DEBUG ft:242 - [FTB] : [PALLET_SENSOR] : [RAW_STATE] : Off
+2026-05-20 16:47:07.089 INFO  ft:276 - [FTB] : [PALLET_SENSOR] : [FINAL_STATUS] : false
+2026-05-20 16:47:07.089 INFO  ft:277 - [FTB] : [PALLET_SENSOR] : [READ_EXIT] - Exiting pallet sensor check.
+2026-05-20 16:47:07.089 ERROR ft:130 - [FTB] : [PALLET_DETECTION] : [NOT_AVAILABLE] - No pallet detected with stopper closed. Error: ERROR_CODE_FT_002
+2026-05-20 16:47:07.089 INFO  ft:153 - [FTB] : [PALLET_DETECTION] : [SEQUENCE_EXIT] - Exiting pallet detection sequence.
+2026-05-20 16:47:07.089 DEBUG ft:199 - processCurrentState : S01_check_for_pallet_at_FT_Bay : Status     : false
+2026-05-20 16:47:07.089 DEBUG ft:200 - processCurrentState : S01_check_for_pallet_at_FT_Bay : Error Code : ERROR_CODE_FT_002
+2026-05-20 16:47:07.089 DEBUG ft:224 - createFtBayStateInstance : stateName: S28_check_for_stop_latch_B4_status_FT_Bay
+2026-05-20 16:47:07.089 DEBUG ft:76 - FunctionalTestBay : manageFunctionalTestBayStates : isStopProcessRequestedFtBay : false
+2026-05-20 16:47:07.089 DEBUG ft:24 - FtBayContext: processPresentState: Entry 
+2026-05-20 16:47:07.089 INFO  ft:25 - [FTB] : [STOP_LATCH_B4_STATUS_CHECK] : [SEQUENCE_ENTRY] - Checking status of Stop Latch B4 at FT Bay.
+2026-05-20 16:47:07.089 DEBUG ft:31 - [FTB] : [STOP_LATCH_B4_STATUS_CHECK] : [DELAY] - Delaying for 2000 ms before checking latch status.
+2026-05-20 16:47:09.089 DEBUG ft:68 - [FTB] : [STOP_LATCH_B4_SENSOR_READ] : [REQUEST_ENTRY] - Reading Stop Latch B4 sensor status at FT Bay.
+2026-05-20 16:47:09.089 DEBUG ft:81 - [FTB] : [STOP_LATCH_B4_SENSOR_READ] : [PORT_INFO] - PortId: op1, ClusterId: 1, BayId: 1
+2026-05-20 16:47:09.260 DEBUG ft:87 - [FTB] : [STOP_LATCH_B4_SENSOR_READ] : [RAW_STATE] : Off
+2026-05-20 16:47:09.260 DEBUG ft:93 - [FTB] : [STOP_LATCH_B4_SENSOR_READ] : [INTERPRETED_STATE] : STOPPER_OPENED (Raw: Off)
+2026-05-20 16:47:09.260 DEBUG ft:117 - [FTB] : [STOP_LATCH_B4_SENSOR_READ] : [REQUEST_EXIT] - Stop Latch B4 status read completed. Status: STOPPER_OPENED
+2026-05-20 16:47:09.260 DEBUG ft:38 - [FTB] : [STOP_LATCH_B4_STATUS_CHECK] : [READ_STATUS] - Stop Latch B4 reported status: STOPPER_OPENED
+2026-05-20 16:47:09.260 INFO  ft:42 - [FTB] : [STOP_LATCH_B4_STATUS_CHECK] : [STATUS_CONFIRMED] - Stop Latch B4 confirmed OPEN. Global status set to: STOPPER_B4_FT_BAY_OPENED
+2026-05-20 16:47:09.260 INFO  ft:61 - [FTB] : [STOP_LATCH_B4_STATUS_CHECK] : [SEQUENCE_EXIT] - Stop Latch B4 status check sequence completed. Final Status: true, Error Code: ERROR_CODE_601
+2026-05-20 16:47:09.260 DEBUG ft:199 - processCurrentState : S28_check_for_stop_latch_B4_status_FT_Bay : Status     : true
+2026-05-20 16:47:09.260 DEBUG ft:200 - processCurrentState : S28_check_for_stop_latch_B4_status_FT_Bay : Error Code : ERROR_CODE_601
+2026-05-20 16:47:09.260 DEBUG ft:224 - createFtBayStateInstance : stateName: S01_check_for_pallet_at_FT_Bay
+2026-05-20 16:47:09.260 DEBUG ft:76 - FunctionalTestBay : manageFunctionalTestBayStates : isStopProcessRequestedFtBay : false
+2026-05-20 16:47:09.260 DEBUG ft:24 - FtBayContext: processPresentState: Entry 
+2026-05-20 16:47:09.260 INFO  ft:46 - [FTB] : [PALLET_DETECTION] : [SEQUENCE_ENTRY] - Starting pallet detection sequence.
+2026-05-20 16:47:09.260 INFO  ft:176 - [FTB] : [PALLET_SENSOR] : [READ_ENTRY] - Checking pallet sensor at FT Bay.
+2026-05-20 16:47:09.260 DEBUG ft:187 - [FTB] : [PALLET_SENSOR] : [PORT_INFO] - PortId: ip39, ClusterId: 1, BayId: 1
+2026-05-20 16:47:09.362 DEBUG ft:242 - [FTB] : [PALLET_SENSOR] : [RAW_STATE] : Off
+2026-05-20 16:47:09.362 INFO  ft:276 - [FTB] : [PALLET_SENSOR] : [FINAL_STATUS] : false
+2026-05-20 16:47:09.362 INFO  ft:277 - [FTB] : [PALLET_SENSOR] : [READ_EXIT] - Exiting pallet sensor check.
+2026-05-20 16:47:09.362 INFO  ft:94 - [FTB] : [PALLET_DETECTION] : [NOT_AVAILABLE] - No pallet at bay, waiting...
+2026-05-20 17:00:29.209 DEBUG ft:1646 - PortId    : op12
+2026-05-20 17:00:29.209 DEBUG ft:1647 - ClusterId : 2
+2026-05-20 17:00:29.209 DEBUG ft:1648 - BayId     : 6
+2026-05-20 17:00:50.306 DEBUG ft:1646 - PortId    : op16
+2026-05-20 17:00:50.306 DEBUG ft:1647 - ClusterId : 2
+2026-05-20 17:00:50.306 DEBUG ft:1648 - BayId     : 7

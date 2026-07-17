@@ -1,0 +1,1467 @@
+2026-06-09 16:48:47.225 INFO  hv:514 - btnHvtStartOnClick : Invoked:
+2026-06-09 16:48:47.225 INFO  hv:516 - HIGH VOLTAGE TEST BAY : STARTED
+2026-06-09 16:48:47.226 INFO  hv:569 - btnHvtStartOnClick : Exit:
+2026-06-09 16:48:47.327 DEBUG hv:32 - HighVoltageTestBay2 : Entry
+2026-06-09 16:48:47.327 DEBUG hv:40 - HighVoltageTestBay2 : manageHighVoltageTestBayStates : Entry
+2026-06-09 16:48:47.329 DEBUG hv:64 - HighVoltageTestBay2 : manageHighVoltageTestBayStates : getTableStatePlanner2 : Size : 14
+2026-06-09 16:48:47.329 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:48:47.329 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:48:47.329 INFO  hv:54 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 16:48:47.329 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 16:48:47.329 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 16:48:47.878 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : On
+2026-06-09 16:48:47.878 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : true
+2026-06-09 16:48:47.878 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 16:48:48.879 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 16:48:48.879 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 16:48:48.979 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : On
+2026-06-09 16:48:48.979 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : true
+2026-06-09 16:48:48.979 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 16:48:49.980 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 16:48:49.980 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 16:48:50.082 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : On
+2026-06-09 16:48:50.082 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : true
+2026-06-09 16:48:50.082 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 16:48:51.082 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 16:48:51.082 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 16:48:51.184 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : On
+2026-06-09 16:48:51.184 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : true
+2026-06-09 16:48:51.184 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 16:48:51.184 INFO  hv:121 - S01_check_for_pallet_at_HVT_Bay : Pallet Available
+2026-06-09 16:48:51.192 INFO  hv:142 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 16:48:51.192 INFO  hv:149 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 16:48:51.192 INFO  hv:153 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 16:48:51.192 DEBUG hv:171 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Status     : true
+2026-06-09 16:48:51.192 DEBUG hv:172 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 16:48:51.192 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:48:51.192 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:48:51.192 DEBUG hv:38 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-09 16:48:51.192 DEBUG hv:123 - qrCodePalletScanning : Entry : HVB
+2026-06-09 16:48:54.730 DEBUG hv:174 - qrCodePalletScanning : scannedData: LSCSM06P24
+
+2026-06-09 16:48:54.730 DEBUG hv:194 - qrCodePalletScanning : Else Hit1: 
+2026-06-09 16:48:54.730 DEBUG hv:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260609T132239_0014_LSCSM06P24  selectedBayTypeKey: HVB
+2026-06-09 16:48:54.737 DEBUG hv:447 - qrCodePalletScanning: other bays: 
+2026-06-09 16:48:54.737 DEBUG hv:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: HVB
+2026-06-09 16:48:54.737 DEBUG hv:451 - getActivePalletMap() : {LSCSM06P22=20260609T110505_0002_LSCSM06P22, LSCSM06P01=20260608T170110_0028_LSCSM06P01, LSCSM06P008=20260609T125020_0008_LSCSM06P008, LSCSM06P019=20260609T131721_0013_LSCSM06P019, LSCSM06P13=20260608T165458_0027_LSCSM06P13, LSCSM06P24=20260609T132239_0014_LSCSM06P24, LSCSM06P03=20260609T130105_0010_LSCSM06P03, LSCSM06P005=20260609T131148_0012_LSCSM06P005, LSCSM06P004=20260609T125532_0009_LSCSM06P004, LSCSM06P018=20260608T182909_0030_LSCSM06P018, LSCSM06P017=20260609T110805_0004_LSCSM06P017, LSCSM06P006=20260609T112545_0007_LSCSM06P006, LSCSM06P15=20260609T110332_0001_LSCSM06P15, LSCSM06P07=20260609T112150_0006_LSCSM06P07, LSCSM06P023=20260609T110635_0003_LSCSM06P023, LSCSM06P011=20260609T112021_0005_LSCSM06P011, LSCSM06P002=20260609T130637_0011_LSCSM06P002, LSCSM06P021=20260608T182746_0029_LSCSM06P021, LSCSM06P020=20260608T165244_0026_LSCSM06P020}
+2026-06-09 16:48:54.750 DEBUG hv:513 - qrCodePalletScanning: individual pallet update 
+2026-06-09 16:48:54.750 DEBUG hv:220 - qrCodePalletScanning : palletDistinctId:  : 20260609T132239_0014_LSCSM06P24 : bay: HVB : qrCode: LSCSM06P24
+2026-06-09 16:48:54.750 DEBUG hv:248 - qrCodePalletScanning : status : GOOD : HVB
+2026-06-09 16:48:54.750 DEBUG hv:250 - qrCodePalletScanning : Exit : HVB
+2026-06-09 16:48:54.750 INFO  hv:82 - qrCodePalletScanningProcess : QR Code Scan Successful : HVB
+2026-06-09 16:48:54.750 INFO  hv:113 - qrCodePalletScanningProcess : Exit : HVB
+2026-06-09 16:48:54.750 DEBUG hv:79 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-09 16:48:54.750 DEBUG hv:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-06-09 16:48:54.750 DEBUG hv:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-06-09 16:48:54.752 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:48:54.752 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:48:54.752 INFO  hv:26 - S03_close_the_fingerTip_Latch : Entry
+2026-06-09 16:48:55.753 DEBUG hv:59 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Entry
+2026-06-09 16:48:55.753 DEBUG hv:85 - PortId    : op9
+2026-06-09 16:48:55.753 DEBUG hv:86 - ClusterId : 1
+2026-06-09 16:48:55.753 DEBUG hv:87 - BayId     : 2
+2026-06-09 16:48:55.855 DEBUG hv:126 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : status : true
+2026-06-09 16:48:55.855 DEBUG hv:127 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Exit
+2026-06-09 16:48:55.855 INFO  hv:41 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Finger Tip Latch Closed
+2026-06-09 16:49:00.855 INFO  hv:53 - S03_close_the_fingerTip_Latch : Exit
+2026-06-09 16:49:00.855 DEBUG hv:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-06-09 16:49:00.855 DEBUG hv:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 16:49:00.855 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:00.855 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:00.855 INFO  hv:38 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-06-09 16:49:00.855 DEBUG hv:97 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 16:49:00.855 DEBUG hv:107 - PortId    : ip43
+2026-06-09 16:49:00.857 DEBUG hv:108 - ClusterId : 1
+2026-06-09 16:49:00.857 DEBUG hv:109 - BayId     : 2
+2026-06-09 16:49:00.958 DEBUG hv:169 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 16:49:00.958 DEBUG hv:170 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 16:49:01.059 INFO  hv:70 - set_motor_not_required : Success
+2026-06-09 16:49:01.059 INFO  hv:91 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-06-09 16:49:01.059 DEBUG hv:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-06-09 16:49:01.059 DEBUG hv:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-06-09 16:49:01.059 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:01.059 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:01.059 INFO  hv:20 - S29_turn_on_tower_lamp_HVT_Bay : Entry
+2026-06-09 16:49:01.059 DEBUG hv:59 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 16:49:01.060 DEBUG hv:69 - PortId    : op13
+2026-06-09 16:49:01.060 DEBUG hv:70 - ClusterId : 1
+2026-06-09 16:49:01.060 DEBUG hv:71 - BayId     : 2
+2026-06-09 16:49:01.162 DEBUG hv:86 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 16:49:01.162 DEBUG hv:95 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 16:49:01.162 INFO  hv:29 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 16:49:01.162 DEBUG hv:100 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 16:49:01.162 DEBUG hv:110 - PortId    : op12
+2026-06-09 16:49:01.162 DEBUG hv:111 - ClusterId : 1
+2026-06-09 16:49:01.162 DEBUG hv:112 - BayId     : 2
+2026-06-09 16:49:01.263 DEBUG hv:127 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 16:49:01.263 DEBUG hv:136 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 16:49:01.263 INFO  hv:37 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 16:49:01.263 INFO  hv:52 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 16:49:01.263 DEBUG hv:171 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 16:49:01.263 DEBUG hv:172 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 16:49:01.263 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:01.263 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:01.263 INFO  hv:33 - S041_start_HV_source : Entry
+2026-06-09 16:49:01.263 DEBUG hv:103 - S041_start_HV_source : turn_on_start_pin_hv_bay : Entry
+2026-06-09 16:49:01.263 DEBUG hv:113 - PortId    : op11
+2026-06-09 16:49:01.263 DEBUG hv:114 - ClusterId : 1
+2026-06-09 16:49:01.263 DEBUG hv:115 - BayId     : 2
+2026-06-09 16:49:01.366 DEBUG hv:173 - S041_start_HV_source : turn_on_start_pin_hv_bay : status : true
+2026-06-09 16:49:01.366 DEBUG hv:174 - S041_start_HV_source : turn_on_start_pin_hv_bay : Exit
+2026-06-09 16:49:01.366 INFO  hv:42 - S041_start_HV_source : turn_on_start_pin_hv_bay : Success
+2026-06-09 16:49:01.866 DEBUG hv:181 - S041_start_HV_source : turn_off_start_pin_hv_bay : Entry
+2026-06-09 16:49:01.866 DEBUG hv:189 - PortId    : op11
+2026-06-09 16:49:01.866 DEBUG hv:190 - ClusterId : 1
+2026-06-09 16:49:01.866 DEBUG hv:191 - BayId     : 2
+2026-06-09 16:49:01.968 DEBUG hv:209 - S041_start_HV_source : turn_off_start_pin_hv_bay : status : true
+2026-06-09 16:49:01.968 DEBUG hv:214 - S041_start_HV_source : turn_off_start_pin_hv_bay : Exit
+2026-06-09 16:49:01.968 INFO  hv:50 - S041_start_HV_source : turn_off_start_pin_hv_bay : Success
+2026-06-09 16:49:01.968 INFO  hv:68 - S041_start_HV_source : Exit
+2026-06-09 16:49:01.968 DEBUG hv:171 - processCurrentState : S041_start_HV_source : Status     : true
+2026-06-09 16:49:01.968 DEBUG hv:172 - processCurrentState : S041_start_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 16:49:01.968 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:01.968 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:01.968 INFO  hv:42 - S05_high_Voltage_Test: Entry
+2026-06-09 16:49:01.968 DEBUG hv:210 - S05_high_Voltage_Test: waitForOneMinute: Waiting for one minute
+2026-06-09 16:49:01.968 DEBUG hv:216 - S05_high_Voltage_Test: hvExecutionTime_InSec: 5
+2026-06-09 16:49:01.968 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 16:49:02.968 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 16:49:03.969 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 16:49:04.970 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 16:49:05.970 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 16:49:06.970 DEBUG hv:228 - S05_high_Voltage_Test: hvExecutionTime_InSec: Exit 
+2026-06-09 16:49:06.970 DEBUG hv:287 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Entry
+2026-06-09 16:49:06.979 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 16:49:06.979 DEBUG hv:380 - PortId: ip45
+2026-06-09 16:49:06.979 DEBUG hv:381 - ClusterId: 1
+2026-06-09 16:49:06.979 DEBUG hv:382 - BayId: 2
+2026-06-09 16:49:07.080 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 16:49:07.080 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 16:49:07.080 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 16:49:07.080 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP1_HV_BAY, status: true
+2026-06-09 16:49:07.157 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 16:49:07.157 DEBUG hv:380 - PortId: ip46
+2026-06-09 16:49:07.157 DEBUG hv:381 - ClusterId: 1
+2026-06-09 16:49:07.157 DEBUG hv:382 - BayId: 2
+2026-06-09 16:49:07.284 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 16:49:07.284 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 16:49:07.284 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 16:49:07.284 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP2_HV_BAY, status: true
+2026-06-09 16:49:07.363 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 16:49:07.363 DEBUG hv:380 - PortId: ip47
+2026-06-09 16:49:07.363 DEBUG hv:381 - ClusterId: 1
+2026-06-09 16:49:07.363 DEBUG hv:382 - BayId: 2
+2026-06-09 16:49:07.487 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 16:49:07.487 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 16:49:07.487 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 16:49:07.487 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP3_HV_BAY, status: true
+2026-06-09 16:49:07.564 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 16:49:07.564 DEBUG hv:380 - PortId: ip48
+2026-06-09 16:49:07.564 DEBUG hv:381 - ClusterId: 1
+2026-06-09 16:49:07.564 DEBUG hv:382 - BayId: 2
+2026-06-09 16:49:07.665 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 16:49:07.665 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 16:49:07.665 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 16:49:07.665 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP4_HV_BAY, status: true
+2026-06-09 16:49:07.742 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 16:49:07.742 DEBUG hv:380 - PortId: ip49
+2026-06-09 16:49:07.742 DEBUG hv:381 - ClusterId: 1
+2026-06-09 16:49:07.742 DEBUG hv:382 - BayId: 2
+2026-06-09 16:49:07.867 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 16:49:07.867 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 16:49:07.867 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 16:49:07.867 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP5_HV_BAY, status: true
+2026-06-09 16:49:07.942 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 16:49:07.942 DEBUG hv:380 - PortId: ip50
+2026-06-09 16:49:07.942 DEBUG hv:381 - ClusterId: 1
+2026-06-09 16:49:07.942 DEBUG hv:382 - BayId: 2
+2026-06-09 16:49:08.044 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 16:49:08.044 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 16:49:08.044 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 16:49:08.044 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP6_HV_BAY, status: true
+2026-06-09 16:49:08.124 DEBUG hv:361 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Exit
+2026-06-09 16:49:08.124 INFO  hv:70 - S05_high_Voltage_Test: Exit
+2026-06-09 16:49:08.124 DEBUG hv:171 - processCurrentState : S05_high_Voltage_Test : Status     : true
+2026-06-09 16:49:08.124 DEBUG hv:172 - processCurrentState : S05_high_Voltage_Test : Error Code : 
+2026-06-09 16:49:08.124 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:08.124 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:08.124 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-06-09 16:49:08.124 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-06-09 16:49:08.124 DEBUG hv:107 - PortId    : op14
+2026-06-09 16:49:08.124 DEBUG hv:108 - ClusterId : 1
+2026-06-09 16:49:08.125 DEBUG hv:109 - BayId     : 2
+2026-06-09 16:49:08.227 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-06-09 16:49:08.227 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-06-09 16:49:08.727 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-06-09 16:49:08.727 DEBUG hv:147 - PortId    : op14
+2026-06-09 16:49:08.727 DEBUG hv:148 - ClusterId : 1
+2026-06-09 16:49:08.727 DEBUG hv:149 - BayId     : 2
+2026-06-09 16:49:08.829 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-06-09 16:49:08.829 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-06-09 16:49:08.829 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-06-09 16:49:08.829 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-06-09 16:49:08.829 DEBUG hv:171 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-06-09 16:49:08.829 DEBUG hv:172 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 16:49:08.829 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:08.829 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:08.829 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-06-09 16:49:08.829 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-06-09 16:49:08.829 DEBUG hv:66 - PortId    : op9
+2026-06-09 16:49:08.829 DEBUG hv:67 - ClusterId : 1
+2026-06-09 16:49:08.829 DEBUG hv:68 - BayId     : 2
+2026-06-09 16:49:09.032 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-06-09 16:49:09.032 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-06-09 16:49:09.032 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-09 16:49:09.032 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-06-09 16:49:09.032 DEBUG hv:171 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-09 16:49:09.032 DEBUG hv:172 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 16:49:09.032 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:09.032 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:09.032 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-09 16:49:09.032 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 16:49:09.032 DEBUG hv:71 - PortId    : ip43
+2026-06-09 16:49:09.032 DEBUG hv:72 - ClusterId : 1
+2026-06-09 16:49:09.032 DEBUG hv:73 - BayId     : 2
+2026-06-09 16:49:09.133 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 16:49:09.133 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 16:49:10.133 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 16:49:10.133 DEBUG hv:71 - PortId    : ip43
+2026-06-09 16:49:10.133 DEBUG hv:72 - ClusterId : 1
+2026-06-09 16:49:10.133 DEBUG hv:73 - BayId     : 2
+2026-06-09 16:49:10.234 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-06-09 16:49:10.234 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 16:49:10.234 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-09 16:49:10.234 DEBUG hv:171 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-09 16:49:10.234 DEBUG hv:172 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-09 16:49:10.234 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:10.234 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:10.234 INFO  hv:27 - S30_turn_off_tower_lamp_HVT_Bay : Entry
+2026-06-09 16:49:10.234 DEBUG hv:109 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 16:49:10.234 DEBUG hv:119 - PortId    : op12
+2026-06-09 16:49:10.234 DEBUG hv:120 - ClusterId : 1
+2026-06-09 16:49:10.234 DEBUG hv:121 - BayId     : 2
+2026-06-09 16:49:10.335 DEBUG hv:136 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 16:49:10.335 DEBUG hv:145 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 16:49:10.335 INFO  hv:37 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 16:49:10.335 DEBUG hv:67 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 16:49:10.335 DEBUG hv:77 - PortId    : op13
+2026-06-09 16:49:10.335 DEBUG hv:78 - ClusterId : 1
+2026-06-09 16:49:10.335 DEBUG hv:79 - BayId     : 2
+2026-06-09 16:49:10.437 DEBUG hv:93 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 16:49:10.437 DEBUG hv:102 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 16:49:10.437 INFO  hv:45 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 16:49:10.437 INFO  hv:60 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 16:49:10.437 DEBUG hv:171 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 16:49:10.437 DEBUG hv:172 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 16:49:10.437 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 16:49:10.437 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 16:49:10.437 INFO  hv:34 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 16:49:10.437 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 16:49:10.437 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 16:49:10.539 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 16:49:10.539 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 16:49:10.539 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 16:49:10.539 INFO  hv:48 - S08_check_for_pallet_at_IRT_Bay : Pallet Available at IRT Bay
+2026-06-09 16:49:11.540 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 16:49:11.540 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 16:49:11.641 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 16:49:11.641 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 16:49:11.641 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:03:14.355 INFO  hv:57 - S08_check_for_pallet_at_IRT_Bay : No Pallet Available at IRT Bay
+2026-06-09 17:03:14.461 INFO  hv:64 - set_motor_required : Success
+2026-06-09 17:03:14.461 INFO  hv:135 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:03:14.461 DEBUG hv:171 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Status     : true
+2026-06-09 17:03:14.461 DEBUG hv:172 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:03:14.461 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:03:14.461 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:03:14.461 INFO  hv:26 - S12_open_stop_latch_HV_Bay : Entry
+2026-06-09 17:03:14.461 INFO  hv:31 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:03:14.461 INFO  hv:38 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:03:14.461 INFO  hv:41 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Entry for Ir
+2026-06-09 17:03:14.461 INFO  hv:47 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Exit for Ir
+2026-06-09 17:03:14.461 DEBUG hv:77 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:03:14.461 DEBUG hv:89 - PortId    : op8
+2026-06-09 17:03:14.461 DEBUG hv:90 - ClusterId : 1
+2026-06-09 17:03:14.461 DEBUG hv:91 - BayId     : 2
+2026-06-09 17:03:14.569 DEBUG hv:103 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : state : Off
+2026-06-09 17:03:14.569 DEBUG hv:114 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : status : true
+2026-06-09 17:03:14.569 DEBUG hv:128 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:03:14.569 DEBUG hv:132 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:03:14.569 INFO  hv:56 - S12_open_stop_latch_HV_Bay : Stop Latch Opened
+2026-06-09 17:03:15.591 INFO  hv:70 - S12_open_stop_latch_HV_Bay : Exit
+2026-06-09 17:03:15.591 DEBUG hv:171 - processCurrentState : S12_open_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:03:15.591 DEBUG hv:172 - processCurrentState : S12_open_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:03:15.591 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:03:15.591 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:03:15.591 INFO  hv:25 - S13_close_stop_latch_HV_Bay : Entry
+2026-06-09 17:03:17.599 DEBUG hv:69 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:03:17.599 DEBUG hv:79 - PortId    : op8
+2026-06-09 17:03:17.599 DEBUG hv:80 - ClusterId : 1
+2026-06-09 17:03:17.599 DEBUG hv:81 - BayId     : 2
+2026-06-09 17:03:17.708 DEBUG hv:92 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : state : On
+2026-06-09 17:03:17.708 DEBUG hv:100 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : status : true
+2026-06-09 17:03:17.708 DEBUG hv:114 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:03:17.708 DEBUG hv:118 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:03:17.708 INFO  hv:36 - S13_close_stop_latch_HV_Bay : Stop Latch Closed
+2026-06-09 17:03:18.821 INFO  hv:46 - set_motor_not_required : Success
+2026-06-09 17:03:18.821 INFO  hv:64 - S13_close_stop_latch_HV_Bay : Exit
+2026-06-09 17:03:18.821 DEBUG hv:171 - processCurrentState : S13_close_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:03:18.821 DEBUG hv:172 - processCurrentState : S13_close_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:03:18.821 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:03:18.821 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:03:18.821 INFO  hv:54 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:03:18.821 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:03:18.821 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 17:03:18.927 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : Off
+2026-06-09 17:03:18.927 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : false
+2026-06-09 17:03:18.927 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:03:18.927 INFO  hv:113 - S01_check_for_pallet_at_HVT_Bay : No pallet Available at HVT Bay
+2026-06-09 17:11:25.322 INFO  hv:121 - S01_check_for_pallet_at_HVT_Bay : Pallet Available
+2026-06-09 17:11:25.331 INFO  hv:142 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:11:25.331 INFO  hv:149 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:11:25.331 INFO  hv:153 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:11:25.331 DEBUG hv:171 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Status     : true
+2026-06-09 17:11:25.331 DEBUG hv:172 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:11:25.331 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:25.331 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:25.331 DEBUG hv:38 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-09 17:11:25.331 DEBUG hv:123 - qrCodePalletScanning : Entry : HVB
+2026-06-09 17:11:31.195 DEBUG hv:174 - qrCodePalletScanning : scannedData: NG
+2026-06-09 17:11:31.195 DEBUG hv:248 - qrCodePalletScanning : status : NG : HVB
+2026-06-09 17:11:31.195 DEBUG hv:250 - qrCodePalletScanning : Exit : HVB
+2026-06-09 17:11:31.195 INFO  hv:106 - qrCodePalletScanningProcess : QR Code Scan - not Good Read : HVB
+2026-06-09 17:11:31.195 INFO  hv:113 - qrCodePalletScanningProcess : Exit : HVB
+2026-06-09 17:11:31.195 DEBUG hv:79 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-09 17:11:31.195 DEBUG hv:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : false
+2026-06-09 17:11:31.195 DEBUG hv:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_HVT_006
+2026-06-09 17:11:31.305 DEBUG hv:20 - HighVoltageTestBayStop : Entry
+2026-06-09 17:11:31.305 DEBUG hv:28 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-06-09 17:11:31.306 DEBUG hv:48 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : getTableStatePlanner2 : Size : 3
+2026-06-09 17:11:31.306 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:31.306 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-06-09 17:11:31.306 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-06-09 17:11:31.306 DEBUG hv:107 - PortId    : op14
+2026-06-09 17:11:31.306 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:11:31.306 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:11:31.412 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-06-09 17:11:31.412 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-06-09 17:11:31.707 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:31.707 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:31.707 INFO  hv:17 - S10_error_Handling : Entry
+2026-06-09 17:11:31.707 DEBUG hv:171 - processCurrentState : S10_error_Handling : Status     : true
+2026-06-09 17:11:31.707 DEBUG hv:172 - processCurrentState : S10_error_Handling : Error Code : NO_ERROR_001
+2026-06-09 17:11:31.707 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:31.707 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:31.707 INFO  hv:26 - S03_close_the_fingerTip_Latch : Entry
+2026-06-09 17:11:31.926 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-06-09 17:11:31.926 DEBUG hv:147 - PortId    : op14
+2026-06-09 17:11:31.926 DEBUG hv:148 - ClusterId : 1
+2026-06-09 17:11:31.926 DEBUG hv:149 - BayId     : 2
+2026-06-09 17:11:32.033 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-06-09 17:11:32.033 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-06-09 17:11:32.033 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-06-09 17:11:32.033 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-06-09 17:11:32.033 DEBUG hv:155 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-06-09 17:11:32.033 DEBUG hv:156 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:11:32.033 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:32.033 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-06-09 17:11:32.033 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:11:32.033 DEBUG hv:66 - PortId    : op9
+2026-06-09 17:11:32.033 DEBUG hv:67 - ClusterId : 1
+2026-06-09 17:11:32.033 DEBUG hv:68 - BayId     : 2
+2026-06-09 17:11:32.141 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:11:32.141 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:11:32.141 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-09 17:11:32.141 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-06-09 17:11:32.141 DEBUG hv:155 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-09 17:11:32.141 DEBUG hv:156 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:11:32.141 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:32.141 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-09 17:11:32.141 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:11:32.141 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:11:32.141 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:11:32.141 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:11:32.248 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-06-09 17:11:32.248 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:11:32.248 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-09 17:11:32.248 DEBUG hv:155 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-09 17:11:32.248 DEBUG hv:156 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-09 17:11:32.248 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:32.248 INFO  hv:12 - S11_idle_condition : Entry
+2026-06-09 17:11:32.248 INFO  hv:25 - S11_idle_condition : Waiting in Idle ConditionHVB
+2026-06-09 17:11:32.711 DEBUG hv:59 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:11:32.711 DEBUG hv:85 - PortId    : op9
+2026-06-09 17:11:32.711 DEBUG hv:86 - ClusterId : 1
+2026-06-09 17:11:32.711 DEBUG hv:87 - BayId     : 2
+2026-06-09 17:11:32.820 DEBUG hv:126 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:11:32.820 DEBUG hv:127 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:11:32.820 INFO  hv:41 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Finger Tip Latch Closed
+2026-06-09 17:11:33.253 INFO  hv:25 - S11_idle_condition : Waiting in Idle ConditionHVB
+2026-06-09 17:11:34.263 DEBUG hv:155 - processCurrentState : S11_idle_condition : Status     : true
+2026-06-09 17:11:34.263 DEBUG hv:156 - processCurrentState : S11_idle_condition : Error Code : NO_ERROR_001
+2026-06-09 17:11:34.263 DEBUG hv:122 - HighVoltageTestBayStop : manageHighVoltageTestBayStates : Entry
+2026-06-09 17:11:37.825 INFO  hv:53 - S03_close_the_fingerTip_Latch : Exit
+2026-06-09 17:11:37.825 DEBUG hv:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-06-09 17:11:37.825 DEBUG hv:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:11:37.825 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:37.825 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:37.825 INFO  hv:38 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-06-09 17:11:37.825 DEBUG hv:97 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:11:37.825 DEBUG hv:107 - PortId    : ip43
+2026-06-09 17:11:37.825 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:11:37.825 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:11:37.934 DEBUG hv:169 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:11:37.934 DEBUG hv:170 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:11:38.041 INFO  hv:70 - set_motor_not_required : Success
+2026-06-09 17:11:38.041 INFO  hv:91 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-06-09 17:11:38.041 DEBUG hv:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-06-09 17:11:38.041 DEBUG hv:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-06-09 17:11:38.041 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:38.041 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:38.041 INFO  hv:20 - S29_turn_on_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:11:38.041 DEBUG hv:59 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:11:38.041 DEBUG hv:69 - PortId    : op13
+2026-06-09 17:11:38.041 DEBUG hv:70 - ClusterId : 1
+2026-06-09 17:11:38.041 DEBUG hv:71 - BayId     : 2
+2026-06-09 17:11:38.150 DEBUG hv:86 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:11:38.150 DEBUG hv:95 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:11:38.150 INFO  hv:29 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:11:38.150 DEBUG hv:100 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:11:38.150 DEBUG hv:110 - PortId    : op12
+2026-06-09 17:11:38.150 DEBUG hv:111 - ClusterId : 1
+2026-06-09 17:11:38.150 DEBUG hv:112 - BayId     : 2
+2026-06-09 17:11:38.368 DEBUG hv:127 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:11:38.368 DEBUG hv:136 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:11:38.368 INFO  hv:37 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:11:38.368 INFO  hv:52 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:11:38.368 DEBUG hv:171 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:11:38.368 DEBUG hv:172 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:11:38.368 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:38.368 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:38.368 INFO  hv:33 - S041_start_HV_source : Entry
+2026-06-09 17:11:38.368 DEBUG hv:103 - S041_start_HV_source : turn_on_start_pin_hv_bay : Entry
+2026-06-09 17:11:38.368 DEBUG hv:113 - PortId    : op11
+2026-06-09 17:11:38.368 DEBUG hv:114 - ClusterId : 1
+2026-06-09 17:11:38.368 DEBUG hv:115 - BayId     : 2
+2026-06-09 17:11:38.475 DEBUG hv:173 - S041_start_HV_source : turn_on_start_pin_hv_bay : status : true
+2026-06-09 17:11:38.475 DEBUG hv:174 - S041_start_HV_source : turn_on_start_pin_hv_bay : Exit
+2026-06-09 17:11:38.475 INFO  hv:42 - S041_start_HV_source : turn_on_start_pin_hv_bay : Success
+2026-06-09 17:11:38.984 DEBUG hv:181 - S041_start_HV_source : turn_off_start_pin_hv_bay : Entry
+2026-06-09 17:11:38.984 DEBUG hv:189 - PortId    : op11
+2026-06-09 17:11:38.984 DEBUG hv:190 - ClusterId : 1
+2026-06-09 17:11:38.984 DEBUG hv:191 - BayId     : 2
+2026-06-09 17:11:39.093 DEBUG hv:209 - S041_start_HV_source : turn_off_start_pin_hv_bay : status : true
+2026-06-09 17:11:39.093 DEBUG hv:214 - S041_start_HV_source : turn_off_start_pin_hv_bay : Exit
+2026-06-09 17:11:39.093 INFO  hv:50 - S041_start_HV_source : turn_off_start_pin_hv_bay : Success
+2026-06-09 17:11:39.093 INFO  hv:68 - S041_start_HV_source : Exit
+2026-06-09 17:11:39.093 DEBUG hv:171 - processCurrentState : S041_start_HV_source : Status     : true
+2026-06-09 17:11:39.093 DEBUG hv:172 - processCurrentState : S041_start_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:11:39.093 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:39.093 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:39.093 INFO  hv:42 - S05_high_Voltage_Test: Entry
+2026-06-09 17:11:39.093 DEBUG hv:210 - S05_high_Voltage_Test: waitForOneMinute: Waiting for one minute
+2026-06-09 17:11:39.093 DEBUG hv:216 - S05_high_Voltage_Test: hvExecutionTime_InSec: 5
+2026-06-09 17:11:39.093 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:11:40.108 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:11:41.114 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:11:42.120 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:11:43.131 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:11:44.136 DEBUG hv:228 - S05_high_Voltage_Test: hvExecutionTime_InSec: Exit 
+2026-06-09 17:11:44.136 DEBUG hv:287 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Entry
+2026-06-09 17:11:44.143 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:11:44.143 DEBUG hv:380 - PortId: ip45
+2026-06-09 17:11:44.143 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:11:44.143 DEBUG hv:382 - BayId: 2
+2026-06-09 17:11:44.245 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:11:44.245 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:11:44.245 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:11:44.245 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP1_HV_BAY, status: true
+2026-06-09 17:11:44.352 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:11:44.352 DEBUG hv:380 - PortId: ip46
+2026-06-09 17:11:44.352 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:11:44.352 DEBUG hv:382 - BayId: 2
+2026-06-09 17:11:44.459 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:11:44.459 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:11:44.459 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:11:44.459 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP2_HV_BAY, status: true
+2026-06-09 17:11:44.553 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:11:44.553 DEBUG hv:380 - PortId: ip47
+2026-06-09 17:11:44.553 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:11:44.553 DEBUG hv:382 - BayId: 2
+2026-06-09 17:11:44.660 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:11:44.660 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:11:44.660 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:11:44.660 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP3_HV_BAY, status: true
+2026-06-09 17:11:44.739 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:11:44.739 DEBUG hv:380 - PortId: ip48
+2026-06-09 17:11:44.739 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:11:44.739 DEBUG hv:382 - BayId: 2
+2026-06-09 17:11:44.847 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:11:44.847 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:11:44.847 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:11:44.847 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP4_HV_BAY, status: true
+2026-06-09 17:11:44.939 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:11:44.939 DEBUG hv:380 - PortId: ip49
+2026-06-09 17:11:44.939 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:11:44.939 DEBUG hv:382 - BayId: 2
+2026-06-09 17:11:45.062 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:11:45.062 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:11:45.062 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:11:45.062 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP5_HV_BAY, status: true
+2026-06-09 17:11:45.156 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:11:45.156 DEBUG hv:380 - PortId: ip50
+2026-06-09 17:11:45.156 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:11:45.156 DEBUG hv:382 - BayId: 2
+2026-06-09 17:11:45.264 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:11:45.264 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:11:45.264 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:11:45.264 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP6_HV_BAY, status: true
+2026-06-09 17:11:45.363 DEBUG hv:361 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Exit
+2026-06-09 17:11:45.363 INFO  hv:70 - S05_high_Voltage_Test: Exit
+2026-06-09 17:11:45.363 DEBUG hv:171 - processCurrentState : S05_high_Voltage_Test : Status     : true
+2026-06-09 17:11:45.363 DEBUG hv:172 - processCurrentState : S05_high_Voltage_Test : Error Code : 
+2026-06-09 17:11:45.363 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:45.363 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:45.363 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-06-09 17:11:45.363 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-06-09 17:11:45.363 DEBUG hv:107 - PortId    : op14
+2026-06-09 17:11:45.363 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:11:45.363 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:11:45.464 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-06-09 17:11:45.464 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-06-09 17:11:45.978 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-06-09 17:11:45.978 DEBUG hv:147 - PortId    : op14
+2026-06-09 17:11:45.978 DEBUG hv:148 - ClusterId : 1
+2026-06-09 17:11:45.978 DEBUG hv:149 - BayId     : 2
+2026-06-09 17:11:46.178 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-06-09 17:11:46.178 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-06-09 17:11:46.178 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-06-09 17:11:46.178 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-06-09 17:11:46.178 DEBUG hv:171 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-06-09 17:11:46.178 DEBUG hv:172 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:11:46.178 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:46.178 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:46.178 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-06-09 17:11:46.178 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:11:46.178 DEBUG hv:66 - PortId    : op9
+2026-06-09 17:11:46.178 DEBUG hv:67 - ClusterId : 1
+2026-06-09 17:11:46.178 DEBUG hv:68 - BayId     : 2
+2026-06-09 17:11:46.285 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:11:46.285 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:11:46.285 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-09 17:11:46.285 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-06-09 17:11:46.285 DEBUG hv:171 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-09 17:11:46.285 DEBUG hv:172 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:11:46.285 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:46.285 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:46.285 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-09 17:11:46.285 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:11:46.285 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:11:46.285 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:11:46.285 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:11:46.391 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:11:46.391 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:11:47.398 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:11:47.398 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:11:47.398 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:11:47.398 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:11:47.504 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-06-09 17:11:47.504 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:11:47.504 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-09 17:11:47.504 DEBUG hv:171 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-09 17:11:47.504 DEBUG hv:172 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-09 17:11:47.504 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:47.504 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:47.504 INFO  hv:27 - S30_turn_off_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:11:47.504 DEBUG hv:109 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:11:47.504 DEBUG hv:119 - PortId    : op12
+2026-06-09 17:11:47.504 DEBUG hv:120 - ClusterId : 1
+2026-06-09 17:11:47.504 DEBUG hv:121 - BayId     : 2
+2026-06-09 17:11:47.611 DEBUG hv:136 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:11:47.611 DEBUG hv:145 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:11:47.611 INFO  hv:37 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:11:47.611 DEBUG hv:67 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:11:47.611 DEBUG hv:77 - PortId    : op13
+2026-06-09 17:11:47.611 DEBUG hv:78 - ClusterId : 1
+2026-06-09 17:11:47.611 DEBUG hv:79 - BayId     : 2
+2026-06-09 17:11:47.721 DEBUG hv:93 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:11:47.721 DEBUG hv:102 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:11:47.721 INFO  hv:45 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:11:47.721 INFO  hv:60 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:11:47.721 DEBUG hv:171 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:11:47.721 DEBUG hv:172 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:11:47.721 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:47.721 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:47.721 INFO  hv:34 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:11:47.721 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:11:47.721 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:11:47.829 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : Off
+2026-06-09 17:11:47.829 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : false
+2026-06-09 17:11:47.829 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:11:47.829 INFO  hv:57 - S08_check_for_pallet_at_IRT_Bay : No Pallet Available at IRT Bay
+2026-06-09 17:11:47.937 INFO  hv:64 - set_motor_required : Success
+2026-06-09 17:11:47.937 INFO  hv:135 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:11:47.937 DEBUG hv:171 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Status     : true
+2026-06-09 17:11:47.937 DEBUG hv:172 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:11:47.937 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:47.937 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:47.937 INFO  hv:26 - S12_open_stop_latch_HV_Bay : Entry
+2026-06-09 17:11:47.937 INFO  hv:31 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:11:47.937 INFO  hv:38 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:11:47.937 INFO  hv:41 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Entry for Ir
+2026-06-09 17:11:47.937 INFO  hv:47 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Exit for Ir
+2026-06-09 17:11:47.937 DEBUG hv:77 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:11:47.937 DEBUG hv:89 - PortId    : op8
+2026-06-09 17:11:47.937 DEBUG hv:90 - ClusterId : 1
+2026-06-09 17:11:47.938 DEBUG hv:91 - BayId     : 2
+2026-06-09 17:11:48.045 DEBUG hv:103 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : state : Off
+2026-06-09 17:11:48.045 DEBUG hv:114 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : status : true
+2026-06-09 17:11:48.045 DEBUG hv:128 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:11:48.045 DEBUG hv:132 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:11:48.045 INFO  hv:56 - S12_open_stop_latch_HV_Bay : Stop Latch Opened
+2026-06-09 17:11:49.068 INFO  hv:70 - S12_open_stop_latch_HV_Bay : Exit
+2026-06-09 17:11:49.068 DEBUG hv:171 - processCurrentState : S12_open_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:11:49.068 DEBUG hv:172 - processCurrentState : S12_open_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:11:49.068 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:49.068 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:49.068 INFO  hv:25 - S13_close_stop_latch_HV_Bay : Entry
+2026-06-09 17:11:51.077 DEBUG hv:69 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:11:51.077 DEBUG hv:79 - PortId    : op8
+2026-06-09 17:11:51.077 DEBUG hv:80 - ClusterId : 1
+2026-06-09 17:11:51.077 DEBUG hv:81 - BayId     : 2
+2026-06-09 17:11:51.184 DEBUG hv:92 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : state : On
+2026-06-09 17:11:51.184 DEBUG hv:100 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : status : true
+2026-06-09 17:11:51.184 DEBUG hv:114 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:11:51.184 DEBUG hv:118 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:11:51.184 INFO  hv:36 - S13_close_stop_latch_HV_Bay : Stop Latch Closed
+2026-06-09 17:11:52.298 INFO  hv:46 - set_motor_not_required : Success
+2026-06-09 17:11:52.298 INFO  hv:64 - S13_close_stop_latch_HV_Bay : Exit
+2026-06-09 17:11:52.298 DEBUG hv:171 - processCurrentState : S13_close_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:11:52.298 DEBUG hv:172 - processCurrentState : S13_close_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:11:52.298 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:11:52.298 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:11:52.298 INFO  hv:54 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:11:52.298 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:11:52.298 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 17:11:52.406 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : Off
+2026-06-09 17:11:52.406 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : false
+2026-06-09 17:11:52.406 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:11:52.407 INFO  hv:113 - S01_check_for_pallet_at_HVT_Bay : No pallet Available at HVT Bay
+2026-06-09 17:12:53.790 INFO  hv:121 - S01_check_for_pallet_at_HVT_Bay : Pallet Available
+2026-06-09 17:12:53.797 INFO  hv:142 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:12:53.797 INFO  hv:149 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:12:53.797 INFO  hv:153 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:12:53.797 DEBUG hv:171 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Status     : true
+2026-06-09 17:12:53.797 DEBUG hv:172 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:12:53.797 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:12:53.797 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:12:53.797 DEBUG hv:38 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-09 17:12:53.797 DEBUG hv:123 - qrCodePalletScanning : Entry : HVB
+2026-06-09 17:12:56.520 DEBUG hv:174 - qrCodePalletScanning : scannedData: LSCSM06P15
+
+2026-06-09 17:12:56.520 DEBUG hv:194 - qrCodePalletScanning : Else Hit1: 
+2026-06-09 17:12:56.520 DEBUG hv:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260609T171141_0016_LSCSM06P15  selectedBayTypeKey: HVB
+2026-06-09 17:12:56.529 DEBUG hv:447 - qrCodePalletScanning: other bays: 
+2026-06-09 17:12:56.529 DEBUG hv:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: HVB
+2026-06-09 17:12:56.529 DEBUG hv:451 - getActivePalletMap() : {LSCSM06P22=20260609T110505_0002_LSCSM06P22, LSCSM06P01=20260608T170110_0028_LSCSM06P01, LSCSM06P008=20260609T125020_0008_LSCSM06P008, LSCSM06P019=20260609T131721_0013_LSCSM06P019, LSCSM06P13=20260608T165458_0027_LSCSM06P13, LSCSM06P24=20260609T132239_0014_LSCSM06P24, LSCSM06P03=20260609T130105_0010_LSCSM06P03, LSCSM06P005=20260609T131148_0012_LSCSM06P005, LSCSM06P004=20260609T125532_0009_LSCSM06P004, LSCSM06P018=20260609T171003_0015_LSCSM06P018, LSCSM06P017=20260609T110805_0004_LSCSM06P017, LSCSM06P006=20260609T112545_0007_LSCSM06P006, LSCSM06P15=20260609T171141_0016_LSCSM06P15, LSCSM06P07=20260609T112150_0006_LSCSM06P07, LSCSM06P023=20260609T110635_0003_LSCSM06P023, LSCSM06P011=20260609T112021_0005_LSCSM06P011, LSCSM06P002=20260609T130637_0011_LSCSM06P002, LSCSM06P021=20260608T182746_0029_LSCSM06P021, LSCSM06P020=20260608T165244_0026_LSCSM06P020}
+2026-06-09 17:12:56.546 DEBUG hv:513 - qrCodePalletScanning: individual pallet update 
+2026-06-09 17:12:56.546 DEBUG hv:220 - qrCodePalletScanning : palletDistinctId:  : 20260609T171141_0016_LSCSM06P15 : bay: HVB : qrCode: LSCSM06P15
+2026-06-09 17:12:56.546 DEBUG hv:248 - qrCodePalletScanning : status : GOOD : HVB
+2026-06-09 17:12:56.546 DEBUG hv:250 - qrCodePalletScanning : Exit : HVB
+2026-06-09 17:12:56.546 INFO  hv:82 - qrCodePalletScanningProcess : QR Code Scan Successful : HVB
+2026-06-09 17:12:56.546 INFO  hv:113 - qrCodePalletScanningProcess : Exit : HVB
+2026-06-09 17:12:56.546 DEBUG hv:79 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-09 17:12:56.546 DEBUG hv:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-06-09 17:12:56.546 DEBUG hv:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-06-09 17:12:56.546 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:12:56.546 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:12:56.546 INFO  hv:26 - S03_close_the_fingerTip_Latch : Entry
+2026-06-09 17:12:57.556 DEBUG hv:59 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:12:57.556 DEBUG hv:85 - PortId    : op9
+2026-06-09 17:12:57.556 DEBUG hv:86 - ClusterId : 1
+2026-06-09 17:12:57.556 DEBUG hv:87 - BayId     : 2
+2026-06-09 17:12:57.666 DEBUG hv:126 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:12:57.666 DEBUG hv:127 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:12:57.666 INFO  hv:41 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Finger Tip Latch Closed
+2026-06-09 17:13:02.674 INFO  hv:53 - S03_close_the_fingerTip_Latch : Exit
+2026-06-09 17:13:02.674 DEBUG hv:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-06-09 17:13:02.674 DEBUG hv:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:13:02.674 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:02.674 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:02.674 INFO  hv:38 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-06-09 17:13:02.674 DEBUG hv:97 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:13:02.674 DEBUG hv:107 - PortId    : ip43
+2026-06-09 17:13:02.674 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:13:02.674 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:13:02.783 DEBUG hv:169 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:13:02.783 DEBUG hv:170 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:13:02.894 INFO  hv:70 - set_motor_not_required : Success
+2026-06-09 17:13:02.894 INFO  hv:91 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-06-09 17:13:02.894 DEBUG hv:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-06-09 17:13:02.894 DEBUG hv:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-06-09 17:13:02.894 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:02.894 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:02.894 INFO  hv:20 - S29_turn_on_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:13:02.894 DEBUG hv:59 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:13:02.894 DEBUG hv:69 - PortId    : op13
+2026-06-09 17:13:02.894 DEBUG hv:70 - ClusterId : 1
+2026-06-09 17:13:02.894 DEBUG hv:71 - BayId     : 2
+2026-06-09 17:13:03.002 DEBUG hv:86 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:13:03.002 DEBUG hv:95 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:13:03.002 INFO  hv:29 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:13:03.002 DEBUG hv:100 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:13:03.002 DEBUG hv:110 - PortId    : op12
+2026-06-09 17:13:03.002 DEBUG hv:111 - ClusterId : 1
+2026-06-09 17:13:03.002 DEBUG hv:112 - BayId     : 2
+2026-06-09 17:13:03.110 DEBUG hv:127 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:13:03.110 DEBUG hv:136 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:13:03.110 INFO  hv:37 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:13:03.110 INFO  hv:52 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:13:03.110 DEBUG hv:171 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:13:03.110 DEBUG hv:172 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:13:03.110 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:03.110 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:03.110 INFO  hv:33 - S041_start_HV_source : Entry
+2026-06-09 17:13:03.110 DEBUG hv:103 - S041_start_HV_source : turn_on_start_pin_hv_bay : Entry
+2026-06-09 17:13:03.110 DEBUG hv:113 - PortId    : op11
+2026-06-09 17:13:03.110 DEBUG hv:114 - ClusterId : 1
+2026-06-09 17:13:03.110 DEBUG hv:115 - BayId     : 2
+2026-06-09 17:13:03.217 DEBUG hv:173 - S041_start_HV_source : turn_on_start_pin_hv_bay : status : true
+2026-06-09 17:13:03.217 DEBUG hv:174 - S041_start_HV_source : turn_on_start_pin_hv_bay : Exit
+2026-06-09 17:13:03.217 INFO  hv:42 - S041_start_HV_source : turn_on_start_pin_hv_bay : Success
+2026-06-09 17:13:03.731 DEBUG hv:181 - S041_start_HV_source : turn_off_start_pin_hv_bay : Entry
+2026-06-09 17:13:03.731 DEBUG hv:189 - PortId    : op11
+2026-06-09 17:13:03.731 DEBUG hv:190 - ClusterId : 1
+2026-06-09 17:13:03.731 DEBUG hv:191 - BayId     : 2
+2026-06-09 17:13:03.839 DEBUG hv:209 - S041_start_HV_source : turn_off_start_pin_hv_bay : status : true
+2026-06-09 17:13:03.839 DEBUG hv:214 - S041_start_HV_source : turn_off_start_pin_hv_bay : Exit
+2026-06-09 17:13:03.839 INFO  hv:50 - S041_start_HV_source : turn_off_start_pin_hv_bay : Success
+2026-06-09 17:13:03.839 INFO  hv:68 - S041_start_HV_source : Exit
+2026-06-09 17:13:03.839 DEBUG hv:171 - processCurrentState : S041_start_HV_source : Status     : true
+2026-06-09 17:13:03.839 DEBUG hv:172 - processCurrentState : S041_start_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:13:03.839 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:03.839 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:03.839 INFO  hv:42 - S05_high_Voltage_Test: Entry
+2026-06-09 17:13:03.839 DEBUG hv:210 - S05_high_Voltage_Test: waitForOneMinute: Waiting for one minute
+2026-06-09 17:13:03.839 DEBUG hv:216 - S05_high_Voltage_Test: hvExecutionTime_InSec: 5
+2026-06-09 17:13:03.839 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:13:04.851 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:13:05.855 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:13:06.861 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:13:07.869 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:13:08.883 DEBUG hv:228 - S05_high_Voltage_Test: hvExecutionTime_InSec: Exit 
+2026-06-09 17:13:08.883 DEBUG hv:287 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Entry
+2026-06-09 17:13:08.890 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:13:08.891 DEBUG hv:380 - PortId: ip45
+2026-06-09 17:13:08.891 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:13:08.891 DEBUG hv:382 - BayId: 2
+2026-06-09 17:13:09.007 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:13:09.007 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:13:09.007 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:13:09.007 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP1_HV_BAY, status: true
+2026-06-09 17:13:09.098 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:13:09.098 DEBUG hv:380 - PortId: ip46
+2026-06-09 17:13:09.098 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:13:09.098 DEBUG hv:382 - BayId: 2
+2026-06-09 17:13:09.206 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:13:09.206 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:13:09.206 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:13:09.206 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP2_HV_BAY, status: true
+2026-06-09 17:13:09.284 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:13:09.284 DEBUG hv:380 - PortId: ip47
+2026-06-09 17:13:09.284 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:13:09.284 DEBUG hv:382 - BayId: 2
+2026-06-09 17:13:09.391 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:13:09.391 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:13:09.391 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:13:09.391 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP3_HV_BAY, status: true
+2026-06-09 17:13:09.483 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:13:09.483 DEBUG hv:380 - PortId: ip48
+2026-06-09 17:13:09.483 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:13:09.483 DEBUG hv:382 - BayId: 2
+2026-06-09 17:13:09.591 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:13:09.591 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:13:09.591 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:13:09.591 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP4_HV_BAY, status: true
+2026-06-09 17:13:09.669 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:13:09.669 DEBUG hv:380 - PortId: ip49
+2026-06-09 17:13:09.669 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:13:09.669 DEBUG hv:382 - BayId: 2
+2026-06-09 17:13:09.777 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:13:09.777 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:13:09.778 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:13:09.778 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP5_HV_BAY, status: true
+2026-06-09 17:13:09.869 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:13:09.869 DEBUG hv:380 - PortId: ip50
+2026-06-09 17:13:09.869 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:13:09.869 DEBUG hv:382 - BayId: 2
+2026-06-09 17:13:09.976 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:13:09.976 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:13:09.976 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:13:09.976 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP6_HV_BAY, status: true
+2026-06-09 17:13:10.074 DEBUG hv:361 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Exit
+2026-06-09 17:13:10.074 INFO  hv:70 - S05_high_Voltage_Test: Exit
+2026-06-09 17:13:10.074 DEBUG hv:171 - processCurrentState : S05_high_Voltage_Test : Status     : true
+2026-06-09 17:13:10.074 DEBUG hv:172 - processCurrentState : S05_high_Voltage_Test : Error Code : 
+2026-06-09 17:13:10.074 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:10.074 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:10.074 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-06-09 17:13:10.074 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-06-09 17:13:10.075 DEBUG hv:107 - PortId    : op14
+2026-06-09 17:13:10.075 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:13:10.075 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:13:10.178 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-06-09 17:13:10.178 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-06-09 17:13:10.690 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-06-09 17:13:10.690 DEBUG hv:147 - PortId    : op14
+2026-06-09 17:13:10.690 DEBUG hv:148 - ClusterId : 1
+2026-06-09 17:13:10.690 DEBUG hv:149 - BayId     : 2
+2026-06-09 17:13:10.798 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-06-09 17:13:10.798 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-06-09 17:13:10.798 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-06-09 17:13:10.798 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-06-09 17:13:10.798 DEBUG hv:171 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-06-09 17:13:10.798 DEBUG hv:172 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:13:10.798 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:10.798 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:10.798 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-06-09 17:13:10.798 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:13:10.798 DEBUG hv:66 - PortId    : op9
+2026-06-09 17:13:10.798 DEBUG hv:67 - ClusterId : 1
+2026-06-09 17:13:10.798 DEBUG hv:68 - BayId     : 2
+2026-06-09 17:13:10.906 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:13:10.906 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:13:10.906 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-09 17:13:10.906 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-06-09 17:13:10.906 DEBUG hv:171 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-09 17:13:10.906 DEBUG hv:172 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:13:10.906 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:10.906 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:10.906 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-09 17:13:10.906 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:13:10.906 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:13:10.906 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:13:10.906 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:13:11.012 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:13:11.012 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:13:12.020 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:13:12.020 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:13:12.020 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:13:12.020 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:13:12.127 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-06-09 17:13:12.127 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:13:12.127 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-09 17:13:12.127 DEBUG hv:171 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-09 17:13:12.127 DEBUG hv:172 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-09 17:13:12.127 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:12.127 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:12.127 INFO  hv:27 - S30_turn_off_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:13:12.127 DEBUG hv:109 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:13:12.127 DEBUG hv:119 - PortId    : op12
+2026-06-09 17:13:12.127 DEBUG hv:120 - ClusterId : 1
+2026-06-09 17:13:12.127 DEBUG hv:121 - BayId     : 2
+2026-06-09 17:13:12.235 DEBUG hv:136 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:13:12.235 DEBUG hv:145 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:13:12.235 INFO  hv:37 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:13:12.235 DEBUG hv:67 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:13:12.235 DEBUG hv:77 - PortId    : op13
+2026-06-09 17:13:12.235 DEBUG hv:78 - ClusterId : 1
+2026-06-09 17:13:12.235 DEBUG hv:79 - BayId     : 2
+2026-06-09 17:13:12.341 DEBUG hv:93 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:13:12.341 DEBUG hv:102 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:13:12.341 INFO  hv:45 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:13:12.341 INFO  hv:60 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:13:12.341 DEBUG hv:171 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:13:12.341 DEBUG hv:172 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:13:12.341 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:13:12.341 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:13:12.341 INFO  hv:34 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:13:12.341 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:13:12.341 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:13:12.450 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 17:13:12.450 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 17:13:12.450 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:13:12.450 INFO  hv:48 - S08_check_for_pallet_at_IRT_Bay : Pallet Available at IRT Bay
+2026-06-09 17:13:13.452 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:13:13.452 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:13:13.560 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 17:13:13.560 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 17:13:13.560 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:14:02.641 INFO  hv:57 - S08_check_for_pallet_at_IRT_Bay : No Pallet Available at IRT Bay
+2026-06-09 17:14:02.749 INFO  hv:64 - set_motor_required : Success
+2026-06-09 17:14:02.749 INFO  hv:135 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:14:02.749 DEBUG hv:171 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Status     : true
+2026-06-09 17:14:02.749 DEBUG hv:172 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:14:02.749 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:02.749 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:02.749 INFO  hv:26 - S12_open_stop_latch_HV_Bay : Entry
+2026-06-09 17:14:02.749 INFO  hv:31 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:14:02.749 INFO  hv:38 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:14:02.749 INFO  hv:41 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Entry for Ir
+2026-06-09 17:14:02.749 INFO  hv:47 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Exit for Ir
+2026-06-09 17:14:02.749 DEBUG hv:77 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:14:02.749 DEBUG hv:89 - PortId    : op8
+2026-06-09 17:14:02.749 DEBUG hv:90 - ClusterId : 1
+2026-06-09 17:14:02.749 DEBUG hv:91 - BayId     : 2
+2026-06-09 17:14:02.856 DEBUG hv:103 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : state : Off
+2026-06-09 17:14:02.856 DEBUG hv:114 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : status : true
+2026-06-09 17:14:02.856 DEBUG hv:128 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:14:02.856 DEBUG hv:132 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:14:02.856 INFO  hv:56 - S12_open_stop_latch_HV_Bay : Stop Latch Opened
+2026-06-09 17:14:03.879 INFO  hv:70 - S12_open_stop_latch_HV_Bay : Exit
+2026-06-09 17:14:03.879 DEBUG hv:171 - processCurrentState : S12_open_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:14:03.879 DEBUG hv:172 - processCurrentState : S12_open_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:14:03.879 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:03.879 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:03.879 INFO  hv:25 - S13_close_stop_latch_HV_Bay : Entry
+2026-06-09 17:14:05.888 DEBUG hv:69 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:14:05.888 DEBUG hv:79 - PortId    : op8
+2026-06-09 17:14:05.888 DEBUG hv:80 - ClusterId : 1
+2026-06-09 17:14:05.888 DEBUG hv:81 - BayId     : 2
+2026-06-09 17:14:05.995 DEBUG hv:92 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : state : On
+2026-06-09 17:14:05.995 DEBUG hv:100 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : status : true
+2026-06-09 17:14:05.995 DEBUG hv:114 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:14:05.995 DEBUG hv:118 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:14:05.995 INFO  hv:36 - S13_close_stop_latch_HV_Bay : Stop Latch Closed
+2026-06-09 17:14:07.111 INFO  hv:46 - set_motor_not_required : Success
+2026-06-09 17:14:07.111 INFO  hv:64 - S13_close_stop_latch_HV_Bay : Exit
+2026-06-09 17:14:07.111 DEBUG hv:171 - processCurrentState : S13_close_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:14:07.111 DEBUG hv:172 - processCurrentState : S13_close_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:14:07.111 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:07.111 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:07.111 INFO  hv:54 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:14:07.111 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:14:07.111 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 17:14:07.218 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : Off
+2026-06-09 17:14:07.218 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : false
+2026-06-09 17:14:07.218 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:14:07.218 INFO  hv:113 - S01_check_for_pallet_at_HVT_Bay : No pallet Available at HVT Bay
+2026-06-09 17:14:22.958 INFO  hv:121 - S01_check_for_pallet_at_HVT_Bay : Pallet Available
+2026-06-09 17:14:22.966 INFO  hv:142 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:14:22.966 INFO  hv:149 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:14:22.966 INFO  hv:153 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:14:22.966 DEBUG hv:171 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Status     : true
+2026-06-09 17:14:22.966 DEBUG hv:172 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:14:22.966 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:22.966 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:22.966 DEBUG hv:38 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-09 17:14:22.966 DEBUG hv:123 - qrCodePalletScanning : Entry : HVB
+2026-06-09 17:14:26.169 DEBUG hv:174 - qrCodePalletScanning : scannedData: LSCSM06P22
+
+2026-06-09 17:14:26.169 DEBUG hv:194 - qrCodePalletScanning : Else Hit1: 
+2026-06-09 17:14:26.169 DEBUG hv:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260609T171310_0017_LSCSM06P22  selectedBayTypeKey: HVB
+2026-06-09 17:14:26.176 DEBUG hv:447 - qrCodePalletScanning: other bays: 
+2026-06-09 17:14:26.176 DEBUG hv:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: HVB
+2026-06-09 17:14:26.176 DEBUG hv:451 - getActivePalletMap() : {LSCSM06P22=20260609T171310_0017_LSCSM06P22, LSCSM06P01=20260608T170110_0028_LSCSM06P01, LSCSM06P008=20260609T125020_0008_LSCSM06P008, LSCSM06P019=20260609T131721_0013_LSCSM06P019, LSCSM06P13=20260608T165458_0027_LSCSM06P13, LSCSM06P24=20260609T132239_0014_LSCSM06P24, LSCSM06P03=20260609T130105_0010_LSCSM06P03, LSCSM06P005=20260609T131148_0012_LSCSM06P005, LSCSM06P004=20260609T125532_0009_LSCSM06P004, LSCSM06P018=20260609T171003_0015_LSCSM06P018, LSCSM06P017=20260609T110805_0004_LSCSM06P017, LSCSM06P006=20260609T112545_0007_LSCSM06P006, LSCSM06P15=20260609T171141_0016_LSCSM06P15, LSCSM06P07=20260609T112150_0006_LSCSM06P07, LSCSM06P023=20260609T110635_0003_LSCSM06P023, LSCSM06P011=20260609T112021_0005_LSCSM06P011, LSCSM06P002=20260609T130637_0011_LSCSM06P002, LSCSM06P021=20260608T182746_0029_LSCSM06P021, LSCSM06P020=20260608T165244_0026_LSCSM06P020}
+2026-06-09 17:14:26.192 DEBUG hv:513 - qrCodePalletScanning: individual pallet update 
+2026-06-09 17:14:26.192 DEBUG hv:220 - qrCodePalletScanning : palletDistinctId:  : 20260609T171310_0017_LSCSM06P22 : bay: HVB : qrCode: LSCSM06P22
+2026-06-09 17:14:26.192 DEBUG hv:248 - qrCodePalletScanning : status : GOOD : HVB
+2026-06-09 17:14:26.192 DEBUG hv:250 - qrCodePalletScanning : Exit : HVB
+2026-06-09 17:14:26.192 INFO  hv:82 - qrCodePalletScanningProcess : QR Code Scan Successful : HVB
+2026-06-09 17:14:26.192 INFO  hv:113 - qrCodePalletScanningProcess : Exit : HVB
+2026-06-09 17:14:26.192 DEBUG hv:79 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-09 17:14:26.192 DEBUG hv:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-06-09 17:14:26.192 DEBUG hv:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-06-09 17:14:26.192 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:26.192 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:26.192 INFO  hv:26 - S03_close_the_fingerTip_Latch : Entry
+2026-06-09 17:14:27.197 DEBUG hv:59 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:14:27.197 DEBUG hv:85 - PortId    : op9
+2026-06-09 17:14:27.197 DEBUG hv:86 - ClusterId : 1
+2026-06-09 17:14:27.197 DEBUG hv:87 - BayId     : 2
+2026-06-09 17:14:27.305 DEBUG hv:126 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:14:27.305 DEBUG hv:127 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:14:27.305 INFO  hv:41 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Finger Tip Latch Closed
+2026-06-09 17:14:32.305 INFO  hv:53 - S03_close_the_fingerTip_Latch : Exit
+2026-06-09 17:14:32.305 DEBUG hv:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-06-09 17:14:32.305 DEBUG hv:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:14:32.305 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:32.305 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:32.305 INFO  hv:38 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-06-09 17:14:32.305 DEBUG hv:97 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:14:32.305 DEBUG hv:107 - PortId    : ip43
+2026-06-09 17:14:32.305 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:14:32.305 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:14:32.427 DEBUG hv:169 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:14:32.427 DEBUG hv:170 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:14:32.583 INFO  hv:70 - set_motor_not_required : Success
+2026-06-09 17:14:32.583 INFO  hv:91 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-06-09 17:14:32.583 DEBUG hv:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-06-09 17:14:32.583 DEBUG hv:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-06-09 17:14:32.583 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:32.583 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:32.583 INFO  hv:20 - S29_turn_on_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:14:32.583 DEBUG hv:59 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:14:32.583 DEBUG hv:69 - PortId    : op13
+2026-06-09 17:14:32.583 DEBUG hv:70 - ClusterId : 1
+2026-06-09 17:14:32.583 DEBUG hv:71 - BayId     : 2
+2026-06-09 17:14:32.693 DEBUG hv:86 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:14:32.693 DEBUG hv:95 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:14:32.693 INFO  hv:29 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:14:32.693 DEBUG hv:100 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:14:32.693 DEBUG hv:110 - PortId    : op12
+2026-06-09 17:14:32.693 DEBUG hv:111 - ClusterId : 1
+2026-06-09 17:14:32.693 DEBUG hv:112 - BayId     : 2
+2026-06-09 17:14:32.802 DEBUG hv:127 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:14:32.802 DEBUG hv:136 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:14:32.802 INFO  hv:37 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:14:32.802 INFO  hv:52 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:14:32.802 DEBUG hv:171 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:14:32.802 DEBUG hv:172 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:14:32.802 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:32.802 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:32.802 INFO  hv:33 - S041_start_HV_source : Entry
+2026-06-09 17:14:32.802 DEBUG hv:103 - S041_start_HV_source : turn_on_start_pin_hv_bay : Entry
+2026-06-09 17:14:32.802 DEBUG hv:113 - PortId    : op11
+2026-06-09 17:14:32.802 DEBUG hv:114 - ClusterId : 1
+2026-06-09 17:14:32.802 DEBUG hv:115 - BayId     : 2
+2026-06-09 17:14:32.912 DEBUG hv:173 - S041_start_HV_source : turn_on_start_pin_hv_bay : status : true
+2026-06-09 17:14:32.912 DEBUG hv:174 - S041_start_HV_source : turn_on_start_pin_hv_bay : Exit
+2026-06-09 17:14:32.912 INFO  hv:42 - S041_start_HV_source : turn_on_start_pin_hv_bay : Success
+2026-06-09 17:14:33.425 DEBUG hv:181 - S041_start_HV_source : turn_off_start_pin_hv_bay : Entry
+2026-06-09 17:14:33.425 DEBUG hv:189 - PortId    : op11
+2026-06-09 17:14:33.425 DEBUG hv:190 - ClusterId : 1
+2026-06-09 17:14:33.425 DEBUG hv:191 - BayId     : 2
+2026-06-09 17:14:33.533 DEBUG hv:209 - S041_start_HV_source : turn_off_start_pin_hv_bay : status : true
+2026-06-09 17:14:33.533 DEBUG hv:214 - S041_start_HV_source : turn_off_start_pin_hv_bay : Exit
+2026-06-09 17:14:33.533 INFO  hv:50 - S041_start_HV_source : turn_off_start_pin_hv_bay : Success
+2026-06-09 17:14:33.533 INFO  hv:68 - S041_start_HV_source : Exit
+2026-06-09 17:14:33.533 DEBUG hv:171 - processCurrentState : S041_start_HV_source : Status     : true
+2026-06-09 17:14:33.533 DEBUG hv:172 - processCurrentState : S041_start_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:14:33.533 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:33.533 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:33.533 INFO  hv:42 - S05_high_Voltage_Test: Entry
+2026-06-09 17:14:33.533 DEBUG hv:210 - S05_high_Voltage_Test: waitForOneMinute: Waiting for one minute
+2026-06-09 17:14:33.533 DEBUG hv:216 - S05_high_Voltage_Test: hvExecutionTime_InSec: 5
+2026-06-09 17:14:33.533 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:14:34.541 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:14:35.555 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:14:36.563 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:14:37.571 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:14:38.582 DEBUG hv:228 - S05_high_Voltage_Test: hvExecutionTime_InSec: Exit 
+2026-06-09 17:14:38.582 DEBUG hv:287 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Entry
+2026-06-09 17:14:38.591 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:14:38.591 DEBUG hv:380 - PortId: ip45
+2026-06-09 17:14:38.591 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:14:38.591 DEBUG hv:382 - BayId: 2
+2026-06-09 17:14:38.706 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:14:38.706 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:14:38.706 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:14:38.707 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP1_HV_BAY, status: true
+2026-06-09 17:14:38.784 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:14:38.784 DEBUG hv:380 - PortId: ip46
+2026-06-09 17:14:38.784 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:14:38.784 DEBUG hv:382 - BayId: 2
+2026-06-09 17:14:38.894 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:14:38.894 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:14:38.894 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:14:38.894 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP2_HV_BAY, status: true
+2026-06-09 17:14:39.003 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:14:39.003 DEBUG hv:380 - PortId: ip47
+2026-06-09 17:14:39.003 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:14:39.003 DEBUG hv:382 - BayId: 2
+2026-06-09 17:14:39.112 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:14:39.112 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:14:39.112 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:14:39.112 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP3_HV_BAY, status: true
+2026-06-09 17:14:39.189 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:14:39.189 DEBUG hv:380 - PortId: ip48
+2026-06-09 17:14:39.189 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:14:39.189 DEBUG hv:382 - BayId: 2
+2026-06-09 17:14:39.298 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:14:39.298 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:14:39.298 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:14:39.298 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP4_HV_BAY, status: true
+2026-06-09 17:14:39.392 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:14:39.392 DEBUG hv:380 - PortId: ip49
+2026-06-09 17:14:39.392 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:14:39.392 DEBUG hv:382 - BayId: 2
+2026-06-09 17:14:39.499 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:14:39.499 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:14:39.499 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:14:39.499 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP5_HV_BAY, status: true
+2026-06-09 17:14:39.576 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:14:39.576 DEBUG hv:380 - PortId: ip50
+2026-06-09 17:14:39.576 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:14:39.576 DEBUG hv:382 - BayId: 2
+2026-06-09 17:14:39.683 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:14:39.683 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:14:39.683 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:14:39.683 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP6_HV_BAY, status: true
+2026-06-09 17:14:39.782 DEBUG hv:361 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Exit
+2026-06-09 17:14:39.782 INFO  hv:70 - S05_high_Voltage_Test: Exit
+2026-06-09 17:14:39.782 DEBUG hv:171 - processCurrentState : S05_high_Voltage_Test : Status     : true
+2026-06-09 17:14:39.782 DEBUG hv:172 - processCurrentState : S05_high_Voltage_Test : Error Code : 
+2026-06-09 17:14:39.783 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:39.783 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:39.783 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-06-09 17:14:39.783 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-06-09 17:14:39.783 DEBUG hv:107 - PortId    : op14
+2026-06-09 17:14:39.783 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:14:39.783 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:14:39.884 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-06-09 17:14:39.884 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-06-09 17:14:40.386 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-06-09 17:14:40.386 DEBUG hv:147 - PortId    : op14
+2026-06-09 17:14:40.386 DEBUG hv:148 - ClusterId : 1
+2026-06-09 17:14:40.386 DEBUG hv:149 - BayId     : 2
+2026-06-09 17:14:40.494 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-06-09 17:14:40.494 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-06-09 17:14:40.494 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-06-09 17:14:40.494 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-06-09 17:14:40.494 DEBUG hv:171 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-06-09 17:14:40.494 DEBUG hv:172 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:14:40.494 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:40.494 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:40.494 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-06-09 17:14:40.494 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:14:40.494 DEBUG hv:66 - PortId    : op9
+2026-06-09 17:14:40.494 DEBUG hv:67 - ClusterId : 1
+2026-06-09 17:14:40.494 DEBUG hv:68 - BayId     : 2
+2026-06-09 17:14:40.602 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:14:40.602 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:14:40.602 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-09 17:14:40.602 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-06-09 17:14:40.602 DEBUG hv:171 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-09 17:14:40.602 DEBUG hv:172 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:14:40.602 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:40.602 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:40.602 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-09 17:14:40.602 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:14:40.602 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:14:40.602 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:14:40.602 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:14:40.711 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:14:40.711 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:14:41.725 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:14:41.725 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:14:41.725 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:14:41.725 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:14:41.833 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-06-09 17:14:41.833 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:14:41.833 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-09 17:14:41.833 DEBUG hv:171 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-09 17:14:41.833 DEBUG hv:172 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-09 17:14:41.833 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:41.833 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:41.833 INFO  hv:27 - S30_turn_off_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:14:41.833 DEBUG hv:109 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:14:41.833 DEBUG hv:119 - PortId    : op12
+2026-06-09 17:14:41.833 DEBUG hv:120 - ClusterId : 1
+2026-06-09 17:14:41.833 DEBUG hv:121 - BayId     : 2
+2026-06-09 17:14:41.942 DEBUG hv:136 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:14:41.942 DEBUG hv:145 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:14:41.942 INFO  hv:37 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:14:41.942 DEBUG hv:67 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:14:41.942 DEBUG hv:77 - PortId    : op13
+2026-06-09 17:14:41.942 DEBUG hv:78 - ClusterId : 1
+2026-06-09 17:14:41.942 DEBUG hv:79 - BayId     : 2
+2026-06-09 17:14:42.052 DEBUG hv:93 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:14:42.052 DEBUG hv:102 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:14:42.052 INFO  hv:45 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:14:42.052 INFO  hv:60 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:14:42.052 DEBUG hv:171 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:14:42.052 DEBUG hv:172 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:14:42.052 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:14:42.052 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:14:42.052 INFO  hv:34 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:14:42.052 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:14:42.052 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:14:42.162 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 17:14:42.162 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 17:14:42.162 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:14:42.162 INFO  hv:48 - S08_check_for_pallet_at_IRT_Bay : Pallet Available at IRT Bay
+2026-06-09 17:14:43.172 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:14:43.172 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:14:43.281 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 17:14:43.281 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 17:14:43.281 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:19:18.628 INFO  hv:57 - S08_check_for_pallet_at_IRT_Bay : No Pallet Available at IRT Bay
+2026-06-09 17:19:18.738 INFO  hv:64 - set_motor_required : Success
+2026-06-09 17:19:18.738 INFO  hv:135 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:19:18.738 DEBUG hv:171 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Status     : true
+2026-06-09 17:19:18.738 DEBUG hv:172 - processCurrentState : S08_check_for_pallet_at_IRT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:19:18.738 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:18.738 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:18.738 INFO  hv:26 - S12_open_stop_latch_HV_Bay : Entry
+2026-06-09 17:19:18.738 INFO  hv:31 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:19:18.738 INFO  hv:38 - S12_open_stop_latch_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:19:18.738 INFO  hv:41 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Entry for Ir
+2026-06-09 17:19:18.738 INFO  hv:47 - S12_open_stop_latch_HVT_Bay: Waiting for NoEntry at Hv-Exit for Ir
+2026-06-09 17:19:18.738 DEBUG hv:77 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:19:18.738 DEBUG hv:89 - PortId    : op8
+2026-06-09 17:19:18.738 DEBUG hv:90 - ClusterId : 1
+2026-06-09 17:19:18.738 DEBUG hv:91 - BayId     : 2
+2026-06-09 17:19:18.845 DEBUG hv:103 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : state : Off
+2026-06-09 17:19:18.845 DEBUG hv:114 - S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : status : true
+2026-06-09 17:19:18.845 DEBUG hv:128 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:19:18.845 DEBUG hv:132 - S12_open_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:19:18.845 INFO  hv:56 - S12_open_stop_latch_HV_Bay : Stop Latch Opened
+2026-06-09 17:19:19.866 INFO  hv:70 - S12_open_stop_latch_HV_Bay : Exit
+2026-06-09 17:19:19.866 DEBUG hv:171 - processCurrentState : S12_open_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:19:19.866 DEBUG hv:172 - processCurrentState : S12_open_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:19:19.866 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:19.866 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:19.866 INFO  hv:25 - S13_close_stop_latch_HV_Bay : Entry
+2026-06-09 17:19:21.870 DEBUG hv:69 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Entry
+2026-06-09 17:19:21.870 DEBUG hv:79 - PortId    : op8
+2026-06-09 17:19:21.870 DEBUG hv:80 - ClusterId : 1
+2026-06-09 17:19:21.870 DEBUG hv:81 - BayId     : 2
+2026-06-09 17:19:21.977 DEBUG hv:92 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : state : On
+2026-06-09 17:19:21.977 DEBUG hv:100 - S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : status : true
+2026-06-09 17:19:21.977 DEBUG hv:114 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : status : true
+2026-06-09 17:19:21.977 DEBUG hv:118 - S13_close_stop_latch_HV_Bay : hvBay_StopLatch_Status : Exit
+2026-06-09 17:19:21.977 INFO  hv:36 - S13_close_stop_latch_HV_Bay : Stop Latch Closed
+2026-06-09 17:19:23.094 INFO  hv:46 - set_motor_not_required : Success
+2026-06-09 17:19:23.094 INFO  hv:64 - S13_close_stop_latch_HV_Bay : Exit
+2026-06-09 17:19:23.094 DEBUG hv:171 - processCurrentState : S13_close_stop_latch_HVT_Bay : Status     : true
+2026-06-09 17:19:23.094 DEBUG hv:172 - processCurrentState : S13_close_stop_latch_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:19:23.094 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:23.094 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:23.094 INFO  hv:54 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:19:23.094 DEBUG hv:162 - S01_check_for_pallet_at_HVT_Bay : Entry
+2026-06-09 17:19:23.094 DEBUG hv:178 - isPalletAvailableAt_HVTBay : getClusterId: 1 -> getBayId: 2 -> getPortId: ip42
+2026-06-09 17:19:23.204 DEBUG hv:217 - S01_check_for_pallet_at_HVT_Bay : state : Off
+2026-06-09 17:19:23.204 DEBUG hv:225 - S01_check_for_pallet_at_HVT_Bay : status : false
+2026-06-09 17:19:23.204 DEBUG hv:232 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:19:23.204 INFO  hv:113 - S01_check_for_pallet_at_HVT_Bay : No pallet Available at HVT Bay
+2026-06-09 17:19:34.376 INFO  hv:121 - S01_check_for_pallet_at_HVT_Bay : Pallet Available
+2026-06-09 17:19:34.383 INFO  hv:142 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Entry
+2026-06-09 17:19:34.383 INFO  hv:149 - S01_check_for_pallet_at_HVT_Bay: Waiting for Halt Pallet at Hv-Exit
+2026-06-09 17:19:34.383 INFO  hv:153 - S01_check_for_pallet_at_HVT_Bay : Exit
+2026-06-09 17:19:34.383 DEBUG hv:171 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Status     : true
+2026-06-09 17:19:34.383 DEBUG hv:172 - processCurrentState : S01_check_for_pallet_at_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:19:34.383 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:34.383 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:34.383 DEBUG hv:38 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-06-09 17:19:34.383 DEBUG hv:123 - qrCodePalletScanning : Entry : HVB
+2026-06-09 17:19:37.944 DEBUG hv:174 - qrCodePalletScanning : scannedData: LSCSM06P023
+
+2026-06-09 17:19:37.944 DEBUG hv:194 - qrCodePalletScanning : Else Hit1: 
+2026-06-09 17:19:37.944 DEBUG hv:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260609T171438_0018_LSCSM06P023  selectedBayTypeKey: HVB
+2026-06-09 17:19:37.952 DEBUG hv:447 - qrCodePalletScanning: other bays: 
+2026-06-09 17:19:37.952 DEBUG hv:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: HVB
+2026-06-09 17:19:37.952 DEBUG hv:451 - getActivePalletMap() : {LSCSM06P22=20260609T171310_0017_LSCSM06P22, LSCSM06P01=20260608T170110_0028_LSCSM06P01, LSCSM06P008=20260609T125020_0008_LSCSM06P008, LSCSM06P019=20260609T131721_0013_LSCSM06P019, LSCSM06P13=20260608T165458_0027_LSCSM06P13, LSCSM06P24=20260609T132239_0014_LSCSM06P24, LSCSM06P03=20260609T130105_0010_LSCSM06P03, LSCSM06P005=20260609T131148_0012_LSCSM06P005, LSCSM06P004=20260609T125532_0009_LSCSM06P004, LSCSM06P018=20260609T171003_0015_LSCSM06P018, LSCSM06P017=20260609T110805_0004_LSCSM06P017, LSCSM06P006=20260609T112545_0007_LSCSM06P006, LSCSM06P15=20260609T171141_0016_LSCSM06P15, LSCSM06P07=20260609T112150_0006_LSCSM06P07, LSCSM06P023=20260609T171438_0018_LSCSM06P023, LSCSM06P011=20260609T112021_0005_LSCSM06P011, LSCSM06P002=20260609T130637_0011_LSCSM06P002, LSCSM06P021=20260608T182746_0029_LSCSM06P021, LSCSM06P020=20260608T165244_0026_LSCSM06P020}
+2026-06-09 17:19:37.966 DEBUG hv:513 - qrCodePalletScanning: individual pallet update 
+2026-06-09 17:19:37.966 DEBUG hv:220 - qrCodePalletScanning : palletDistinctId:  : 20260609T171438_0018_LSCSM06P023 : bay: HVB : qrCode: LSCSM06P023
+2026-06-09 17:19:37.966 DEBUG hv:248 - qrCodePalletScanning : status : GOOD : HVB
+2026-06-09 17:19:37.966 DEBUG hv:250 - qrCodePalletScanning : Exit : HVB
+2026-06-09 17:19:37.966 INFO  hv:82 - qrCodePalletScanningProcess : QR Code Scan Successful : HVB
+2026-06-09 17:19:37.966 INFO  hv:113 - qrCodePalletScanningProcess : Exit : HVB
+2026-06-09 17:19:37.966 DEBUG hv:79 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-06-09 17:19:37.966 DEBUG hv:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-06-09 17:19:37.966 DEBUG hv:172 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-06-09 17:19:37.966 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:37.966 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:37.966 INFO  hv:26 - S03_close_the_fingerTip_Latch : Entry
+2026-06-09 17:19:38.969 DEBUG hv:59 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:19:38.969 DEBUG hv:85 - PortId    : op9
+2026-06-09 17:19:38.969 DEBUG hv:86 - ClusterId : 1
+2026-06-09 17:19:38.969 DEBUG hv:87 - BayId     : 2
+2026-06-09 17:19:39.168 DEBUG hv:126 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:19:39.168 DEBUG hv:127 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:19:39.168 INFO  hv:41 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_HvtBay : Finger Tip Latch Closed
+2026-06-09 17:19:44.171 INFO  hv:53 - S03_close_the_fingerTip_Latch : Exit
+2026-06-09 17:19:44.171 DEBUG hv:171 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-06-09 17:19:44.171 DEBUG hv:172 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:19:44.171 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:44.171 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:44.171 INFO  hv:38 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-06-09 17:19:44.171 DEBUG hv:97 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:19:44.171 DEBUG hv:107 - PortId    : ip43
+2026-06-09 17:19:44.171 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:19:44.171 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:19:44.280 DEBUG hv:169 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:19:44.280 DEBUG hv:170 - S04_ensure_the_fingerTip_Latch_Closed : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:19:44.388 INFO  hv:70 - set_motor_not_required : Success
+2026-06-09 17:19:44.388 INFO  hv:91 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-06-09 17:19:44.388 DEBUG hv:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-06-09 17:19:44.388 DEBUG hv:172 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-06-09 17:19:44.388 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:44.389 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:44.389 INFO  hv:20 - S29_turn_on_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:19:44.389 DEBUG hv:59 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:19:44.389 DEBUG hv:69 - PortId    : op13
+2026-06-09 17:19:44.389 DEBUG hv:70 - ClusterId : 1
+2026-06-09 17:19:44.389 DEBUG hv:71 - BayId     : 2
+2026-06-09 17:19:44.497 DEBUG hv:86 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:19:44.497 DEBUG hv:95 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:19:44.497 INFO  hv:29 - S29_turn_on_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:19:44.497 DEBUG hv:100 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:19:44.497 DEBUG hv:110 - PortId    : op12
+2026-06-09 17:19:44.497 DEBUG hv:111 - ClusterId : 1
+2026-06-09 17:19:44.497 DEBUG hv:112 - BayId     : 2
+2026-06-09 17:19:44.605 DEBUG hv:127 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:19:44.605 DEBUG hv:136 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:19:44.605 INFO  hv:37 - S29_turn_on_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:19:44.605 INFO  hv:52 - S29_turn_on_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:19:44.605 DEBUG hv:171 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:19:44.605 DEBUG hv:172 - processCurrentState : S29_turn_on_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:19:44.605 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:44.605 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:44.605 INFO  hv:33 - S041_start_HV_source : Entry
+2026-06-09 17:19:44.605 DEBUG hv:103 - S041_start_HV_source : turn_on_start_pin_hv_bay : Entry
+2026-06-09 17:19:44.605 DEBUG hv:113 - PortId    : op11
+2026-06-09 17:19:44.605 DEBUG hv:114 - ClusterId : 1
+2026-06-09 17:19:44.605 DEBUG hv:115 - BayId     : 2
+2026-06-09 17:19:44.821 DEBUG hv:173 - S041_start_HV_source : turn_on_start_pin_hv_bay : status : true
+2026-06-09 17:19:44.821 DEBUG hv:174 - S041_start_HV_source : turn_on_start_pin_hv_bay : Exit
+2026-06-09 17:19:44.821 INFO  hv:42 - S041_start_HV_source : turn_on_start_pin_hv_bay : Success
+2026-06-09 17:19:45.331 DEBUG hv:181 - S041_start_HV_source : turn_off_start_pin_hv_bay : Entry
+2026-06-09 17:19:45.331 DEBUG hv:189 - PortId    : op11
+2026-06-09 17:19:45.331 DEBUG hv:190 - ClusterId : 1
+2026-06-09 17:19:45.331 DEBUG hv:191 - BayId     : 2
+2026-06-09 17:19:45.437 DEBUG hv:209 - S041_start_HV_source : turn_off_start_pin_hv_bay : status : true
+2026-06-09 17:19:45.437 DEBUG hv:214 - S041_start_HV_source : turn_off_start_pin_hv_bay : Exit
+2026-06-09 17:19:45.437 INFO  hv:50 - S041_start_HV_source : turn_off_start_pin_hv_bay : Success
+2026-06-09 17:19:45.437 INFO  hv:68 - S041_start_HV_source : Exit
+2026-06-09 17:19:45.437 DEBUG hv:171 - processCurrentState : S041_start_HV_source : Status     : true
+2026-06-09 17:19:45.437 DEBUG hv:172 - processCurrentState : S041_start_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:19:45.437 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:45.437 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:45.437 INFO  hv:42 - S05_high_Voltage_Test: Entry
+2026-06-09 17:19:45.437 DEBUG hv:210 - S05_high_Voltage_Test: waitForOneMinute: Waiting for one minute
+2026-06-09 17:19:45.437 DEBUG hv:216 - S05_high_Voltage_Test: hvExecutionTime_InSec: 5
+2026-06-09 17:19:45.437 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:19:46.441 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:19:47.444 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:19:48.445 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:19:49.447 DEBUG hv:220 - S05_high_Voltage_Test: Waiting 1 min for IR: HVB
+2026-06-09 17:19:50.460 DEBUG hv:228 - S05_high_Voltage_Test: hvExecutionTime_InSec: Exit 
+2026-06-09 17:19:50.460 DEBUG hv:287 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Entry
+2026-06-09 17:19:50.467 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:19:50.467 DEBUG hv:380 - PortId: ip45
+2026-06-09 17:19:50.467 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:19:50.467 DEBUG hv:382 - BayId: 2
+2026-06-09 17:19:50.583 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:19:50.583 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:19:50.583 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:19:50.583 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP1_HV_BAY, status: true
+2026-06-09 17:19:50.677 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:19:50.677 DEBUG hv:380 - PortId: ip46
+2026-06-09 17:19:50.677 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:19:50.677 DEBUG hv:382 - BayId: 2
+2026-06-09 17:19:50.787 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:19:50.787 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:19:50.787 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:19:50.787 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP2_HV_BAY, status: true
+2026-06-09 17:19:50.865 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:19:50.865 DEBUG hv:380 - PortId: ip47
+2026-06-09 17:19:50.865 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:19:50.865 DEBUG hv:382 - BayId: 2
+2026-06-09 17:19:50.972 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:19:50.972 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:19:50.972 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:19:50.972 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP3_HV_BAY, status: true
+2026-06-09 17:19:51.051 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:19:51.051 DEBUG hv:380 - PortId: ip48
+2026-06-09 17:19:51.051 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:19:51.051 DEBUG hv:382 - BayId: 2
+2026-06-09 17:19:51.158 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:19:51.158 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:19:51.158 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:19:51.158 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP4_HV_BAY, status: true
+2026-06-09 17:19:51.250 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:19:51.250 DEBUG hv:380 - PortId: ip49
+2026-06-09 17:19:51.250 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:19:51.250 DEBUG hv:382 - BayId: 2
+2026-06-09 17:19:51.355 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:19:51.355 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:19:51.355 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:19:51.355 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP5_HV_BAY, status: true
+2026-06-09 17:19:51.448 DEBUG hv:371 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Entry
+2026-06-09 17:19:51.448 DEBUG hv:380 - PortId: ip50
+2026-06-09 17:19:51.448 DEBUG hv:381 - ClusterId: 1
+2026-06-09 17:19:51.448 DEBUG hv:382 - BayId: 2
+2026-06-09 17:19:51.555 DEBUG hv:386 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: state: On
+2026-06-09 17:19:51.555 DEBUG hv:389 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: status: true
+2026-06-09 17:19:51.555 DEBUG hv:395 - S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit
+2026-06-09 17:19:51.555 DEBUG hv:313 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Voltage sensed at pin: SRC_IP6_HV_BAY, status: true
+2026-06-09 17:19:51.655 DEBUG hv:361 - S05_high_Voltage_Test: checkForInputPinsVoltageSensing: Exit
+2026-06-09 17:19:51.655 INFO  hv:70 - S05_high_Voltage_Test: Exit
+2026-06-09 17:19:51.655 DEBUG hv:171 - processCurrentState : S05_high_Voltage_Test : Status     : true
+2026-06-09 17:19:51.655 DEBUG hv:172 - processCurrentState : S05_high_Voltage_Test : Error Code : 
+2026-06-09 17:19:51.655 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:51.655 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:51.655 INFO  hv:26 - S051_stop_HV_source : Entry
+2026-06-09 17:19:51.655 DEBUG hv:98 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Entry
+2026-06-09 17:19:51.655 DEBUG hv:107 - PortId    : op14
+2026-06-09 17:19:51.655 DEBUG hv:108 - ClusterId : 1
+2026-06-09 17:19:51.655 DEBUG hv:109 - BayId     : 2
+2026-06-09 17:19:51.772 DEBUG hv:127 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : status : true
+2026-06-09 17:19:51.772 DEBUG hv:131 - S12_turn_on_stop_pin_hv_bay : turn_on_stop_pin_hv_bay : Exit
+2026-06-09 17:19:52.285 DEBUG hv:138 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Entry
+2026-06-09 17:19:52.285 DEBUG hv:147 - PortId    : op14
+2026-06-09 17:19:52.285 DEBUG hv:148 - ClusterId : 1
+2026-06-09 17:19:52.285 DEBUG hv:149 - BayId     : 2
+2026-06-09 17:19:52.393 DEBUG hv:167 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : status : true
+2026-06-09 17:19:52.393 DEBUG hv:171 - S12_turn_off_stop_pin_hv_bay : turn_off_stop_pin_hv_bay : Exit
+2026-06-09 17:19:52.393 INFO  hv:43 - S051_stop_HV_source : HV Source Stopped : Success 
+2026-06-09 17:19:52.393 INFO  hv:59 - S051_stop_HV_source : Exit
+2026-06-09 17:19:52.393 DEBUG hv:171 - processCurrentState : S051_stop_HV_source : Status     : true
+2026-06-09 17:19:52.393 DEBUG hv:172 - processCurrentState : S051_stop_HV_source : Error Code : ERROR_CODE_601
+2026-06-09 17:19:52.393 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:52.393 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:52.393 INFO  hv:29 - S06_open_the_fingerTip_Latch : Entry
+2026-06-09 17:19:52.393 DEBUG hv:56 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Entry
+2026-06-09 17:19:52.393 DEBUG hv:66 - PortId    : op9
+2026-06-09 17:19:52.393 DEBUG hv:67 - ClusterId : 1
+2026-06-09 17:19:52.393 DEBUG hv:68 - BayId     : 2
+2026-06-09 17:19:52.499 DEBUG hv:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : status : true
+2026-06-09 17:19:52.499 DEBUG hv:91 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_HvtBay : Exit
+2026-06-09 17:19:52.499 INFO  hv:41 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-09 17:19:52.499 INFO  hv:50 - S06_open_the_fingerTip_Latch : Exit
+2026-06-09 17:19:52.499 DEBUG hv:171 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-09 17:19:52.499 DEBUG hv:172 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-09 17:19:52.499 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:52.499 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:52.499 INFO  hv:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-09 17:19:52.499 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:19:52.499 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:19:52.499 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:19:52.499 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:19:52.605 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : On
+2026-06-09 17:19:52.605 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:19:53.614 DEBUG hv:63 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Entry
+2026-06-09 17:19:53.614 DEBUG hv:71 - PortId    : ip43
+2026-06-09 17:19:53.614 DEBUG hv:72 - ClusterId : 1
+2026-06-09 17:19:53.614 DEBUG hv:73 - BayId     : 2
+2026-06-09 17:19:53.719 DEBUG hv:95 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : state : Off
+2026-06-09 17:19:53.719 DEBUG hv:97 - S07_ensure_the_fingerTip_Latch_Opened : hvtBay_FingerTipLatch_Status : Exit
+2026-06-09 17:19:53.719 INFO  hv:57 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-09 17:19:53.719 DEBUG hv:171 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-09 17:19:53.719 DEBUG hv:172 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-09 17:19:53.719 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:53.719 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:53.719 INFO  hv:27 - S30_turn_off_tower_lamp_HVT_Bay : Entry
+2026-06-09 17:19:53.719 DEBUG hv:109 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Entry
+2026-06-09 17:19:53.719 DEBUG hv:119 - PortId    : op12
+2026-06-09 17:19:53.719 DEBUG hv:120 - ClusterId : 1
+2026-06-09 17:19:53.719 DEBUG hv:121 - BayId     : 2
+2026-06-09 17:19:53.826 DEBUG hv:136 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : status : true
+2026-06-09 17:19:53.826 DEBUG hv:145 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:19:53.826 INFO  hv:37 - S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success
+2026-06-09 17:19:53.826 DEBUG hv:67 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Entry
+2026-06-09 17:19:53.826 DEBUG hv:77 - PortId    : op13
+2026-06-09 17:19:53.826 DEBUG hv:78 - ClusterId : 1
+2026-06-09 17:19:53.826 DEBUG hv:79 - BayId     : 2
+2026-06-09 17:19:53.933 DEBUG hv:93 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : status : true
+2026-06-09 17:19:53.933 DEBUG hv:102 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:19:53.933 INFO  hv:45 - S30_turn_off_tower_lamp_HVT_Bay : turn_off_tower_lamp : Success
+2026-06-09 17:19:53.933 INFO  hv:60 - S30_turn_off_tower_lamp_HVT_Bay : Exit
+2026-06-09 17:19:53.933 DEBUG hv:171 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Status     : true
+2026-06-09 17:19:53.933 DEBUG hv:172 - processCurrentState : S30_turn_off_tower_lamp_HVT_Bay : Error Code : ERROR_CODE_601
+2026-06-09 17:19:53.933 INFO  hv:71 - StopProcessRequestedHvtBay :false
+2026-06-09 17:19:53.933 DEBUG hv:23 - HvtBayContext: processPresentState: Entry
+2026-06-09 17:19:53.933 INFO  hv:34 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:19:53.933 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:19:53.933 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:19:54.041 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 17:19:54.041 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 17:19:54.041 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit
+2026-06-09 17:19:54.041 INFO  hv:48 - S08_check_for_pallet_at_IRT_Bay : Pallet Available at IRT Bay
+2026-06-09 17:19:55.048 DEBUG hv:142 - S08_check_for_pallet_at_IRT_Bay : Entry
+2026-06-09 17:19:55.048 DEBUG hv:156 - isPalletAvailableAt_IRTBay : getClusterId: 1 -> getBayId: 3 -> getPortId: ip51
+2026-06-09 17:19:55.156 DEBUG hv:173 - S08_check_for_pallet_at_IRT_Bay : state : On
+2026-06-09 17:19:55.156 DEBUG hv:181 - S08_check_for_pallet_at_IRT_Bay : status : true
+2026-06-09 17:19:55.156 DEBUG hv:186 - S08_check_for_pallet_at_IRT_Bay : Exit

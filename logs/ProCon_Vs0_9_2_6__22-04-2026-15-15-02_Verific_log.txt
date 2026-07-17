@@ -1,0 +1,427 @@
+2026-04-22 15:40:03.833 INFO  verific:1234 - btnVerificTestStartOnClick : Invoked:
+2026-04-22 15:40:03.833 INFO  verific:1236 - VERIFICATION TEST BAY : STARTED
+2026-04-22 15:40:03.835 INFO  verific:1292 - btnVerificTestStartOnClick : Exit:
+2026-04-22 15:40:03.935 DEBUG verific:35 - VerificationTestBay2 : Entry
+2026-04-22 15:40:03.935 DEBUG verific:43 - VerificationTestBay2 : manageVerificationTestBayStates : Entry
+2026-04-22 15:40:03.936 DEBUG verific:62 - VerificationTestBay2 : manageVerificationTestBayStates : getTableStatePlanner2 : Size : 24
+2026-04-22 15:40:03.936 DEBUG verific:69 - VERIFIC BAY : isStopProcessRequested : false
+2026-04-22 15:40:03.937 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:40:03.937 INFO  verific:37 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-04-22 15:40:03.937 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-04-22 15:40:03.937 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-04-22 15:40:04.040 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-04-22 15:40:04.040 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-04-22 15:40:04.040 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-04-22 15:40:05.040 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-04-22 15:40:05.040 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-04-22 15:40:05.142 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-04-22 15:40:05.142 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-04-22 15:40:05.142 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-04-22 15:40:06.142 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-04-22 15:40:06.142 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-04-22 15:40:06.244 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-04-22 15:40:06.244 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-04-22 15:40:06.244 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-04-22 15:40:07.244 DEBUG verific:181 - S01_check_for_pallets_at_Verific_Bay : Entry
+2026-04-22 15:40:07.244 DEBUG verific:196 - isPalletAvailableAt_VerificBay : getClusterId: 2 -> getBayId: 6 -> getPortId: ip36
+2026-04-22 15:40:07.346 DEBUG verific:214 - S01_check_for_pallets_at_Verific_Bay : state : On
+2026-04-22 15:40:07.346 DEBUG verific:222 - S01_check_for_pallets_at_Verific_Bay : status : true
+2026-04-22 15:40:07.346 DEBUG verific:227 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-04-22 15:40:07.346 INFO  verific:124 - S01_check_for_pallets_at_Verific_Bay : Pallet Available
+2026-04-22 15:40:07.346 INFO  verific:125 - S01_check_for_pallets_at_Verific_Bay : Sleep
+2026-04-22 15:40:08.347 INFO  verific:172 - S01_check_for_pallets_at_Verific_Bay : Exit
+2026-04-22 15:40:08.347 DEBUG verific:170 - processCurrentState : S01_check_for_pallets_at_Verific_Bay : Status     : true
+2026-04-22 15:40:08.347 DEBUG verific:171 - processCurrentState : S01_check_for_pallets_at_Verific_Bay : Error Code : ERROR_CODE_601
+2026-04-22 15:40:08.347 DEBUG verific:69 - VERIFIC BAY : isStopProcessRequested : false
+2026-04-22 15:40:08.348 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:40:08.348 INFO  verific:35 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-04-22 15:40:08.348 INFO  verific:65 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-04-22 15:40:08.348 INFO  verific:78 - S02_qR_Code_Scanning_of_Pallet :  waitingVerificToVerificTransitTimeInSec: 15
+2026-04-22 15:40:08.348 INFO  verific:79 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-04-22 15:40:08.348 INFO  verific:80 - S02_qR_Code_Scanning_of_Pallet :  isStopProcessRequestedVerificBay(): false
+2026-04-22 15:40:08.348 DEBUG verific:123 - qrCodePalletScanning : Entry : VERIFICB
+2026-04-22 15:40:11.256 DEBUG verific:174 - qrCodePalletScanning : scannedData: LSCSM06P006
+
+2026-04-22 15:40:11.256 DEBUG verific:194 - qrCodePalletScanning : Else Hit1: 
+2026-04-22 15:40:11.256 DEBUG verific:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: VERIFICB
+2026-04-22 15:40:11.261 DEBUG verific:284 - qrCodePalletScanning: refreshDashBoard: verification bay
+2026-04-22 15:40:11.269 DEBUG verific:289 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 2
+2026-04-22 15:40:11.275 DEBUG verific:318 - qrCodePalletScanning: refreshDashBoard: waiting bay palletManageList size: 0
+2026-04-22 15:40:11.275 DEBUG verific:466 - qrCodePalletScanning: batch update 
+2026-04-22 15:40:11.275 INFO  verific:470 - qrCodePalletScanning: batch update: all verific removed
+2026-04-22 15:40:11.375 DEBUG verific:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-04-22 15:40:11.375 DEBUG verific:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: VERIFICB : qrCode: LSCSM06P006
+2026-04-22 15:40:11.375 DEBUG verific:248 - qrCodePalletScanning : status : GOOD : VERIFICB
+2026-04-22 15:40:11.375 DEBUG verific:250 - qrCodePalletScanning : Exit : VERIFICB
+2026-04-22 15:40:11.375 INFO  verific:82 - qrCodePalletScanningProcess : QR Code Scan Successful : VERIFICB
+2026-04-22 15:40:11.375 INFO  verific:113 - qrCodePalletScanningProcess : Exit : VERIFICB
+2026-04-22 15:40:11.375 INFO  verific:92 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-04-22 15:40:11.375 DEBUG verific:170 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-04-22 15:40:11.375 DEBUG verific:171 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-04-22 15:40:11.375 DEBUG verific:69 - VERIFIC BAY : isStopProcessRequested : false
+2026-04-22 15:40:11.375 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:40:11.375 INFO  verific:26 - S03_close_the_fingerTip_Latch : Entry
+2026-04-22 15:40:11.375 DEBUG verific:50 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : Entry
+2026-04-22 15:40:11.375 DEBUG verific:60 - PortId    : op11
+2026-04-22 15:40:11.375 DEBUG verific:61 - ClusterId : 2
+2026-04-22 15:40:11.375 DEBUG verific:62 - BayId     : 6
+2026-04-22 15:40:11.479 DEBUG verific:80 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : status : true
+2026-04-22 15:40:11.479 DEBUG verific:85 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_VerificBay : Exit
+2026-04-22 15:40:11.479 INFO  verific:35 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-04-22 15:40:11.479 INFO  verific:44 - S03_close_the_fingerTip_Latch : Exit
+2026-04-22 15:40:11.479 DEBUG verific:170 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-04-22 15:40:11.479 DEBUG verific:171 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-22 15:40:11.479 DEBUG verific:69 - VERIFIC BAY : isStopProcessRequested : false
+2026-04-22 15:40:11.479 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:40:12.479 INFO  verific:32 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-04-22 15:40:12.479 DEBUG verific:81 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : Entry
+2026-04-22 15:40:12.479 DEBUG verific:89 - PortId    : ip37
+2026-04-22 15:40:12.479 DEBUG verific:90 - ClusterId : 2
+2026-04-22 15:40:12.479 DEBUG verific:91 - BayId     : 6
+2026-04-22 15:40:12.581 DEBUG verific:112 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : state : On
+2026-04-22 15:40:12.581 DEBUG verific:116 - S04_ensure_the_fingerTip_Latch_Closed : verificBay_FingerTipLatch_Status : Exit
+2026-04-22 15:40:12.581 DEBUG verific:46 - S04_ensure_the_fingerTip_Latch_Closed : getMyBayKey(): VERIFICB
+2026-04-22 15:40:12.684 INFO  verific:55 - set_motor_not_required : Success
+2026-04-22 15:40:12.684 INFO  verific:75 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-04-22 15:40:12.684 DEBUG verific:170 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-04-22 15:40:12.684 DEBUG verific:171 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-04-22 15:40:12.684 DEBUG verific:69 - VERIFIC BAY : isStopProcessRequested : false
+2026-04-22 15:40:12.684 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:40:12.684 INFO  verific:20 - S29_turn_on_tower_lamp_Verific_Bay : Entry
+2026-04-22 15:40:12.684 DEBUG verific:61 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-04-22 15:40:12.684 DEBUG verific:71 - PortId    : op14
+2026-04-22 15:40:12.684 DEBUG verific:72 - ClusterId : 2
+2026-04-22 15:40:12.684 DEBUG verific:73 - BayId     : 6
+2026-04-22 15:40:12.787 DEBUG verific:88 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-04-22 15:40:12.787 DEBUG verific:97 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-04-22 15:40:12.787 INFO  verific:29 - S29_turn_on_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-04-22 15:40:12.787 DEBUG verific:104 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-04-22 15:40:12.787 DEBUG verific:114 - PortId    : op13
+2026-04-22 15:40:12.787 DEBUG verific:115 - ClusterId : 2
+2026-04-22 15:40:12.787 DEBUG verific:116 - BayId     : 6
+2026-04-22 15:40:12.890 DEBUG verific:131 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-04-22 15:40:12.890 DEBUG verific:140 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-04-22 15:40:12.890 INFO  verific:37 - S29_turn_on_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-04-22 15:40:12.890 INFO  verific:54 - S29_turn_on_tower_lamp_Verific_Bay : Exit
+2026-04-22 15:40:12.890 DEBUG verific:170 - processCurrentState : S29_turn_on_tower_lamp_Verific_Bay : Status     : true
+2026-04-22 15:40:12.890 DEBUG verific:171 - processCurrentState : S29_turn_on_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-04-22 15:40:12.890 DEBUG verific:69 - VERIFIC BAY : isStopProcessRequested : false
+2026-04-22 15:40:12.890 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:40:12.890 INFO  verific:52 - S045_Select_Run_Project : Entry
+2026-04-22 15:40:12.891 INFO  verific:199 - S045_Select_Run_Project : getMeterSerialNumberMap : Entry
+2026-04-22 15:40:12.901 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:13.911 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:14.922 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:15.932 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:16.941 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:17.952 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:18.962 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:19.971 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:20.982 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:21.992 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:23.002 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:24.011 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:25.021 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:26.031 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:27.041 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:28.051 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:29.060 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:30.070 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:31.079 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:32.090 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:33.099 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:34.110 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:35.120 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:36.131 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:37.141 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:38.151 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:39.163 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:40.176 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:41.187 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:42.197 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:43.206 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:44.216 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:45.226 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:46.236 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:47.246 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:48.259 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:49.269 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:50.278 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:51.288 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:52.298 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:53.309 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:54.318 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:55.327 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:56.337 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:57.348 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:58.358 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:40:59.368 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:00.379 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:01.389 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:02.399 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:03.410 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:04.420 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:05.431 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:06.442 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:07.451 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:08.462 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:09.471 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:10.481 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:11.492 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:12.502 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:13.512 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:14.523 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:15.533 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:16.543 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:17.551 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:18.561 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:19.570 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:20.580 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:21.591 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:22.601 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:23.612 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:24.623 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:25.632 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:26.642 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:27.653 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:28.662 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:29.672 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:30.682 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:31.691 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:32.701 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:33.711 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:34.721 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:35.377 INFO  verific:1297 - btnVerificTestStopOnClick : Invoked:
+2026-04-22 15:41:35.377 INFO  verific:1299 - VERIFICATION TEST BAY : STOPPED
+2026-04-22 15:41:35.377 INFO  verific:1356 - btnVerificTestStopOnClick : Exit:
+2026-04-22 15:41:35.478 DEBUG verific:23 - VerificationTestBay2 : Entry
+2026-04-22 15:41:35.478 DEBUG verific:31 - VerificationTestBayStop : manageVerificationTestBayStopStates : Entry
+2026-04-22 15:41:35.480 DEBUG verific:50 - VerificationTestBayStop : manageVerificationTestBayStopStates : getTableStatePlanner2 : Size : 3
+2026-04-22 15:41:35.480 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:41:35.480 INFO  verific:29 - S046_Stop_Execution : Entry
+2026-04-22 15:41:35.730 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:36.741 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:37.557 INFO  verific:46 - S046_Stop_Execution : Stop Execution Success
+2026-04-22 15:41:37.557 INFO  verific:57 - S046_Stop_Execution : Exit
+2026-04-22 15:41:37.557 DEBUG verific:154 - processCurrentState : S046_Stop_Execution : Status     : true
+2026-04-22 15:41:37.557 DEBUG verific:155 - processCurrentState : S046_Stop_Execution : Error Code : ERROR_CODE_601
+2026-04-22 15:41:37.557 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:41:37.557 INFO  verific:27 - S06_open_the_fingerTip_Latch : Entry
+2026-04-22 15:41:37.557 DEBUG verific:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Entry
+2026-04-22 15:41:37.558 DEBUG verific:62 - PortId    : op11
+2026-04-22 15:41:37.558 DEBUG verific:63 - ClusterId : 2
+2026-04-22 15:41:37.558 DEBUG verific:64 - BayId     : 6
+2026-04-22 15:41:37.659 DEBUG verific:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : status : true
+2026-04-22 15:41:37.659 DEBUG verific:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Exit
+2026-04-22 15:41:37.659 INFO  verific:37 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-04-22 15:41:37.659 INFO  verific:46 - S06_open_the_fingerTip_Latch : Exit
+2026-04-22 15:41:37.659 DEBUG verific:154 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-04-22 15:41:37.659 DEBUG verific:155 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-04-22 15:41:37.659 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:41:37.659 INFO  verific:27 - S30_turn_off_tower_lamp_Verific_Bay : Entry
+2026-04-22 15:41:37.659 DEBUG verific:111 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-04-22 15:41:37.659 DEBUG verific:121 - PortId    : op13
+2026-04-22 15:41:37.659 DEBUG verific:122 - ClusterId : 2
+2026-04-22 15:41:37.659 DEBUG verific:123 - BayId     : 6
+2026-04-22 15:41:37.751 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:37.763 DEBUG verific:138 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-04-22 15:41:37.763 DEBUG verific:147 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-04-22 15:41:37.763 INFO  verific:37 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-04-22 15:41:37.763 DEBUG verific:69 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-04-22 15:41:37.763 DEBUG verific:79 - PortId    : op14
+2026-04-22 15:41:37.763 DEBUG verific:80 - ClusterId : 2
+2026-04-22 15:41:37.763 DEBUG verific:81 - BayId     : 6
+2026-04-22 15:41:37.864 DEBUG verific:95 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-04-22 15:41:37.864 DEBUG verific:104 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-04-22 15:41:37.864 INFO  verific:45 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-04-22 15:41:38.761 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:38.864 INFO  verific:62 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-04-22 15:41:38.864 DEBUG verific:154 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Status     : true
+2026-04-22 15:41:38.864 DEBUG verific:155 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-04-22 15:41:38.864 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-04-22 15:41:38.864 INFO  verific:11 - S18_idle_condition : Entry
+2026-04-22 15:41:38.864 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:39.770 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:39.864 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:40.781 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:40.865 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:41.791 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:41.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:42.801 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:42.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:43.810 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:43.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:44.820 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:44.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:45.830 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:45.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:46.842 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:46.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:47.852 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:47.866 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:48.869 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:48.872 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:49.869 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:49.882 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:50.869 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:50.893 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:51.869 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:51.903 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:52.870 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-04-22 15:41:52.913 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:53.870 DEBUG verific:154 - processCurrentState : S18_idle_condition : Status     : true
+2026-04-22 15:41:53.870 DEBUG verific:155 - processCurrentState : S18_idle_condition : Error Code : NO_ERROR_001
+2026-04-22 15:41:53.923 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:54.932 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:55.941 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:56.951 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:57.961 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:58.971 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:41:59.981 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:00.991 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:02.001 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:03.011 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:04.022 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:05.030 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:06.040 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:07.049 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:08.059 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:09.069 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:10.079 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:11.088 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:12.098 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:13.108 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:14.118 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:15.128 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:16.138 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:17.148 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:18.158 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:19.168 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:20.179 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:21.188 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:22.198 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:23.210 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:24.220 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:25.229 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:26.239 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:27.250 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:28.260 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:29.271 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:30.282 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:31.292 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:32.302 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:33.323 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:34.349 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:35.370 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:36.398 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:37.415 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:38.433 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:39.453 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:40.469 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:41.494 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:42.511 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:43.529 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:44.545 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:45.559 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:46.582 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:47.602 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:48.620 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:49.636 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:50.653 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:51.668 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:52.682 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:53.695 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:54.713 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:55.727 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:56.736 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:57.754 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:58.762 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:42:59.782 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:00.792 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:01.814 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:02.842 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:03.865 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:04.885 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:05.911 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:06.923 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:07.942 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:08.959 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:09.977 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:10.993 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:12.009 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:13.032 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:14.059 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:15.078 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:16.095 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:17.116 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:18.132 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:19.147 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:20.164 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:21.178 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:22.191 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:23.206 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:24.228 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:25.245 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:26.266 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:27.290 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:28.311 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:29.332 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:30.355 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:31.373 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:32.392 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:33.411 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:34.429 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:35.444 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:36.470 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:37.490 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:38.509 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:39.530 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:40.554 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:41.573 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:42.598 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:43.613 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:44.635 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:45.644 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:46.662 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:47.685 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:48.698 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:49.714 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:50.729 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:51.746 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:52.771 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:53.788 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:54.797 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:55.817 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:56.843 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:57.866 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:58.895 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:43:59.915 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:00.938 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:01.961 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:02.979 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:04.000 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:05.015 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:06.041 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:07.065 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:08.093 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:09.120 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:10.142 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:11.167 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:12.176 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:13.191 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:14.203 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:15.220 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:16.240 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:17.259 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:18.287 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:19.308 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:20.335 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:21.356 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:22.370 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:23.386 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:24.405 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:25.422 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:26.434 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:27.448 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:28.461 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.
+2026-04-22 15:44:29.477 ERROR verific:211 - Not enough pallets (2) in Verification Bay. Displaying alert.

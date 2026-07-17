@@ -1,0 +1,603 @@
+{
+	"ConfigFileVersion" : "1.6",
+	"ConfigFileVersionComment" : " derived from Template V1_6.  Result splitted into Multiple page",
+
+	"TemplateFileLocationPath":"C:\\Reports-Kiggs\\ReportTemplate\\HealthyMeterReport-V1_1.xlsx",
+	"ReportOutputPath": "C:\\Reports-Kiggs\\Output\\",
+	"ParentReportProfile":"MeterReportProfile",
+	
+
+	"MaxNoOfPageInReport" : 2,
+	"MaxDutDisplayPerPage" : 20,
+	"SplitDutDisplayIntoMultiplePage": false,
+	
+	"ExcelReportTestTypeFilter": {
+	
+		"TestTypeFilter": [
+
+			{
+				"PopulateResult" : true,
+				"PrefixType":"STA",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.004Ib",	
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "I48",
+				"CellStartResultStatusPosition" : "J48",
+				"PopulateResultStatus" : true,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			},
+			{		
+				"PopulateResult" : true,
+				"PrefixType":"NLD",
+				"VoltageFilter":"115U",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "K48",
+				"CellStartResultStatusPosition" : "L48",
+				"PopulateResultStatus" : true,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			},
+			
+			
+			
+			
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "E8",
+				"CellStartResultStatusPosition" : "G6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "F8",
+				"CellStartResultStatusPosition" : "G6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.2Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "G8",
+				"CellStartResultStatusPosition" : "G6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.1Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "H8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			
+			
+					
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "I8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "J8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.1Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "K8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			
+					
+			
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "L8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "M8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.1Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "N8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			
+			
+					
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Imax",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "O8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			{
+				"PopulateResult" : true,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Imax",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "P8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			
+			
+			
+					
+			
+
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Imax",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "H8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"VV",
+				"VoltageFilter":"80U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "D8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "H8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "I8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "J8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "K8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"RPSNORM",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "E8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"RPSREV",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "F8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},{
+				"PopulateResult" : false,
+				"PrefixType":"FV",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"FreqFilter": "52.5",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "S8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},{
+				"PopulateResult" : false,
+				"PrefixType":"VU",
+				"VoltageFilter":"RY:100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "T8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},{
+				"PopulateResult" : false,
+				"PrefixType":"VU",
+				"VoltageFilter":"Y:100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "U8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"0.5L",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "L8",
+				"CellStartResultStatusPosition" : "F6",
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"LOE",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"0.8C",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "M8",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"REP",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"ResultIterationId":"1",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "N8",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"REP",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"ResultIterationId":"2",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "O8",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : false,
+				"PrefixType":"REP",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"0.5Ib",
+				"PfFilter":"1.0",
+				"ResultIterationId":"3",
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "P8",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"CONST",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"EnergyFilter":"0.1",
+				"PopulateResultFilterDutPulseCountReading":true,
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "P48",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"CONST",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"EnergyFilter":"0.1",
+				"PopulateResultFilterDutInitialReading":true,
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "M48",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"CONST",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"EnergyFilter":"0.1",
+				"PopulateResultFilterDutFinalReading":true,
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "N48",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"CONST",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"EnergyFilter":"0.1",
+				"PopulateResultFilterRefStdInitialReading":true,
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "K43",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			},
+			{
+				"PopulateResult" : true,
+				"PrefixType":"CONST",
+				"VoltageFilter":"100U",
+				"CurrentFilter":"1.0Ib",
+				"PfFilter":"1.0",
+				"EnergyFilter":"0.1",
+				"PopulateResultFilterRefStdFinalReading":true,
+				"PopulateType":"Vertical",
+				"CellStartResultValuePosition" : "O43",
+				"CellStartResultStatusPosition" : "F6",				
+				"PopulateResultStatus" : false,
+				"PopulateResultValue" : true,
+				"PageNumber" : 2
+			}
+		]
+	},
+
+	"ExcelReportMeterDataCellPosition": {
+		"ExcelReportMeterDataCellPositionPage":	[
+			{
+				"CellStartPositionSerialNo" : "B8",
+				"CellStartPositionMeterSerialNo" : "D8",	
+				"CellStartPositionMeterType" : "M3",
+				"CellStartPositionMake" : "C8",	
+				"CellStartPositionModelNo" : "S8",	
+				"CellStartPositionCapacity" : "F8",
+				"CellStartPositionCustomerRefNo" : "G8",
+				"CellStartPositionMeterConstant" : "P3",
+				"CellStartPositionPtRatio" : "Q3",
+				"CellStartPositionCtRatio" : "R3",
+				"CellStartPositionMeterConstant" : "P3",
+				"CellStartPositionDutOverAllStatus" : "R8",
+				"PageNumber" : 1
+			},
+			{
+				"CellStartPositionSerialNo" : "B48",
+				"CellStartPositionMeterSerialNo" : "D48",	
+				"CellStartPositionMeterType" : "D48",
+				"CellStartPositionMake" : "C48",
+				"CellStartPositionModelNo" : "S48",		
+				"CellStartPositionCapacity" : "F48",
+				"CellStartPositionCustomerRefNo" : "F48",
+				"CellStartPositionMeterConstant" : "E48",
+				"CellStartPositionPtRatio" : "G48",
+				"CellStartPositionCtRatio" : "H48",
+				"CellStartPositionDutOverAllStatus" : "R48",
+				"PageNumber" : 2
+			}		
+		
+		]	
+		
+	},
+	"ExcelReportMeterDataDisplay" : {
+		"ExcelReportMeterDataDisplayPage":	[
+			{
+				"PopulateSerialNo" : true,
+				"PopulateMeterSerialNo" : true,	
+				"PopulateMeterType" : true,	
+				"PopulateMeterTypeForEach" : false,	
+				"PopulateMake" : true,
+				"PopulateMakeForEach" : true,	
+				"PopulateModelNo" : true,
+				"PopulateModelNoForEach" : true,
+				"PopulateCapacity" : false,
+				"PopulateCapacityForEach" : true,	
+				"PopulateCustomerRefNo" : true,
+				"PopulateCustomerRefNoForEach" : true,	
+				"PopulateMeterConstant" : false,
+				"PopulateMeterConstantForEach" : false,	
+				"PopulatePtRatio" : false,
+				"PopulatePtRatioForEach" : false,
+				"PopulateCtRatio" : false,
+				"PopulateCtRatioForEach" : false,
+				"PopulateDutOverAllStatus" : true,
+				"AppendMeterSerialNoAndRackPosition" : false,
+				"PageNumber" : 1
+			},
+			{
+				"PopulateSerialNo" : true,
+				"PopulateMeterSerialNo" : true,	
+				"PopulateMeterType" : false,	
+				"PopulateMeterTypeForEach" : true,	
+				"PopulateMake" : true,
+				"PopulateMakeForEach" : true,	
+				"PopulateModelNo" : true,
+				"PopulateModelNoForEach" : true,
+				"PopulateCapacity" : true,
+				"PopulateCapacityForEach" : true,	
+				"PopulateCustomerRefNo" : false,
+				"PopulateCustomerRefNoForEach" : true,	
+				"PopulateMeterConstant" : true,
+				"PopulateMeterConstantForEach" : true,	
+				"PopulatePtRatio" : true,
+				"PopulatePtRatioForEach" : true,
+				"PopulateCtRatio" : true,
+				"PopulateCtRatioForEach" : true,
+				"PopulateDutOverAllStatus" : true,
+				"AppendMeterSerialNoAndRackPosition" : true,				
+				"PageNumber" : 2
+			}		
+		
+		]	
+	}
+	
+}

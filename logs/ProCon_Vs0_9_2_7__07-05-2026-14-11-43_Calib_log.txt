@@ -1,0 +1,339 @@
+2026-05-07 14:20:15.983 INFO  calib:877 - btnCalibStartOnClick : Invoked:
+2026-05-07 14:20:15.984 INFO  calib:879 - CALIBRATION BAY : STARTED
+2026-05-07 14:20:15.993 INFO  calib:932 - btnCalibStartOnClick : Exit:
+2026-05-07 14:20:16.094 DEBUG calib:33 - Calib : Entry
+2026-05-07 14:20:16.094 DEBUG calib:41 - Calib : manageCalibrationBayStates : Entry
+2026-05-07 14:20:16.096 DEBUG calib:61 - Calib : manageCalibrationBayStates : getTableStatePlanner2 : Size : 22
+2026-05-07 14:20:16.096 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:20:16.096 INFO  calib:38 - S01_check_for_pallet_at_CALIB_Bay : Entry
+2026-05-07 14:20:16.096 DEBUG calib:131 - S01_check_for_pallet_at_CALIB_Bay : Entry
+2026-05-07 14:20:16.096 DEBUG calib:144 - isPalletAvailableAt_CalibBay : getClusterId: 2 -> getBayId: 4 -> getPortId: ip33
+2026-05-07 14:20:16.199 DEBUG calib:155 - S01_check_for_pallet_at_CALIB_Bay : state : Off
+2026-05-07 14:20:16.199 DEBUG calib:163 - S01_check_for_pallet_at_CALIB_Bay : status : false
+2026-05-07 14:20:16.199 DEBUG calib:167 - S01_check_for_pallet_at_CALIB_Bay : Exit
+2026-05-07 14:20:16.199 INFO  calib:95 - S01_check_for_pallet_at_CALIB_Bay : No pallet Available at CALIB Bay
+2026-05-07 14:21:12.489 INFO  calib:103 - S01_check_for_pallet_at_CALIB_Bay : Pallet Available
+2026-05-07 14:21:12.506 DEBUG calib:3557 - markAsCompleteForPreviousHvBayPallet - getPalletDistinctId: 20260428T112310_0015_LSCSM06P018 , bayKey: CALB
+2026-05-07 14:21:12.517 INFO  calib:125 - S01_check_for_pallet_at_CALIB_Bay : Exit
+2026-05-07 14:21:12.517 DEBUG calib:166 - processCurrentState : S01_check_for_pallet_at_CALIB_Bay : Status     : true
+2026-05-07 14:21:12.517 DEBUG calib:167 - processCurrentState : S01_check_for_pallet_at_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-05-07 14:21:12.534 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:12.534 INFO  calib:44 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-07 14:21:12.534 DEBUG calib:123 - qrCodePalletScanning : Entry : CALB
+2026-05-07 14:21:15.677 DEBUG calib:174 - qrCodePalletScanning : scannedData: LSCSM06P018
+
+2026-05-07 14:21:15.677 DEBUG calib:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-07 14:21:15.677 DEBUG calib:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260428T112310_0015_LSCSM06P018  selectedBayTypeKey: CALB
+2026-05-07 14:21:15.684 DEBUG calib:447 - qrCodePalletScanning: other bays: 
+2026-05-07 14:21:15.684 DEBUG calib:450 - qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: CALB
+2026-05-07 14:21:15.684 DEBUG calib:451 - getActivePalletMap() : {LSCSM06P019=20260428T105243_0001_LSCSM06P019, LSCSM06P01=20260428T110154_0007_LSCSM06P01, LSCSM06P004=20260428T112859_0016_LSCSM06P004, LSCSM06P018=20260428T112310_0015_LSCSM06P018, LSCSM06P011=20260427T153310_0029_LSCSM06P011, LSCSM06P002=20260427T153136_0028_LSCSM06P002, LSCSM06P07=20260428T111733_0014_LSCSM06P07, LSCSM06P020=20260507T142019_0002_LSCSM06P020}
+2026-05-07 14:21:15.699 DEBUG calib:513 - qrCodePalletScanning: individual pallet update 
+2026-05-07 14:21:15.699 DEBUG calib:220 - qrCodePalletScanning : palletDistinctId:  : 20260428T112310_0015_LSCSM06P018 : bay: CALB : qrCode: LSCSM06P018
+2026-05-07 14:21:15.699 DEBUG calib:248 - qrCodePalletScanning : status : GOOD : CALB
+2026-05-07 14:21:15.699 DEBUG calib:250 - qrCodePalletScanning : Exit : CALB
+2026-05-07 14:21:15.699 INFO  calib:82 - qrCodePalletScanningProcess : QR Code Scan Successful : CALB
+2026-05-07 14:21:15.699 INFO  calib:113 - qrCodePalletScanningProcess : Exit : CALB
+2026-05-07 14:21:15.699 INFO  calib:89 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-07 14:21:15.699 DEBUG calib:166 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Status     : true
+2026-05-07 14:21:15.699 DEBUG calib:167 - processCurrentState : S02_qR_Code_Scanning_of_Pallet : Error Code : ERROR_CODE_601
+2026-05-07 14:21:15.701 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:15.701 INFO  calib:27 - S03_close_the_fingerTip_Latch : Entry
+2026-05-07 14:21:15.701 DEBUG calib:52 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_CalibBay : Entry
+2026-05-07 14:21:15.701 DEBUG calib:62 - PortId    : op2
+2026-05-07 14:21:15.701 DEBUG calib:63 - ClusterId : 2
+2026-05-07 14:21:15.701 DEBUG calib:64 - BayId     : 4
+2026-05-07 14:21:15.803 DEBUG calib:83 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_CalibBay : status : true
+2026-05-07 14:21:15.809 DEBUG calib:89 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_CalibBay : Exit
+2026-05-07 14:21:15.809 INFO  calib:37 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-07 14:21:15.809 INFO  calib:46 - S03_close_the_fingerTip_Latch : Exit
+2026-05-07 14:21:15.809 DEBUG calib:166 - processCurrentState : S03_close_the_fingerTip_Latch : Status     : true
+2026-05-07 14:21:15.809 DEBUG calib:167 - processCurrentState : S03_close_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-07 14:21:15.829 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:15.831 INFO  calib:38 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-07 14:21:15.831 DEBUG calib:205 - S04_ensure_the_fingerTip_Latch_Closed : calibBay_FingerTipLatch_Status : Entry
+2026-05-07 14:21:15.831 DEBUG calib:212 - PortId    : ip34
+2026-05-07 14:21:15.831 DEBUG calib:213 - ClusterId : 2
+2026-05-07 14:21:15.831 DEBUG calib:214 - BayId     : 4
+2026-05-07 14:21:15.932 DEBUG calib:230 - S04_ensure_the_fingerTip_Latch_Closed : calibBay_FingerTipLatch_Status : state : Off
+2026-05-07 14:21:15.932 DEBUG calib:234 - S04_ensure_the_fingerTip_Latch_Closed : calibBay_FingerTipLatch_Status : Exit
+2026-05-07 14:21:16.932 DEBUG calib:205 - S04_ensure_the_fingerTip_Latch_Closed : calibBay_FingerTipLatch_Status : Entry
+2026-05-07 14:21:16.932 DEBUG calib:212 - PortId    : ip34
+2026-05-07 14:21:16.932 DEBUG calib:213 - ClusterId : 2
+2026-05-07 14:21:16.932 DEBUG calib:214 - BayId     : 4
+2026-05-07 14:21:17.034 DEBUG calib:230 - S04_ensure_the_fingerTip_Latch_Closed : calibBay_FingerTipLatch_Status : state : On
+2026-05-07 14:21:17.034 DEBUG calib:234 - S04_ensure_the_fingerTip_Latch_Closed : calibBay_FingerTipLatch_Status : Exit
+2026-05-07 14:21:17.135 INFO  calib:60 - set_motor_not_required : Success
+2026-05-07 14:21:17.135 INFO  calib:143 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-07 14:21:17.135 DEBUG calib:166 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Status     : true
+2026-05-07 14:21:17.135 DEBUG calib:167 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed : Error Code : ERROR_CODE_601
+2026-05-07 14:21:17.135 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:17.135 INFO  calib:19 - S29_turn_on_tower_lamp_CALIB_Bay : Entry
+2026-05-07 14:21:17.135 DEBUG calib:61 - S29_turn_on_tower_lamp_CALIB_Bay : turn_on_tower_lamp : Entry
+2026-05-07 14:21:17.238 INFO  calib:29 - S29_turn_on_tower_lamp_CALIB_Bay : RED Tower Lamp Turned On
+2026-05-07 14:21:17.238 DEBUG calib:86 - S29_turn_on_tower_lamp_CALIB_Bay : turn_off_tower_lamp : Entry
+2026-05-07 14:21:17.340 INFO  calib:39 - S29_turn_on_tower_lamp_CALIB_Bay : GREEN Tower Lamp Turned Off
+2026-05-07 14:21:17.340 INFO  calib:53 - S29_turn_on_tower_lamp_CALIB_Bay : Exit
+2026-05-07 14:21:17.340 DEBUG calib:166 - processCurrentState : S29_turn_on_tower_lamp_CALIB_Bay : Status     : true
+2026-05-07 14:21:17.340 DEBUG calib:167 - processCurrentState : S29_turn_on_tower_lamp_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-05-07 14:21:17.340 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:17.340 INFO  calib:36 - S059_00_Turn_Off_Main_CT_Neutral_CT : Entry
+2026-05-07 14:21:17.340 DEBUG calib:74 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : Entry
+2026-05-07 14:21:17.340 DEBUG calib:84 - PortId    : op7
+2026-05-07 14:21:17.340 DEBUG calib:85 - ClusterId : 2
+2026-05-07 14:21:17.341 DEBUG calib:86 - BayId     : 4
+2026-05-07 14:21:17.443 DEBUG calib:145 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : status : true
+2026-05-07 14:21:17.443 DEBUG calib:146 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : Exit
+2026-05-07 14:21:17.443 INFO  calib:45 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : Success
+2026-05-07 14:21:19.443 DEBUG calib:153 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : Entry
+2026-05-07 14:21:19.443 DEBUG calib:163 - PortId    : op7
+2026-05-07 14:21:19.443 DEBUG calib:164 - ClusterId : 2
+2026-05-07 14:21:19.443 DEBUG calib:165 - BayId     : 4
+2026-05-07 14:21:19.577 DEBUG calib:224 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : status : true
+2026-05-07 14:21:19.577 DEBUG calib:225 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : Exit
+2026-05-07 14:21:21.578 INFO  calib:53 - S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : Success
+2026-05-07 14:21:21.578 INFO  calib:68 - S059_00_Turn_Off_Main_CT_Neutral_CT : Exit
+2026-05-07 14:21:21.578 DEBUG calib:166 - processCurrentState : S059_00_Turn_Off_Main_CT_Neutral_CT : Status     : true
+2026-05-07 14:21:21.578 DEBUG calib:167 - processCurrentState : S059_00_Turn_Off_Main_CT_Neutral_CT : Error Code : ERROR_CODE_601
+2026-05-07 14:21:21.578 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:21.578 INFO  calib:39 - S059_01_Turn_On_Main_CT : Entry
+2026-05-07 14:21:23.578 DEBUG calib:78 - S059_01_Turn_On_Main_CT : turn_on_main_ct_make_pin : Entry
+2026-05-07 14:21:23.578 DEBUG calib:88 - PortId    : op5
+2026-05-07 14:21:23.578 DEBUG calib:89 - ClusterId : 2
+2026-05-07 14:21:23.578 DEBUG calib:90 - BayId     : 4
+2026-05-07 14:21:23.680 DEBUG calib:124 - S059_01_Turn_On_Main_CT : turn_on_main_ct_make_pin : state : On
+2026-05-07 14:21:23.680 DEBUG calib:151 - S059_01_Turn_On_Main_CT : turn_on_main_ct_make_pin : status : true
+2026-05-07 14:21:23.680 DEBUG calib:152 - S059_01_Turn_On_Main_CT : turn_on_main_ct_make_pin : Exit
+2026-05-07 14:21:23.680 INFO  calib:48 - S059_01_Turn_On_Main_CT : turn_on_main_ct_make_pin : Success
+2026-05-07 14:21:25.681 DEBUG calib:159 - S059_01_Turn_On_Main_CT : turn_off_main_ct_make_pin : Entry
+2026-05-07 14:21:25.681 DEBUG calib:169 - PortId    : op5
+2026-05-07 14:21:25.681 DEBUG calib:170 - ClusterId : 2
+2026-05-07 14:21:25.681 DEBUG calib:171 - BayId     : 4
+2026-05-07 14:21:25.784 DEBUG calib:205 - S059_01_Turn_On_Main_CT : turn_off_main_ct_make_pin : state : Off
+2026-05-07 14:21:25.784 DEBUG calib:232 - S059_01_Turn_On_Main_CT : turn_off_main_ct_make_pin : status : true
+2026-05-07 14:21:25.784 DEBUG calib:233 - S059_01_Turn_On_Main_CT : turn_off_main_ct_make_pin : Exit
+2026-05-07 14:21:27.784 INFO  calib:56 - S059_01_Turn_On_Main_CT : turn_on_main_ct_make_pin : Success
+2026-05-07 14:21:27.784 INFO  calib:71 - S059_01_Turn_On_Main_CT : Exit
+2026-05-07 14:21:27.784 DEBUG calib:166 - processCurrentState : S059_01_Turn_On_Main_CT : Status     : true
+2026-05-07 14:21:27.784 DEBUG calib:167 - processCurrentState : S059_01_Turn_On_Main_CT : Error Code : ERROR_CODE_601
+2026-05-07 14:21:27.784 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:21:27.784 INFO  calib:40 - S059_02_Power_Source_Start_Main_CT : Entry
+2026-05-07 14:21:27.784 INFO  calib:64 - Start 40V: voltage_current_start(40)
+2026-05-07 14:21:27.784 DEBUG calib:363 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Entry
+2026-05-07 14:21:27.784 DEBUG calib:379 - ClusterId : 2
+2026-05-07 14:21:27.784 DEBUG calib:380 - PortId    : op209
+2026-05-07 14:21:27.784 DEBUG calib:381 - BayId     : 4
+2026-05-07 14:21:27.886 DEBUG calib:400 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : status : true
+2026-05-07 14:21:27.886 DEBUG calib:405 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Exit
+2026-05-07 14:21:27.886 INFO  calib:77 - Start 40V: Delay Started
+2026-05-07 14:22:57.910 INFO  calib:116 - Start 40V: Delay Complete
+2026-05-07 14:22:57.910 INFO  calib:120 - Stop: voltage_current_stop()
+2026-05-07 14:22:57.910 DEBUG calib:413 - S059_09_Stop_Execution : voltage_current_stop : Entry
+2026-05-07 14:22:57.910 DEBUG calib:423 - PortId    : op220
+2026-05-07 14:22:57.910 DEBUG calib:424 - ClusterId : 2
+2026-05-07 14:22:57.910 DEBUG calib:425 - BayId     : 4
+2026-05-07 14:22:58.013 DEBUG calib:444 - S059_09_Stop_Execution : voltage_current_stop : status : true
+2026-05-07 14:22:58.013 DEBUG calib:449 - S059_09_Stop_Execution : voltage_current_stop : Exit
+2026-05-07 14:22:58.013 INFO  calib:132 - Stop: Delay Started
+2026-05-07 14:23:03.013 INFO  calib:136 - Stop: Delay Complete
+2026-05-07 14:23:03.013 INFO  calib:140 - Start 240V: voltage_current_start(240)
+2026-05-07 14:23:03.013 DEBUG calib:363 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Entry
+2026-05-07 14:23:03.013 DEBUG calib:379 - ClusterId : 2
+2026-05-07 14:23:03.013 DEBUG calib:380 - PortId    : op210
+2026-05-07 14:23:03.013 DEBUG calib:381 - BayId     : 4
+2026-05-07 14:23:03.115 DEBUG calib:400 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : status : true
+2026-05-07 14:23:03.115 DEBUG calib:405 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Exit
+2026-05-07 14:23:03.115 INFO  calib:152 - S059_02_Power_Source_Start_Main_CT : Voltage Current Started
+2026-05-07 14:23:03.115 INFO  calib:155 - S059_02_Power_Source_Start_Main_CT : 15 secs Wait Time
+2026-05-07 14:23:18.117 DEBUG calib:457 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Entry
+2026-05-07 14:23:18.117 DEBUG calib:466 - PortId    : ip148
+2026-05-07 14:23:18.117 DEBUG calib:467 - ClusterId : 2
+2026-05-07 14:23:18.117 DEBUG calib:468 - BayId     : 4
+2026-05-07 14:23:18.219 DEBUG calib:478 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : state : Off
+2026-05-07 14:23:18.219 DEBUG calib:486 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : status : false
+2026-05-07 14:23:18.219 DEBUG calib:490 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Exit
+2026-05-07 14:23:20.219 INFO  calib:174 - S059_02_Power_Source_Start_Main_CT : Voltage Check Retrying : 1
+2026-05-07 14:23:20.219 DEBUG calib:457 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Entry
+2026-05-07 14:23:20.219 DEBUG calib:466 - PortId    : ip148
+2026-05-07 14:23:20.219 DEBUG calib:467 - ClusterId : 2
+2026-05-07 14:23:20.219 DEBUG calib:468 - BayId     : 4
+2026-05-07 14:23:20.321 DEBUG calib:478 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : state : Off
+2026-05-07 14:23:20.321 DEBUG calib:486 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : status : false
+2026-05-07 14:23:20.321 DEBUG calib:490 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Exit
+2026-05-07 14:23:22.321 INFO  calib:174 - S059_02_Power_Source_Start_Main_CT : Voltage Check Retrying : 2
+2026-05-07 14:23:22.321 DEBUG calib:457 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Entry
+2026-05-07 14:23:22.321 DEBUG calib:466 - PortId    : ip148
+2026-05-07 14:23:22.321 DEBUG calib:467 - ClusterId : 2
+2026-05-07 14:23:22.321 DEBUG calib:468 - BayId     : 4
+2026-05-07 14:23:22.423 DEBUG calib:478 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : state : Off
+2026-05-07 14:23:22.423 DEBUG calib:486 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : status : false
+2026-05-07 14:23:22.423 DEBUG calib:490 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Exit
+2026-05-07 14:23:24.423 INFO  calib:174 - S059_02_Power_Source_Start_Main_CT : Voltage Check Retrying : 3
+2026-05-07 14:23:24.423 DEBUG calib:457 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Entry
+2026-05-07 14:23:24.423 DEBUG calib:466 - PortId    : ip148
+2026-05-07 14:23:24.423 DEBUG calib:467 - ClusterId : 2
+2026-05-07 14:23:24.423 DEBUG calib:468 - BayId     : 4
+2026-05-07 14:23:24.524 DEBUG calib:478 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : state : Off
+2026-05-07 14:23:24.524 DEBUG calib:486 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : status : false
+2026-05-07 14:23:24.524 DEBUG calib:490 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Exit
+2026-05-07 14:23:26.524 INFO  calib:174 - S059_02_Power_Source_Start_Main_CT : Voltage Check Retrying : 4
+2026-05-07 14:23:26.524 DEBUG calib:457 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Entry
+2026-05-07 14:23:26.524 DEBUG calib:466 - PortId    : ip148
+2026-05-07 14:23:26.524 DEBUG calib:467 - ClusterId : 2
+2026-05-07 14:23:26.524 DEBUG calib:468 - BayId     : 4
+2026-05-07 14:23:26.627 DEBUG calib:478 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : state : Off
+2026-05-07 14:23:26.660 DEBUG calib:486 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : status : false
+2026-05-07 14:23:26.660 DEBUG calib:490 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Exit
+2026-05-07 14:23:28.660 INFO  calib:174 - S059_02_Power_Source_Start_Main_CT : Voltage Check Retrying : 5
+2026-05-07 14:23:28.660 INFO  calib:185 - S059_02_Power_Source_Start_Main_CT : Voltage Start Failed after retries.
+2026-05-07 14:23:41.698 INFO  calib:64 - Start 40V: voltage_current_start(40)
+2026-05-07 14:23:41.699 DEBUG calib:363 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Entry
+2026-05-07 14:23:41.699 DEBUG calib:379 - ClusterId : 2
+2026-05-07 14:23:41.699 DEBUG calib:380 - PortId    : op209
+2026-05-07 14:23:41.699 DEBUG calib:381 - BayId     : 4
+2026-05-07 14:23:41.801 DEBUG calib:400 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : status : true
+2026-05-07 14:23:41.801 DEBUG calib:405 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Exit
+2026-05-07 14:23:41.801 INFO  calib:77 - Start 40V: Delay Started
+2026-05-07 14:24:03.792 INFO  calib:937 - btnCalibStopOnClick : Invoked:
+2026-05-07 14:24:03.792 INFO  calib:939 - CALIBRATION BAY : STOPPED
+2026-05-07 14:24:03.793 INFO  calib:993 - btnCalibStopOnClick : Exit:
+2026-05-07 14:24:03.894 DEBUG calib:26 - CalibrationBayStop : Entry
+2026-05-07 14:24:03.894 DEBUG calib:34 - CalibrationBayStop : manageCalibrationBayStopStates : Entry
+2026-05-07 14:24:03.921 DEBUG calib:55 - CalibrationBayStop : manageCalibrationBayStopStates : getTableStatePlanner2 : Size : 3
+2026-05-07 14:24:03.921 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:24:03.921 INFO  calib:26 - S06_open_the_fingerTip_Latch : Entry
+2026-05-07 14:24:03.921 DEBUG calib:50 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : Entry
+2026-05-07 14:24:03.921 DEBUG calib:60 - PortId    : op2
+2026-05-07 14:24:03.921 DEBUG calib:61 - ClusterId : 2
+2026-05-07 14:24:03.921 DEBUG calib:62 - BayId     : 4
+2026-05-07 14:24:04.049 DEBUG calib:80 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : status : true
+2026-05-07 14:24:04.049 DEBUG calib:85 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : Exit
+2026-05-07 14:24:04.049 INFO  calib:35 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-07 14:24:04.049 INFO  calib:44 - S06_open_the_fingerTip_Latch : Exit
+2026-05-07 14:24:04.049 DEBUG calib:161 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-05-07 14:24:04.049 DEBUG calib:162 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-07 14:24:04.056 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:24:04.056 INFO  calib:27 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-05-07 14:24:04.056 INFO  calib:55 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-05-07 14:24:04.056 DEBUG calib:161 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-05-07 14:24:04.056 DEBUG calib:162 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-05-07 14:24:04.056 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:24:04.056 INFO  calib:21 - S30_turn_off_tower_lamp_CALIB_Bay : Entry
+2026-05-07 14:24:04.056 DEBUG calib:60 - S30_turn_off_tower_lamp_CALIB_Bay : turn_on_tower_lamp : Entry
+2026-05-07 14:24:04.160 INFO  calib:31 - S30_turn_off_tower_lamp_CALIB_Bay : Tower Lamp Turned On
+2026-05-07 14:24:04.160 DEBUG calib:83 - S30_turn_off_tower_lamp_CALIB_Bay : turn_off_tower_lamp : Entry
+2026-05-07 14:24:04.262 INFO  calib:41 - S30_turn_off_tower_lamp_CALIB_Bay : Tower Lamp Turned Off
+2026-05-07 14:24:04.262 INFO  calib:55 - S30_turn_off_tower_lamp_CALIB_Bay : Exit
+2026-05-07 14:24:04.262 DEBUG calib:161 - processCurrentState : S30_turn_off_tower_lamp_CALIB_Bay : Status     : true
+2026-05-07 14:24:04.262 DEBUG calib:162 - processCurrentState : S30_turn_off_tower_lamp_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-05-07 14:24:04.262 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:24:04.262 INFO  calib:11 - S11_idle_condition : Entry
+2026-05-07 14:24:04.262 INFO  calib:25 - S11_idle_condition : Waiting in Idle Condition : 1min 30secs CALB
+2026-05-07 14:25:11.829 INFO  calib:116 - Start 40V: Delay Complete
+2026-05-07 14:25:11.829 INFO  calib:120 - Stop: voltage_current_stop()
+2026-05-07 14:25:11.829 DEBUG calib:413 - S059_09_Stop_Execution : voltage_current_stop : Entry
+2026-05-07 14:25:11.829 DEBUG calib:423 - PortId    : op220
+2026-05-07 14:25:11.829 DEBUG calib:424 - ClusterId : 2
+2026-05-07 14:25:11.829 DEBUG calib:425 - BayId     : 4
+2026-05-07 14:25:11.933 DEBUG calib:444 - S059_09_Stop_Execution : voltage_current_stop : status : true
+2026-05-07 14:25:11.933 DEBUG calib:449 - S059_09_Stop_Execution : voltage_current_stop : Exit
+2026-05-07 14:25:11.933 INFO  calib:132 - Stop: Delay Started
+2026-05-07 14:25:16.933 INFO  calib:136 - Stop: Delay Complete
+2026-05-07 14:25:16.933 INFO  calib:140 - Start 240V: voltage_current_start(240)
+2026-05-07 14:25:16.933 DEBUG calib:363 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Entry
+2026-05-07 14:25:16.933 DEBUG calib:379 - ClusterId : 2
+2026-05-07 14:25:16.933 DEBUG calib:380 - PortId    : op210
+2026-05-07 14:25:16.933 DEBUG calib:381 - BayId     : 4
+2026-05-07 14:25:17.036 DEBUG calib:400 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : status : true
+2026-05-07 14:25:17.036 DEBUG calib:405 - S059_02_Power_Source_Start_Main_CT : voltage_current_start : Exit
+2026-05-07 14:25:17.036 INFO  calib:152 - S059_02_Power_Source_Start_Main_CT : Voltage Current Started
+2026-05-07 14:25:17.036 INFO  calib:155 - S059_02_Power_Source_Start_Main_CT : 15 secs Wait Time
+2026-05-07 14:25:32.036 DEBUG calib:457 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Entry
+2026-05-07 14:25:32.036 DEBUG calib:466 - PortId    : ip148
+2026-05-07 14:25:32.036 DEBUG calib:467 - ClusterId : 2
+2026-05-07 14:25:32.036 DEBUG calib:468 - BayId     : 4
+2026-05-07 14:25:32.137 DEBUG calib:478 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : state : On
+2026-05-07 14:25:32.137 DEBUG calib:486 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : status : true
+2026-05-07 14:25:32.137 DEBUG calib:490 - S059_02_Power_Source_Start_Main_CT : checkVoltageStart : Exit
+2026-05-07 14:25:32.137 INFO  calib:192 - S059_02_Power_Source_Start_Main_CT : Voltage Start Checked Successfully
+2026-05-07 14:25:32.137 DEBUG calib:497 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Entry
+2026-05-07 14:25:32.137 DEBUG calib:506 - PortId    : ip158
+2026-05-07 14:25:32.137 DEBUG calib:507 - ClusterId : 2
+2026-05-07 14:25:32.137 DEBUG calib:508 - BayId     : 4
+2026-05-07 14:25:32.241 DEBUG calib:518 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : state : Off
+2026-05-07 14:25:32.241 DEBUG calib:526 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : status : false
+2026-05-07 14:25:32.241 DEBUG calib:530 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Exit
+2026-05-07 14:25:34.241 INFO  calib:205 - S059_02_Power_Source_Start_Main_CT : Current Check Retrying : 1
+2026-05-07 14:25:34.241 DEBUG calib:497 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Entry
+2026-05-07 14:25:34.241 DEBUG calib:506 - PortId    : ip158
+2026-05-07 14:25:34.241 DEBUG calib:507 - ClusterId : 2
+2026-05-07 14:25:34.241 DEBUG calib:508 - BayId     : 4
+2026-05-07 14:25:34.271 DEBUG calib:161 - processCurrentState : S11_idle_condition : Status     : true
+2026-05-07 14:25:34.271 DEBUG calib:162 - processCurrentState : S11_idle_condition : Error Code : NO_ERROR_001
+2026-05-07 14:25:34.271 DEBUG calib:128 - CalibrationBayStop : manageCalibrationBayStopStates : Exit
+2026-05-07 14:25:34.342 DEBUG calib:518 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : state : Off
+2026-05-07 14:25:34.342 DEBUG calib:526 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : status : false
+2026-05-07 14:25:34.342 DEBUG calib:530 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Exit
+2026-05-07 14:25:36.342 INFO  calib:205 - S059_02_Power_Source_Start_Main_CT : Current Check Retrying : 2
+2026-05-07 14:25:36.342 DEBUG calib:497 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Entry
+2026-05-07 14:25:36.342 DEBUG calib:506 - PortId    : ip158
+2026-05-07 14:25:36.342 DEBUG calib:507 - ClusterId : 2
+2026-05-07 14:25:36.342 DEBUG calib:508 - BayId     : 4
+2026-05-07 14:25:36.445 DEBUG calib:518 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : state : Off
+2026-05-07 14:25:36.445 DEBUG calib:526 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : status : false
+2026-05-07 14:25:36.445 DEBUG calib:530 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Exit
+2026-05-07 14:25:38.445 INFO  calib:205 - S059_02_Power_Source_Start_Main_CT : Current Check Retrying : 3
+2026-05-07 14:25:38.445 DEBUG calib:497 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Entry
+2026-05-07 14:25:38.445 DEBUG calib:506 - PortId    : ip158
+2026-05-07 14:25:38.445 DEBUG calib:507 - ClusterId : 2
+2026-05-07 14:25:38.445 DEBUG calib:508 - BayId     : 4
+2026-05-07 14:25:38.546 DEBUG calib:518 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : state : Off
+2026-05-07 14:25:38.546 DEBUG calib:526 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : status : false
+2026-05-07 14:25:38.546 DEBUG calib:530 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Exit
+2026-05-07 14:25:40.546 INFO  calib:205 - S059_02_Power_Source_Start_Main_CT : Current Check Retrying : 4
+2026-05-07 14:25:40.546 DEBUG calib:497 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Entry
+2026-05-07 14:25:40.546 DEBUG calib:506 - PortId    : ip158
+2026-05-07 14:25:40.546 DEBUG calib:507 - ClusterId : 2
+2026-05-07 14:25:40.546 DEBUG calib:508 - BayId     : 4
+2026-05-07 14:25:40.648 DEBUG calib:518 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : state : Off
+2026-05-07 14:25:40.648 DEBUG calib:526 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : status : false
+2026-05-07 14:25:40.648 DEBUG calib:530 - S059_02_Power_Source_Start_Main_CT : checkCurrentStart : Exit
+2026-05-07 14:25:42.648 INFO  calib:205 - S059_02_Power_Source_Start_Main_CT : Current Check Retrying : 5
+2026-05-07 14:25:42.648 INFO  calib:209 - S059_02_Power_Source_Start_Main_CT : Current Start Failed after retries.
+2026-05-07 14:25:44.648 INFO  calib:267 - S059_02_Power_Source_Start_Main_CT : Exit
+2026-05-07 14:25:44.648 DEBUG calib:166 - processCurrentState : S059_02_Power_Source_Start_Main_CT : Status     : false
+2026-05-07 14:25:44.648 DEBUG calib:167 - processCurrentState : S059_02_Power_Source_Start_Main_CT : Error Code : ERROR_CODE_CALIB_003
+2026-05-07 14:25:44.757 DEBUG calib:26 - CalibrationBayStop : Entry
+2026-05-07 14:25:44.757 DEBUG calib:34 - CalibrationBayStop : manageCalibrationBayStopStates : Entry
+2026-05-07 14:25:44.758 DEBUG calib:55 - CalibrationBayStop : manageCalibrationBayStopStates : getTableStatePlanner2 : Size : 3
+2026-05-07 14:25:44.758 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:25:44.758 INFO  calib:26 - S06_open_the_fingerTip_Latch : Entry
+2026-05-07 14:25:44.758 DEBUG calib:50 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : Entry
+2026-05-07 14:25:44.758 DEBUG calib:60 - PortId    : op2
+2026-05-07 14:25:44.758 DEBUG calib:61 - ClusterId : 2
+2026-05-07 14:25:44.758 DEBUG calib:62 - BayId     : 4
+2026-05-07 14:25:44.861 DEBUG calib:80 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : status : true
+2026-05-07 14:25:44.861 DEBUG calib:85 - S06_open_the_fingerTip_Latch : calibBay_FingerTipLatch_Status : Exit
+2026-05-07 14:25:44.861 INFO  calib:35 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-07 14:25:44.861 INFO  calib:44 - S06_open_the_fingerTip_Latch : Exit
+2026-05-07 14:25:44.861 DEBUG calib:161 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-05-07 14:25:44.861 DEBUG calib:162 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-05-07 14:25:44.861 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:25:44.861 INFO  calib:27 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-05-07 14:25:44.861 INFO  calib:55 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-05-07 14:25:44.861 DEBUG calib:161 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-05-07 14:25:44.861 DEBUG calib:162 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-05-07 14:25:44.861 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:25:44.861 INFO  calib:21 - S30_turn_off_tower_lamp_CALIB_Bay : Entry
+2026-05-07 14:25:44.861 DEBUG calib:60 - S30_turn_off_tower_lamp_CALIB_Bay : turn_on_tower_lamp : Entry
+2026-05-07 14:25:44.963 INFO  calib:31 - S30_turn_off_tower_lamp_CALIB_Bay : Tower Lamp Turned On
+2026-05-07 14:25:44.963 DEBUG calib:83 - S30_turn_off_tower_lamp_CALIB_Bay : turn_off_tower_lamp : Entry
+2026-05-07 14:25:45.064 INFO  calib:41 - S30_turn_off_tower_lamp_CALIB_Bay : Tower Lamp Turned Off
+2026-05-07 14:25:45.064 INFO  calib:55 - S30_turn_off_tower_lamp_CALIB_Bay : Exit
+2026-05-07 14:25:45.064 DEBUG calib:161 - processCurrentState : S30_turn_off_tower_lamp_CALIB_Bay : Status     : true
+2026-05-07 14:25:45.064 DEBUG calib:162 - processCurrentState : S30_turn_off_tower_lamp_CALIB_Bay : Error Code : ERROR_CODE_601
+2026-05-07 14:25:45.064 DEBUG calib:40 - CalibBayTestContext: processPresentState: Entry
+2026-05-07 14:25:45.064 INFO  calib:11 - S11_idle_condition : Entry
+2026-05-07 14:25:45.064 INFO  calib:25 - S11_idle_condition : Waiting in Idle Condition : 1min 30secs CALB
+2026-05-07 14:27:15.093 DEBUG calib:161 - processCurrentState : S11_idle_condition : Status     : true
+2026-05-07 14:27:15.093 DEBUG calib:162 - processCurrentState : S11_idle_condition : Error Code : NO_ERROR_001
+2026-05-07 14:27:15.093 DEBUG calib:128 - CalibrationBayStop : manageCalibrationBayStopStates : Exit

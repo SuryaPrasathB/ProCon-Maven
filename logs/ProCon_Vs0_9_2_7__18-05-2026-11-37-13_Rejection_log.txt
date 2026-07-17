@@ -1,0 +1,1771 @@
+2026-05-18 11:44:53.726 INFO  rejection:157 - btnRjStartOnClick : Invoked:
+2026-05-18 11:44:53.726 INFO  rejection:159 - REJECTION BAY : STARTED
+2026-05-18 11:44:53.727 INFO  rejection:212 - btnRjStartOnClick : Exit:
+2026-05-18 11:44:53.827 DEBUG rejection:33 - RejectionBay2 : Entry
+2026-05-18 11:44:53.827 DEBUG rejection:41 - RejectionBay2 : manageRejectionBayStates : Entry
+2026-05-18 11:44:53.830 DEBUG rejection:60 - RejectionBay2 : manageRejectionBayStates : getTableStatePlanner2 : Size : 3
+2026-05-18 11:44:53.830 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:44:53.830 INFO  rejection:36 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:44:53.830 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:44:53.830 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:44:53.932 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:44:53.932 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:44:53.932 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:44:54.933 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:44:54.933 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:44:55.034 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:44:55.034 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:44:55.034 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:44:56.034 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:44:56.034 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:44:56.135 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:44:56.135 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:44:56.135 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:44:57.136 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:44:57.136 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:44:57.238 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:44:57.238 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:44:57.238 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:44:57.238 INFO  rejection:104 - S01_check_for_pallets_at_Reject_Bay : Pallet Available
+2026-05-18 11:44:57.238 DEBUG rejection:169 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Status     : true
+2026-05-18 11:44:57.238 DEBUG rejection:170 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 11:44:57.238 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:44:57.238 INFO  rejection:85 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-18 11:44:57.238 DEBUG rejection:123 - qrCodePalletScanning : Entry : RJTB
+2026-05-18 11:45:02.697 DEBUG rejection:174 - qrCodePalletScanning : scannedData: LSCSM06P020
+
+2026-05-18 11:45:02.697 DEBUG rejection:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-18 11:45:02.697 DEBUG rejection:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: RJTB
+2026-05-18 11:45:02.706 DEBUG rejection:434 - qrCodePalletScanning: rejected bay: 
+2026-05-18 11:45:02.706 DEBUG rejection:513 - qrCodePalletScanning: individual pallet update 
+2026-05-18 11:45:02.706 DEBUG rejection:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: RJTB : qrCode: LSCSM06P020
+2026-05-18 11:45:02.706 DEBUG rejection:248 - qrCodePalletScanning : status : GOOD : RJTB
+2026-05-18 11:45:02.706 DEBUG rejection:250 - qrCodePalletScanning : Exit : RJTB
+2026-05-18 11:45:02.706 INFO  rejection:82 - qrCodePalletScanningProcess : QR Code Scan Successful : RJTB
+2026-05-18 11:45:02.706 INFO  rejection:113 - qrCodePalletScanningProcess : Exit : RJTB
+2026-05-18 11:45:02.706 DEBUG rejection:116 - S02_qR_Code_Scanning_of_Pallet: palletQrId :LSCSM06P020
+2026-05-18 11:45:02.706 INFO  rejection:149 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getRejectionBayPalletDistinctIdList
+2026-05-18 11:45:02.720 INFO  rejection:160 - S02_qR_Code_Scanning_of_Pallet : result not found with today date in database for Pallet : LSCSM06P020
+2026-05-18 11:45:02.720 DEBUG rejection:213 - S02_qR_Code_Scanning_of_Pallet: No Pallet details found for bay: RJTB
+2026-05-18 11:45:02.720 DEBUG rejection:419 - Rejected: sendIdleStatusUpdate: Entry
+2026-05-18 11:45:02.720 INFO  rejection:238 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-18 11:45:02.720 DEBUG rejection:169 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Status     : true
+2026-05-18 11:45:02.720 DEBUG rejection:170 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Error Code : ERROR_CODE_601
+2026-05-18 11:45:02.720 DEBUG rejection:422 - sendIdleStatusUpdate: Entry2
+2026-05-18 11:45:02.720 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:45:02.720 INFO  rejection:46 - S021_check_for_pallet_removed_at_Reject_Bay : Entry
+2026-05-18 11:45:02.720 DEBUG rejection:122 - S021_check_for_pallet_removed_at_Reject_Bay : Checking pallet sensor state.
+2026-05-18 11:45:02.720 DEBUG rejection:136 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:45:02.823 DEBUG rejection:151 - S021_check_for_pallet_removed_at_Reject_Bay : Sensor state : On
+2026-05-18 11:45:02.823 DEBUG rejection:164 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet available status : true
+2026-05-18 11:45:02.823 DEBUG rejection:168 - S021_check_for_pallet_removed_at_Reject_Bay : Exit isPalletAvailableAt_RejectBay
+2026-05-18 11:45:02.823 INFO  rejection:91 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet still available at Reject Bay, waiting for removal.
+2026-05-18 11:45:03.153 DEBUG rejection:437 - sendIdleStatusUpdate: Exit
+2026-05-18 11:54:40.155 INFO  rejection:87 - S021_check_for_pallet_removed_at_Reject_Bay : Stable absence of pallet confirmed.
+2026-05-18 11:54:40.155 INFO  rejection:100 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet successfully removed. Proceeding to next state.
+2026-05-18 11:54:43.155 INFO  rejection:178 - Attempting to set Rejection Screen to Idle state via API.
+2026-05-18 11:54:43.170 ERROR rejection:193 - Failed to set Rejection Screen to Idle. Response Code: 404
+2026-05-18 11:54:43.170 DEBUG rejection:169 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Status     : true
+2026-05-18 11:54:43.170 DEBUG rejection:170 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 11:54:43.170 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:54:43.170 INFO  rejection:36 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:43.170 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:43.170 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:43.272 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:54:43.272 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:54:43.272 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:43.272 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:54:44.273 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:44.273 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:44.376 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:54:44.376 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:54:44.376 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:44.376 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:54:45.377 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:45.377 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:45.480 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:54:45.480 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:54:45.481 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:45.481 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:54:46.481 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:46.481 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:46.583 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:54:46.583 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:54:46.583 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:47.583 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:47.583 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:47.684 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:54:47.684 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:54:47.684 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:48.685 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:48.685 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:48.787 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:54:48.787 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:54:48.787 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:49.788 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:54:49.788 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:49.890 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:54:49.890 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:54:49.890 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:54:49.890 INFO  rejection:104 - S01_check_for_pallets_at_Reject_Bay : Pallet Available
+2026-05-18 11:54:49.890 DEBUG rejection:169 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Status     : true
+2026-05-18 11:54:49.890 DEBUG rejection:170 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 11:54:49.890 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:54:49.890 INFO  rejection:85 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-18 11:54:49.890 DEBUG rejection:123 - qrCodePalletScanning : Entry : RJTB
+2026-05-18 11:54:52.809 DEBUG rejection:174 - qrCodePalletScanning : scannedData: LSCSM06P03
+
+2026-05-18 11:54:52.809 DEBUG rejection:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-18 11:54:52.809 DEBUG rejection:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: RJTB
+2026-05-18 11:54:52.815 DEBUG rejection:434 - qrCodePalletScanning: rejected bay: 
+2026-05-18 11:54:52.815 DEBUG rejection:513 - qrCodePalletScanning: individual pallet update 
+2026-05-18 11:54:52.815 DEBUG rejection:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: RJTB : qrCode: LSCSM06P03
+2026-05-18 11:54:52.815 DEBUG rejection:248 - qrCodePalletScanning : status : GOOD : RJTB
+2026-05-18 11:54:52.815 DEBUG rejection:250 - qrCodePalletScanning : Exit : RJTB
+2026-05-18 11:54:52.815 INFO  rejection:82 - qrCodePalletScanningProcess : QR Code Scan Successful : RJTB
+2026-05-18 11:54:52.815 INFO  rejection:113 - qrCodePalletScanningProcess : Exit : RJTB
+2026-05-18 11:54:52.816 DEBUG rejection:116 - S02_qR_Code_Scanning_of_Pallet: palletQrId :LSCSM06P03
+2026-05-18 11:54:52.816 INFO  rejection:149 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getRejectionBayPalletDistinctIdList
+2026-05-18 11:54:52.820 INFO  rejection:155 - S02_qR_Code_Scanning_of_Pallet : found result  in database myPalletManage : 20260518T115324_0005_LSCSM06P03
+2026-05-18 11:54:52.820 DEBUG rejection:357 - readPalletMetersData: Entry for bay: RJTB
+2026-05-18 11:54:52.829 DEBUG rejection:380 - Rejection : readPalletMetersData: result found for RJTB : palletDistinctId: 20260518T115324_0005_LSCSM06P03
+2026-05-18 11:54:52.829 DEBUG rejection:405 - readPalletMetersData: Successfully read 6 meters.
+2026-05-18 11:54:52.836 DEBUG rejection:408 - Rejection: readPalletMetersData: updated setExitAppeared to true for getPalletDistinctId: 20260518T115324_0005_LSCSM06P03
+2026-05-18 11:54:52.837 DEBUG rejection:640 - updatePalletStatusOnDisplayMonitor: Entry
+2026-05-18 11:54:52.837 DEBUG rejection:795 - metricsUpdateRejectionMeters: Entry.
+2026-05-18 11:54:52.837 DEBUG rejection:643 - updatePalletStatusOnDisplayMonitor: palletQrCode: <LSCSM06P03>
+2026-05-18 11:54:52.837 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013938 , status: <FAIL> : positionNo: 2
+2026-05-18 11:54:52.838 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013916 , status: <PASS> : positionNo: 5
+2026-05-18 11:54:52.838 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013936 , status: <PASS> : positionNo: 1
+2026-05-18 11:54:52.838 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013915 , status: <PASS> : positionNo: 4
+2026-05-18 11:54:52.838 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013917 , status: <PASS> : positionNo: 6
+2026-05-18 11:54:52.838 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013914 , status: <PASS> : positionNo: 3
+2026-05-18 11:54:52.838 DEBUG rejection:678 - updatePalletStatusOnDisplayMonitor: resultManipulatedMetersData: [{"overallTestResultStatus":"FAIL","rackPositionNo":2,"meterSerialNo":"01013938","errorCode":"Ron-Ph-I","id":2}, {"overallTestResultStatus":"PASS","rackPositionNo":5,"meterSerialNo":"01013916","errorCode":"","id":5}, {"overallTestResultStatus":"PASS","rackPositionNo":1,"meterSerialNo":"01013936","errorCode":"","id":1}, {"overallTestResultStatus":"PASS","rackPositionNo":4,"meterSerialNo":"01013915","errorCode":"","id":4}, {"overallTestResultStatus":"PASS","rackPositionNo":6,"meterSerialNo":"01013917","errorCode":"","id":6}, {"overallTestResultStatus":"PASS","rackPositionNo":3,"meterSerialNo":"01013914","errorCode":"","id":3}]
+2026-05-18 11:54:52.843 DEBUG rejection:683 - updatePalletStatusOnDisplayMonitor: Exit
+2026-05-18 11:54:52.901 DEBUG rejection:851 - metricsUpdateRejectionMeters: Exit. All updates initiated successfully: true
+2026-05-18 11:54:52.904 INFO  rejection:238 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-18 11:54:52.904 DEBUG rejection:169 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Status     : true
+2026-05-18 11:54:52.904 DEBUG rejection:170 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Error Code : ERROR_CODE_601
+2026-05-18 11:54:52.904 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:54:52.904 INFO  rejection:46 - S021_check_for_pallet_removed_at_Reject_Bay : Entry
+2026-05-18 11:54:52.904 DEBUG rejection:122 - S021_check_for_pallet_removed_at_Reject_Bay : Checking pallet sensor state.
+2026-05-18 11:54:52.904 DEBUG rejection:136 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:54:53.007 DEBUG rejection:151 - S021_check_for_pallet_removed_at_Reject_Bay : Sensor state : On
+2026-05-18 11:54:53.007 DEBUG rejection:164 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet available status : true
+2026-05-18 11:54:53.007 DEBUG rejection:168 - S021_check_for_pallet_removed_at_Reject_Bay : Exit isPalletAvailableAt_RejectBay
+2026-05-18 11:54:53.007 INFO  rejection:91 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet still available at Reject Bay, waiting for removal.
+2026-05-18 11:55:28.275 INFO  rejection:87 - S021_check_for_pallet_removed_at_Reject_Bay : Stable absence of pallet confirmed.
+2026-05-18 11:55:28.275 INFO  rejection:100 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet successfully removed. Proceeding to next state.
+2026-05-18 11:55:31.275 INFO  rejection:178 - Attempting to set Rejection Screen to Idle state via API.
+2026-05-18 11:55:31.277 ERROR rejection:193 - Failed to set Rejection Screen to Idle. Response Code: 404
+2026-05-18 11:55:31.277 DEBUG rejection:169 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Status     : true
+2026-05-18 11:55:31.277 DEBUG rejection:170 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 11:55:31.277 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:55:31.277 INFO  rejection:36 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:31.277 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:31.277 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:31.378 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:31.378 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:31.378 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:31.378 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:32.379 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:32.379 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:32.482 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:32.482 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:32.482 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:32.482 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:33.482 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:33.482 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:33.584 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:33.584 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:33.584 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:33.584 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:34.584 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:34.584 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:34.686 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:34.686 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:34.686 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:34.686 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:35.687 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:35.687 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:35.788 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:35.788 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:35.788 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:35.788 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:36.788 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:36.788 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:36.890 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:36.890 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:36.890 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:36.890 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:37.891 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:37.891 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:37.993 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:37.993 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:37.993 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:37.993 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:38.993 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:38.993 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:39.094 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:39.094 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:39.094 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:39.094 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:40.094 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:40.094 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:40.196 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:40.196 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:40.196 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:40.196 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:41.196 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:41.196 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:41.298 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:41.298 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:41.298 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:41.298 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:42.298 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:42.298 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:42.400 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:42.400 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:42.400 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:42.400 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:43.401 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:43.401 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:43.502 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:43.502 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:43.502 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:43.502 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:44.502 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:44.502 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:44.603 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:44.603 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:44.603 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:44.603 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:45.603 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:45.603 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:45.704 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:45.704 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:45.704 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:45.704 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:46.704 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:46.704 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:46.805 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:46.805 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:46.805 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:46.805 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:47.805 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:47.805 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:47.907 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:47.907 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:47.907 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:47.907 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:48.908 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:48.908 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:49.010 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:49.010 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:49.010 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:49.010 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:50.011 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:50.011 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:50.113 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:50.113 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:50.113 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:50.113 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:51.114 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:51.114 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:51.216 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:51.216 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:51.216 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:51.216 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:52.216 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:52.216 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:52.319 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:52.319 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:52.319 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:52.319 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:53.320 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:53.320 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:53.422 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:53.422 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:53.422 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:53.422 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:54.422 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:54.422 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:54.523 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:54.523 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:54.523 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:54.523 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:55.523 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:55.523 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:55.625 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:55.625 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:55.625 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:55.625 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:56.625 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:56.625 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:56.727 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:56.727 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:56.727 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:56.727 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:57.728 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:57.728 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:57.831 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:57.831 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:57.831 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:57.831 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:58.831 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:58.831 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:55:58.933 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:55:58.933 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:55:58.933 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:55:58.933 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:55:59.934 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:55:59.934 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:00.035 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:00.035 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:00.035 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:00.035 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:01.036 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:01.036 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:01.138 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:01.138 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:01.138 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:01.138 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:02.138 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:02.138 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:02.239 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:02.239 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:02.239 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:02.239 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:03.240 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:03.240 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:03.341 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:03.341 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:03.341 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:03.341 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:04.342 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:04.342 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:04.444 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:04.444 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:04.444 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:04.444 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:05.445 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:05.445 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:05.547 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:05.547 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:05.547 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:05.547 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:06.547 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:06.547 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:06.652 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:06.652 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:06.652 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:06.652 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:07.652 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:07.652 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:07.753 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:07.753 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:07.753 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:07.753 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:08.753 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:08.753 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:08.855 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:08.855 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:08.855 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:08.855 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:09.855 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:09.855 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:09.959 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:09.959 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:09.959 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:09.959 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:10.960 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:10.960 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:11.061 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:11.061 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:11.061 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:11.061 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:12.061 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:12.061 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:12.163 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:12.163 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:12.163 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:12.163 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:13.164 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:13.164 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:13.266 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:13.266 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:13.266 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:13.266 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:14.266 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:14.266 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:14.368 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:14.368 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:14.368 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:14.368 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:15.369 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:15.369 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:15.470 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:15.470 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:15.470 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:15.470 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:16.471 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:16.471 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:16.572 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:16.572 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:16.572 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:16.572 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:17.572 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:17.572 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:17.674 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:17.674 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:17.674 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:17.674 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:18.674 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:18.674 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:18.776 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:18.776 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:18.776 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:18.776 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:19.777 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:19.777 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:19.880 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:19.880 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:19.880 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:19.880 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:20.880 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:20.880 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:20.981 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:20.981 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:20.981 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:20.981 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:21.982 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:21.982 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:22.083 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:22.083 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:22.083 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:22.083 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:23.083 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:23.083 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:23.184 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:23.184 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:23.184 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:23.184 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:24.184 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:24.184 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:24.286 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:24.286 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:24.286 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:24.286 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:25.286 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:25.286 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:25.388 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:25.388 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:25.388 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:25.388 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:26.389 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:26.389 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:26.491 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:26.491 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:26.491 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:26.491 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:27.491 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:27.491 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:27.593 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:27.593 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:27.593 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:27.593 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:28.594 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:28.594 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:28.695 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:28.695 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:28.695 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:28.695 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:29.695 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:29.695 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:29.797 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:29.797 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:29.797 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:29.797 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:30.797 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:30.797 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:30.898 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:30.898 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:30.898 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:30.898 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:31.898 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:31.898 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:31.999 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:31.999 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:31.999 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:31.999 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:32.999 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:32.999 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:33.101 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:33.101 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:33.101 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:33.101 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:34.101 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:34.101 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:34.202 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:34.202 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:34.202 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:34.202 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:35.202 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:35.202 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:35.303 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:35.303 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:35.303 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:35.303 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:36.303 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:36.303 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:36.404 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:36.404 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:36.404 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:36.404 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:37.405 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:37.405 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:37.507 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:37.507 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:37.507 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:37.507 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:38.507 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:38.507 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:38.609 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:38.609 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:38.609 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:38.609 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:39.610 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:39.610 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:39.711 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:39.711 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:39.711 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:39.711 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:40.711 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:40.711 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:40.812 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:40.812 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:40.812 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:40.812 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:41.812 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:41.812 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:41.913 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:41.913 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:41.913 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:41.913 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:42.913 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:42.913 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:43.014 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:43.014 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:43.014 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:43.014 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:44.015 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:44.015 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:44.117 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:44.117 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:44.117 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:44.117 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:45.117 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:45.117 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:45.219 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:45.219 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:45.219 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:45.219 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:46.220 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:46.220 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:46.321 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:46.321 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:46.321 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:46.321 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:47.321 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:47.321 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:47.423 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:47.423 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:47.423 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:47.423 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:48.423 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:48.423 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:48.524 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:48.524 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:48.524 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:48.524 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:49.525 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:49.525 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:49.626 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:49.626 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:49.626 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:49.626 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:50.627 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:50.627 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:50.728 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:50.728 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:50.728 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:50.728 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:51.728 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:51.728 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:51.829 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:51.829 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:51.829 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:51.829 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:52.830 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:52.830 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:52.932 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:52.932 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:52.932 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:52.932 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:53.932 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:53.932 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:54.033 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:54.033 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:54.033 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:54.033 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:55.033 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:55.033 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:55.134 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:55.134 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:55.134 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:55.134 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:56.135 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:56.135 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:56.237 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:56.237 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:56.237 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:56.237 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:57.237 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:57.237 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:57.339 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:57.339 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:57.339 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:57.339 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:58.339 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:58.339 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:58.440 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:58.440 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:58.440 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:58.440 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:56:59.440 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:56:59.440 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:56:59.541 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:56:59.541 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:56:59.541 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:56:59.541 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:00.541 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:00.541 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:00.643 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:00.643 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:00.643 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:00.643 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:01.644 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:01.644 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:01.746 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:01.746 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:01.746 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:01.746 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:02.746 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:02.746 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:02.847 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:02.847 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:02.847 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:02.847 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:03.847 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:03.847 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:03.947 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:03.947 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:03.947 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:03.947 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:04.949 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:04.949 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:05.050 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:05.050 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:05.050 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:05.050 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:06.050 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:06.050 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:06.152 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:06.152 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:06.152 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:06.152 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:07.153 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:07.153 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:07.254 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:07.254 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:07.254 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:07.254 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:08.254 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:08.254 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:08.356 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:08.356 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:08.356 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:08.356 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:09.356 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:09.356 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:09.457 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:09.457 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:09.457 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:09.457 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:10.457 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:10.457 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:10.558 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:10.558 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:10.558 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:10.558 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:11.558 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:11.558 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:11.658 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:11.658 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:11.658 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:11.658 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:12.658 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:12.658 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:12.760 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:12.760 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:12.760 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:12.760 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:13.760 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:13.760 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:13.860 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:13.860 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:13.860 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:13.860 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:14.860 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:14.860 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:14.962 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:14.962 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:14.962 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:14.962 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:15.962 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:15.962 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:16.064 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:16.064 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:16.064 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:16.064 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:17.064 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:17.064 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:17.166 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:17.166 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:17.166 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:17.166 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:18.166 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:18.166 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:18.267 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:18.267 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:18.267 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:18.267 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:19.267 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:19.267 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:19.369 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:19.369 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:19.369 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:19.369 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:20.370 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:20.370 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:20.472 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:20.472 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:20.472 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:20.472 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:21.473 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:21.473 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:21.574 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:21.574 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:21.574 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:21.574 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:22.574 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:22.574 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:22.676 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:22.676 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:22.676 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:22.676 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:23.677 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:23.677 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:23.777 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:23.777 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:23.777 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:23.777 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:24.777 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:24.777 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:24.878 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:24.878 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:24.878 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:24.878 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:25.879 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:25.879 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:25.982 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:25.982 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:25.982 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:25.982 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:26.983 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:26.983 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:27.084 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:27.084 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:27.084 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:27.084 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:28.084 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:28.084 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:28.186 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:28.186 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:28.186 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:28.186 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:29.186 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:29.186 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:29.287 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:29.287 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:29.287 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:29.287 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:30.287 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:30.287 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:30.389 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:30.389 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:30.389 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:30.389 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:31.389 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:31.389 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:31.491 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:31.491 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:31.491 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:31.491 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:32.492 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:32.492 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:32.594 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:32.594 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:32.594 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:32.594 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:33.594 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:33.594 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:33.696 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:33.696 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:33.696 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:33.696 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:34.696 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:34.696 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:34.797 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:34.797 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:34.797 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:34.797 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:35.797 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:35.797 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:35.899 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:35.899 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:35.899 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:35.899 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:36.899 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:36.899 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:37.001 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:37.001 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:37.001 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:37.001 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:38.001 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:38.001 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:38.102 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:38.102 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:38.102 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:38.102 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:39.103 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:39.103 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:39.205 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:39.205 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:39.205 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:39.205 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:40.205 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:40.205 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:40.306 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:40.306 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:40.306 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:40.306 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:41.306 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:41.306 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:41.408 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:41.408 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:41.408 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:41.408 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:42.408 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:42.408 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:42.509 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:42.509 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:42.509 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:42.509 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:43.509 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:43.509 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:43.610 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:43.610 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:43.610 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:43.610 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:44.610 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:44.610 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:44.711 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:44.711 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:44.711 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:44.711 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:45.712 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:45.712 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:45.813 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:45.813 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:45.813 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:45.813 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:46.814 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:46.814 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:46.916 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:46.916 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:46.916 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:46.916 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:47.917 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:47.917 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:48.019 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:48.019 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:48.019 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:48.019 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:49.020 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:49.020 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:49.121 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:49.121 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:49.121 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:49.121 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:50.122 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:50.122 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:50.224 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:50.224 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:50.224 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:50.224 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:51.224 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:51.224 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:51.325 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:51.325 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:51.325 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:51.325 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:52.325 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:52.325 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:52.426 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:52.426 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:52.426 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:52.426 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:53.427 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:53.427 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:53.529 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:53.529 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:53.529 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:53.529 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:54.530 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:54.530 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:54.632 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:54.632 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:54.632 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:54.632 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:55.632 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:55.632 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:55.733 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:55.733 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:55.733 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:55.733 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:56.733 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:56.733 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:56.835 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:56.835 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:56.835 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:56.835 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:57.835 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:57.835 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:57.936 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:57.936 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:57.936 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:57.936 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:57:58.936 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:57:58.936 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:57:59.038 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:57:59.038 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:57:59.038 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:57:59.038 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:00.039 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:00.039 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:00.140 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:00.140 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:00.140 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:00.140 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:01.141 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:01.141 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:01.243 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:01.243 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:01.243 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:01.243 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:02.243 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:02.243 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:02.344 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:02.344 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:02.344 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:02.344 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:03.345 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:03.345 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:03.447 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:03.447 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:03.447 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:03.447 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:04.447 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:04.447 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:04.548 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:04.548 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:04.548 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:04.548 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:05.548 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:05.548 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:05.650 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:05.650 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:05.650 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:05.650 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:06.651 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:06.651 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:06.752 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:06.752 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:06.752 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:06.752 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:07.752 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:07.752 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:07.854 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:07.854 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:07.854 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:07.854 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:08.854 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:08.854 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:08.955 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:08.955 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:08.955 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:08.955 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:09.956 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:09.956 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:10.057 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:10.057 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:10.057 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:10.057 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:11.057 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:11.057 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:11.158 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:11.158 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:11.158 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:11.158 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:12.159 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:12.159 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:12.260 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:12.260 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:12.260 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:12.260 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:13.260 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:13.260 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:13.362 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:13.362 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:13.362 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:13.362 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:14.362 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:14.362 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:14.464 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:14.464 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:14.464 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:14.464 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:15.464 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:15.464 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:15.565 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:15.565 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:15.565 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:15.565 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:16.565 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:16.565 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:16.667 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:16.667 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:16.667 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:16.667 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:17.667 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:17.667 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:17.768 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:17.768 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:17.768 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:17.768 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:18.769 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:18.769 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:18.870 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:18.870 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:18.870 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:18.870 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:19.871 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:19.871 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:19.972 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:19.972 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:19.972 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:19.972 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:20.972 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:20.972 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:21.074 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:21.074 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:21.074 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:21.074 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:22.074 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:22.074 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:22.175 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:22.175 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:22.175 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:22.175 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:23.175 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:23.175 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:23.277 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:23.277 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:23.277 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:23.277 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:24.277 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:24.277 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:24.378 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:24.378 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:24.378 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:24.378 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:25.378 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:25.378 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:25.480 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:25.480 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:25.480 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:25.480 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:26.481 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:26.481 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:26.583 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:26.583 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:26.583 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:26.583 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:27.583 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:27.583 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:27.684 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:27.684 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:27.684 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:27.684 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:28.684 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:28.684 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:28.786 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:28.786 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:28.786 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:28.786 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:29.787 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:29.787 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:29.888 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:29.888 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:29.888 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:29.888 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:30.888 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:30.888 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:30.989 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:30.989 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:30.989 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:30.989 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:31.989 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:31.989 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:32.091 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:32.091 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:32.091 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:32.091 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:33.092 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:33.092 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:33.193 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:33.193 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:33.193 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:33.193 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:34.193 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:34.193 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:34.295 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:34.295 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:34.295 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:34.295 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:35.295 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:35.295 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:35.396 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:35.396 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:35.396 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:35.396 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:36.396 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:36.396 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:36.498 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:36.498 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:36.498 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:36.498 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:37.498 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:37.498 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:37.600 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:37.600 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:37.600 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:37.600 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:38.601 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:38.601 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:38.702 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:38.702 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:38.702 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:38.702 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:39.703 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:39.703 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:39.805 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:39.805 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:39.805 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:39.805 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:40.805 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:40.805 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:40.906 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:40.906 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:40.906 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:40.906 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:41.906 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:41.906 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:42.007 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:42.007 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:42.007 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:42.007 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:43.008 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:43.008 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:43.109 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:43.109 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:43.109 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:43.109 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:44.109 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:44.109 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:44.220 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:44.220 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:44.220 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:44.220 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:45.220 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:45.220 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:45.321 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:45.321 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:45.321 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:45.321 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:46.322 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:46.322 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:46.423 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:46.423 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:46.423 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:46.423 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:47.424 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:47.424 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:47.525 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:47.525 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:47.525 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:47.525 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:48.525 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:48.525 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:48.626 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:48.626 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:48.626 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:48.626 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:49.627 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:49.627 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:49.728 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:49.728 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:49.728 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:49.728 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:50.728 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:50.728 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:50.829 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:50.829 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:50.829 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:50.829 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:51.829 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:51.829 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:51.931 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:51.931 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:51.931 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:51.931 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:52.932 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:52.932 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:53.034 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:53.034 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:53.034 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:53.034 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:54.034 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:54.034 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:54.136 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:54.136 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:54.136 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:54.136 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:55.136 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:55.136 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:55.237 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:55.237 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:55.237 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:55.237 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:56.237 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:56.237 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:56.339 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:56.339 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:56.339 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:56.339 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:57.339 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:57.339 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:57.440 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:57.440 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:57.440 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:57.440 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:58.440 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:58.440 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:58.542 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:58.542 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:58.542 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:58.542 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:58:59.542 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:58:59.542 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:58:59.645 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:58:59.645 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:58:59.645 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:58:59.645 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:00.645 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:00.645 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:00.747 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:00.747 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:00.747 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:00.747 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:01.748 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:01.748 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:01.849 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:01.849 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:01.849 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:01.849 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:02.850 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:02.850 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:02.952 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:02.952 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:02.952 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:02.952 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:03.953 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:03.953 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:04.054 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:04.054 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:04.054 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:04.054 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:05.054 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:05.054 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:05.155 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:05.155 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:05.155 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:05.155 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:06.155 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:06.155 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:06.257 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:06.257 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:06.257 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:06.257 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:07.257 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:07.257 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:07.358 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:07.358 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:07.358 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:07.358 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:08.358 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:08.358 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:08.460 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:08.460 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:08.460 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:08.460 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:09.460 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:09.460 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:09.562 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:09.562 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:09.562 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:09.562 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:10.562 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:10.562 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:10.664 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:10.664 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:10.664 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:10.664 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:11.664 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:11.664 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:11.766 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:11.766 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:11.766 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:11.766 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:12.766 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:12.766 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:12.867 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:12.867 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:12.867 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:12.867 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:13.868 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:13.868 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:13.969 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:13.969 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:13.969 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:13.969 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:14.969 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:14.969 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:15.071 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:15.071 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:15.071 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:15.071 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:16.071 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:16.071 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:16.173 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:16.173 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:16.173 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:16.173 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:17.173 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:17.173 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:17.276 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:17.276 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:17.276 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:17.276 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:18.276 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:18.276 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:18.377 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:18.377 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:18.377 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:18.377 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:19.377 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:19.377 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:19.478 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:19.478 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:19.478 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:19.478 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:20.478 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:20.478 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:20.580 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:20.580 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:20.580 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:20.580 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:21.581 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:21.581 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:21.683 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:21.683 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:21.683 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:21.683 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:22.683 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:22.683 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:22.786 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:22.786 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:22.786 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:22.786 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:23.786 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:23.786 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:23.888 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:23.888 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:23.888 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:23.888 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:24.889 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:24.889 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:24.991 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:24.991 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:24.991 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:24.991 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:25.991 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:25.991 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:26.093 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:26.093 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:26.093 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:26.093 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:27.093 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:27.093 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:27.194 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:27.194 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:27.194 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:27.194 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:28.194 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:28.194 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:28.296 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:28.296 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:28.296 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:28.296 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:29.297 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:29.297 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:29.399 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:29.399 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:29.399 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:29.399 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:30.400 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:30.400 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:30.573 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:30.573 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:30.573 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:30.573 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:31.574 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:31.574 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:31.676 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:31.676 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:31.676 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:31.676 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:32.676 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:32.676 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:32.778 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:32.778 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:32.778 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:32.778 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:33.778 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:33.778 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:33.879 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:33.879 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:33.879 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:33.879 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:34.879 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:34.879 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:34.981 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:34.981 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:34.981 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:34.981 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:35.981 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:35.981 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:36.082 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:36.082 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:36.082 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:36.082 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:37.082 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:37.082 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:37.184 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:37.184 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:37.184 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:37.184 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:38.184 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:38.184 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:38.286 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : Off
+2026-05-18 11:59:38.286 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : false
+2026-05-18 11:59:38.286 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:38.286 INFO  rejection:96 - S01_check_for_pallets_at_Reject_Bay : No Pallet Available
+2026-05-18 11:59:39.286 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:39.286 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:39.388 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:59:39.388 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:59:39.388 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:40.389 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:40.389 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:40.491 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:59:40.491 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:59:40.491 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:41.493 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:41.493 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:41.594 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:59:41.594 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:59:41.594 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:42.594 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 11:59:42.594 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:42.695 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 11:59:42.695 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 11:59:42.695 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 11:59:42.695 INFO  rejection:104 - S01_check_for_pallets_at_Reject_Bay : Pallet Available
+2026-05-18 11:59:42.695 DEBUG rejection:169 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Status     : true
+2026-05-18 11:59:42.695 DEBUG rejection:170 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 11:59:42.695 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:59:42.695 INFO  rejection:85 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-18 11:59:42.695 DEBUG rejection:123 - qrCodePalletScanning : Entry : RJTB
+2026-05-18 11:59:45.652 DEBUG rejection:174 - qrCodePalletScanning : scannedData: LSCSM06P006
+
+2026-05-18 11:59:45.652 DEBUG rejection:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-18 11:59:45.652 DEBUG rejection:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: RJTB
+2026-05-18 11:59:45.657 DEBUG rejection:434 - qrCodePalletScanning: rejected bay: 
+2026-05-18 11:59:45.658 DEBUG rejection:513 - qrCodePalletScanning: individual pallet update 
+2026-05-18 11:59:45.658 DEBUG rejection:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: RJTB : qrCode: LSCSM06P006
+2026-05-18 11:59:45.658 DEBUG rejection:248 - qrCodePalletScanning : status : GOOD : RJTB
+2026-05-18 11:59:45.658 DEBUG rejection:250 - qrCodePalletScanning : Exit : RJTB
+2026-05-18 11:59:45.658 INFO  rejection:82 - qrCodePalletScanningProcess : QR Code Scan Successful : RJTB
+2026-05-18 11:59:45.658 INFO  rejection:113 - qrCodePalletScanningProcess : Exit : RJTB
+2026-05-18 11:59:45.658 DEBUG rejection:116 - S02_qR_Code_Scanning_of_Pallet: palletQrId :LSCSM06P006
+2026-05-18 11:59:45.658 INFO  rejection:149 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getRejectionBayPalletDistinctIdList
+2026-05-18 11:59:45.662 INFO  rejection:155 - S02_qR_Code_Scanning_of_Pallet : found result  in database myPalletManage : 20260518T115858_0007_LSCSM06P006
+2026-05-18 11:59:45.662 DEBUG rejection:357 - readPalletMetersData: Entry for bay: RJTB
+2026-05-18 11:59:45.669 DEBUG rejection:380 - Rejection : readPalletMetersData: result found for RJTB : palletDistinctId: 20260518T115858_0007_LSCSM06P006
+2026-05-18 11:59:45.669 DEBUG rejection:405 - readPalletMetersData: Successfully read 6 meters.
+2026-05-18 11:59:45.678 DEBUG rejection:408 - Rejection: readPalletMetersData: updated setExitAppeared to true for getPalletDistinctId: 20260518T115858_0007_LSCSM06P006
+2026-05-18 11:59:45.678 DEBUG rejection:640 - updatePalletStatusOnDisplayMonitor: Entry
+2026-05-18 11:59:45.678 DEBUG rejection:795 - metricsUpdateRejectionMeters: Entry.
+2026-05-18 11:59:45.678 DEBUG rejection:643 - updatePalletStatusOnDisplayMonitor: palletQrCode: <LSCSM06P006>
+2026-05-18 11:59:45.678 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014014 , status: <> : positionNo: 6
+2026-05-18 11:59:45.678 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014012 , status: <> : positionNo: 4
+2026-05-18 11:59:45.678 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01012959 , status: <> : positionNo: 3
+2026-05-18 11:59:45.678 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 1 , status: <FAIL> : positionNo: 1
+2026-05-18 11:59:45.678 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013072 , status: <> : positionNo: 5
+2026-05-18 11:59:45.678 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014010 , status: <> : positionNo: 2
+2026-05-18 11:59:45.678 DEBUG rejection:678 - updatePalletStatusOnDisplayMonitor: resultManipulatedMetersData: [{"overallTestResultStatus":"","rackPositionNo":6,"meterSerialNo":"01014014","errorCode":"","id":6}, {"overallTestResultStatus":"","rackPositionNo":4,"meterSerialNo":"01014012","errorCode":"","id":4}, {"overallTestResultStatus":"","rackPositionNo":3,"meterSerialNo":"01012959","errorCode":"","id":3}, {"overallTestResultStatus":"FAIL","rackPositionNo":1,"meterSerialNo":"1","errorCode":"ERR_COMM","id":1}, {"overallTestResultStatus":"","rackPositionNo":5,"meterSerialNo":"01013072","errorCode":"","id":5}, {"overallTestResultStatus":"","rackPositionNo":2,"meterSerialNo":"01014010","errorCode":"","id":2}]
+2026-05-18 11:59:45.682 DEBUG rejection:683 - updatePalletStatusOnDisplayMonitor: Exit
+2026-05-18 11:59:45.696 DEBUG rejection:851 - metricsUpdateRejectionMeters: Exit. All updates initiated successfully: true
+2026-05-18 11:59:45.696 INFO  rejection:238 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-18 11:59:45.696 DEBUG rejection:169 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Status     : true
+2026-05-18 11:59:45.696 DEBUG rejection:170 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Error Code : ERROR_CODE_601
+2026-05-18 11:59:45.696 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 11:59:45.696 INFO  rejection:46 - S021_check_for_pallet_removed_at_Reject_Bay : Entry
+2026-05-18 11:59:45.696 DEBUG rejection:122 - S021_check_for_pallet_removed_at_Reject_Bay : Checking pallet sensor state.
+2026-05-18 11:59:45.696 DEBUG rejection:136 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 11:59:45.798 DEBUG rejection:151 - S021_check_for_pallet_removed_at_Reject_Bay : Sensor state : On
+2026-05-18 11:59:45.798 DEBUG rejection:164 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet available status : true
+2026-05-18 11:59:45.798 DEBUG rejection:168 - S021_check_for_pallet_removed_at_Reject_Bay : Exit isPalletAvailableAt_RejectBay
+2026-05-18 11:59:45.798 INFO  rejection:91 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet still available at Reject Bay, waiting for removal.
+2026-05-18 14:32:09.019 INFO  rejection:217 - btnRjStopOnClick : Invoked:
+2026-05-18 14:32:09.019 INFO  rejection:219 - REJECTION BAY : STOPPED
+2026-05-18 14:32:09.020 INFO  rejection:270 - btnRjStopOnClick : Exit:
+2026-05-18 14:32:09.120 DEBUG rejection:22 - RejectionBayStop : Entry
+2026-05-18 14:32:09.120 DEBUG rejection:30 - RejectionBayStop : manageRejectionBayStopStates : Entry
+2026-05-18 14:32:09.122 DEBUG rejection:49 - RejectionBayStop : manageRejectionBayStopStates : getTableStatePlanner2 : Size : 1
+2026-05-18 14:32:09.122 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:32:09.122 INFO  rejection:18 - S04_idle_condition : Entry
+2026-05-18 14:32:09.122 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:09.895 WARN  rejection:112 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet removal check failed or process interrupted.
+2026-05-18 14:32:09.895 DEBUG rejection:169 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Status     : false
+2026-05-18 14:32:09.895 DEBUG rejection:170 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Error Code : ERROR_CODE_REJECTION_001
+2026-05-18 14:32:10.123 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:11.123 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:12.123 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:13.123 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:14.123 DEBUG rejection:62 - [RJTB] : [IDLE_CONDITION] : [STOP_REQUESTED] - Stop process requested. Setting stop process completed.
+2026-05-18 14:32:14.123 DEBUG rejection:156 - processCurrentState : S04_idle_condition : Status     : true
+2026-05-18 14:32:14.123 DEBUG rejection:157 - processCurrentState : S04_idle_condition : Error Code : NO_ERROR_001
+2026-05-18 14:32:14.123 DEBUG rejection:123 - RejectionBayStop : manageRejectionBayStopStates : Exit
+2026-05-18 14:42:27.589 INFO  rejection:157 - btnRjStartOnClick : Invoked:
+2026-05-18 14:42:27.589 INFO  rejection:159 - REJECTION BAY : STARTED
+2026-05-18 14:42:27.589 INFO  rejection:212 - btnRjStartOnClick : Exit:
+2026-05-18 14:42:27.689 DEBUG rejection:33 - RejectionBay2 : Entry
+2026-05-18 14:42:27.689 DEBUG rejection:41 - RejectionBay2 : manageRejectionBayStates : Entry
+2026-05-18 14:42:27.690 DEBUG rejection:60 - RejectionBay2 : manageRejectionBayStates : getTableStatePlanner2 : Size : 3
+2026-05-18 14:42:27.690 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:42:27.690 INFO  rejection:36 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:42:27.690 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:42:27.690 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:42:27.792 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:42:27.792 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:42:27.792 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:42:28.793 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:42:28.793 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:42:28.896 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:42:28.896 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:42:28.896 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:42:29.896 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:42:29.896 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:42:29.998 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:42:29.998 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:42:29.998 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:42:30.999 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:42:30.999 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:42:31.101 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:42:31.101 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:42:31.101 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:42:31.101 INFO  rejection:104 - S01_check_for_pallets_at_Reject_Bay : Pallet Available
+2026-05-18 14:42:31.101 DEBUG rejection:169 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Status     : true
+2026-05-18 14:42:31.101 DEBUG rejection:170 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 14:42:31.101 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:42:31.101 INFO  rejection:85 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-18 14:42:31.101 DEBUG rejection:123 - qrCodePalletScanning : Entry : RJTB
+2026-05-18 14:42:38.640 DEBUG rejection:174 - qrCodePalletScanning : scannedData: LSCSM06P006
+
+2026-05-18 14:42:38.640 DEBUG rejection:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-18 14:42:38.640 DEBUG rejection:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: RJTB
+2026-05-18 14:42:38.645 DEBUG rejection:434 - qrCodePalletScanning: rejected bay: 
+2026-05-18 14:42:38.645 DEBUG rejection:513 - qrCodePalletScanning: individual pallet update 
+2026-05-18 14:42:38.645 DEBUG rejection:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: RJTB : qrCode: LSCSM06P006
+2026-05-18 14:42:38.645 DEBUG rejection:248 - qrCodePalletScanning : status : GOOD : RJTB
+2026-05-18 14:42:38.645 DEBUG rejection:250 - qrCodePalletScanning : Exit : RJTB
+2026-05-18 14:42:38.645 INFO  rejection:82 - qrCodePalletScanningProcess : QR Code Scan Successful : RJTB
+2026-05-18 14:42:38.645 INFO  rejection:113 - qrCodePalletScanningProcess : Exit : RJTB
+2026-05-18 14:42:38.645 DEBUG rejection:116 - S02_qR_Code_Scanning_of_Pallet: palletQrId :LSCSM06P006
+2026-05-18 14:42:38.645 INFO  rejection:149 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getRejectionBayPalletDistinctIdList
+2026-05-18 14:42:38.648 INFO  rejection:155 - S02_qR_Code_Scanning_of_Pallet : found result  in database myPalletManage : 20260518T115858_0007_LSCSM06P006
+2026-05-18 14:42:38.648 DEBUG rejection:357 - readPalletMetersData: Entry for bay: RJTB
+2026-05-18 14:42:38.654 DEBUG rejection:380 - Rejection : readPalletMetersData: result found for RJTB : palletDistinctId: 20260518T115858_0007_LSCSM06P006
+2026-05-18 14:42:38.654 DEBUG rejection:405 - readPalletMetersData: Successfully read 6 meters.
+2026-05-18 14:42:38.657 DEBUG rejection:408 - Rejection: readPalletMetersData: updated setExitAppeared to true for getPalletDistinctId: 20260518T115858_0007_LSCSM06P006
+2026-05-18 14:42:38.657 DEBUG rejection:640 - updatePalletStatusOnDisplayMonitor: Entry
+2026-05-18 14:42:38.657 DEBUG rejection:795 - metricsUpdateRejectionMeters: Entry.
+2026-05-18 14:42:38.657 DEBUG rejection:643 - updatePalletStatusOnDisplayMonitor: palletQrCode: <LSCSM06P006>
+2026-05-18 14:42:38.657 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 1 , status: <FAIL> : positionNo: 1
+2026-05-18 14:42:38.657 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01012959 , status: <> : positionNo: 3
+2026-05-18 14:42:38.657 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014014 , status: <> : positionNo: 6
+2026-05-18 14:42:38.657 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014010 , status: <> : positionNo: 2
+2026-05-18 14:42:38.658 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014012 , status: <> : positionNo: 4
+2026-05-18 14:42:38.658 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013072 , status: <> : positionNo: 5
+2026-05-18 14:42:38.658 DEBUG rejection:678 - updatePalletStatusOnDisplayMonitor: resultManipulatedMetersData: [{"overallTestResultStatus":"FAIL","rackPositionNo":1,"meterSerialNo":"1","errorCode":"ERR_COMM","id":1}, {"overallTestResultStatus":"","rackPositionNo":3,"meterSerialNo":"01012959","errorCode":"","id":3}, {"overallTestResultStatus":"","rackPositionNo":6,"meterSerialNo":"01014014","errorCode":"","id":6}, {"overallTestResultStatus":"","rackPositionNo":2,"meterSerialNo":"01014010","errorCode":"","id":2}, {"overallTestResultStatus":"","rackPositionNo":4,"meterSerialNo":"01014012","errorCode":"","id":4}, {"overallTestResultStatus":"","rackPositionNo":5,"meterSerialNo":"01013072","errorCode":"","id":5}]
+2026-05-18 14:42:38.661 DEBUG rejection:683 - updatePalletStatusOnDisplayMonitor: Exit
+2026-05-18 14:42:38.679 DEBUG rejection:851 - metricsUpdateRejectionMeters: Exit. All updates initiated successfully: true
+2026-05-18 14:42:38.680 INFO  rejection:238 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-18 14:42:38.680 DEBUG rejection:169 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Status     : true
+2026-05-18 14:42:38.680 DEBUG rejection:170 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Error Code : ERROR_CODE_601
+2026-05-18 14:42:38.680 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:42:38.680 INFO  rejection:46 - S021_check_for_pallet_removed_at_Reject_Bay : Entry
+2026-05-18 14:42:38.680 DEBUG rejection:122 - S021_check_for_pallet_removed_at_Reject_Bay : Checking pallet sensor state.
+2026-05-18 14:42:38.680 DEBUG rejection:136 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:42:38.783 DEBUG rejection:151 - S021_check_for_pallet_removed_at_Reject_Bay : Sensor state : On
+2026-05-18 14:42:38.783 DEBUG rejection:164 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet available status : true
+2026-05-18 14:42:38.783 DEBUG rejection:168 - S021_check_for_pallet_removed_at_Reject_Bay : Exit isPalletAvailableAt_RejectBay
+2026-05-18 14:42:38.783 INFO  rejection:91 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet still available at Reject Bay, waiting for removal.
+2026-05-18 14:45:11.980 INFO  rejection:217 - btnRjStopOnClick : Invoked:
+2026-05-18 14:45:11.980 INFO  rejection:219 - REJECTION BAY : STOPPED
+2026-05-18 14:45:11.980 INFO  rejection:270 - btnRjStopOnClick : Exit:
+2026-05-18 14:45:12.082 DEBUG rejection:22 - RejectionBayStop : Entry
+2026-05-18 14:45:12.082 DEBUG rejection:30 - RejectionBayStop : manageRejectionBayStopStates : Entry
+2026-05-18 14:45:12.083 DEBUG rejection:49 - RejectionBayStop : manageRejectionBayStopStates : getTableStatePlanner2 : Size : 1
+2026-05-18 14:45:12.083 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:45:12.083 INFO  rejection:18 - S04_idle_condition : Entry
+2026-05-18 14:45:12.083 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:45:12.957 WARN  rejection:112 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet removal check failed or process interrupted.
+2026-05-18 14:45:12.957 DEBUG rejection:169 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Status     : false
+2026-05-18 14:45:12.957 DEBUG rejection:170 - processCurrentState : S021_check_for_pallet_removed_at_Reject_Bay : Error Code : ERROR_CODE_REJECTION_001
+2026-05-18 14:45:13.083 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:45:14.083 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:45:15.083 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:45:16.084 INFO  rejection:39 - S04_idle_condition : Waiting in Idle Condition
+2026-05-18 14:45:17.085 DEBUG rejection:62 - [RJTB] : [IDLE_CONDITION] : [STOP_REQUESTED] - Stop process requested. Setting stop process completed.
+2026-05-18 14:45:17.085 DEBUG rejection:156 - processCurrentState : S04_idle_condition : Status     : true
+2026-05-18 14:45:17.085 DEBUG rejection:157 - processCurrentState : S04_idle_condition : Error Code : NO_ERROR_001
+2026-05-18 14:45:17.085 DEBUG rejection:123 - RejectionBayStop : manageRejectionBayStopStates : Exit
+2026-05-18 14:50:50.563 INFO  rejection:157 - btnRjStartOnClick : Invoked:
+2026-05-18 14:50:50.563 INFO  rejection:159 - REJECTION BAY : STARTED
+2026-05-18 14:50:50.564 INFO  rejection:212 - btnRjStartOnClick : Exit:
+2026-05-18 14:50:50.664 DEBUG rejection:33 - RejectionBay2 : Entry
+2026-05-18 14:50:50.664 DEBUG rejection:41 - RejectionBay2 : manageRejectionBayStates : Entry
+2026-05-18 14:50:50.665 DEBUG rejection:60 - RejectionBay2 : manageRejectionBayStates : getTableStatePlanner2 : Size : 3
+2026-05-18 14:50:50.665 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:50:50.665 INFO  rejection:36 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:50:50.665 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:50:50.665 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:50:50.833 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:50:50.833 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:50:50.833 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:50:51.833 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:50:51.833 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:50:51.937 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:50:51.937 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:50:51.937 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:50:52.937 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:50:52.937 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:50:53.039 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:50:53.039 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:50:53.039 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:50:54.040 DEBUG rejection:129 - S01_check_for_pallets_at_Reject_Bay : Entry
+2026-05-18 14:50:54.040 DEBUG rejection:141 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:50:54.142 DEBUG rejection:159 - S01_check_for_pallets_at_Reject_Bay : state : On
+2026-05-18 14:50:54.142 DEBUG rejection:167 - S01_check_for_pallets_at_Reject_Bay : status : true
+2026-05-18 14:50:54.142 DEBUG rejection:172 - S01_check_for_pallets_at_Reject_Bay : Exit
+2026-05-18 14:50:54.142 INFO  rejection:104 - S01_check_for_pallets_at_Reject_Bay : Pallet Available
+2026-05-18 14:50:54.142 DEBUG rejection:169 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Status     : true
+2026-05-18 14:50:54.142 DEBUG rejection:170 - processCurrentState : S01_check_for_pallets_at_Reject_Bay : Error Code : ERROR_CODE_602
+2026-05-18 14:50:54.142 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:50:54.142 INFO  rejection:85 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-18 14:50:54.142 DEBUG rejection:123 - qrCodePalletScanning : Entry : RJTB
+2026-05-18 14:51:03.247 DEBUG rejection:174 - qrCodePalletScanning : scannedData: LSCSM06P006
+
+2026-05-18 14:51:03.247 DEBUG rejection:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-18 14:51:03.247 DEBUG rejection:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: RJTB
+2026-05-18 14:51:03.254 DEBUG rejection:434 - qrCodePalletScanning: rejected bay: 
+2026-05-18 14:51:03.254 DEBUG rejection:513 - qrCodePalletScanning: individual pallet update 
+2026-05-18 14:51:03.254 DEBUG rejection:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: RJTB : qrCode: LSCSM06P006
+2026-05-18 14:51:03.254 DEBUG rejection:248 - qrCodePalletScanning : status : GOOD : RJTB
+2026-05-18 14:51:03.254 DEBUG rejection:250 - qrCodePalletScanning : Exit : RJTB
+2026-05-18 14:51:03.254 INFO  rejection:82 - qrCodePalletScanningProcess : QR Code Scan Successful : RJTB
+2026-05-18 14:51:03.254 INFO  rejection:113 - qrCodePalletScanningProcess : Exit : RJTB
+2026-05-18 14:51:03.254 DEBUG rejection:116 - S02_qR_Code_Scanning_of_Pallet: palletQrId :LSCSM06P006
+2026-05-18 14:51:03.254 INFO  rejection:149 - S02_qR_Code_Scanning_of_Pallet : not success in fetching from getRejectionBayPalletDistinctIdList
+2026-05-18 14:51:03.258 INFO  rejection:155 - S02_qR_Code_Scanning_of_Pallet : found result  in database myPalletManage : 20260518T115858_0007_LSCSM06P006
+2026-05-18 14:51:03.258 DEBUG rejection:357 - readPalletMetersData: Entry for bay: RJTB
+2026-05-18 14:51:03.268 DEBUG rejection:380 - Rejection : readPalletMetersData: result found for RJTB : palletDistinctId: 20260518T115858_0007_LSCSM06P006
+2026-05-18 14:51:03.268 DEBUG rejection:405 - readPalletMetersData: Successfully read 6 meters.
+2026-05-18 14:51:03.270 DEBUG rejection:408 - Rejection: readPalletMetersData: updated setExitAppeared to true for getPalletDistinctId: 20260518T115858_0007_LSCSM06P006
+2026-05-18 14:51:03.270 DEBUG rejection:640 - updatePalletStatusOnDisplayMonitor: Entry
+2026-05-18 14:51:03.270 DEBUG rejection:795 - metricsUpdateRejectionMeters: Entry.
+2026-05-18 14:51:03.270 DEBUG rejection:643 - updatePalletStatusOnDisplayMonitor: palletQrCode: <LSCSM06P006>
+2026-05-18 14:51:03.270 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014012 , status: <> : positionNo: 4
+2026-05-18 14:51:03.270 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 1 , status: <FAIL> : positionNo: 1
+2026-05-18 14:51:03.270 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01013072 , status: <> : positionNo: 5
+2026-05-18 14:51:03.270 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01012959 , status: <> : positionNo: 3
+2026-05-18 14:51:03.270 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014010 , status: <> : positionNo: 2
+2026-05-18 14:51:03.270 DEBUG rejection:669 - updatePalletStatusOnDisplayMonitor: serial number : 01014014 , status: <> : positionNo: 6
+2026-05-18 14:51:03.270 DEBUG rejection:678 - updatePalletStatusOnDisplayMonitor: resultManipulatedMetersData: [{"overallTestResultStatus":"","rackPositionNo":4,"meterSerialNo":"01014012","errorCode":"","id":4}, {"overallTestResultStatus":"FAIL","rackPositionNo":1,"meterSerialNo":"1","errorCode":"ERR_COMM","id":1}, {"overallTestResultStatus":"","rackPositionNo":5,"meterSerialNo":"01013072","errorCode":"","id":5}, {"overallTestResultStatus":"","rackPositionNo":3,"meterSerialNo":"01012959","errorCode":"","id":3}, {"overallTestResultStatus":"","rackPositionNo":2,"meterSerialNo":"01014010","errorCode":"","id":2}, {"overallTestResultStatus":"","rackPositionNo":6,"meterSerialNo":"01014014","errorCode":"","id":6}]
+2026-05-18 14:51:03.275 DEBUG rejection:683 - updatePalletStatusOnDisplayMonitor: Exit
+2026-05-18 14:51:03.295 DEBUG rejection:851 - metricsUpdateRejectionMeters: Exit. All updates initiated successfully: true
+2026-05-18 14:51:03.296 INFO  rejection:238 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-18 14:51:03.296 DEBUG rejection:169 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Status     : true
+2026-05-18 14:51:03.296 DEBUG rejection:170 - processCurrentState : S02_qR_Code_Scanning_of_Rejected_Pallet : Error Code : ERROR_CODE_601
+2026-05-18 14:51:03.296 DEBUG rejection:23 - RejectionBayContext: processPresentState: Entry
+2026-05-18 14:51:03.296 INFO  rejection:46 - S021_check_for_pallet_removed_at_Reject_Bay : Entry
+2026-05-18 14:51:03.296 DEBUG rejection:122 - S021_check_for_pallet_removed_at_Reject_Bay : Checking pallet sensor state.
+2026-05-18 14:51:03.296 DEBUG rejection:136 - isPalletAvailableAt_RejectBay : getClusterId: 3 -> getBayId: 12 -> getPortId: ip44
+2026-05-18 14:51:03.397 DEBUG rejection:151 - S021_check_for_pallet_removed_at_Reject_Bay : Sensor state : On
+2026-05-18 14:51:03.397 DEBUG rejection:164 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet available status : true
+2026-05-18 14:51:03.397 DEBUG rejection:168 - S021_check_for_pallet_removed_at_Reject_Bay : Exit isPalletAvailableAt_RejectBay
+2026-05-18 14:51:03.397 INFO  rejection:91 - S021_check_for_pallet_removed_at_Reject_Bay : Pallet still available at Reject Bay, waiting for removal.

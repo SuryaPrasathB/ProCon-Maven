@@ -1,0 +1,320 @@
+{
+	"ConfigFileVersion": "1.0",
+    "ConfigFileVersionComment": "For Cluster and Bay configuration ",
+    
+    
+    "Terminal": [{
+			    "TerminalId":"1",
+			    "TerminalName":"Line1",
+			    "NoOfClusters": "3",
+			    "TotalNoOfBays": "6",
+			    "ClusterDetails": [	
+                  
+			    				{ "clusterId":"1", "Name": "Cluster1", "ClusterIpAddress": "192.168.0.103",   "ClusterPortId": "502" , "bay": [{"bayId":"1", "bayName":"FT_Bay" }, {"bayId":"2", "bayName":"HVT_Bay" }, {"bayId":"3", "bayName":"IRT_Bay" } ] } ,
+							    { "clusterId":"2", "Name": "Cluster2", "ClusterIpAddress": "192.168.0.103",   "ClusterPortId": "503" , "bay": [{"bayId":"4", "bayName":"CalibTest_Bay" }, {"bayId":"5", "bayName":"Waiting_Bay" }, {"bayId":"6", "bayName":"Verific_Bay" }, {"bayId":"7", "bayName":"SCT_NLT_Bay1" } ]} ,
+							    { "clusterId":"3", "Name": "Cluster3", "ClusterIpAddress": "192.168.0.105",   "ClusterPortId": "502" , "bay": [{"bayId":"8", "bayName":"SCT_NLT_Bay2" }, {"bayId":"9", "bayName":"CommTest_Bay" }, {"bayId":"10", "bayName":"Unloading_Bay" },{"bayId":"11", "bayName":"Loading_Bay" },{"bayId":"12", "bayName":"Reject_Bay" }  ]} 
+			    			 
+                  
+			    ],
+			    
+			     "dutDevice": [
+			        { "clusterId": "1", "bayId": "1", "positionId": "1", "deviceId": "010101EM01",  "portName": "FT_BAY_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1", "positionId": "2", "deviceId": "010101EM02",  "portName": "FT_BAY_DUT2",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1", "positionId": "3", "deviceId": "010101EM03",  "portName": "FT_BAY_DUT3",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1", "positionId": "4", "deviceId": "010101EM04",  "portName": "FT_BAY_DUT4",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1", "positionId": "5", "deviceId": "010101EM05",  "portName": "FT_BAY_DUT5",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1", "positionId": "6", "deviceId": "010101EM06",  "portName": "FT_BAY_DUT6",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "1", "bayId": "2", "positionId": "1", "deviceId": "010204MM01",  "portName": "HV_BAY_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "1", "bayId": "3", "positionId": "1", "deviceId": "010204OM01",  "portName": "IR_BAY_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "2", "bayId": "4", "positionId": "1", "deviceId": "010204EM01",  "portName": "CALIB_BAY_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "4", "positionId": "2", "deviceId": "010204EM02",  "portName": "CALIB_BAY_DUT2",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "4", "positionId": "3", "deviceId": "010204EM03",  "portName": "CALIB_BAY_DUT3",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "4", "positionId": "4", "deviceId": "010204EM04",  "portName": "CALIB_BAY_DUT4",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "4", "positionId": "5", "deviceId": "010204EM05",  "portName": "CALIB_BAY_DUT5",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "4", "positionId": "6", "deviceId": "010204EM06",  "portName": "CALIB_BAY_DUT6",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "2", "bayId": "6", "positionId": "1", "deviceId": "010206EM01",  "portName": "VERIFIC_BAY_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "6", "positionId": "2", "deviceId": "010206EM02",  "portName": "VERIFIC_BAY_DUT2",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "6", "positionId": "3", "deviceId": "010206EM03",  "portName": "VERIFIC_BAY_DUT3",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "6", "positionId": "4", "deviceId": "010206EM04",  "portName": "VERIFIC_BAY_DUT4",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "6", "positionId": "5", "deviceId": "010206EM05",  "portName": "VERIFIC_BAY_DUT5",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "6", "positionId": "6", "deviceId": "010206EM06",  "portName": "VERIFIC_BAY_DUT6",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "2", "bayId": "7", "positionId": "1", "deviceId": "010207EM01",  "portName": "SCT_NLT_BAY1_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "7", "positionId": "2", "deviceId": "010207EM02",  "portName": "SCT_NLT_BAY1_DUT2",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "7", "positionId": "3", "deviceId": "010207EM03",  "portName": "SCT_NLT_BAY1_DUT3",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "7", "positionId": "4", "deviceId": "010207EM04",  "portName": "SCT_NLT_BAY1_DUT4",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "7", "positionId": "5", "deviceId": "010207EM05",  "portName": "SCT_NLT_BAY1_DUT5",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "2", "bayId": "7", "positionId": "6", "deviceId": "010207EM06",  "portName": "SCT_NLT_BAY1_DUT6",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "3", "bayId": "8", "positionId": "1", "deviceId": "010308EM01",  "portName": "SCT_NLT_BAY2_DUT1",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "3", "bayId": "8", "positionId": "2", "deviceId": "010308EM02",  "portName": "SCT_NLT_BAY2_DUT2",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "3", "bayId": "8", "positionId": "3", "deviceId": "010308EM03",  "portName": "SCT_NLT_BAY2_DUT3",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "3", "bayId": "8", "positionId": "4", "deviceId": "010308EM04",  "portName": "SCT_NLT_BAY2_DUT4",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "3", "bayId": "8", "positionId": "5", "deviceId": "010308EM05",  "portName": "SCT_NLT_BAY2_DUT5",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "3", "bayId": "8", "positionId": "6", "deviceId": "010308EM06",  "portName": "SCT_NLT_BAY2_DUT6",      "initState": "Off",  "idleState": "Off" }
+			   ],
+			    
+			    "megaOhmMeter": [
+			    	{ "clusterId": "1", "bayId": "3",  "positionId": "0", "deviceId": "010103OM00",  "portName": "IR_BAY_OM_ALL",  "rs485Enabled":true,   "rs485DeviceIdList": ["01","02","03","04","05","06"],  "initState": "Off",  "idleState": "Off" }		    
+			     ],
+			     
+			     "voltMeter": [
+			    	{ "clusterId": "1", "bayId": "2",  "positionId": "0", "deviceId": "010102VM00",  "portName": "HV_BAY_VM_ALL",   "rs485Enabled":true,   "rs485DeviceIdList": ["01"],   "initState": "Off",  "idleState": "Off" }		    
+			     ],
+			     
+			     "ldu": [
+			    	{ "clusterId": "2", "bayId": "6",  "positionId": "0", "deviceId": "010206LD00",  "portName": "VER_BAY_LDU_ALL",    "rs485Enabled":true,  "rs485DeviceIdList": ["01","02","04","08"],   "initState": "Off",  "idleState": "Off" }		    
+			     ],
+			     
+			    "qrScanner": [
+			        { "clusterId": "1", "bayId": "1",  "positionId": "0", "deviceId": "010101QR00",  "portName": "FT_BAY_QR_SCNR_PALLET",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "positionId": "1", "deviceId": "010101QR01",  "portName": "FT_BAY_QR_SCNR_METER1",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "positionId": "2", "deviceId": "010101QR02",  "portName": "FT_BAY_QR_SCNR_METER2",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "positionId": "3", "deviceId": "010101QR03",  "portName": "FT_BAY_QR_SCNR_METER3",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "positionId": "4", "deviceId": "010101QR04",  "portName": "FT_BAY_QR_SCNR_METER4",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "positionId": "5", "deviceId": "010101QR05",  "portName": "FT_BAY_QR_SCNR_METER5",      "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "positionId": "6", "deviceId": "010101QR06",  "portName": "FT_BAY_QR_SCNR_METER6",      "initState": "Off",  "idleState": "Off" },
+			        			        
+			        { "clusterId": "1", "bayId": "2",  "positionId": "0", "deviceId": "010102QR00",  "portName": "HVT_BAY_QR_SCNR_PALLET",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "1", "bayId": "3",  "positionId": "0", "deviceId": "010103QR00",  "portName": "IRT_BAY_QR_SCNR_PALLET",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "2", "bayId": "4",  "positionId": "0", "deviceId": "010204QR00",  "portName": "CALIB_BAY_QR_SCNR_PALLET",      "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "2", "bayId": "6",  "positionId": "0", "deviceId": "010206QR00",  "portName": "VERIFIC_BAY_QR_SCNR_PALLET",     "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "2", "bayId": "7",  "positionId": "0", "deviceId": "010207QR00",  "portName": "SCT_NLT_BAY1_QR_SCNR_PALLET",    "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "3", "bayId": "8",  "positionId": "0", "deviceId": "010308QR00",  "portName": "SCT_NLT_BAY2_QR_SCNR_PALLET",    "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "3", "bayId": "9",  "positionId": "0", "deviceId": "010309QR00",  "portName": "COMM_BAY_QR_SCNR_PALLET",        "initState": "Off",  "idleState": "Off" },
+			        
+			        { "clusterId": "3", "bayId": "10", "positionId": "0", "deviceId": "010310QR00",  "portName": "UNLOAD_BAY_QR_SCNR_PALLET",     "initState": "Off",  "idleState": "Off" }
+			        
+			    ],
+			    
+		
+			    "outputPort": [
+			    
+			        { "clusterId": "1", "bayId": "1",  "portId": "opRed" ,    "portName": "RED_LED",         "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "portId": "opGreen" ,  "portName": "GREEN_LED",       "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+			        { "clusterId": "1", "bayId": "1",  "portId": "opYellow" , "portName": "YELLOW_LED",      "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off" },
+			    
+			    
+			    	{ "clusterId": "1", "bayId": "1", "portId": "opt82",   "positionId": "1", "portName": "LDU_PULSE_COUNT_ENABLE_FT_BAY_1",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "opt92",   "positionId": "2", "portName": "LDU_PULSE_COUNT_ENABLE_FT_BAY_2",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "opt102",  "positionId": "3", "portName": "LDU_PULSE_COUNT_ENABLE_FT_BAY_3",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "opt112",  "positionId": "4", "portName": "LDU_PULSE_COUNT_ENABLE_FT_BAY_4",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "opt122",  "positionId": "5", "portName": "LDU_PULSE_COUNT_ENABLE_FT_BAY_5",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "opt132",  "positionId": "6", "portName": "LDU_PULSE_COUNT_ENABLE_FT_BAY_6",   "initState": "Off", "idleState": "Off" },
+				    
+					{ "clusterId": "1", "bayId": "1", "portId": "op1",  "portName": "STPR_B4_FT_BAY",        "initState": "Off", "idleState": "Off", "onStateDesc": "ReleaseMeter", "offStateDesc": "BlockMeter"  },
+				    { "clusterId": "1", "bayId": "1", "portId": "op2",  "portName": "STPR_AT_FT_BAY",        "initState": "Off", "idleState": "Off", "onStateDesc": "ReleaseMeter", "offStateDesc": "BlockMeter"  },
+				    { "clusterId": "1", "bayId": "1", "portId": "op3",  "portName": "FINGER_TIP_FT_BAY",     "initState": "Off", "idleState": "Off", "onStateDesc": "ReleaseMeter", "offStateDesc": "EngageMeter"  },
+				    { "clusterId": "1", "bayId": "1", "portId": "op4",  "portName": "SRC_START_STOP_FT_BAY", "initState": "Off", "idleState": "Off", "onStateDesc": "SrcOff", "offStateDesc": "SrcOn"  },
+				    { "clusterId": "1", "bayId": "1", "portId": "op5",  "portName": "TWR_LAMP1_FT_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "1", "portId": "op6",  "portName": "TWR_LAMP2_FT_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "1", "portId": "op7",  "portName": "DIVERTOR_RELAY_FT_BAY", "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+ 				    				  			    
+				    { "clusterId": "1", "bayId": "2", "portId": "op8", "portName": "STPR_HV_BAY",           "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "2", "portId": "op9", "portName": "FINGER_TIP_HV_BAY",     "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "2", "portId": "op10", "portName": "PSTN_HV_GUARD_HV_BAY",  "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "2", "portId": "op11", "portName": "SRC_START_HV_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+ 				    { "clusterId": "1", "bayId": "2", "portId": "op12", "portName": "TWR_LAMP1_HV_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "2", "portId": "op13", "portName": "TWR_LAMP2_HV_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+				    { "clusterId": "1", "bayId": "2", "portId": "op14", "portName": "SRC_STOP_HV_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+ 				    
+				    { "clusterId": "1", "bayId": "3", "portId": "op15", "portName": "STPR_IR_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "op16", "portName": "FINGER_TIP_IR_BAY",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "op17", "portName": "PSTN_HV_GUARD_IR_BAY",  "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "op18", "portName": "IR_MTR_RAED_EN_IR_BAY", "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "op19", "portName": "TWR_LAMP1_IR_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "op20", "portName": "TWR_LAMP2_IR_BAY",		 "initState": "Off", "idleState": "Off" },
+ 				   
+ 				   	{ "clusterId": "1", "bayId": "1", "portId": "op21", "portName": "CONV_START",            "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1", "portId": "op22", "portName": "CONV_STOP",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op23", "portName": "SPARE_OP1",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op24", "portName": "SPARE_OP2",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op25", "portName": "SPARE_OP3",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op26", "portName": "SPARE_OP4",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op27", "portName": "SPARE_OP5",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op28", "portName": "SPARE_OP6",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op29", "portName": "SPARE_OP7",             "initState": "Off",  "idleState": "Off" }, 
+			        { "clusterId": "1", "bayId": "1", "portId": "op30", "portName": "SPARE_OP9",             "initState": "Off",  "idleState": "Off" }, 
+				    { "clusterId": "1", "bayId": "1", "portId": "op31", "portName": "SPARE_OP9",             "initState": "Off",  "idleState": "Off" }, 
+				    { "clusterId": "1", "bayId": "1", "portId": "op32", "portName": "SPARE_OP10",             "initState": "Off",  "idleState": "Off" }, 
+				    
+    
+				    { "clusterId": "2", "bayId": "4",  "portId": "opRed" ,    "portName": "RED_LED",         "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off" },
+			        { "clusterId": "2", "bayId": "4",  "portId": "opGreen" ,  "portName": "GREEN_LED",       "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+			        { "clusterId": "2", "bayId": "4",  "portId": "opYellow" , "portName": "YELLOW_LED",      "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off" },
+				    
+				    
+				    { "clusterId": "2", "bayId": "4", "portId": "op1",  "portName": "STPR_CALIB_BAY",             "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "4", "portId": "op2",  "portName": "FINGER_TIP_CALIB_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "4", "portId": "op3",  "portName": "TWR_LAMP1_CALIB_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "4", "portId": "op4",  "portName": "TWR_LAMP2_CALIB_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "4", "portId": "op5",  "portName": "MAIN_CT_MAKE_CALIB_BAY",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "4", "portId": "op6",  "portName": "NEUTRAL_CT_MAKE_CALIB_BAY",  "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "4", "portId": "op13", "portName": "BREAK_CT_CALIB_BAY",      	  "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "2", "bayId": "5", "portId": "op7",  "portName": "STPR_WAITING_BAY",           "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "2", "bayId": "6", "portId": "op8",  "portName": "STPR_AT_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "2", "bayId": "6", "portId": "op15", "portName": "STPR2_AT_VERIFIC_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "op9",  "portName": "FINGER_TIP_VERIFIC_BAY",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "op10", "portName": "DIVERTOR_RELAY_VERIFIC_BAY", "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "op11", "portName": "TWR_LAMP1_VERIFIC_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "op12", "portName": "TWR_LAMP2_VERIFIC_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "op14", "portName": "SPARE_OP2_VERIFIC_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "op16", "portName": "MOTOR_CTRL_VERIFIC_BAY",   "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "2", "bayId": "7", "portId": "op19", "portName": "STPR_AT_SCT_NLCT_BAY1",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op23", "portName": "STPR2_AT_SCT_NLCT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op20", "portName": "FINGER_TIP_SCT_NLT_BAY1",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op21", "portName": "TWR_LAMP1_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op22", "portName": "TWR_LAMP2_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op24", "portName": "SPARE_OP2_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op25", "portName": "SPARE_OP3_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op26", "portName": "SPARE_OP4_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op27", "portName": "SPARE_OP5_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op28", "portName": "SPARE_OP6_SCT_NLT_BAY1",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op17", "portName": "MOTOR_CTRL_SCT_NLT_BAY1",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "op18", "portName": "MOTOR_CTRL_SCT_NLT_BAY2",      "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "8",  "portId": "opRed" ,    "portName": "RED_LED",         "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off" },
+			        { "clusterId": "3", "bayId": "8",  "portId": "opGreen" ,  "portName": "GREEN_LED",       "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off"  },
+			        { "clusterId": "3", "bayId": "8",  "portId": "opYellow" , "portName": "YELLOW_LED",      "initState": "Off",  "idleState": "Off", "onStateDesc": "On", "offStateDesc": "Off" },    
+				    
+				    { "clusterId": "3", "bayId": "8", "portId": "op1",  "portName": "STPR_AT_SCT_NLCT_BAY2",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op2",  "portName": "FINGER_TIP_SCT_NLCT_BAY2",   "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op3",  "portName": "TWR_LAMP1_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op4",  "portName": "TWR_LAMP2_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op5",  "portName": "DIVERTOR_OUT_AREA",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op6",  "portName": "SPARE_OP2_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op7",  "portName": "SPARE_OP3_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op8",  "portName": "SPARE_OP4_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op9",  "portName": "SPARE_OP5_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "op10", "portName": "SPARE_OP6_SCT_NLCT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "9", "portId": "op11", "portName": "STPR_COMM_BAY",              "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "op15", "portName": "STPR2_COMM_BAY",             "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "op12", "portName": "FINGER_TIP_COMM_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "op13", "portName": "TWR_LAMP1_COMM_BAY",         "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "op14", "portName": "TWR_LAMP2_COMM_BAY",         "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "op16", "portName": "SPARE_OP2_COMM_BAY2",        "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "10", "portId": "op17", "portName": "STPR_UNLOAD_BAY",            "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "10", "portId": "op18", "portName": "TWR_LAMP1_UNLOAD_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "10", "portId": "op19", "portName": "TWR_LAMP2_UNLOAD_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "10", "portId": "op20", "portName": "SPARE_OP1_UNLOAD_BAY1",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "10", "portId": "op21", "portName": "SPARE_OP2_UNLOAD_BAY1",      "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "11", "portId": "op22", "portName": "STPR_LOAD_BAY",              "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "11", "portId": "op23", "portName": "SPARE_OP2_LOAD_BAY1",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "11", "portId": "op24", "portName": "SPARE_OP2_LOAD_BAY1",        "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "12", "portId": "op25", "portName": "TWR_LAMP1_REJECT_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "12", "portId": "op26", "portName": "TWR_LAMP2_REJECT_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "12", "portId": "op27", "portName": "SPARE_OP1_REJECT_BAY1",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "12", "portId": "op28", "portName": "SPARE_OP2_REJECT_BAY1",      "initState": "Off", "idleState": "Off" }
+				],
+				    		  
+			    
+			    
+				"inputPort": [
+				
+				    { "clusterId": "1", "bayId": "1",  "portId": "opRed" ,    "portName": "RED_LED",         "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "portId": "opGreen" ,  "portName": "GREEN_LED",       "initState": "Off",  "idleState": "Off" },
+			        { "clusterId": "1", "bayId": "1",  "portId": "opYellow" , "portName": "YELLOW_LED",      "initState": "Off",  "idleState": "Off" },
+				
+					{ "clusterId": "1", "bayId": "1", "portId": "ipt83",   "positionId": "1", "portName": "LDU_PULSE_STATUS_CHECK_FT_BAY_1",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "ipt93",   "positionId": "2", "portName": "LDU_PULSE_STATUS_CHECK_FT_BAY_2",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "ipt103",  "positionId": "3", "portName": "LDU_PULSE_STATUS_CHECK_FT_BAY_3",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "ipt113",  "positionId": "4", "portName": "LDU_PULSE_STATUS_CHECK_FT_BAY_4",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "ipt123",  "positionId": "5", "portName": "LDU_PULSE_STATUS_CHECK_FT_BAY_5",   "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "1", "bayId": "1", "portId": "ipt133",  "positionId": "6", "portName": "LDU_PULSE_STATUS_CHECK_FT_BAY_6",   "initState": "Off", "idleState": "Off" },
+				    
+					{ "clusterId": "1", "bayId": "1", "portId": "ip39",  "portName": "SNSR_PALLET_FT_BAY",      "initState": "Off", "idleState": "Off", "onStateDesc": "Released", "offStateDesc": "Locked" },
+				    { "clusterId": "1", "bayId": "1", "portId": "ip40",  "portName": "SNSR_FINGER_TIP_FT_BAY",  "initState": "Off", "idleState": "Off", "onStateDesc": "Released", "offStateDesc": "Engaged" },
+				    { "clusterId": "1", "bayId": "1", "portId": "ip41",  "portName": "SRC_STATUS_PIN_FT_BAY",   "initState": "Off", "idleState": "Off", "onStateDesc": "SrcOff", "offStateDesc": "SrcOn" },
+				    			        
+				    { "clusterId": "1", "bayId": "2", "portId": "ip42", "portName": "SNSR_PALLET_HV_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip43", "portName": "SNSR_FINGER_TIP_HV_BAY",   "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip44", "portName": "SNSR_HV_GUARD_HV_BAY",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip45", "portName": "SRC_IP1_HV_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip46", "portName": "SRC_IP2_HV_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip47", "portName": "SRC_IP3_HV_BAY",           "initState": "Off", "idleState": "Off" },    
+				    { "clusterId": "1", "bayId": "2", "portId": "ip48", "portName": "SRC_IP4_HV_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip49", "portName": "SRC_IP5_HV_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "2", "portId": "ip50", "portName": "SRC_IP6_HV_BAY",           "initState": "Off", "idleState": "Off" },
+
+				    { "clusterId": "1", "bayId": "3", "portId": "ip51", "portName": "SNSR_PALLET_IR_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "ip52", "portName": "SNSR_FINGER_TIP_IR_BAY",   "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "ip53", "portName": "SNSR_HV_GUARD_IR_BAY",     "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "1", "bayId": "3", "portId": "ip54", "portName": "SPARE_IP1",                "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "ip55", "portName": "SPARE_IP2",                "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "1", "bayId": "3", "portId": "ip56", "portName": "SPARE_IP3",                "initState": "Off", "idleState": "Off" },
+				   		
+ 	    
+				    { "clusterId": "2", "bayId": "4", "portId": "ip2", "portName":  "SNSR_PALLET_CALIB_BAY",        "initState": "Off", "idleState": "Off" },				    			    			    
+				    { "clusterId": "2", "bayId": "4", "portId": "ip7",  "portName": "SNSR_FINGER_TIP_CALIB_BAY",    "initState": "Off", "idleState": "Off" },
+					{ "clusterId": "2", "bayId": "4", "portId": "ip3",  "portName": "LOOSE_CONTACT",            "initState": "Off", "idleState": "Off" },
+	
+				    
+				    { "clusterId": "2", "bayId": "5", "portId": "ip4",  "portName": "SNSR_PALLET_WAITING_BAY",      "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "2", "bayId": "6", "portId": "ip5",  "portName": "SNSR_PALLET_VERIFIC_BAY",      "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip6",  "portName": "SNSR_FINGER_TIP_VERIFIC_BAY",  "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip8 ",  "portName": "SPARE_IP1_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip9",  "portName": "SPARE_IP2_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip10", "portName": "SPARE_IP3_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip11", "portName": "SPARE_IP4_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip12", "portName": "SPARE_IP5_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "6", "portId": "ip13", "portName": "SPARE_IP6_VERIFIC_BAY",        "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "2", "bayId": "7", "portId": "ip18", "portName": "SNSR_PALLET1_SCT_NLT_BAY1",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "ip20", "portName": "SNSR_PALLET2_SCT_NLT_BAY1",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "ip1", "portName": "SNSR_FINGER_TIP_SCT_NLT_BAY1", "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "ip23", "portName": "SPARE_IP2_SCT_NLT_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "ip24", "portName": "SPARE_IP3_SCT_NLT_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "ip25", "portName": "SPARE_IP4_SCT_NLT_BAY",        "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "2", "bayId": "7", "portId": "ip26", "portName": "SPARE_IP6_SCT_NLT_BAY",        "initState": "Off", "idleState": "Off" },
+				
+				
+					{ "clusterId": "3", "bayId": "8", "portId": "ip1",  "portName": "SNSR_PALLET1_SCT_NLT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip2",  "portName": "SNSR_PALLET2_SCT_NLT_BAY2",    "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip3",  "portName": "SNSR_FINGER_TIP_SCT_NLT_BAY2", "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip4",  "portName": "SPARE_IP1_SCT_NLT_BAY2",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip5",  "portName": "SPARE_IP2_SCT_NLT_BAY2",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip6",  "portName": "SPARE_IP3_SCT_NLT_BAY2",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip7",  "portName": "SPARE_IP4_SCT_NLT_BAY2",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "8", "portId": "ip10",  "portName": "SPARE_IP5_SCT_NLT_BAY2",       "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "9", "portId": "ip11", "portName": "SNSR_PALLET_COMM_BAY",         "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "ip13", "portName": "SNSR_FINGER_TIP_COMM_BAY",     "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "ip16", "portName": "SPARE_IP1_COMM_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "9", "portId": "ip17", "portName": "SPARE_IP2_COMM_BAY",           "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "10", "portId": "ip18", "portName": "SNSR_PALLET_UNLOAD_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "10", "portId": "ip20", "portName": "PUSH_BTN_UNLOAD_BAY",          "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "11", "portId": "ip23", "portName": "PUSH_BTN_LOAD_BAY",            "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "11", "portId": "ip24", "portName": "SPARE_IP1_LOAD_BAY",           "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "11", "portId": "ip25", "portName": "SPARE_IP2_LOAD_BAY",           "initState": "Off", "idleState": "Off" },
+				    
+				    { "clusterId": "3", "bayId": "12", "portId": "ip24", "portName": "SNSR_PALLET_REJECT_BAY",       "initState": "Off", "idleState": "Off" },
+				    { "clusterId": "3", "bayId": "12", "portId": "ip25", "portName": "PUSH_BTN_REJECT_BAY",          "initState": "Off", "idleState": "Off" }	
+				   		
+				]
+				}
+		]
+	
+
+	
+}

@@ -1,0 +1,33 @@
+2026-05-21 16:25:57.301 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:25:57.301 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:25:57.301 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:25:57.301 INFO  sta_nld1:37 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-21 16:25:57.301 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-21 16:25:57.302 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-05-21 16:25:57.404 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : On
+2026-05-21 16:25:57.404 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : true
+2026-05-21 16:25:57.404 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-21 16:25:58.416 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-21 16:25:58.416 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-05-21 16:25:58.524 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : On
+2026-05-21 16:25:58.524 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : true
+2026-05-21 16:25:58.524 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-21 16:25:59.534 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-21 16:25:59.534 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-05-21 16:25:59.640 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : On
+2026-05-21 16:25:59.640 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : true
+2026-05-21 16:25:59.640 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-21 16:26:00.649 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-21 16:26:00.649 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-05-21 16:26:00.758 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : On
+2026-05-21 16:26:00.758 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : true
+2026-05-21 16:26:00.758 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-21 16:26:00.758 INFO  sta_nld1:102 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Pallet Available
+2026-05-21 16:26:00.758 INFO  sta_nld1:112 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-21 16:26:00.758 DEBUG sta_nld1:56 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay1 : Status     : true
+2026-05-21 16:26:00.758 DEBUG sta_nld1:57 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:26:00.758 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:26:00.758 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:26:00.758 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:27:04.615 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:27:04.615 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry

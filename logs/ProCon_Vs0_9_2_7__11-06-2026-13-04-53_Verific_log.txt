@@ -1,0 +1,381 @@
+2026-06-11 14:45:34.239 INFO  verific:1428 - btnVerificTestResetOnClick : Invoked:
+2026-06-11 14:45:34.239 INFO  verific:1430 - VERIFICATION TEST BAY : RESET
+2026-06-11 14:45:34.241 INFO  verific:1481 - btnVerificTestResetOnClick : Exit:
+2026-06-11 14:45:34.341 DEBUG verific:24 - VerificationTestBayReset : Entry
+2026-06-11 14:45:34.341 DEBUG verific:32 - VerificationTestBayReset : manageVerificationTestBayResetStates : Entry
+2026-06-11 14:45:34.343 DEBUG verific:51 - VerificationTestBayReset : manageVerificationTestBayResetStates : getTableStatePlanner2 : Size : 14
+2026-06-11 14:45:34.343 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:34.343 INFO  verific:33 - S06_open_the_fingerTip_Latch : Entry
+2026-06-11 14:45:34.343 DEBUG verific:58 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Entry
+2026-06-11 14:45:34.343 DEBUG verific:68 - PortId    : op11
+2026-06-11 14:45:34.343 DEBUG verific:69 - ClusterId : 2
+2026-06-11 14:45:34.344 DEBUG verific:70 - BayId     : 6
+2026-06-11 14:45:34.446 DEBUG verific:92 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : status : true
+2026-06-11 14:45:34.446 DEBUG verific:97 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_VerificBay : Exit
+2026-06-11 14:45:34.446 INFO  verific:43 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-06-11 14:45:34.446 INFO  verific:52 - S06_open_the_fingerTip_Latch : Exit
+2026-06-11 14:45:34.446 DEBUG verific:158 - processCurrentState : S06_open_the_fingerTip_Latch : Status     : true
+2026-06-11 14:45:34.446 DEBUG verific:159 - processCurrentState : S06_open_the_fingerTip_Latch : Error Code : ERROR_CODE_601
+2026-06-11 14:45:34.447 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:34.447 INFO  verific:29 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-06-11 14:45:34.447 DEBUG verific:65 - S07_ensure_the_fingerTip_Latch_Opened : verificBay_FingerTipLatch_Status : Entry
+2026-06-11 14:45:34.447 DEBUG verific:73 - PortId    : ip37
+2026-06-11 14:45:34.447 DEBUG verific:74 - ClusterId : 2
+2026-06-11 14:45:34.447 DEBUG verific:75 - BayId     : 6
+2026-06-11 14:45:34.550 DEBUG verific:95 - S07_ensure_the_fingerTip_Latch_Opened : verificBay_FingerTipLatch_Status : state : Off
+2026-06-11 14:45:34.550 DEBUG verific:99 - S07_ensure_the_fingerTip_Latch_Opened : verificBay_FingerTipLatch_Status : Exit
+2026-06-11 14:45:34.550 DEBUG verific:43 - S07_ensure_the_fingerTip_Latch_Opened : getMyBayKey(): VERIFICB
+2026-06-11 14:45:34.550 INFO  verific:59 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-06-11 14:45:34.550 DEBUG verific:158 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Status     : true
+2026-06-11 14:45:34.550 DEBUG verific:159 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened : Error Code : ERROR_CODE_601
+2026-06-11 14:45:34.550 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:34.550 INFO  verific:27 - S30_turn_off_tower_lamp_Verific_Bay : Entry
+2026-06-11 14:45:34.550 DEBUG verific:111 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Entry
+2026-06-11 14:45:34.550 DEBUG verific:121 - PortId    : op13
+2026-06-11 14:45:34.550 DEBUG verific:122 - ClusterId : 2
+2026-06-11 14:45:34.550 DEBUG verific:123 - BayId     : 6
+2026-06-11 14:45:34.653 DEBUG verific:138 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : status : true
+2026-06-11 14:45:34.653 DEBUG verific:147 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-06-11 14:45:34.653 INFO  verific:37 - S30_turn_off_tower_lamp_Verific_Bay : turn_on_tower_lamp : Success
+2026-06-11 14:45:34.653 DEBUG verific:69 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Entry
+2026-06-11 14:45:34.653 DEBUG verific:79 - PortId    : op14
+2026-06-11 14:45:34.653 DEBUG verific:80 - ClusterId : 2
+2026-06-11 14:45:34.653 DEBUG verific:81 - BayId     : 6
+2026-06-11 14:45:34.755 DEBUG verific:95 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : true
+2026-06-11 14:45:34.755 DEBUG verific:104 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-06-11 14:45:34.755 INFO  verific:45 - S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : Success
+2026-06-11 14:45:35.755 INFO  verific:62 - S30_turn_off_tower_lamp_Verific_Bay : Exit
+2026-06-11 14:45:35.755 DEBUG verific:158 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Status     : true
+2026-06-11 14:45:35.755 DEBUG verific:159 - processCurrentState : S30_turn_off_tower_lamp_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:45:35.755 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:35.755 INFO  verific:38 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-06-11 14:45:35.755 DEBUG verific:57 - S08_check_for_pallets_at_SCT_NLT_Bay1 : No pallet sensing detection: Entry
+2026-06-11 14:45:35.755 DEBUG verific:62 - S08_check_for_pallets_at_SCT_NLT_Bay1 : No pallet sensing detection: awaiting
+2026-06-11 14:45:36.755 DEBUG verific:141 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-06-11 14:45:36.755 DEBUG verific:150 - PortId    : ip38
+2026-06-11 14:45:36.755 DEBUG verific:151 - ClusterId : 2
+2026-06-11 14:45:36.755 DEBUG verific:152 - BayId     : 7
+2026-06-11 14:45:36.857 DEBUG verific:166 - S08_check_for_pallets_at_SCT_NLT_Bay1 : state : Off
+2026-06-11 14:45:36.857 DEBUG verific:174 - S08_check_for_pallets_at_SCT_NLT_Bay1 : status : false
+2026-06-11 14:45:36.857 DEBUG verific:179 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-06-11 14:45:36.857 DEBUG verific:62 - S08_check_for_pallets_at_SCT_NLT_Bay1 : No pallet sensing detection: awaiting
+2026-06-11 14:45:37.857 DEBUG verific:141 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-06-11 14:45:37.857 DEBUG verific:150 - PortId    : ip38
+2026-06-11 14:45:37.857 DEBUG verific:151 - ClusterId : 2
+2026-06-11 14:45:37.857 DEBUG verific:152 - BayId     : 7
+2026-06-11 14:45:37.960 DEBUG verific:166 - S08_check_for_pallets_at_SCT_NLT_Bay1 : state : Off
+2026-06-11 14:45:37.960 DEBUG verific:174 - S08_check_for_pallets_at_SCT_NLT_Bay1 : status : false
+2026-06-11 14:45:37.960 DEBUG verific:179 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-06-11 14:45:37.960 DEBUG verific:62 - S08_check_for_pallets_at_SCT_NLT_Bay1 : No pallet sensing detection: awaiting
+2026-06-11 14:45:38.960 DEBUG verific:141 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-06-11 14:45:38.960 DEBUG verific:150 - PortId    : ip38
+2026-06-11 14:45:38.960 DEBUG verific:151 - ClusterId : 2
+2026-06-11 14:45:38.960 DEBUG verific:152 - BayId     : 7
+2026-06-11 14:45:39.062 DEBUG verific:166 - S08_check_for_pallets_at_SCT_NLT_Bay1 : state : Off
+2026-06-11 14:45:39.062 DEBUG verific:174 - S08_check_for_pallets_at_SCT_NLT_Bay1 : status : false
+2026-06-11 14:45:39.062 DEBUG verific:179 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-06-11 14:45:39.062 INFO  verific:84 - S08_check_for_pallets_at_SCT_NLT_Bay1 : No Pallet Available
+2026-06-11 14:45:39.062 INFO  verific:88 - S08_check_for_pallets_at_SCT_NLT_Bay1 : STA1: Pallet all clear confirmed
+2026-06-11 14:45:39.062 INFO  verific:136 - S08_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-06-11 14:45:39.062 DEBUG verific:158 - processCurrentState : S08_check_for_pallets_at_SCT_NLT_Bay1 : Status     : true
+2026-06-11 14:45:39.062 DEBUG verific:159 - processCurrentState : S08_check_for_pallets_at_SCT_NLT_Bay1 : Error Code : ERROR_CODE_601
+2026-06-11 14:45:39.062 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:39.062 INFO  verific:33 - S22_close_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:45:41.062 DEBUG verific:106 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:45:41.062 DEBUG verific:116 - PortId    : op10
+2026-06-11 14:45:41.062 DEBUG verific:117 - ClusterId : 2
+2026-06-11 14:45:41.062 DEBUG verific:118 - BayId     : 6
+2026-06-11 14:45:41.164 DEBUG verific:128 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:45:41.164 DEBUG verific:140 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:45:41.164 DEBUG verific:150 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:45:41.164 DEBUG verific:151 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:45:41.164 INFO  verific:46 - S22_close_stop_latch2_Verific_Bay : Stop Latch Closed
+2026-06-11 14:45:44.177 INFO  verific:57 - S22_close_stop_latch2_Verific_Bay : getPalletsPassedVerificBay()0
+2026-06-11 14:45:44.177 INFO  verific:101 - S22_close_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:45:44.177 DEBUG verific:158 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:45:44.177 DEBUG verific:159 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:45:44.177 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:44.177 INFO  verific:26 - S19_open_stop_latch_Verific_Bay : Entry
+2026-06-11 14:45:44.177 DEBUG verific:84 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:45:44.177 DEBUG verific:94 - PortId    : op9
+2026-06-11 14:45:44.177 DEBUG verific:95 - ClusterId : 2
+2026-06-11 14:45:44.177 DEBUG verific:96 - BayId     : 6
+2026-06-11 14:45:44.286 DEBUG verific:106 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:45:44.286 DEBUG verific:118 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:45:44.286 DEBUG verific:128 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:45:44.286 DEBUG verific:129 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:45:44.286 INFO  verific:37 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:45:46.400 INFO  verific:55 - set_motor_required : Success
+2026-06-11 14:45:46.400 INFO  verific:68 - S19_open_stop_latch_Verific_Bay : palletsPassedVerificBay : 1
+2026-06-11 14:45:46.400 INFO  verific:70 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:45:49.401 INFO  verific:79 - S19_open_stop_latch_Verific_Bay : Exit
+2026-06-11 14:45:49.401 DEBUG verific:158 - processCurrentState : S19_open_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:45:49.401 DEBUG verific:159 - processCurrentState : S19_open_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:45:49.401 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:49.401 INFO  verific:19 - S20_close_stop_latch_Verific_Bay : Entry
+2026-06-11 14:45:49.401 DEBUG verific:46 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:45:49.401 DEBUG verific:56 - PortId    : op9
+2026-06-11 14:45:49.401 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:45:49.401 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:45:49.508 DEBUG verific:68 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:45:49.508 DEBUG verific:80 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:45:49.508 DEBUG verific:90 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:45:49.508 DEBUG verific:91 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:45:49.508 INFO  verific:30 - S20_close_stop_latch_Verific_Bay : Stop Latch Closed
+2026-06-11 14:45:52.509 INFO  verific:41 - S20_close_stop_latch_Verific_Bay : Exit
+2026-06-11 14:45:52.509 DEBUG verific:158 - processCurrentState : S20_close_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:45:52.509 DEBUG verific:159 - processCurrentState : S20_close_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:45:52.509 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:52.509 INFO  verific:19 - S21_open_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:45:52.509 DEBUG verific:46 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:45:52.509 DEBUG verific:56 - PortId    : op10
+2026-06-11 14:45:52.509 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:45:52.509 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:45:52.616 DEBUG verific:68 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:45:52.616 DEBUG verific:80 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:45:52.616 DEBUG verific:90 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:45:52.616 DEBUG verific:91 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:45:52.616 INFO  verific:30 - S21_open_stop_latch2_Verific_Bay : Stop Latch Opened
+2026-06-11 14:45:55.619 INFO  verific:41 - S21_open_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:45:55.619 DEBUG verific:158 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:45:55.619 DEBUG verific:159 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:45:55.619 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:45:55.619 INFO  verific:33 - S22_close_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:45:57.624 DEBUG verific:106 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:45:57.624 DEBUG verific:116 - PortId    : op10
+2026-06-11 14:45:57.624 DEBUG verific:117 - ClusterId : 2
+2026-06-11 14:45:57.624 DEBUG verific:118 - BayId     : 6
+2026-06-11 14:45:57.732 DEBUG verific:128 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:45:57.732 DEBUG verific:140 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:45:57.732 DEBUG verific:150 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:45:57.732 DEBUG verific:151 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:45:57.732 INFO  verific:46 - S22_close_stop_latch2_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:00.736 INFO  verific:57 - S22_close_stop_latch2_Verific_Bay : getPalletsPassedVerificBay()1
+2026-06-11 14:46:00.736 INFO  verific:101 - S22_close_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:46:00.736 DEBUG verific:158 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:46:00.736 DEBUG verific:159 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:00.736 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:00.736 INFO  verific:26 - S19_open_stop_latch_Verific_Bay : Entry
+2026-06-11 14:46:00.736 DEBUG verific:84 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:00.736 DEBUG verific:94 - PortId    : op9
+2026-06-11 14:46:00.736 DEBUG verific:95 - ClusterId : 2
+2026-06-11 14:46:00.736 DEBUG verific:96 - BayId     : 6
+2026-06-11 14:46:00.845 DEBUG verific:106 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:46:00.845 DEBUG verific:118 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:00.845 DEBUG verific:128 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:00.845 DEBUG verific:129 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:00.845 INFO  verific:37 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:02.952 INFO  verific:55 - set_motor_required : Success
+2026-06-11 14:46:02.952 INFO  verific:68 - S19_open_stop_latch_Verific_Bay : palletsPassedVerificBay : 2
+2026-06-11 14:46:02.952 INFO  verific:70 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:05.952 INFO  verific:79 - S19_open_stop_latch_Verific_Bay : Exit
+2026-06-11 14:46:05.952 DEBUG verific:158 - processCurrentState : S19_open_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:46:05.952 DEBUG verific:159 - processCurrentState : S19_open_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:05.952 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:05.952 INFO  verific:19 - S20_close_stop_latch_Verific_Bay : Entry
+2026-06-11 14:46:05.952 DEBUG verific:46 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:05.952 DEBUG verific:56 - PortId    : op9
+2026-06-11 14:46:05.952 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:46:05.952 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:46:06.053 DEBUG verific:68 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:46:06.053 DEBUG verific:80 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:06.053 DEBUG verific:90 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:06.053 DEBUG verific:91 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:06.053 INFO  verific:30 - S20_close_stop_latch_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:09.053 INFO  verific:41 - S20_close_stop_latch_Verific_Bay : Exit
+2026-06-11 14:46:09.053 DEBUG verific:158 - processCurrentState : S20_close_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:46:09.053 DEBUG verific:159 - processCurrentState : S20_close_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:09.053 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:09.053 INFO  verific:19 - S21_open_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:46:09.053 DEBUG verific:46 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:09.053 DEBUG verific:56 - PortId    : op10
+2026-06-11 14:46:09.053 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:46:09.053 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:46:09.155 DEBUG verific:68 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:46:09.155 DEBUG verific:80 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:09.155 DEBUG verific:90 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:09.155 DEBUG verific:91 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:09.155 INFO  verific:30 - S21_open_stop_latch2_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:12.156 INFO  verific:41 - S21_open_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:46:12.156 DEBUG verific:158 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:46:12.156 DEBUG verific:159 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:12.156 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:12.156 INFO  verific:33 - S22_close_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:46:14.156 DEBUG verific:106 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:14.156 DEBUG verific:116 - PortId    : op10
+2026-06-11 14:46:14.156 DEBUG verific:117 - ClusterId : 2
+2026-06-11 14:46:14.156 DEBUG verific:118 - BayId     : 6
+2026-06-11 14:46:14.258 DEBUG verific:128 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:46:14.258 DEBUG verific:140 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:14.258 DEBUG verific:150 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:14.258 DEBUG verific:151 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:14.258 INFO  verific:46 - S22_close_stop_latch2_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:17.258 INFO  verific:57 - S22_close_stop_latch2_Verific_Bay : getPalletsPassedVerificBay()2
+2026-06-11 14:46:17.258 INFO  verific:101 - S22_close_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:46:17.258 DEBUG verific:158 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:46:17.258 DEBUG verific:159 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:17.258 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:17.258 INFO  verific:26 - S19_open_stop_latch_Verific_Bay : Entry
+2026-06-11 14:46:17.258 DEBUG verific:84 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:17.258 DEBUG verific:94 - PortId    : op9
+2026-06-11 14:46:17.258 DEBUG verific:95 - ClusterId : 2
+2026-06-11 14:46:17.258 DEBUG verific:96 - BayId     : 6
+2026-06-11 14:46:17.362 DEBUG verific:106 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:46:17.362 DEBUG verific:118 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:17.362 DEBUG verific:128 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:17.362 DEBUG verific:129 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:17.362 INFO  verific:37 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:19.464 INFO  verific:55 - set_motor_required : Success
+2026-06-11 14:46:19.464 INFO  verific:68 - S19_open_stop_latch_Verific_Bay : palletsPassedVerificBay : 3
+2026-06-11 14:46:19.464 INFO  verific:70 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:22.464 INFO  verific:79 - S19_open_stop_latch_Verific_Bay : Exit
+2026-06-11 14:46:22.464 DEBUG verific:158 - processCurrentState : S19_open_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:46:22.464 DEBUG verific:159 - processCurrentState : S19_open_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:22.464 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:22.464 INFO  verific:19 - S20_close_stop_latch_Verific_Bay : Entry
+2026-06-11 14:46:22.464 DEBUG verific:46 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:22.464 DEBUG verific:56 - PortId    : op9
+2026-06-11 14:46:22.464 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:46:22.464 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:46:22.566 DEBUG verific:68 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:46:22.566 DEBUG verific:80 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:22.566 DEBUG verific:90 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:22.566 DEBUG verific:91 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:22.566 INFO  verific:30 - S20_close_stop_latch_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:25.567 INFO  verific:41 - S20_close_stop_latch_Verific_Bay : Exit
+2026-06-11 14:46:25.567 DEBUG verific:158 - processCurrentState : S20_close_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:46:25.567 DEBUG verific:159 - processCurrentState : S20_close_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:25.567 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:25.567 INFO  verific:19 - S21_open_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:46:25.567 DEBUG verific:46 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:25.567 DEBUG verific:56 - PortId    : op10
+2026-06-11 14:46:25.567 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:46:25.567 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:46:25.669 DEBUG verific:68 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:46:25.669 DEBUG verific:80 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:25.669 DEBUG verific:90 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:25.669 DEBUG verific:91 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:25.669 INFO  verific:30 - S21_open_stop_latch2_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:28.669 INFO  verific:41 - S21_open_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:46:28.669 DEBUG verific:158 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:46:28.669 DEBUG verific:159 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:28.669 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:28.669 INFO  verific:33 - S22_close_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:46:30.669 DEBUG verific:106 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:30.669 DEBUG verific:116 - PortId    : op10
+2026-06-11 14:46:30.669 DEBUG verific:117 - ClusterId : 2
+2026-06-11 14:46:30.669 DEBUG verific:118 - BayId     : 6
+2026-06-11 14:46:30.771 DEBUG verific:128 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:46:30.771 DEBUG verific:140 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:30.771 DEBUG verific:150 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:30.771 DEBUG verific:151 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:30.771 INFO  verific:46 - S22_close_stop_latch2_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:33.771 INFO  verific:57 - S22_close_stop_latch2_Verific_Bay : getPalletsPassedVerificBay()3
+2026-06-11 14:46:33.771 INFO  verific:101 - S22_close_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:46:33.771 DEBUG verific:158 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:46:33.771 DEBUG verific:159 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:33.771 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:33.771 INFO  verific:26 - S19_open_stop_latch_Verific_Bay : Entry
+2026-06-11 14:46:33.771 DEBUG verific:84 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:33.771 DEBUG verific:94 - PortId    : op9
+2026-06-11 14:46:33.771 DEBUG verific:95 - ClusterId : 2
+2026-06-11 14:46:33.771 DEBUG verific:96 - BayId     : 6
+2026-06-11 14:46:33.874 DEBUG verific:106 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:46:33.874 DEBUG verific:118 - S19_open_stop_latch_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:33.874 DEBUG verific:128 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:33.874 DEBUG verific:129 - S19_open_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:33.874 INFO  verific:37 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:35.976 INFO  verific:55 - set_motor_required : Success
+2026-06-11 14:46:35.976 INFO  verific:68 - S19_open_stop_latch_Verific_Bay : palletsPassedVerificBay : 4
+2026-06-11 14:46:35.976 INFO  verific:70 - S19_open_stop_latch_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:38.976 INFO  verific:79 - S19_open_stop_latch_Verific_Bay : Exit
+2026-06-11 14:46:38.976 DEBUG verific:158 - processCurrentState : S19_open_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:46:38.976 DEBUG verific:159 - processCurrentState : S19_open_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:38.976 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:38.976 INFO  verific:19 - S20_close_stop_latch_Verific_Bay : Entry
+2026-06-11 14:46:38.976 DEBUG verific:46 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:38.976 DEBUG verific:56 - PortId    : op9
+2026-06-11 14:46:38.976 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:46:38.976 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:46:39.077 DEBUG verific:68 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:46:39.077 DEBUG verific:80 - S20_close_stop_latch_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:39.077 DEBUG verific:90 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:39.077 DEBUG verific:91 - S20_close_stop_latch_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:39.077 INFO  verific:30 - S20_close_stop_latch_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:42.077 INFO  verific:41 - S20_close_stop_latch_Verific_Bay : Exit
+2026-06-11 14:46:42.077 DEBUG verific:158 - processCurrentState : S20_close_stop_latch_Verific_Bay : Status     : true
+2026-06-11 14:46:42.077 DEBUG verific:159 - processCurrentState : S20_close_stop_latch_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:42.077 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:42.077 INFO  verific:19 - S21_open_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:46:42.077 DEBUG verific:46 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:42.077 DEBUG verific:56 - PortId    : op10
+2026-06-11 14:46:42.077 DEBUG verific:57 - ClusterId : 2
+2026-06-11 14:46:42.077 DEBUG verific:58 - BayId     : 6
+2026-06-11 14:46:42.178 DEBUG verific:68 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : state : Off
+2026-06-11 14:46:42.178 DEBUG verific:80 - S21_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:42.178 DEBUG verific:90 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:42.178 DEBUG verific:91 - S21_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:42.178 INFO  verific:30 - S21_open_stop_latch2_Verific_Bay : Stop Latch Opened
+2026-06-11 14:46:45.178 INFO  verific:41 - S21_open_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:46:45.178 DEBUG verific:158 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Status     : true
+2026-06-11 14:46:45.178 DEBUG verific:159 - processCurrentState : S21_open_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_601
+2026-06-11 14:46:45.178 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:46:45.178 INFO  verific:33 - S22_close_stop_latch2_Verific_Bay : Entry
+2026-06-11 14:46:47.179 DEBUG verific:106 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Entry
+2026-06-11 14:46:47.179 DEBUG verific:116 - PortId    : op10
+2026-06-11 14:46:47.179 DEBUG verific:117 - ClusterId : 2
+2026-06-11 14:46:47.179 DEBUG verific:118 - BayId     : 6
+2026-06-11 14:46:47.281 DEBUG verific:128 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : state : On
+2026-06-11 14:46:47.281 DEBUG verific:140 - S22_close_stop_latch2_Verific_Bay : close_StopLatch_Verific_Bay : status : true
+2026-06-11 14:46:47.281 DEBUG verific:150 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : true
+2026-06-11 14:46:47.281 DEBUG verific:151 - S22_close_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit
+2026-06-11 14:46:47.281 INFO  verific:46 - S22_close_stop_latch2_Verific_Bay : Stop Latch Closed
+2026-06-11 14:46:50.281 INFO  verific:57 - S22_close_stop_latch2_Verific_Bay : getPalletsPassedVerificBay()4
+2026-06-11 14:46:50.281 INFO  verific:60 - S22_close_stop_latch2_Verific_Bay : All pallets passed out of Verific Bay
+2026-06-11 14:46:50.281 INFO  verific:67 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : start:
+2026-06-11 14:46:50.281 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 20
+2026-06-11 14:46:51.281 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 19
+2026-06-11 14:46:52.282 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 18
+2026-06-11 14:46:53.283 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 17
+2026-06-11 14:46:54.283 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 16
+2026-06-11 14:46:55.284 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 15
+2026-06-11 14:46:56.284 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 14
+2026-06-11 14:46:57.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 13
+2026-06-11 14:46:58.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 12
+2026-06-11 14:46:59.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 11
+2026-06-11 14:47:00.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 10
+2026-06-11 14:47:01.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 9
+2026-06-11 14:47:02.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 8
+2026-06-11 14:47:03.285 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 7
+2026-06-11 14:47:04.286 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 6
+2026-06-11 14:47:05.286 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 5
+2026-06-11 14:47:06.286 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 4
+2026-06-11 14:47:07.286 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 3
+2026-06-11 14:47:08.286 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 2
+2026-06-11 14:47:09.286 INFO  verific:69 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: 1
+2026-06-11 14:47:10.286 INFO  verific:73 - S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaiting stop:
+2026-06-11 14:47:10.388 INFO  verific:84 - S22_close_stop_latch2_Verific_Bay : set_motor_not_required : Success
+2026-06-11 14:47:10.395 INFO  verific:95 - S22_close_stop_latch2_Verific_Bay : Pallets Cleared
+2026-06-11 14:47:10.397 INFO  verific:101 - S22_close_stop_latch2_Verific_Bay : Exit
+2026-06-11 14:47:10.397 DEBUG verific:158 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Status     : false
+2026-06-11 14:47:10.397 DEBUG verific:159 - processCurrentState : S22_close_stop_latch2_Verific_Bay : Error Code : ERROR_CODE_VERIFIC_022
+2026-06-11 14:47:10.397 DEBUG verific:23 - VerificationBayContext: processPresentState: Entry
+2026-06-11 14:47:10.397 INFO  verific:11 - S18_idle_condition : Entry
+2026-06-11 14:47:10.397 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:11.398 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:12.398 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:13.398 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:14.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:15.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:16.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:17.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:18.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:19.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:20.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:21.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:22.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:23.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:24.399 INFO  verific:21 - S18_idle_condition : Waiting in Idle Condition
+2026-06-11 14:47:25.399 DEBUG verific:158 - processCurrentState : S18_idle_condition : Status     : true
+2026-06-11 14:47:25.399 DEBUG verific:159 - processCurrentState : S18_idle_condition : Error Code : NO_ERROR_001
+2026-06-11 14:47:25.399 DEBUG verific:125 - VerificationTestBayReset : manageVerificationTestBayResetStates : Exit

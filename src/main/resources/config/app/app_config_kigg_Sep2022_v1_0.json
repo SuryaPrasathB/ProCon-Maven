@@ -1,0 +1,346 @@
+{
+	"ConfigFileVersion" : "2.1",
+	"ConfigFileVersionComment1_1" : "1.1-Added RSS_LTCT_CurrentThreshold and its corresponding levels for Active/Reactive LTCT/HTCT, ",
+	"ConfigFileVersionComment1_2" : " added HoldLogFilesforX_NoOfPreviousDays",
+	"ConfigFileVersionComment1_3" : " added BNC_OutputPort",
+	"ConfigFileVersionComment1_4" : " added RefStdFeedBackControl",
+	
+	
+	"ConfigFilePathLocation": {
+		
+		"ProPowerCalibrationFolderPath" : "/resources/config/calib/",
+		"RefStdConstantConfigFolderPath" : "/resources/config/refstd/",
+		"ReportProfileFolderPath" : "/resources/config/report/",
+		"ReportConfigFolderPath" : "/resources/config/report/"	
+	},
+	
+	"ConfigFileName": {
+		"ProPowerCalibrationFileName" : "lscs_enercent_jul2022_calibration.json",
+		"RefStdConstantConfigFileName" : "RefStd_KIGGS_hc3100h_1.json",
+		"ReportProfileV2FileName":"ReportProfileV2.json",
+		"ReportConfigFileName" : "report_config.json",
+		"PythonExeLocation" : "C:\\Users\\nana\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+		"PythonExeLocation1" : "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+		"PythonScriptLocation" : "C:\\TAS_Network\\Procal_Excel\\python\\ProCalSaveAsPDF_MergeV1_3.py"	
+	},
+	
+	
+	"app": {
+		"AppInstanceServerPort": 8083
+		"PowerSrc":"PS-01",
+		"RefStd":"Ref-03",
+		"LDU":"LDU-05",
+		"ICT":"ICT-01",
+		"DUT":"DUT-01",
+		"ScreenWidthThreshold" : 1500,
+		"ScreenHeightThreshold" : 1000,
+		"HoldLogFilesforX_NoOfPreviousDays": 14,
+		"DeploymentDbSearchMaxTimeLimitInDays": 7,
+		"GenerateIndividualReportEnabled" : false,
+		"LscsPowerSrcInit":"1.45319",
+		"InstantMetricsDisplayAlwaysOnTop" : true,
+		"DeploymentReferenceNoLabelName" : "Batch No",
+		"DutDisplayKey" : "MUT"
+		
+	},
+	
+	"RefStdFeedBackControl": {
+		"RefStdFeedBackControlEnabled" : false,
+		"RefStdFeedBackDegreeRetryCountMax": 10,
+		"RefStdFeedBackDegreeAllowedUpperLimit": 0.29,
+		"RefStdFeedBackDegreeAllowedLowerLimit": 0.29,		
+		"RefStdFeedBackVoltAllowedUpperLimitPercentage": 0.05,
+		"RefStdFeedBackVoltAllowedLowerLimitPercentage": 0.05,
+		"RefStdFeedBackCurrentAllowedUpperLimitPercentage": 0.05,
+		"RefStdFeedBackCurrentAllowedLowerLimitPercentage": 0.05,
+		"RefStdFeedBackCurrentFineTuneAllowedPercentage_notused": 0.25,
+		"RefStdFeedBackCurrentFineTuneWaitTimeInSec": 120,
+		"RefStdFeedBackCurrentFineTuneConfirmationCount": 3,
+		"RefStdFeedBackControlSendDataToPowerSourceRefreshTimeInMsec" : 1700,
+	},
+	
+	"StablizationValidation": {
+		"PowerSrcValidationWaitTimeInSec": 40,
+		"PowerSrcAcceptedContinousFailure":5,
+		"DefaultRefStandardValidationRetryCount": 3,
+		"DefaultRefStandardValidationWaitTimeInSec": 30,
+		"SkipTestPointTimeInSec": 5
+	},
+	
+	"AcceptedErrorPercentage": {
+		"DefaultVoltAcceptedPercentage": 10,
+		"DefaultCurrentAcceptedPercentage": 10,
+		"DefaultPhaseAcceptedPercentage": 10,
+		"DefaultFrequencyAcceptedPercentage": 0.5,
+		"DefaultHarVoltAcceptedPercentage": 30,
+		"DefaultHarCurrentAcceptedPercentage": 30,
+		"VoltZeroAcceptedValue": 50.0,
+		"CurrentZeroAcceptedValue": 4.0,
+		"DegreeZeroAcceptedValue": 2.0
+	},
+	
+	"AcceptedVoltageRange": {
+		"LTCT_VoltMin": 0.0,
+		"LTCT_VoltMax": 330.0,
+		"HTCT_VoltMin": 0.0,
+		"HTCT_VoltMax": 120.0
+	},
+	
+	"AcceptedCurrentRange": {
+		"LTCT_CurrentMin": 0.0,
+		"LTCT_CurrentMax": 120.0,
+		"HTCT_CurrentMin": 0.0,
+		"HTCT_CurrentMax": 10.0
+	},
+	
+	"AcceptedCreepTimeRange": {
+		"TimeMin": 0,
+		"TimeMax": 99
+	},
+	
+	"AcceptedDegreeRange": {
+		"DegreeMin": -360,
+		"DegreeMax": 360
+	},
+	
+	"AcceptedFrequencyRange": {
+		"FrequencyMin": 45,
+		"FrequencyMax": 55
+	},
+	
+	"AcceptedErrorRange": {
+		"ErrorMin": -13.0,
+		"ErrorMax": 13.0
+	},
+	
+	"PhaseReversal": {
+		"NormalRY": "120",
+		"NormalRB": "240",
+		"PhaseReversalRY": "240",
+		"PhaseReversalRB": "120"
+	},
+	
+		
+	"IMappingDefaultValues": {
+		"I1": "1",
+		"I2": "2",
+		"I3": "5",
+		"I4": "10",
+		"I5": "20",
+		"I6": "30",
+		"I7": "50",
+		"I8": "60",
+		"I9": "80",
+		"I10": "100",
+		"I11": "120",
+		"I12": "150",
+		"I13": "200"
+	},
+	
+
+	"PF_MappingDefaultValues": {
+		"PF1": "1.0",
+		"PF2": "0.5L",
+		"PF3": "0.8C",
+		"PF4": "0.5C",
+		"PF5": "0.25L",
+		"PF6": "0.8L",
+		"PF7": "0.25C"
+	},
+
+	
+	
+	
+	"CoolOffTimeInMSec": 10000,
+
+
+		
+	"TestPointInputDefaultValues": {
+		"Error_Min_Default_Value": -0.5,
+		"Error_Max_Default_Value": 0.5,
+		"TimeInSec_Default_Value": 20,
+		"Pulses_Default_Value": 10,
+		"Average_Default_Value": 1,
+		"Skip_Reading_Default_Value": 0
+	},
+	
+	"PwrSrcDevice": {
+		"PowerSrcRebootUpWaitTimeInMsec": 60,
+		"VoltUnbalanceZeroVoltLessThan100V_InPercentage":  16.0,
+		"VoltUnbalanceZeroVoltGreaterThan100V_InPercentage":  4.0,
+		"ManualModeTimerInputMinAccepted" : 10,
+		"ManualModeTimerInputMaxAccepted" : 3600,
+		"ManualModeTimerInputDefaultValue" : 120
+	},
+	
+	"RefStdDevice": {
+		
+		"ConstConfigDisplayEnable": false,
+		"BNC_OutputPort": 1,
+		"EnableParsingLogs" : false
+	},
+	
+	"LDU_Device": {
+		"STA_ReadingWaitTimeInSec": 600,
+		"CreepReadingWaitTimeInSec": 120,
+		"DialTestReadingWaitTimeInSec": 120,
+		"RepeatSelfHeatingReadingWaitTimeInSec": 120
+
+	},
+	
+	
+	"database": {
+	   "username":"root",
+	   "password":"lscontrols",
+	   "db_name1":"procal_v2_3",
+	   "db_name":"procal_V2_3_ram_pc_dump20220924",
+	   "DefaultMySQL_InstalledLocation":"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",
+	   "DefaultBackupLocation":"C:\\"
+	},
+	
+	"Report": {
+		"AccuracyNumberOfPages": 2,
+		"AccuracyNumberOfSectionPerPage": 3,
+		"ReportProfile1":"DefaultReportProfile",
+		"ReportDateFormat": "yyyy-MM-dd",
+		"ReportTimeFormat": "HH:mm:ss",
+		"ReportTimeZone": "Asia/Calcutta",
+		"TimeZoneList" : "https://garygregory.wordpress.com/2013/06/18/what-are-the-java-timezone-ids/",
+		"FontSize" : 6,
+		"FontName" : "Arial",
+		"PassColorHighLightEnabled" : false,
+		"FailColorHighLightEnabled" : true,
+		"ReportTotalNumberOfPages": "7",
+		"MeterProfileReportPageNumber": "2",
+		"MeterProfileReportGenerationEnabled": false,
+		"TotalReportProfile" : 2,
+		"ReportProfile1":"DefaultReportProfile",
+		"ReportProfile2":"HealthyMeterWithRepeatConstReport",
+		"ReportProfile3":"HealthyMeterReport",
+		"ReportProfile4":"HealthyMeterWithRepeatReport",
+		"ReportProfile5":"HealthyMeterWithRepeatConstReport",
+		"ReportProfile6":"UnhealthyMeterReport",
+		"ConfigFileNameReportProfile1":"NoName.json",
+		"ConfigFileNameReportProfile2":"Avvnl_HealthyMeterRepeatConstReportWithMultiplePageV1_6.json",
+		"ConfigFileNameReportProfile3":"Avvnl_HealthyMeterRepeatConstReportWithMultiplePageV1_5.json",
+		"ConfigFileNameReportProfile4":"Avvnl_HealthyMeterRepeatConstReportWithMultiplePageV1_4.json",
+		"ConfigFileNameReportProfile5":"Avvnl_HealthyMeterRepeatConstReportV1_3.json",
+		"ConfigFileNameReportProfile6":"Avvnl_HealthyMeterRepeatConstReportV1_2.json",
+		"ConfigFileNameReportProfile7":"Avvnl_HealthyMeterReport.json",
+		"ConfigFileNameReportProfile8":"Avvnl_HealthyMeterRepeatReport.json",
+		"ConfigFileNameReportProfile9":"Avvnl_HealthyMeterRepeatConstReportV1_1.json",
+		"ConfigFileNameReportProfile10":"UnhealthyMeterReport.json",
+		"ConfigFileNameReportProfile11":"Avvnl_HealthyMeterRepeatConstReport.json",
+		"DefaultReportProfileDisplay":"DefaultReportProfile",
+		"ReportDataReplaceEnabled" : true,
+		"ReportDataReplaceCount" : 2,
+		"ReportDataFind1" : "3 Phase Star Active",
+		"ReportDataFind2" : "Single Phase Active",
+		"ReportDataReplace1" : "3 phase",
+		"ReportDataReplace2" : "1 phase",
+		"CustomReportExportAsPdf" : false,
+		"ExcelLastRow" : 99,
+		"ExcelLastColumn" : 99
+	},
+	
+	"DUT": {
+		"CommFeatureEnabled": false
+
+	},
+	
+	"DeviceSettings": {
+		"PowerSource_Id": 1,
+		"RefStd_Id": 2,
+		"Ldu_Id": 3,
+		"Ict_Id": 4,
+		"dut01_Id": 5,
+		"dut02_Id": 6,
+		"dut03_Id": 7,
+		"dut04_Id": 8,
+		"dut05_Id": 9,
+		"dut06_Id": 10,
+		"dut07_Id": 11,
+		"dut08_Id": 12,
+		"dut09_Id": 13,
+		"dut10_Id": 14,		
+		"dut11_Id": 15,
+		"dut12_Id": 16,
+		"dut13_Id": 17,
+		"dut14_Id": 18,
+		"dut15_Id": 19,
+		"dut16_Id": 20,
+		"dut17_Id": 21,
+		"dut18_Id": 22,
+		"dut19_Id": 23,
+		"dut20_Id": 24,		
+		"dut21_Id": 25,
+		"dut22_Id": 26,
+		"dut23_Id": 27,
+		"dut24_Id": 28,
+		"dut25_Id": 29,
+		"dut26_Id": 30,
+		"dut27_Id": 31,
+		"dut28_Id": 32,
+		"dut29_Id": 33,
+		"dut30_Id": 34,		
+		"dut31_Id": 35,
+		"dut32_Id": 36,
+		"dut33_Id": 37,
+		"dut34_Id": 38,
+		"dut35_Id": 39,
+		"dut36_Id": 40,
+		"dut37_Id": 41,
+		"dut38_Id": 42,
+		"dut39_Id": 43,
+		"dut40_Id": 44,		
+		"dut41_Id": 45,
+		"dut42_Id": 46,
+		"dut43_Id": 47,
+		"dut44_Id": 48,
+		"dut45_Id": 49,
+		"dut46_Id": 50,
+		"dut47_Id": 51,
+		"dut48_Id": 52
+
+	},
+	
+	"UserAccessControl": {
+		"NoOfUacProfiles": 5,	
+		"UacProfileName1": "Read Only",	
+		"UacProfileName2": "Production",
+		"UacProfileName3": "Maintenance",
+		"UacProfileName4": "Quality",
+		"UacProfileName5": "Admin",		
+		"UacDefaultProfileName": "Admin"
+	},
+	
+	"DataValidation": {
+
+		"DutIdBlackListValidation": false,
+		"TotalDutIdBlackList": 2,
+		"DutIdBlackList1": "12345",
+		"DutIdBlackList2": "TNEB1234",
+		"DutIdWhiteListValidation": false,
+		"TotalDutIdWhiteList": 2,
+		"DutIdWhiteList1": "123456",
+		"DutIdWhiteList2": "TNEB4567",
+		"DutIdValidateAlreadyTested": false,
+		"DutIdValidateForEmpty": false
+
+	},
+	
+	"ImportDeploymentData": {
+		"ImportDeploymentDataFeatureEnabled": true,
+		"RackPositionIdHeader" : "Rack ID",
+		"RackPositionSelectedHeader" : "Select",
+		"SerialNoHeader" : "Serial No",
+		"CtRatioHeader" : "CTR Ratio",
+		"PtRatioHeader" : "PTR Ratio",
+		"MeterConstantHeader" : "Meter Constant",
+		"MeterMakeHeader" : "Make"
+
+	}
+
+
+	
+}

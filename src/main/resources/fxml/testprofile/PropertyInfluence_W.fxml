@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="AnchorPropertyInfluence" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="760.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testprofiles.PropertyInfluenceController">
+   <children>
+      <ScrollPane fx:id="scrollPaneInfProperty" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="613.0" prefWidth="750.0">
+        <content>
+          <AnchorPane fx:id="InnerAnchorPropertyInfluence" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="735.0">
+               <children>
+                  <Accordion fx:id="testDataMatrixAccordian" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="726.0">
+                    <panes>
+                        <TitledPane fx:id="testCaseSetupIMappingPane" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="460.0" prefWidth="550.0" text="Current - PF Mapping">
+                           <content>
+                              <AnchorPane fx:id="anchorPaneCurrentMapping" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="548.0">
+                                 <children>
+                                    <TitledPane collapsible="false" focusTraversable="false" layoutX="24.0" layoutY="12.0" prefHeight="320.0" prefWidth="242.0" text="\% I">
+                                       <content>
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="250.0">
+                                             <children>
+                                                <TextField fx:id="txt_current_input" layoutX="20.0" layoutY="21.0" prefHeight="31.0" prefWidth="78.0" />
+                                                <Button fx:id="btn_add" layoutX="21.0" layoutY="71.0" mnemonicParsing="false" onAction="#AddCurrentOnClick" prefHeight="33.0" prefWidth="78.0" text="Add" />
+                                                <Button fx:id="btn_remove" layoutX="21.0" layoutY="120.0" mnemonicParsing="false" onAction="#RemoveCurrentOnClick" prefHeight="33.0" prefWidth="78.0" text="Del" />
+                                                <ListView fx:id="listview_currentlist" layoutX="118.0" layoutY="20.0" prefHeight="248.0" prefWidth="114.0" />
+                                                <Button fx:id="btn_add1" layoutX="21.0" layoutY="168.0" mnemonicParsing="false" onAction="#MoveUpIOnClick" prefHeight="33.0" prefWidth="78.0" text="∧" />
+                                                <Button fx:id="btn_add11" layoutX="23.0" layoutY="233.0" mnemonicParsing="false" onAction="#MoveDownIOnClick" prefHeight="33.0" prefWidth="78.0" text="∨" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <Button fx:id="btn_Save" layoutX="49.0" layoutY="344.0" mnemonicParsing="false" onAction="#SaveI_AndPF_MappingOnClick" prefHeight="33.0" prefWidth="95.0" text="Next" />
+                                    <TitledPane fx:id="pfUserMapping" collapsible="false" focusTraversable="false" layoutX="288.0" layoutY="12.0" prefHeight="320.0" prefWidth="242.0" text="PF">
+                                       <content>
+                                          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="250.0">
+                                             <children>
+                                                <TextField fx:id="txt_pf_input" layoutX="19.0" layoutY="21.0" prefHeight="31.0" prefWidth="78.0" />
+                                                <RadioButton fx:id="radioBtn_Lag" layoutX="115.0" layoutY="26.0" mnemonicParsing="false" onAction="#radioBtn_LagOnChange" prefHeight="21.0" prefWidth="57.0" text="Lag" />
+                                                <RadioButton fx:id="radioBtn_Lead" layoutX="172.0" layoutY="26.0" mnemonicParsing="false" onAction="#radioBtn_LeadOnChange" prefHeight="21.0" prefWidth="59.0" text="Lead" />
+                                                <Button fx:id="btn_pfadd" layoutX="20.0" layoutY="71.0" mnemonicParsing="false" onAction="#AddPF_MappingOnClick" prefHeight="33.0" prefWidth="78.0" text="Add" />
+                                                <Button fx:id="btn_pfremove" layoutX="20.0" layoutY="120.0" mnemonicParsing="false" onAction="#RemovePF_MappingtOnClick" prefHeight="33.0" prefWidth="78.0" text="Del" />
+                                                <ListView fx:id="listview_pf_list" layoutX="118.0" layoutY="74.0" prefHeight="194.0" prefWidth="114.0" />
+                                                <Button fx:id="btn_pf_up" layoutX="20.0" layoutY="168.0" mnemonicParsing="false" onAction="#MoveUpPF_MappingOnClick" prefHeight="33.0" prefWidth="78.0" text="∧" />
+                                                <Button fx:id="btn_pf_down" layoutX="22.0" layoutY="233.0" mnemonicParsing="false" onAction="#MoveDownPF_MappingOnClick" prefHeight="33.0" prefWidth="78.0" text="∨" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                 </children></AnchorPane>
+                           </content>
+                        </TitledPane>
+                      <TitledPane fx:id="testCaseSetupPane" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" text="Test Point Setup">
+                        <content>
+                          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="548.0">
+                                 <children>
+                                    <TitledPane fx:id="TitledPaneTestPointSetup" animated="false" collapsible="false" focusTraversable="false" layoutX="9.0" layoutY="15.0" minHeight="-Infinity" prefHeight="264.0" prefWidth="494.0" text="Setup">
+                                       <content>
+                                          <HBox prefHeight="196.0" prefWidth="492.0">
+                                             <children>
+                                                <TableView fx:id="imaxDataTable" focusTraversable="false" maxHeight="-Infinity" prefHeight="255.0" prefWidth="240.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="imaxDataColumn" prefWidth="74.0" sortable="false" text="I %" />
+                                                      <TableColumn fx:id="imaxSelectedColumn" prefWidth="81.0" sortable="false" text="Imax %" />
+                                                      <TableColumn fx:id="ibSelectedColumn" prefWidth="82.0" sortable="false" text="Ib %" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                                <TableView fx:id="pfAbcDataTable" focusTraversable="false" layoutX="198.0" layoutY="20.0" maxHeight="-Infinity" prefHeight="255.0" prefWidth="227.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="pfAbcDataColumn" prefWidth="69.0" sortable="false" text="PF" />
+                                                      <TableColumn fx:id="pfAbcSelectedColumn" sortable="false" text="ABC" />
+                                                      <TableColumn fx:id="pfA_b_cSelectedColumn" prefWidth="75.0" sortable="false" text="A/B/C" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                             </children>
+                                          </HBox>
+                                       </content>
+                                    </TitledPane>
+                                    <ButtonBar buttonOrder="" layoutX="10.0" layoutY="299.0" prefHeight="40.0" prefWidth="218.0">
+                                       <buttons>
+                                          <Button mnemonicParsing="false" onAction="#onTestSetupPreviewClick" prefHeight="33.0" prefWidth="100.0" text="Preview" />
+                                          <Button fx:id="btnSetupNext" minHeight="-Infinity" mnemonicParsing="false" onAction="#onTestSetupSaveClick" prefHeight="33.0" text="Next" />
+                                       </buttons>
+                                    </ButtonBar>
+                                    <TitledPane fx:id="TitledPaneTestPointGridPrvw" collapsible="false" layoutX="6.0" layoutY="361.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="495.0" text="Test Point Grid Preview">
+                                       <content>
+                                          <TableView fx:id="testSetupPreviewTable" minHeight="-Infinity" prefHeight="109.0" prefWidth="493.0">
+                                             <columns>
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                                <TableColumn prefWidth="75.0" />
+                                             </columns>
+                                          </TableView>
+                                       </content>
+                                    </TitledPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane fx:id="testCaseSelectionPane" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="662.0" text="Test Point Selection">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="485.0">
+                                 <children>
+                                    <VBox layoutX="11.0" layoutY="14.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="520.0">
+                                       <children>
+                                          <TableView fx:id="testCaseSelectionTable" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="500.0">
+                                            <columns>
+                                                <TableColumn maxWidth="100.0" prefWidth="75.0" sortable="false" text="C1" />
+                                                <TableColumn maxWidth="60.0" minWidth="60.0" prefWidth="60.0" resizable="false" sortable="false" text="C2" />
+                                                <TableColumn maxWidth="60.0" minWidth="60.0" prefWidth="60.0" resizable="false" sortable="false" text="C3" />
+                                                <TableColumn maxWidth="60.0" prefWidth="75.0" resizable="false" sortable="false" text="C4" />
+                                                <TableColumn maxWidth="60.0" minWidth="60.0" prefWidth="60.0" resizable="false" sortable="false" text="C5" />
+                                                <TableColumn maxWidth="75.0" minWidth="75.0" prefWidth="75.0" resizable="false" sortable="false" text="C6" />
+                                            </columns>
+                                          </TableView>
+                                          <ButtonBar buttonOrder="" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="224.0">
+                                            <buttons>
+                                                <Button fx:id="btn_SelectAll" mnemonicParsing="false" onAction="#btn_SelectAllOnClick" prefHeight="33.0" prefWidth="121.0" text="Select All" />
+                                              <Button fx:id="btnSelectionNext" mnemonicParsing="false" onAction="#onTestSelectionSaveClick" prefHeight="33.0" prefWidth="121.0" text="Next" />
+                                            </buttons>
+                                          </ButtonBar>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane fx:id="testCaseInputsPane" focusTraversable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="360.0" prefWidth="550.0" text="Test Point Inputs">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="548.0">
+                                 <children>
+                                    <VBox alignment="CENTER" layoutX="8.0" layoutY="10.0" prefHeight="371.0" prefWidth="683.0">
+                                       <children>
+                                          <TableView fx:id="testCaseInputsTable" editable="true" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="666.0">
+                                            <columns>
+                                                <TableColumn fx:id="testCaseNameColumn" maxWidth="150.0" prefWidth="100.0" sortable="false" text="Test Point" />
+                                                <TableColumn fx:id="testCaseEminColumn" maxWidth="60.0" prefWidth="60.0" resizable="false" sortable="false" text="E-Min" />
+                                                <TableColumn fx:id="testCaseEmaxColumn" maxWidth="60.0" prefWidth="60.0" resizable="false" sortable="false" text="E-Max" />
+                                                <TableColumn fx:id="testCasePulseColumn" maxWidth="59.0" prefWidth="59.0" resizable="false" sortable="false" text="Pulses" />
+                                                <TableColumn fx:id="testCasePulseAverageColumn" prefWidth="75.0" resizable="false" sortable="false" text="Average" />
+                                                <TableColumn fx:id="testCaseTimeColumn" maxWidth="200.0" prefWidth="47.0" resizable="false" sortable="false" text="Time(Sec)" />
+                                                <TableColumn fx:id="testCaseSkipReadingCountColumn" maxWidth="200.0" prefWidth="54.0" resizable="false" sortable="false" text="Skip Reading" />
+                                                <TableColumn fx:id="testCaseDeviationColumn" prefWidth="117.5999755859375" sortable="false" text="Deviation" visible="false" />
+                                                <TableColumn fx:id="testCaseRunTypeColumn" maxWidth="265.0" prefWidth="148.0" resizable="false" sortable="false" styleClass="combo-box list-cell" text="Test Run Type" />
+                                            </columns>
+                                          </TableView>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="660.0">
+                                             <children>
+                                                <Label text="   " />
+                                                <Button mnemonicParsing="false" onAction="#CopyDataToAllRows" prefHeight="33.0" prefWidth="121.0" text="Copy Data" />
+                                                <Label prefHeight="21.0" prefWidth="42.0" />
+                                              <Button fx:id="btn_tc_input_save" contentDisplay="CENTER" minWidth="58.0" mnemonicParsing="false" onAction="#onTestDataInputSaveClick" prefHeight="33.0" prefWidth="118.0" text="Save &amp; Next" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane fx:id="testCasePropertiesPane" focusTraversable="false" layoutX="10.0" layoutY="66.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="486.0" prefWidth="500.0" text="Test Point Properties">
+                         <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="688.0" />
+                         </content>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

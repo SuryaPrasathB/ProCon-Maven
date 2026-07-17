@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="testScriptRootPane" focusTraversable="true" minWidth="-Infinity" prefHeight="524.0" prefWidth="692.0" stylesheets="/resources/application_W.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.FirmwareUpgradeController">
+   <children>
+      <TitledPane animated="false" collapsible="false" layoutX="87.0" layoutY="62.0" prefHeight="403.0" prefWidth="481.0" text="Upgrade">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane layoutX="43.0" prefHeight="368.0" prefWidth="440.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btnScanDrives" mnemonicParsing="false" onAction="#ScanDrivesTrigger" prefHeight="31.0" prefWidth="145.0" text="Scan Drives" GridPane.rowIndex="1" />
+                        <Button fx:id="btnScanFiles" mnemonicParsing="false" onAction="#ScanFilesTrigger" prefWidth="145.0" text="Scan Files" GridPane.rowIndex="2" />
+                        <Button fx:id="btnValidate" mnemonicParsing="false" onAction="#ValidateTrigger" prefWidth="145.0" text="Validate" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cmbBxListOfAvailableDrives" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cmbBxListOfScannedFiles" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="btnDeploy" mnemonicParsing="false" onAction="#DeployTrigger" prefHeight="31.0" prefWidth="151.0" text="Deploy" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cmBxUpgradeType" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <Label prefHeight="21.0" prefWidth="142.0" text="Select Type" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

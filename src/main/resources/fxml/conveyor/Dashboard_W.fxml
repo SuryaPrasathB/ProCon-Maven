@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="1004.0" prefWidth="1735.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dashboard.DashboardController">
+   <top>
+        <HBox prefHeight="1002.0" prefWidth="1735.0" spacing="10" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
+            <ScrollPane fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="771.0" prefWidth="1076.0" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
+                <VBox prefHeight="975.0" prefWidth="1072.0" spacing="20" style="-fx-padding: 20;">
+
+
+                    <GridPane fx:id="palletGrid" hgap="10" prefHeight="982.0" prefWidth="1032.0" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                            <RowConstraints percentHeight="20" />
+                        </rowConstraints>
+
+                        <AnchorPane fx:id="bay1Container" style="-fx-border-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+					        <Label text="FT" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay2Container" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+					        <Label text="HV" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay3Container" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+					        <Label text="IR" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay4Container" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+					        <Label text="Calib" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+
+					    <AnchorPane fx:id="bay5Container" style="-fx-border-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+					        <Label text="Waiting4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay6Container" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+					        <Label text="Waiting3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay7Container" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+					        <Label text="Waiting2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay8Container" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+					        <Label text="Waiting1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+
+					    <AnchorPane fx:id="bay9Container" style="-fx-border-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="2">
+					        <Label text="Verification4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay10Container" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+					        <Label text="Verification3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay11Container" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+					        <Label text="Verification2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay12Container" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+					        <Label text="Verification1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+
+					    <AnchorPane fx:id="bay13Container" style="-fx-border-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+					        <Label text="Sta1_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay14Container" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+					        <Label text="Sta1_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay15Container" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+					        <Label text="Sta1_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay16Container" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+					        <Label text="Sta1_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+
+					    <AnchorPane fx:id="bay17Container" style="-fx-border-color: black;" GridPane.columnIndex="0" GridPane.rowIndex="4">
+					        <Label text="Sta2_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay18Container" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+					        <Label text="Sta2_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay19Container" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+					        <Label text="Sta2_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+					    <AnchorPane fx:id="bay20Container" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+					        <Label text="Sta2_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+					    </AnchorPane>
+                    </GridPane>
+                </VBox>
+            </ScrollPane>
+
+            <VBox prefHeight="983.0" prefWidth="522.0" spacing="5" style="-fx-padding: 0 10 0 0;">
+            <HBox prefHeight="0.0" prefWidth="512.0">
+               <children>
+                  <Pane prefHeight="20.0" prefWidth="73.0" />
+                  <StackPane fx:id="motorControlTabContainer" alignment="CENTER_RIGHT" style="-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 1 0 1 1;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Motor Control">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <Pane prefHeight="20.0" prefWidth="24.0" />
+                  <StackPane fx:id="mainControlTabContainer" alignment="CENTER_RIGHT" style="-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 1 0 1 1;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="Controls">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <Pane prefHeight="20.0" prefWidth="24.0" />
+                  <StackPane fx:id="launcherTabContainer" alignment="CENTER_RIGHT" style="-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 1 0 1 1;">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="18.0" prefWidth="102.0" text="LAUNCHERS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+                <HBox prefHeight="230.0" prefWidth="512.0" spacing="10">
+			        <AnchorPane fx:id="rejectionBayContainer" minHeight="200" minWidth="200" prefHeight="200.0" prefWidth="262.0" style="-fx-border-color: red; -fx-border-width: 2; -fx-padding: 5; -fx-background-color: #ffe6e6;">
+				        <Label layoutX="6.0" layoutY="-6.0" prefHeight="39.0" prefWidth="92.0" style="-fx-font-weight: bold; -fx-text-fill: red;" text="Rejection" />
+				    </AnchorPane>
+
+				    <AnchorPane fx:id="unloadingBayContainer" minHeight="200" minWidth="200" prefHeight="200.0" prefWidth="262.0" style="-fx-border-color: green; -fx-border-width: 2; -fx-padding: 5; -fx-background-color: #e6ffe6;">
+				        <Label layoutX="7.0" layoutY="5.0" prefHeight="18.0" prefWidth="94.0" style="-fx-font-weight: bold; -fx-text-fill: green;" text="Unloading" />
+				    </AnchorPane>
+			    </HBox>
+
+                <Label style="-fx-font-weight: bold;" text="Event Log" />
+                <TextArea fx:id="eventLog" editable="false" prefHeight="251.0" prefWidth="260.0" style="-fx-border-color: black;" wrapText="true" />
+            <Label style="-fx-font-weight: bold;" text="History" />
+            <HBox prefHeight="177.0" prefWidth="512.0">
+               <children>
+                  <VBox prefHeight="177.0" prefWidth="152.0">
+                     <children>
+                        <Label style="-fx-font-weight: bold;" text="FT BAY" />
+                        <TableView fx:id="tv_FTErrorCodeHistory" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="tc_FtHistoryCodeColumn" prefWidth="75.0" text="Code" />
+                            <TableColumn fx:id="tc_FtHistoryCountColumn" prefWidth="75.0" text="Count" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            </VBox>
+        </HBox>
+   </top>
+</BorderPane>

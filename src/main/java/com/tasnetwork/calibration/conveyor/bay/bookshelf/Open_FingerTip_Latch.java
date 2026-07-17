@@ -1,0 +1,5 @@
+package com.tasnetwork.calibration.conveyor.bay.bookshelf;
+
+public class Open_FingerTip_Latch {
+
+}

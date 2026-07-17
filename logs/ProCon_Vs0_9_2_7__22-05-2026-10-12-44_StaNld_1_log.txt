@@ -1,0 +1,668 @@
+2026-05-22 10:30:51.294 INFO  sta_nld1:1615 - btnSctNlt1ResetOnClick : Invoked:
+2026-05-22 10:30:51.294 INFO  sta_nld1:1617 - SCT NLT BAY 1 : RESET
+2026-05-22 10:30:51.313 INFO  sta_nld1:1668 - btnSctNlt1ResetOnClick : Exit:
+2026-05-22 10:30:51.414 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-22 10:30:51.414 DEBUG sta_nld1:34 - STA_NoLoadTestBay1Reset : manageShortCircuit_NoLoadTestBay1ResetStates : Entry
+2026-05-22 10:30:51.426 DEBUG sta_nld1:54 - STA_NoLoadTestBay1Reset : manageShortCircuit_NoLoadTestBay1ResetStates : getTableStatePlanner2 : Size : 6
+2026-05-22 10:30:51.426 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:30:51.426 INFO  sta_nld1:26 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Entry
+2026-05-22 10:30:51.426 DEBUG sta_nld1:107 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_on_tower_lamp : Entry
+2026-05-22 10:30:51.426 DEBUG sta_nld1:117 - PortId    : op19
+2026-05-22 10:30:51.426 DEBUG sta_nld1:118 - ClusterId : 2
+2026-05-22 10:30:51.427 DEBUG sta_nld1:119 - BayId     : 7
+2026-05-22 10:30:51.530 DEBUG sta_nld1:134 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_on_tower_lamp : status : true
+2026-05-22 10:30:51.530 DEBUG sta_nld1:143 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Exit
+2026-05-22 10:30:51.530 INFO  sta_nld1:36 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_on_tower_lamp : Success
+2026-05-22 10:30:51.530 DEBUG sta_nld1:68 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_off_tower_lamp : Entry
+2026-05-22 10:30:51.530 DEBUG sta_nld1:78 - PortId    : op20
+2026-05-22 10:30:51.530 DEBUG sta_nld1:79 - ClusterId : 2
+2026-05-22 10:30:51.530 DEBUG sta_nld1:80 - BayId     : 7
+2026-05-22 10:30:51.633 DEBUG sta_nld1:94 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_off_tower_lamp : status : true
+2026-05-22 10:30:51.633 INFO  sta_nld1:44 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_off_tower_lamp : Success
+2026-05-22 10:30:52.633 INFO  sta_nld1:61 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Exit
+2026-05-22 10:30:52.633 DEBUG sta_nld1:162 - processCurrentState : S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:30:52.633 DEBUG sta_nld1:163 - processCurrentState : S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:30:52.633 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:30:52.633 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:30:56.633 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:30:56.633 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:30:56.633 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:30:56.633 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:30:56.736 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:30:56.736 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:30:56.736 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:30:56.736 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:30:56.736 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:30:59.736 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()0
+2026-05-22 10:30:59.736 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:30:59.736 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:30:59.736 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:30:59.736 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:30:59.736 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:01.736 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:01.736 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:31:01.736 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:31:01.736 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:31:01.838 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:01.838 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:01.838 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:01.838 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:01.838 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:04.958 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:31:04.958 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:31:04.958 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:31:04.958 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:04.958 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:04.958 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:04.958 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:04.958 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:07.958 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:07.958 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:31:07.958 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:31:07.958 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:31:08.060 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:31:08.060 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:08.060 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:08.060 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:08.060 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:31:08.060 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:08.060 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:08.060 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:08.060 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:08.060 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:31:10.060 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:10.060 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:31:10.060 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:31:10.060 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:31:10.162 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:10.162 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:10.162 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:10.162 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:10.162 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:10.162 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:31:10.162 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:10.162 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:10.162 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:10.162 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:31:14.162 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:14.162 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:31:14.162 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:31:14.162 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:31:14.264 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:31:14.264 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:14.264 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:14.264 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:14.264 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:31:17.264 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()1
+2026-05-22 10:31:17.264 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:31:17.264 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:17.264 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:17.264 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:17.264 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:19.264 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:19.264 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:31:19.264 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:31:19.264 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:31:19.366 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:19.366 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:19.366 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:19.366 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:19.366 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:22.468 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:31:22.468 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:31:22.468 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:31:22.468 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:22.468 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:22.468 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:22.468 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:22.468 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:25.468 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:25.468 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:31:25.468 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:31:25.468 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:31:25.570 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:31:25.570 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:25.570 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:25.570 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:25.570 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:31:25.570 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:25.570 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:25.570 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:25.570 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:25.570 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:31:27.570 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:27.570 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:31:27.570 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:31:27.570 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:31:27.672 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:27.672 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:27.672 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:27.672 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:27.672 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:27.672 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:31:27.672 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:27.672 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:27.672 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:27.672 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:31:31.673 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:31.673 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:31:31.673 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:31:31.673 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:31:31.774 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:31:31.774 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:31.774 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:31.774 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:31.774 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:31:34.774 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()2
+2026-05-22 10:31:34.774 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:31:34.774 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:34.774 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:34.774 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:34.774 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:36.774 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:36.774 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:31:36.774 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:31:36.774 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:31:36.876 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:36.876 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:36.876 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:36.876 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:36.876 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:39.979 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:31:39.979 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:31:39.979 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:31:39.979 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:39.979 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:39.979 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:39.979 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:39.979 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:42.979 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:42.979 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:31:42.979 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:31:42.979 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:31:43.080 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:31:43.080 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:43.080 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:43.080 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:43.080 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:31:43.080 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:43.080 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:43.080 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:43.080 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:43.080 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:31:45.080 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:45.080 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:31:45.080 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:31:45.080 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:31:45.182 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:45.182 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:45.182 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:45.182 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:45.182 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:45.182 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:31:45.182 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:45.182 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:45.182 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:45.182 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:31:49.183 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:49.183 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:31:49.183 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:31:49.183 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:31:49.286 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:31:49.286 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:49.286 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:49.286 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:49.286 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:31:52.286 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()3
+2026-05-22 10:31:52.286 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:31:52.286 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:52.286 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:52.286 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:52.286 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:31:54.286 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:31:54.286 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:31:54.286 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:31:54.286 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:31:54.387 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:31:54.387 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:31:54.387 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:31:54.387 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:31:54.387 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:31:57.489 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:31:57.489 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:31:57.489 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:31:57.489 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:31:57.489 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:31:57.489 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:31:57.489 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:31:57.489 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:32:00.489 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:32:00.489 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:32:00.489 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:32:00.489 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:32:00.591 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:32:00.591 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:32:00.591 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:32:00.591 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:32:00.591 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:32:00.591 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:32:00.591 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:32:00.591 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:32:00.591 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:32:00.591 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:32:02.592 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:32:02.592 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:32:02.592 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:32:02.592 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:32:02.694 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:32:02.694 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:32:02.694 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:32:02.694 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:32:02.694 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:32:02.694 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:32:02.694 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:32:02.694 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:32:02.694 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:32:02.694 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:32:06.694 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:32:06.694 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:32:06.694 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:32:06.694 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:32:06.795 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:32:06.795 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:32:06.795 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:32:06.795 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:32:06.795 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:32:09.796 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()4
+2026-05-22 10:32:09.796 INFO  sta_nld1:60 - S17_close_stop_latch2_STA_NLDT_Bay1 : All Pallets Passed STA_NLDT_Bay1
+2026-05-22 10:32:09.804 INFO  sta_nld1:66 - S17_close_stop_latch2_STA_NLDT_Bay1 : last pallet exit wait time: 5 Sec
+2026-05-22 10:32:14.805 INFO  sta_nld1:68 - S17_close_stop_latch2_STA_NLDT_Bay1 : last pallet exit wait done
+2026-05-22 10:32:19.907 INFO  sta_nld1:79 - S17_close_stop_latch2_STA_NLDT_Bay1 : set_motor_not_required : Success
+2026-05-22 10:32:19.907 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:32:19.907 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : false
+2026-05-22 10:32:19.907 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_SCT_NLT_BAY1_020
+2026-05-22 10:32:19.907 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:32:19.907 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-05-22 10:32:19.907 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:32:20.907 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:32:21.907 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:32:22.908 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:32:23.908 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:32:24.908 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-05-22 10:32:24.908 DEBUG sta_nld1:163 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-05-22 10:32:24.908 DEBUG sta_nld1:129 - STA_NoLoadTestBay1Reset : manageShortCircuit_NoLoadTestBay1ResetStates : Exit
+2026-05-22 10:32:47.805 INFO  sta_nld1:1660 - btnSctNlt1ResetOnClick : Invoked:
+2026-05-22 10:32:47.907 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-22 10:32:47.907 DEBUG sta_nld1:34 - STA_NoLoadTestBay1Reset : manageShortCircuit_NoLoadTestBay1ResetStates : Entry
+2026-05-22 10:32:47.908 DEBUG sta_nld1:54 - STA_NoLoadTestBay1Reset : manageShortCircuit_NoLoadTestBay1ResetStates : getTableStatePlanner2 : Size : 6
+2026-05-22 10:32:47.909 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:32:47.909 INFO  sta_nld1:26 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Entry
+2026-05-22 10:32:47.909 DEBUG sta_nld1:107 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_on_tower_lamp : Entry
+2026-05-22 10:32:47.909 DEBUG sta_nld1:117 - PortId    : op19
+2026-05-22 10:32:47.909 DEBUG sta_nld1:118 - ClusterId : 2
+2026-05-22 10:32:47.909 DEBUG sta_nld1:119 - BayId     : 7
+2026-05-22 10:32:48.011 DEBUG sta_nld1:134 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_on_tower_lamp : status : true
+2026-05-22 10:32:48.011 DEBUG sta_nld1:143 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Exit
+2026-05-22 10:32:48.011 INFO  sta_nld1:36 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_on_tower_lamp : Success
+2026-05-22 10:32:48.011 DEBUG sta_nld1:68 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_off_tower_lamp : Entry
+2026-05-22 10:32:48.011 DEBUG sta_nld1:78 - PortId    : op20
+2026-05-22 10:32:48.011 DEBUG sta_nld1:79 - ClusterId : 2
+2026-05-22 10:32:48.011 DEBUG sta_nld1:80 - BayId     : 7
+2026-05-22 10:32:48.216 DEBUG sta_nld1:94 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_off_tower_lamp : status : true
+2026-05-22 10:32:48.216 INFO  sta_nld1:44 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : turn_off_tower_lamp : Success
+2026-05-22 10:32:48.306 INFO  sta_nld1:1689 - btnSctNlt1ResetOnClick : Exit:
+2026-05-22 10:32:49.216 INFO  sta_nld1:61 - S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Exit
+2026-05-22 10:32:49.216 DEBUG sta_nld1:162 - processCurrentState : S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:32:49.216 DEBUG sta_nld1:163 - processCurrentState : S30_turn_off_tower_lamp_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:32:49.216 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:32:49.216 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:32:53.216 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:32:53.216 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:32:53.216 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:32:53.216 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:32:53.395 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:32:53.395 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:32:53.395 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:32:53.395 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:32:53.395 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:32:56.396 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()0
+2026-05-22 10:32:56.396 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:32:56.396 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:32:56.396 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:32:56.396 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:32:56.396 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:32:58.396 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:32:58.396 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:32:58.396 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:32:58.396 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:32:58.499 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:32:58.499 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:32:58.499 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:32:58.499 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:32:58.499 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:01.601 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:33:01.601 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:33:01.601 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:33:01.601 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:01.601 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:01.601 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:01.601 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:01.601 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:04.601 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:04.601 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:33:04.601 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:33:04.601 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:33:04.752 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:04.752 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:04.752 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:04.752 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:04.752 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:04.752 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:04.752 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:04.752 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:04.752 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:04.752 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:06.753 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:06.753 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:33:06.753 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:33:06.753 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:33:06.856 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:06.856 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:06.856 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:06.856 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:06.856 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:06.856 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:06.856 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:06.856 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:06.856 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:06.856 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:10.856 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:10.856 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:33:10.856 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:33:10.856 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:33:11.031 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:11.031 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:11.031 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:11.031 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:11.031 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:14.031 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()1
+2026-05-22 10:33:14.031 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:14.031 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:14.031 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:14.031 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:14.031 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:16.032 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:16.032 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:33:16.032 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:33:16.032 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:33:16.134 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:16.134 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:16.134 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:16.134 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:16.134 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:19.235 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:33:19.235 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:33:19.235 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:33:19.235 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:19.235 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:19.235 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:19.235 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:19.235 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:22.235 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:22.235 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:33:22.235 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:33:22.235 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:33:22.337 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:22.337 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:22.337 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:22.337 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:22.337 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:22.337 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:22.337 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:22.337 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:22.337 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:22.337 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:24.338 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:24.338 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:33:24.338 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:33:24.338 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:33:24.440 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:24.440 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:24.440 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:24.440 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:24.440 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:24.440 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:24.440 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:24.440 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:24.440 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:24.440 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:28.440 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:28.440 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:33:28.440 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:33:28.440 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:33:28.542 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:28.542 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:28.542 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:28.542 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:28.542 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:31.542 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()2
+2026-05-22 10:33:31.542 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:31.542 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:31.542 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:31.542 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:31.542 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:33.543 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:33.543 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:33:33.543 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:33:33.543 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:33:33.645 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:33.645 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:33.645 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:33.645 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:33.645 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:36.748 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:33:36.748 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:33:36.748 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:33:36.748 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:36.748 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:36.748 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:36.748 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:36.748 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:39.748 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:39.748 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:33:39.748 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:33:39.748 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:33:39.850 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:39.850 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:39.850 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:39.850 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:39.850 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:39.850 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:39.850 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:39.850 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:39.850 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:39.850 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:41.850 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:41.850 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:33:41.850 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:33:41.850 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:33:41.971 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:41.971 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:41.971 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:41.971 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:41.971 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:41.971 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:41.971 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:41.971 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:41.971 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:41.971 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:45.971 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:45.971 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:33:45.971 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:33:45.971 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:33:46.074 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:46.074 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:46.074 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:46.074 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:46.074 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:49.075 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()3
+2026-05-22 10:33:49.075 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:49.075 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:49.075 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:49.075 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:49.075 INFO  sta_nld1:27 - S16_open_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:51.075 DEBUG sta_nld1:87 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:51.075 DEBUG sta_nld1:97 - PortId    : op16
+2026-05-22 10:33:51.075 DEBUG sta_nld1:98 - ClusterId : 2
+2026-05-22 10:33:51.075 DEBUG sta_nld1:99 - BayId     : 7
+2026-05-22 10:33:51.178 DEBUG sta_nld1:109 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:51.178 DEBUG sta_nld1:120 - S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:51.178 DEBUG sta_nld1:130 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:51.178 DEBUG sta_nld1:131 - S16_open_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:51.178 INFO  sta_nld1:43 - S16_open_stop_latch_SCT_NLT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:54.279 INFO  sta_nld1:54 - set_motor_required : Success
+2026-05-22 10:33:54.279 INFO  sta_nld1:66 - S16_open_stop_latch_SCT_NLT_Bay1 : hit1
+2026-05-22 10:33:54.279 INFO  sta_nld1:72 - S16_open_stop_latch_SCT_NLT_Bay1 : increment2 : hit2
+2026-05-22 10:33:54.279 INFO  sta_nld1:82 - S16_open_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:54.279 DEBUG sta_nld1:162 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:54.279 DEBUG sta_nld1:163 - processCurrentState : S16_open_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:54.279 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:54.279 INFO  sta_nld1:19 - S15_close_stop_latch_SCT_NLT_Bay1 : Entry
+2026-05-22 10:33:57.279 DEBUG sta_nld1:44 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:57.279 DEBUG sta_nld1:54 - PortId    : op16
+2026-05-22 10:33:57.279 DEBUG sta_nld1:55 - ClusterId : 2
+2026-05-22 10:33:57.279 DEBUG sta_nld1:56 - BayId     : 7
+2026-05-22 10:33:57.402 DEBUG sta_nld1:67 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:33:57.402 DEBUG sta_nld1:78 - S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:57.402 DEBUG sta_nld1:87 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:57.402 DEBUG sta_nld1:88 - S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:57.402 INFO  sta_nld1:30 - S15_close_stop_latch_SCT_NLT_Bay1 : Stop Latch Closed
+2026-05-22 10:33:57.402 INFO  sta_nld1:39 - S15_close_stop_latch_SCT_NLT_Bay1 : Exit
+2026-05-22 10:33:57.402 DEBUG sta_nld1:162 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:57.402 DEBUG sta_nld1:163 - processCurrentState : S15_close_stop_latch_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:57.402 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:57.402 INFO  sta_nld1:19 - S18_open_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:33:59.402 DEBUG sta_nld1:45 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:33:59.402 DEBUG sta_nld1:55 - PortId    : op17
+2026-05-22 10:33:59.402 DEBUG sta_nld1:56 - ClusterId : 2
+2026-05-22 10:33:59.402 DEBUG sta_nld1:57 - BayId     : 7
+2026-05-22 10:33:59.504 DEBUG sta_nld1:67 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : Off
+2026-05-22 10:33:59.504 DEBUG sta_nld1:78 - S18_open_stop_latch2_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:33:59.504 DEBUG sta_nld1:88 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:33:59.504 DEBUG sta_nld1:89 - S18_open_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:33:59.504 INFO  sta_nld1:30 - S18_open_stop_latch2_STA_NLDT_Bay1 : Stop Latch Opened
+2026-05-22 10:33:59.504 INFO  sta_nld1:40 - S18_open_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:33:59.504 DEBUG sta_nld1:162 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Status     : true
+2026-05-22 10:33:59.504 DEBUG sta_nld1:163 - processCurrentState : S18_open_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 10:33:59.504 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:33:59.504 INFO  sta_nld1:31 - S17_close_stop_latch2_STA_NLDT_Bay1 : Entry
+2026-05-22 10:34:03.505 DEBUG sta_nld1:96 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Entry
+2026-05-22 10:34:03.505 DEBUG sta_nld1:106 - PortId    : op17
+2026-05-22 10:34:03.505 DEBUG sta_nld1:107 - ClusterId : 2
+2026-05-22 10:34:03.505 DEBUG sta_nld1:108 - BayId     : 7
+2026-05-22 10:34:03.607 DEBUG sta_nld1:119 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : On
+2026-05-22 10:34:03.607 DEBUG sta_nld1:130 - S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : true
+2026-05-22 10:34:03.607 DEBUG sta_nld1:139 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : status : true
+2026-05-22 10:34:03.607 DEBUG sta_nld1:140 - S17_close_stop_latch2_STA_NLDT_Bay1 : sctNltBay1_StopLatch_Status : Exit
+2026-05-22 10:34:03.607 INFO  sta_nld1:42 - S17_close_stop_latch2_STA_NLDT_Bay1 : Stop Latch Closed
+2026-05-22 10:34:06.607 INFO  sta_nld1:55 - S17_close_stop_latch2_STA_NLDT_Bay1 : getPalletsPassedSTA_NLDT_Bay1()4
+2026-05-22 10:34:06.607 INFO  sta_nld1:60 - S17_close_stop_latch2_STA_NLDT_Bay1 : All Pallets Passed STA_NLDT_Bay1
+2026-05-22 10:34:06.611 INFO  sta_nld1:66 - S17_close_stop_latch2_STA_NLDT_Bay1 : last pallet exit wait time: 5 Sec
+2026-05-22 10:34:11.612 INFO  sta_nld1:68 - S17_close_stop_latch2_STA_NLDT_Bay1 : last pallet exit wait done
+2026-05-22 10:34:16.732 INFO  sta_nld1:79 - S17_close_stop_latch2_STA_NLDT_Bay1 : set_motor_not_required : Success
+2026-05-22 10:34:16.732 INFO  sta_nld1:91 - S17_close_stop_latch2_STA_NLDT_Bay1 : Exit
+2026-05-22 10:34:16.732 DEBUG sta_nld1:162 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Status     : false
+2026-05-22 10:34:16.732 DEBUG sta_nld1:163 - processCurrentState : S17_close_stop_latch2_STA_NLDT_Bay1 : Error Code : ERROR_CODE_SCT_NLT_BAY1_020
+2026-05-22 10:34:16.732 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 10:34:16.732 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-05-22 10:34:16.732 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:34:17.732 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:34:18.732 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:34:19.732 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:34:20.733 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 10:34:21.734 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-05-22 10:34:21.734 DEBUG sta_nld1:163 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-05-22 10:34:21.734 DEBUG sta_nld1:129 - STA_NoLoadTestBay1Reset : manageShortCircuit_NoLoadTestBay1ResetStates : Exit
+2026-05-22 12:37:16.467 INFO  sta_nld1:1488 - btnSctNlt1StartOnClick : Invoked:
+2026-05-22 12:37:16.467 INFO  sta_nld1:1490 - SCT NLT BAY 1 : STARTED
+2026-05-22 12:37:16.468 INFO  sta_nld1:1546 - btnSctNlt1StartOnClick : Exit:
+2026-05-22 12:37:16.568 DEBUG sta_nld1:40 - StaNld_Bay1 : Entry
+2026-05-22 12:37:16.568 DEBUG sta_nld1:48 - StaNld_Bay1 : manageSta_NoLoadTestBay1States : Entry
+2026-05-22 12:37:16.569 DEBUG sta_nld1:67 - StaNld_Bay1 : manageSta_NoLoadTestBay1States : getTableStatePlanner2 : Size : 23
+2026-05-22 12:37:16.569 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:37:16.569 INFO  sta_nld1:37 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-22 12:37:16.569 DEBUG sta_nld1:120 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Entry
+2026-05-22 12:37:16.569 DEBUG sta_nld1:134 - isPalletAvailableAt_SCT_NLTBay1 : getClusterId: 2 -> getBayId: 7 -> getPortId: ip38
+2026-05-22 12:37:16.672 DEBUG sta_nld1:152 - S01_check_for_pallets_at_SCT_NLT_Bay1 : state : Off
+2026-05-22 12:37:16.672 DEBUG sta_nld1:160 - S01_check_for_pallets_at_SCT_NLT_Bay1 : status : false
+2026-05-22 12:37:16.672 DEBUG sta_nld1:165 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-22 12:37:16.672 INFO  sta_nld1:94 - S01_check_for_pallets_at_SCT_NLT_Bay1 : No pallet Available at SCT NLT Bay1
+2026-05-22 12:44:39.178 INFO  sta_nld1:1551 - btnSctNlt1StopOnClick : Invoked:
+2026-05-22 12:44:39.178 INFO  sta_nld1:1553 - SCT NLT BAY 1 : STOPPED
+2026-05-22 12:44:39.179 INFO  sta_nld1:1610 - btnSctNlt1StopOnClick : Exit:
+2026-05-22 12:44:39.280 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-22 12:44:39.280 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-05-22 12:44:39.281 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-05-22 12:44:39.281 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:44:39.281 INFO  sta_nld1:28 - S046_Stop_Execution : Entry
+2026-05-22 12:44:39.609 INFO  sta_nld1:107 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Pallet Not Available
+2026-05-22 12:44:39.609 INFO  sta_nld1:112 - S01_check_for_pallets_at_SCT_NLT_Bay1 : Exit
+2026-05-22 12:44:39.609 DEBUG sta_nld1:172 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay1 : Status     : false
+2026-05-22 12:44:39.609 DEBUG sta_nld1:173 - processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay1 : Error Code : ERROR_CODE_SCT_NLT_BAY1_001
+2026-05-22 12:44:39.710 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-22 12:44:39.710 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-05-22 12:44:39.711 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-05-22 12:44:39.711 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:44:39.711 INFO  sta_nld1:28 - S046_Stop_Execution : Entry
+2026-05-22 12:44:42.291 INFO  sta_nld1:50 - S046_Stop_Execution : Stop Execution Success
+2026-05-22 12:44:42.722 INFO  sta_nld1:50 - S046_Stop_Execution : Stop Execution Success
+2026-05-22 12:44:47.292 INFO  sta_nld1:63 - S046_Stop_Execution : Exit
+2026-05-22 12:44:47.292 DEBUG sta_nld1:161 - processCurrentState : S046_Stop_Execution_Bay1 : Status     : true
+2026-05-22 12:44:47.292 DEBUG sta_nld1:162 - processCurrentState : S046_Stop_Execution_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 12:44:47.293 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:44:47.293 INFO  sta_nld1:27 - S06_open_the_fingerTip_Latch : Entry
+2026-05-22 12:44:47.293 DEBUG sta_nld1:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Entry
+2026-05-22 12:44:47.293 DEBUG sta_nld1:62 - PortId    : op18
+2026-05-22 12:44:47.293 DEBUG sta_nld1:63 - ClusterId : 2
+2026-05-22 12:44:47.293 DEBUG sta_nld1:64 - BayId     : 7
+2026-05-22 12:44:47.425 DEBUG sta_nld1:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : status : true
+2026-05-22 12:44:47.425 DEBUG sta_nld1:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Exit
+2026-05-22 12:44:47.425 INFO  sta_nld1:36 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-22 12:44:47.425 INFO  sta_nld1:46 - S06_open_the_fingerTip_Latch : Exit
+2026-05-22 12:44:47.425 DEBUG sta_nld1:161 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Status     : true
+2026-05-22 12:44:47.425 DEBUG sta_nld1:162 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 12:44:47.425 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:44:47.425 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-05-22 12:44:47.425 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:47.722 INFO  sta_nld1:63 - S046_Stop_Execution : Exit
+2026-05-22 12:44:47.722 DEBUG sta_nld1:161 - processCurrentState : S046_Stop_Execution_Bay1 : Status     : true
+2026-05-22 12:44:47.722 DEBUG sta_nld1:162 - processCurrentState : S046_Stop_Execution_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 12:44:47.722 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:44:47.722 INFO  sta_nld1:27 - S06_open_the_fingerTip_Latch : Entry
+2026-05-22 12:44:47.722 DEBUG sta_nld1:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Entry
+2026-05-22 12:44:47.722 DEBUG sta_nld1:62 - PortId    : op18
+2026-05-22 12:44:47.722 DEBUG sta_nld1:63 - ClusterId : 2
+2026-05-22 12:44:47.722 DEBUG sta_nld1:64 - BayId     : 7
+2026-05-22 12:44:47.824 DEBUG sta_nld1:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : status : true
+2026-05-22 12:44:47.824 DEBUG sta_nld1:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Exit
+2026-05-22 12:44:47.824 INFO  sta_nld1:36 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-22 12:44:47.824 INFO  sta_nld1:46 - S06_open_the_fingerTip_Latch : Exit
+2026-05-22 12:44:47.824 DEBUG sta_nld1:161 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Status     : true
+2026-05-22 12:44:47.824 DEBUG sta_nld1:162 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Error Code : ERROR_CODE_601
+2026-05-22 12:44:47.824 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-22 12:44:47.824 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-05-22 12:44:47.824 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:48.426 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:48.824 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:49.426 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:49.824 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:50.426 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:50.824 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:51.426 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:51.824 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-22 12:44:52.426 DEBUG sta_nld1:161 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-05-22 12:44:52.426 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-05-22 12:44:52.426 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit
+2026-05-22 12:44:52.824 DEBUG sta_nld1:161 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-05-22 12:44:52.824 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-05-22 12:44:52.824 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit

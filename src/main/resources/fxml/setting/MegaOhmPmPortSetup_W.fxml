@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="1701.0" stylesheets="@../../../../ProCon-d0.1.5/src/resources/application_W.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.setting.MegaOhmPmPortSetupController">
+   <children>
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="12.0" layoutY="23.0" prefHeight="256.0" prefWidth="1675.0" text="MegaOhm Panel Meter - Terminal 1">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="563.0">
+               <children>
+                <AnchorPane layoutX="4.0" layoutY="4.0" minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="1658.0">
+                     <children>
+                        <ScrollPane layoutX="5.0" layoutY="52.0" prefHeight="96.0" prefWidth="1648.0">
+                           <content>
+                              <GridPane prefHeight="67.0" prefWidth="1638.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.5999755859375" minWidth="10.0" prefWidth="107.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="121.39996337890624" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="7.800036621093739" prefWidth="16.39995117187499" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="102.19999999999999" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.199951171875" minWidth="10.0" prefWidth="17.399999999999977" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="110.80000000000001" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="14.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="117.20003662109377" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="18.600012207031227" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="156.39998779296877" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="18.800012207031273" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="87.39997558593745" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.6000122070312" minWidth="10.0" prefWidth="17.400036621093705" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.3998657226563" minWidth="10.0" prefWidth="71.79996337890623" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="10.0" prefWidth="20.600109863281205" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="10.0" prefWidth="206.99989013671882" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="0.0" prefWidth="19.799999999999955" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="2.8000244140624773" prefWidth="95.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="14.200000000000045" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="107.79995117187491" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="7.999902343749909" prefWidth="7.999902343749909" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="190.40009765624995" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="41.0" prefWidth="135.0" text="Mega Ohm #1" textFill="#222121" />
+                                    <Button fx:id="btnValidateMegaOhmPm1_Cmd" mnemonicParsing="false" onAction="#megaOhmPm1_ValidateSerialCmdTrigger" prefHeight="33.0" prefWidth="132.0" text="Validate" GridPane.columnIndex="19" />
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1_ModelName" prefHeight="31.0" prefWidth="152.0" GridPane.columnIndex="1" />
+                                    
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1_PortSelection" prefHeight="31.0" prefWidth="145.0" GridPane.columnIndex="3" />
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1_BaudRate" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="5" />
+                                    <TextField fx:id="txtValidateMegaOhmPm1_CmdStatus" editable="false" prefHeight="32.0" prefWidth="132.0" GridPane.columnIndex="17" />
+                                    <TextField fx:id="txtMegaOhmPm1ReadData" editable="false" prefHeight="31.0" prefWidth="164.0" GridPane.columnIndex="21" />
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1ClusterId" onAction="#cmbBxMegaOhmPm1ClusterSelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="7" />
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1BayId" onAction="#cmbBxMegaOhmPm1BaySelectionOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="9" />
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1PositionId" onAction="#cmbBxMegaOhmPm1PositionIdOnChange" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="11" />
+                                    <TextField fx:id="txtMegaOhmPm1Cname" editable="false" prefHeight="30.0" prefWidth="226.0" GridPane.columnIndex="15" />
+                                    <ComboBox fx:id="cmbBxMegaOhmPm1DeviceAddress" prefHeight="31.0" prefWidth="156.0" GridPane.columnIndex="13" />
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="48.0" layoutX="5.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="1649.0" />
+                        <Button fx:id="btn_Save" layoutX="746.0" layoutY="171.0" mnemonicParsing="false" onAction="#SaveOnClick" prefHeight="29.0" prefWidth="118.0" text="Save" />
+                     </children>
+                  </AnchorPane>
+                  <GridPane layoutX="10.0" layoutY="13.0" prefHeight="37.0" prefWidth="1638.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.5999755859375" minWidth="10.0" prefWidth="107.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="109.7999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="17.20000915527345" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.20001525878905" minWidth="10.0" prefWidth="101.79996337890626" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.199951171875" minWidth="10.0" prefWidth="17.99998779296874" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="115.80000000000001" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="14.199969482421864" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="114.19998779296873" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="18.399987792968773" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.80000000000007" minWidth="10.0" prefWidth="156.00001220703132" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="19.000036621093727" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.60000000000002" minWidth="10.0" prefWidth="87.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.60002441406255" minWidth="5.399987792968773" prefWidth="8.600000000000023" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="79.00002441406252" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="15.200048828125091" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="211.199951171875" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00003662109373" minWidth="10.0" prefWidth="19.79995117187491" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="2.8000244140624773" prefWidth="107.99997558593759" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="18.39992675781241" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="101.39992675781241" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="8.0" prefWidth="13.600073242187591" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="197.0000976562501" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="38.0" prefWidth="118.0" text="Model" textFill="#171717" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Description" textFill="#1b1a1a" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Status" textFill="#252424" GridPane.columnIndex="17" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Baud Rate" textFill="#252424" GridPane.columnIndex="5" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="110.0" text="Port" textFill="#1e1d1d" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="293.0" text="Read Data" textFill="#252424" GridPane.columnIndex="21" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="227.0" text="Canonical Name" textFill="#252424" GridPane.columnIndex="15" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Cluster Name" textFill="#252424" GridPane.columnIndex="7" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="133.0" text="Bay  Name" textFill="#252424" GridPane.columnIndex="9" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="142.0" text="Position No" textFill="#252424" GridPane.columnIndex="11" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="125.0" text="Address" textFill="#252424" GridPane.columnIndex="13" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

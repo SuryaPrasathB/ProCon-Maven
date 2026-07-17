@@ -1,0 +1,115 @@
+2026-07-06 10:52:32.202 INFO  sta_nld2:1807 - btnSctNlt2ResetOnClick : Invoked:
+2026-07-06 10:52:32.202 INFO  sta_nld2:1809 - SCT NLT BAY 2 : RESET
+2026-07-06 10:52:32.203 INFO  sta_nld2:1816 - setStopProcessRequestedStaNldBay2 -Test5  : false
+2026-07-06 10:52:32.231 INFO  sta_nld2:1861 - btnSctNlt2ResetOnClick : Exit:
+2026-07-06 10:52:32.330 DEBUG sta_nld2:23 - ShortCircuit_NoLoadTestBay2_2 : Entry
+2026-07-06 10:52:32.331 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Reset : manageShortCircuit_NoLoadTestBay2ResetStates : Entry
+2026-07-06 10:52:32.342 DEBUG sta_nld2:50 - STA_NoLoadTestBay2Reset : manageShortCircuit_NoLoadTestBay2ResetStates : getTableStatePlanner2 : Size : 1
+2026-07-06 10:52:32.343 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:52:32.343 INFO  sta_nld2:26 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : Entry
+2026-07-06 10:52:32.343 DEBUG sta_nld2:107 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : turn_on_tower_lamp : Entry
+2026-07-06 10:52:32.343 DEBUG sta_nld2:117 - PortId    : op19
+2026-07-06 10:52:32.343 DEBUG sta_nld2:118 - ClusterId : 2
+2026-07-06 10:52:32.343 DEBUG sta_nld2:119 - BayId     : 7
+2026-07-06 10:52:32.446 DEBUG sta_nld2:134 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : turn_on_tower_lamp : status : true
+2026-07-06 10:52:32.446 DEBUG sta_nld2:143 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : Exit
+2026-07-06 10:52:32.447 INFO  sta_nld2:36 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : turn_on_tower_lamp : Success
+2026-07-06 10:52:32.447 DEBUG sta_nld2:68 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : turn_off_tower_lamp : Entry
+2026-07-06 10:52:32.447 DEBUG sta_nld2:78 - PortId    : op20
+2026-07-06 10:52:32.447 DEBUG sta_nld2:79 - ClusterId : 2
+2026-07-06 10:52:32.447 DEBUG sta_nld2:80 - BayId     : 7
+2026-07-06 10:52:32.550 DEBUG sta_nld2:94 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : turn_off_tower_lamp : status : true
+2026-07-06 10:52:32.550 INFO  sta_nld2:44 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : turn_off_tower_lamp : Success
+2026-07-06 10:52:33.550 INFO  sta_nld2:61 - S30_turn_off_tower_lamp_STA_NLDT_Bay2 : Exit
+2026-07-06 10:52:33.550 DEBUG sta_nld2:159 - processCurrentState : S30_turn_off_tower_lamp_STA_NLDT_Bay2 : Status     : true
+2026-07-06 10:52:33.550 DEBUG sta_nld2:160 - processCurrentState : S30_turn_off_tower_lamp_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-07-06 10:52:33.550 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:52:33.551 INFO  sta_nld2:10 - S16_idle_condition : Entry
+2026-07-06 10:52:33.551 INFO  sta_nld2:24 - S16_idle_condition : Waiting in Idle Condition
+2026-07-06 10:52:38.555 DEBUG sta_nld2:159 - processCurrentState : S14_idle_condition_Bay2 : Status     : true
+2026-07-06 10:52:38.555 DEBUG sta_nld2:160 - processCurrentState : S14_idle_condition_Bay2 : Error Code : NO_ERROR_001
+2026-07-06 10:52:38.555 DEBUG sta_nld2:126 - STA_NoLoadTestBay2Reset : manageShortCircuit_NoLoadTestBay2ResetStates : Exit
+2026-07-06 10:52:53.864 INFO  sta_nld2:1739 - btnSctNlt2StopOnClick : Invoked:
+2026-07-06 10:52:53.865 INFO  sta_nld2:1741 - SCT NLT BAY 2 : STOPPED
+2026-07-06 10:52:53.865 INFO  sta_nld2:1749 - setStopProcessRequestedStaNldBay2 -Test4  : true
+2026-07-06 10:52:53.866 INFO  sta_nld2:1802 - btnSctNlt2StopOnClick : Exit:
+2026-07-06 10:52:53.966 DEBUG sta_nld2:23 - STA_NoLoadTestBay2Stop : Entry
+2026-07-06 10:52:53.966 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Entry
+2026-07-06 10:52:53.968 DEBUG sta_nld2:49 - STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : 4
+2026-07-06 10:52:53.969 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:52:53.969 INFO  sta_nld2:26 - S046_Stop_Execution : Entry
+2026-07-06 10:53:15.150 INFO  sta_nld2:53 - S046_Stop_Execution : Stop Execution Failed
+2026-07-06 10:53:15.150 INFO  sta_nld2:60 - S046_Stop_Execution : Exit
+2026-07-06 10:53:15.150 DEBUG sta_nld2:158 - processCurrentState : S046_Stop_Execution_Bay2 : Status     : false
+2026-07-06 10:53:15.150 DEBUG sta_nld2:159 - processCurrentState : S046_Stop_Execution_Bay2 : Error Code : ERROR_CODE_VERIFIC_025
+2026-07-06 10:53:15.252 DEBUG sta_nld2:23 - STA_NoLoadTestBay2Stop : Entry
+2026-07-06 10:53:15.252 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Entry
+2026-07-06 10:53:15.257 DEBUG sta_nld2:49 - STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : 4
+2026-07-06 10:53:15.257 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:15.257 INFO  sta_nld2:26 - S046_Stop_Execution : Entry
+2026-07-06 10:53:15.653 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:15.653 DEBUG sta_nld2:158 - processCurrentState : S13_error_Handling_Bay2 : Status     : true
+2026-07-06 10:53:15.653 DEBUG sta_nld2:159 - processCurrentState : S13_error_Handling_Bay2 : Error Code : NO_ERROR_001
+2026-07-06 10:53:15.655 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:15.655 INFO  sta_nld2:16 - S12_release_the_pallet_release_semaphore : BAY 2 : Entry
+2026-07-06 10:53:15.655 INFO  sta_nld2:17 - S12_release_the_pallet_release_semaphore : BAY 2 : semaphore : 1
+2026-07-06 10:53:15.655 WARN  sta_nld2:27 - S12_release_the_pallet_release_semaphore : BAY 2 : Attempted to release an unheld semaphore.
+2026-07-06 10:53:15.655 INFO  sta_nld2:37 - S12_release_the_pallet_release_semaphore : BAY 2 : semaphore : 1
+2026-07-06 10:53:15.655 INFO  sta_nld2:39 - S12_release_the_pallet_release_semaphore : BAY 2 : Exit
+2026-07-06 10:53:15.655 DEBUG sta_nld2:158 - processCurrentState : S12_release_the_pallet_release_semaphore_Bay2 : Status     : false
+2026-07-06 10:53:15.655 DEBUG sta_nld2:159 - processCurrentState : S12_release_the_pallet_release_semaphore_Bay2 : Error Code : ERROR_CODE_SCT_NLT_BAY2_024
+2026-07-06 10:53:15.756 DEBUG sta_nld2:23 - STA_NoLoadTestBay2Stop : Entry
+2026-07-06 10:53:15.756 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Entry
+2026-07-06 10:53:15.760 DEBUG sta_nld2:49 - STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : 4
+2026-07-06 10:53:15.760 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:15.760 INFO  sta_nld2:26 - S046_Stop_Execution : Entry
+2026-07-06 10:53:16.155 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:16.155 DEBUG sta_nld2:158 - processCurrentState : S13_error_Handling_Bay2 : Status     : true
+2026-07-06 10:53:16.155 DEBUG sta_nld2:159 - processCurrentState : S13_error_Handling_Bay2 : Error Code : NO_ERROR_001
+2026-07-06 10:53:16.155 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:16.155 INFO  sta_nld2:27 - S06_open_the_fingerTip_Latch : Entry
+2026-07-06 10:53:16.155 DEBUG sta_nld2:51 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNlyBay2 : Entry
+2026-07-06 10:53:16.155 DEBUG sta_nld2:61 - PortId    : op2
+2026-07-06 10:53:16.155 DEBUG sta_nld2:62 - ClusterId : 3
+2026-07-06 10:53:16.155 DEBUG sta_nld2:63 - BayId     : 8
+2026-07-06 10:53:17.260 DEBUG sta_nld2:81 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNlyBay2 : status : true
+2026-07-06 10:53:17.260 DEBUG sta_nld2:86 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNlyBay2 : Exit
+2026-07-06 10:53:17.260 INFO  sta_nld2:36 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-07-06 10:53:17.260 INFO  sta_nld2:45 - S06_open_the_fingerTip_Latch : Exit
+2026-07-06 10:53:17.260 DEBUG sta_nld2:158 - processCurrentState : S06_open_the_fingerTip_Latch_Bay2 : Status     : true
+2026-07-06 10:53:17.260 DEBUG sta_nld2:159 - processCurrentState : S06_open_the_fingerTip_Latch_Bay2 : Error Code : ERROR_CODE_601
+2026-07-06 10:53:17.260 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:17.260 INFO  sta_nld2:28 - S07_ensure_the_fingerTip_Latch_Opened : Entry
+2026-07-06 10:53:17.261 DEBUG sta_nld2:61 - S07_ensure_the_fingerTip_Latch_Opened : sctNltBay2_FingerTipLatch_Status : Entry
+2026-07-06 10:53:17.261 DEBUG sta_nld2:69 - PortId    : ip35
+2026-07-06 10:53:17.261 DEBUG sta_nld2:70 - ClusterId : 3
+2026-07-06 10:53:17.261 DEBUG sta_nld2:71 - BayId     : 8
+2026-07-06 10:53:17.363 DEBUG sta_nld2:103 - S07_ensure_the_fingerTip_Latch_Opened : sctNltBay2_FingerTipLatch_Status : state : Off
+2026-07-06 10:53:17.363 DEBUG sta_nld2:106 - S07_ensure_the_fingerTip_Latch_Opened : sctNltBay2_FingerTipLatch_Status : Exit
+2026-07-06 10:53:17.364 INFO  sta_nld2:55 - S07_ensure_the_fingerTip_Latch_Opened : Exit
+2026-07-06 10:53:17.364 DEBUG sta_nld2:158 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened_Bay2 : Status     : true
+2026-07-06 10:53:17.364 DEBUG sta_nld2:159 - processCurrentState : S07_ensure_the_fingerTip_Latch_Opened_Bay2 : Error Code : ERROR_CODE_601
+2026-07-06 10:53:17.364 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-07-06 10:53:17.364 INFO  sta_nld2:10 - S16_idle_condition : Entry
+2026-07-06 10:53:17.364 INFO  sta_nld2:24 - S16_idle_condition : Waiting in Idle Condition
+2026-07-06 10:53:22.366 DEBUG sta_nld2:158 - processCurrentState : S14_idle_condition_Bay2 : Status     : true
+2026-07-06 10:53:22.366 DEBUG sta_nld2:159 - processCurrentState : S14_idle_condition_Bay2 : Error Code : NO_ERROR_001
+2026-07-06 10:53:22.366 DEBUG sta_nld2:125 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Exit
+2026-07-06 10:53:36.303 INFO  sta_nld2:53 - S046_Stop_Execution : Stop Execution Failed
+2026-07-06 10:53:36.304 INFO  sta_nld2:60 - S046_Stop_Execution : Exit
+2026-07-06 10:53:36.304 DEBUG sta_nld2:158 - processCurrentState : S046_Stop_Execution_Bay2 : Status     : false
+2026-07-06 10:53:36.304 DEBUG sta_nld2:159 - processCurrentState : S046_Stop_Execution_Bay2 : Error Code : ERROR_CODE_VERIFIC_025
+2026-07-06 10:53:36.407 DEBUG sta_nld2:23 - STA_NoLoadTestBay2Stop : Entry
+2026-07-06 10:53:36.407 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Entry
+2026-07-06 10:53:36.409 DEBUG sta_nld2:49 - STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : 4
+2026-07-06 10:53:36.409 DEBUG sta_nld2:125 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Exit
+2026-07-06 10:53:36.811 DEBUG sta_nld2:125 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Exit
+2026-07-06 10:53:36.812 INFO  sta_nld2:53 - S046_Stop_Execution : Stop Execution Failed
+2026-07-06 10:53:36.812 INFO  sta_nld2:60 - S046_Stop_Execution : Exit
+2026-07-06 10:53:36.812 DEBUG sta_nld2:158 - processCurrentState : S046_Stop_Execution_Bay2 : Status     : false
+2026-07-06 10:53:36.812 DEBUG sta_nld2:159 - processCurrentState : S046_Stop_Execution_Bay2 : Error Code : ERROR_CODE_VERIFIC_025
+2026-07-06 10:53:36.919 DEBUG sta_nld2:23 - STA_NoLoadTestBay2Stop : Entry
+2026-07-06 10:53:36.920 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Entry
+2026-07-06 10:53:36.923 DEBUG sta_nld2:49 - STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : 4
+2026-07-06 10:53:36.923 DEBUG sta_nld2:125 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Exit
+2026-07-06 10:53:37.325 DEBUG sta_nld2:125 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Exit

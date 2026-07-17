@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testreport.ReportFileLocationController">
+   <children>
+      <Label layoutX="16.0" layoutY="101.0" text="Test Type" />
+      <ComboBox fx:id="cmbBox_testtype" layoutX="178.0" layoutY="96.0" onAction="#LoadSavedData" prefHeight="31.0" prefWidth="192.0" />
+      <TextField fx:id="txt_templ_file_location" layoutX="177.0" layoutY="155.0" prefHeight="31.0" prefWidth="351.0" />
+      <Button layoutX="535.0" layoutY="155.0" mnemonicParsing="false" onAction="#SelectTemplFileOnClick" prefHeight="31.0" text="..." />
+      <TextField fx:id="txt_save_file_location" layoutX="177.0" layoutY="211.0" prefHeight="31.0" prefWidth="351.0" />
+      <Button layoutX="535.0" layoutY="211.0" mnemonicParsing="false" onAction="#SelectSaveFileOnClick" prefHeight="31.0" text="..." />
+      <Label layoutX="14.0" layoutY="160.0" text="Template file location" />
+      <Label layoutX="15.0" layoutY="216.0" text="Output folder location" />
+      <Button fx:id="btnSave" layoutX="401.0" layoutY="275.0" mnemonicParsing="false" onAction="#SaveFileLocation" prefHeight="31.0" prefWidth="156.0" text="Save" />
+      <Label layoutX="16.0" layoutY="43.0" text="Report Profile" />
+      <ComboBox fx:id="cmbBxReportProfile" layoutX="178.0" layoutY="38.0" prefHeight="31.0" prefWidth="192.0" />
+      <Button fx:id="btnReportGenV2" layoutX="180.0" layoutY="275.0" mnemonicParsing="false" onAction="#launchReportV2_GUI_Click" prefHeight="31.0" prefWidth="156.0" text="Advanced Settings" />
+   </children>
+</AnchorPane>

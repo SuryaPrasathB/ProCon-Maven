@@ -1,0 +1,81 @@
+{
+    "ConfigFileVersion": "1.0",
+    "ConfigFileVersionComment": "For Report profileV2 input and output data name config ",
+
+    "OperationMasterOutput": [
+		{
+            "OperationProcessKey": "MasterOutputSetData01",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": true,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+
+        }, {
+            "OperationProcessKey": "MasterOutputSetData02",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData03",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData04",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData05",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData06",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData07",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData08",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData09",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }, {
+            "OperationProcessKey": "MasterOutputSetData10",
+            "ResultValue": "",
+            "PopulateOnlyHeaders": false,
+            "ComparedStatus": "",
+            "UpperLimit": "",
+            "LowerLimit": ""
+        }
+
+    ]
+
+}

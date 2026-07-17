@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="697.0" prefWidth="728.0" stylesheets="@../../config/style/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testprofiles.PropertyDutCommandController">
+   <children>
+      <GridPane layoutX="20.0" layoutY="7.0" prefHeight="591.0" prefWidth="690.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.80001220703124" minWidth="10.0" prefWidth="155.80001220703124" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.4000366210938" minWidth="10.0" prefWidth="138.9999877929687" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="63.0" minWidth="0.0" prefWidth="29.60003662109375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.39999999999998" minWidth="10.0" prefWidth="183.2" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="45.60000000000002" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="140.79995117187502" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtTestType" editable="false" prefHeight="31.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txt_testcasename" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="171.0" promptText="Test Name" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="txtAlias_ID" editable="false" prefHeight="31.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="lbl_Emin" prefHeight="22.0" prefWidth="152.0" text="Target Command" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbBxSetSerialNoSource" minWidth="-Infinity" prefHeight="30.0" prefWidth="171.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField fx:id="txtSendCommandData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="chkBxCmdInHexMode" mnemonicParsing="false" text="Hex Mode" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <CheckBox fx:id="chkBxWriteSerialNoToDut" mnemonicParsing="false" text="Set Serial No" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Label fx:id="lbl_Duration" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Response Terminator" GridPane.rowIndex="6" />
+            <TextField fx:id="txtSendCommandTerminator" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <CheckBox fx:id="chkBxCmdTerminatorInHexMode" mnemonicParsing="false" prefHeight="18.0" prefWidth="166.0" text="Hex Mode" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <CheckBox fx:id="chkBxWriteRtcToDut" mnemonicParsing="false" prefHeight="18.0" prefWidth="127.0" text="Set RTC" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <TextField fx:id="txtResponseExpectedData" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <CheckBox fx:id="chkBoxResponseMandatory" mnemonicParsing="false" prefHeight="18.0" prefWidth="182.0" text="Response mandatory" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <CheckBox fx:id="chkBxReadSerialNoFromDut" mnemonicParsing="false" text="Read Serial No" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <TextField fx:id="txtResponseTerminator" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label prefHeight="22.0" prefWidth="154.0" text="Expected response" GridPane.rowIndex="5" />
+            <Label text="Alias ID" GridPane.rowIndex="2" />
+            <Label text="Test Type" GridPane.rowIndex="1" />
+            <Label text="Test Name" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <CheckBox fx:id="chkBxResponseTerminatorInHexMode" mnemonicParsing="false" prefHeight="18.0" prefWidth="153.0" text="Hex Mode" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <CheckBox fx:id="chkBxReadRtcFromDut" mnemonicParsing="false" text="Read RTC" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <TextField fx:id="txtResponseErrorExpected" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txtRtcFormat" promptText="yyMMddHHmmss" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="lbl_Emin1" prefHeight="22.0" prefWidth="157.0" text="Target Terminator" GridPane.rowIndex="4" />
+            <Label fx:id="lbl_Duration1" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Halt Time" GridPane.rowIndex="10" />
+            <TextField fx:id="txtResponseTimeoutInSec" text="5" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="lbl_Duration11" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Seconds" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Label fx:id="lbl_Duration12" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Response Time out" GridPane.rowIndex="9" />
+            <Label fx:id="lbl_Duration111" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Seconds" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <TextField fx:id="txtHaltTimeInSec" text="1" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label prefHeight="18.0" prefWidth="179.0" text="Set Serial No source" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="lbl_Duration13" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Total execution time" GridPane.rowIndex="11" />
+            <Label fx:id="lbl_Duration112" focusTraversable="false" prefHeight="18.0" prefWidth="175.0" text="Seconds" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+            <TextField fx:id="txtTotalExecutionTimeInSec" text="70" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label prefHeight="22.0" prefWidth="154.0" text="Error response" GridPane.rowIndex="7" />
+            <CheckBox fx:id="chkBxRtcConvertToHex" mnemonicParsing="false" prefHeight="18.0" prefWidth="186.0" text="Bind 2 Char to hex" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Label prefHeight="22.0" prefWidth="154.0" text="Rtc Format" GridPane.rowIndex="8" />
+            <Label prefHeight="18.0" prefWidth="188.0" text="Target device type" GridPane.rowIndex="12" />
+            <ComboBox fx:id="cmbBxTargetDeviceType" prefHeight="30.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <CheckBox fx:id="chBxRs485" mnemonicParsing="false" text="RS485" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+            <CheckBox fx:id="chkBxCmdActive" mnemonicParsing="false" prefHeight="18.0" prefWidth="151.0" selected="true" text="Active" GridPane.columnIndex="1" />
+            <Label text="Command" />
+         </children>
+      </GridPane>
+      <Button fx:id="btn_Save" layoutX="565.0" layoutY="654.0" mnemonicParsing="false" onAction="#SaveCustomRatingTrigger" prefHeight="31.0" prefWidth="98.0" text="Save" />
+   </children>
+</AnchorPane>

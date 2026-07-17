@@ -1,0 +1,106 @@
+2026-05-21 15:35:35.011 INFO  sta_nld2:1732 - btnSctNlt2StartOnClick : Invoked:
+2026-05-21 15:35:35.118 DEBUG sta_nld2:36 - StaNld_Bay2 : Entry
+2026-05-21 15:35:35.119 DEBUG sta_nld2:44 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : Entry
+2026-05-21 15:35:35.130 DEBUG sta_nld2:63 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : getTableStatePlanner2 : Size : 18
+2026-05-21 15:35:35.130 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:35:35.130 INFO  sta_nld2:39 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Entry
+2026-05-21 15:35:35.130 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 15:35:35.130 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 15:35:35.518 INFO  sta_nld2:1764 - btnSctNlt2StartOnClick : Exit:
+2026-05-21 15:35:36.236 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 15:35:36.236 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 15:35:36.236 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 15:35:37.237 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 15:35:37.237 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 15:35:37.339 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 15:35:37.339 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 15:35:37.339 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 15:35:38.340 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 15:35:38.340 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 15:35:38.442 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 15:35:38.442 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 15:35:38.442 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 15:35:39.453 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-05-21 15:35:39.453 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-05-21 15:35:39.561 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-05-21 15:35:39.562 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-05-21 15:35:39.562 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 15:35:39.562 INFO  sta_nld2:106 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Pallet Available
+2026-05-21 15:35:39.562 INFO  sta_nld2:148 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-05-21 15:35:39.562 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Status     : true
+2026-05-21 15:35:39.563 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 15:35:39.563 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:35:39.563 INFO  sta_nld2:36 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-21 15:35:39.564 INFO  sta_nld2:70 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-21 15:35:39.564 INFO  sta_nld2:84 - S02_qR_Code_Scanning_of_Pallet :  verificToSta2TransitTimeInSec: 15
+2026-05-21 15:35:39.564 INFO  sta_nld2:85 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-21 15:35:39.564 INFO  sta_nld2:86 - S02_qR_Code_Scanning_of_Pallet :  StaNld_Bay2.isStopProcessRequestedSctNltBay2(): false
+2026-05-21 15:35:39.567 DEBUG sta_nld2:123 - qrCodePalletScanning : Entry : STNLD2B
+2026-05-21 15:35:43.298 DEBUG sta_nld2:174 - qrCodePalletScanning : scannedData: LSCSM06P03
+
+2026-05-21 15:35:43.298 DEBUG sta_nld2:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-21 15:35:43.299 DEBUG sta_nld2:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : null  selectedBayTypeKey: STNLD2B
+2026-05-21 15:35:43.313 DEBUG sta_nld2:371 - qrCodePalletScanning: refreshDashBoard: STA2 bay
+2026-05-21 15:35:43.329 DEBUG sta_nld2:376 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 0
+2026-05-21 15:35:43.336 DEBUG sta_nld2:405 - qrCodePalletScanning: refreshDashBoard: VERIFICATION_BAY_KEY bay palletManageList size: []
+2026-05-21 15:35:43.336 DEBUG sta_nld2:466 - qrCodePalletScanning: batch update 
+2026-05-21 15:35:43.336 INFO  sta_nld2:476 - qrCodePalletScanning: batch update: all STA2 removed
+2026-05-21 15:35:43.451 DEBUG sta_nld2:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-05-21 15:35:43.451 DEBUG sta_nld2:220 - qrCodePalletScanning : palletDistinctId:  : null : bay: STNLD2B : qrCode: LSCSM06P03
+2026-05-21 15:35:43.452 DEBUG sta_nld2:248 - qrCodePalletScanning : status : GOOD : STNLD2B
+2026-05-21 15:35:43.452 DEBUG sta_nld2:250 - qrCodePalletScanning : Exit : STNLD2B
+2026-05-21 15:35:43.452 INFO  sta_nld2:82 - qrCodePalletScanningProcess : QR Code Scan Successful : STNLD2B
+2026-05-21 15:35:43.452 INFO  sta_nld2:113 - qrCodePalletScanningProcess : Exit : STNLD2B
+2026-05-21 15:35:43.452 INFO  sta_nld2:98 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-21 15:35:43.452 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay2 : Status     : true
+2026-05-21 15:35:43.452 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 15:35:43.452 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:35:43.452 INFO  sta_nld2:26 - S03_close_the_fingerTip_Latch : Entry
+2026-05-21 15:35:43.452 DEBUG sta_nld2:51 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : Entry
+2026-05-21 15:35:43.452 DEBUG sta_nld2:61 - PortId    : op2
+2026-05-21 15:35:43.453 DEBUG sta_nld2:62 - ClusterId : 3
+2026-05-21 15:35:43.453 DEBUG sta_nld2:63 - BayId     : 8
+2026-05-21 15:35:43.559 DEBUG sta_nld2:81 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : status : true
+2026-05-21 15:35:43.559 DEBUG sta_nld2:86 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay2 : Exit
+2026-05-21 15:35:43.559 INFO  sta_nld2:36 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-21 15:35:43.559 INFO  sta_nld2:45 - S03_close_the_fingerTip_Latch : Exit
+2026-05-21 15:35:43.559 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S03_close_the_fingerTip_Latch_Bay2 : Status     : true
+2026-05-21 15:35:43.559 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S03_close_the_fingerTip_Latch_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 15:35:43.559 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:35:43.559 INFO  sta_nld2:30 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-21 15:35:43.559 DEBUG sta_nld2:79 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Entry
+2026-05-21 15:35:43.559 DEBUG sta_nld2:87 - PortId    : ip35
+2026-05-21 15:35:43.559 DEBUG sta_nld2:88 - ClusterId : 3
+2026-05-21 15:35:43.559 DEBUG sta_nld2:89 - BayId     : 8
+2026-05-21 15:35:43.667 DEBUG sta_nld2:120 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : state : On
+2026-05-21 15:35:43.667 DEBUG sta_nld2:122 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay2_FingerTipLatch_Status : Exit
+2026-05-21 15:35:43.775 INFO  sta_nld2:53 - set_motor_not_required : Success
+2026-05-21 15:35:43.775 INFO  sta_nld2:73 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-21 15:35:43.775 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay2 : Status     : true
+2026-05-21 15:35:43.775 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 15:35:43.776 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:35:43.776 INFO  sta_nld2:31 - S28_turn_off_motor_STA_NLDT_Bay2 : Entry
+2026-05-21 15:35:43.776 DEBUG sta_nld2:57 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off : Entry
+2026-05-21 15:35:43.883 INFO  sta_nld2:69 - S28_turn_off_motor_STA_NLDT_Bay2 : turn_off: set_motor_not_required : Success
+2026-05-21 15:35:43.883 INFO  sta_nld2:41 - S28_turn_off_motor_STA_NLDT_Bay2 : Motor Turned Off
+2026-05-21 15:35:43.883 INFO  sta_nld2:50 - S28_turn_off_motor_STA_NLDT_Bay2 : Exit
+2026-05-21 15:35:43.883 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Status     : true
+2026-05-21 15:35:43.883 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S28_turn_off_motor_STA_NLDT_Bay2 : Error Code : ERROR_CODE_601
+2026-05-21 15:35:43.883 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-05-21 15:35:43.883 INFO  sta_nld2:45 - S045_Select_Run_Project : Entry
+2026-05-21 15:35:45.897 INFO  sta_nld2:153 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap : Entry
+2026-05-21 15:35:45.907 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:46.930 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:47.941 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:48.954 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:49.965 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:50.975 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:51.986 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:52.995 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:54.006 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:55.012 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:56.023 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:57.035 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:58.048 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:35:59.074 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.
+2026-05-21 15:36:00.088 ERROR sta_nld2:165 - getMeterSerialNumberWithPalletMap: Not enough pallets (0) in Verification Bay. Displaying alert.

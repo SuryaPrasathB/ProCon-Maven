@@ -1,0 +1,15 @@
+2026-07-09 14:35:56.737 INFO  verific_waiting:1058 - btnWaitingBayStartOnClick : Invoked:
+2026-07-09 14:35:56.737 INFO  verific_waiting:1060 - WAITING BAY : STARTED
+2026-07-09 14:35:56.750 INFO  verific_waiting:1114 - btnWaitingBayStartOnClick : Exit:
+2026-07-09 14:35:56.851 DEBUG verific_waiting:33 - WaitingBay2 : Entry
+2026-07-09 14:35:56.851 DEBUG verific_waiting:41 - WaitingBay2 : manageWaitingBayStates : Entry
+2026-07-09 14:35:56.853 DEBUG verific_waiting:61 - WaitingBay2 : manageWaitingBayStates : getTableStatePlanner2 : Size : 4
+2026-07-09 14:35:56.853 DEBUG verific_waiting:23 - WaitingBayContext: processPresentState: Entry
+2026-07-09 14:35:56.853 INFO  verific_waiting:34 - S01_check_for_all_pallets_at_Waiting_Bay : Entry
+2026-07-09 14:35:56.853 INFO  verific_waiting:52 - S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay
+2026-07-09 14:35:56.853 DEBUG verific_waiting:162 - isPalletAvailableAt_WaitingBay : Entry
+2026-07-09 14:35:56.853 DEBUG verific_waiting:175 - isPalletAvailableAt_WaitingBay : getClusterId: 2 -> getBayId: 5 -> getPortId: ip35
+2026-07-09 14:35:56.955 DEBUG verific_waiting:193 - isPalletAvailableAt_WaitingBay : state : Off
+2026-07-09 14:35:56.955 DEBUG verific_waiting:201 - isPalletAvailableAt_WaitingBay : status : false
+2026-07-09 14:35:56.955 DEBUG verific_waiting:206 - isPalletAvailableAt_WaitingBay : Exit
+2026-07-09 14:35:56.955 INFO  verific_waiting:76 - S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay

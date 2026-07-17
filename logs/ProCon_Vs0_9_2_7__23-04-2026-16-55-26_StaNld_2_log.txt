@@ -1,0 +1,45 @@
+2026-04-23 17:18:37.663 INFO  sta_nld2:1608 - btnSctNlt2StartOnClick : Invoked:
+2026-04-23 17:18:37.663 INFO  sta_nld2:1610 - SCT NLT BAY 2 : STARTED
+2026-04-23 17:18:37.665 INFO  sta_nld2:1666 - btnSctNlt2StartOnClick : Exit:
+2026-04-23 17:18:37.765 DEBUG sta_nld2:36 - StaNld_Bay2 : Entry
+2026-04-23 17:18:37.765 DEBUG sta_nld2:44 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : Entry
+2026-04-23 17:18:37.773 DEBUG sta_nld2:63 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : getTableStatePlanner2 : Size : 18
+2026-04-23 17:18:37.773 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-04-23 17:18:37.773 INFO  sta_nld2:39 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Entry
+2026-04-23 17:18:37.774 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-04-23 17:18:37.774 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-04-23 17:18:38.880 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-04-23 17:18:38.880 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-04-23 17:18:38.880 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-04-23 17:18:39.880 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-04-23 17:18:39.880 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-04-23 17:18:39.981 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-04-23 17:18:39.981 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-04-23 17:18:39.981 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-04-23 17:18:40.982 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-04-23 17:18:40.982 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-04-23 17:18:41.084 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-04-23 17:18:41.084 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-04-23 17:18:41.084 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-04-23 17:18:41.480 INFO  sta_nld2:1671 - btnSctNlt2StopOnClick : Invoked:
+2026-04-23 17:18:41.480 INFO  sta_nld2:1673 - SCT NLT BAY 2 : STOPPED
+2026-04-23 17:18:41.481 INFO  sta_nld2:1733 - btnSctNlt2StopOnClick : Exit:
+2026-04-23 17:18:41.580 DEBUG sta_nld2:23 - STA_NoLoadTestBay2Stop : Entry
+2026-04-23 17:18:41.580 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Stop : manageSta2StopStates : Entry
+2026-04-23 17:18:41.581 DEBUG sta_nld2:49 - STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : 2
+2026-04-23 17:18:41.581 DEBUG sta_nld2:23 - SclNltBay2Context: processPresentState: Entry
+2026-04-23 17:18:41.581 INFO  sta_nld2:26 - S046_Stop_Execution : Entry
+2026-04-23 17:18:42.085 DEBUG sta_nld2:156 - S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry
+2026-04-23 17:18:42.085 DEBUG sta_nld2:171 - isPalletAvailableAt_SCT_NLTBay2 : getClusterId: 3 -> getBayId: 8 -> getPortId: ip33
+2026-04-23 17:18:42.187 DEBUG sta_nld2:188 - S01_check_for_pallets_at_SCT_NLT_Bay2 : state : On
+2026-04-23 17:18:42.187 DEBUG sta_nld2:196 - S01_check_for_pallets_at_SCT_NLT_Bay2 : status : true
+2026-04-23 17:18:42.187 DEBUG sta_nld2:201 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-04-23 17:18:42.187 INFO  sta_nld2:106 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Pallet Available
+2026-04-23 17:18:42.187 INFO  sta_nld2:148 - S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit
+2026-04-23 17:18:42.187 DEBUG sta_nld2:172 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Status     : true
+2026-04-23 17:18:42.187 DEBUG sta_nld2:173 - StaNld_Bay2 : processCurrentState : S01_check_for_pallets_at_SCT_NLT_Bay2 : Error Code : ERROR_CODE_601
+2026-04-23 17:18:42.187 DEBUG sta_nld2:140 - StaNld_Bay2 : manageSta_NoLoadTestBay2States : exit
+2026-04-23 17:19:02.690 INFO  sta_nld2:53 - S046_Stop_Execution : Stop Execution Failed
+2026-04-23 17:19:02.690 INFO  sta_nld2:60 - S046_Stop_Execution : Exit
+2026-04-23 17:19:02.690 DEBUG sta_nld2:158 - processCurrentState : S046_Stop_Execution_Bay2 : Status     : false
+2026-04-23 17:19:02.690 DEBUG sta_nld2:159 - processCurrentState : S046_Stop_Execution_Bay2 : Error Code : ERROR_CODE_VERIFIC_025

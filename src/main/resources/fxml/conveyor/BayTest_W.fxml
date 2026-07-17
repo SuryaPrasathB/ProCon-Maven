@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="848.0" prefWidth="1781.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.BayTestController">
+   <children>
+      <AnchorPane layoutX="11.0" layoutY="9.0" prefHeight="838.0" prefWidth="1754.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="838.0" layoutX="-2.0" layoutY="-1.0" stroke="#0000003f" strokeType="INSIDE" width="1750.0" />
+            <TitledPane animated="false" collapsible="false" layoutX="25.0" layoutY="170.0" prefHeight="642.0" prefWidth="822.0" text="Output Port">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbViewOutputPortData" layoutX="-1.0" prefHeight="615.0" prefWidth="821.0">
+                           <columns>
+                              <TableColumn fx:id="tblColOutputSerialNo" prefWidth="75.0" sortable="false" text="S.No" />
+                              <TableColumn fx:id="tblColOutputPortName" prefWidth="238.0" sortable="false" text="Port Name" />
+                              <TableColumn fx:id="tblColOutputPortStateDescription" editable="false" prefWidth="197.5999755859375" sortable="false" text="State Description" />
+                              <TableColumn fx:id="tblColOutputActive" prefWidth="144.0" sortable="false" text="Output Active" />
+                              <TableColumn fx:id="tblColOutputUpdateBay" prefWidth="144.79998779296875" sortable="false" text="Update Bay" />
+                           </columns>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" layoutX="897.0" layoutY="170.0" prefHeight="642.0" prefWidth="834.0" text="Input Port">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbViewInputPortData" layoutX="1.0" prefHeight="615.0" prefWidth="831.0">
+                           <columns>
+                              <TableColumn fx:id="tblColInputSerialNo" prefWidth="64.0000581741333" resizable="false" sortable="false" text="S.No" />
+                              <TableColumn fx:id="tblColInputPortName" prefWidth="265.59999084472656" resizable="false" sortable="false" text="Port Name" />
+                              <TableColumn fx:id="tblColInputPortStateDescription" editable="false" prefWidth="172.0" resizable="false" sortable="false" text="State Description" />
+                              <TableColumn fx:id="tblColInputActive" editable="false" prefWidth="146.4000244140625" sortable="false" text="Input Active" />
+                              <TableColumn fx:id="tblColInputReadBay" prefWidth="152.7999267578125" resizable="false" sortable="false" text="Read Bay" />
+                           </columns>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </TableView>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff01" height="618.0" layoutX="522.0" stroke="TRANSPARENT" strokeType="INSIDE" width="132.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <GridPane layoutX="23.0" layoutY="44.0" prefHeight="90.0" prefWidth="819.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="173.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.33334350585938" minWidth="10.0" prefWidth="77.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.33331298828125" minWidth="10.0" prefWidth="181.33331298828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="98.0" prefWidth="126.0" text="Select Cluster :">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="143.0" prefWidth="126.0" text="Cluster IP Address :" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="cmbBxClusterSelection" onAction="#cmbBxClusterSelectionOnChange" prefHeight="40.0" prefWidth="262.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <TextField fx:id="txtClusterIpAddress" editable="false" prefHeight="70.0" prefWidth="214.0" stylesheets="@../../resources/config/style/application_W.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="131.0" text="Select Bay :" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="98.0" prefWidth="131.0" text="Port :" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="cmbBxBaySelection" onAction="#cmbBxBaySelectionOnChange" prefHeight="40.0" prefWidth="343.0" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <TextField fx:id="txtClusterPortNo" editable="false" prefHeight="102.0" prefWidth="256.0" stylesheets="@../../resources/config/style/application_W.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="btnLoad" mnemonicParsing="false" onAction="#btnLoadOnClick" prefHeight="25.0" prefWidth="260.0" text="Load" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#btnConnectOnClick" prefHeight="171.0" prefWidth="166.0" text="Connect" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnSendDataToBay" mnemonicParsing="false" onAction="#btnSendDataToBayOnClick" prefHeight="188.0" prefWidth="156.0" text="Send" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

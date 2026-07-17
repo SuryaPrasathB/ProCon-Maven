@@ -1,0 +1,51 @@
+2026-05-18 14:32:07.204 INFO  sta_nld1:1551 - btnSctNlt1StopOnClick : Invoked:
+2026-05-18 14:32:07.204 INFO  sta_nld1:1553 - SCT NLT BAY 1 : STOPPED
+2026-05-18 14:32:07.206 INFO  sta_nld1:1610 - btnSctNlt1StopOnClick : Exit:
+2026-05-18 14:32:07.306 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-18 14:32:07.307 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-05-18 14:32:07.310 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-05-18 14:32:07.310 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-18 14:32:07.310 INFO  sta_nld1:28 - S046_Stop_Execution : Entry
+2026-05-18 14:32:28.338 INFO  sta_nld1:56 - S046_Stop_Execution : Stop Execution Failed
+2026-05-18 14:32:28.338 INFO  sta_nld1:63 - S046_Stop_Execution : Exit
+2026-05-18 14:32:28.338 DEBUG sta_nld1:161 - processCurrentState : S046_Stop_Execution_Bay1 : Status     : false
+2026-05-18 14:32:28.338 DEBUG sta_nld1:162 - processCurrentState : S046_Stop_Execution_Bay1 : Error Code : ERROR_CODE_VERIFIC_025
+2026-05-18 14:32:28.438 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-18 14:32:28.438 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-05-18 14:32:28.438 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-05-18 14:32:28.438 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-18 14:32:28.438 INFO  sta_nld1:28 - S046_Stop_Execution : Entry
+2026-05-18 14:32:28.838 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-18 14:32:28.838 DEBUG sta_nld1:161 - processCurrentState : S13_error_Handling_Bay1 : Status     : true
+2026-05-18 14:32:28.838 DEBUG sta_nld1:162 - processCurrentState : S13_error_Handling_Bay1 : Error Code : NO_ERROR_001
+2026-05-18 14:32:28.838 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-18 14:32:28.838 INFO  sta_nld1:27 - S06_open_the_fingerTip_Latch : Entry
+2026-05-18 14:32:28.838 DEBUG sta_nld1:52 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Entry
+2026-05-18 14:32:28.838 DEBUG sta_nld1:62 - PortId    : op18
+2026-05-18 14:32:28.838 DEBUG sta_nld1:63 - ClusterId : 2
+2026-05-18 14:32:28.838 DEBUG sta_nld1:64 - BayId     : 7
+2026-05-18 14:32:28.940 DEBUG sta_nld1:82 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : status : true
+2026-05-18 14:32:28.940 DEBUG sta_nld1:87 - S06_open_the_fingerTip_Latch : open_FingerTipLatch_SctNltBay1 : Exit
+2026-05-18 14:32:28.940 INFO  sta_nld1:36 - S06_open_the_fingerTip_Latch : Finger Tip Latch Opened
+2026-05-18 14:32:28.940 INFO  sta_nld1:46 - S06_open_the_fingerTip_Latch : Exit
+2026-05-18 14:32:28.940 DEBUG sta_nld1:161 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Status     : true
+2026-05-18 14:32:28.940 DEBUG sta_nld1:162 - processCurrentState : S06_open_the_fingerTip_Latch_Bay1 : Error Code : ERROR_CODE_601
+2026-05-18 14:32:28.940 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-18 14:32:28.940 INFO  sta_nld1:10 - S14_idle_condition : Entry
+2026-05-18 14:32:28.940 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:29.940 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:30.940 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:31.941 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:32.942 INFO  sta_nld1:23 - S23_idle_condition : Waiting in Idle Condition
+2026-05-18 14:32:33.943 DEBUG sta_nld1:161 - processCurrentState : S14_idle_condition_Bay1 : Status     : true
+2026-05-18 14:32:33.943 DEBUG sta_nld1:162 - processCurrentState : S14_idle_condition_Bay1 : Error Code : NO_ERROR_001
+2026-05-18 14:32:33.943 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit
+2026-05-18 14:32:49.466 INFO  sta_nld1:56 - S046_Stop_Execution : Stop Execution Failed
+2026-05-18 14:32:49.466 INFO  sta_nld1:63 - S046_Stop_Execution : Exit
+2026-05-18 14:32:49.466 DEBUG sta_nld1:161 - processCurrentState : S046_Stop_Execution_Bay1 : Status     : false
+2026-05-18 14:32:49.466 DEBUG sta_nld1:162 - processCurrentState : S046_Stop_Execution_Bay1 : Error Code : ERROR_CODE_VERIFIC_025
+2026-05-18 14:32:49.568 DEBUG sta_nld1:25 - ShortCircuit_NoLoadTestBay12 : Entry
+2026-05-18 14:32:49.568 DEBUG sta_nld1:33 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : Entry
+2026-05-18 14:32:49.569 DEBUG sta_nld1:52 - STA_NoLoadTestBay1Stop : manageShortCircuit_NoLoadTestBay1StopStates : getTableStatePlanner2 : Size : 2
+2026-05-18 14:32:49.569 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit
+2026-05-18 14:32:49.968 DEBUG sta_nld1:128 - STA_NoLoadTestBay1Stop : Exit

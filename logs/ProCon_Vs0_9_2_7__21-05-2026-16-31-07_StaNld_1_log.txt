@@ -1,0 +1,213 @@
+2026-05-21 16:32:29.111 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:32:29.111 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:32:29.112 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:32:29.112 INFO  sta_nld1:35 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-21 16:32:29.112 INFO  sta_nld1:67 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-21 16:32:29.112 INFO  sta_nld1:81 - S02_qR_Code_Scanning_of_Pallet :  verificToSta1TransitTimeInSec: 15
+2026-05-21 16:32:29.113 INFO  sta_nld1:82 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-21 16:32:29.113 INFO  sta_nld1:83 - S02_qR_Code_Scanning_of_Pallet :  StaNld_Bay1.isStopProcessRequestedSctNltBay1(): false
+2026-05-21 16:32:29.114 DEBUG sta_nld1:123 - qrCodePalletScanning : Entry : STNLD1B
+2026-05-21 16:32:32.926 DEBUG sta_nld1:174 - qrCodePalletScanning : scannedData: LSCSM06P03
+
+2026-05-21 16:32:32.926 DEBUG sta_nld1:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-21 16:32:32.927 DEBUG sta_nld1:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260521T154919_0013_LSCSM06P03  selectedBayTypeKey: STNLD1B
+2026-05-21 16:32:32.938 DEBUG sta_nld1:329 - qrCodePalletScanning: refreshDashBoard: STA1 bay
+2026-05-21 16:32:32.952 DEBUG sta_nld1:334 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 0
+2026-05-21 16:32:32.957 DEBUG sta_nld1:363 - qrCodePalletScanning: refreshDashBoard: VERIFICATION_BAY_KEY bay palletManageList size: []
+2026-05-21 16:32:32.957 DEBUG sta_nld1:466 - qrCodePalletScanning: batch update 
+2026-05-21 16:32:32.959 INFO  sta_nld1:473 - qrCodePalletScanning: batch update: all STA1 removed
+2026-05-21 16:32:33.066 DEBUG sta_nld1:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-05-21 16:32:33.067 DEBUG sta_nld1:220 - qrCodePalletScanning : palletDistinctId:  : 20260521T154919_0013_LSCSM06P03 : bay: STNLD1B : qrCode: LSCSM06P03
+2026-05-21 16:32:33.067 DEBUG sta_nld1:248 - qrCodePalletScanning : status : GOOD : STNLD1B
+2026-05-21 16:32:33.067 DEBUG sta_nld1:250 - qrCodePalletScanning : Exit : STNLD1B
+2026-05-21 16:32:33.067 INFO  sta_nld1:82 - qrCodePalletScanningProcess : QR Code Scan Successful : STNLD1B
+2026-05-21 16:32:33.067 INFO  sta_nld1:113 - qrCodePalletScanningProcess : Exit : STNLD1B
+2026-05-21 16:32:33.067 INFO  sta_nld1:95 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-21 16:32:33.067 DEBUG sta_nld1:56 - processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay1 : Status     : true
+2026-05-21 16:32:33.067 DEBUG sta_nld1:57 - processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:32:33.067 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:32:33.067 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:32:33.067 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:33:02.231 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:33:02.231 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:33:02.231 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:33:02.231 INFO  sta_nld1:35 - S02_qR_Code_Scanning_of_Pallet : Entry
+2026-05-21 16:33:02.231 INFO  sta_nld1:67 - S02_qR_Code_Scanning_of_Pallet : awaiting for all pallets movement and exit confirmation from WaitingVerific bay : 15 Sec
+2026-05-21 16:33:02.231 INFO  sta_nld1:81 - S02_qR_Code_Scanning_of_Pallet :  verificToSta1TransitTimeInSec: 15
+2026-05-21 16:33:02.231 INFO  sta_nld1:82 - S02_qR_Code_Scanning_of_Pallet :  isVerific1WaitingBayPalletsAllCleared(): true
+2026-05-21 16:33:02.231 INFO  sta_nld1:83 - S02_qR_Code_Scanning_of_Pallet :  StaNld_Bay1.isStopProcessRequestedSctNltBay1(): false
+2026-05-21 16:33:02.231 DEBUG sta_nld1:123 - qrCodePalletScanning : Entry : STNLD1B
+2026-05-21 16:33:05.112 DEBUG sta_nld1:174 - qrCodePalletScanning : scannedData: LSCSM06P03
+
+2026-05-21 16:33:05.112 DEBUG sta_nld1:194 - qrCodePalletScanning : Else Hit1: 
+2026-05-21 16:33:05.112 DEBUG sta_nld1:207 - qrCodePalletScanning: getActivePalletMap palletDistinctId : 20260521T154919_0013_LSCSM06P03  selectedBayTypeKey: STNLD1B
+2026-05-21 16:33:05.119 DEBUG sta_nld1:329 - qrCodePalletScanning: refreshDashBoard: STA1 bay
+2026-05-21 16:33:05.132 DEBUG sta_nld1:334 - qrCodePalletScanning: refreshDashBoard: palletManageList size: 4
+2026-05-21 16:33:05.134 DEBUG sta_nld1:466 - qrCodePalletScanning: batch update 
+2026-05-21 16:33:05.134 INFO  sta_nld1:473 - qrCodePalletScanning: batch update: all STA1 removed
+2026-05-21 16:33:05.234 DEBUG sta_nld1:479 - qrCodePalletScanning: batch update : delay done :for removal: 
+2026-05-21 16:33:05.234 DEBUG sta_nld1:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P03
+2026-05-21 16:33:05.237 INFO  sta_nld1:501 - qrCodePalletScanning: batch update: STA1 added
+2026-05-21 16:33:05.288 DEBUG sta_nld1:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P03
+2026-05-21 16:33:05.288 DEBUG sta_nld1:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P04
+2026-05-21 16:33:05.288 INFO  sta_nld1:501 - qrCodePalletScanning: batch update: STA1 added
+2026-05-21 16:33:05.338 DEBUG sta_nld1:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P04
+2026-05-21 16:33:05.338 DEBUG sta_nld1:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P05
+2026-05-21 16:33:05.338 INFO  sta_nld1:501 - qrCodePalletScanning: batch update: STA1 added
+2026-05-21 16:33:05.388 DEBUG sta_nld1:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P05
+2026-05-21 16:33:05.388 DEBUG sta_nld1:493 - qrCodePalletScanning: batch update : palletName: LSCSM06P06
+2026-05-21 16:33:05.388 INFO  sta_nld1:501 - qrCodePalletScanning: batch update: STA1 added
+2026-05-21 16:33:05.439 DEBUG sta_nld1:508 - qrCodePalletScanning: batch update : delay done :palletName: LSCSM06P06
+2026-05-21 16:33:05.439 DEBUG sta_nld1:220 - qrCodePalletScanning : palletDistinctId:  : 20260521T154919_0013_LSCSM06P03 : bay: STNLD1B : qrCode: LSCSM06P03
+2026-05-21 16:33:05.439 DEBUG sta_nld1:248 - qrCodePalletScanning : status : GOOD : STNLD1B
+2026-05-21 16:33:05.439 DEBUG sta_nld1:250 - qrCodePalletScanning : Exit : STNLD1B
+2026-05-21 16:33:05.439 INFO  sta_nld1:82 - qrCodePalletScanningProcess : QR Code Scan Successful : STNLD1B
+2026-05-21 16:33:05.439 INFO  sta_nld1:113 - qrCodePalletScanningProcess : Exit : STNLD1B
+2026-05-21 16:33:05.439 INFO  sta_nld1:95 - S02_qR_Code_Scanning_of_Pallet : Exit
+2026-05-21 16:33:05.439 DEBUG sta_nld1:56 - processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay1 : Status     : true
+2026-05-21 16:33:05.439 DEBUG sta_nld1:57 - processCurrentState : S02_qR_Code_Scanning_of_Pallet_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:33:05.439 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:33:05.439 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:33:05.439 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:33:13.750 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:33:13.750 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:33:13.750 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:33:13.750 INFO  sta_nld1:26 - S03_close_the_fingerTip_Latch : Entry
+2026-05-21 16:33:13.750 DEBUG sta_nld1:51 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay1 : Entry
+2026-05-21 16:33:13.750 DEBUG sta_nld1:61 - PortId    : op18
+2026-05-21 16:33:13.750 DEBUG sta_nld1:62 - ClusterId : 2
+2026-05-21 16:33:13.750 DEBUG sta_nld1:63 - BayId     : 7
+2026-05-21 16:33:13.854 DEBUG sta_nld1:82 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay1 : status : true
+2026-05-21 16:33:13.854 DEBUG sta_nld1:87 - S03_close_the_fingerTip_Latch : close_FingerTipLatch_SctNltBay1 : Exit
+2026-05-21 16:33:13.854 INFO  sta_nld1:36 - S03_close_the_fingerTip_Latch : Finger Tip Latch Closed
+2026-05-21 16:33:13.854 INFO  sta_nld1:45 - S03_close_the_fingerTip_Latch : Exit
+2026-05-21 16:33:13.854 DEBUG sta_nld1:56 - processCurrentState : S03_close_the_fingerTip_Latch_Bay1 : Status     : true
+2026-05-21 16:33:13.854 DEBUG sta_nld1:57 - processCurrentState : S03_close_the_fingerTip_Latch_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:33:13.854 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:33:13.854 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:33:13.854 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:33:19.646 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:33:19.646 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:33:19.646 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:33:19.646 INFO  sta_nld1:30 - S04_ensure_the_fingerTip_Latch_Closed : Entry
+2026-05-21 16:33:19.646 DEBUG sta_nld1:76 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay1_FingerTipLatch_Status : Entry
+2026-05-21 16:33:19.646 DEBUG sta_nld1:84 - PortId    : ip40
+2026-05-21 16:33:19.647 DEBUG sta_nld1:85 - ClusterId : 2
+2026-05-21 16:33:19.647 DEBUG sta_nld1:86 - BayId     : 7
+2026-05-21 16:33:19.750 DEBUG sta_nld1:106 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay1_FingerTipLatch_Status : state : On
+2026-05-21 16:33:19.750 DEBUG sta_nld1:110 - S04_ensure_the_fingerTip_Latch_Closed : sctNltBay1_FingerTipLatch_Status : Exit
+2026-05-21 16:33:19.853 INFO  sta_nld1:50 - set_motor_not_required : Success
+2026-05-21 16:33:19.853 INFO  sta_nld1:70 - S04_ensure_the_fingerTip_Latch_Closed : Exit
+2026-05-21 16:33:19.853 DEBUG sta_nld1:56 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay1 : Status     : true
+2026-05-21 16:33:19.853 DEBUG sta_nld1:57 - processCurrentState : S04_ensure_the_fingerTip_Latch_Closed_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:33:19.853 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:33:19.853 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:33:19.853 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:33:58.847 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:33:58.847 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:33:58.847 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:33:58.847 INFO  sta_nld1:44 - S045_Select_Run_Project : Entry
+2026-05-21 16:34:00.849 INFO  sta_nld1:157 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap : Entry
+2026-05-21 16:34:00.867 INFO  sta_nld1:178 - Enough pallets (4) found. Proceeding with meter mapping.
+2026-05-21 16:34:00.888 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=1 => palletIndex=3, configPalletRackPos=1 => Serial=SlNo-31, PalletID=20260521T155014_0016_LSCSM06P06, PalletRackPosition=1
+2026-05-21 16:34:00.901 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=2 => palletIndex=3, configPalletRackPos=2 => Serial=SlNo-32, PalletID=20260521T155014_0016_LSCSM06P06, PalletRackPosition=2
+2026-05-21 16:34:00.920 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=3 => palletIndex=3, configPalletRackPos=3 => Serial=SlNo-33, PalletID=20260521T155014_0016_LSCSM06P06, PalletRackPosition=3
+2026-05-21 16:34:00.932 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=4 => palletIndex=3, configPalletRackPos=4 => Serial=SlNo-34, PalletID=20260521T155014_0016_LSCSM06P06, PalletRackPosition=4
+2026-05-21 16:34:00.945 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=5 => palletIndex=3, configPalletRackPos=5 => Serial=SlNo-35, PalletID=20260521T155014_0016_LSCSM06P06, PalletRackPosition=5
+2026-05-21 16:34:00.968 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=6 => palletIndex=3, configPalletRackPos=6 => Serial=SlNo-36, PalletID=20260521T155014_0016_LSCSM06P06, PalletRackPosition=6
+2026-05-21 16:34:00.993 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=7 => palletIndex=2, configPalletRackPos=1 => Serial=SlNo-31, PalletID=20260521T154954_0015_LSCSM06P05, PalletRackPosition=1
+2026-05-21 16:34:01.015 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=8 => palletIndex=2, configPalletRackPos=2 => Serial=SlNo-32, PalletID=20260521T154954_0015_LSCSM06P05, PalletRackPosition=2
+2026-05-21 16:34:01.037 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=9 => palletIndex=2, configPalletRackPos=3 => Serial=SlNo-33, PalletID=20260521T154954_0015_LSCSM06P05, PalletRackPosition=3
+2026-05-21 16:34:01.053 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=10 => palletIndex=2, configPalletRackPos=4 => Serial=SlNo-34, PalletID=20260521T154954_0015_LSCSM06P05, PalletRackPosition=4
+2026-05-21 16:34:01.073 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=11 => palletIndex=2, configPalletRackPos=5 => Serial=SlNo-35, PalletID=20260521T154954_0015_LSCSM06P05, PalletRackPosition=5
+2026-05-21 16:34:01.087 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=12 => palletIndex=2, configPalletRackPos=6 => Serial=SlNo-36, PalletID=20260521T154954_0015_LSCSM06P05, PalletRackPosition=6
+2026-05-21 16:34:01.107 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=13 => palletIndex=1, configPalletRackPos=1 => Serial=SlNo-31, PalletID=20260521T154943_0014_LSCSM06P04, PalletRackPosition=1
+2026-05-21 16:34:01.122 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=14 => palletIndex=1, configPalletRackPos=2 => Serial=SlNo-32, PalletID=20260521T154943_0014_LSCSM06P04, PalletRackPosition=2
+2026-05-21 16:34:01.148 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=15 => palletIndex=1, configPalletRackPos=3 => Serial=SlNo-33, PalletID=20260521T154943_0014_LSCSM06P04, PalletRackPosition=3
+2026-05-21 16:34:01.163 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=16 => palletIndex=1, configPalletRackPos=4 => Serial=SlNo-34, PalletID=20260521T154943_0014_LSCSM06P04, PalletRackPosition=4
+2026-05-21 16:34:01.177 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=17 => palletIndex=1, configPalletRackPos=5 => Serial=SlNo-35, PalletID=20260521T154943_0014_LSCSM06P04, PalletRackPosition=5
+2026-05-21 16:34:01.190 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=18 => palletIndex=1, configPalletRackPos=6 => Serial=SlNo-36, PalletID=20260521T154943_0014_LSCSM06P04, PalletRackPosition=6
+2026-05-21 16:34:01.203 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=19 => palletIndex=0, configPalletRackPos=1 => Serial=SlNo-31, PalletID=20260521T154919_0013_LSCSM06P03, PalletRackPosition=1
+2026-05-21 16:34:01.216 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=20 => palletIndex=0, configPalletRackPos=2 => Serial=SlNo-32, PalletID=20260521T154919_0013_LSCSM06P03, PalletRackPosition=2
+2026-05-21 16:34:01.230 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=21 => palletIndex=0, configPalletRackPos=3 => Serial=SlNo-33, PalletID=20260521T154919_0013_LSCSM06P03, PalletRackPosition=3
+2026-05-21 16:34:01.243 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=22 => palletIndex=0, configPalletRackPos=4 => Serial=SlNo-34, PalletID=20260521T154919_0013_LSCSM06P03, PalletRackPosition=4
+2026-05-21 16:34:01.256 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=23 => palletIndex=0, configPalletRackPos=5 => Serial=SlNo-35, PalletID=20260521T154919_0013_LSCSM06P03, PalletRackPosition=5
+2026-05-21 16:34:01.269 INFO  sta_nld1:220 - getMeterSerialNumberWithPalletMap: Mapped globalPos=24 => palletIndex=0, configPalletRackPos=6 => Serial=SlNo-36, PalletID=20260521T154919_0013_LSCSM06P03, PalletRackPosition=6
+2026-05-21 16:34:01.269 INFO  sta_nld1:229 - S045_Select_Run_Project : getMeterSerialNumberWithPalletMap: Final positionToMeterMap = {1={meterSerialNo=SlNo-31, palletRackPositionNo=1, palletDistinctId=20260521T155014_0016_LSCSM06P06}, 2={meterSerialNo=SlNo-32, palletRackPositionNo=2, palletDistinctId=20260521T155014_0016_LSCSM06P06}, 3={meterSerialNo=SlNo-33, palletRackPositionNo=3, palletDistinctId=20260521T155014_0016_LSCSM06P06}, 4={meterSerialNo=SlNo-34, palletRackPositionNo=4, palletDistinctId=20260521T155014_0016_LSCSM06P06}, 5={meterSerialNo=SlNo-35, palletRackPositionNo=5, palletDistinctId=20260521T155014_0016_LSCSM06P06}, 6={meterSerialNo=SlNo-36, palletRackPositionNo=6, palletDistinctId=20260521T155014_0016_LSCSM06P06}, 7={meterSerialNo=SlNo-31, palletRackPositionNo=1, palletDistinctId=20260521T154954_0015_LSCSM06P05}, 8={meterSerialNo=SlNo-32, palletRackPositionNo=2, palletDistinctId=20260521T154954_0015_LSCSM06P05}, 9={meterSerialNo=SlNo-33, palletRackPositionNo=3, palletDistinctId=20260521T154954_0015_LSCSM06P05}, 10={meterSerialNo=SlNo-34, palletRackPositionNo=4, palletDistinctId=20260521T154954_0015_LSCSM06P05}, 11={meterSerialNo=SlNo-35, palletRackPositionNo=5, palletDistinctId=20260521T154954_0015_LSCSM06P05}, 12={meterSerialNo=SlNo-36, palletRackPositionNo=6, palletDistinctId=20260521T154954_0015_LSCSM06P05}, 13={meterSerialNo=SlNo-31, palletRackPositionNo=1, palletDistinctId=20260521T154943_0014_LSCSM06P04}, 14={meterSerialNo=SlNo-32, palletRackPositionNo=2, palletDistinctId=20260521T154943_0014_LSCSM06P04}, 15={meterSerialNo=SlNo-33, palletRackPositionNo=3, palletDistinctId=20260521T154943_0014_LSCSM06P04}, 16={meterSerialNo=SlNo-34, palletRackPositionNo=4, palletDistinctId=20260521T154943_0014_LSCSM06P04}, 17={meterSerialNo=SlNo-35, palletRackPositionNo=5, palletDistinctId=20260521T154943_0014_LSCSM06P04}, 18={meterSerialNo=SlNo-36, palletRackPositionNo=6, palletDistinctId=20260521T154943_0014_LSCSM06P04}, 19={meterSerialNo=SlNo-31, palletRackPositionNo=1, palletDistinctId=20260521T154919_0013_LSCSM06P03}, 20={meterSerialNo=SlNo-32, palletRackPositionNo=2, palletDistinctId=20260521T154919_0013_LSCSM06P03}, 21={meterSerialNo=SlNo-33, palletRackPositionNo=3, palletDistinctId=20260521T154919_0013_LSCSM06P03}, 22={meterSerialNo=SlNo-34, palletRackPositionNo=4, palletDistinctId=20260521T154919_0013_LSCSM06P03}, 23={meterSerialNo=SlNo-35, palletRackPositionNo=5, palletDistinctId=20260521T154919_0013_LSCSM06P03}, 24={meterSerialNo=SlNo-36, palletRackPositionNo=6, palletDistinctId=20260521T154919_0013_LSCSM06P03}}
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 1, Meter Serial No: SlNo-31, Pallet Distinct ID: 20260521T155014_0016_LSCSM06P06
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 2, Meter Serial No: SlNo-32, Pallet Distinct ID: 20260521T155014_0016_LSCSM06P06
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 3, Meter Serial No: SlNo-33, Pallet Distinct ID: 20260521T155014_0016_LSCSM06P06
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 4, Meter Serial No: SlNo-34, Pallet Distinct ID: 20260521T155014_0016_LSCSM06P06
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 5, Meter Serial No: SlNo-35, Pallet Distinct ID: 20260521T155014_0016_LSCSM06P06
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 6, Meter Serial No: SlNo-36, Pallet Distinct ID: 20260521T155014_0016_LSCSM06P06
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 7, Meter Serial No: SlNo-31, Pallet Distinct ID: 20260521T154954_0015_LSCSM06P05
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 8, Meter Serial No: SlNo-32, Pallet Distinct ID: 20260521T154954_0015_LSCSM06P05
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 9, Meter Serial No: SlNo-33, Pallet Distinct ID: 20260521T154954_0015_LSCSM06P05
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 10, Meter Serial No: SlNo-34, Pallet Distinct ID: 20260521T154954_0015_LSCSM06P05
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 11, Meter Serial No: SlNo-35, Pallet Distinct ID: 20260521T154954_0015_LSCSM06P05
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 12, Meter Serial No: SlNo-36, Pallet Distinct ID: 20260521T154954_0015_LSCSM06P05
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 13, Meter Serial No: SlNo-31, Pallet Distinct ID: 20260521T154943_0014_LSCSM06P04
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 14, Meter Serial No: SlNo-32, Pallet Distinct ID: 20260521T154943_0014_LSCSM06P04
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 15, Meter Serial No: SlNo-33, Pallet Distinct ID: 20260521T154943_0014_LSCSM06P04
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 16, Meter Serial No: SlNo-34, Pallet Distinct ID: 20260521T154943_0014_LSCSM06P04
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 17, Meter Serial No: SlNo-35, Pallet Distinct ID: 20260521T154943_0014_LSCSM06P04
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 18, Meter Serial No: SlNo-36, Pallet Distinct ID: 20260521T154943_0014_LSCSM06P04
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 19, Meter Serial No: SlNo-31, Pallet Distinct ID: 20260521T154919_0013_LSCSM06P03
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 20, Meter Serial No: SlNo-32, Pallet Distinct ID: 20260521T154919_0013_LSCSM06P03
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 21, Meter Serial No: SlNo-33, Pallet Distinct ID: 20260521T154919_0013_LSCSM06P03
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 22, Meter Serial No: SlNo-34, Pallet Distinct ID: 20260521T154919_0013_LSCSM06P03
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 23, Meter Serial No: SlNo-35, Pallet Distinct ID: 20260521T154919_0013_LSCSM06P03
+2026-05-21 16:34:01.269 INFO  sta_nld1:78 - S045_Select_Run_Project: Verific : Position: 24, Meter Serial No: SlNo-36, Pallet Distinct ID: 20260521T154919_0013_LSCSM06P03
+2026-05-21 16:34:07.358 INFO  sta_nld1:88 - S045_Select_Run_Project : updateDutSerialNo Success
+2026-05-21 16:34:09.364 INFO  sta_nld1:102 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 3
+2026-05-21 16:34:11.406 INFO  sta_nld1:108 - S045_Select_Run_Project : Close Run Project Success
+2026-05-21 16:34:11.406 INFO  sta_nld1:102 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 2
+2026-05-21 16:34:13.449 INFO  sta_nld1:108 - S045_Select_Run_Project : Close Run Project Success
+2026-05-21 16:34:13.449 INFO  sta_nld1:102 - S045_Select_Run_Project : sendSelectRunCommandToProcal retry : 1
+2026-05-21 16:34:15.479 INFO  sta_nld1:108 - S045_Select_Run_Project : Close Run Project Success
+2026-05-21 16:34:15.479 INFO  sta_nld1:151 - S045_Select_Run_Project : Exit
+2026-05-21 16:34:15.479 DEBUG sta_nld1:56 - processCurrentState : S045_Select_Run_Project_Bay1 : Status     : true
+2026-05-21 16:34:15.479 DEBUG sta_nld1:57 - processCurrentState : S045_Select_Run_Project_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:34:15.479 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:34:15.479 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:34:15.479 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:34:30.255 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:34:30.255 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:34:30.255 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:34:30.255 INFO  sta_nld1:31 - S042_Start_Execution : Entry
+2026-05-21 16:34:33.284 INFO  sta_nld1:56 - S042_Start_Execution : Start Execution Success
+2026-05-21 16:34:38.297 INFO  sta_nld1:76 - S042_Start_Execution : Exit
+2026-05-21 16:34:38.297 DEBUG sta_nld1:56 - processCurrentState : S042_Start_Execution_Bay1 : Status     : true
+2026-05-21 16:34:38.297 DEBUG sta_nld1:57 - processCurrentState : S042_Start_Execution_Bay1 : Error Code : ERROR_CODE_601
+2026-05-21 16:34:38.297 DEBUG sta_nld1:35 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-05-21 16:34:38.297 DEBUG sta_nld1:36 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-05-21 16:34:38.297 DEBUG sta_nld1:37 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Exit
+2026-05-21 16:34:44.230 DEBUG sta_nld1:19 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : Entry
+2026-05-21 16:34:44.230 DEBUG sta_nld1:26 - ShortCircuit_NoLoadTestBay1SingleStateTestRun : singleStateTestRun : Entry
+2026-05-21 16:34:44.230 DEBUG sta_nld1:23 - SclNltBay1Context: processPresentState: Entry
+2026-05-21 16:34:44.230 INFO  sta_nld1:56 - S043_Get_Test_Point_Status : Entry
+2026-05-21 16:34:45.247 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:34:56.379 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:34:56.379 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:35:07.488 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:35:07.488 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:35:18.632 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:35:18.632 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:35:29.737 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:35:29.737 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:35:40.854 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:35:40.854 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:35:51.954 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:35:51.954 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:36:03.073 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:36:03.073 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:36:14.143 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:36:14.143 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:36:25.265 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:36:25.265 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:36:36.373 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:36:36.373 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:36:47.484 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:36:47.484 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...
+2026-05-21 16:36:58.608 INFO  sta_nld1:103 - S043_Get_Test_Point_Status : presentTpResult : []
+2026-05-21 16:36:58.608 INFO  sta_nld1:84 - S043_Get_Test_Point_Status : Getting test point status...

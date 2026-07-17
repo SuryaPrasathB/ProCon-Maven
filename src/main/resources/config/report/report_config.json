@@ -1,0 +1,158 @@
+{
+	"ConfigFileVersion" : "1.0",
+		
+	"MeterProfileReportCellPosition": {
+		"reportSerialNoCell" : "A33",		
+		"customerNameCell" : "D7",	
+		"meterModelNameCell" : "D9",
+		"meterTypeCell" : "D11",
+		"meterSerialNoCell" : "G9",
+		"meterClassCell" : "D13",
+		"basicCurrentCell" : "D15",
+		"maxCurrentCell" : "D17",
+		"ratedVoltageCell" : "D19",
+		"noOfImpulsesPerUnitCell" : "D21",
+		"frequencyCell" : "D23",
+		"ctTypeCell" : "D25",
+		"ctRatioCell" : "D27",
+		"ptRatioCell" : "D29",
+		"pageNumberCell" : "D31",
+		"noOfPagesCell" : "D32",
+		"executedDateCell" : "E35",
+		"reportGeneratedDateCell" : "D34",
+		"executedTimeCell" : "F35",
+		"reportGeneratedTimeCell" : "D36",
+		"testerNameCell" : "D31"
+		
+	},
+	"MeterProfileReportDisplay" : {
+		"displayReportSerialNo" : false,	
+		"displayCustomerName" : true,	
+		"displayMeterModelName" : true,
+		"displayMeterType" : true,
+		"displayMeterClass" : true,
+		"displayMeterSerialNo" : false,
+		"displayBasicCurrent" : true,
+		"displayMaxCurrent" : true,
+		"displayRatedVoltage" : true,
+		"displayNoOfImpulsesPerUnit" : true,
+		"displayFrequency" : true,
+		"displayCtType" : true,
+		"displayCtRatio" : true,
+		"displayPtRatio" :  true,
+		"displayPageNumber" : false,
+		"displayNoOfPages" : false,
+		"displayExecutedDate" : false,
+		"displayReportGeneratedDate" : false,
+		"displayExecutedTime" : false,
+		"displayReportGeneratedTime" : false,
+		"displayTesterName" : true
+		
+	},
+	
+	"AccuracyReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "T4"
+	},
+	
+	"AccuracyReportDisplay": {
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : true
+	},
+	
+	"NoLoadReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"testPeriodCell" : "A34"
+	},
+	
+	"NoLoadReportDisplay": {
+		"displayReportSerialNo" : true,
+		"displayTesterName" : true,
+		"displayPageNumber" : false,
+		"displayVoltage" : true,
+		"displayTestPeriod" : true
+	},
+	
+	"StartingCurrentReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "C9",
+		"currentCell" : "G9",
+		"powerFactorCell" : "A35"
+	},
+	
+	"StartingCurrentReportDisplay": {
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : true,
+		"displayCurrent" : true,
+		"displayPowerFactor" : false
+	},
+	
+	"VoltageVariationReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4"
+
+	},
+	
+	"VoltageVariationReportDisplay": {
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : true
+
+	},
+	
+	"RepeatabilityReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "F4",
+		"currentCell" : "F5",
+		"testDurationCell" : "A35",
+		"testIntervalCell" : "A36"
+	},
+	
+	"RepeatabilityReportDisplay": {
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : true,
+		"displayCurrent" : true,
+		"displayTestDuration" : true,
+		"displayTestInterval" : true
+	},
+	
+
+	
+	"VoltageUnbalanceReportCellPosition": {
+		"reportSerialNoCell" : "A33",
+		"testerNameCell" : "D31",
+		"pageNumberCell" : "D32",
+		"voltageCell" : "D4",
+		"currentCell" : "I4"
+	},
+	
+		"VoltageUnbalanceReportDisplay": {
+		"displayReportSerialNo" : false,
+		"displayTesterName" : false,
+		"displayPageNumber" : false,
+		"displayVoltage" : true,
+		"displayCurrent" : true
+
+	}
+	
+
+	
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="DeviceSubMenupane" prefHeight="612.0" prefWidth="726.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.testreport.ReportSubMenuController">
+   <children>
+      <Accordion fx:id="reportAccordian" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="578.0" prefWidth="699.0">
+        <panes>
+            <TitledPane fx:id="fileLocationTitlePane" text="Report File Location">
+              <content>
+                <AnchorPane fx:id="reportfilelocation_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+            <TitledPane focusTraversable="false" text="Report Header Configuration">
+              <content>
+                <AnchorPane fx:id="reportheaderconfig_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+            <TitledPane text="Report Excel Configuration">
+              <content>
+                <AnchorPane fx:id="reportexcelconfig_childpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>

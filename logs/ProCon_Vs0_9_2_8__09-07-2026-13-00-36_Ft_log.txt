@@ -1,0 +1,25 @@
+2026-07-09 13:07:05.153 DEBUG ft:19 - FunctionalTestBaySingleStateTestRun : Entry
+2026-07-09 13:07:05.153 DEBUG ft:26 - FunctionalTestBaySingleStateTestRun : singleStateTestRun : Entry
+2026-07-09 13:07:05.153 DEBUG ft:224 - createFtBayStateInstance : stateName: S25_open_stop_latch_FT_Bay
+2026-07-09 13:07:05.154 DEBUG ft:24 - FtBayContext: processPresentState: Entry 
+2026-07-09 13:07:05.154 INFO  ft:34 - [FTB] : [OPEN_STOPPER-HV] : [SEQUENCE_ENTRY] - Attempting to open stop latch at FT Bay.
+2026-07-09 13:07:05.154 INFO  ft:45 - S25_open_stop_latch_FT_Bay: Waiting for Halt Pallet at FT-Entry
+2026-07-09 13:07:05.154 INFO  ft:52 - S25_open_stop_latch_FT_Bay: Waiting for Halt Pallet at FT-Exit
+2026-07-09 13:07:05.154 DEBUG ft:88 - [FTB] : [STOP_LATCH_OPERATION] : [REQUEST_ENTRY] - Attempting to operate stop latch.
+2026-07-09 13:07:05.155 DEBUG ft:108 - [FTB] : [STOP_LATCH_OPERATION] : [GUI_STATUS_INIT] - Added new GUI status record with serial no: 1 for state HP_00_Idle, cName: STPR_AT_FT_BAY.
+2026-07-09 13:07:05.155 DEBUG ft:113 - [FTB] : [STOP_LATCH_OPERATION] : [PORT_INFO] - PortId: op2, ClusterId: 1, BayId: 1
+2026-07-09 13:07:05.155 DEBUG ft:117 - [FTB] : [STOP_LATCH_OPERATION] : [SET_OUTPUT] - Attempting to set output to Off for port op2.
+2026-07-09 13:07:06.261 DEBUG ft:124 - [FTB] : [STOP_LATCH_OPERATION] : [RAW_OUTPUT_STATE] : Off
+2026-07-09 13:07:06.261 DEBUG ft:144 - [FTB] : [STOP_LATCH_OPERATION] : [FINAL_STATUS] : true
+2026-07-09 13:07:06.261 DEBUG ft:164 - [FTB] : [STOP_LATCH_OPERATION] : [GUI_STATUS_COMPLETED] - Updated GUI with final status: Success for cName: STPR_AT_FT_BAY.
+2026-07-09 13:07:06.261 DEBUG ft:184 - [FTB] : [STOP_LATCH_OPERATION] : [REQUEST_EXIT] - Stop latch operation completed. Final Status: true
+2026-07-09 13:07:06.261 DEBUG ft:57 - [FTB] : [OPEN_STOPPER-HV] : [GUI_UPDATE] - Updated GUI status after attempting to open stop latch.
+2026-07-09 13:07:06.261 INFO  ft:62 - [FTB] : [OPEN_STOPPER-HV] : [SUCCESS] - Stop Latch successfully opened.
+2026-07-09 13:07:06.262 INFO  ft:67 - [FTB] : [PALLET_TRACKER] : [SWITCH] - Attempting to switch pallet from FTB to HVB.
+2026-07-09 13:07:06.262 DEBUG ft:69 - [FTB] : [PALLET_TRACKER] : [DELAY] - Delaying for 1000 ms after pallet switch.
+2026-07-09 13:07:07.262 INFO  ft:80 - [FTB] : [OPEN_STOPPER-HV] : [SEQUENCE_EXIT] - Open stop latch sequence completed. Final Status: true
+2026-07-09 13:07:07.262 DEBUG ft:57 - processCurrentState : S25_open_stop_latch_FT_Bay : Status     : true
+2026-07-09 13:07:07.262 DEBUG ft:58 - processCurrentState : S25_open_stop_latch_FT_Bay : Error Code : ERROR_CODE_601
+2026-07-09 13:07:07.262 DEBUG ft:36 - FunctionalTestBaySingleStateTestRun : singleStateTestRun : bayStatus : Status : true
+2026-07-09 13:07:07.262 DEBUG ft:37 - FunctionalTestBaySingleStateTestRun : singleStateTestRun : bayStatus : Error Code : ERROR_CODE_601
+2026-07-09 13:07:07.262 DEBUG ft:38 - FunctionalTestBaySingleStateTestRun : singleStateTestRun : Exit
