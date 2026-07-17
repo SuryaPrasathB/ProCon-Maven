@@ -1,5 +1,0 @@
-2026-04-21 17:42:27.253 INFO  sta_nld2:1738 - btnSctNlt2ResetOnClick : Invoked:
-2026-04-21 17:42:27.253 INFO  sta_nld2:1740 - SCT NLT BAY 2 : RESET
-2026-04-21 17:42:27.279 INFO  sta_nld2:1791 - btnSctNlt2ResetOnClick : Exit:
-2026-04-21 17:42:27.378 DEBUG sta_nld2:23 - ShortCircuit_NoLoadTestBay2_2 : Entry
-2026-04-21 17:42:27.378 DEBUG sta_nld2:31 - STA_NoLoadTestBay2Reset : manageShortCircuit_NoLoadTestBay2ResetStates : Entry

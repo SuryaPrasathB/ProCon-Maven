@@ -1,4 +1,0 @@
-2026-05-28 17:02:29.031 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: ON
-2026-05-28 17:02:29.135 DEBUG ft:150 - Motor control successful for PortId: op22
-2026-05-28 17:02:33.711 DEBUG ft:127 - Attempting to control motor on PortId: op22, ClusterId: 2, BayId: 4, Action: OFF
-2026-05-28 17:02:33.815 DEBUG ft:150 - Motor control successful for PortId: op22

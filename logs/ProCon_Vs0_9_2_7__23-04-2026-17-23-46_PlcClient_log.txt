@@ -1,1 +1,0 @@
-2026-04-23 17:24:15.497 DEBUG plc:36 - ModbusTcpClientManager: modbus client : Keep-alive task scheduled!
