@@ -136,7 +136,7 @@ public class ConveyorClientManager {
 	    
 	    ApplicationLauncher.logger.debug("messageBayData : clusterLock : " + clusterLock);
 
-	    while ((retryCount != 0) && (!messageProcessed))  && (!ProjectExecutionController.getUserAbortedFlag())) {
+	    while ((retryCount != 0) && (!messageProcessed) && (!ProjectExecutionController.getUserAbortedFlag())) {
 	        retryCount--;
 	        ApplicationLauncher.logger.debug("messageBayData : retryCount: " + retryCount + " : " + outputId);
 

@@ -93,7 +93,7 @@ public class SerialPortManagerPanelMeter1 {
 			ApplicationLauncher.logger.debug("disconnectPanelMeter1 :Entry2");
 			disableSerialRxPhysical_PanelMeter1Monitor();
 			//DisplayDataObj.setPowerSrcReadData(false);
-			Sleep(500);
+
 			//disconnectPowerSourceSerialComm();
 			disconnectPanelMeter1SerialComm();
 			panelMeter1SerialStatusConnected=false;
@@ -207,7 +207,7 @@ public class SerialPortManagerPanelMeter1 {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					//Sleep(80);
 	
 	

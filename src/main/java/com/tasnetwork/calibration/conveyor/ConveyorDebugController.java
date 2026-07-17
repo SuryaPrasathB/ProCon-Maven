@@ -1368,7 +1368,7 @@ public class ConveyorDebugController implements Initializable {
 			ProcalRemoteResponse procalServerResponse = procalRemoteSender.sendCommResultRefreshToProcal();
 			ApplicationLauncher.logger.debug("SendCommResultRefreshToProcalTask: procalServerResponse: " + procalServerResponse);
 			//procalRemoteSender.//setProcalVerifyRemoteResponse();
-			sendCommDataTaskTimer.cancel();
+
 		}
 	}
 
@@ -1378,7 +1378,7 @@ public class ConveyorDebugController implements Initializable {
 			String procalServerResponse = procalRemoteSender.sendStartCommandToProcal();
 			ApplicationLauncher.logger.debug("SendCommStartToProcalTask: procalServerResponse: " + procalServerResponse);
 			//procalRemoteSender.//setProcalVerifyRemoteResponse();
-			sendCommDataTaskTimer.cancel();
+
 		}
 	}
 
@@ -1388,7 +1388,7 @@ public class ConveyorDebugController implements Initializable {
 			String procalServerResponse = procalRemoteSender.sendStartCommandToProcal();
 			ApplicationLauncher.logger.debug("SendCommStopToProcalTask: procalServerResponse: " + procalServerResponse);
 			//procalRemoteSender.//setProcalVerifyRemoteResponse();
-			sendCommDataTaskTimer.cancel();
+
 		}
 	}*/
 
@@ -1436,7 +1436,7 @@ public class ConveyorDebugController implements Initializable {
 				setOutputDataOnCluster(deviceId,bayId,outputPortId, yellowLedStatus) ;
 
 			}
-			sendCommDataTaskTimer.cancel();
+
 		}
 	}
 
@@ -1706,8 +1706,6 @@ public class ConveyorDebugController implements Initializable {
 
 			//	}
 
-
-			sendCommDataTaskTimer.cancel();
 			Platform.runLater(()->{
 				ref_btnSendDataToBay.setDisable(false);
 			});
@@ -2011,43 +2009,36 @@ public class ConveyorDebugController implements Initializable {
 		allData.clear();
 		funtionalBayStartTaskTimer = new Timer();
 		funtionalBayStartTaskTimer.schedule(new FunctionalTestBay2(),100);
-		Sleep(500);
-		funtionalBayStartTaskTimer.cancel();
+
 
 		hvtBayStartTaskTimer = new Timer();
 		hvtBayStartTaskTimer.schedule(new HighVoltageTestBay2(),100);
-		Sleep(500);
-		hvtBayStartTaskTimer.cancel();
+
 
 		insResStartTaskTimer = new Timer();
 		insResStartTaskTimer.schedule(new InsulationResistanceTestBay2(),100);
-		Sleep(500);
-		insResStartTaskTimer.cancel();
+
 
 		calibrationStartTaskTimer = new Timer();
 		calibrationStartTaskTimer.schedule(new CalibrationBay2(),100);
-		Sleep(500);
-		calibrationStartTaskTimer.cancel();
+
 
 		verificStartTaskTimer = new Timer();
 		verificStartTaskTimer.schedule(new VerificationTestBay2(),100);
-		Sleep(500);
-		verificStartTaskTimer.cancel();
+
 
 		sctNlt1StartTaskTimer = new Timer();
 		sctNlt1StartTaskTimer.schedule(new STA_NoLoadTestBay1_2(),100);
-		Sleep(500);
-		sctNlt1StartTaskTimer.cancel();
+
 
 		sctNlt2StartTaskTimer = new Timer();
 		sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2_2(),100);
-		Sleep(500);
-		sctNlt2StartTaskTimer.cancel();
+
 
 		commStartTaskTimer = new Timer();
 		commStartTaskTimer.schedule(new CommunicationTestBay2(),100);
-		Sleep(500);
-		commStartTaskTimer.cancel();
+
+
 	}
 
 
@@ -2071,43 +2062,36 @@ public class ConveyorDebugController implements Initializable {
 
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(),100);
-		Sleep(500);
-		funtionalBayStopTaskTimer.cancel();
+
 
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(),100);
-		Sleep(500);
-		hvtBayStopTaskTimer.cancel();
+
 
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-		Sleep(500);
-		insResStopTaskTimer.cancel(); 
+
 
 		calibrationStopTaskTimer = new Timer();
 		calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-		Sleep(500);
-		calibrationStopTaskTimer.cancel();
+
 
 		verificStopTaskTimer = new Timer();
 		verificStopTaskTimer.schedule(new VerificationTestBayStop(),100);
-		Sleep(500);
-		verificStopTaskTimer.cancel();
+
 
 		sctNlt1StopTaskTimer = new Timer();
 		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(),100);
-		Sleep(500);
-		sctNlt1StopTaskTimer.cancel();
+
 
 		sctNlt2StopTaskTimer = new Timer();
 		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(),100);
-		Sleep(500);
-		sctNlt2StopTaskTimer.cancel();
+
 
 		commStopTaskTimer = new Timer();
 		commStopTaskTimer.schedule(new CommunicationTestBayStop(),100);
-		Sleep(500);
-		commStopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2116,43 +2100,36 @@ public class ConveyorDebugController implements Initializable {
 
 		funtionalBayResetTaskTimer = new Timer();
 		funtionalBayResetTaskTimer.schedule(new FunctionalTestBayReset(),100);
-		Sleep(500);
-		funtionalBayResetTaskTimer.cancel();
+
 
 		hvtBayResetTaskTimer = new Timer();
 		hvtBayResetTaskTimer.schedule(new HighVoltageTestBayReset(),100);
-		Sleep(500);
-		hvtBayResetTaskTimer.cancel();
+
 
 		insResResetTaskTimer = new Timer();
 		insResResetTaskTimer.schedule(new InsulationResistanceTestBayReset(),100);
-		Sleep(500);
-		insResResetTaskTimer.cancel(); 
+
 
 		calibrationResetTaskTimer = new Timer();
 		calibrationResetTaskTimer.schedule(new CalibrationBayReset(),100);
-		Sleep(500);
-		calibrationResetTaskTimer.cancel();
+
 
 		verificResetTaskTimer = new Timer();
 		verificResetTaskTimer.schedule(new VerificationTestBayReset(),100);
-		Sleep(500);
-		verificResetTaskTimer.cancel();
+
 
 		sctNlt1ResetTaskTimer = new Timer();
 		sctNlt1ResetTaskTimer.schedule(new STA_NoLoadTestBay1Reset(),100);
-		Sleep(500);
-		sctNlt1ResetTaskTimer.cancel();
+
 
 		sctNlt2ResetTaskTimer = new Timer();
 		sctNlt2ResetTaskTimer.schedule(new STA_NoLoadTestBay2Reset(),100);
-		Sleep(500);
-		sctNlt2ResetTaskTimer.cancel();
+
 
 		commResetTaskTimer = new Timer();
 		commResetTaskTimer.schedule(new CommunicationTestBayReset(),100);
-		Sleep(500);
-		commResetTaskTimer.cancel();
+
+
 	}
 	 */
 	//============================================================================================================================================
@@ -2174,8 +2151,8 @@ public class ConveyorDebugController implements Initializable {
 		funtionalBayStartTaskTimer = new Timer();
 		//LoadProjectTaskTimer.schedule(new LoadProjectTask(),100);
 		funtionalBayStartTaskTimer.schedule(new FunctionalTestBay2(),100);
-		Sleep(500);
-		funtionalBayStartTaskTimer.cancel();
+
+
 		//QrScannerTaskTimer= new Timer();
 
 		//QrScannerTaskTimer.schedule(new QrScannerTaskTimer(),100);
@@ -2183,8 +2160,8 @@ public class ConveyorDebugController implements Initializable {
 
 				hvtBayTaskTimer = new Timer();
 		hvtBayTaskTimer.schedule(new HighVoltageTestBay(),100);
-		Sleep(500);
-		hvtBayTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2199,8 +2176,8 @@ public class ConveyorDebugController implements Initializable {
 
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(),100);
-		Sleep(500);
-		funtionalBayStopTaskTimer.cancel();
+
+
 	}
 
 	public static void enableFtStartButton() {
@@ -2216,8 +2193,8 @@ public class ConveyorDebugController implements Initializable {
 	public void btnFtResetOnClick(){
 		funtionalBayResetTaskTimer = new Timer();
 		funtionalBayResetTaskTimer.schedule(new FunctionalTestBayReset(), 100);
-		Sleep(500);
-		funtionalBayResetTaskTimer.cancel();
+
+
 	}
 
 	//============================================================================================================================================  
@@ -2231,8 +2208,8 @@ public class ConveyorDebugController implements Initializable {
 
 		hvtBayStartTaskTimer = new Timer();
 		hvtBayStartTaskTimer.schedule(new HighVoltageTestBay2(),100);
-		Sleep(500);
-		hvtBayStartTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2245,16 +2222,15 @@ public class ConveyorDebugController implements Initializable {
 
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(),100);
-		Sleep(500);
-		hvtBayStopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
 	public void btnHvtResetOnClick(){
 		hvtBayResetTaskTimer = new Timer();
 		hvtBayResetTaskTimer.schedule(new HighVoltageTestBayReset(), 100);
-		Sleep(500);
-		hvtBayResetTaskTimer.cancel();
+
 
 	}
 
@@ -2268,8 +2244,8 @@ public class ConveyorDebugController implements Initializable {
 
 		insResStartTaskTimer = new Timer();
 		insResStartTaskTimer.schedule(new InsulationResistanceTestBay2(),100);
-		Sleep(500);
-		insResStartTaskTimer.cancel();                 
+
+
 	}
 
 	@FXML 
@@ -2282,16 +2258,16 @@ public class ConveyorDebugController implements Initializable {
 
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-		Sleep(500);
-		insResStopTaskTimer.cancel();  
+
+
 	}
 
 	@FXML 
 	public void btnIrtResetOnClick(){
 		insResResetTaskTimer = new Timer();
 		insResResetTaskTimer.schedule(new InsulationResistanceTestBayReset(), 100);
-		Sleep(500);
-		insResResetTaskTimer.cancel();
+
+
 	}
 	//============================================================================================================================================  
 
@@ -2305,8 +2281,8 @@ public class ConveyorDebugController implements Initializable {
 
 		calibrationStartTaskTimer = new Timer();
 		calibrationStartTaskTimer.schedule(new CalibrationBay2(),100);
-		Sleep(500);
-		calibrationStartTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2319,16 +2295,16 @@ public class ConveyorDebugController implements Initializable {
 
 		calibrationStopTaskTimer = new Timer();
 		calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-		Sleep(500);
-		calibrationStopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
 	public void btnCalibResetOnClick(){
 		calibrationResetTaskTimer = new Timer();
 		calibrationResetTaskTimer.schedule(new CalibrationBayReset(), 100);
-		Sleep(500);
-		calibrationResetTaskTimer.cancel();
+
+
 	}
 	//============================================================================================================================================  
 
@@ -2336,8 +2312,8 @@ public class ConveyorDebugController implements Initializable {
 	public void btnVerificTestStartOnClick(){
 		verificStartTaskTimer = new Timer();
 		verificStartTaskTimer.schedule(new VerificationTestBay2(),100);
-		Sleep(500);
-		verificStartTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2346,16 +2322,16 @@ public class ConveyorDebugController implements Initializable {
 
 		verificStopTaskTimer = new Timer();
 		verificStopTaskTimer.schedule(new VerificationTestBayStop(),100);
-		Sleep(500);
-		verificStopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
 	public void btnVerificTestResetOnClick(){
 		verificResetTaskTimer = new Timer();
 		verificResetTaskTimer.schedule(new VerificationTestBayReset(), 100);
-		Sleep(500);
-		verificResetTaskTimer.cancel();
+
+
 	}
 	//============================================================================================================================================  
 
@@ -2363,8 +2339,8 @@ public class ConveyorDebugController implements Initializable {
 	public void btnSctNlt1StartOnClick(){
 		sctNlt1StartTaskTimer = new Timer();
 		sctNlt1StartTaskTimer.schedule(new STA_NoLoadTestBay1_2(),100);
-		Sleep(500);
-		sctNlt1StartTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2373,16 +2349,16 @@ public class ConveyorDebugController implements Initializable {
 
 		sctNlt1StopTaskTimer = new Timer();
 		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(),100);
-		Sleep(500);
-		sctNlt1StopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
 	public void btnSctNlt1ResetOnClick(){
 		sctNlt1ResetTaskTimer = new Timer();
 		sctNlt1ResetTaskTimer.schedule(new STA_NoLoadTestBay1Reset(), 100);
-		Sleep(500);
-		sctNlt1ResetTaskTimer.cancel();
+
+
 	}
 	//============================================================================================================================================  
 
@@ -2390,8 +2366,8 @@ public class ConveyorDebugController implements Initializable {
 	public void btnSctNlt2StartOnClick(){
 		sctNlt2StartTaskTimer = new Timer();
 		sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2_2(),100);
-		Sleep(500);
-		sctNlt2StartTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2400,16 +2376,16 @@ public class ConveyorDebugController implements Initializable {
 
 		sctNlt2StopTaskTimer = new Timer();
 		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(),100);
-		Sleep(500);
-		sctNlt2StopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
 	public void btnSctNlt2ResetOnClick(){
 		sctNlt2ResetTaskTimer = new Timer();
 		sctNlt2ResetTaskTimer.schedule(new STA_NoLoadTestBay2Reset(), 100);
-		Sleep(500);
-		sctNlt2ResetTaskTimer.cancel();
+
+
 	}
 	//============================================================================================================================================  
 
@@ -2417,8 +2393,8 @@ public class ConveyorDebugController implements Initializable {
 	public void btnCommTestStartOnClick(){
 		commStartTaskTimer = new Timer();
 		commStartTaskTimer.schedule(new CommunicationTestBay2(),100);
-		Sleep(500);
-		commStartTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
@@ -2427,16 +2403,16 @@ public class ConveyorDebugController implements Initializable {
 
 		commStopTaskTimer = new Timer();
 		commStopTaskTimer.schedule(new CommunicationTestBayStop(),100);
-		Sleep(500);
-		commStopTaskTimer.cancel();
+
+
 	}
 
 	@FXML 
 	public void btnCommTestResetOnClick(){
 		commResetTaskTimer = new Timer();
 		commResetTaskTimer.schedule(new CommunicationTestBayReset(), 100);
-		Sleep(500);
-		commResetTaskTimer.cancel();
+
+
 	}*/
 	//============================================================================================================================================  
 
@@ -2495,8 +2471,7 @@ public class ConveyorDebugController implements Initializable {
 		});
 		btnFilterTaskTimer = new Timer();
 		btnFilterTaskTimer.schedule(new FilterOnClickTimerTask(),100);
-		Sleep(500);
-		btnFilterTaskTimer.cancel();
+
 
 	}
 
@@ -2581,8 +2556,6 @@ public class ConveyorDebugController implements Initializable {
 		});
 		btnRefreshTaskTimer = new Timer();
 		btnRefreshTaskTimer.schedule(new RefreshOnClickTimerTask(),100);
-		Sleep(500);
-		btnRefreshTaskTimer.cancel();
 
 
 	}

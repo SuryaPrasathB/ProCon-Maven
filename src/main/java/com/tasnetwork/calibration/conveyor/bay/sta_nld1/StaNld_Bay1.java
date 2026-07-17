@@ -3,12 +3,12 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.S041_Start_STA_NLDT_Bay2_Source;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.S051_Stop_STA_NLDT_Bay2_Source;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.S042_Start_Execution_Bay1;
@@ -23,7 +23,7 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
-public class StaNld_Bay1 extends TimerTask{
+public class StaNld_Bay1 implements BayStateContext {
 	public static Logger logger = Logger.getLogger(StaNld_Bay1.class.getPackage().getName()); 
 	private STA_NoLoadTestBay1Context sctNltBay1StateManager = new STA_NoLoadTestBay1Context();  
 	public static boolean abort_SCT_NLT_Bay1 = false ;
@@ -36,133 +36,26 @@ public class StaNld_Bay1 extends TimerTask{
 	public static boolean stopProcessCompletedStaNldBay1 = false ;
 	public static boolean resetProcessCompletedStaNldBay1 = false ;
 
-	public void run() {
-		StaNld_Bay1.logger.debug("StaNld_Bay1 : Entry"); 
-
-		manageSta_NoLoadTestBay1States();
-		//DevSysEnergyMeter.sendReadNeutralCurrentCommand();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedStaNldBay1(true);
 	}
 
-	private void manageSta_NoLoadTestBay1States() {
+	@Override
+	public void onStopComplete() {
+		StaNld_Bay1.logger.debug("StaNld_Bay1 : isStopProcessRequestedStaNldBay1 -Pass");
+	}
 
-		StaNld_Bay1.logger.debug("StaNld_Bay1 : manageSta_NoLoadTestBay1States : Entry");
 
-		//setTableStatePlanner_SctNltBay1(StatePlannerController.getTableStatePlannerSctNltBay1_UI());
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService().findByBayKeyAndExecutionMode(ConstantConveyor.STA_NLD1_BAY_KEY, "RUN");//findByBayKey(ConstantConveyor.STA_NLD1_BAY_KEY);
-		setTableStatePlanner_StaNldTestBay1(statePlanner);
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-		if(getTableStatePlanner_StaNldTestBay1().size()>0) {
-
-			// Fetch the first state from the table to start the process
-			StateFlow presentRow = getTableStatePlanner_StaNldTestBay1().get(currentIndex);
-			StateFlow nextRow = presentRow ; 
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			STA_NoLoadTestBay1State currentState = createSctNltBay1StateInstance(currentStateName); // Create the state instance
-			setNextState(currentState); // Set the first state
-	
-	
-			StaNld_Bay1.logger.debug("StaNld_Bay1 : manageSta_NoLoadTestBay1States : getTableStatePlanner2 : Size : " + getTableStatePlanner_StaNldTestBay1().size());
-	
-			setStartProcessCompletedStaNldBay1(true);
-	
-			while (!isStopProcessRequestedStaNldBay1() &&
-	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-	
-				presentRow = nextRow ;
-	
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-	
-					String nextStateName = presentRow.getIfSuccess();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						// Set the next state based on the success column
-						STA_NoLoadTestBay1State nextState = createSctNltBay1StateInstance(nextStateName);
-						setNextState(nextState); // Set the next state dynamically
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
-					for (StateFlow row : getTableStatePlanner_StaNldTestBay1()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}
-					}
-	
-				}
-				else{
-					//======
-					// update in the table.
-					String errorCode = bayStatus.getErrorCode() ;
-					String nextStateName = getErrorStateInstance(errorCode);//createStateInstance("S22_error_Handling");
-	
-					presentRow.setIfFailed(nextStateName);
-	
-					//=====
-	
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						if (nextStateName.equals("S13_error_Handling_Bay1")) {
-							STA_NoLoadTestBay1State nextState2 =  createErrorStateInstance(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-						} else {
-							STA_NoLoadTestBay1State nextState2 = createSctNltBay1StateInstance(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-	
-					}
-	
-	
-					for (StateFlow row : getTableStatePlanner_StaNldTestBay1()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row;                         // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-	
-					}
-				}
-	
-			}
-			
-		}else {
-			StaNld_Bay1.logger.debug("StaNld_Bay1 : manageSta_NoLoadTestBay1States : getTableStatePlanner2  : No states found in the planner");
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		STA_NoLoadTestBay1State newState;
+		if (stateName.equals("S13_error_Handling_Bay1") || stateName.equals("S13_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
+		} else {
+			newState = createSctNltBay1StateInstance(stateName);
 		}
-	}
-
-	//=====================================================================================================================
-
-	/*	public static void singleStateTestRun(SctNltBay1State currentState){
-		ShortCircuit_NoLoadTestBay1.logger.debug("singleStateTestRun : Entry");
-
-		setNextState(currentState);
-
-		BayResponse bayStatus = processCurrentState();
-
-		ShortCircuit_NoLoadTestBay1.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		ShortCircuit_NoLoadTestBay1.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		ShortCircuit_NoLoadTestBay1.logger.debug("singleStateTestRun : Exit");
-	}*/
-
-	//=====================================================================================================================
-
-	public void setNextState(STA_NoLoadTestBay1State newState) {
-		//Set previous state here 
-
-		// Set the new state
-		sctNltBay1StateManager.setState(newState);  
-
-
+		sctNltBay1StateManager.setState(newState);
 	}
 
 	public BayResponse processCurrentState(){
@@ -226,7 +119,8 @@ public class StaNld_Bay1 extends TimerTask{
 	}
 
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_020 :

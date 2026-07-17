@@ -483,9 +483,8 @@ public class PlcClientBayTestController implements Initializable,InputPortTableV
     		ApplicationLauncher.logger.debug("btnConnectOnClick: Count : " + i);
     		funtionalBaySingleStateTaskTimer = new Timer();
 			funtionalBaySingleStateTaskTimer.schedule(new FunctionalTestBaySingleStateTestRun(), 100);
-			Sleep(500);
-			funtionalBaySingleStateTaskTimer.cancel();
-			
+
+
 			Sleep(5000);
     	}
     }
@@ -840,7 +839,6 @@ public class PlcClientBayTestController implements Initializable,InputPortTableV
 				}*/
 			}
 
-			sendCommDataTaskTimer.cancel();
 			boolean overAllStatus1= overAllStatus;
 			Platform.runLater(()->{
 				ref_btnSendDataToBay.setDisable(false);

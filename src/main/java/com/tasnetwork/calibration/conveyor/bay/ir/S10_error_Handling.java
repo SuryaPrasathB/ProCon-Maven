@@ -34,86 +34,86 @@ public class S10_error_Handling  implements IrtBayState {
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_001:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_002:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_003:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_004:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_005:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_006:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_007:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_008:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_009:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_010:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_011:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_012:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_IRT_013:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		default:
 			insResStopTaskTimer = new Timer();
 			insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-			Sleep(500);
-			insResStopTaskTimer.cancel(); 			
+
+
 			break;
 		}
 	}

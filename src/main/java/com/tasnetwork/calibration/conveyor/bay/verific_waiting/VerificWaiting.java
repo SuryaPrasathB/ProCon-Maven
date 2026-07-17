@@ -2,12 +2,12 @@ package com.tasnetwork.calibration.conveyor.bay.verific_waiting;
 
 
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -15,7 +15,7 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
-public class VerificWaiting extends TimerTask{
+public class VerificWaiting implements BayStateContext {
 	public static Logger logger = Logger.getLogger(VerificWaiting.class.getPackage().getName()); 
 	private WaitingBayContext WaitingBayStateManager = new WaitingBayContext();  
 	
@@ -29,136 +29,25 @@ public class VerificWaiting extends TimerTask{
 	public static boolean resetProcessCompletedWaitingBay = false ;
 	
 	public static boolean abort_Waiting_Bay = false ;
-	public void run() {
-		VerificWaiting.logger.debug("WaitingBay2 : Entry"); 
-
-		manageWaitingBayStates();
-		//DevSysEnergyMeter.sendReadNeutralCurrentCommand();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedWaitingBay(true);
 	}
 
-	private void manageWaitingBayStates() {
+	@Override
+	public void onStopComplete() {
+		VerificWaiting.logger.debug("Waiting : onStopComplete -Pass");
+	}
 
-		VerificWaiting.logger.debug("WaitingBay2 : manageWaitingBayStates : Entry");
-
-		//setTableStatePlanner_WaitingBay(StatePlannerController.getTableStatePlannerWaitingBay_UI());
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService().findByBayKeyAndExecutionMode(ConstantConveyor.WAITING_BAY_KEY, "RUN");//findByBayKey(ConstantConveyor.WAITING_BAY_KEY);
-		
-		setTableStatePlanner_WaitingBay(statePlanner);
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-		if(getTableStatePlanner_WaitingBay().size()>0) {
-
-			// Fetch the first state from the table to start the process
-			StateFlow presentRow = getTableStatePlanner_WaitingBay().get(currentIndex);
-			StateFlow nextRow = presentRow ; 
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			WaitingBayState currentState = createWaitingBayStateInstance(currentStateName); // Create the state instance
-			setNextState(currentState); // Set the first state
-	
-	
-			VerificWaiting.logger.debug("WaitingBay2 : manageWaitingBayStates : getTableStatePlanner2 : Size : " + getTableStatePlanner_WaitingBay().size());
-	
-			setStartProcessCompletedWaitingBay(true);
-	
-			while (!isStopProcessRequestedWaitingBay() &&
-	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-				VerificWaiting.logger.debug("WaitingBay2 : manageWaitingBayStates : isStopProcessRequestedWaitingBay : " + isStopProcessRequestedWaitingBay());
-	
-	
-				presentRow = nextRow ;
-	
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-	
-					String nextStateName = presentRow.getIfSuccess();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						// Set the next state based on the success column
-						WaitingBayState nextState = createWaitingBayStateInstance(nextStateName);
-						setNextState(nextState); // Set the next state dynamically
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
-					for (StateFlow row : getTableStatePlanner_WaitingBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}
-					}
-	
-				}
-				else{
-					//======
-					// update in the table.
-					String errorCode = bayStatus.getErrorCode() ;
-					String nextStateName = getErrorStateInstance(errorCode);//createStateInstance("S22_error_Handling");
-	
-					presentRow.setIfFailed(nextStateName);
-	
-					//=====
-	
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						if (nextStateName.equals("S05_error_Handling")) {
-							WaitingBayState nextState2 =  createErrorStateInstance(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-						} else {
-							WaitingBayState nextState2 = createWaitingBayStateInstance(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-						
-					}
-	
-	
-					for (StateFlow row : getTableStatePlanner_WaitingBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row;                         // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-	
-					}
-				}
-	
-			}
-			
-		}else {
-			VerificWaiting.logger.debug("WaitingBay2 : manageWaitingBayStates : getTableStatePlanner2  : No states found in the planner");
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		WaitingBayState newState;
+		if (stateName.equals("S05_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
+		} else {
+			newState = createWaitingBayStateInstance(stateName);
 		}
-	}
-
-	//=====================================================================================================================
-	
-/*	public static void singleStateTestRun(WaitingBayState currentState){
-		WaitingBay.logger.debug("singleStateTestRun : Entry");
-		
-		setNextState(currentState);
-		
-		BayResponse bayStatus = processCurrentState();
-		
-		WaitingBay.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		WaitingBay.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		WaitingBay.logger.debug("singleStateTestRun : Exit");
-	}*/
-	
-	//=====================================================================================================================
-	
-	public void setNextState(WaitingBayState newState) {
-		//Set previous state here 
-
-		// Set the new state
-		WaitingBayStateManager.setState(newState);  
-
-
+		WaitingBayStateManager.setState(newState);
 	}
 
 	public BayResponse processCurrentState(){
@@ -224,7 +113,8 @@ public class VerificWaiting extends TimerTask{
 	}
 
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 		default:

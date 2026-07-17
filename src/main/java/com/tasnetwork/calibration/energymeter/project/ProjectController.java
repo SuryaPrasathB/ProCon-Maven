@@ -2109,8 +2109,7 @@ public class ProjectController extends AnchorPane {
 			ApplicationLauncher.logger.info("LoadProjectTask: Difference Start Time  to End Time: "+ TestReportController.DiffTime(dtf.format(DB_StartTime),dtf.format(DisplayEndTime)));
 
 			//ApplicationLauncher.setCursor(Cursor.DEFAULT);
-			LoadProjectTaskTimer.cancel();
-			
+
 		}
 	}
 	

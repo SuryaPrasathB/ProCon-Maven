@@ -96,7 +96,7 @@ public class SerialPortManagerPwrSrc {
 			ApplicationLauncher.logger.debug("disconnectPowerSource :Entry2");
 			disableSerialRxPhysical_PowerSourceMonitor();
 			DisplayDataObj.setPowerSrcReadData(false);
-			Sleep(500);
+
 			disconnectPowerSourceSerialComm();
 			powerSourceSerialStatusConnected=false;
 			
@@ -209,7 +209,7 @@ public class SerialPortManagerPwrSrc {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					//Sleep(80);
 	
 	

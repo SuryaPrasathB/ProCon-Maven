@@ -1896,7 +1896,7 @@ public class SerialDataManager {
 				SerialPortObj.setExpectedSetErrorResult(ConstantPowerSourceLscs.CMD_PWR_SRC_ACK_ERROR_RESPONSE);
 				SerialPortObj.ClearSerialData();
 				if(!ProcalFeatureEnable.AUTO_CALIBRATION_MODE_ENABLE_FEATURE){
-					Sleep(500);
+
 				}
 				String dataBuffer = ""; // pradeep
 				for(int i = 0; i < Data.length(); i++){
@@ -1909,7 +1909,7 @@ public class SerialDataManager {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					if(!ProcalFeatureEnable.AUTO_CALIBRATION_MODE_ENABLE_FEATURE){
 						Sleep(80);
 					}
@@ -1972,7 +1972,7 @@ public class SerialDataManager {
 				SerialPortObj.setExpectedDataErrorResult(ConstantPowerSourceLscs.CMD_PWR_SRC_DATA_ERROR_RESPONSE);
 				SerialPortObj.setExpectedSetErrorResult(ConstantPowerSourceLscs.CMD_PWR_SRC_ACK_ERROR_RESPONSE);
 				SerialPortObj.ClearSerialData();
-				Sleep(500);
+
 				String dataBuffer = ""; // pradeep
 				for(int i = 0; i < Data.length(); i++){
 					//ApplicationLauncher.logger.debug("lscsLDU_SendCeigSettingMethod : index :" + i +": " + String.valueOf(Data.charAt(i)));
@@ -1984,7 +1984,7 @@ public class SerialDataManager {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					Sleep(80);
 				}
 
@@ -2046,7 +2046,7 @@ public class SerialDataManager {
 				SerialPortObj.setExpectedDataErrorResult(ConstantPowerSourceLscs.CMD_PWR_SRC_DATA_ERROR_RESPONSE);
 				SerialPortObj.setExpectedSetErrorResult(ConstantPowerSourceLscs.CMD_PWR_SRC_ACK_ERROR_RESPONSE);
 				SerialPortObj.ClearSerialData();
-				Sleep(500);
+
 				String dataBuffer = ""; // pradeep
 				for(int i = 0; i < Data.length(); i++){
 					//ApplicationLauncher.logger.debug("lscsLDU_SendCeigSettingMethod : index :" + i +": " + String.valueOf(Data.charAt(i)));
@@ -2058,7 +2058,7 @@ public class SerialDataManager {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					Sleep(80);
 				}
 
@@ -2130,7 +2130,7 @@ public class SerialDataManager {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					//Sleep(80);
 
 

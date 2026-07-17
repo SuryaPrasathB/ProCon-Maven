@@ -2,12 +2,12 @@ package com.tasnetwork.calibration.conveyor.bay.ir;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
@@ -15,7 +15,7 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
-public class Ir extends TimerTask{
+public class Ir implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Ir.class.getPackage().getName()); 
 	private IrtBayContext IrtBayStateManager = new IrtBayContext();
 	
@@ -28,120 +28,14 @@ public class Ir extends TimerTask{
 	public static boolean resetProcessCompletedIrtBay = false ;
 	
 	public static boolean abort_IRT_Bay = false ;
-	public void run() {
-		Ir.logger.debug("InsulationResistanceTestBay : Entry"); 
-
-		manageInsulationResistanceTestBayStates();
-		//DevSysEnergyMeter.sendReadNeutralCurrentCommand();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedIrtBay(true);
 	}
 
-	private void manageInsulationResistanceTestBayStates() {
-
-		Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Entry");
-
-		//setTableStatePlanner_IrtBay(StatePlannerController.getTableStatePlannerIrtBay_UI());
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService().findByBayKeyAndExecutionMode(ConstantConveyor.IR_BAY_KEY, "RUN");//findByBayKey(ConstantConveyor.IR_BAY_KEY);
-		setTableStatePlanner_IrtBay(statePlanner);
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-
-		if(getTableStatePlanner_IrtBay().size()>0) {
-
-			// Fetch the first state from the table to start the process
-			StateFlow presentRow = getTableStatePlanner_IrtBay().get(currentIndex);
-			StateFlow nextRow = presentRow ; 
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			IrtBayState currentState = createIrtBayStateInstance(currentStateName); // Create the state instance
-			setNextState(currentState); // Set the first state
-	
-	
-			Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : getTableStatePlanner2 : Size : " + getTableStatePlanner_IrtBay().size());
-	
-			setStartProcessCompletedIrtBay(true);
-	
-			while (!isStopProcessRequestedIrtBay() &&
-	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-	
-				presentRow = nextRow ;
-	
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-	
-					String nextStateName = presentRow.getIfSuccess();
-	
-					Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : " +  nextStateName );
-				
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State2 : " +  nextStateName );
-	
-						// Set the next state based on the success column
-						IrtBayState nextState = createIrtBayStateInstance(nextStateName);
-						setNextState(nextState); // Set the next state dynamically
-					}else{
-						Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State : null or empty "  );
-	
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
-					for (StateFlow row : getTableStatePlanner_IrtBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State found  "  );
-	
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}else {
-							Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : Next State NOT found  "  );
-	
-						}
-					}
-	
-				}
-				else{
-					//======
-					// update in the table.
-					String errorCode = bayStatus.getErrorCode() ;
-					String nextStateName = getErrorStateInstance(errorCode);//createStateInstance("S22_error_Handling");
-	
-					presentRow.setIfFailed(nextStateName);
-	
-					//=====
-	
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						if (nextStateName.equals("S10_error_Handling")) {
-							IrtBayState nextState2 =  createErrorStateInstance(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-						} else {
-							IrtBayState nextState2 = createIrtBayStateInstance(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-						
-					}
-	
-	
-					for (StateFlow row : getTableStatePlanner_IrtBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row;                         // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-	
-					}
-				}
-	
-			}
-		}else {
-			Ir.logger.debug("InsulationResistanceTestBay : manageInsulationResistanceTestBayStates : getTableStatePlanner2 : No states found in the planner");
-		}
+	@Override
+	public void onStopComplete() {
+		Ir.logger.debug("InsulationResistanceTestBay : isStopProcessRequestedIrtBay -Pass");
 	}
 
 	//=====================================================================================================================
@@ -160,13 +54,15 @@ public class Ir extends TimerTask{
 	
 	//=====================================================================================================================
 	
-	public void setNextState(IrtBayState newState) {
-		//Set previous state here 
-
-		// Set the new state
-		IrtBayStateManager.setState(newState);  
-
-
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		IrtBayState newState;
+		if (stateName.equals("S10_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
+		} else {
+			newState = createIrtBayStateInstance(stateName);
+		}
+		IrtBayStateManager.setState(newState);
 	}
 
 	public BayResponse processCurrentState(){
@@ -228,7 +124,8 @@ public class Ir extends TimerTask{
 	}
 
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 		case  ConvErrorCodeMapping.ERROR_CODE_IRT_010 :

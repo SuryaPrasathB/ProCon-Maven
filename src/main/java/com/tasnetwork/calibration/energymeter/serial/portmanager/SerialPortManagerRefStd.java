@@ -99,7 +99,7 @@ public class SerialPortManagerRefStd {
 			ApplicationLauncher.logger.debug("disconnectRefStd :Entry2");
 			disableSerialRxPhysical_RefStdMonitor();
 			DisplayDataObj.setRefStdReadDataFlag(false);  
-			Sleep(500);
+
 			disconnectRefStdSerialComm();
 			refStdSerialStatusConnected=false;
 			
@@ -215,7 +215,7 @@ public class SerialPortManagerRefStd {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					//Sleep(80);
 	
 	

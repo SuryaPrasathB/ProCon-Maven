@@ -47,98 +47,98 @@ public class S10_error_Handling  implements CalibrationBayState {
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_001:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();			
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_002:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_003:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_004:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_005:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_006:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_007:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_008:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_009:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_010:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_011:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_012:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_013:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_014:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_CALIB_015:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		default:
 			calibrationStopTaskTimer = new Timer();
 			calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-			Sleep(500);
-			calibrationStopTaskTimer.cancel();
+
+
 			break;
 		}
 

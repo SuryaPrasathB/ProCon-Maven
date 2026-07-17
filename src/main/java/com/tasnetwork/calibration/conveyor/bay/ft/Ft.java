@@ -1,19 +1,19 @@
 package com.tasnetwork.calibration.conveyor.bay.ft;
 
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.StateFlow;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
-public class Ft extends TimerTask {
+public class Ft implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Ft.class.getPackage().getName());
 	private FtBayContext ftBayStateManager = new FtBayContext();
 
@@ -28,160 +28,41 @@ public class Ft extends TimerTask {
 
 	public static boolean abort_FT_Bay = false;
 
-	public void run() {
-		Ft.logger.debug("FunctionalTestBay : Entry");
-
-		manageFunctionalTestBayStates();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedFtBay(true);
 	}
 
-	// ==============================================================================================================================================
-	private void manageFunctionalTestBayStates() {
+	@Override
+	public void onStopComplete() {
+		Ft.logger.debug("FunctionalTestBay : isStopProcessRequestedFtBay -Pass");
 
-		Ft.logger.debug("FunctionalTestBay : manageFunctionalTestBayStates : Entry");
+		String pathId = "Ex1";
+		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus(
+				ConstantConveyor.FT_BAY_KEY,
+				"", // ConstantBayStateManage.FT_BAY_HP_SEQ_01,
+				"", // ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+				pathId,
+				"-",
+				"", // portInfo.getPortId(),
+				"", // ConstantBayPortNameMapping.FT_PORT_NAME_SNSR_PALLET,
+				ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+				"", // "Waiting",
+				"StopRequested"// ConstantConveyor.COMM_EXECUTION_STATUS_INP
+		);
 
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService()
-				.findByBayKeyAndExecutionMode(ConstantConveyor.FT_BAY_KEY, "RUN");
+		int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
+	}
 
-		setTableStatePlanner_FtBay(statePlanner);
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-		String errorCode = "";
-		if (getTableStatePlanner_FtBay().size() > 0) {
-
-			// Fetch the first state from the table to start the process
-			StateFlow presentRow = getTableStatePlanner_FtBay().get(currentIndex);
-			StateFlow nextRow = presentRow;
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			FtBayState currentState = createFtBayStateInstance(currentStateName, errorCode); // Create the state instance
-			setNextState(currentState); // Set the first state
-
-			Ft.logger.debug("FunctionalTestBay : manageFunctionalTestBayStates : getTableStatePlanner2 : Size : " + getTableStatePlanner_FtBay().size());
-			setStopProcessCompletedFtBay(false);
-			setStopProcessRequestedFtBay(false);
-
-			setStartProcessCompletedFtBay(true);
-			while (!isStopProcessRequestedFtBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-
-				Ft.logger.debug("FunctionalTestBay : manageFunctionalTestBayStates : isStopProcessRequestedFtBay : " + isStopProcessRequestedFtBay());
-
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-
-				presentRow = nextRow;
-
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-
-					String nextStateName = presentRow.getIfSuccess();
-
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						// Set the next state based on the success column
-						FtBayState nextState = createFtBayStateInstance(nextStateName, errorCode);
-						setNextState(nextState); // Set the next state dynamically
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-
-					for (StateFlow row : getTableStatePlanner_FtBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}
-					}
-				} else {
-					// ======
-					// update in the table.
-					errorCode = bayStatus.getErrorCode();
-					String nextStateName = getErrorStateInstance(errorCode);// createStateInstance("S22_error_Handling");
-
-					presentRow.setIfFailed(nextStateName);
-
-					// =====
-
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						if (nextStateName.equals("S22_error_Handling")) {
-							FtBayState nextState2 = createErrorStateInstance(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-						} else {
-							FtBayState nextState2 = createFtBayStateInstance(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-					}
-
-					for (StateFlow row : getTableStatePlanner_FtBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-
-					}
-				}
-
-			}
-
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		FtBayState newState;
+		if (stateName.equals("S22_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
 		} else {
-			Ft.logger.debug("FunctionalTestBay : manageFunctionalTestBayStates : No states found in the planner");
+			newState = createFtBayStateInstance(stateName, errorCode);
 		}
-
-		// =============
-		if (isStopProcessRequestedFtBay()) {
-			Ft.logger.debug("FunctionalTestBay : isStopProcessRequestedFtBay -Pass");
-
-			String pathId = "Ex1";
-			TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus(
-					ConstantConveyor.FT_BAY_KEY,
-					"", // ConstantBayStateManage.FT_BAY_HP_SEQ_01,
-					"", // ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
-					pathId,
-					"-",
-					"", // portInfo.getPortId(),
-					"", // ConstantBayPortNameMapping.FT_PORT_NAME_SNSR_PALLET,
-					ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
-					"", // "Waiting",
-					"StopRequested"// ConstantConveyor.COMM_EXECUTION_STATUS_INP
-			);
-
-			int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
-		}
-		// setStopProcessCompletedFtBay(true);
-	}
-
-	// =====================================================================================================================
-
-	/*
-	 * public static void singleStateTestRun(FtBayState currentState){
-	 * FunctionalTestBay.logger.debug("singleStateTestRun : Entry");
-	 * 
-	 * setNextState(currentState);
-	 * 
-	 * BayResponse bayStatus = processCurrentState();
-	 * 
-	 * FunctionalTestBay.logger.debug("singleStateTestRun : bayStatus : Status : " +
-	 * bayStatus.getStatus());
-	 * FunctionalTestBay.logger.
-	 * debug("singleStateTestRun : bayStatus : Error Code : " +
-	 * bayStatus.getErrorCode());
-	 * FunctionalTestBay.logger.debug("singleStateTestRun : Exit");
-	 * }
-	 */
-
-	// =====================================================================================================================
-
-	public void setNextState(FtBayState newState) {
-		// Set previous state here
-
-		// Set the new state
 		ftBayStateManager.setState(newState);
-
 	}
 
 	public BayResponse processCurrentState() {
@@ -218,7 +99,7 @@ public class Ft extends TimerTask {
 		Ft.logger.debug("createFtBayStateInstance : stateName: " + stateName);
 
 		if (stateName.startsWith("ERROR")) {
-			getErrorStateInstance(stateName);
+			getErrorStateInstanceString(stateName);
 			return new S23_idle_condition();
 		} else {
 			Class<?> c = null;
@@ -262,7 +143,8 @@ public class Ft extends TimerTask {
 
 	// ==========================================================================================================================================
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 			case ConvErrorCodeMapping.ERROR_CODE_FT_002:

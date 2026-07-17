@@ -2,12 +2,12 @@ package com.tasnetwork.calibration.conveyor.bay.rejection;
 
 
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -15,7 +15,7 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
-public class Rejection extends TimerTask{
+public class Rejection implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Rejection.class.getPackage().getName()); 
 	private RejectionBayContext rejectionBayStateManager = new RejectionBayContext();  
 	
@@ -29,137 +29,27 @@ public class Rejection extends TimerTask{
 	public static boolean resetProcessCompletedRejectionBay = false ;
 	
 	public static boolean abort_Rejection_Bay = false ;
-	public void run() {
-		Rejection.logger.debug("RejectionBay2 : Entry"); 
-
-		manageRejectionBayStates();
-		//DevSysEnergyMeter.sendReadNeutralCurrentCommand();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedRejectionBay(true);
 	}
 
-	private void manageRejectionBayStates() {
-
-		Rejection.logger.debug("RejectionBay2 : manageRejectionBayStates : Entry");
-
-		//setTableStatePlanner_RejectionBay(StatePlannerController.getTableStatePlannerRejectionBay_UI());
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService().findByBayKeyAndExecutionMode(ConstantConveyor.REJECTION_BAY_KEY, "RUN");//findByBayKey(ConstantConveyor.REJECTION_BAY_KEY);
-		setTableStatePlanner_RejectionBay(statePlanner);
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-		if(getTableStatePlanner_RejectionBay().size()>0) {
-
-			// Fetch the first state from the table to start the process
-			StateFlow presentRow = getTableStatePlanner_RejectionBay().get(currentIndex);
-			StateFlow nextRow = presentRow ; 
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			RejectionBayState currentState = createRejectionBayStateInstance(currentStateName); // Create the state instance
-			setNextState(currentState); // Set the first state
+	@Override
+	public void onStopComplete() {
+		setStopProcessCompletedRejectionBay(false);
+		setStopProcessRequestedRejectionBay(false);
+		Rejection.logger.debug("Rejection : onStopComplete -Pass");
+	}
 	
-	
-			Rejection.logger.debug("RejectionBay2 : manageRejectionBayStates : getTableStatePlanner2 : Size : " + getTableStatePlanner_RejectionBay().size());
-	
-			setStopProcessCompletedRejectionBay(false);
-			setStopProcessRequestedRejectionBay(false);
-			
-			setStartProcessCompletedRejectionBay(true);
-			
-			while (!isStopProcessRequestedRejectionBay() &&
-	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-	
-				presentRow = nextRow ;
-	
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-	
-					String nextStateName = presentRow.getIfSuccess();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						// Set the next state based on the success column
-						RejectionBayState nextState = createRejectionBayStateInstance(nextStateName);
-						setNextState(nextState); // Set the next state dynamically
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
-					for (StateFlow row : getTableStatePlanner_RejectionBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}
-					}
-	
-				}
-				else{
-					//======
-					// update in the table.
-					String errorCode = bayStatus.getErrorCode() ;
-					String nextStateName = getErrorStateInstance(errorCode);//createStateInstance("S22_error_Handling");
-	
-					presentRow.setIfFailed(nextStateName);
-	
-					//=====
-	
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						if (nextStateName.equals("S03_error_Handling")) {
-							RejectionBayState nextState2 =  createErrorStateInstance(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-	
-						} else {
-							RejectionBayState nextState2 = createRejectionBayStateInstance(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-						
-					}
-	
-	
-					for (StateFlow row : getTableStatePlanner_RejectionBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row;                         // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-	
-					}
-				}
-	
-			}
-		}else {
-			Rejection.logger.debug("RejectionBay2 : manageRejectionBayStates : getTableStatePlanner2  : No states found in the planner");
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		RejectionBayState newState;
+		if (stateName.equals("S03_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
+		} else {
+			newState = createRejectionBayStateInstance(stateName);
 		}
-		
-	}
-
-	//=====================================================================================================================
-	
-/*	public static void singleStateTestRun(RejectionBayState currentState){
-		RejectionBay.logger.debug("singleStateTestRun : Entry");
-		
-		setNextState(currentState);
-		
-		BayResponse bayStatus = processCurrentState();
-		
-		RejectionBay.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		RejectionBay.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		RejectionBay.logger.debug("singleStateTestRun : Exit");
-	}*/
-	
-	//=====================================================================================================================
-	
-	public void setNextState(RejectionBayState newState) {
-		//Set previous state here 
-
-		// Set the new state
-		rejectionBayStateManager.setState(newState);  
-
-
+		rejectionBayStateManager.setState(newState);
 	}
 
 	public BayResponse processCurrentState(){
@@ -220,7 +110,8 @@ public class Rejection extends TimerTask{
 	}
 
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 		default:

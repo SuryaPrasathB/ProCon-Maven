@@ -1478,65 +1478,65 @@ public class StatePlannerController implements Initializable {
 		if (bayName.equals(ConstantConveyor.FT_BAY_DISPLAY_NAME)) {//"Functional Bay")) {
 			funtionalBaySingleStateTaskTimer = new Timer();
 			funtionalBaySingleStateTaskTimer.schedule(new FunctionalTestBaySingleStateTestRun(), 100);
-			Sleep(500);
-			funtionalBaySingleStateTaskTimer.cancel();
+
+
 		}
 		else if (bayName.equals(ConstantConveyor.HV_BAY_DISPLAY_NAME)) {//"High Voltage Bay")) {
 			hvtBaySingleStateTaskTimer = new Timer();
 			hvtBaySingleStateTaskTimer.schedule(new HighVoltageTestBaySingleStateTestRun(), 100);
-			Sleep(500);
-			hvtBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.IR_BAY_DISPLAY_NAME)) {//"IR Bay")) {
 			irBaySingleStateTaskTimer = new Timer();
 			irBaySingleStateTaskTimer.schedule(new  InsulationResistanceTestBaySingleStateTestRun(), 100);
-			Sleep(500);
-			irBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.CALIBRATION_BAY_DISPLAY_NAME)) {//"Calibration Bay")) {
 			calibBaySingleStateTaskTimer = new Timer();
 			calibBaySingleStateTaskTimer.schedule(new CalibrationBaySingleStateTestRun(), 100);
-			Sleep(500);
-			calibBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.COMMUNICATION_BAY_DISPLAY_NAME)) {//"Communication Bay")) {
 			commBaySingleStateTaskTimer = new Timer();
 			commBaySingleStateTaskTimer.schedule(new CommunicationTestBaySingleStateTestRun(), 100);
-			Sleep(500);
-			commBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.LOADING_BAY_DISPLAY_NAME)) {//"Loading Bay")) {
 			loadingBaySingleStateTaskTimer = new Timer();
 			loadingBaySingleStateTaskTimer.schedule(new LoadingBaySingleStateTestRun(), 100);
-			Sleep(500);
-			loadingBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.STA_NLD1_BAY_DISPLAY_NAME)) {//"SCT NLT Bay 1")) {
 			sctNltBay1SingleStateTaskTimer = new Timer();
 			sctNltBay1SingleStateTaskTimer.schedule(new STA_NoLoadTestBay1SingleStateTestRun(), 100);
-			Sleep(500);
-			sctNltBay1SingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.STA_NLD2_BAY_DISPLAY_NAME)) {//"SCT NLT Bay 2")) {
 			sctNltBay2SingleStateTaskTimer = new Timer();
 			sctNltBay2SingleStateTaskTimer.schedule(new STA_NoLoadTestBay2SingleStateTestRun(), 100);
-			Sleep(500);
-			sctNltBay2SingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.UNLOADING_BAY_DISPLAY_NAME)) {//"Unloading Bay")) {
 			unloadingBaySingleStateTaskTimer = new Timer();
 			unloadingBaySingleStateTaskTimer.schedule(new UnloadingBaySingleStateTestRun(), 100);
-			Sleep(500);
-			unloadingBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.VERIFICATION_BAY_DISPLAY_NAME)) {//"Verification Bay")) {
 			verificBaySingleStateTaskTimer = new Timer();
 			verificBaySingleStateTaskTimer.schedule(new VerificationTestBaySingleStateTestRun(), 100);
-			Sleep(500);
-			verificBaySingleStateTaskTimer.cancel();
+
+
 		} else if (bayName.equals(ConstantConveyor.WAITING_BAY_DISPLAY_NAME)) {//"Waiting Bay")) {
 			waitingBaySingleStateTaskTimer = new Timer();
 			waitingBaySingleStateTaskTimer.schedule(new WaitngBaySingleStateTestRun(), 100);
-			Sleep(500);
-			waitingBaySingleStateTaskTimer.cancel();
+
+
 		}
 		else if (bayName.equals(ConstantConveyor.REJECTION_BAY_DISPLAY_NAME)) {//"Rejection Bay")) {
 			rejectionBaySingleStateTaskTimer = new Timer();
 			rejectionBaySingleStateTaskTimer.schedule(new RejectionBaySingleStateTestRun(), 100);
-			Sleep(500);
-			rejectionBaySingleStateTaskTimer.cancel();
+
+
 		}
 	}
 

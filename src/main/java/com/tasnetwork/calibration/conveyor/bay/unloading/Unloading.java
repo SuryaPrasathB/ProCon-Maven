@@ -2,12 +2,12 @@ package com.tasnetwork.calibration.conveyor.bay.unloading;
 
 
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -15,7 +15,7 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
-public class Unloading extends TimerTask{
+public class Unloading implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Unloading.class.getPackage().getName()); 
 	private UnloadingBayContext unloadingBayStateManager = new UnloadingBayContext();  
 	
@@ -29,138 +29,27 @@ public class Unloading extends TimerTask{
 	public static boolean resetProcessCompletedUnloadingBay = false ;
 	
 	public static boolean abort_Unloading_Bay = false ;
-	public void run() {
-		Unloading.logger.debug("UnloadingBay2 : Entry"); 
-
-		manageUnloadingBayStates();
-		//DevSysEnergyMeter.sendReadNeutralCurrentCommand();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedUnloadingBay(true);
 	}
 
-	private void manageUnloadingBayStates() {
+	@Override
+	public void onStopComplete() {
+		setStopProcessCompletedUnloadingBay(false);
+		setStopProcessRequestedUnloadingBay(false);
+		Unloading.logger.debug("Unloading : onStopComplete -Pass");
+	}
 
-		Unloading.logger.debug("UnloadingBay2 : manageUnloadingBayStates : Entry");
-
-		//setTableStatePlanner_FtBay(StatePlannerController.getTableStatePlannerUnloadingBay_UI());
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService().findByBayKeyAndExecutionMode(ConstantConveyor.UNLOADING_BAY_KEY, "RUN");//findByBayKey(ConstantConveyor.UNLOADING_BAY_KEY);
-		
-		
-		setTableStatePlanner_UnloadingBay(statePlanner);
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-		if(getTableStatePlanner_UnloadingBay().size()>0) {
-
-			// Fetch the first state from the table to start the process
-			StateFlow presentRow = getTableStatePlanner_UnloadingBay().get(currentIndex);
-			StateFlow nextRow = presentRow ; 
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			UnloadingBayState currentState = createUnloadingBayStateInstance(currentStateName); // Create the state instance
-			setNextState(currentState); // Set the first state
-	
-	
-			Unloading.logger.debug("UnloadingBay2 : manageUnloadingBayStates : getTableStatePlanner2 : Size : " + getTableStatePlanner_UnloadingBay().size());
-	
-			setStopProcessCompletedUnloadingBay(false);
-			setStopProcessRequestedUnloadingBay(false);
-			
-			setStartProcessCompletedUnloadingBay(true);
-			
-			while (!isStopProcessRequestedUnloadingBay() &&
-	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-	
-				presentRow = nextRow ;
-	
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-	
-					String nextStateName = presentRow.getIfSuccess();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						// Set the next state based on the success column
-						UnloadingBayState nextState = createUnloadingBayStateInstance(nextStateName);
-						setNextState(nextState); // Set the next state dynamically
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
-					for (StateFlow row : getTableStatePlanner_UnloadingBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}
-					}
-	
-				}
-				else{
-					//======
-					// update in the table.
-					String errorCode = bayStatus.getErrorCode() ;
-					String nextStateName = getErrorStateInstance(errorCode);//createStateInstance("S22_error_Handling");
-	
-					presentRow.setIfFailed(nextStateName);
-	
-					//=====
-	
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						if (nextStateName.equals("S10_error_Handling")) {
-			UnloadingBayState nextState2 = createErrorStateInstance(nextStateName, errorCode);
-			setNextState(nextState2); // Set the next state dynamically
-						} else {
-							UnloadingBayState nextState2 = createUnloadingBayStateInstance(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-						
-					}
-	
-	
-					for (StateFlow row : getTableStatePlanner_UnloadingBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row;                         // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-	
-					}
-				}
-	
-			}
-			
-		}else {
-			Unloading.logger.debug("UnloadingBay2 : manageUnloadingBayStates : getTableStatePlanner2  : No states found in the planner");
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		UnloadingBayState newState;
+		if (stateName.equals("S10_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
+		} else {
+			newState = createUnloadingBayStateInstance(stateName);
 		}
-	}
-
-	//=====================================================================================================================
-	
-/*	public static void singleStateTestRun(UnloadingBayState currentState){
-		UnloadingBay.logger.debug("singleStateTestRun : Entry");
-		
-		setNextState(currentState);
-		
-		BayResponse bayStatus = processCurrentState();
-		
-		UnloadingBay.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		UnloadingBay.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		UnloadingBay.logger.debug("singleStateTestRun : Exit");
-	}*/
-	
-	//=====================================================================================================================
-	
-	public void setNextState(UnloadingBayState newState) {
-		//Set previous state here 
-
-		// Set the new state
-		unloadingBayStateManager.setState(newState);  
-
-
+		unloadingBayStateManager.setState(newState);
 	}
 
 	public BayResponse processCurrentState(){
@@ -241,7 +130,8 @@ public class Unloading extends TimerTask{
 	}
 
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 		default:

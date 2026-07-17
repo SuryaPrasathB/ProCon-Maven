@@ -292,8 +292,7 @@ public class LogViewController implements Initializable {
 			ApplicationLauncher.logger.info("ScanLogFolderTask: Entry");
 			
 			ScanLogFolder();
-			
-			ScanLogFolderTaskTimer.cancel();
+
 		}
 	};
 	
@@ -304,8 +303,7 @@ public class LogViewController implements Initializable {
 			ApplicationLauncher.logger.info("scanLogFilesTask: Entry");
 			
 			scanLogFiles();
-			
-			scanLogFilesTaskTimer.cancel();
+
 		}
 	};
 	
@@ -318,8 +316,7 @@ public class LogViewController implements Initializable {
 			ApplicationLauncher.logger.info("viewLogFileTask: Entry");
 			
 			viewLogFile();
-			
-			viewLogFileTaskTimer.cancel();
+
 		}
 	};
 

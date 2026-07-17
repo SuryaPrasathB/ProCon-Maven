@@ -43,6 +43,7 @@ import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Reset;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
+import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Reset;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
@@ -336,6 +337,10 @@ public class StateExecutorController implements Initializable {
 	Timer sctNlt2StartTaskTimer;
 	Timer waitingBayStartTaskTimer;
 	Timer rejectionBayStartTaskTimer;
+	
+	private BayStateEngine activeStaNld1Engine;
+	private BayStateEngine activeStaNld2Engine;
+	private BayStateEngine activeCommEngine;
 
 	Timer funtionalBayStopTaskTimer;
 	Timer calibrationStopTaskTimer;
@@ -573,8 +578,7 @@ public class StateExecutorController implements Initializable {
 
 	    rejectionBayStartTaskTimer = new Timer();
 	    rejectionBayStartTaskTimer.schedule(new Rejection(), 100);
-	    Sleep(500);
-	    rejectionBayStartTaskTimer.cancel();
+
 
 	    Rejection.logger.info("btnFtStartOnClick : Exit:");
 	}
@@ -610,8 +614,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    rejectionBayStopTaskTimer = new Timer();
 	    rejectionBayStopTaskTimer.schedule(new RejectionBayStop(), 100);
-	    Sleep(500);
-	    rejectionBayStopTaskTimer.cancel();
+
 
 	    Rejection.logger.info("btnRjStopOnClick : Exit:");
 	}
@@ -644,8 +647,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    rejectionBayResetTaskTimer = new Timer();
 	    rejectionBayResetTaskTimer.schedule(new RejectionBayReset(), 100);
-	    Sleep(500);
-	    rejectionBayResetTaskTimer.cancel();
+
 
 	    Rejection.logger.info("btnRjResetOnClick : Exit:");
 	}
@@ -680,8 +682,7 @@ public class StateExecutorController implements Initializable {
 	    rejectBayBypassTaskTimer = new Timer();
 	    // Assuming a RejectionBayBypass class exists or will be created
 	    rejectBayBypassTaskTimer.schedule(new TimerTask() { @Override public void run() { Rejection.logger.info("RejectionBayBypass task executed."); /* Add actual bypass logic here */ } }, 100);
-	    Sleep(500);
-	    rejectBayBypassTaskTimer.cancel();
+
 
 	    Rejection.logger.info("btnRejectBayBypassOnClick : Exit:");
 	}
@@ -717,8 +718,7 @@ public class StateExecutorController implements Initializable {
 
 	    funtionalBayStartTaskTimer = new Timer();
 	    funtionalBayStartTaskTimer.schedule(new Ft(), 100);
-	    Sleep(500);
-	    funtionalBayStartTaskTimer.cancel();
+
 
 	    Ft.logger.info("btnFtStartOnClick : Exit:");
 	}
@@ -756,8 +756,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    funtionalBayStopTaskTimer = new Timer();
 	    funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
-	    Sleep(500);
-	    funtionalBayStopTaskTimer.cancel();
+
 
 	    Ft.logger.info("btnFtStopOnClick : Exit:");
 	}
@@ -790,8 +789,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    funtionalBayResetTaskTimer = new Timer();
 	    funtionalBayResetTaskTimer.schedule(new FunctionalTestBayReset(), 100);
-	    Sleep(500);
-	    funtionalBayResetTaskTimer.cancel();
+
 
 	    Ft.logger.info("btnFtResetOnClick : Exit:");
 	}
@@ -825,8 +823,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    funtionalBayBypassTaskTimer = new Timer();
 	    funtionalBayBypassTaskTimer.schedule(new FunctionalTestBayBypass(), 100);
-	    Sleep(500);
-	    funtionalBayBypassTaskTimer.cancel();
+
 
 	    Ft.logger.info("btnFtBayBypassOnClick : Exit:");
 	}
@@ -865,8 +862,7 @@ public class StateExecutorController implements Initializable {
 	    
 	    hvtBayStartTaskTimer = new Timer();
 	    hvtBayStartTaskTimer.schedule(new Hv(), 100);
-	    Sleep(500);
-	    hvtBayStartTaskTimer.cancel();
+
 
 	    Hv.logger.info("btnHvtStartOnClick : Exit:");
 	}
@@ -907,8 +903,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    hvtBayStopTaskTimer = new Timer();
 	    hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
-	    Sleep(500);
-	    hvtBayStopTaskTimer.cancel();
+
 
 	    Hv.logger.info("btnHvtStopOnClick : Exit:");
 	}
@@ -941,8 +936,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    hvtBayResetTaskTimer = new Timer();
 	    hvtBayResetTaskTimer.schedule(new HighVoltageTestBayReset(), 100);
-	    Sleep(500);
-	    hvtBayResetTaskTimer.cancel();
+
 
 	    Hv.logger.info("btnHvtResetOnClick : Exit:");
 	}
@@ -977,8 +971,7 @@ public class StateExecutorController implements Initializable {
 	    hvtBayBypassTaskTimer = new Timer();
 	    // Assuming a HighVoltageTestBayBypass class exists or will be created
 	    hvtBayBypassTaskTimer.schedule(new HighVoltageTestBayBypass(), 100);
-	    Sleep(500);
-	    hvtBayBypassTaskTimer.cancel();
+
 
 	    Hv.logger.info("btnHvtBayBypassOnClick : Exit:");
 	}
@@ -1017,8 +1010,7 @@ public class StateExecutorController implements Initializable {
 	    
 	    insResStartTaskTimer = new Timer();
 	    insResStartTaskTimer.schedule(new Ir(), 100);
-	    Sleep(500);
-	    insResStartTaskTimer.cancel();
+
 
 	    Ir.logger.info("btnIrtStartOnClick : Exit:");
 	}
@@ -1056,8 +1048,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    insResStopTaskTimer = new Timer();
 	    insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
-	    Sleep(500);
-	    insResStopTaskTimer.cancel();
+
 
 	    Ir.logger.info("btnIrtStopOnClick : Exit:");
 	}
@@ -1090,8 +1081,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    insResResetTaskTimer = new Timer();
 	    insResResetTaskTimer.schedule(new InsulationResistanceTestBayReset(), 100);
-	    Sleep(500);
-	    insResResetTaskTimer.cancel();
+
 
 	    Ir.logger.info("btnIrtResetOnClick : Exit:");
 	}
@@ -1126,8 +1116,7 @@ public class StateExecutorController implements Initializable {
 	    irtBayBypassTaskTimer = new Timer();
 	    // Assuming an InsulationResistanceTestBayBypass class exists or will be created
 	    irtBayBypassTaskTimer.schedule(new InsulationResistanceTestBayBypass(), 100);
-	    Sleep(500);
-	    irtBayBypassTaskTimer.cancel();
+
 
 	    Ir.logger.info("btnIrtBayBypassOnClick : Exit:");
 	}
@@ -1165,8 +1154,7 @@ public class StateExecutorController implements Initializable {
 	    
 	    calibrationStartTaskTimer = new Timer();
 	    calibrationStartTaskTimer.schedule(new Calib(), 100);
-	    Sleep(500);
-	    calibrationStartTaskTimer.cancel();
+
 
 	    Calib.logger.info("btnCalibStartOnClick : Exit:");
 	}
@@ -1204,8 +1192,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    calibrationStopTaskTimer = new Timer();
 	    calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
-	    Sleep(500);
-	    calibrationStopTaskTimer.cancel();
+
 
 	    Calib.logger.info("btnCalibStopOnClick : Exit:");
 	}
@@ -1238,8 +1225,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    calibrationResetTaskTimer = new Timer();
 	    calibrationResetTaskTimer.schedule(new CalibrationBayReset(), 100);
-	    Sleep(500);
-	    calibrationResetTaskTimer.cancel();
+
 
 	    Calib.logger.info("btnCalibResetOnClick : Exit:");
 	}
@@ -1274,8 +1260,7 @@ public class StateExecutorController implements Initializable {
 	    calibBayBypassTaskTimer = new Timer();
 	    // Assuming a CalibrationBayBypass class exists or will be created
 	    calibBayBypassTaskTimer.schedule(new CalibrationBayBypass(), 100);
-	    Sleep(500);
-	    calibBayBypassTaskTimer.cancel();
+
 
 	    Calib.logger.info("btnCalibBayBypassOnClick : Exit:");
 	}
@@ -1315,10 +1300,8 @@ public class StateExecutorController implements Initializable {
 	    
 		waitingBayStartTaskTimer = new Timer();
 		waitingBayStartTaskTimer.schedule(new VerificWaiting(), 100);
-	    Sleep(500);
-	    waitingBayStartTaskTimer.cancel();
 
-		
+
 		VerificWaiting.logger.info("btnWaitingBayStartOnClick : Exit:");
 	}
 	
@@ -1353,8 +1336,7 @@ public class StateExecutorController implements Initializable {
 	    
 		waitingBayStopTaskTimer = new Timer();
 		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-	    Sleep(500);
-	    waitingBayStopTaskTimer.cancel();
+
 
 		VerificWaiting.logger.info("btnWaitingBayStopOnClick : Exit:");
 	}
@@ -1387,8 +1369,7 @@ public class StateExecutorController implements Initializable {
 	    
 		waitingBayResetTaskTimer = new Timer();
 		waitingBayResetTaskTimer.schedule(new WaitingBayReset(), 100);
-	    Sleep(500);
-	    waitingBayResetTaskTimer.cancel();
+
 
 		VerificWaiting.logger.info("btnWaitingBayResetOnClick : Exit:");
 	}
@@ -1423,8 +1404,7 @@ public class StateExecutorController implements Initializable {
 	    waitingBayBypassTaskTimer = new Timer();
 	    // Assuming a WaitingBayBypass class exists or will be created
 	    waitingBayBypassTaskTimer.schedule(new VerificWaiting(), 100);
-	    Sleep(500);
-	    waitingBayBypassTaskTimer.cancel();
+
 
 	    VerificWaiting.logger.info("btnWaitingBayBypassOnClick : Exit:");
 	}
@@ -1462,8 +1442,7 @@ public class StateExecutorController implements Initializable {
 	    
 	    verificStartTaskTimer = new Timer();
 	    verificStartTaskTimer.schedule(new Verification(), 100);
-	    Sleep(500);
-	    verificStartTaskTimer.cancel();
+
 
 	    Verification.logger.info("btnVerificTestStartOnClick : Exit:");
 	}
@@ -1501,8 +1480,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    verificStopTaskTimer = new Timer();
 	    verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
-	    Sleep(500);
-	    verificStopTaskTimer.cancel();
+
 
 	    Verification.logger.info("btnVerificTestStopOnClick : Exit:");
 	}
@@ -1535,8 +1513,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    verificResetTaskTimer = new Timer();
 	    verificResetTaskTimer.schedule(new VerificationTestBayReset(), 100);
-	    Sleep(500);
-	    verificResetTaskTimer.cancel();
+
 
 	    Verification.logger.info("btnVerificTestResetOnClick : Exit:");
 	}
@@ -1571,8 +1548,7 @@ public class StateExecutorController implements Initializable {
 	    verificTestBayBypassTaskTimer = new Timer();
 	    // Assuming a VerificationTestBayBypass class exists or will be created
 	    verificTestBayBypassTaskTimer.schedule(new VerificationTestBayBypass(), 100);
-	    Sleep(500);
-	    verificTestBayBypassTaskTimer.cancel();
+
 
 	    Verification.logger.info("btnVerificTestBayBypassOnClick : Exit:");
 	}
@@ -1609,9 +1585,9 @@ public class StateExecutorController implements Initializable {
 	    allData.clear();
 	    
 	    sctNlt1StartTaskTimer = new Timer();
-	    sctNlt1StartTaskTimer.schedule(new StaNld_Bay1(), 100);
-	    Sleep(500);
-	    sctNlt1StartTaskTimer.cancel();
+	    activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
+	    sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+
 
 	    StaNld_Bay1.logger.info("btnSctNlt1StartOnClick : Exit:");
 	}
@@ -1647,10 +1623,13 @@ public class StateExecutorController implements Initializable {
 	    btnSctNlt1BayBypass.setDisable(false);
 	    
 	    // L O G I C
+	    if (activeStaNld1Engine != null) {
+	        activeStaNld1Engine.requestStop();
+	    }
 	    sctNlt1StopTaskTimer = new Timer();
+	    // Assuming a STA_NoLoadTestBay1Stop class exists or will be created
 	    sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
-	    Sleep(500);
-	    sctNlt1StopTaskTimer.cancel();
+
 
 	    StaNld_Bay1.logger.info("btnSctNlt1StopOnClick : Exit:");
 	}
@@ -1683,8 +1662,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    sctNlt1ResetTaskTimer = new Timer();
 	    sctNlt1ResetTaskTimer.schedule(new STA_NoLoadTestBay1Reset(), 100);
-	    Sleep(500);
-	    sctNlt1ResetTaskTimer.cancel();
+
 
 	    StaNld_Bay1.logger.info("btnSctNlt1ResetOnClick : Exit:");
 	}
@@ -1719,8 +1697,7 @@ public class StateExecutorController implements Initializable {
 	    sctNlt1BayBypassTaskTimer = new Timer();
 	    // Assuming a STA_NoLoadTestBay1Bypass class exists or will be created
 	    sctNlt1BayBypassTaskTimer.schedule(new STA_NoLoadTestBay1Bypass(), 100);
-	    Sleep(500);
-	    sctNlt1BayBypassTaskTimer.cancel();
+
 
 	    StaNld_Bay1.logger.info("btnSctNlt1BayBypassOnClick : Exit:");
 	}
@@ -1758,9 +1735,9 @@ public class StateExecutorController implements Initializable {
 	    allData.clear();
 	    
 	    sctNlt2StartTaskTimer = new Timer();
-	    sctNlt2StartTaskTimer.schedule(new StaNld_Bay2(), 100);
-	    Sleep(500);
-	    sctNlt2StartTaskTimer.cancel();
+	    activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
+	    sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+
 
 	    StaNld_Bay2.logger.info("btnSctNlt2StartOnClick : Exit:");
 	}
@@ -1797,10 +1774,13 @@ public class StateExecutorController implements Initializable {
 	    btnSctNlt2BayBypass.setDisable(false);
 
 	    // L O G I C
+	    if (activeStaNld2Engine != null) {
+	        activeStaNld2Engine.requestStop();
+	    }
 	    sctNlt2StopTaskTimer = new Timer();
+	    // Assuming a STA_NoLoadTestBay2Stop class exists or will be created
 	    sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-	    Sleep(500);
-	    sctNlt2StopTaskTimer.cancel();
+
 
 	    StaNld_Bay2.logger.info("btnSctNlt2StopOnClick : Exit:");
 	}
@@ -1834,8 +1814,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    sctNlt2ResetTaskTimer = new Timer();
 	    sctNlt2ResetTaskTimer.schedule(new STA_NoLoadTestBay2Reset(), 100);
-	    Sleep(500);
-	    sctNlt2ResetTaskTimer.cancel();
+
 
 	    StaNld_Bay2.logger.info("btnSctNlt2ResetOnClick : Exit:");
 	}
@@ -1871,8 +1850,7 @@ public class StateExecutorController implements Initializable {
 	    sctNlt2BayBypassTaskTimer = new Timer();
 	    // Assuming a STA_NoLoadTestBay2Bypass class exists or will be created
 	    sctNlt2BayBypassTaskTimer.schedule(new STA_NoLoadTestBay2Bypass(), 100);
-	    Sleep(500);
-	    sctNlt2BayBypassTaskTimer.cancel();
+
 
 	    StaNld_Bay2.logger.info("btnSctNlt2BayBypassOnClick : Exit:");
 	}
@@ -1909,9 +1887,9 @@ public class StateExecutorController implements Initializable {
 	    allData.clear();
 	    
 	    commStartTaskTimer = new Timer();
-	    commStartTaskTimer.schedule(new Comm(), 100);
-	    Sleep(500);
-	    commStartTaskTimer.cancel();
+	    activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
+	    commStartTaskTimer.schedule(activeCommEngine, 100);
+
 
 	    Comm.logger.info("btnCommTestStartOnClick : Exit:");
 	}
@@ -1947,10 +1925,13 @@ public class StateExecutorController implements Initializable {
 	    btnCommTestBayBypass.setDisable(false);
 
 	    // L O G I C
+	    if (activeCommEngine != null) {
+	        activeCommEngine.requestStop();
+	    }
 	    commStopTaskTimer = new Timer();
+	    // Assuming a CommunicationTestBayStop class exists or will be created
 	    commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-	    Sleep(500);
-	    commStopTaskTimer.cancel();
+
 
 	    Comm.logger.info("btnCommTestStopOnClick : Exit:");
 	}
@@ -1983,8 +1964,7 @@ public class StateExecutorController implements Initializable {
 	    // L O G I C
 	    commResetTaskTimer = new Timer();
 	    commResetTaskTimer.schedule(new CommunicationTestBayReset(), 100);
-	    Sleep(500);
-	    commResetTaskTimer.cancel();
+
 
 	    Comm.logger.info("btnCommTestResetOnClick : Exit:");
 	}
@@ -2019,8 +1999,7 @@ public class StateExecutorController implements Initializable {
 	    commTestBayBypassTaskTimer = new Timer();
 	    // Assuming a CommunicationTestBayBypass class exists or will be created
 	    commTestBayBypassTaskTimer.schedule(new CommBayBypass(), 100);
-	    Sleep(500);
-	    commTestBayBypassTaskTimer.cancel();
+
 
 	    Comm.logger.info("btnCommTestBayBypassOnClick : Exit:");
 	}
@@ -2239,50 +2218,40 @@ public class StateExecutorController implements Initializable {
 		
 		funtionalBayStartTaskTimer = new Timer();
 		funtionalBayStartTaskTimer.schedule(new Ft(),100);
-		Sleep(500);
-		funtionalBayStartTaskTimer.cancel();
+
 
 		hvtBayStartTaskTimer = new Timer();
 		hvtBayStartTaskTimer.schedule(new Hv(),200);
-		Sleep(500);
-		hvtBayStartTaskTimer.cancel();
+
 
 		insResStartTaskTimer = new Timer();
 		insResStartTaskTimer.schedule(new Ir(),300);
-		Sleep(500);
-		insResStartTaskTimer.cancel();
 
-		
-		 
+
 		/*calibrationStartTaskTimer = new Timer();
 		calibrationStartTaskTimer.schedule(new CalibrationBay2(),400);
-		Sleep(500);
-		calibrationStartTaskTimer.cancel();
 
 
 		waitingBayStartTaskTimer = new Timer();
 		waitingBayStartTaskTimer.schedule(new WaitingBay2(), 100);
-	    Sleep(500);
-	    waitingBayStartTaskTimer.cancel();
+
 
 		verificStartTaskTimer = new Timer();
 		verificStartTaskTimer.schedule(new VerificationTestBay2(),100);
-		Sleep(500);
+
 		verificStartTaskTimer.cancel();*/
 
 		/*sctNlt1StartTaskTimer = new Timer();
 		sctNlt1StartTaskTimer.schedule(new STA_NoLoadTestBay1_2(),100);
-		Sleep(500);
-		sctNlt1StartTaskTimer.cancel();
+
 
 		sctNlt2StartTaskTimer = new Timer();
 		sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2_2(),100);
-		Sleep(500);
-		sctNlt2StartTaskTimer.cancel();
+
 
 		commStartTaskTimer = new Timer();
 		commStartTaskTimer.schedule(new CommunicationTestBay2(),100);
-		Sleep(500);
+
 		commStartTaskTimer.cancel();*/
 		
 		ApplicationLauncher.logger.info("btnFtStartOnClick : EXIT:");
@@ -2321,48 +2290,41 @@ public class StateExecutorController implements Initializable {
 
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(),100);
-		Sleep(500);
-		funtionalBayStopTaskTimer.cancel();
+
 
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(),100);
-		Sleep(500);
-		hvtBayStopTaskTimer.cancel();
+
 
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(),100);
-		Sleep(500);
-		insResStopTaskTimer.cancel(); 
- 
+
+
 		/*calibrationStopTaskTimer = new Timer();
 		calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-		Sleep(500);
-		calibrationStopTaskTimer.cancel();
-		
+
+
 		waitingBayStopTaskTimer = new Timer();
 		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-	    Sleep(500);
-	    waitingBayStopTaskTimer.cancel();
+
 
 		verificStopTaskTimer = new Timer();
 		verificStopTaskTimer.schedule(new VerificationTestBayStop(),100);
-		Sleep(500);
+
 		verificStopTaskTimer.cancel();*/
 
 		/*sctNlt1StopTaskTimer = new Timer();
 		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(),100);
-		Sleep(500);
-		sctNlt1StopTaskTimer.cancel();
+
 
 		sctNlt2StopTaskTimer = new Timer();
 		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(),100);
-		Sleep(500);
-		sctNlt2StopTaskTimer.cancel();
+
 
 		commStopTaskTimer = new Timer();
 		commStopTaskTimer.schedule(new CommunicationTestBayStop(),100);
-		Sleep(500);
-		commStopTaskTimer.cancel();
+
+
 		*/
 		ApplicationLauncher.logger.info("btnAllStopOnClick : Exit:");
 	}
@@ -2384,49 +2346,41 @@ public class StateExecutorController implements Initializable {
 
 		funtionalBayResetTaskTimer = new Timer();
 		funtionalBayResetTaskTimer.schedule(new FunctionalTestBayReset(),100);
-		Sleep(500);
-		funtionalBayResetTaskTimer.cancel();
+
 
 		hvtBayResetTaskTimer = new Timer();
 		hvtBayResetTaskTimer.schedule(new HighVoltageTestBayReset(),100);
-		Sleep(500);
-		hvtBayResetTaskTimer.cancel();
+
 
 		insResResetTaskTimer = new Timer();
 		insResResetTaskTimer.schedule(new InsulationResistanceTestBayReset(),100);
-		Sleep(500);
-		insResResetTaskTimer.cancel(); 
+
 
 		calibrationResetTaskTimer = new Timer();
 		calibrationResetTaskTimer.schedule(new CalibrationBayReset(),100);
-		Sleep(500);
-		calibrationResetTaskTimer.cancel();
-		
+
+
 		waitingBayResetTaskTimer = new Timer();
 		waitingBayResetTaskTimer.schedule(new WaitingBayReset(), 100);
-	    Sleep(500);
-	    waitingBayResetTaskTimer.cancel();
+
 
 		verificResetTaskTimer = new Timer();
 		verificResetTaskTimer.schedule(new VerificationTestBayReset(),100);
-		Sleep(500);
-		verificResetTaskTimer.cancel();
+
 
 		sctNlt1ResetTaskTimer = new Timer();
 		sctNlt1ResetTaskTimer.schedule(new STA_NoLoadTestBay1Reset(),100);
-		Sleep(500);
-		sctNlt1ResetTaskTimer.cancel();
+
 
 		sctNlt2ResetTaskTimer = new Timer();
 		sctNlt2ResetTaskTimer.schedule(new STA_NoLoadTestBay2Reset(),100);
-		Sleep(500);
+
 		sctNlt2ResetTaskTimer.cancel();*/
 
 		commResetTaskTimer = new Timer();
 		commResetTaskTimer.schedule(new CommunicationTestBayReset(),100);
-		Sleep(500);
-		commResetTaskTimer.cancel();
-		
+
+
 		ApplicationLauncher.logger.info("btnAllResetOnClick : Invoked:");
 	}
 
@@ -2443,8 +2397,7 @@ public class StateExecutorController implements Initializable {
 		});
 		btnFilterTaskTimer = new Timer();
 		btnFilterTaskTimer.schedule(new FilterOnClickTimerTask(),100);
-		Sleep(500);
-		btnFilterTaskTimer.cancel();
+
 
 	}
 

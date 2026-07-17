@@ -32,117 +32,117 @@ public class S13_error_Handling_Bay2  implements STA_NoLoadTestBay2State {
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_001:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 		    break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_002:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_003:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_004:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_005:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_006:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_007:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_008:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_009:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_010:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_011:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_012:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_013:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_014:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_015:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_016:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_017:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_026:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 			
 		default:
 			sctNlt2StartTaskTimer = new Timer();
 		    sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-		    Sleep(500);
-		    sctNlt2StartTaskTimer.cancel();
+
+
 			break;
 		}
 

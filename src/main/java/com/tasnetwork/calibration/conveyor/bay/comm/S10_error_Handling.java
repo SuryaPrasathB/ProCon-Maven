@@ -33,86 +33,86 @@ public class S10_error_Handling  implements CommTestBayState {
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_001:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_002:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_003:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_004:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_005:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_006:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_007:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_008:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_009:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_010:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_011:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_012:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		case ConvErrorCodeMapping.ERROR_CODE_COMM_013:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		default:
 			commStopTaskTimer = new Timer();
 			commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-			Sleep(500);
-			commStopTaskTimer.cancel();
+
+
 			break;
 		}
 

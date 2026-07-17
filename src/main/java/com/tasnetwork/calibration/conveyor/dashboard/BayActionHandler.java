@@ -772,19 +772,19 @@ public class BayActionHandler {
 					
 					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: verific: adding"); 
 					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName, meterListWithSerialNoMap);
-					Sleep(500);
+
 				}else if(bayKey.equals(ConstantConveyor.STA_NLD1_BAY_KEY)) {
 					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: sta1: adding");
 					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta1Bay(palletName, meterListWithSerialNoMap);
-					Sleep(500);
+
 				}else if(bayKey.equals(ConstantConveyor.STA_NLD2_BAY_KEY)) {
 					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: sta2: adding"); 
 					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta2Bay(palletName, meterListWithSerialNoMap);
-					Sleep(500);
+
 				}else if(bayKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
 					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: waiting bay: adding"); 
 					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName, meterListWithSerialNoMap);
-					Sleep(500);
+
 				}
 				//ApplicationLauncher.logger.info("refreshMultiplePalletInBay: WaitingVerific1 added");
 				if(bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {

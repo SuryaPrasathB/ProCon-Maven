@@ -3,12 +3,12 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
@@ -16,7 +16,7 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
-public class Calib extends TimerTask{
+public class Calib implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Calib.class.getPackage().getName()); 
 	private CalibrationBayContext calibBayStateManager = new CalibrationBayContext();  
 
@@ -29,134 +29,25 @@ public class Calib extends TimerTask{
 	public static boolean resetProcessCompletedCalibBay = false ;
 
 	public static boolean abort_Calib_Bay = false ;
-	public void run() {
-		Calib.logger.debug("Calib : Entry"); 
-
-		manageCalibrationBayStates();
-		//DevSysEnergyMeter.sendReadNeutralCurrentCommand();
+	@Override
+	public void onStartComplete() {
+		setStartProcessCompletedCalibBay(true);
 	}
 
-	private void manageCalibrationBayStates() {
+	@Override
+	public void onStopComplete() {
+		Calib.logger.debug("CalibrationBay : isStopProcessRequestedCalibBay -Pass");
+	}
 
-		Calib.logger.debug("Calib : manageCalibrationBayStates : Entry");
-
-		ArrayList<StateFlow> statePlanner = (ArrayList<StateFlow>) MySqlServiceManager.getStateFlowService().findByBayKeyAndExecutionMode(ConstantConveyor.CALIBRATION_BAY_KEY, "RUN");//findByBayKey(ConstantConveyor.CALIBRATION_BAY_KEY);
-
-		setTableStatePlanner_CalibBay(statePlanner);//StatePlannerController.getTableStatePlannerCalibBay_UI());
-
-
-		// Set the first state from the table outside the while loops
-		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
-
-		// Fetch the first state from the table to start the process
-		if(getTableStatePlanner_CalibBay().size()>0) {
-			StateFlow presentRow = getTableStatePlanner_CalibBay().get(currentIndex);
-			StateFlow nextRow = presentRow ; 
-			String currentStateName = presentRow.getState(); // Get the current state from the row
-			CalibrationBayState currentState = createCalibBayStateInstance(currentStateName); // Create the state instance
-			setNextState(currentState); // Set the first state
-
-
-			Calib.logger.debug("Calib : manageCalibrationBayStates : getTableStatePlanner2 : Size : " + getTableStatePlanner_CalibBay().size());
-
-			setStartProcessCompletedCalibBay(true);
-
-			while (!isStopProcessRequestedCalibBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-				// Process the current state
-				BayResponse bayStatus = processCurrentState();
-
-				presentRow = nextRow ;
-
-				// Check if the status is success
-				if (bayStatus.isStatus()) {
-					// If successful, fetch the next state from the table (columnSuccess)
-
-					String nextStateName = presentRow.getIfSuccess();
-
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-						// Set the next state based on the success column
-						CalibrationBayState nextState = createCalibBayStateInstance(nextStateName);
-						setNextState(nextState); // Set the next state dynamically
-					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-
-					for (StateFlow row : getTableStatePlanner_CalibBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
-							break; // Exit the loop once the next state is found
-						}
-					}
-
-				}
-				else{
-					//======
-					// update in the table.
-					String errorCode = bayStatus.getErrorCode() ;
-					String nextStateName = getErrorStateInstance(errorCode);//createStateInstance("S22_error_Handling");
-
-					presentRow.setIfFailed(nextStateName);
-
-					//=====
-
-					// If failed, fetch the next state from the table (columnFailure)
-					nextStateName = presentRow.getIfFailed();
-
-					if (nextStateName != null && !nextStateName.isEmpty()) {
-
-						if (nextStateName.equals("S10_error_Handling")) {
-							CalibrationBayState nextState2 =  createErrorStateInstance(nextStateName,errorCode);
-							setNextState(nextState2); // Set the next state dynamically
-						} else {
-							CalibrationBayState nextState2 = createCalibBayStateInstance(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
-						}
-
-					}
-
-
-					for (StateFlow row : getTableStatePlanner_CalibBay()) {
-						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
-							nextRow = row;                         // Set the next row based on the matched state
-							break; // Exit the loop once the next state is found
-						}
-
-					}
-				}
-
-			}
-		}else {
-			Calib.logger.debug("Calib : manageCalibrationBayStates : getTableStatePlanner : No states found in the planner");
+	@Override
+	public void setNextState(String stateName, String errorCode) {
+		CalibrationBayState newState;
+		if (stateName.equals("S10_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = createErrorStateInstance(stateName, errorCode);
+		} else {
+			newState = createCalibBayStateInstance(stateName);
 		}
-	}
-
-	//=====================================================================================================================
-
-	/*	public static void singleStateTestRun(CalibrationBayState currentState){
-		CalibrationBay.logger.debug("singleStateTestRun : Entry");
-
-		setNextState(currentState);
-
-		BayResponse bayStatus = processCurrentState();
-
-		CalibrationBay.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		CalibrationBay.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		CalibrationBay.logger.debug("singleStateTestRun : Exit");
-	}*/
-
-	//=====================================================================================================================
-
-	public void setNextState(CalibrationBayState newState) {
-		//Set previous state here 
-
-		// Set the new state
-		calibBayStateManager.setState(newState);  
-
-
+		calibBayStateManager.setState(newState);
 	}
 
 	public BayResponse processCurrentState(){
@@ -218,7 +109,8 @@ public class Calib extends TimerTask{
 	}
 
 
-	private String getErrorStateInstance(String errorCode) {
+	@Override
+	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
 

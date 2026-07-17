@@ -391,8 +391,7 @@ public class BusyLoadingController implements Initializable{
 			ApplicationLauncher.logger.info("IsDeviceConnectedTask: Entry");
 			
 			//IsDeviceConnected();
-			
-			IsDeviceConnectedTaskTimer.cancel();
+
 		}
 	};
 	
@@ -430,7 +429,7 @@ public class BusyLoadingController implements Initializable{
 			}*/
 /*	        ConstantProTamp.ScanDeviceFound = false;
 	        ApplicationHomeController.EnableLeftMenuButtonsForTestRun();*/
-			ResponseTaskTimer.cancel();
+
 		}
 	};
 	

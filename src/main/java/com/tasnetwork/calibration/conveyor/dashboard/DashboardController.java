@@ -1,5 +1,6 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
+import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
 import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
 import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayStop;
@@ -29,7 +30,6 @@ import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.spring.orm.model.ConveyorOutputMetrics;
 import com.tasnetwork.spring.orm.model.ConveyorOutputMetricsSummary;
@@ -314,11 +314,20 @@ public class DashboardController implements Initializable {
 	Timer insResStartTaskTimer;
 	Timer hvtBayStartTaskTimer;
 	Timer verificStartTaskTimer;
-	Timer commStartTaskTimer;
 	Timer sctNlt1StartTaskTimer;
 	Timer sctNlt2StartTaskTimer;
 	Timer waitingBayStartTaskTimer;
-	Timer rejectionBayStartTaskTimer;
+	Timer commStartTaskTimer;
+
+	private BayStateEngine activeStaNld1Engine;
+	private BayStateEngine activeStaNld2Engine;
+	private BayStateEngine activeCommEngine;
+	private BayStateEngine activeWaitingEngine;
+	private BayStateEngine activeFtEngine;
+	private BayStateEngine activeHvEngine;
+	private BayStateEngine activeIrEngine;
+	private BayStateEngine activeCalibEngine;
+	private BayStateEngine activeVerificEngine;
 
 	Timer funtionalBayStopTaskTimer;
 	Timer calibrationStopTaskTimer;
@@ -921,49 +930,40 @@ public class DashboardController implements Initializable {
 		btnAllStop.setDisable(false);
 
 		funtionalBayStartTaskTimer = new Timer();
-		funtionalBayStartTaskTimer.schedule(new Ft(), 100);
-		Sleep(500);
-		funtionalBayStartTaskTimer.cancel();
+		activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
+		funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
 
 		hvtBayStartTaskTimer = new Timer();
-		hvtBayStartTaskTimer.schedule(new Hv(), 200);
-		Sleep(500);
-		hvtBayStartTaskTimer.cancel();
+		activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
+		hvtBayStartTaskTimer.schedule(activeHvEngine, 200);
 
 		insResStartTaskTimer = new Timer();
-		insResStartTaskTimer.schedule(new Ir(), 300);
-		Sleep(500);
-		insResStartTaskTimer.cancel();
+		activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
+		insResStartTaskTimer.schedule(activeIrEngine, 300);
 
 		calibrationStartTaskTimer = new Timer();
-		calibrationStartTaskTimer.schedule(new Calib(), 400);
-		Sleep(500);
-		calibrationStartTaskTimer.cancel();
+		activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
+		calibrationStartTaskTimer.schedule(activeCalibEngine, 400);
 
 		waitingBayStartTaskTimer = new Timer();
-		waitingBayStartTaskTimer.schedule(new VerificWaiting(), 100);
-		Sleep(500);
-		waitingBayStartTaskTimer.cancel();
+		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
+		waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
 
 		verificStartTaskTimer = new Timer();
-		verificStartTaskTimer.schedule(new Verification(), 100);
-		Sleep(500);
-		verificStartTaskTimer.cancel();
+		activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
+		verificStartTaskTimer.schedule(activeVerificEngine, 100);
 
 		sctNlt1StartTaskTimer = new Timer();
-		sctNlt1StartTaskTimer.schedule(new StaNld_Bay1(), 100);
-		Sleep(500);
-		sctNlt1StartTaskTimer.cancel();
+		activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
+		sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
 
 		sctNlt2StartTaskTimer = new Timer();
-		sctNlt2StartTaskTimer.schedule(new StaNld_Bay2(), 100);
-		Sleep(500);
-		sctNlt2StartTaskTimer.cancel();
+		activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
+		sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
 
 		commStartTaskTimer = new Timer();
-		commStartTaskTimer.schedule(new Comm(), 100);
-		Sleep(500);
-		commStartTaskTimer.cancel();
+		activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
+		commStartTaskTimer.schedule(activeCommEngine, 100);
 
 		ApplicationLauncher.logger.info("btnFtStartOnClick : EXIT:");
 	}
@@ -997,48 +997,44 @@ public class DashboardController implements Initializable {
 
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
-		Sleep(500);
-		funtionalBayStopTaskTimer.cancel();
+
 
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
-		Sleep(500);
-		hvtBayStopTaskTimer.cancel();
+
 
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
-		Sleep(500);
-		insResStopTaskTimer.cancel();
+
 
 		calibrationStopTaskTimer = new Timer();
 		calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-		Sleep(500);
-		calibrationStopTaskTimer.cancel();
-		
+
+
+		if (activeWaitingEngine != null) activeWaitingEngine.requestStop();
 		waitingBayStopTaskTimer = new Timer();
 		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-		Sleep(500);
-		waitingBayStopTaskTimer.cancel();
-		
+
+
 		verificStopTaskTimer = new Timer();
 		verificStopTaskTimer.schedule(new VerificationTestBayStop(),100);
-		Sleep(500);
-		verificStopTaskTimer.cancel();
 
+
+		if (activeStaNld1Engine != null) activeStaNld1Engine.requestStop();
 		sctNlt1StopTaskTimer = new Timer();
 		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(),100);
-		Sleep(500);
-		sctNlt1StopTaskTimer.cancel();
-		
+
+
+		if (activeStaNld2Engine != null) activeStaNld2Engine.requestStop();
 		sctNlt2StopTaskTimer = new Timer();
 		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(),100);
-		Sleep(500);
-		sctNlt2StopTaskTimer.cancel();
-		
+
+
+		if (activeCommEngine != null) activeCommEngine.requestStop();
 		commStopTaskTimer = new Timer();
 		commStopTaskTimer.schedule(new CommunicationTestBayStop(),100);
-		Sleep(500);
-		commStopTaskTimer.cancel();
+
+
 		ApplicationLauncher.logger.info("btnAllStopOnClick : Exit:");
 	}
 

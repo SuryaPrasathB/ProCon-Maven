@@ -269,7 +269,7 @@ public class LauncherPaneController {
 		    			    
 		    		}
 		    	}
-			unloadingLaunchTaskTimer.cancel();
+
 		}
 	}
     
@@ -299,7 +299,7 @@ public class LauncherPaneController {
 		    			  
 		    		}
 		    	}
-			rejectionLaunchTaskTimer.cancel();
+
 		}
 	}
 

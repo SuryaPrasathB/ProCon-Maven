@@ -381,7 +381,7 @@ public class FirmwareUpgradeController  implements Initializable{
 			ApplicationLauncher.setCursor(Cursor.WAIT);
 			ScanDrives();
 			ApplicationLauncher.setCursor(Cursor.DEFAULT);
-			ScanDrivesTaskTimer.cancel();
+
 		}
 	};
 	
@@ -394,7 +394,7 @@ public class FirmwareUpgradeController  implements Initializable{
 			ApplicationLauncher.setCursor(Cursor.WAIT);
 			DeployFiles();
 			ApplicationLauncher.setCursor(Cursor.DEFAULT);
-			DeployTaskTimer.cancel();
+
 		}
 	};
 	
@@ -407,7 +407,7 @@ public class FirmwareUpgradeController  implements Initializable{
 			ApplicationLauncher.setCursor(Cursor.WAIT);
 			ValidateFiles();
 			ApplicationLauncher.setCursor(Cursor.DEFAULT);
-			ValidateTaskTimer.cancel();
+
 		}
 	};
 	
@@ -420,7 +420,7 @@ public class FirmwareUpgradeController  implements Initializable{
 			ApplicationLauncher.setCursor(Cursor.WAIT);
 			ScanFiles();
 			ApplicationLauncher.setCursor(Cursor.DEFAULT);
-			ScanFilesTaskTimer.cancel();
+
 		}
 	};
 

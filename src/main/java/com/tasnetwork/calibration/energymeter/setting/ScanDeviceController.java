@@ -458,7 +458,6 @@ public class ScanDeviceController implements Initializable{
 			
 	        ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
 
-			ResponseTaskTimer.cancel();
 		}
 	};
 	
@@ -496,7 +495,7 @@ public class ScanDeviceController implements Initializable{
 			RemoveScanningScreenOverlay();
 	        ConstantProTamp.ScanDeviceFound = false;
 	        ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
-			ResponseTaskTimer.cancel();
+
 		}
 	};
 
@@ -520,8 +519,7 @@ public class ScanDeviceController implements Initializable{
 				triggerBootupStatusTimerTask();
 			}
 			//triggerBootupStatusTimerTask();
-			
-			ResponseTaskTimer.cancel();
+
 		}
 	};
 	
@@ -534,8 +532,7 @@ public class ScanDeviceController implements Initializable{
 			ApplicationLauncher.logger.info("IsDeviceConnectedTask: Entry");
 			
 			IsDeviceConnected();
-			
-			IsDeviceConnectedTaskTimer.cancel();
+
 		}
 	};
 	
@@ -573,7 +570,7 @@ public class ScanDeviceController implements Initializable{
 			}*/
 /*	        ConstantProTamp.ScanDeviceFound = false;
 	        ApplicationHomeController.EnableLeftMenuButtonsForTestRun();*/
-			ResponseTaskTimer.cancel();
+
 		}
 	};
 	

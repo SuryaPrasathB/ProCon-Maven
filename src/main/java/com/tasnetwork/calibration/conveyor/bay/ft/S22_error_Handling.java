@@ -109,8 +109,8 @@ public class S22_error_Handling  implements FtBayState {
             Ft.logger.debug(String.format("[%s] : [ERROR_HANDLER_CONSTRUCTOR] : [ACTION] - Handling error code %s: Scheduling FunctionalTestBayStop task.", getMyBayKey(), errorCode));
 			funtionalBayStopTaskTimer = new Timer();
 			funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(),100);
-			Sleep(500);
-			funtionalBayStopTaskTimer.cancel();
+
+
             Ft.logger.debug(String.format("[%s] : [ERROR_HANDLER_CONSTRUCTOR] : [ACTION] - Task for error code %s cancelled.", getMyBayKey(), errorCode));
 			break;
 		}

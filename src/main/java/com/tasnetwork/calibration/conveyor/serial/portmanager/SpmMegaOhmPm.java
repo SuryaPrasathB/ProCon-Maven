@@ -318,7 +318,7 @@ public class SpmMegaOhmPm {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					//Sleep(80);
 	
 	
@@ -374,7 +374,7 @@ public class SpmMegaOhmPm {
 					//Sleep(50);
 					//Sleep(80);
 					//Sleep(1000);//worked good for 10mA and 25mA calibration
-					//Sleep(500);
+
 					//Sleep(80);
 	
 	
