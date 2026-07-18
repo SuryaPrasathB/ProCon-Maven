@@ -7,6 +7,11 @@ import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 public class S03_error_Handling  implements RejectionBayState {
 	BayResponse bayResponse = new BayResponse();	
 
+	/**
+	 * Error handling state for the Rejection Bay.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		ApplicationLauncher.logger.info("S03_error_Handling : Entry");

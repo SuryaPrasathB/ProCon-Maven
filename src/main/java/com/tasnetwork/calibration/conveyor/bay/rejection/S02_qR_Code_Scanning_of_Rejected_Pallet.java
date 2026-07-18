@@ -1,11 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.rejection;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date; // Import Date for timestamp fields
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,75 +17,36 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.bookshelf.QrCodeScanningPallet;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.dashboard.ErrorCode;
 import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.spring.orm.service.ConveyorOutputMetricsService;
-import com.tasnetwork.spring.orm.service.ConveyorOutputMetricsSummaryService;
 
 import javafx.application.Platform;
-
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetrics; // Import the ConveyorOutputMetrics model
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetricsSummary;
 
 public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayState {
 
 	private boolean restApiSendIndividualMeterStatus = false;
-	// Define the URL for your Python rejection application's single meter update
-	// API
-	private static final String REJECTION_SINGLE_METER_API_URL = "http://127.0.0.1:5001/api/rejection_meters/"; // Base
-																												// URL
-																												// for
-																												// PUT
-
 	private String flowPathId = "p1";
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_05;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_FT_006;
 	private int palletQrScannerPositionId = ConstantBayPortNameMapping.QR_SCNR_FT_BAY_PALLET_POS_ID;
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	// Inject the ConveyorOutputMetricsService
-	/*
-	 * private ConveyorOutputMetricsService conveyorOutputMetricsService;
-	 * private ConveyorOutputMetricsSummaryService
-	 * conveyorOutputMetricsSummaryService;
-	 */
-
-	// This field represents the current bay's identifier. It must be set for each
-	// bay instance.
-	// private String myBayKey;
-
-	// Constructor - assuming MySqlServiceManager provides access to your services
 	public S02_qR_Code_Scanning_of_Rejected_Pallet() {
-		// this.conveyorOutputMetricsService =
-		// MySqlServiceManager.getConveyorOutputMetricsService();
-		// this.conveyorOutputMetricsSummaryService =
-		// MySqlServiceManager.getConveyorOutputMetricsSummaryService();
+
 	}
 
 	public String getMyBayKey() {
 		return myBayKey;
 	}
-
-	// Setter for myBayKey, often used if this class is instantiated and then
-	// configured
-	/*
-	 * public void setMyBayKey(String myBayKey) {
-	 * this.myBayKey = myBayKey;
-	 * }
-	 */
 
 	// ==============================================================================================================================================================
 	@Override
@@ -203,21 +159,7 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 			}
 
 			if (!palletDistinctId.isEmpty()) {
-				BayUtils bayUtils = new BayUtils();
-				// bayUtils.computeMeterOverAllStatus(palletDistinctId);
-				/*
-				 * List<Map<String, Object>> metersData =
-				 * readPalletMetersData(getMyBayKey(),palletDistinctId);
-				 * 
-				 * if (metersData != null && !metersData.isEmpty()) {
-				 * batchUpdateRejectionMeters(palletDistinctId,palletQrId,metersData); // This
-				 * will now update ConveyorOutputMetrics daily with average hourly output
-				 * } else {
-				 * Rejection.logger.
-				 * debug("S02_qR_Code_Scanning_of_Pallet: No meter data found for batch update for bay: "
-				 * + getMyBayKey());
-				 * }
-				 */
+				new BayUtils();
 
 				ArrayList<PalletMeter> palletMeterList = getPalletMeterList(getMyBayKey(), palletDistinctId);
 				if (palletMeterList != null && !palletMeterList.isEmpty()) {
@@ -291,34 +233,27 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 				ApplicationLauncher.logger.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo
 						+ " ,serialNo: " + serialNo + " , status: <" + status + "> , reason: " + reason);
 
-				if (positionNo != null) {
-
-					MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS) ? MeterStatus.PASSED
-							: MeterStatus.FAILED;
-					if (status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
-						meterStatus = MeterStatus.PASSED;
-						ApplicationLauncher.logger
-								.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " Pass hit1");
-					} else if (status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
-						meterStatus = MeterStatus.FAILED;
-						ApplicationLauncher.logger
-								.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " Fail hit2");
-					} else if (status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
-						ApplicationLauncher.logger
-								.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " WFR hit3");
-						meterStatus = MeterStatus.IDLE;
-					} else {
-						ApplicationLauncher.logger.debug(
-								"updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " others hit4");
-						meterStatus = MeterStatus.IDLE;
-					}
-					ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPositionWithSerialNo(
-							getMyBayKey(), positionNo, serialNo, meterStatus, reason);
+				MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS) ? MeterStatus.PASSED
+						: MeterStatus.FAILED;
+				if (status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
+					meterStatus = MeterStatus.PASSED;
+					ApplicationLauncher.logger
+							.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " Pass hit1");
+				} else if (status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
+					meterStatus = MeterStatus.FAILED;
+					ApplicationLauncher.logger
+							.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " Fail hit2");
+				} else if (status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
+					ApplicationLauncher.logger
+							.debug("updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " WFR hit3");
+					meterStatus = MeterStatus.IDLE;
 				} else {
-					ApplicationLauncher.logger.error(
-							"updateRejectionDashBoard: Rejection: Meter ID is null, skipping update for: " + serialNo);
-					// allUpdatesInitiatedSuccessfully = false;
+					ApplicationLauncher.logger.debug(
+							"updateRejectionDashBoard: Rejection: positionNo: " + positionNo + " others hit4");
+					meterStatus = MeterStatus.IDLE;
 				}
+				ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPositionWithSerialNo(
+						getMyBayKey(), positionNo, serialNo, meterStatus, reason);
 			} catch (Exception e) {
 				ApplicationLauncher.logger
 						.error("updateRejectionDashBoard: Rejection: Error initiating update for meter data: "
@@ -341,34 +276,8 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 	public List<Map<String, Object>> readPalletMetersData(String selectedBayTypeKey, String palletDistinctId) {
 		Rejection.logger.debug("readPalletMetersData: Entry for bay: " + selectedBayTypeKey);
 		try {
-			// Rejection.logger.error("readPalletMetersData: getPresentPalletAtBayMap : " +
-			// PalletTrackerController.getPresentPalletAtBayMap());
-			// String myPalletDistinctId =
-			// PalletTrackerController.getPresentPalletAtBayMap().get(selectedBayTypeKey);
-
 			PalletManage myPalletManage = null;// MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
-			// Optional<PalletManage> myPalletManageOptional =
-			// MySqlServiceManager.getPalletManageService().findTopByPresentBayKeyAndPalletQrIdAndExitNotAppeared(
-			// selectedBayTypeKey, palletQrId);
 
-			boolean exitAppeared = false;
-			// Optional<PalletManage> myPalletManageOptional =
-			// MySqlServiceManager.getPalletManageService().findTopByPresentBayKeyAndPalletQrIdAndExitNotAppeared(
-			// getMyBayKey(), qrData);
-			/*
-			 * Optional<PalletManage> myPalletManageOptional =
-			 * MySqlServiceManager.getPalletManageService().
-			 * findTopByTodayDateAndPresentBayKeyAndPalletQrIdAndExitAppeared(
-			 * getMyBayKey(), palletQrId,exitAppeared);
-			 */
-			/*
-			 * if (myPalletManage == null) {
-			 * Rejection.logger.
-			 * error("readPalletMetersData: PalletManage not found for distinct ID: " +
-			 * myPalletDistinctId);
-			 * return null;
-			 * }
-			 */
 
 			Optional<PalletManage> myPalletManageOptional = MySqlServiceManager.getPalletManageService()
 					.findByPalletDistinctId(palletDistinctId);
@@ -377,18 +286,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 				myPalletManage = myPalletManageOptional.get();
 				Rejection.logger.debug("Rejection : readPalletMetersData: result found for " + selectedBayTypeKey
 						+ " : palletDistinctId: " + palletDistinctId);
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " + myPalletManage.g);
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-
 			} else {
 				Rejection.logger.debug(
 						"readPalletMetersData: result not found for " + selectedBayTypeKey + " : " + palletDistinctId);
@@ -425,34 +322,9 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 	public ArrayList<PalletMeter> getPalletMeterList(String selectedBayTypeKey, String palletDistinctId) {
 		Rejection.logger.debug("readPalletMetersData: Entry for bay: " + selectedBayTypeKey);
 		try {
-			// Rejection.logger.error("readPalletMetersData: getPresentPalletAtBayMap : " +
-			// PalletTrackerController.getPresentPalletAtBayMap());
-			// String myPalletDistinctId =
-			// PalletTrackerController.getPresentPalletAtBayMap().get(selectedBayTypeKey);
 
 			PalletManage myPalletManage = null;// MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
-			// Optional<PalletManage> myPalletManageOptional =
-			// MySqlServiceManager.getPalletManageService().findTopByPresentBayKeyAndPalletQrIdAndExitNotAppeared(
-			// selectedBayTypeKey, palletQrId);
 
-			boolean exitAppeared = false;
-			// Optional<PalletManage> myPalletManageOptional =
-			// MySqlServiceManager.getPalletManageService().findTopByPresentBayKeyAndPalletQrIdAndExitNotAppeared(
-			// getMyBayKey(), qrData);
-			/*
-			 * Optional<PalletManage> myPalletManageOptional =
-			 * MySqlServiceManager.getPalletManageService().
-			 * findTopByTodayDateAndPresentBayKeyAndPalletQrIdAndExitAppeared(
-			 * getMyBayKey(), palletQrId,exitAppeared);
-			 */
-			/*
-			 * if (myPalletManage == null) {
-			 * Rejection.logger.
-			 * error("readPalletMetersData: PalletManage not found for distinct ID: " +
-			 * myPalletDistinctId);
-			 * return null;
-			 * }
-			 */
 
 			Optional<PalletManage> myPalletManageOptional = MySqlServiceManager.getPalletManageService()
 					.findByPalletDistinctId(palletDistinctId);
@@ -461,17 +333,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 				myPalletManage = myPalletManageOptional.get();
 				Rejection.logger.debug("Rejection : readPalletMetersData: result found for " + selectedBayTypeKey
 						+ " : palletDistinctId: " + palletDistinctId);
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " + myPalletManage.g);
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
 
 			} else {
 				Rejection.logger.debug(
@@ -480,21 +341,7 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 			}
 			Set<PalletMeter> palletMeterSet = myPalletManage.getPalletMeterList();
 			ArrayList<PalletMeter> palletMeterList = new ArrayList<PalletMeter>(palletMeterSet);
-			// List<Map<String, Object>> metersData = new ArrayList<>();
 
-			/*
-			 * for (PalletMeter meter : palletMeters) {
-			 * Map<String, Object> meterMap = new HashMap<>();
-			 * meterMap.put("id", meter.getId());
-			 * meterMap.put("meterSerialNo", meter.getMeterSerialNo());
-			 * meterMap.put("rackPositionNo", meter.getRackPositionNo());
-			 * meterMap.put("meterProfileName", meter.getMeterProfileName());
-			 * meterMap.put("overallTestResultStatus", meter.getOverAllTestResultStatus());
-			 * meterMap.put("palletDistinctId", meter.getPalletDistinctId());
-			 * meterMap.put("errorCode", meter.getErrorCode());
-			 * metersData.add(meterMap);
-			 * }
-			 */
 			Rejection.logger.debug("readPalletMetersData: Successfully read " + palletMeterList.size() + " meters.");
 			myPalletManage.setExitAppeared(true);
 			MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
@@ -522,13 +369,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 				ConveyorClientManager cluster4ClientManager = ConveyorClientManager.getInstance(clusterId);
 				String targetDisplay = ConstantConveyorConfig.REST_API_IDLE_DISPLAY_TAIL_END_REJECTION_DISPLAY;// "rejection_meters";
 
-				// Rejection.logger.debug("sendPalletWithMetersStatusUpdate:
-				// resultManipulatedMetersData: " + resultManipulatedMetersData);
-				// String status2 = status.replace(ConstantReport.REPORT_POPULATE_WFR,
-				// ConstantReport.REPORT_POPULATE_PASS).toUpperCase();
-				// Rejection.logger.debug("sendPalletWithMetersStatusUpdate: status-2: <" +
-				// status2 + "> : positionNo: " + positionNo);
-
 				cluster4ClientManager.getRestConvClient().sendIdleStatusUpdate(clusterServer, targetDisplay);
 				Rejection.logger.debug("sendIdleStatusUpdate: Exit");
 			} catch (Exception e) {
@@ -541,148 +381,11 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 			}
 		}).start();
 	}
-
-	/**
-	 * Sends an update to the rejection Python application's API using a curl
-	 * command.
-	 * This method will construct a curl command to update a specific meter's status
-	 * and reason on the rejection dashboard. This is typically for single meter
-	 * updates.
-	 *
-	 * @param positionNo The position number (meter ID) to update.
-	 * @param serialNo   The serial number of the meter.
-	 * @param status     The status of the meter (e.g., "PASS", "FAIL").
-	 * @param reason     The reason for the status (e.g., error code).
-	 */
-	/*
-	 * public static void sendRejectionMeterUpdate(int positionNo, String serialNo,
-	 * String status, String reason) {
-	 * new Thread(() -> {
-	 * Rejection.logger.debug("Rejection: sendRejectionMeterUpdate : Entry");
-	 * try {
-	 * // Construct the raw JSON payload
-	 * String rawJsonPayload = String.format(
-	 * "{\"id\": %d, \"serialNo\": \"%s\", \"status\": \"%s\", \"reason\": \"%s\", \"timestamp\": \"%s\"}"
-	 * ,
-	 * positionNo,
-	 * serialNo,
-	 * status,
-	 * reason,
-	 * LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"
-	 * ))
-	 * );
-	 * 
-	 * // Escape internal double quotes and wrap in outer double quotes for curl's
-	 * -d argument
-	 * String jsonPayloadForCurl = "\"" + rawJsonPayload.replace("\"", "\\\"") +
-	 * "\"";
-	 * Rejection.logger.
-	 * debug("Rejection: sendRejectionMeterUpdate : jsonPayloadForCurl: " +
-	 * jsonPayloadForCurl);
-	 * // Construct the curl command
-	 * // Assuming curl.exe is in system PATH. If not, provide full path:
-	 * "C:\\Windows\\System32\\curl.exe"
-	 * String[] command = {
-	 * "curl",
-	 * "-X", "PUT",
-	 * "-H", "Content-Type: application/json",
-	 * "-d", jsonPayloadForCurl, // Use the properly quoted and escaped string
-	 * REJECTION_SINGLE_METER_API_URL + positionNo // Target specific meter ID
-	 * };
-	 * Rejection.logger.debug("Rejection: sendRejectionMeterUpdate : command: " +
-	 * command.toString());
-	 * ProcessBuilder pb = new ProcessBuilder(command);
-	 * pb.inheritIO(); // Inherit I/O to see curl output in Java console
-	 * 
-	 * Rejection.logger.debug("Sending Rejection API Update: " +
-	 * Arrays.toString(command));
-	 * Process process = pb.start();
-	 * int exitCode = process.waitFor(); // Wait for curl command to complete
-	 * Rejection.logger.debug("Curl command for rejection app exited with code: " +
-	 * exitCode);
-	 * 
-	 * } catch (IOException | InterruptedException e) {
-	 * Rejection.logger.error("Error sending rejection meter update: " +
-	 * e.getMessage());
-	 * e.printStackTrace();
-	 * if (e instanceof InterruptedException) {
-	 * Thread.currentThread().interrupt(); // Restore interrupt status
-	 * }
-	 * }
-	 * Rejection.logger.debug("Rejection: sendRejectionMeterUpdate : Exit");
-	 * }).start();
-	 * }
-	 */
-
-	/*
-	 * public static void sendRejectionMeterUpdate(int positionNo, String serialNo,
-	 * String status, String reason) {
-	 * new Thread(() -> {
-	 * Rejection.logger.debug("Rejection: sendRejectionMeterUpdate : Entry");
-	 * try {
-	 * // Construct the raw JSON payload
-	 * String escapedSerialNo = serialNo.replace("\"", "\\\"");
-	 * String escapedReason = reason.replace("\"", "\\\"");
-	 * 
-	 * String rawJsonPayload = String.format(
-	 * "{\"id\": %d, \"serialNo\": \"%s\", \"status\": \"%s\", \"reason\": \"%s\", \"timestamp\": \"%s\"}"
-	 * ,
-	 * positionNo,
-	 * escapedSerialNo,
-	 * status.replace("WFR", "PASS").toUpperCase(),
-	 * escapedReason,
-	 * LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"
-	 * ))
-	 * );
-	 * 
-	 * // --- CRITICAL CHANGE HERE ---
-	 * // For ProcessBuilder, the -d argument should be the raw JSON string itself
-	 * String jsonPayloadForProcessBuilder = rawJsonPayload;
-	 * Rejection.logger.
-	 * debug("Rejection: sendRejectionMeterUpdate : jsonPayloadForProcessBuilder: "
-	 * + jsonPayloadForProcessBuilder);
-	 * 
-	 * // Construct the curl command
-	 * String[] command = {
-	 * "curl",
-	 * "-X", "PUT",
-	 * "-H", "Content-Type: application/json",
-	 * "-d", jsonPayloadForProcessBuilder, // Use the raw JSON string
-	 * REJECTION_SINGLE_METER_API_URL + positionNo // Target specific meter ID
-	 * };
-	 * 
-	 * Rejection.logger.debug("Rejection: sendRejectionMeterUpdate : command: " +
-	 * Arrays.toString(command));
-	 * ProcessBuilder pb = new ProcessBuilder(command);
-	 * pb.inheritIO(); // Inherit I/O to see curl output in Java console
-	 * 
-	 * Rejection.logger.debug("Sending Rejection API Update: " +
-	 * Arrays.toString(command));
-	 * Process process = pb.start();
-	 * int exitCode = process.waitFor(); // Wait for curl command to complete
-	 * Rejection.logger.debug("Curl command for rejection app exited with code: " +
-	 * exitCode);
-	 * 
-	 * } catch (IOException | InterruptedException e) {
-	 * Rejection.logger.error("Error sending rejection meter update: " +
-	 * e.getMessage());
-	 * e.printStackTrace();
-	 * if (e instanceof InterruptedException) {
-	 * Thread.currentThread().interrupt(); // Restore interrupt status
-	 * }
-	 * }
-	 * Rejection.logger.debug("Rejection: sendRejectionMeterUpdate : Exit");
-	 * }).start();
-	 * }
-	 */
-
+	
 	public void sendRestApiPalletUpdate(String palletQrCode) {
 		Rejection.logger.debug("sendRestApiPalletUpdate: Entry");
 		new Thread(() -> {
 			try {
-				// Rejection.logger.debug("sendRestApiMeterStatusUpdate: status-1: <" + status +
-				// "> : positionNo: " + positionNo);
-				// ConveyorClientManager cluster1ClientManager = new ConveyorClientManager();
 				String terminalId = ConstantConveyorConfig.MY_TERMINAL_ID;
 				String clusterId = ConstantConveyorConfig.CONVEYOR_REJECTION_CLUSTER_ID;// "4";
 				Rejection.logger.debug(
@@ -691,10 +394,7 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 				ClusterServer clusterServer = bayUtils.getServerDetails(terminalId, clusterId);
 				ConveyorClientManager cluster4ClientManager = ConveyorClientManager.getInstance(clusterId);
 				String targetDisplay = ConstantConveyorConfig.REST_API_TAIL_END_REJECTION_DISPLAY;// "rejection_meters";
-				// String status2 = status.replace(ConstantReport.REPORT_POPULATE_WFR,
-				// ConstantReport.REPORT_POPULATE_PASS).toUpperCase();
-				// Rejection.logger.debug("sendRestApiMeterStatusUpdate: status-2: <" + status2
-				// + "> : positionNo: " + positionNo);
+
 				cluster4ClientManager.getRestConvClient().sendPalletNumberUpdate(clusterServer, targetDisplay,
 						palletQrCode);
 
@@ -710,6 +410,7 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 		}).start();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void sendPalletWithMetersStatusUpdate(String palletQrCode, List<Map<String, Object>> metersData) {
 		Rejection.logger.debug("sendPalletWithMetersStatusUpdate: Entry");
 		new Thread(() -> {

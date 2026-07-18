@@ -3,14 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.rejection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
-import com.tasnetwork.calibration.conveyor.bay.unloading.Unloading;
 //import com.tasnetwork.calibration.conveyor.bay_highvoltagetest.HighVoltageTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
@@ -20,17 +17,17 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S01_check_for_pallets_at_Reject_Bay implements RejectionBayState {
 
-	private boolean simulateIrtBayHappyPath = true;
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01 ;
 	private String palletSensorPortCname =  ConstantBayPortNameMapping.REJECT_PORT_NAME_SNSR_PALLET ;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_REJECTION_001 ;
 
 
 	private boolean logEnabled = true;
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
+	/**
+	 * Checks for the presence of a pallet at the Rejection Bay.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Rejection.logger.info("S01_check_for_pallets_at_Reject_Bay : Entry");

@@ -1,19 +1,15 @@
 package com.tasnetwork.calibration.conveyor.bay.rejection;
 
+import java.net.HttpURLConnection; // Added import for HttpURLConnection
+import java.net.URL; // Added import for URL
 import java.util.HashMap;
 import java.util.Map;
-import java.net.URL; // Added import for URL
-import java.net.HttpURLConnection; // Added import for HttpURLConnection
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
-import com.tasnetwork.calibration.conveyor.bay.unloading.Unloading;
-//import com.tasnetwork.calibration.conveyor.bay_highvoltagetest.HighVoltageTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -22,25 +18,19 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S021_check_for_pallet_removed_at_Reject_Bay implements RejectionBayState {
 
-	private boolean simulateIrtBayHappyPath = true;
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01 ;
 	private String palletSensorPortCname = ConstantBayPortNameMapping.REJECT_PORT_NAME_SNSR_PALLET ;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_REJECTION_001 ;
-	private String myBayKey; // Assuming this field is initialized elsewhere or via a constructor.
-
-	// Constants for the Flask API server
+	
 	private static final String FLASK_API_HOST = "127.0.0.1";
 	private static final int FLASK_API_PORT = 5001;
 	private static final String IDLE_API_ENDPOINT = "/api/rejection_idle";
 	private boolean logEnabled = true;
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
-	public void setMyBayKey(String myBayKey) {
-		this.myBayKey = myBayKey;
-	}
-
+	/**
+	 * Checks if the pallet has been removed at the Rejection Bay.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Rejection.logger.info("S021_check_for_pallet_removed_at_Reject_Bay : Entry");

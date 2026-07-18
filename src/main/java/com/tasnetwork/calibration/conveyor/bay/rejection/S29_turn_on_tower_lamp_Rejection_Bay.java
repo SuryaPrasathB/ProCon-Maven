@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.rejection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,7 +13,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S29_turn_on_tower_lamp_Rejection_Bay implements RejectionBayState {
 
-    //===========================================================================================
+    /**
+     * Turns on the tower lamp at the Rejection Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Rejection.logger.info("S29_turn_on_tower_lamp_Rejection_Bay : Entry");

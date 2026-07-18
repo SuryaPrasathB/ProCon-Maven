@@ -5,15 +5,9 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.spring.orm.model.StateFlow;
-
-import javafx.scene.control.TableView;
 
 public class Rejection implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Rejection.class.getPackage().getName()); 
@@ -45,9 +39,9 @@ public class Rejection implements BayStateContext {
 	public void setNextState(String stateName, String errorCode) {
 		RejectionBayState newState;
 		if (stateName.equals("S03_error_Handling") || stateName.startsWith("ERROR")) {
-			newState = createErrorStateInstance(stateName, errorCode);
+			newState = RejectionBayState.createErrorState(stateName, errorCode);
 		} else {
-			newState = createRejectionBayStateInstance(stateName);
+			newState = RejectionBayState.createState(stateName);
 		}
 		rejectionBayStateManager.setState(newState);
 	}
@@ -67,48 +61,6 @@ public class Rejection implements BayStateContext {
 
 	//public TableView<StateFlow> tableStatePlanner_RejectionBay = new TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_RejectionBay = new ArrayList<StateFlow>();
-	
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_RejectionBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static RejectionBayState createRejectionBayStateInstance(String stateName) {
-	        // Create and return an instance of the state class based on the state name
-	        switch (stateName) {
-	            case "S01_check_for_pallets_at_Reject_Bay": 
-	                return new S01_check_for_pallets_at_Reject_Bay();
-	            case "S02_qR_Code_Scanning_of_Pallet" :
-	            	return new S02_qR_Code_Scanning_of_Rejected_Pallet();
-	            case "S021_check_for_pallet_removed_at_Reject_Bay" :
-	            	return new S021_check_for_pallet_removed_at_Reject_Bay();
-	            case "S03_error_Handling":
-	                return new S03_error_Handling(); 
-	            case "S04_idle_condition":
-	                return new S04_idle_condition(); 
-	            default:
-	            	Rejection.logger.debug("createRejectionBayStateInstance: Unknown state: " + stateName); 
-	                throw new IllegalArgumentException("Unknown state: " + stateName);
-	        }
-	    }
-
-	private RejectionBayState createErrorStateInstance(String stateName, String errorCode) {  
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-		case "S03_error_Handling":
-			return new S03_error_Handling(errorCode);
-		default:
-			throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
 
 	@Override
 	public String getErrorStateInstanceString(String errorCode) {
