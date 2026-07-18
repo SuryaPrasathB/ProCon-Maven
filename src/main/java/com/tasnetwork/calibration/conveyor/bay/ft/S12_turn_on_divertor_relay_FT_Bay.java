@@ -14,14 +14,13 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor; // Import 
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus; // Import for TestInterfaceStatus
 
+/**
+ * State class responsible for turning on the divertor relay for FT Bay.
+ */
 public class S12_turn_on_divertor_relay_FT_Bay implements FtBayState {
 
 
-    private String myBaySeqId = ConstantBayStateManage.FT_BAY_HP_SEQ_14; // Example, adjust if a more specific one exists
-
-    public String getMyBayKey() {
-        return myBayKey;
-    }
+    private String myBaySeqId = ConstantBayStateManage.FT_BAY_HP_SEQ_14; 
 
     //===========================================================================================
     @Override
@@ -36,7 +35,6 @@ public class S12_turn_on_divertor_relay_FT_Bay implements FtBayState {
         Map<String,Object> responseReturn = turn_on_divertor_relay_FT_Bay();	 
 		boolean turn_on_divertor_relay_status = (boolean)responseReturn.get("status");
         
-        // Update GUI (assuming StateExecutorController.updateTestInterfaceStatusOnGui handles Platform.runLater() internally)
         StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn, ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 
         if (turn_on_divertor_relay_status) {
@@ -86,14 +84,13 @@ public class S12_turn_on_divertor_relay_FT_Bay implements FtBayState {
                     "Waiting", // Initial status for GUI
                     ConstantConveyor.COMM_EXECUTION_STATUS_INP
             );
-            // Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
+
             int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testInterfaceStatus);
             testInterfaceStatus.setSerialNo(String.valueOf(newRecordSerialNo));
 
             try {
             	BayUtils bayUtils = new BayUtils();
                 // Send command to turn ON the divertor relay
-                // Assuming Constant_IO_ActionMapping.OLD_CLOSE_NEW_OPEN corresponds to "turning the relay On"
                 state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
                                               portInfo.getBayId(), 
                                               portInfo.getPortId(),
@@ -102,9 +99,7 @@ public class S12_turn_on_divertor_relay_FT_Bay implements FtBayState {
                 // Log the raw state received from the control system for debugging
                 Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 
-                // Determine if the operation was successful based on the returned state
-                // Assuming Constant_IO_ActionMapping.OLD_OFF_NEW_ON is the expected "ON" state of the relay after successful command
-                status = state.equals(Constant_IO_ActionMapping.OPEN); // Corrected to use OLD_CLOSE_NEW_OPEN as success state
+                status = state.equals(Constant_IO_ActionMapping.OPEN); 
 
                 Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_COMMAND] : [STATUS_CHECK] - Raw state: %s, Interpreted status: %s", getMyBayKey(), state, status));
                 
@@ -151,8 +146,8 @@ public class S12_turn_on_divertor_relay_FT_Bay implements FtBayState {
         
 		responseReturn.put("status", status);
         responseReturn.put("responseData", state); // Include the state/response data
-        responseReturn.put("testInterfaceStatus", testInterfaceStatus); // Include the TestInterfaceStatus object
-
+        responseReturn.put("testInterfaceStatus", testInterfaceStatus); 
+        
         // Structured debug log for method exit
         Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_COMMAND] : [REQUEST_EXIT] - Divertor Relay ON request completed. Status: %s, Final State: %s", getMyBayKey(), status, state));
         return responseReturn;

@@ -14,6 +14,9 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for sending the command to start the FT Source.
+ */
 public class S071_start_FT_source implements FtBayState {
 
 	BayUtils bayUtils = new BayUtils();
@@ -21,9 +24,6 @@ public class S071_start_FT_source implements FtBayState {
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -48,7 +48,6 @@ public class S071_start_FT_source implements FtBayState {
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_FT_028);
 		}
 		
-		// Assuming StateExecutorController.updateTestInterfaceStatusOnGui handles Platform.runLater() internally
 		StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn,ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 
 		// Structured log for sequence exit
@@ -83,8 +82,7 @@ public class S071_start_FT_source implements FtBayState {
 					ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
 					"Waiting",
 					ConstantConveyor.COMM_EXECUTION_STATUS_INP);
-			
-			// Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
+
 			StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 		} else {
 			// Log a clear error if the port information is missing
@@ -121,17 +119,6 @@ public class S071_start_FT_source implements FtBayState {
 		
 		// Log the raw state received from the control system for debugging
 		Ft.logger.debug(String.format("[%s] : [FT_SOURCE_START_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
-
-		// Assuming OLD_OFF_NEW_ON signifies successful activation based on previous context.
-		// Re-evaluating logic: if setOutputDataToBay returns OLD_OFF_NEW_ON on success, then use that for comparison.
-		// The next line `state = state.equals(...)` seems to re-interpret the string `state`.
-		// It should directly compare `state` with the expected success response from `setOutputDataToBay`.
-		// If `setOutputDataToBay` *returns* `OLD_OFF_NEW_ON` when successful, then this is correct.
-		// If `OLD_CLOSE_NEW_OPEN` (which means "On") is the expected final state of the pin, then the check below is correct.
-		// For consistency, let's assume `setOutputDataToBay` returns the *resultant state* of the pin.
-		
-		// Original logic `state = state.equals(Constant_IO_ActionMapping.OLD_OFF_NEW_ON) ? Constant_IO_ActionMapping.OLD_CLOSE_NEW_OPEN : Constant_IO_ActionMapping.OLD_OPEN_NEW_CLOSE;`
-		// This line re-interprets the 'state' string. Let's assume `OLD_OFF_NEW_ON` is the expected *response* for a successful "start" command.
 		
 		status = state.equals(Constant_IO_ActionMapping.ON); // Check if the returned state matches the 'ON' signal
 

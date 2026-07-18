@@ -20,7 +20,6 @@ import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteResponse;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
@@ -162,7 +161,7 @@ public class S045_Select_Run_Project_Bay1 implements STA_NoLoadTestBay1State  {
 	    String presentBayKey = ConstantConveyor.STA_NLD1_BAY_KEY;
 
 		
-	    while (true && !ProjectExecutionController.getUserAbortedFlag() && !StaNld_Bay1.isStopProcessRequestedStaNldBay1()) {
+	    while (true && !BayUtils.isUserAborted() && !StaNld_Bay1.isStopProcessRequestedStaNldBay1()) {
 	        palletManageList = MySqlServiceManager.getPalletManageService()
 	                .findByPresentBayKeyAndPalletActive(presentBayKey);
 

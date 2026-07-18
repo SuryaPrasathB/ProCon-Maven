@@ -19,7 +19,6 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 
 public class S07_open_stop_latch_Waiting_Bay implements WaitingBayState {
 	PalletTrackerController palletTracker = new PalletTrackerController();
@@ -88,7 +87,7 @@ public class S07_open_stop_latch_Waiting_Bay implements WaitingBayState {
             
             int palletMoveMentWaitTimeInSec =  ConstantConveyorConfig.WAITING_TO_VERIFIC_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC ;//30;
             VerificWaiting.logger.info("S07_open_stop_latch_Waiting_Bay : palletMoveMentWaiting start:");
-            while ( (palletMoveMentWaitTimeInSec>0) && (!ProjectExecutionController.getUserAbortedFlag()) ){
+            while ( (palletMoveMentWaitTimeInSec>0) && (!BayUtils.isUserAborted()) ){
             	 VerificWaiting.logger.info("S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: " + palletMoveMentWaitTimeInSec);
             	 BayUtils.delay(1000);
             	 palletMoveMentWaitTimeInSec--;

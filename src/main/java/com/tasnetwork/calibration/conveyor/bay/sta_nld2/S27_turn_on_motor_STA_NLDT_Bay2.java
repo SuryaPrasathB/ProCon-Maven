@@ -15,7 +15,6 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 
 public class S27_turn_on_motor_STA_NLDT_Bay2 implements STA_NoLoadTestBay2State {
 

@@ -12,11 +12,11 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for waiting for the reset button at Rejection Bay.
+ */
 public class S19_wait_for_reset_button_ip_Rejection_Bay implements FtBayState {
 
-    public String getMyBayKey() {
-        return myBayKey;
-    }
 
     //===========================================================================================
     @Override

@@ -17,14 +17,13 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus; // Import for TestInterfaceStatus
 
+/**
+ * State class responsible for ensuring the pallet has reached the HVT Bay.
+ */
 public class S15_ensure_pallet_reached_HVT_Bay implements FtBayState {
 	BayUtils bayUtils = new BayUtils();
 	
-	private String myBaySeqId = ConstantBayStateManage.FT_BAY_HP_SEQ_17; // Example, adjust if a more specific one exists
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+	private String myBaySeqId = ConstantBayStateManage.FT_BAY_HP_SEQ_17;
 
     //===========================================================================================
     @Override

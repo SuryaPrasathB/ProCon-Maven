@@ -18,7 +18,6 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 
 public class S22_close_stop_latch2_Verific_Bay implements VerificTestBayState {
 
@@ -65,7 +64,7 @@ public class S22_close_stop_latch2_Verific_Bay implements VerificTestBayState {
             /*palletTracker.switchBatchToNextBay(myBayKey, ConstantConveyor.STA_NLD1_BAY_KEY);*/
             int palletMoveMentWaitTimeInSec =  ConstantConveyorConfig.VERIFIC_TO_STA1_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC ;//30;
             Verification.logger.info("S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : start:");
-            while ( (palletMoveMentWaitTimeInSec>0) && (!ProjectExecutionController.getUserAbortedFlag()) ){
+            while ( (palletMoveMentWaitTimeInSec>0) && (!BayUtils.isUserAborted()) ){
             	Verification.logger.info("S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: " + palletMoveMentWaitTimeInSec);
             	 BayUtils.delay(1000);
             	 palletMoveMentWaitTimeInSec--;

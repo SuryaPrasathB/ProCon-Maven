@@ -14,6 +14,9 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * Duplicate/Alternative state class for opening the fingertip latch.
+ */
 public class S091_open_the_fingerTip_Latch implements FtBayState {
 
 	BayUtils bayUtils = new BayUtils();
@@ -21,9 +24,6 @@ public class S091_open_the_fingerTip_Latch implements FtBayState {
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -39,7 +39,6 @@ public class S091_open_the_fingerTip_Latch implements FtBayState {
 		setPalletAvailableTest_I_F_Status (null); // Resetting for current operation
 
 		Map<String,Object> responseReturn = open_FingerTipLatch_FtBay();	 
-		// Assuming StateExecutorController.updateTestInterfaceStatusOnGui handles Platform.runLater() internally
 		StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn,ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 
 		boolean openFingerTipLatchResult = (boolean)responseReturn.get("status");
@@ -91,13 +90,11 @@ public class S091_open_the_fingerTip_Latch implements FtBayState {
 					"Waiting",
 					ConstantConveyor.COMM_EXECUTION_STATUS_INP
 					);
-			
-			// Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
+
 			StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 
 			try {
 				// Command to open the fingertip latch
-				// Assuming OLD_OPEN_NEW_CLOSE is the correct action to "open" the latch
 				state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
 						portInfo.getBayId(), 
 						portInfo.getPortId(),
@@ -106,8 +103,6 @@ public class S091_open_the_fingerTip_Latch implements FtBayState {
 				// Log the raw state received from the control system for debugging
 				Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 				
-				// Corrected logic: status should be true if the returned state matches the 'open' state.
-				// Assuming Constant_IO_ActionMapping.OLD_OPEN_NEW_CLOSE is the expected successful state after command.
 				status = state.equals(Constant_IO_ActionMapping.CLOSE); 
 				
 				Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [STATUS_CHECK] - Raw state: %s, Interpreted status: %s", getMyBayKey(), state, status));
@@ -121,8 +116,6 @@ public class S091_open_the_fingerTip_Latch implements FtBayState {
 				}
 				
 				// Check for timeout or invalid response
-				// This logic `portInfo.getPortId().equals(state)` seems to be a generic check for timeout.
-				// If the actual state string returned matches the port ID string, it might indicate an error.
 				if(portInfo.getPortId().equals(state)){ 
 					testIntefaceStatus.setDeviceResponseData("TimeOut");
 					Ft.logger.warn(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [TIMEOUT] - Fingertip latch command timed out or invalid response. Raw state: %s", getMyBayKey(), state));
@@ -137,7 +130,6 @@ public class S091_open_the_fingerTip_Latch implements FtBayState {
 					Ft.logger.debug(String.format("[%s] : [SIMULATION] : Fingertip latch open status overridden to TRUE.", getMyBayKey()));
 				}
 
-				// Update GUI with final status (assuming StateExecutorController.updateTestStatusGui handles Platform.runLater() internally)
 				StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 			} catch (Exception e) {

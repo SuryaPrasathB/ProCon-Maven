@@ -1,6 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.bookshelf;
 
-import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+// import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class Check_FingerTip_Latch_Status  {
 

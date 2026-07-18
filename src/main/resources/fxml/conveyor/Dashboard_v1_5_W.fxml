@@ -19,10 +19,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1781.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dashboard.DashboardController">
-<BorderPane>
-      <left>
-        <HBox prefHeight="862.0" prefWidth="1735.0" spacing="10" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
+<AnchorPane prefHeight="861.0" prefWidth="1781.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.dashboard.DashboardController">
+<BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <HBox spacing="10" style="-fx-padding: 10;" BorderPane.alignment="CENTER">
             <ScrollPane fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="771.0" prefWidth="1076.0" vbarPolicy="AS_NEEDED" HBox.hgrow="ALWAYS">
                 <VBox prefHeight="975.0" prefWidth="1072.0" spacing="20" style="-fx-padding: 20;">
                     <GridPane fx:id="palletGrid" hgap="10" prefHeight="982.0" prefWidth="1032.0" vgap="10">
@@ -106,40 +106,38 @@
 						<AnchorPane fx:id="bay12Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 						
 						<!-- Verification group container with final alignment adjustments -->
-						<AnchorPane fx:id="verificationBayGroup" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="2">
-						    <children>
-						        <!-- Verification4 -->
-						        <AnchorPane fx:id="pallet9Container" layoutX="19.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Verification4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <!-- Verification3 -->
-						        <AnchorPane fx:id="pallet10Container" layoutX="298.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Verification3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <!-- Verification2 -->
-						        <AnchorPane fx:id="pallet11Container" layoutX="576.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Verification2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <!-- Verification1 (left-shifted) -->
-						        <AnchorPane fx:id="pallet12Container" layoutX="855.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Verification1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						    </children>
+						<AnchorPane fx:id="verificationBayGroup" mouseTransparent="true" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="2" />
+
+						<!-- Verification4 -->
+						<AnchorPane fx:id="pallet9Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="0" GridPane.rowIndex="2">
+						    <Label text="Verification4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Verification3 -->
+						<AnchorPane fx:id="pallet10Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+						    <Label text="Verification3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Verification2 -->
+						<AnchorPane fx:id="pallet11Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+						    <Label text="Verification2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Verification1 -->
+						<AnchorPane fx:id="pallet12Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+						    <Label text="Verification1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
 						</AnchorPane>
 
 
@@ -149,36 +147,38 @@
 						<AnchorPane fx:id="bay15Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 						<AnchorPane fx:id="bay16Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 						
-						<AnchorPane fx:id="sta1BayGroup" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="3">
-						    <children>
-						        <AnchorPane fx:id="pallet13Container" layoutX="19.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta1_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <AnchorPane fx:id="pallet14Container" layoutX="298.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta1_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <AnchorPane fx:id="pallet15Container" layoutX="576.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta1_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <AnchorPane fx:id="pallet16Container" layoutX="855.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta1_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						    </children>
+						<AnchorPane fx:id="sta1BayGroup" mouseTransparent="true" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+
+						<!-- Sta1_4 -->
+						<AnchorPane fx:id="pallet13Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="0" GridPane.rowIndex="3">
+						    <Label text="Sta1_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Sta1_3 -->
+						<AnchorPane fx:id="pallet14Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+						    <Label text="Sta1_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Sta1_2 -->
+						<AnchorPane fx:id="pallet15Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+						    <Label text="Sta1_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Sta1_1 -->
+						<AnchorPane fx:id="pallet16Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+						    <Label text="Sta1_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
 						</AnchorPane>
 						
 						<!-- Row 4 - STA2 Group -->
@@ -187,36 +187,38 @@
 						<AnchorPane fx:id="bay19Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
 						<AnchorPane fx:id="bay20Container" prefHeight="179.0" prefWidth="262.0" style="-fx-border-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
 						
-						<AnchorPane fx:id="sta2BayGroup" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="4">
-						    <children>
-						        <AnchorPane fx:id="pallet17Container" layoutX="19.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta2_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <AnchorPane fx:id="pallet18Container" layoutX="298.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta2_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <AnchorPane fx:id="pallet19Container" layoutX="576.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta2_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						        
-						        <AnchorPane fx:id="pallet20Container" layoutX="855.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="134.0" prefWidth="228.0" style="-fx-border-color: lightgrey;">
-						            <Label text="Sta2_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
-						            <GridPane.margin>
-						                <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-						            </GridPane.margin>
-						        </AnchorPane>
-						    </children>
+						<AnchorPane fx:id="sta2BayGroup" mouseTransparent="true" style="-fx-border-color: orange; -fx-border-width: 2; -fx-background-color: rgba(173,216,230,0.1);" GridPane.columnSpan="4" GridPane.rowIndex="4" />
+
+						<!-- Sta2_4 -->
+						<AnchorPane fx:id="pallet17Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="0" GridPane.rowIndex="4">
+						    <Label text="Sta2_4" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Sta2_3 -->
+						<AnchorPane fx:id="pallet18Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+						    <Label text="Sta2_3" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Sta2_2 -->
+						<AnchorPane fx:id="pallet19Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+						    <Label text="Sta2_2" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
+						</AnchorPane>
+						
+						<!-- Sta2_1 -->
+						<AnchorPane fx:id="pallet20Container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="143.0" prefWidth="234.0" style="-fx-border-color: lightgrey;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+						    <Label text="Sta2_1" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" />
+						    <GridPane.margin>
+						        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+						    </GridPane.margin>
 						</AnchorPane>
                     </GridPane>
                 </VBox>
@@ -562,6 +564,6 @@
                </HBox>
             </VBox>
         </HBox>
-      </left>
+      </center>
 </BorderPane>
 </AnchorPane>

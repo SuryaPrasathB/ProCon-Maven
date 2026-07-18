@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
-import com.tasnetwork.calibration.energymeter.deployment.DeploymentDataModel;
 import com.tasnetwork.calibration.energymeter.testreport.ReportMeterMetaDataTypeSubModel;
 
 import javafx.beans.property.SimpleObjectProperty;

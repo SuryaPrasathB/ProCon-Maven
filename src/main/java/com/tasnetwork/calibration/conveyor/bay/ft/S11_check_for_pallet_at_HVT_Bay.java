@@ -18,6 +18,9 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for checking for a pallet at the HVT Bay.
+ */
 public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 
 	private BayUtils bayUtils = new BayUtils();
@@ -28,9 +31,6 @@ public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -39,14 +39,14 @@ public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 		Ft.logger.info(String.format("[%s] : [PALLET_CHECK_HVT_BAY] : [SEQUENCE_ENTRY] - Checking for pallet at HVT Bay.", getMyBayKey()));
 
 		BayResponse bayResponse = new BayResponse();
-		bayResponse.setStatus(true); // Assume success initially, status will be updated based on logic
+		bayResponse.setStatus(true); 
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
 		setSequencePathId("p1"); // Set sequence path ID for this operation
 		setPalletAvailableTest_I_F_Status(null); // Resetting for current operation
 
 		Map<String,Object> responseReturn = null; // Initialize to null for the first check
-		boolean isPalletPresent = true; // Assume pallet is present to enter the waiting loop
+		boolean isPalletPresent = true; 
 		Ft.logger.info(String.format("[%s] : [PALLET_CHECK_HVT_BAY] : [WAITING_FOR_CLEARANCE] - Waiting for noEntry at HV...", getMyBayKey()));
 		
 		while((!Ft.isStopProcessRequestedFtBay()) &&
@@ -54,7 +54,6 @@ public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 			BayUtils.delay(1000);
 		}
 		// Loop to wait until no pallet is available at HVT Bay
-		// This loop continues as long as a pallet *is* detected and no stop process is requested
 		Ft.logger.info(String.format("[%s] : [PALLET_CHECK_HVT_BAY] : [WAITING_FOR_CLEARANCE] - Waiting for pallet to clear HVT Bay...", getMyBayKey()));
 		while (isPalletPresent && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			responseReturn = isPalletAvailableAt_HvtBay();	 
@@ -157,19 +156,11 @@ public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 			Ft.logger.debug(String.format("[%s] : [PALLET_SENSOR_READ] : [RAW_STATE] : %s", getMyBayKey(), rawStateFromSensor));
 
 			// Determine status based on raw sensor state
-			// Assuming OLD_OFF_NEW_ON means pallet is present (sensor is "ON")
 			status = rawStateFromSensor.equals(Constant_IO_ActionMapping.ON);
 			
 			// Simulate happy path if enabled
 			if(StateExecutorController.simulateFtBayHappyPath){
-				// In simulation, if the goal is to *clear* the bay, simulate no pallet.
-				// If the goal is to *detect* a pallet for movement, simulate pallet present.
-				// Given the while loop in handleRequest, the objective here is often to see the sensor go to 'no pallet'.
-				// So, setting status to false (no pallet) when simulating might be the intention to exit the loop.
-				// However, if this check is primarily to detect initial presence, then 'true' would be simulated.
-				// For the purpose of this state (S11_check_for_pallet_at_HVT_Bay), it's likely confirming *absence* for entry.
-				// Let's assume simulateFtBayHappyPath makes the sensor read "no pallet" to allow flow to proceed.
-				status = false; // Simulate no pallet for a "happy path" (meaning it can proceed to next step)
+				status = false; 
 				Ft.logger.debug(String.format("[%s] : [SIMULATION] : Pallet sensor status overridden to NO_PALLET (false).", getMyBayKey()));
 			}
 

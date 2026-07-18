@@ -9,16 +9,15 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for ensuring the pallet has reached the Rejection Bay.
+ */
 public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
-
-    public String getMyBayKey() {
-        return myBayKey;
-    }
-
 
     //===========================================================================================
     @Override
@@ -35,7 +34,7 @@ public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
 
         // Loop to retry checking if the pallet has reached the rejection bay
         Ft.logger.debug(String.format("[%s] : [PALLET_REACH_CHECK] : [RETRY_LOOP_START] - Starting retry loop to confirm pallet presence (Max retries: %d).", getMyBayKey(), MAX_RETRY_COUNT));
-        while (try_count <= MAX_RETRY_COUNT) {
+        while (try_count <= MAX_RETRY_COUNT && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
             Map<String,Object> responseReturn = pallet_sensed_at_Reject_Bay();
             // Ensure safe retrieval from map, defaulting to an unexpected state string
             String pallet_sensed_at_Reject_Bay_status = (String)responseReturn.getOrDefault("status", "UNEXPECTED_STATUS");
@@ -103,7 +102,6 @@ public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
                 Ft.logger.debug(String.format("[%s] : [PALLET_SENSOR_READ] : [RAW_STATE] : %s", getMyBayKey(), rawStateFromSensor));
 
                 // Determine status based on raw sensor state
-                // Assuming Constant_IO_ActionMapping.OLD_OFF_NEW_ON means pallet IS DETECTED
                 String interpretedState = rawStateFromSensor.equals(Constant_IO_ActionMapping.ON) ?
                                           Constant_IO_ActionMapping.DETECTED :
                                           Constant_IO_ActionMapping.NOT_DETECTED;

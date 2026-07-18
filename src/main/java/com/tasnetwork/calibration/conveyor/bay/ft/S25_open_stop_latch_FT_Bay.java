@@ -16,12 +16,12 @@ import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for opening the stop latch at the FT Bay.
+ */
 public class S25_open_stop_latch_FT_Bay implements FtBayState {
 	PalletTrackerController palletTracker = new PalletTrackerController();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
     String sequencePathId = "p1";
     private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
@@ -113,7 +113,7 @@ public class S25_open_stop_latch_FT_Bay implements FtBayState {
             Ft.logger.debug(String.format("[%s] : [STOP_LATCH_OPERATION] : [PORT_INFO] - PortId: %s, ClusterId: %s, BayId: %s", getMyBayKey(), portInfo.getPortId(), portInfo.getClusterId(), portInfo.getBayId()));
             testInterfaceStatus.setPortName(portInfo.getPortId()); // Set port name for GUI
 
-            String outputActive = Constant_IO_ActionMapping.OFF; // Assuming OLD_ON_NEW_OFF means 'open' or 'deactivate'
+            String outputActive = Constant_IO_ActionMapping.OFF;
             Ft.logger.debug(String.format("[%s] : [STOP_LATCH_OPERATION] : [SET_OUTPUT] - Attempting to set output to %s for port %s.", getMyBayKey(), outputActive, portInfo.getPortId()));
 
             try {

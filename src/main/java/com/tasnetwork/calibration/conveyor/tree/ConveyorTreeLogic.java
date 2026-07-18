@@ -1,4 +1,5 @@
 package com.tasnetwork.calibration.conveyor.tree;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,67 +15,72 @@ import java.util.List;
 
 public class ConveyorTreeLogic {
 
-    private MyTerminal terminalObj;  // Object representing the terminal
-    private String lastErrorMessage;  // Holds the last error message
+    private MyTerminal terminalObj; // Object representing the terminal
+    private String lastErrorMessage; // Holds the last error message
 
     public ConveyorTreeLogic() {
-    	
+
     }
+
     // Constructor that initializes the terminal object using a configuration file
     public ConveyorTreeLogic(String configFilePath) throws IOException, JSONException {
         // Read and parse the JSON configuration file
         String jsonContent = new String(Files.readAllBytes(Paths.get(configFilePath)));
         JSONObject jsonObject = new JSONObject(jsonContent);
-        
+
         // Extract and initialize the terminal object from the JSON content
         JSONArray terminalArray = jsonObject.getJSONArray("Terminal");
         terminalObj = new MyTerminal(terminalArray.getJSONObject(0));
     }
-    
+
     public void init(String configFilePath) {
-    	ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: Entry");
-    	String jsonContent;
-		try {
-			jsonContent = new String(Files.readAllBytes(Paths.get(configFilePath)));
-			JSONObject jsonObject;
-			try {
-				jsonObject = new JSONObject(jsonContent);
-				 try {
-						JSONArray terminalArray = jsonObject.getJSONArray("Terminal");
-						this.terminalObj = new MyTerminal(terminalArray.getJSONObject(0));
-						terminalObj.getClusters().stream().forEach(e->{
-							ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: getClusterId: "+ e.getClusterId() + " -> " + e.getClusterName() );
-							e.getBays().stream().forEach(e1->{
-								ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: bay: "+ e1.getBayId() + " -> " + e1.getBayName());
-								//ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: bay: getDutDeviceList: size: "+ e1.getDutDeviceList().size());
-								
-								e1.getDutDeviceList().stream().forEach(e2->{
-									ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: dutDevices: "+ e2.getName());
-								});
-							});
-						});
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        
-        
+        ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: Entry");
+        String jsonContent;
+        try {
+            jsonContent = new String(Files.readAllBytes(Paths.get(configFilePath)));
+            JSONObject jsonObject;
+            try {
+                jsonObject = new JSONObject(jsonContent);
+                try {
+                    JSONArray terminalArray = jsonObject.getJSONArray("Terminal");
+                    this.terminalObj = new MyTerminal(terminalArray.getJSONObject(0));
+                    terminalObj.getClusters().stream().forEach(e -> {
+                        ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: getClusterId: " + e.getClusterId()
+                                + " -> " + e.getClusterName());
+                        e.getBays().stream().forEach(e1 -> {
+                            ApplicationLauncher.logger
+                                    .debug("ConveyorTreeLogic :init: bay: " + e1.getBayId() + " -> " + e1.getBayName());
+                            // ApplicationLauncher.logger.debug("ConveyorTreeLogic :init: bay:
+                            // getDutDeviceList: size: "+ e1.getDutDeviceList().size());
+
+                            e1.getDutDeviceList().stream().forEach(e2 -> {
+                                ApplicationLauncher.logger
+                                        .debug("ConveyorTreeLogic :init: dutDevices: " + e2.getName());
+                            });
+                        });
+                    });
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                }
+            } catch (JSONException e) {
+
+                e.printStackTrace();
+            }
+        } catch (IOException e1) {
+
+            e1.printStackTrace();
+        }
+
         // Extract and initialize the terminal object from the JSON content
-       
-        //terminalObj = new MyTerminal(terminalArray.getJSONObject(0));
+
+        // terminalObj = new MyTerminal(terminalArray.getJSONObject(0));
     }
 
-    // Method to retrieve a list of device data based on the cluster, bay, and device type
+    // Method to retrieve a list of device data based on the cluster, bay, and
+    // device type
     public List<DeviceData> getDeviceDataList(String clusterId, String bayId, String deviceType) {
-        lastErrorMessage = null;  // Reset any previous error message
+        lastErrorMessage = null; // Reset any previous error message
 
         Cluster selectedCluster = null;
 
@@ -108,20 +114,20 @@ public class ConveyorTreeLogic {
 
         // List of valid device types in the correct order
         List<String> orderedTypes = Arrays.asList(
-                "DUT Device", "Mega Ohm Meter", "Volt Meter", "LDU", "QR Scanner", "Output Port", "Input Port"
-        );
+                "DUT Device", "Mega Ohm Meter", "Volt Meter", "LDU", "QR Scanner", "Output Port", "Input Port");
 
         // If the device type is valid, retrieve and return the corresponding devices
         if (orderedTypes.contains(deviceType)) {
             List<Device> devicesToPrint = selectedBay.getDevicesByType(deviceType);
             List<DeviceData> deviceDataList = new ArrayList<>();
-            
+
             // If devices are found, map them to device data objects
             if (!devicesToPrint.isEmpty()) {
                 for (Device device : devicesToPrint) {
-                    deviceDataList.add(new DeviceData(clusterId, bayId, device.getName(), device.getId(), device.getType()));
+                    deviceDataList
+                            .add(new DeviceData(clusterId, bayId, device.getName(), device.getId(), device.getType()));
                 }
-                return deviceDataList;  // Return the list of device data
+                return deviceDataList; // Return the list of device data
             } else {
                 // If no devices of the specified type are found, set error message
                 lastErrorMessage = "No " + deviceType + "s found in this bay.";
@@ -143,10 +149,10 @@ public class ConveyorTreeLogic {
     public List<Bay> getBays(String clusterId) {
         for (Cluster cluster : terminalObj.getClusters()) {
             if (cluster.getClusterId().equals(clusterId)) {
-                return cluster.getBays();  // Return the bays of the selected cluster
+                return cluster.getBays(); // Return the bays of the selected cluster
             }
         }
-        return null;  // Return null if clusterId is not found
+        return null; // Return null if clusterId is not found
     }
 
     // Method to get devices of a specific type in a specific bay and cluster
@@ -155,12 +161,12 @@ public class ConveyorTreeLogic {
             if (cluster.getClusterId().equals(clusterId)) {
                 for (Bay bay : cluster.getBays()) {
                     if (bay.getBayId().equals(bayId)) {
-                        return bay.getDevicesByType(deviceType);  // Return devices of the specified type
+                        return bay.getDevicesByType(deviceType); // Return devices of the specified type
                     }
                 }
             }
         }
-        return null;  // Return null if no matching devices are found
+        return null; // Return null if no matching devices are found
     }
 
     // Method to get the last error message

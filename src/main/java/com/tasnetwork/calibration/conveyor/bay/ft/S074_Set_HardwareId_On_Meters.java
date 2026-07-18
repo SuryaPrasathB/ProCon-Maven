@@ -1,5 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.ft;
 
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +10,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
-import javax.validation.constraints.Null;
 
 import com.tasnetwork.calibration.conveyor.ConveyorPalletTracking;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
@@ -29,36 +28,30 @@ import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
 import com.tasnetwork.calibration.conveyor.util.ChannelQueueRequestProcessor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
-import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 import javafx.application.Platform;
 
+/**
+ * State class responsible for setting the Hardware ID on the meters.
+ */
 public class S074_Set_HardwareId_On_Meters implements FtBayState {
 
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_05;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_FT_006;
 	String sequencePathId = "p1";
 
-	// These are class members in the original code, retaining them.
-	// For better thread safety and clarity, consider making them local to methods
-	// where they are truly transient results, especially if methods can be called concurrently.
 	String presentBayKey = "";
-	// String meterHardwareIdNumber; // Moved to local scope in dutOpticalHardwareIdNoWriteProcess for clarity
+
 	String resultStatus = "";
 	String resultValue = "";
 	String testType = "";
 	String testCaseName = "";
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	
 	static Map<Integer, String> errorCodeMap = new HashMap<>();
 
 	//===========================================================================================
@@ -182,7 +175,7 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 			boolean dutAllProcessExecutionCompleted = false;
 
 			Ft.logger.info(String.format("[%s] : [PARALLEL_WRITE] : [WAITING] - Waiting for parallel hardwareId write tasks to complete. Timeout: %d secs.", getMyBayKey(), dutWaitTimeDurationMaxInSec));
-			while ( (!ProjectExecutionController.getUserAbortedFlag()) && 
+			while ( (!BayUtils.isUserAborted()) && 
 					(dutWaitTimeCounter < dutWaitTimeDurationMaxInSec) && 
 					(!dutAllProcessExecutionCompleted) &&
 					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG) &&
@@ -220,7 +213,7 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 					Ft.logger.info(String.format("[%s] : [PARALLEL_WRITE] : [RESULT] - Position: %s: resultStatus :<%s> resultValue<%s>", getMyBayKey(),positionNo,resultStatus,resultValue));
 					if(resultStatus.equals(ConstantReport.REPORT_POPULATE_FAIL)){
 						Ft.logger.debug("Result Hit4: positionNo: " + positionNo);
-						PalletMeter responsePalletMeter = palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus,errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000) );//ErrorCode.ERR_OPTICAL_WRITE_SERIAL_NO);
+						palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus,errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000) );
 						ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
 	                            getMyBayKey(), positionNo, MeterStatus.FAILED, errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000));
 					}else{
@@ -255,7 +248,7 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 				resultStatus = resultValue;
 				palletTracker.addResultToMeter(positionNo, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
 				if(resultStatus.equals(ConstantReport.REPORT_POPULATE_FAIL)){
-					PalletMeter responsePalletMeter = palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000));//ErrorCode.ERR_OPTICAL_WRITE_SERIAL_NO);
+					palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000));
 				}
 			}
 		}
@@ -384,8 +377,6 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 		boolean status = checkAckForCommands();
 		if (!status) {
 			Ft.logger.warn(String.format("[%s] : [OPTICAL_HWID_WRITE] : [ACK_CHECK_FAILED] - Acknowledgment check failed for position %d. Proceeding with caution or returning.", getMyBayKey(), positionNum));
-			// Depending on criticality, you might want to fail the bayResponse here:
-			// bayResponse.setStatus(false); opticalReaderTestIntefaceStatus.setDeviceResponseStatus("Failed"); ... return bayResponse;
 		}
 
 		// Send Device Unlock Command
@@ -520,20 +511,6 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 			});
 		//} 
 			
-
-
-
-
-		// Add result to meter tracker (assuming these methods handle database operations)
-/*		try {
-			// Ensure palletTracker is instantiated if needed for these methods
-			PalletTrackerController palletTracker = new PalletTrackerController(); // Instantiate if not a class member
-			palletTracker.addResultToMeter(positionNum, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
-			Ft.logger.debug(String.format("[%s] : [OPTICAL_HWID_WRITE] : [ADD_RESULT_DB-0] - Result added to meter for position %d. Status: %s", getMyBayKey(), positionNum, resultStatus));
-		} catch (Exception e) {
-			Ft.logger.error(String.format("[%s] : [OPTICAL_HWID_WRITE] : [ADD_RESULT_DB_ERROR-0] - Failed to add result to meter DB for position %d. Error: %s", getMyBayKey(), positionNum, e.getMessage()), e);
-		}*/
-
 		opticalReaderTestIntefaceStatus.setTestStatus(ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 		StateExecutorController.updateTestStatusGui(opticalReaderTestIntefaceStatus);
 
@@ -634,15 +611,7 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 
 			resultValue = resultStatus; // Class member - Confirm if resultValue is always the same as resultStatus here.
 			opticalReaderTestIntefaceStatus.setDeviceResponseData("Wr-Dut HWID= " + meterHardwareIdNumber);
-			
-			
 
-
-			
-			
-			
-			
-			
 			bayResponse.setResponseData(meterHardwareIdNumber);
 			String localMeterHardwareIdNumber = meterHardwareIdNumber;
 			PalletTrackerController palletTracker = new PalletTrackerController();
@@ -684,22 +653,10 @@ public class S074_Set_HardwareId_On_Meters implements FtBayState {
 					Ft.logger.warn(String.format("[%s] : [UI_UPDATE_WARNING-2] : Dashboard object is null, cannot update HardwardId for position %d.", getMyBayKey(), positionNum));
 				}
 			});
-
-			// Add result to meter tracker (assuming these methods handle database operations)
-/*			try {
-				// Ensure palletTracker is instantiated if needed for these methods
-				PalletTrackerController palletTracker = new PalletTrackerController(); // Instantiate if not a class member
-				palletTracker.addResultToMeter(positionNum, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
-				Ft.logger.debug(String.format("[%s] : [OPTICAL_HWID_WRITE] : [ADD_RESULT_DB] - Result added to meter for position %d. Status: %s", getMyBayKey(), positionNum, resultStatus));
-			} catch (Exception e) {
-				Ft.logger.error(String.format("[%s] : [OPTICAL_HWID_WRITE] : [ADD_RESULT_DB_ERROR] - Failed to add result to meter DB for position %d. Error: %s", getMyBayKey(), positionNum, e.getMessage()), e);
-			}*/
-
 			opticalReaderTestIntefaceStatus.setTestStatus(ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 			StateExecutorController.updateTestStatusGui(opticalReaderTestIntefaceStatus); // Update GUI
 		} else {
-			// This path is already handled by the `if (!unlockCommandStatus)` block above.
-			// No additional action needed here unless there's a different failure path.
+
 		}
 	}
 

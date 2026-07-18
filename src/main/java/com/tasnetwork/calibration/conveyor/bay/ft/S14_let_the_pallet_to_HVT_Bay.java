@@ -14,15 +14,14 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor; // Import 
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus; // Import for TestInterfaceStatus
 
+/**
+ * State class responsible for releasing the pallet to the HVT Bay.
+ */
 public class S14_let_the_pallet_to_HVT_Bay implements FtBayState {
 	BayUtils bayUtils = new BayUtils();
 	
     private String myBaySeqId = ConstantBayStateManage.FT_BAY_HP_SEQ_16; // Example, adjust if a more specific one exists
     
-    public String getMyBayKey() {
-        return myBayKey;
-    }
-
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -103,13 +102,12 @@ public class S14_let_the_pallet_to_HVT_Bay implements FtBayState {
                     "Waiting", // Initial status for GUI
                     ConstantConveyor.COMM_EXECUTION_STATUS_INP
             );
-            // Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
+
             int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testInterfaceStatus);
             testInterfaceStatus.setSerialNo(String.valueOf(newRecordSerialNo));
 
             try {
                 // Send command to open the stopper
-                // Assuming OLD_OPEN_NEW_CLOSE is the correct action to "open" the stopper
                 state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                                                 portInfo.getBayId(),
                                                 portInfo.getPortId(),
@@ -119,7 +117,6 @@ public class S14_let_the_pallet_to_HVT_Bay implements FtBayState {
                 Ft.logger.debug(String.format("[%s] : [STOPPER_OPEN_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 
                 // Determine if the operation was successful based on the returned state
-                // Assuming Constant_IO_ActionMapping.OLD_OPEN_NEW_CLOSE is the expected "OPEN" state after successful command
                 status = state.equals(Constant_IO_ActionMapping.CLOSE); 
 
                 Ft.logger.debug(String.format("[%s] : [STOPPER_OPEN_COMMAND] : [STATUS_CHECK] - Raw state: %s, Interpreted status: %s", getMyBayKey(), state, status));
@@ -219,7 +216,6 @@ public class S14_let_the_pallet_to_HVT_Bay implements FtBayState {
 
             try {
                 // Send command to close the stopper
-                // Assuming Constant_IO_ActionMapping.OLD_CLOSE_NEW_OPEN is the correct action to "close" the stopper
                 state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                                                 portInfo.getBayId(),
                                                 portInfo.getPortId(),
@@ -229,7 +225,6 @@ public class S14_let_the_pallet_to_HVT_Bay implements FtBayState {
                 Ft.logger.debug(String.format("[%s] : [STOPPER_CLOSE_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 
                 // Determine if the operation was successful based on the returned state
-                // Assuming Constant_IO_ActionMapping.OLD_CLOSE_NEW_OPEN is the expected "CLOSED" state after successful command
                 status = state.equals(Constant_IO_ActionMapping.OPEN); 
                 
                 Ft.logger.debug(String.format("[%s] : [STOPPER_CLOSE_COMMAND] : [STATUS_CHECK] - Raw state: %s, Interpreted status: %s", getMyBayKey(), state, status));

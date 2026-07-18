@@ -18,9 +18,9 @@ class CellUtils {
     static int TREE_VIEW_HBOX_GRAPHIC_PADDING = 3;
 
     /***************************************************************************
-     *                                                                         *
-     * Private fields                                                          *
-     *                                                                         *
+     * *
+     * Private fields *
+     * *
      **************************************************************************/
 
     private final static StringConverter<?> defaultStringConverter = new StringConverter<Object>() {
@@ -35,24 +35,22 @@ class CellUtils {
         }
     };
 
-    private final static StringConverter<?> defaultTreeItemStringConverter =
-            new StringConverter<TreeItem<?>>() {
-                @Override
-                public String toString(TreeItem<?> treeItem) {
-                    return (treeItem == null || treeItem.getValue() == null) ?
-                            "" : treeItem.getValue().toString();
-                }
+    private final static StringConverter<?> defaultTreeItemStringConverter = new StringConverter<TreeItem<?>>() {
+        @Override
+        public String toString(TreeItem<?> treeItem) {
+            return (treeItem == null || treeItem.getValue() == null) ? "" : treeItem.getValue().toString();
+        }
 
-                @Override
-                public TreeItem<?> fromString(String string) {
-                    return new TreeItem<>(string);
-                }
-            };
+        @Override
+        public TreeItem<?> fromString(String string) {
+            return new TreeItem<>(string);
+        }
+    };
 
     /***************************************************************************
-     *                                                                         *
-     * General convenience                                                     *
-     *                                                                         *
+     * *
+     * General convenience *
+     * *
      **************************************************************************/
 
     /*
@@ -86,168 +84,167 @@ class CellUtils {
 
     }
 
-
     static Node getGraphic(TreeItem<?> treeItem) {
         return treeItem == null ? null : treeItem.getGraphic();
     }
 
-
     /***************************************************************************
-     *                                                                         *
-     * ChoiceBox convenience                                                   *
-     *                                                                         *
+     * *
+     * ChoiceBox convenience *
+     * *
      **************************************************************************/
-//
-//    static <T> void updateItem(final Cell<T> cell,
-//                               final StringConverter<T> converter,
-//                               final ChoiceBox<T> choiceBox) {
-//        updateItem(cell, converter, null, null, choiceBox);
-//    }
-//
-//    static <T> void updateItem(final Cell<T> cell,
-//                               final StringConverter<T> converter,
-//                               final HBox hbox,
-//                               final Node graphic,
-//                               final ChoiceBox<T> choiceBox) {
-//        if (cell.isEmpty()) {
-//            cell.setText(null);
-//            cell.setGraphic(null);
-//        } else {
-//            if (cell.isEditing()) {
-//                if (choiceBox != null) {
-//                    choiceBox.getSelectionModel().select(cell.getItem());
-//                }
-//                cell.setText(null);
-//
-//                if (graphic != null) {
-//                    hbox.getChildren().setAll(graphic, choiceBox);
-//                    cell.setGraphic(hbox);
-//                } else {
-//                    cell.setGraphic(choiceBox);
-//                }
-//            } else {
-//                cell.setText(getItemText(cell, converter));
-//                cell.setGraphic(graphic);
-//            }
-//        }
-//    }
-//
-//    ;
-//
-//    static <T> ChoiceBox<T> createChoiceBox(
-//            final Cell<T> cell,
-//            final ObservableList<T> items,
-//            final ObjectProperty<StringConverter<T>> converter) {
-//        ChoiceBox<T> choiceBox = new ChoiceBox<T>(items);
-//        choiceBox.setMaxWidth(Double.MAX_VALUE);
-//        choiceBox.converterProperty().bind(converter);
-//        choiceBox.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
-//            if (cell.isEditing()) {
-//                cell.commitEdit(newValue);
-//            }
-//        });
-//        return choiceBox;
-//    }
-
+    //
+    // static <T> void updateItem(final Cell<T> cell,
+    // final StringConverter<T> converter,
+    // final ChoiceBox<T> choiceBox) {
+    // updateItem(cell, converter, null, null, choiceBox);
+    // }
+    //
+    // static <T> void updateItem(final Cell<T> cell,
+    // final StringConverter<T> converter,
+    // final HBox hbox,
+    // final Node graphic,
+    // final ChoiceBox<T> choiceBox) {
+    // if (cell.isEmpty()) {
+    // cell.setText(null);
+    // cell.setGraphic(null);
+    // } else {
+    // if (cell.isEditing()) {
+    // if (choiceBox != null) {
+    // choiceBox.getSelectionModel().select(cell.getItem());
+    // }
+    // cell.setText(null);
+    //
+    // if (graphic != null) {
+    // hbox.getChildren().setAll(graphic, choiceBox);
+    // cell.setGraphic(hbox);
+    // } else {
+    // cell.setGraphic(choiceBox);
+    // }
+    // } else {
+    // cell.setText(getItemText(cell, converter));
+    // cell.setGraphic(graphic);
+    // }
+    // }
+    // }
+    //
+    // ;
+    //
+    // static <T> ChoiceBox<T> createChoiceBox(
+    // final Cell<T> cell,
+    // final ObservableList<T> items,
+    // final ObjectProperty<StringConverter<T>> converter) {
+    // ChoiceBox<T> choiceBox = new ChoiceBox<T>(items);
+    // choiceBox.setMaxWidth(Double.MAX_VALUE);
+    // choiceBox.converterProperty().bind(converter);
+    // choiceBox.getSelectionModel().selectedItemProperty().addListener((ov,
+    // oldValue, newValue) -> {
+    // if (cell.isEditing()) {
+    // cell.commitEdit(newValue);
+    // }
+    // });
+    // return choiceBox;
+    // }
 
     /***************************************************************************
-     *                                                                         *
-     * TextField convenience                                                   *
-     *                                                                         *
+     * *
+     * TextField convenience *
+     * *
      **************************************************************************/
-//
-//    static <T> void updateItem(final Cell<T> cell,
-//                               final StringConverter<T> converter,
-//                               final TextField textField) {
-//        updateItem(cell, converter, null, null, textField);
-//    }
-//
-//    static <T> void updateItem(final Cell<T> cell,
-//                               final StringConverter<T> converter,
-//                               final HBox hbox,
-//                               final Node graphic,
-//                               final TextField textField) {
-//        if (cell.isEmpty()) {
-//            cell.setText(null);
-//            cell.setGraphic(null);
-//        } else {
-//            if (cell.isEditing()) {
-//                if (textField != null) {
-//                    textField.setText(getItemText(cell, converter));
-//                }
-//                cell.setText(null);
-//
-//                if (graphic != null) {
-//                    hbox.getChildren().setAll(graphic, textField);
-//                    cell.setGraphic(hbox);
-//                } else {
-//                    cell.setGraphic(textField);
-//                }
-//            } else {
-//                cell.setText(getItemText(cell, converter));
-//                cell.setGraphic(graphic);
-//            }
-//        }
-//    }
-//
-//    static <T> void startEdit(final Cell<T> cell,
-//                              final StringConverter<T> converter,
-//                              final HBox hbox,
-//                              final Node graphic,
-//                              final TextField textField) {
-//        if (textField != null) {
-//            textField.setText(getItemText(cell, converter));
-//        }
-//        cell.setText(null);
-//
-//        if (graphic != null) {
-//            hbox.getChildren().setAll(graphic, textField);
-//            cell.setGraphic(hbox);
-//        } else {
-//            cell.setGraphic(textField);
-//        }
-//
-//        textField.selectAll();
-//
-//        // requesting focus so that key input can immediately go into the
-//        // TextField (see RT-28132)
-//        textField.requestFocus();
-//    }
-//
-//    static <T> void cancelEdit(Cell<T> cell, final StringConverter<T> converter, Node graphic) {
-//        cell.setText(getItemText(cell, converter));
-//        cell.setGraphic(graphic);
-//    }
-//
-//    static <T> TextField createTextField(final Cell<T> cell, final StringConverter<T> converter) {
-//        final TextField textField = new TextField(getItemText(cell, converter));
-//
-//        // Use onAction here rather than onKeyReleased (with check for Enter),
-//        // as otherwise we encounter RT-34685
-//        textField.setOnAction(event -> {
-//            if (converter == null) {
-//                throw new IllegalStateException(
-//                        "Attempting to convert text input into Object, but provided "
-//                                + "StringConverter is null. Be sure to set a StringConverter "
-//                                + "in your cell factory.");
-//            }
-//            cell.commitEdit(converter.fromString(textField.getText()));
-//            event.consume();
-//        });
-//        textField.setOnKeyReleased(t -> {
-//            if (t.getCode() == KeyCode.ESCAPE) {
-//                cell.cancelEdit();
-//                t.consume();
-//            }
-//        });
-//        return textField;
-//    }
-
+    //
+    // static <T> void updateItem(final Cell<T> cell,
+    // final StringConverter<T> converter,
+    // final TextField textField) {
+    // updateItem(cell, converter, null, null, textField);
+    // }
+    //
+    // static <T> void updateItem(final Cell<T> cell,
+    // final StringConverter<T> converter,
+    // final HBox hbox,
+    // final Node graphic,
+    // final TextField textField) {
+    // if (cell.isEmpty()) {
+    // cell.setText(null);
+    // cell.setGraphic(null);
+    // } else {
+    // if (cell.isEditing()) {
+    // if (textField != null) {
+    // textField.setText(getItemText(cell, converter));
+    // }
+    // cell.setText(null);
+    //
+    // if (graphic != null) {
+    // hbox.getChildren().setAll(graphic, textField);
+    // cell.setGraphic(hbox);
+    // } else {
+    // cell.setGraphic(textField);
+    // }
+    // } else {
+    // cell.setText(getItemText(cell, converter));
+    // cell.setGraphic(graphic);
+    // }
+    // }
+    // }
+    //
+    // static <T> void startEdit(final Cell<T> cell,
+    // final StringConverter<T> converter,
+    // final HBox hbox,
+    // final Node graphic,
+    // final TextField textField) {
+    // if (textField != null) {
+    // textField.setText(getItemText(cell, converter));
+    // }
+    // cell.setText(null);
+    //
+    // if (graphic != null) {
+    // hbox.getChildren().setAll(graphic, textField);
+    // cell.setGraphic(hbox);
+    // } else {
+    // cell.setGraphic(textField);
+    // }
+    //
+    // textField.selectAll();
+    //
+    // // requesting focus so that key input can immediately go into the
+    // // TextField (see RT-28132)
+    // textField.requestFocus();
+    // }
+    //
+    // static <T> void cancelEdit(Cell<T> cell, final StringConverter<T> converter,
+    // Node graphic) {
+    // cell.setText(getItemText(cell, converter));
+    // cell.setGraphic(graphic);
+    // }
+    //
+    // static <T> TextField createTextField(final Cell<T> cell, final
+    // StringConverter<T> converter) {
+    // final TextField textField = new TextField(getItemText(cell, converter));
+    //
+    // // Use onAction here rather than onKeyReleased (with check for Enter),
+    // // as otherwise we encounter RT-34685
+    // textField.setOnAction(event -> {
+    // if (converter == null) {
+    // throw new IllegalStateException(
+    // "Attempting to convert text input into Object, but provided "
+    // + "StringConverter is null. Be sure to set a StringConverter "
+    // + "in your cell factory.");
+    // }
+    // cell.commitEdit(converter.fromString(textField.getText()));
+    // event.consume();
+    // });
+    // textField.setOnKeyReleased(t -> {
+    // if (t.getCode() == KeyCode.ESCAPE) {
+    // cell.cancelEdit();
+    // t.consume();
+    // }
+    // });
+    // return textField;
+    // }
 
     /***************************************************************************
-     *                                                                         *
-     * CheckComboBox convenience                                                   *
-     *                                                                         *
+     * *
+     * CheckComboBox convenience *
+     * *
      **************************************************************************/
 
     static <T> void updateItem(Cell<T> cell, StringConverter<T> converter, CheckComboBox<T> checkComboBox) {
@@ -255,10 +252,10 @@ class CellUtils {
     }
 
     static <T> void updateItem(final Cell<T> cell,
-                               final StringConverter<T> converter,
-                               final HBox hbox,
-                               final Node graphic,
-                               final CheckComboBox<T> checkComboBox) {
+            final StringConverter<T> converter,
+            final HBox hbox,
+            final Node graphic,
+            final CheckComboBox<T> checkComboBox) {
         if (cell.isEmpty()) {
             cell.setText(null);
             cell.setGraphic(null);
@@ -282,19 +279,22 @@ class CellUtils {
     }
 
     /**
-     * Because TableView reuses cells (see TableView documentation for more about that), here we transfer the checks
+     * Because TableView reuses cells (see TableView documentation for more about
+     * that), here we transfer the checks
      * from one reused CheckComboBox to the other.
+     * 
      * @param checkComboBox the checkComboBox that you want to add selections to
-     * @param item the (hopefully comma-separated string) list that you're getting selections from
+     * @param item          the (hopefully comma-separated string) list that you're
+     *                      getting selections from
      */
     private static <T> void transferChecksToNewComboBox(CheckComboBox<T> checkComboBox, T item) {
         if (checkComboBox != null) {
             if (item != null) {
-                //Get items from string representation
+                // Get items from string representation
                 String[] separateItems = convertCommaListToSeparateItems(item);
-                //First clear all checks that could be left behind from last item
+                // First clear all checks that could be left behind from last item
                 checkComboBox.getCheckModel().clearChecks();
-                //Check each thing contained in "item"
+                // Check each thing contained in "item"
                 for (String s : separateItems) {
                     checkComboBox.getCheckModel().check((T) s);
                 }
@@ -304,9 +304,8 @@ class CellUtils {
         }
     }
 
-
     private static <T> String[] convertCommaListToSeparateItems(T item) {
-        //Prepare the list
+        // Prepare the list
         String[] list;
         if (item instanceof String) {
             String commaSeparatedList = (String) item;
@@ -318,67 +317,67 @@ class CellUtils {
         return list;
     }
 
-
     static <T> CheckComboBox<T> createCheckComboBox(final Cell<T> cell,
-                                                    final ObservableList<T> items,
-                                                    final ObjectProperty<StringConverter<T>> converter) {
+            final ObservableList<T> items,
+            final ObjectProperty<StringConverter<T>> converter) {
         CheckComboBox<T> checkComboBox = new CheckComboBox<T>(items);
         checkComboBox.converterProperty().bind(converter);
         checkComboBox.setMaxWidth(Double.MAX_VALUE);
 
-        //Cancel or Commit, depending on which key is pressed
+        // Cancel or Commit, depending on which key is pressed
         checkComboBox.addEventHandler(KeyEvent.KEY_TYPED, keyEventEventHandler -> {
             System.out.println(keyEventEventHandler.toString());
 
             KeyCode code = keyEventEventHandler.getCode();
 
             if (code.equals(KeyCode.UNDEFINED) || code.equals(KeyCode.ESCAPE)) {
-                // TODO: 11/17/2017 When it's canceled we need to restore its previous state by getting the saved value in the property.
                 cell.cancelEdit();
             }
         });
 
-        //Commit only when box closes
+        // Commit only when box closes
         checkComboBox.addEventHandler(ComboBox.ON_HIDDEN, event -> {
             if (cell.isEditing()) {
-                //Get all the checked items from the CheckComboBox
+                // Get all the checked items from the CheckComboBox
                 ObservableList<T> checkedItems = checkComboBox.getCheckModel().getCheckedItems();
                 T commaSeparatedList = convertToCommaList(checkedItems, checkComboBox.getConverter());
                 cell.commitEdit(commaSeparatedList);
             }
 
-            //Work-around part 1: when the box is showing, make the box clickable...
+            // Work-around part 1: when the box is showing, make the box clickable...
             checkComboBox.setMouseTransparent(false);
         });
 
-        //Work-around part 2: However when the box's menu is showing, make the box mouse-transparent, clicks don't matter.
-        //This solves the issue of that one NullPointerException. Details, https://gist.github.com/TurekBot/721aaee63ca3656690b7ecb7a9de198f
+        // Work-around part 2: However when the box's menu is showing, make the box
+        // mouse-transparent, clicks don't matter.
+        // This solves the issue of that one NullPointerException. Details,
+        // https://gist.github.com/TurekBot/721aaee63ca3656690b7ecb7a9de198f
         checkComboBox.addEventHandler(ComboBox.ON_SHOWN, event -> checkComboBox.setMouseTransparent(true));
-
 
         return checkComboBox;
     }
 
     /**
-     * Is this doing the job of a Converter? How could I do this same thing with a converter?
+     * Is this doing the job of a Converter? How could I do this same thing with a
+     * converter?
      */
     private static <T> T convertToCommaList(ObservableList<T> checkedItems, StringConverter<T> converter) {
-        //Prepare StringBuilder
+        // Prepare StringBuilder
         StringBuilder sb = new StringBuilder();
 
-        //Put every checked item in a comma-separated list
+        // Put every checked item in a comma-separated list
         for (T item : checkedItems) {
             sb.append(converter.toString(item));
             sb.append(", ");
         }
 
-        //Now get rid of extra comma and space
+        // Now get rid of extra comma and space
         if (sb.length() > 0) {
             sb.delete(sb.lastIndexOf(", "), sb.length());
         }
 
-
-        //I don't want to have to cast this to a T, but I seemingly have to, the way I'm doing this.
+        // I don't want to have to cast this to a T, but I seemingly have to, the way
+        // I'm doing this.
         return (T) sb.toString();
     }
 }

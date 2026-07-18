@@ -13,6 +13,7 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 
@@ -26,7 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
-public class BayDeviceConfigController implements Initializable{
+public class BayDeviceConfigController implements Initializable {
 
 	private AtomicInteger serialNoAtomic = new AtomicInteger(1);
 
@@ -36,7 +37,6 @@ public class BayDeviceConfigController implements Initializable{
 	@FXML
 	private ComboBox<String> cmbBxSelectBayType;
 	public static ComboBox<String> ref_cmbBxSelectBayType;
-
 
 	@FXML
 	private TextField txtTerminalId;
@@ -48,7 +48,7 @@ public class BayDeviceConfigController implements Initializable{
 
 	@FXML
 	public TableView<BayDeviceConfig> tvBayDeviceConfig;
-	
+
 	@FXML
 	private TableColumn<BayDeviceConfig, String> columnBayKey;
 
@@ -103,104 +103,100 @@ public class BayDeviceConfigController implements Initializable{
 	@FXML
 	private TableColumn columnVoltPmEnabled;
 
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+
 		refAssignment();
 		guiInit();
 		loadDataFromDb();
 	}
 
 	public void loadDataFromDb() {
-		// TODO Auto-generated method stub
+
 		List<BayDeviceConfig> bayDeviceConfigList = MySqlServiceManager.getBayDeviceConfigService().findAll();
 		tvBayDeviceConfig.getItems().addAll(bayDeviceConfigList);
-		OptionalInt lastSerialNo = bayDeviceConfigList.stream().mapToInt(e->Integer.parseInt(e.getSerialNo())).max();
-		if(lastSerialNo.isPresent()) {
-			getSerialNoAtomic().set(lastSerialNo.getAsInt()+1);
+		OptionalInt lastSerialNo = bayDeviceConfigList.stream().mapToInt(e -> Integer.parseInt(e.getSerialNo())).max();
+		if (lastSerialNo.isPresent()) {
+			getSerialNoAtomic().set(lastSerialNo.getAsInt() + 1);
 		}
 	}
 
 	public void guiInit() {
-		// TODO Auto-generated method stub
-		
-		ArrayList <String> bayList = (ArrayList<String>) ConstantConveyor.getBayLookup().keySet().stream().collect(Collectors.toList());
+
+		ArrayList<String> bayList = (ArrayList<String>) ConstantConveyor.getBayLookup().keySet().stream()
+				.collect(Collectors.toList());
 		ref_cmbBxSelectBayType.getItems().add("Select Bay");
 		ref_cmbBxSelectBayType.getItems().addAll(bayList);
 		ref_cmbBxSelectBayType.getSelectionModel().select(0);
 
-
 		tvBayDeviceConfig.setEditable(true);
 		columnSerialNo.setCellValueFactory(data -> data.getValue().getSerialNoProperty());
-		columnBayDevicesActive.setStyle( "-fx-alignment: CENTER;");
+		columnBayDevicesActive.setStyle("-fx-alignment: CENTER;");
 		columnBayDevicesActive.setCellValueFactory(new BayDeviceConfigDeviceActive_CheckBoxValueFactory());
 		columnBayKey.setCellValueFactory(data -> data.getValue().getBayKeyProperty());
 		columnBayName.setCellValueFactory(data -> data.getValue().getBayNameProperty());
-		
-		
+
 		columnDutCommType.setCellValueFactory(new BayDeviceConfigDutComTypeComboBoxValueFactory());
-		columnDutEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnDutEnabled.setStyle("-fx-alignment: CENTER;");
 		columnDutEnabled.setCellValueFactory(new BayDeviceConfigDutEnabled_CheckBoxValueFactory());
-				
+
 		columnLduCommType.setCellValueFactory(new BayDeviceConfigLduComTypeComboBoxValueFactory());
-		columnLduEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnLduEnabled.setStyle("-fx-alignment: CENTER;");
 		columnLduEnabled.setCellValueFactory(new BayDeviceConfigLduEnabled_CheckBoxValueFactory());
-				
+
 		columnMegaOhmPmCommType.setCellValueFactory(new BayDeviceConfigMegaOhmPmComTypeComboBoxValueFactory());
-		columnMegaOhmPmEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnMegaOhmPmEnabled.setStyle("-fx-alignment: CENTER;");
 		columnMegaOhmPmEnabled.setCellValueFactory(new BayDeviceConfigMegaOhmPmEnabled_CheckBoxValueFactory());
 
 		columnOpticalSensorCommType.setCellValueFactory(new BayDeviceConfigOpticalSensorComTypeComboBoxValueFactory());
-		columnOpticalSensorEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnOpticalSensorEnabled.setStyle("-fx-alignment: CENTER;");
 		columnOpticalSensorEnabled.setCellValueFactory(new BayDeviceConfigOpticalSensorEnabled_CheckBoxValueFactory());
-		
+
 		columnQrDutCommType.setCellValueFactory(new BayDeviceConfigQrDutComTypeComboBoxValueFactory());
-		columnQrDutEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnQrDutEnabled.setStyle("-fx-alignment: CENTER;");
 		columnQrDutEnabled.setCellValueFactory(new BayDeviceConfigQrDutEnabled_CheckBoxValueFactory());
-				
+
 		columnQrPalletCommType.setCellValueFactory(new BayDeviceConfigQrPalletComTypeComboBoxValueFactory());
-		columnQrPalletEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnQrPalletEnabled.setStyle("-fx-alignment: CENTER;");
 		columnQrPalletEnabled.setCellValueFactory(new BayDeviceConfigQrPalletEnabled_CheckBoxValueFactory());
-		
+
 		columnVoltPmCommType.setCellValueFactory(new BayDeviceConfigVoltPmComTypeComboBoxValueFactory());
-		columnVoltPmEnabled.setStyle( "-fx-alignment: CENTER;");
+		columnVoltPmEnabled.setStyle("-fx-alignment: CENTER;");
 		columnVoltPmEnabled.setCellValueFactory(new BayDeviceConfigVoltPmEnabled_CheckBoxValueFactory());
 
 	}
 
 	public void refAssignment() {
-		// TODO Auto-generated method stub
+
 		ref_cmbBxSelectBayType = cmbBxSelectBayType;
 		ref_txtTerminalId = txtTerminalId;
 		ref_txtTerminalName = txtTerminalName;
 	}
 
-
-
 	@FXML
 	void saveOnClick(ActionEvent event) {
-		for(int i=0; i< tvBayDeviceConfig.getItems().size();i++) {
+		for (int i = 0; i < tvBayDeviceConfig.getItems().size(); i++) {
 			MySqlServiceManager.getBayDeviceConfigService().saveToDb(tvBayDeviceConfig.getItems().get(i));
 		}
-		if(tvBayDeviceConfig.getItems().size()>0) {
-			ApplicationLauncher.InformUser("Saved","Bay Device configuration saved successfully" ,AlertType.INFORMATION);
+		if (tvBayDeviceConfig.getItems().size() > 0) {
+			WindowManager.InformUser("Saved", "Bay Device configuration saved successfully", AlertType.INFORMATION);
 
 		}
 	}
 
 	@FXML
 	void addOnClick(ActionEvent event) {
-		String selectedBayName = (String)ref_cmbBxSelectBayType.getSelectionModel().getSelectedItem();
-		if(!selectedBayName.equals("Select Bay")) {
+		String selectedBayName = (String) ref_cmbBxSelectBayType.getSelectionModel().getSelectedItem();
+		if (!selectedBayName.equals("Select Bay")) {
 			Optional<BayDeviceConfig> terminalProfileSettingOpt = tvBayDeviceConfig.getItems().stream()
-					.filter(e->e.getBayName().equals(selectedBayName))
+					.filter(e -> e.getBayName().equals(selectedBayName))
 					.findFirst();
-			if(terminalProfileSettingOpt.isPresent()) {
+			if (terminalProfileSettingOpt.isPresent()) {
 				ApplicationLauncher.logger.debug("addOnClick: Bay Name already Exist");
-				ApplicationLauncher.InformUser("Bay already Exist","Bay Name already exist. Kindly try with different Bay name" ,AlertType.ERROR);
+				WindowManager.InformUser("Bay already Exist",
+						"Bay Name already exist. Kindly try with different Bay name", AlertType.ERROR);
 
-			}else {
+			} else {
 
 				String terminalName = ref_txtTerminalName.getText();
 				BayDeviceConfig bayDeviceConfig = new BayDeviceConfig();
@@ -209,12 +205,12 @@ public class BayDeviceConfigController implements Initializable{
 				bayDeviceConfig.setBayKey(ConstantConveyor.getBayLookup().get(selectedBayName));
 				bayDeviceConfig.setTerminalId(ConstantConveyorConfig.MY_TERMINAL_ID);
 				bayDeviceConfig.setTerminalName(terminalName);
-				
+
 				tvBayDeviceConfig.getItems().add(bayDeviceConfig);
 			}
 		}
 	}
-	
+
 	public AtomicInteger getSerialNoAtomic() {
 		return serialNoAtomic;
 	}

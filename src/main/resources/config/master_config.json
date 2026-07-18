@@ -3,22 +3,7 @@
 	"ConfigFileVersionComment1_0" : "Master config initial version",
 
 	"CustomerDetails": {
-		"AppConfigFileNameAA" : "app_config_lecs_dec2022_v1_5.json",
-		"AppConfigFileName4" : "app_config_neolink_dec2022_v1_1.json",
-		"AppConfigFileName2" : "app_config_kigg_Sep2022_v1_2.json",
-		"AppConfigFileName3" : "app_config_sands_jun2021_v1_3.json",
-		"AppConfigFileNameX" : "app_config_nsoft_v1_4.json",
-		"AppConfigFileNameY" : "app_config_lscs_v1_4.json",
-		"AppConfigFileNameaa" : "app_config_adya_bench1_v1_4.json",
-		"AppConfigFileNamebb"  : "app_config_fuji_v1_5.json",
-		"AppConfigFileNameEE"  : "app_config_elmeasure_jan2025_v1_5.json",
 		"AppConfigFileName"  : "app_config_conveyor_devsys_jan2025_v1_5.json",
-		"AppConfigFileNamecc"  : "app_config_lscs_v1_5.json",
-		"AppConfigFileNamedd"  : "app_config_fuji-portable1_v1_5.json",
 		"ConfigFilePath": "config/app/"
-		
-	}	
-
-
-	
+	}
 }

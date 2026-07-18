@@ -13,7 +13,6 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 
 public class S15_open_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2State {
 
@@ -41,7 +40,7 @@ public class S15_open_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Stat
 
 			int palletMoveMentWaitTimeInSec =  ConstantConveyorConfig.STA2_TO_UNLOADING_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC ;//30;
 			StaNld_Bay2.logger.info("S15_open_stop_latch_SCT_NLT_Bay2 : palletMoveMentSta2ToUnloading : start:");
-			while ( (palletMoveMentWaitTimeInSec>0) && (!ProjectExecutionController.getUserAbortedFlag()) ){
+			while ( (palletMoveMentWaitTimeInSec>0) && (!BayUtils.isUserAborted()) ){
 				StaNld_Bay2.logger.info("S15_open_stop_latch_SCT_NLT_Bay2 : palletMoveMentSta2ToUnloading : palletMoveMentWaitTimeInSec: " + palletMoveMentWaitTimeInSec);
 				BayUtils.delay(1000);
 				palletMoveMentWaitTimeInSec--;

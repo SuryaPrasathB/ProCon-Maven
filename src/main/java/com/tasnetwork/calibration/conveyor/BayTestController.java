@@ -37,131 +37,119 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class BayTestController implements Initializable ,InputPortTableViewRefresher,OutputPortTableViewRefresher{
+public class BayTestController implements Initializable, InputPortTableViewRefresher, OutputPortTableViewRefresher {
 
 	Timer sendCommDataTaskTimer;
 	Timer loadOnClickTimer;
 	Timer baySelectionOnChangeTimer;
 	Timer clusterSelectionOnChangeTimer;
 	Timer funtionalBaySingleStateTaskTimer;
-	
-	private static TerminalBayConfigModel  bayConfigModel = ConveyorDataManager.getTerminalBayConfig();
-	
+
+	private static TerminalBayConfigModel bayConfigModel = ConveyorDataManager.getTerminalBayConfig();
+
 	public static String presentClusterId = "";
 
-	private Map<String,ArrayList<String>> clusterBayNameListMap = new HashMap<String,ArrayList<String>>();
-	private Map<String,String> clusterNameIdListMap = new HashMap<String,String>();
-	private Map<String,String> clusterBayNameIdMap = new HashMap<String,String>();
-	
-	  @FXML
-	    private Button btnLoad;
+	private Map<String, ArrayList<String>> clusterBayNameListMap = new HashMap<String, ArrayList<String>>();
+	private Map<String, String> clusterNameIdListMap = new HashMap<String, String>();
+	private Map<String, String> clusterBayNameIdMap = new HashMap<String, String>();
 
+	@FXML
+	private Button btnLoad;
 
-	    
-		@FXML
-		private Button btnSendDataToBay;
-		public static Button ref_btnSendDataToBay;
-		
-	    @FXML
-	    private Button btnConnect;
-	    public static Button ref_btnConnect;
+	@FXML
+	private Button btnSendDataToBay;
+	public static Button ref_btnSendDataToBay;
 
-		@FXML
-		private TableView<OutputPort> tbViewOutputPortData;
-		public static TableView<OutputPort> ref_tbViewOutputPortData;
+	@FXML
+	private Button btnConnect;
+	public static Button ref_btnConnect;
 
+	@FXML
+	private TableView<OutputPort> tbViewOutputPortData;
+	public static TableView<OutputPort> ref_tbViewOutputPortData;
 
-		@FXML
-		private TableColumn<OutputPort,String> tblColOutputSerialNo;
-		public static TableColumn<OutputPort,String> ref_tblColOutputSerialNo;
+	@FXML
+	private TableColumn<OutputPort, String> tblColOutputSerialNo;
+	public static TableColumn<OutputPort, String> ref_tblColOutputSerialNo;
 
-		@FXML
-		private TableColumn<OutputPort,String> tblColOutputPortStateDescription;
-		public static TableColumn<OutputPort,String> ref_tblColOutputPortStateDescription;
+	@FXML
+	private TableColumn<OutputPort, String> tblColOutputPortStateDescription;
+	public static TableColumn<OutputPort, String> ref_tblColOutputPortStateDescription;
 
+	@FXML
+	private TableColumn<OutputPort, String> tblColOutputPortName;
+	public static TableColumn<OutputPort, String> ref_tblColOutputPortName;
 
+	@FXML
+	private TableColumn tblColOutputActive;
+	public static TableColumn ref_tblColOutputActive;
 
+	@FXML
+	private TableColumn tblColOutputUpdateBay;
+	public static TableColumn ref_tblColOutputUpdateBay;
 
-		@FXML
-		private TableColumn<OutputPort,String> tblColOutputPortName;
-		public static TableColumn<OutputPort,String> ref_tblColOutputPortName;
+	@FXML
+	private TableView<InputPort> tbViewInputPortData;
+	public static TableView<InputPort> ref_tbViewInputPortData;
 
-		@FXML
-		private TableColumn tblColOutputActive;
-		public static TableColumn ref_tblColOutputActive;
+	@FXML
+	private TableColumn<InputPort, String> tblColInputSerialNo;
+	public static TableColumn<InputPort, String> ref_tblColInputSerialNo;
 
-		@FXML
-		private TableColumn tblColOutputUpdateBay;
-		public static TableColumn ref_tblColOutputUpdateBay;
+	@FXML
+	private TableColumn<InputPort, String> tblColInputPortStateDescription;
+	public static TableColumn<InputPort, String> ref_tblColInputPortStateDescription;
 
+	@FXML
+	private TableColumn<InputPort, String> tblColInputPortName;
+	public static TableColumn<InputPort, String> ref_tblColInputPortName;
 
+	@FXML
+	private TableColumn tblColInputActive;
+	public static TableColumn ref_tblColInputActive;
 
-		@FXML
-		private TableView<InputPort> tbViewInputPortData;
-		public static TableView<InputPort> ref_tbViewInputPortData;
+	@FXML
+	private TableColumn tblColInputReadBay;
+	public static TableColumn ref_tblColInputReadBay;
 
-		@FXML
-		private TableColumn<InputPort,String> tblColInputSerialNo;
-		public static TableColumn<InputPort,String> ref_tblColInputSerialNo;
+	@FXML
+	private ComboBox cmbBxBaySelection;
+	public static ComboBox ref_cmbBxBaySelection;
 
-		@FXML
-		private TableColumn<InputPort,String> tblColInputPortStateDescription;
-		public static TableColumn<InputPort,String> ref_tblColInputPortStateDescription;
+	@FXML
+	private ComboBox cmbBxClusterSelection;
+	public static ComboBox ref_cmbBxClusterSelection;
 
+	@FXML
+	private TextField txtClusterIpAddress;
+	public static TextField ref_txtClusterIpAddress;
 
+	@FXML
+	private TextField txtClusterPortNo;
+	public static TextField ref_txtClusterPortNo;
 
-		@FXML
-		private TableColumn<InputPort,String> tblColInputPortName;
-		public static TableColumn<InputPort,String> ref_tblColInputPortName;
-
-		@FXML
-		private TableColumn tblColInputActive;
-		public static TableColumn ref_tblColInputActive;
-
-		@FXML
-		private TableColumn tblColInputReadBay;
-		public static TableColumn ref_tblColInputReadBay;
-
-
-
-		@FXML
-		private ComboBox cmbBxBaySelection;
-		public static ComboBox ref_cmbBxBaySelection;
-
-		@FXML
-		private ComboBox cmbBxClusterSelection;
-		public static ComboBox ref_cmbBxClusterSelection;
-		
-		@FXML
-		private TextField txtClusterIpAddress;
-		public static TextField ref_txtClusterIpAddress;
-
-		@FXML
-		private TextField txtClusterPortNo;
-		public static TextField ref_txtClusterPortNo;
-	    
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+
 		refInit();
 		guiInit();
 		dataSetupInit();
 	}
-	
-	 @Override
-	    public void refreshInputPortTable() {
-	        ref_tbViewInputPortData.refresh();
-	    }
-	 
-	 @Override
-	    public void refreshOutputPortTable() {
-	        ref_tbViewOutputPortData.refresh();
-	    }
+
+	@Override
+	public void refreshInputPortTable() {
+		ref_tbViewInputPortData.refresh();
+	}
+
+	@Override
+	public void refreshOutputPortTable() {
+		ref_tbViewOutputPortData.refresh();
+	}
 
 	public void dataSetupInit() {
-		// TODO Auto-generated method stub
-		//TerminalBayConfigModel  bayConfigModel = ConveyorDeviceDataManagerController.getBayConfigParsedKey();
+
+		// TerminalBayConfigModel bayConfigModel =
+		// ConveyorDeviceDataManagerController.getBayConfigParsedKey();
 		loadDataFromConfig();
 
 		ref_tbViewOutputPortData.getItems().clear();
@@ -169,140 +157,145 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 		ref_txtClusterIpAddress.setText("");
 		ref_txtClusterPortNo.setText("");
 	}
-	
+
 	private static BayTestController instance;
 
 	public BayTestController() {
-	    instance = this;
+		instance = this;
 	}
 
 	public static BayTestController getInstance() {
-	    return instance;
+		return instance;
 	}
 
 	public void guiInit() {
-		// TODO Auto-generated method stub
+
 		ref_tblColOutputSerialNo.setCellValueFactory(new PropertyValueFactory<OutputPort, String>("serialNo"));
 		ref_tblColOutputPortName.setCellValueFactory(new PropertyValueFactory<OutputPort, String>("portName"));
-		//ref_tblColOutputActive.setCellValueFactory(new OutputPortActiveCheckBoxValueFactory());
-		ref_tblColOutputActive.setCellValueFactory(new OutputPortActiveCheckBoxValueFactory(BayTestController.getInstance()));
-		ref_tblColOutputActive.setStyle( "-fx-alignment: CENTER;");
+		// ref_tblColOutputActive.setCellValueFactory(new
+		// OutputPortActiveCheckBoxValueFactory());
+		ref_tblColOutputActive
+				.setCellValueFactory(new OutputPortActiveCheckBoxValueFactory(BayTestController.getInstance()));
+		ref_tblColOutputActive.setStyle("-fx-alignment: CENTER;");
 		ref_tblColOutputUpdateBay.setCellValueFactory(new OutputPortUpdateBayCheckBoxValueFactory());
-		ref_tblColOutputUpdateBay.setStyle( "-fx-alignment: CENTER;");
-		ref_tblColOutputPortStateDescription.setCellValueFactory(new PropertyValueFactory<OutputPort, String>("stateDescription"));
-
+		ref_tblColOutputUpdateBay.setStyle("-fx-alignment: CENTER;");
+		ref_tblColOutputPortStateDescription
+				.setCellValueFactory(new PropertyValueFactory<OutputPort, String>("stateDescription"));
 
 		ref_tblColInputSerialNo.setCellValueFactory(new PropertyValueFactory<InputPort, String>("serialNo"));
 		ref_tblColInputPortName.setCellValueFactory(new PropertyValueFactory<InputPort, String>("portName"));
 		ref_tblColInputActive.setEditable(false);
-		//ref_tblColInputActive.setCellValueFactory(new InputPortActiveCheckBoxValueFactory());
-		ref_tblColInputActive.setCellValueFactory(new InputPortActiveCheckBoxValueFactory(BayTestController.getInstance()));
-		ref_tblColInputActive.setStyle( "-fx-alignment: CENTER;");
+		// ref_tblColInputActive.setCellValueFactory(new
+		// InputPortActiveCheckBoxValueFactory());
+		ref_tblColInputActive
+				.setCellValueFactory(new InputPortActiveCheckBoxValueFactory(BayTestController.getInstance()));
+		ref_tblColInputActive.setStyle("-fx-alignment: CENTER;");
 		ref_tblColInputReadBay.setCellValueFactory(new InputPortReadBayCheckBoxValueFactory());
-		ref_tblColInputReadBay.setStyle( "-fx-alignment: CENTER;");
-		ref_tblColInputPortStateDescription.setCellValueFactory(new PropertyValueFactory<InputPort, String>("stateDescription"));
-
+		ref_tblColInputReadBay.setStyle("-fx-alignment: CENTER;");
+		ref_tblColInputPortStateDescription
+				.setCellValueFactory(new PropertyValueFactory<InputPort, String>("stateDescription"));
 
 	}
-	
-	
 
 	private void refInit() {
-		// TODO Auto-generated method stub
-		ref_cmbBxBaySelection= cmbBxBaySelection;
+
+		ref_cmbBxBaySelection = cmbBxBaySelection;
 		ref_cmbBxClusterSelection = cmbBxClusterSelection;
 
-/*		ref_cmbBxPosLoadedBaySelection = cmbBxPosLoadedBaySelection;
-		ref_cmbBxPosLoadedClusterSelection = cmbBxPosLoadedClusterSelection;
-		ref_cmbBxPosLoadedTerminalSelection = cmbBxPosLoadedTerminalSelection;
-
-		ref_cmbBxFilterPosition = cmbBxFilterPosition;*/
-
+		/*
+		 * ref_cmbBxPosLoadedBaySelection = cmbBxPosLoadedBaySelection;
+		 * ref_cmbBxPosLoadedClusterSelection = cmbBxPosLoadedClusterSelection;
+		 * ref_cmbBxPosLoadedTerminalSelection = cmbBxPosLoadedTerminalSelection;
+		 * 
+		 * ref_cmbBxFilterPosition = cmbBxFilterPosition;
+		 */
 
 		ref_txtClusterIpAddress = txtClusterIpAddress;
 
 		ref_txtClusterPortNo = txtClusterPortNo;
 
-
-
-		ref_tbViewOutputPortData = tbViewOutputPortData;		
-		ref_tblColOutputSerialNo = tblColOutputSerialNo;		
-		ref_tblColOutputPortName = tblColOutputPortName;		
-		ref_tblColOutputActive =tblColOutputActive;		
+		ref_tbViewOutputPortData = tbViewOutputPortData;
+		ref_tblColOutputSerialNo = tblColOutputSerialNo;
+		ref_tblColOutputPortName = tblColOutputPortName;
+		ref_tblColOutputActive = tblColOutputActive;
 		ref_tblColOutputUpdateBay = tblColOutputUpdateBay;
 		ref_tblColOutputPortStateDescription = tblColOutputPortStateDescription;
 
-
-		ref_tbViewInputPortData = tbViewInputPortData;		
-		ref_tblColInputSerialNo = tblColInputSerialNo;		
-		ref_tblColInputPortName = tblColInputPortName;		
-		ref_tblColInputActive =tblColInputActive;		
+		ref_tbViewInputPortData = tbViewInputPortData;
+		ref_tblColInputSerialNo = tblColInputSerialNo;
+		ref_tblColInputPortName = tblColInputPortName;
+		ref_tblColInputActive = tblColInputActive;
 		ref_tblColInputReadBay = tblColInputReadBay;
 		ref_tblColInputPortStateDescription = tblColInputPortStateDescription;
-		
+
 		ref_btnSendDataToBay = btnSendDataToBay;
 		ref_btnConnect = btnConnect;
 
 	}
-	
-	public void loadDataFromConfig() {			
-		// B A Y  T E S T ====================================================
+
+	public void loadDataFromConfig() {
+		// B A Y T E S T ====================================================
 		ApplicationLauncher.logger.debug("loadDataFromConfig: Entry");
 		ref_cmbBxClusterSelection.getItems().clear();
-		for(Terminal eachTerminal: getBayConfigModel().getTerminal()){
-			if(eachTerminal.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID)){
-				for(ClusterDetail eachClusterDetail: eachTerminal.getClusterDetails()){
+		for (Terminal eachTerminal : getBayConfigModel().getTerminal()) {
+			if (eachTerminal.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID)) {
+				for (ClusterDetail eachClusterDetail : eachTerminal.getClusterDetails()) {
 					ref_cmbBxClusterSelection.getItems().add(eachClusterDetail.getName());
 					getClusterNameIdListMap().put(eachClusterDetail.getName(), eachClusterDetail.getClusterId());
 					ArrayList<String> bayList = new ArrayList<String>();
 					getClusterBayNameListMap().put(eachClusterDetail.getName(), bayList);
 
-
-					for (Bay eachBay: eachClusterDetail.getBay()){
-						//ref_cmbBxBaySelection.getItems().add(eachBay.getBayName());
+					for (Bay eachBay : eachClusterDetail.getBay()) {
+						// ref_cmbBxBaySelection.getItems().add(eachBay.getBayName());
 						bayList.add(eachBay.getBayName());
 						getClusterBayNameListMap().put(eachClusterDetail.getName(), bayList);
-						Map<String,String> bayNameIdMap = new HashMap<String,String>();
+						Map<String, String> bayNameIdMap = new HashMap<String, String>();
 						bayNameIdMap.put(eachBay.getBayName(), eachBay.getBayId());
-						//getClusterBayNameIdMap().put(eachClusterDetail.getName(), bayNameIdMap);
-						getClusterBayNameIdMap().put(eachClusterDetail.getName()+"_"+eachBay.getBayName(), eachBay.getBayId());
-						//ApplicationLauncher.logger.debug("loadDataFromConfig : getClusterBayNameIdMap().get(clusterName)-1 :"+ getClusterBayNameIdMap());
+						// getClusterBayNameIdMap().put(eachClusterDetail.getName(), bayNameIdMap);
+						getClusterBayNameIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(),
+								eachBay.getBayId());
+						// ApplicationLauncher.logger.debug("loadDataFromConfig :
+						// getClusterBayNameIdMap().get(clusterName)-1 :"+ getClusterBayNameIdMap());
 
 					}
 				}
 			}
 		}
 
-		if(ref_cmbBxClusterSelection.getItems().size()>0){
+		if (ref_cmbBxClusterSelection.getItems().size() > 0) {
 			ref_cmbBxClusterSelection.getSelectionModel().select(0);
 
 		}
 
-		if(getClusterBayNameListMap().size()>0){
-			if(getClusterBayNameListMap().containsKey(ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString())){
-				ref_cmbBxBaySelection.getItems().addAll(getClusterBayNameListMap().get(ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString()));
+		if (getClusterBayNameListMap().size() > 0) {
+			if (getClusterBayNameListMap()
+					.containsKey(ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString())) {
+				ref_cmbBxBaySelection.getItems().addAll(getClusterBayNameListMap()
+						.get(ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString()));
 			}
-			//ref_cmbBxBaySelection.getSelectionModel().select(0);
+			// ref_cmbBxBaySelection.getSelectionModel().select(0);
 
 		}
 
-		if(ref_cmbBxBaySelection.getItems().size()>0){
+		if (ref_cmbBxBaySelection.getItems().size() > 0) {
 			ref_cmbBxBaySelection.getSelectionModel().select(0);
 			String clusterName = (ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString());
 			String bayName = (ref_cmbBxBaySelection.getSelectionModel().getSelectedItem().toString());
 
 			String clusterId = getClusterNameIdListMap().get(clusterName);
-			//ApplicationLauncher.logger.debug("loadDataFromConfig : getClusterBayNameIdMap().get(clusterName)-2 :"+ getClusterBayNameIdMap().get(clusterName));
-			//String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
+			// ApplicationLauncher.logger.debug("loadDataFromConfig :
+			// getClusterBayNameIdMap().get(clusterName)-2 :"+
+			// getClusterBayNameIdMap().get(clusterName));
+			// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
-			ApplicationLauncher.logger.debug("loadDataFromConfig : clusterId :"+ clusterId);
+			ApplicationLauncher.logger.debug("loadDataFromConfig : clusterId :" + clusterId);
 			String clusterIpAddress = "";
 			String clusterPortNo = "";
 
-			Optional<ClusterDetail> clusterOpt = 		getBayConfigModel().getTerminal().stream()
-					.filter(e1->e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
+			Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
+					.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 					.flatMap(terminal -> terminal.getClusterDetails().stream())
-					.filter(e2->e2.getClusterId().equals(clusterId))
+					.filter(e2 -> e2.getClusterId().equals(clusterId))
 					.findFirst();
 
 			if (clusterOpt.isPresent()) {
@@ -312,32 +305,33 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 				setPresentClusterId(clusterId);
 
 			}
-			//Optional<OutputPort> outputPortOpt = 
+			// Optional<OutputPort> outputPortOpt =
 
-			Optional<Bay> bayOpt = 		getBayConfigModel().getTerminal().stream()
-					.filter(e1->e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
+			Optional<Bay> bayOpt = getBayConfigModel().getTerminal().stream()
+					.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 					.flatMap(terminal -> terminal.getClusterDetails().stream())
-					.filter(e2->e2.getClusterId().equals(clusterId))
+					.filter(e2 -> e2.getClusterId().equals(clusterId))
 					.flatMap(e3 -> e3.getBay().stream())
-					.filter(e4->e4.getBayName().equals(bayName))
+					.filter(e4 -> e4.getBayName().equals(bayName))
 					.findFirst();
 
 			if (bayOpt.isPresent()) {
 				Bay bayDetails = bayOpt.get();
 				String bayId = bayDetails.getBayId();
-				ApplicationLauncher.logger.debug("loadDataFromConfig : bayId :"+ bayId);
+				ApplicationLauncher.logger.debug("loadDataFromConfig : bayId :" + bayId);
 
-				ArrayList<OutputPort> outputPortList = (ArrayList<OutputPort>) getBayConfigModel().getTerminal().stream()
+				ArrayList<OutputPort> outputPortList = (ArrayList<OutputPort>) getBayConfigModel().getTerminal()
+						.stream()
 						.flatMap(terminal -> terminal.getOutputPort().stream())
 						.filter(p -> clusterId.equals(p.getClusterId()))
 						.filter(p -> bayId.equals(p.getBayId()))
 						.collect(Collectors.toList());
 
-				if (outputPortList.size()>0) {
+				if (outputPortList.size() > 0) {
 					int serialNo = 1;
-					for(OutputPort eachOutputPort : outputPortList) {
+					for (OutputPort eachOutputPort : outputPortList) {
 						eachOutputPort.setSerialNo(String.valueOf(serialNo));
-						serialNo++; 
+						serialNo++;
 					}
 					ref_tbViewOutputPortData.getItems().addAll(outputPortList);
 
@@ -349,131 +343,135 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 						.filter(p -> bayId.equals(p.getBayId()))
 						.collect(Collectors.toList());
 
-				if (inputPortList.size()>0) {
+				if (inputPortList.size() > 0) {
 					int serialNo = 1;
-					for(InputPort eachInputPort : inputPortList) {
+					for (InputPort eachInputPort : inputPortList) {
 						eachInputPort.setSerialNo(String.valueOf(serialNo));
-						serialNo++; 
+						serialNo++;
 					}
 					ref_tbViewInputPortData.getItems().addAll(inputPortList);
 				}
 			}
 		}
 
-
-
 	}
 
-	
-	
-/*	@FXML
-    void btnLoadOnClick(ActionEvent event) {
+	/*
+	 * @FXML
+	 * void btnLoadOnClick(ActionEvent event) {
+	 * 
+	 * }
+	 * 
+	 * @FXML
+	 * void btnSendDataToBayOnClick(ActionEvent event) {
+	 * 
+	 * }
+	 * 
+	 * @FXML
+	 * void cmbBxBaySelectionOnChange(ActionEvent event) {
+	 * 
+	 * }
+	 * 
+	 * @FXML
+	 * void cmbBxClusterSelectionOnChange(ActionEvent event) {
+	 * 
+	 * }
+	 */
 
-    }
-
-    @FXML
-    void btnSendDataToBayOnClick(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cmbBxBaySelectionOnChange(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cmbBxClusterSelectionOnChange(ActionEvent event) {
-
-    }*/
-    
-    @FXML 
-	public void  btnSendDataToBayOnClick() {
+	@FXML
+	public void btnSendDataToBayOnClick() {
 
 		ApplicationLauncher.logger.debug("btnSendDataToBayOnClick: Entry");
 		sendCommDataTaskTimer = new Timer();
-		sendCommDataTaskTimer.schedule(new SendDataToBayTask(),10);
+		sendCommDataTaskTimer.schedule(new SendDataToBayTask(), 10);
 
 	}
-    
-    @FXML 
+
+	@FXML
 	public void btnConnectOnClick() {
-    	ApplicationLauncher.logger.debug("btnConnectOnClick: Entry");
-    	for (int i = 0; i < 2000; i++) {
-    		ApplicationLauncher.logger.debug("btnConnectOnClick: Count : " + i);
-    		funtionalBaySingleStateTaskTimer = new Timer();
+		ApplicationLauncher.logger.debug("btnConnectOnClick: Entry");
+		for (int i = 0; i < 2000; i++) {
+			ApplicationLauncher.logger.debug("btnConnectOnClick: Count : " + i);
+			funtionalBaySingleStateTaskTimer = new Timer();
 			funtionalBaySingleStateTaskTimer.schedule(new FunctionalTestBaySingleStateTestRun(), 100);
 
-
 			Sleep(5000);
-    	}
-    }
+		}
+	}
 
 	class SendDataToBayTask extends TimerTask {
 		public void run() {
-			Platform.runLater(()->{
+			Platform.runLater(() -> {
 				ref_btnSendDataToBay.setDisable(true);
 			});
 
 			ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance();
-			/*			Platform.runLater(()->{
-				ref_txtAreaResponseDisplay.clear();
-			});*/
+			/*
+			 * Platform.runLater(()->{
+			 * ref_txtAreaResponseDisplay.clear();
+			 * });
+			 */
 
-			/*if(ref_chkBxWriteGreenLed.isSelected()) {
-				String greenLedStatus = "Off";
-				if(ref_chkBxGreenLedData.isSelected()) {
-					greenLedStatus = "On";
-				}*/
+			/*
+			 * if(ref_chkBxWriteGreenLed.isSelected()) {
+			 * String greenLedStatus = "Off";
+			 * if(ref_chkBxGreenLedData.isSelected()) {
+			 * greenLedStatus = "On";
+			 * }
+			 */
 
-			String deviceId = "1"; 
+			String deviceId = "1";
 			String bayId = "1";
 			boolean deviceResponded = false;
-			if(ref_tbViewOutputPortData.getItems().size()>0) {
+			if (ref_tbViewOutputPortData.getItems().size() > 0) {
 				String ipAddress = ref_txtClusterIpAddress.getText();
 				String ipPort = ref_txtClusterPortNo.getText();
-				ClusterServer clusterServer = new ClusterServer(ipAddress,ipPort ,getPresentClusterId());
-				for(int i =0; i< ref_tbViewOutputPortData.getItems().size(); i++) {
-					OutputPort outputPortDetails =  ref_tbViewOutputPortData.getItems().get(i);
-					if(outputPortDetails.isUpdateBay()) {
-						String outputPortId = outputPortDetails.getPortId();						
+				ClusterServer clusterServer = new ClusterServer(ipAddress, ipPort, getPresentClusterId());
+				for (int i = 0; i < ref_tbViewOutputPortData.getItems().size(); i++) {
+					OutputPort outputPortDetails = ref_tbViewOutputPortData.getItems().get(i);
+					if (outputPortDetails.isUpdateBay()) {
+						String outputPortId = outputPortDetails.getPortId();
 						String outputActive = "Off";
-						if(outputPortDetails.isOutputActive()) {
+						if (outputPortDetails.isOutputActive()) {
 							outputActive = "On";
 						}
 						ApplicationLauncher.logger.info("SendDataToBayTask:  Entry-failed-debug");
-						deviceResponded = setOutputDataToBay(clusterServer, deviceId,bayId,outputPortId, outputActive) ;
+						deviceResponded = setOutputDataToBay(clusterServer, deviceId, bayId, outputPortId,
+								outputActive);
 					}
 				}
 			}
 
-			if(ref_tbViewInputPortData.getItems().size()>0) {
+			if (ref_tbViewInputPortData.getItems().size() > 0) {
 				String ipAddress = ref_txtClusterIpAddress.getText();
 				String ipPort = ref_txtClusterPortNo.getText();
 				String stateDesc = "";
-				ClusterServer clusterServer = new ClusterServer(ipAddress,ipPort ,getPresentClusterId());
-				for(int i =0; i< ref_tbViewInputPortData.getItems().size(); i++) {
+				ClusterServer clusterServer = new ClusterServer(ipAddress, ipPort, getPresentClusterId());
+				for (int i = 0; i < ref_tbViewInputPortData.getItems().size(); i++) {
 					stateDesc = "";
-					InputPort inputPortDetails =  ref_tbViewInputPortData.getItems().get(i);
-					if(inputPortDetails.isReadBay()) {
-						String inputPortId = inputPortDetails.getPortId();						
+					InputPort inputPortDetails = ref_tbViewInputPortData.getItems().get(i);
+					if (inputPortDetails.isReadBay()) {
+						String inputPortId = inputPortDetails.getPortId();
 
 						ApplicationLauncher.logger.info("SendDataToBayTask: Entry-failed-debug");
-						RestApiJsonBodyResponse clusterResponseData  =  getInputDataFromBay(clusterServer, deviceId,bayId,inputPortId) ;//RestClient.getBayData(clusterServer, deviceId, bayId, inputPortId);
-						ApplicationLauncher.logger.debug("SendDataToBayTask: getStatuscode : "+clusterResponseData.getStatusCode());
+						RestApiJsonBodyResponse clusterResponseData = getInputDataFromBay(clusterServer, deviceId,
+								bayId, inputPortId);// RestClient.getBayData(clusterServer, deviceId, bayId,
+													// inputPortId);
+						ApplicationLauncher.logger
+								.debug("SendDataToBayTask: getStatuscode : " + clusterResponseData.getStatusCode());
 
-						if(clusterResponseData.getStatusCode().equals("200")){
-							if(clusterResponseData.getJsonBodyResponse().get(inputPortId).equals("On")){
+						if (clusterResponseData.getStatusCode().equals("200")) {
+							if (clusterResponseData.getJsonBodyResponse().get(inputPortId).equals("On")) {
 								ref_tbViewInputPortData.getItems().get(i).setInputActive(true);
 								stateDesc = ref_tbViewInputPortData.getItems().get(i).getOnStateDesc();
 
-							}else if(clusterResponseData.getJsonBodyResponse().get(inputPortId).equals("Off")){
+							} else if (clusterResponseData.getJsonBodyResponse().get(inputPortId).equals("Off")) {
 								ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
 								stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
 							}
 
-
-							//JSONObject bodyRespinse = getJsonBodyResponse();
-						}else {
+							// JSONObject bodyRespinse = getJsonBodyResponse();
+						} else {
 							ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
 						}
 						ref_tbViewInputPortData.getItems().get(i).setStateDescription(stateDesc);
@@ -482,165 +480,197 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 				}
 			}
 
-			Platform.runLater(()->{
+			Platform.runLater(() -> {
 				ref_btnSendDataToBay.setDisable(false);
 			});
 		}
-	}	
-	
-	
+	}
 
-	public RestApiJsonBodyResponse getInputDataFromBay(ClusterServer clusterServer,String deviceId, String bayId,String inputPortId) {
-		
+	public RestApiJsonBodyResponse getInputDataFromBay(ClusterServer clusterServer, String deviceId, String bayId,
+			String inputPortId) {
+
 		ApplicationLauncher.logger.info("getInputDataFromBay: baytestController Entry-failed-debug");
-		String clusterId = clusterServer.getClusterId(); 
+		String clusterId = clusterServer.getClusterId();
 		boolean status = false;
 		ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance(clusterId);
-		//cluster1ClientManager.getBayData(clusterServer,deviceId, bayId,  inputPortId);
-		String dummyOutputValue= "";
+		// cluster1ClientManager.getBayData(clusterServer,deviceId, bayId, inputPortId);
+		String dummyOutputValue = "";
 		boolean setOutput = false;
-		cluster1ClientManager.messageBayData(setOutput,clusterServer,deviceId, bayId,  inputPortId,dummyOutputValue);
-		
-		ApplicationHomeController.update_left_status("Awaiting Device Response",ConstantApp.LEFT_STATUS_DEBUG);
-		//Sleep(8000);
+		cluster1ClientManager.messageBayData(setOutput, clusterServer, deviceId, bayId, inputPortId, dummyOutputValue);
+
+		ApplicationHomeController.update_left_status("Awaiting Device Response", ConstantApp.LEFT_STATUS_DEBUG);
+		// Sleep(8000);
 		RestApiJsonBodyResponse clusterResponseData = new RestApiJsonBodyResponse();
-		//clusterResponseData.setStatuscode(statuscode);
-		//HashMap<Boolean,RestApiClusterResponse> returnData = new HashMap<Boolean,RestApiClusterResponse>();
+		// clusterResponseData.setStatuscode(statuscode);
+		// HashMap<Boolean,RestApiClusterResponse> returnData = new
+		// HashMap<Boolean,RestApiClusterResponse>();
 		boolean isResponseReceived = false;
-		if(ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED){
-			//cluster1ClientManager.getRestConvClient().WaitForServerResponse(8);
+		if (ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED) {
+			// cluster1ClientManager.getRestConvClient().WaitForServerResponse(8);
 			isResponseReceived = cluster1ClientManager.getRestConvClient().isResponseReceived();
-		}else{
+		} else {
 			cluster1ClientManager.getAsyncConvClient().WaitForServerResponse(8);
 			isResponseReceived = cluster1ClientManager.getAsyncConvClient().isResponseReceived();
 		}
-		if(isResponseReceived){ //validate for server access
-			ApplicationHomeController.update_left_status("Device Connected",ConstantApp.LEFT_STATUS_DEBUG);
+		if (isResponseReceived) { // validate for server access
+			ApplicationHomeController.update_left_status("Device Connected", ConstantApp.LEFT_STATUS_DEBUG);
 
-			//RestApiClusterResponse clusterResponseData = new RestApiClusterResponse();
-			if(ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED){
+			// RestApiClusterResponse clusterResponseData = new RestApiClusterResponse();
+			if (ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED) {
 				clusterResponseData = cluster1ClientManager.getRestConvClient().getRestApiClusterResponseBodyData();
-			}else{
+			} else {
 				clusterResponseData = cluster1ClientManager.getAsyncConvClient().getRestApiClusterResponseBodyData();
 			}
-			ApplicationLauncher.logger.info("getInputDataFromBay: "+inputPortId+" : getDevice Data: "+ clusterResponseData.getJsonBodyResponse().get(inputPortId));
+			ApplicationLauncher.logger.info("getInputDataFromBay: " + inputPortId + " : getDevice Data: "
+					+ clusterResponseData.getJsonBodyResponse().get(inputPortId));
 
-			/*ApplicationLauncher.logger.info("getInputDataFromBay: "+inputPortId+" : getDevice Data: "+ clusterResponseData.getDevice());
-			ApplicationLauncher.logger.info("getInputDataFromBay: "+inputPortId+" : getStatus Data: "+ clusterResponseData.getStatus());
-			ApplicationLauncher.logger.info("getInputDataFromBay: "+inputPortId+" : getStatus getOpGreen: "+ clusterResponseData.getOpGreen());
-			ApplicationLauncher.logger.info("getInputDataFromBay: "+inputPortId+" : getStatus getOpYellow: "+ clusterResponseData.getOpYellow());
-			ApplicationLauncher.logger.info("getInputDataFromBay: "+inputPortId+" : getStatus getOpRed: "+ clusterResponseData.getOpRed());*/
+			/*
+			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
+			 * +inputPortId+" : getDevice Data: "+ clusterResponseData.getDevice());
+			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
+			 * +inputPortId+" : getStatus Data: "+ clusterResponseData.getStatus());
+			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
+			 * +inputPortId+" : getStatus getOpGreen: "+ clusterResponseData.getOpGreen());
+			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
+			 * +inputPortId+" : getStatus getOpYellow: "+
+			 * clusterResponseData.getOpYellow());
+			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
+			 * +inputPortId+" : getStatus getOpRed: "+ clusterResponseData.getOpRed());
+			 */
 
+			// String responseData =
+			// cluster1ClientManager.getAsyncConvClient().getResponseData();
 
-			//String responseData = cluster1ClientManager.getAsyncConvClient().getResponseData();
-
-			/*Platform.runLater(()->{
-				ref_txtAreaResponseDisplay.setText(responseData);
-			});*/
-			/*			if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
-				ref_txtAreaResponseDisplay.setText(responseData);
-			}else {
-				ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+responseData);
-			}*/
+			/*
+			 * Platform.runLater(()->{
+			 * ref_txtAreaResponseDisplay.setText(responseData);
+			 * });
+			 */
+			/*
+			 * if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
+			 * ref_txtAreaResponseDisplay.setText(responseData);
+			 * }else {
+			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
+			 * responseData);
+			 * }
+			 */
 			status = true;
 
-			//ApplicationHomeController.EnableScanDeviceButton();
-		}else{
+			// ApplicationHomeController.EnableScanDeviceButton();
+		} else {
 
-			//ScanDeviceController.ScanDeviceCompletedPostProcess();
-			//ApplicationHomeController.EnableScanDeviceButton();
-			//ApplicationHomeController.DisableTestRunButton();
-			//ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
-/*			Platform.runLater(()->{
-				ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+inputPortId+"-no response");
-			});*/
-			ApplicationHomeController.update_left_status("Device Connection Failed "+inputPortId+" :",ConstantApp.LEFT_STATUS_DEBUG);
+			// ScanDeviceController.ScanDeviceCompletedPostProcess();
+			// ApplicationHomeController.EnableScanDeviceButton();
+			// ApplicationHomeController.DisableTestRunButton();
+			// ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
+			/*
+			 * Platform.runLater(()->{
+			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
+			 * inputPortId+"-no response");
+			 * });
+			 */
+			ApplicationHomeController.update_left_status("Device Connection Failed " + inputPortId + " :",
+					ConstantApp.LEFT_STATUS_DEBUG);
 		}
 		return clusterResponseData;
 	}
 
-	
-	public boolean setOutputDataToBay(ClusterServer clusterServer,String deviceId, String bayId,String outputPortId, String outputStatus) {
+	public boolean setOutputDataToBay(ClusterServer clusterServer, String deviceId, String bayId, String outputPortId,
+			String outputStatus) {
 		ApplicationLauncher.logger.info("setOutputDataToBay: baytestController Entry-failed-debug");
-		String clusterId = clusterServer.getClusterId(); 
+		String clusterId = clusterServer.getClusterId();
 		boolean status = false;
-		ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance(clusterId);//new ConveyorClientManager();
-		//cluster1ClientManager.setBayData(clusterServer,deviceId, bayId,  outputPortId, outputStatus);
-		
-		//String dummyOutputValue= "";
+		ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance(clusterId);// new
+																									// ConveyorClientManager();
+		// cluster1ClientManager.setBayData(clusterServer,deviceId, bayId, outputPortId,
+		// outputStatus);
+
+		// String dummyOutputValue= "";
 		boolean setOutput = true;
-		cluster1ClientManager.messageBayData(setOutput,clusterServer,deviceId, bayId,  outputPortId,outputStatus);
-		ApplicationHomeController.update_left_status("Awaiting Device Response",ConstantApp.LEFT_STATUS_DEBUG);
-		//Sleep(8000);
-		//cluster1ClientManager.getAsyncConvClient().WaitForServerResponse(8);
+		cluster1ClientManager.messageBayData(setOutput, clusterServer, deviceId, bayId, outputPortId, outputStatus);
+		ApplicationHomeController.update_left_status("Awaiting Device Response", ConstantApp.LEFT_STATUS_DEBUG);
+		// Sleep(8000);
+		// cluster1ClientManager.getAsyncConvClient().WaitForServerResponse(8);
 		boolean isResponseReceived = false;
-		if(ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED){
-			//cluster1ClientManager.getRestConvClient().WaitForServerResponse(8);
+		if (ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED) {
+			// cluster1ClientManager.getRestConvClient().WaitForServerResponse(8);
 			isResponseReceived = cluster1ClientManager.getRestConvClient().isResponseReceived();
-		}else{
+		} else {
 			cluster1ClientManager.getAsyncConvClient().WaitForServerResponse(8);
 			isResponseReceived = cluster1ClientManager.getAsyncConvClient().isResponseReceived();
 		}
-		if(isResponseReceived){//cluster1ClientManager.getAsyncConvClient().isResponseReceived()){ //validate for server access
-			ApplicationHomeController.update_left_status("Device Connected",ConstantApp.LEFT_STATUS_DEBUG);
+		if (isResponseReceived) {// cluster1ClientManager.getAsyncConvClient().isResponseReceived()){ //validate
+									// for server access
+			ApplicationHomeController.update_left_status("Device Connected", ConstantApp.LEFT_STATUS_DEBUG);
 
 			RestApiClusterResponse clusterResponseData = new RestApiClusterResponse();
-			//clusterResponseData = cluster1ClientManager.getAsyncConvClient().getRestApiClusterResponseData();
-			if(ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED){
+			// clusterResponseData =
+			// cluster1ClientManager.getAsyncConvClient().getRestApiClusterResponseData();
+			if (ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED) {
 				clusterResponseData = cluster1ClientManager.getRestConvClient().getRestApiClusterResponseData();
-			}else{
+			} else {
 				clusterResponseData = cluster1ClientManager.getAsyncConvClient().getRestApiClusterResponseData();
 			}
-			ApplicationLauncher.logger.info("AsyncConveyorClient: "+outputPortId+" : getDevice Data: "+ clusterResponseData.getDevice());
-			ApplicationLauncher.logger.info("AsyncConveyorClient: "+outputPortId+" : getStatus Data: "+ clusterResponseData.getStatus());
+			ApplicationLauncher.logger.info(
+					"AsyncConveyorClient: " + outputPortId + " : getDevice Data: " + clusterResponseData.getDevice());
+			ApplicationLauncher.logger.info(
+					"AsyncConveyorClient: " + outputPortId + " : getStatus Data: " + clusterResponseData.getStatus());
 
-
-			//String responseData = cluster1ClientManager.getAsyncConvClient().getResponseData();
-			/*Platform.runLater(()->{
-				ref_txtAreaResponseDisplay.setText(responseData);
-			});*/
-			/*if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
-				ref_txtAreaResponseDisplay.setText(responseData);
-			}else {
-				ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+responseData);
-			}*/
+			// String responseData =
+			// cluster1ClientManager.getAsyncConvClient().getResponseData();
+			/*
+			 * Platform.runLater(()->{
+			 * ref_txtAreaResponseDisplay.setText(responseData);
+			 * });
+			 */
+			/*
+			 * if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
+			 * ref_txtAreaResponseDisplay.setText(responseData);
+			 * }else {
+			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
+			 * responseData);
+			 * }
+			 */
 			status = true;
 
-			//ApplicationHomeController.EnableScanDeviceButton();
-		}else{
+			// ApplicationHomeController.EnableScanDeviceButton();
+		} else {
 
-			//ScanDeviceController.ScanDeviceCompletedPostProcess();
-			//ApplicationHomeController.EnableScanDeviceButton();
-			//ApplicationHomeController.DisableTestRunButton();
-			//ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
-/*			Platform.runLater(()->{
-				ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+outputPortId+"-no response");
-			});*/
-			ApplicationHomeController.update_left_status("Device Connection Failed "+outputPortId+" :",ConstantApp.LEFT_STATUS_DEBUG);
-			//status = null;
+			// ScanDeviceController.ScanDeviceCompletedPostProcess();
+			// ApplicationHomeController.EnableScanDeviceButton();
+			// ApplicationHomeController.DisableTestRunButton();
+			// ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
+			/*
+			 * Platform.runLater(()->{
+			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
+			 * outputPortId+"-no response");
+			 * });
+			 */
+			ApplicationHomeController.update_left_status("Device Connection Failed " + outputPortId + " :",
+					ConstantApp.LEFT_STATUS_DEBUG);
+			// status = null;
 		}
 		return status;
 	}
-	
 
 	@FXML
-	public void cmbBxClusterSelectionOnChange(){
+	public void cmbBxClusterSelectionOnChange() {
 		ApplicationLauncher.logger.debug("cmbBxClusterSelectionOnChange: Entry");
 		clusterSelectionOnChangeTimer = new Timer();
-		clusterSelectionOnChangeTimer.schedule(new ClusterSelectionOnChangeTask(),10);
+		clusterSelectionOnChangeTimer.schedule(new ClusterSelectionOnChangeTask(), 10);
 	}
 
 	class ClusterSelectionOnChangeTask extends TimerTask {
 		public void run() {
 			Platform.runLater(() -> {
-				String selectedClusterName = (String)ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
-				if(getClusterBayNameListMap().size()>0){
+				String selectedClusterName = (String) ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
+				if (getClusterBayNameListMap().size() > 0) {
 					ref_tbViewOutputPortData.getItems().clear();
 					ref_tbViewInputPortData.getItems().clear();
 					ref_cmbBxBaySelection.getItems().clear();
 					ref_txtClusterIpAddress.setText("");
 					ref_txtClusterPortNo.setText("");
-					if(getClusterBayNameListMap().containsKey(selectedClusterName)){
+					if (getClusterBayNameListMap().containsKey(selectedClusterName)) {
 						ref_cmbBxBaySelection.getItems().addAll(getClusterBayNameListMap().get(selectedClusterName));
 					}
 					ref_cmbBxBaySelection.getSelectionModel().select(0);
@@ -651,76 +681,69 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 		}
 	}
 
-	//BAY COMBO BOX CHANGE
+	// BAY COMBO BOX CHANGE
 
 	@FXML
-	public void cmbBxBaySelectionOnChange(){
+	public void cmbBxBaySelectionOnChange() {
 		ApplicationLauncher.logger.debug("cmbBxBaySelectionOnChange: Entry");
 		baySelectionOnChangeTimer = new Timer();
-		baySelectionOnChangeTimer.schedule(new BaySelectionOnChangeTask(),10);
+		baySelectionOnChangeTimer.schedule(new BaySelectionOnChangeTask(), 10);
 	}
-
 
 	class BaySelectionOnChangeTask extends TimerTask {
 		public void run() {
-			Platform.runLater(()->{
+			Platform.runLater(() -> {
 
-				String selectedClusterName = (String)ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
-				if(getClusterBayNameListMap().size()>0){
+				String selectedClusterName = (String) ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
+				if (getClusterBayNameListMap().size() > 0) {
 					ref_tbViewOutputPortData.getItems().clear();
 					ref_tbViewInputPortData.getItems().clear();
-					//ref_txtClusterIpAddress.setText("");
-					//ref_txtClusterPortNo.setText("");
-					//if(getClusterBayNameListMap().containsKey(selectedClusterName)){
-					//	ref_cmbBxBaySelection.getItems().addAll(getClusterBayNameListMap().get(selectedClusterName));
-					//}
-					//ref_cmbBxBaySelection.getSelectionModel().select(0);
+					// ref_txtClusterIpAddress.setText("");
+					// ref_txtClusterPortNo.setText("");
+					// if(getClusterBayNameListMap().containsKey(selectedClusterName)){
+					// ref_cmbBxBaySelection.getItems().addAll(getClusterBayNameListMap().get(selectedClusterName));
+					// }
+					// ref_cmbBxBaySelection.getSelectionModel().select(0);
 
 				}
 			});
 			baySelectionOnChangeTimer.cancel();
 
-
-
-
 		}
 	}
 
-
-
-
 	@FXML
-	public void btnLoadOnClick(){
+	public void btnLoadOnClick() {
 
 		ApplicationLauncher.logger.debug("btnLoadOnClick: Entry");
 		loadOnClickTimer = new Timer();
-		loadOnClickTimer.schedule(new LoadOnClickTask(),10);
+		loadOnClickTimer.schedule(new LoadOnClickTask(), 10);
 
 	}
 
-
 	class LoadOnClickTask extends TimerTask {
 		public void run() {
-			Platform.runLater(()->{
+			Platform.runLater(() -> {
 				ref_tbViewOutputPortData.getItems().clear();
 				ref_tbViewInputPortData.getItems().clear();
 				String clusterName = (ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString());
 				String bayName = (ref_cmbBxBaySelection.getSelectionModel().getSelectedItem().toString());
 
 				String clusterId = getClusterNameIdListMap().get(clusterName);
-				//ApplicationLauncher.logger.debug("loadDataFromConfig : getClusterBayNameIdMap().get(clusterName)-2 :"+ getClusterBayNameIdMap().get(clusterName));
-				//String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
+				// ApplicationLauncher.logger.debug("loadDataFromConfig :
+				// getClusterBayNameIdMap().get(clusterName)-2 :"+
+				// getClusterBayNameIdMap().get(clusterName));
+				// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
-				ApplicationLauncher.logger.debug("LoadOnClickTask : clusterId :"+ clusterId);
-
+				ApplicationLauncher.logger.debug("LoadOnClickTask : clusterId :" + clusterId);
 
 				String clusterIpAddress = "";
 				String clusterPortNo = "";
 
-				Optional<ClusterDetail> clusterOpt = 		getBayConfigModel().getTerminal().stream()
-						.filter(e1->e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
+				Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
+						.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 						.flatMap(terminal -> terminal.getClusterDetails().stream())
-						.filter(e2->e2.getClusterId().equals(clusterId))
+						.filter(e2 -> e2.getClusterId().equals(clusterId))
 						.findFirst();
 
 				if (clusterOpt.isPresent()) {
@@ -730,100 +753,95 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 
 				}
 
+				// Optional<OutputPort> outputPortOpt =
 
-
-
-				//Optional<OutputPort> outputPortOpt = 
-
-				Optional<Bay> bayOpt = 		getBayConfigModel().getTerminal().stream()
-						.filter(e1->e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
+				Optional<Bay> bayOpt = getBayConfigModel().getTerminal().stream()
+						.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 						.flatMap(terminal -> terminal.getClusterDetails().stream())
-						.filter(e2->e2.getClusterId().equals(clusterId))
+						.filter(e2 -> e2.getClusterId().equals(clusterId))
 						.flatMap(e3 -> e3.getBay().stream())
-						.filter(e4->e4.getBayName().equals(bayName))
+						.filter(e4 -> e4.getBayName().equals(bayName))
 						.findFirst();
 
 				if (bayOpt.isPresent()) {
 					Bay bayDetails = bayOpt.get();
 					String bayId = bayDetails.getBayId();
-					ApplicationLauncher.logger.debug("LoadOnClickTask : bayId :"+ bayId);
+					ApplicationLauncher.logger.debug("LoadOnClickTask : bayId :" + bayId);
 
-					ArrayList<OutputPort> outputPortList = (ArrayList<OutputPort>) getBayConfigModel().getTerminal().stream()
+					ArrayList<OutputPort> outputPortList = (ArrayList<OutputPort>) getBayConfigModel().getTerminal()
+							.stream()
 							.flatMap(terminal -> terminal.getOutputPort().stream())
 							.filter(p -> clusterId.equals(p.getClusterId()))
 							.filter(p -> bayId.equals(p.getBayId()))
 							.collect(Collectors.toList());
 
-					if (outputPortList.size()>0) {
+					if (outputPortList.size() > 0) {
 						int serialNo = 1;
-						for(OutputPort eachOutputPort : outputPortList) {
+						for (OutputPort eachOutputPort : outputPortList) {
 							eachOutputPort.setSerialNo(String.valueOf(serialNo));
-							if(eachOutputPort.isOutputActive()) {
+							if (eachOutputPort.isOutputActive()) {
 								eachOutputPort.setStateDescription(eachOutputPort.getOnStateDesc());
-								//ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory : getStateDescription-1 : " + rowData.getStateDescription());
-							}else {
+								// ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory :
+								// getStateDescription-1 : " + rowData.getStateDescription());
+							} else {
 								eachOutputPort.setStateDescription(eachOutputPort.getOffStateDesc());
-								//ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory : getStateDescription-12: " + rowData.getStateDescription());
+								// ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory :
+								// getStateDescription-12: " + rowData.getStateDescription());
 
 							}
-							//eachOutputPort.setStateDescription("DummyData");
-							serialNo++; 
+							// eachOutputPort.setStateDescription("DummyData");
+							serialNo++;
 						}
-						ref_tbViewOutputPortData.getItems().addAll(outputPortList); 
+						ref_tbViewOutputPortData.getItems().addAll(outputPortList);
 
 					}
 
-					ArrayList<InputPort> inputPortList = (ArrayList<InputPort>) getBayConfigModel().getTerminal().stream()
+					ArrayList<InputPort> inputPortList = (ArrayList<InputPort>) getBayConfigModel().getTerminal()
+							.stream()
 							.flatMap(terminal -> terminal.getInputPort().stream())
 							.filter(p -> clusterId.equals(p.getClusterId()))
 							.filter(p -> bayId.equals(p.getBayId()))
 							.collect(Collectors.toList());
 
-					if (inputPortList.size()>0) {
+					if (inputPortList.size() > 0) {
 						int serialNo = 1;
-						for(InputPort eachInputPort : inputPortList) {
+						for (InputPort eachInputPort : inputPortList) {
 							eachInputPort.setSerialNo(String.valueOf(serialNo));
-							if(eachInputPort.isInputActive()) {
+							if (eachInputPort.isInputActive()) {
 								eachInputPort.setStateDescription(eachInputPort.getOnStateDesc());
-								//ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory : getStateDescription-1 : " + rowData.getStateDescription());
-							}else {
+								// ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory :
+								// getStateDescription-1 : " + rowData.getStateDescription());
+							} else {
 								eachInputPort.setStateDescription(eachInputPort.getOffStateDesc());
-								//ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory : getStateDescription-12: " + rowData.getStateDescription());
+								// ApplicationLauncher.logger.debug("OutputPortActiveCheckBoxValueFactory :
+								// getStateDescription-12: " + rowData.getStateDescription());
 
 							}
-							serialNo++; 
+							serialNo++;
 						}
-						ref_tbViewInputPortData.getItems().addAll(inputPortList); 
+						ref_tbViewInputPortData.getItems().addAll(inputPortList);
 
 					}
-
-
 
 				}
 			});
 			loadOnClickTimer.cancel();
 
-
-
-
 		}
 	}
-	
+
 	public void Sleep(int timeInMsec) {
 
 		try {
 			Thread.sleep(timeInMsec);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-			ApplicationLauncher.logger.error("Sleep2 :InterruptedException:"+ e.getMessage());
+			ApplicationLauncher.logger.error("Sleep2 :InterruptedException:" + e.getMessage());
 		}
 
 	}
 
-	
-	
-	
 	public Map<String, String> getClusterNameIdListMap() {
 		return clusterNameIdListMap;
 	}
@@ -831,7 +849,7 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 	public void setClusterNameIdListMap(Map<String, String> clusterIdNameListMap) {
 		this.clusterNameIdListMap = clusterIdNameListMap;
 	}
-	
+
 	public Map<String, String> getClusterBayNameIdMap() {
 		return clusterBayNameIdMap;
 	}
@@ -839,7 +857,7 @@ public class BayTestController implements Initializable ,InputPortTableViewRefre
 	public void setClusterBayNameIdMap(Map<String, String> clusterBayNameIdMap) {
 		this.clusterBayNameIdMap = clusterBayNameIdMap;
 	}
-	
+
 	public static TerminalBayConfigModel getBayConfigModel() {
 		return bayConfigModel;
 	}

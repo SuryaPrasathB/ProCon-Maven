@@ -5,16 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import org.codehaus.groovy.runtime.StringGroovyMethods;
-
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -33,19 +24,19 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.dutprocess.ParallelTaskManager;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
-import com.tasnetwork.calibration.conveyor.util.ChannelQueueRequestProcessor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 import com.tasnetwork.spring.orm.model.PalletManage;
-import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for performing functional tests on the meters.
+ */
 public class S08_functional_Test implements FtBayState {
     String sequencePathId = "p1";
     private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
@@ -140,7 +131,7 @@ public class S08_functional_Test implements FtBayState {
             PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
             if(myPalletManage!=null){
 	            // Wait for all device tests to complete or timeout
-	            while (!ProjectExecutionController.getUserAbortedFlag() &&
+	            while (!BayUtils.isUserAborted() &&
 	                   dutWaitTimeCounter < dutWaitTimeDurationMaxInSec &&
 	                   !dutAllProcessExecutionCompleted &&
 	                   !ConstantConveyor.ALL_LOOP_BREAK_FLAG &&
@@ -183,7 +174,7 @@ public class S08_functional_Test implements FtBayState {
 	                // Update dashboard with individual meter results
 	                for (int positionNo = 1; positionNo <= ConstantConveyor.MAX_DEVICES_CONNECTED; positionNo++) {
 	                    String resultSummary = ftManager.getDutResultSummary(positionNo);
-	                    DevSysEnergyMeter devSysEnergyMeter = new DevSysEnergyMeter(Ft.logger);
+	                    new DevSysEnergyMeter(Ft.logger);
 	                    
 	                    TerminalProfileSetting terminalBayProfile = MySqlServiceManager.getTerminalProfileSettingService().findByBayKey(ConstantConveyor.FT_BAY_KEY);
 	                    String deviceId = terminalBayProfile.getTerminalId() + terminalBayProfile.getClusterId() +
@@ -191,16 +182,7 @@ public class S08_functional_Test implements FtBayState {
 	                    
 	                    ConveyorDataManager deviceDataManager = new ConveyorDataManager();
 	                    DeviceSetting deviceSetting = deviceDataManager.getDeviceSettingByDeviceId(deviceId);
-	                    String portCname = deviceSetting.getCanName();
-	                    
-	                    /*SpmDut spManager = null;
-	                    if (ProconFeatureEnable.CONVEYOR_DEVICE_SETTING_SPRING_ENABLED) {
-	                        spManager = devSysEnergyMeter.serialPortInitV2(deviceSetting);
-	                    } else {
-	                        spManager = devSysEnergyMeter.serialPortInit(portCname);
-	                    }
-	                    
-	                    Map<String, Object> result = devSysEnergyMeter.readSerialNumOfMeter(positionNo, spManager);*/
+	                    deviceSetting.getCanName();
 	                    
 	                    Ft.logger.debug("Position Error Code2:  Position Number: " + positionNo);
 	                    Ft.logger.debug("S08_functional_Test: positionNo: " + positionNo + ", resultSummary: <" + resultSummary +">");
@@ -239,17 +221,8 @@ public class S08_functional_Test implements FtBayState {
 		                    sendRejectionMeterUpdate(positionNo, meterSerialNumberMap.getOrDefault(positionNo, " "), resultStatus, errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000));
 						}
 	                    Ft.logger.debug("S08_functional_Test:  Position: " + positionNo + " Hit2"); 
-	                    PalletMeter responsePalletMeter = palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000));
-	                    
-	                    /*if(responsePalletMeter!=null){
-	                    	myPalletManage.getPalletMeterList().removeIf(e->e.getId()==responsePalletMeter.getId());
-	                    	myPalletManage.getPalletMeterList().add(responsePalletMeter);
-	                    	FunctionalTestBay.logger.debug("Position Error Code2:  Position Number: " + positionNo);
-	                        
-	                    }*/
-	                    
-	                    
-	                    //FunctionalTestBay.logger.debug("Position Error Code: " + errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000) + " Position Number: " + positionNo);
+	                    palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, errorCodeMap.getOrDefault(positionNo, ErrorCode.ERR_000));
+
 	                }
 	
 	                // Update pallet management with pass/fail counts and save to database
@@ -1177,7 +1150,7 @@ public class S08_functional_Test implements FtBayState {
 			    serialNo = StateExecutorController.addToTestStatusGui(testInterfaceStatus);
 			    testInterfaceStatus.setSerialNo(String.valueOf(serialNo));
 
-			    while (!ProjectExecutionController.getUserAbortedFlag() &&
+			    while (!BayUtils.isUserAborted() &&
 			           waitTimeInSec != 0 &&
 			           pulseCounter.isEmpty() &&
 			           !Ft.isStopProcessRequestedFtBay()) {
@@ -1191,7 +1164,7 @@ public class S08_functional_Test implements FtBayState {
 			        Ft.logger.debug("S08_functional_Test: checkForPulsesInMeter: Position: " + positionNum + " : waitTimeInSec: " + waitTimeInSec);
 			    }
 
-			    if (ProjectExecutionController.getUserAbortedFlag()) {
+			    if (BayUtils.isUserAborted()) {
 			        Ft.logger.debug("S08_functional_Test: checkForPulsesInMeter: Position: " + positionNum + " user aborted");
 			    }
 
@@ -1316,7 +1289,7 @@ public class S08_functional_Test implements FtBayState {
 			            terminalBayProfile.getBayId(), positionNum,
 			            ConstantBayPortNameMapping.FT_PORT_NAME_LDU_STATUS_CHECK_PREFIX);
 
-			    while (!ProjectExecutionController.getUserAbortedFlag() &&
+			    while (!BayUtils.isUserAborted() &&
 			           waitTimeInSec != 0 &&
 			           pulseStatus.equals(Constant_IO_ActionMapping.OFF) &&
 			           !Ft.isStopProcessRequestedFtBay()) {
@@ -1327,7 +1300,7 @@ public class S08_functional_Test implements FtBayState {
 			        Ft.logger.debug("S08_functional_Test: checkForPulsesInMeterWithPlc: Position: " + positionNum + " : pulseStatus: " + pulseStatus);
 			    }
 
-			    if (ProjectExecutionController.getUserAbortedFlag()) {
+			    if (BayUtils.isUserAborted()) {
 			        Ft.logger.debug("S08_functional_Test: checkForPulsesInMeterWithPlc: Position: " + positionNum + " user aborted");
 			    }
 

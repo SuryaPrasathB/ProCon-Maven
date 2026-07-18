@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import com.google.gson.Gson;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.reportprofile.ReportProfileOperationConfigLoader;
 
@@ -35,7 +36,7 @@ public class TerminalBayConfigLoader {
 			Object retValue  = properties.get(key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getAttribute : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -45,7 +46,7 @@ public class TerminalBayConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getAttribute : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -57,7 +58,7 @@ public class TerminalBayConfigLoader {
 			JSONObject sectionObj = (JSONObject)properties.get(section);
 			if (sectionObj == null) {
 				ApplicationLauncher.logger.error("TerminalBayConfigLoader: getAttribute : config file: section:"+ section);
-				ApplicationLauncher.InformUser("TerminalBayConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("TerminalBayConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -66,7 +67,7 @@ public class TerminalBayConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("TerminalBayConfigLoader: getAttribute : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("TerminalBayConfigLoader: getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("TerminalBayConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("TerminalBayConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -79,7 +80,7 @@ public class TerminalBayConfigLoader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("TerminalBayConfigLoader: getString : config file: section:"+ section);
 				ApplicationLauncher.logger.error("TerminalBayConfigLoader: getString : config file: key:"+ key);
-				//ApplicationLauncher.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				//WindowManager.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}else{
@@ -90,7 +91,7 @@ public class TerminalBayConfigLoader {
 			ApplicationLauncher.logger.error("TerminalBayConfigLoader: getString : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("TerminalBayConfigLoader : getString : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("TerminalBayConfigLoader : getString : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("TerminalBayConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("TerminalBayConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 

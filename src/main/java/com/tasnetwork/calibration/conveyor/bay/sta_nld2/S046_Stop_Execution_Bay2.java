@@ -10,7 +10,6 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S046_Stop_Execution_Bay2 implements STA_NoLoadTestBay2State  {

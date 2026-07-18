@@ -11,13 +11,13 @@ import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for turning ON Tower Lamp (Green) and turning OFF Tower Lamp (Red) at the FT Bay.
+ */
 public class S301_turn_off_tower_lamp1_FT_Bay implements FtBayState {
 	
 	BayUtils bayUtils = new BayUtils();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 	
     //===========================================================================================
     @Override
@@ -75,14 +75,14 @@ public class S301_turn_off_tower_lamp1_FT_Bay implements FtBayState {
 		responseReturn.put("status", false); // Default boolean status
 
         //============================================================================================
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_TWR_LAMP2); // Assuming LAMP2 is RED
+        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_TWR_LAMP2);
         Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_RED_OFF] : [PORT_CONFIG] - Target port: %s", getMyBayKey(), ConstantBayPortNameMapping.FT_PORT_NAME_TWR_LAMP2));
 
         String rawOutputState = "";
         if (portInfo != null) {
             Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_RED_OFF] : [PORT_INFO] - PortId: %s, ClusterId: %s, BayId: %s", getMyBayKey(), portInfo.getPortId(), portInfo.getClusterId(), portInfo.getBayId()));
 
-            String outputInactive = Constant_IO_ActionMapping.CLOSE; // Use OPEN to represent turning the relay "Off" (inactive state)
+            String outputInactive = Constant_IO_ActionMapping.CLOSE;
             Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_RED_OFF] : [SET_OUTPUT] - Setting output to: %s for port: %s", getMyBayKey(), outputInactive, portInfo.getPortId()));
 
             try {
@@ -92,8 +92,7 @@ public class S301_turn_off_tower_lamp1_FT_Bay implements FtBayState {
                                                   outputInactive);
                 Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_RED_OFF] : [RAW_OUTPUT_STATE] : %s", getMyBayKey(), rawOutputState));
 
-                // Assuming success if the returned state matches the desired OFF state
-                status = rawOutputState.equals(Constant_IO_ActionMapping.OFF); // OLD_ON_NEW_OFF implies it successfully turned OFF
+                status = rawOutputState.equals(Constant_IO_ActionMapping.OFF);
 
             } catch (Exception e) {
                 Ft.logger.error(String.format("[%s] : [COMMUNICATION_ERROR] : [TOWER_LAMP_RED_OFF] - Failed to set Tower Lamp (Red) state. Port: %s. Error: %s", getMyBayKey(), portInfo.getPortId(), e.getMessage()), e);
@@ -128,14 +127,14 @@ public class S301_turn_off_tower_lamp1_FT_Bay implements FtBayState {
 		responseReturn.put("status", false); // Default boolean status
 
         //============================================================================================
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_TWR_LAMP1); // Assuming LAMP1 is GREEN
+        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_TWR_LAMP1);
         Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_GREEN_ON] : [PORT_CONFIG] - Target port: %s", getMyBayKey(), ConstantBayPortNameMapping.FT_PORT_NAME_TWR_LAMP1));
 
         String rawOutputState = "";
         if (portInfo != null) {
             Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_GREEN_ON] : [PORT_INFO] - PortId: %s, ClusterId: %s, BayId: %s", getMyBayKey(), portInfo.getPortId(), portInfo.getClusterId(), portInfo.getBayId()));
 
-            String outputActive = Constant_IO_ActionMapping.OPEN; // Use CLOSE to represent turning the relay "On"
+            String outputActive = Constant_IO_ActionMapping.OPEN;
             Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_GREEN_ON] : [SET_OUTPUT] - Setting output to: %s for port: %s", getMyBayKey(), outputActive, portInfo.getPortId()));
 
             try {
@@ -145,8 +144,7 @@ public class S301_turn_off_tower_lamp1_FT_Bay implements FtBayState {
                                                   outputActive);
                 Ft.logger.debug(String.format("[%s] : [TOWER_LAMP_GREEN_ON] : [RAW_OUTPUT_STATE] : %s", getMyBayKey(), rawOutputState));
 
-                // Assuming success if the returned state matches the desired ON state
-                status = rawOutputState.equals(Constant_IO_ActionMapping.ON); // OLD_OFF_NEW_ON implies it successfully turned ON
+                status = rawOutputState.equals(Constant_IO_ActionMapping.ON);
 
             } catch (Exception e) {
                 Ft.logger.error(String.format("[%s] : [COMMUNICATION_ERROR] : [TOWER_LAMP_GREEN_ON] - Failed to set Tower Lamp (Green) state. Port: %s. Error: %s", getMyBayKey(), portInfo.getPortId(), e.getMessage()), e);

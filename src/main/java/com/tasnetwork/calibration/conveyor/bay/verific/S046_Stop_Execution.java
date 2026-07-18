@@ -1,18 +1,13 @@
 package com.tasnetwork.calibration.conveyor.bay.verific;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 //import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 //import com.tasnetwork.calibration.conveyor.bay_verificationtest.S046_Stop_Execution;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S046_Stop_Execution implements VerificTestBayState  {

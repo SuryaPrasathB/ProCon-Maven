@@ -7,7 +7,6 @@ import java.util.List;
 import org.json.JSONObject;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.deployment.DeploymentTestCaseDataModel;
 
 public class MySQL_Controller {
 
@@ -103,37 +102,37 @@ public class MySQL_Controller {
 	
 	
 
-	public static boolean sp_add_deploy_test_cases_v2 (String lastUpdatedDeploymentID, String project_name, 
-			String sequence_no, String is_deployed,DeploymentTestCaseDataModel deployModel) {
+	// public static boolean sp_add_deploy_test_cases_v2 (String lastUpdatedDeploymentID, String project_name, 
+	// 		String sequence_no, String is_deployed,DeploymentTestCaseDataModel deployModel) {
 
 
-		MySQL_Interface SQLConnect  = new MySQL_Interface ();
+	// 	MySQL_Interface SQLConnect  = new MySQL_Interface ();
 
-		try {
+	// 	try {
 
-			boolean SP_Response = false;
-			if(SQLConnect.ConnectMySQL()){
-				SP_Response = SQLConnect.sp_ltadd_deploy_test_cases_V2( lastUpdatedDeploymentID, project_name, sequence_no, is_deployed,
-						deployModel) ;
+	// 		boolean SP_Response = false;
+	// 		if(SQLConnect.ConnectMySQL()){
+	// 			SP_Response = SQLConnect.sp_ltadd_deploy_test_cases_V2( lastUpdatedDeploymentID, project_name, sequence_no, is_deployed,
+	// 					deployModel) ;
 
 
-				if (SP_Response){
-					//ApplicationLauncher.logger.info ("Deploy Test Cases: Success");
-					return true;
-				} else {
-					ApplicationLauncher.logger.info ("Deploy Test Cases V2 create: Failure");
-					return false;
-				} 
-			}
-		} catch (Exception ex) {	  
-			ex.printStackTrace();	  
-			ApplicationLauncher.logger.error ("sp_add_deploy_test_cases_v2 : Exception:"+ex.getMessage());
-			return false;
+	// 			if (SP_Response){
+	// 				//ApplicationLauncher.logger.info ("Deploy Test Cases: Success");
+	// 				return true;
+	// 			} else {
+	// 				ApplicationLauncher.logger.info ("Deploy Test Cases V2 create: Failure");
+	// 				return false;
+	// 			} 
+	// 		}
+	// 	} catch (Exception ex) {	  
+	// 		ex.printStackTrace();	  
+	// 		ApplicationLauncher.logger.error ("sp_add_deploy_test_cases_v2 : Exception:"+ex.getMessage());
+	// 		return false;
 
-		}
-		return false;
+	// 	}
+	// 	return false;
 
-	}
+	// }
 
 	
 

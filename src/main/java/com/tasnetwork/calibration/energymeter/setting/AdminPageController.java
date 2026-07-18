@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
@@ -46,28 +47,27 @@ import javafx.stage.Stage;
 
 public class AdminPageController implements Initializable {
 	Timer UAC_Timer;
-	
-	@FXML 
+
+	@FXML
 	private Button btnUserAccessControl;
-	
-	
-	private static  Button ref_btnUserAccessControl;
-	
+
+	private static Button ref_btnUserAccessControl;
+
 	@FXML
 	private ComboBox<String> cmbBxAccessLevel;
 
-	@FXML 
+	@FXML
 	private TextField txt_username;
 
 	@FXML
 	private TextField filterField;
 
-	@FXML 
+	@FXML
 	private TextField txt_password;
-	//edited mohan
-	@FXML 
+	// edited mohan
+	@FXML
 	private TextField txt_confirm_password;
-	//fin
+	// fin
 
 	@FXML
 	private TableView<ProcalUserModel> procal_user_list_table;
@@ -76,14 +76,12 @@ public class AdminPageController implements Initializable {
 	@FXML
 	private TableColumn<ProcalUserModel, String> accesslevelColumn;
 
-
 	private ObservableList<ProcalUserModel> username_list = FXCollections.observableArrayList();
 
 	public AdminPageController() {
 		RefreshUserList();
 
 	}
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -116,32 +114,35 @@ public class AdminPageController implements Initializable {
 			});
 		});
 
-		// 3. Wrap the FilteredList in a SortedList. 
+		// 3. Wrap the FilteredList in a SortedList.
 		SortedList<ProcalUserModel> sortedData = new SortedList<>(filteredData);
 
 		// 4. Bind the SortedList comparator to the TableView comparator.
-		// 	  Otherwise, sorting the TableView would have no effect.
+		// Otherwise, sorting the TableView would have no effect.
 		sortedData.comparatorProperty().bind(procal_user_list_table.comparatorProperty());
 
 		// 5. Add sorted (and filtered) data to the table.
 		procal_user_list_table.setItems(sortedData);
 
-		procal_user_list_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-			if (newSelection != null) {
-				//tableview2.getSelectionModel().clearSelection();
-				//TablePosition<EM_Model, ?> pos = customer_EM_Model_Table.getFocusModel().getFocusedCell();
-				//ApplicationLauncher.logger.info("Checkbox value set:"+newValue + " Row="+pos.getRow());
-				ApplicationLauncher.logger.info("New row selected: " + newSelection.getUserName() + ":" + newSelection.getAccessLevel()); 
-				loadUserDetails(newSelection);
-			}
-		});
-		
-		if(!ProcalFeatureEnable.USER_ACCESS_CONTROL_ENABLED){
+		procal_user_list_table.getSelectionModel().selectedItemProperty()
+				.addListener((obs, oldSelection, newSelection) -> {
+					if (newSelection != null) {
+						// tableview2.getSelectionModel().clearSelection();
+						// TablePosition<EM_Model, ?> pos =
+						// customer_EM_Model_Table.getFocusModel().getFocusedCell();
+						// ApplicationLauncher.logger.info("Checkbox value set:"+newValue + "
+						// Row="+pos.getRow());
+						ApplicationLauncher.logger.info("New row selected: " + newSelection.getUserName() + ":"
+								+ newSelection.getAccessLevel());
+						loadUserDetails(newSelection);
+					}
+				});
+
+		if (!ProcalFeatureEnable.USER_ACCESS_CONTROL_ENABLED) {
 			ref_btnUserAccessControl.setVisible(false);
 		}
 
 	}
-
 
 	public void loadUserDetails(ProcalUserModel newSelection) {
 
@@ -150,7 +151,6 @@ public class AdminPageController implements Initializable {
 		cmbBxAccessLevel.getSelectionModel().select(newSelection.getAccessLevel());
 	}
 
-
 	public void updateAccessLevel() {
 		cmbBxAccessLevel.getItems().clear();
 		cmbBxAccessLevel.getItems().addAll(ConstantApp.ACCESS_LEVEL);
@@ -158,7 +158,7 @@ public class AdminPageController implements Initializable {
 	}
 
 	public void onAddUserClick() {
-		username_list.add(new ProcalUserModel("", "","","Read Only"));
+		username_list.add(new ProcalUserModel("", "", "", "Read Only"));
 		int row = username_list.size() - 1;
 
 		procal_user_list_table.requestFocus();
@@ -174,20 +174,16 @@ public class AdminPageController implements Initializable {
 		RefreshUserList();
 	}
 
-
-
 	public void onResetClick() {
 		txt_username.setText("");
 		txt_password.setText("");
-		//edited mohan
+		// edited mohan
 		txt_confirm_password.setText("");
-		//fin
+		// fin
 		cmbBxAccessLevel.getSelectionModel().select(0);
 	}
 
-
-
-	//edited mohan
+	// edited mohan
 	public void onSaveUserClick() {
 		int row = procal_user_list_table.getSelectionModel().getSelectedIndex();
 
@@ -197,53 +193,49 @@ public class AdminPageController implements Initializable {
 		String access_level = cmbBxAccessLevel.getSelectionModel().getSelectedItem();
 		String created_by = "";
 		String date_created = "";
-		boolean status = CheckDataIsNotEmpty(user_name, 
-				password,confirm_password, access_level);
-		if(status){
-			if(check_correct_password(password,confirm_password)){
+		boolean status = CheckDataIsNotEmpty(user_name,
+				password, confirm_password, access_level);
+		if (status) {
+			if (check_correct_password(password, confirm_password)) {
 
-
-				MySQL_Controller.sp_add_procal_users(user_name, 
-						password, access_level, created_by, date_created); 
+				MySQL_Controller.sp_add_procal_users(user_name,
+						password, access_level, created_by, date_created);
 
 				RefreshUserList();
 				procal_user_list_table.getSelectionModel().select(row);
 				procal_user_list_table.getFocusModel().focus(row);
-				ApplicationLauncher.InformUser("Save success","Data saved successfully",AlertType.INFORMATION);
-			}
-			else{
+				WindowManager.InformUser("Save success", "Data saved successfully", AlertType.INFORMATION);
+			} else {
 				ApplicationLauncher.logger.info("Re-enter the password correctly");
-				ApplicationLauncher.InformUser("password incorrect","Password not matching",AlertType.ERROR);
+				WindowManager.InformUser("password incorrect", "Password not matching", AlertType.ERROR);
 			}
 		}
 
-		else{
+		else {
 			ApplicationLauncher.logger.info("onEmModelSaveClick:  Failure");
-			ApplicationLauncher.InformUser("Empty field","Required fields are empty",AlertType.ERROR);
+			WindowManager.InformUser("Empty field", "Required fields are empty", AlertType.ERROR);
 		}
-
-
 
 	}
 
-
-	//edited mohan
+	// edited mohan
 	public boolean CheckDataIsNotEmpty(String user_name,
-			String password,String confirm_password, String access_level){
+			String password, String confirm_password, String access_level) {
 		boolean validation_status = false;
 		validation_status = !user_name.isEmpty();
-		if(validation_status){
+		if (validation_status) {
 			ApplicationLauncher.logger.info("CheckDataISNotEmpty:  user_name: Success");
 			validation_status = !password.isEmpty();
-			if(validation_status){
+			if (validation_status) {
 				validation_status = !confirm_password.isEmpty();
 			}
 		}
 
 		return validation_status;
 	}
-	//fin
-	public void RefreshUserList(){
+
+	// fin
+	public void RefreshUserList() {
 		username_list.clear();
 		JSONObject Userdata = MySQL_Controller.sp_getprocal_users();
 		ApplicationLauncher.logger.info("UserList: " + Userdata);
@@ -251,132 +243,136 @@ public class AdminPageController implements Initializable {
 		try {
 			userlist = Userdata.getJSONArray("User_list");
 		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 			ApplicationLauncher.logger.error("RefreshUserList: JSONException1: " + e1.getMessage());
 		}
 		for (int i = 0; i < userlist.length(); i++) {
-			String user_name ="";
+			String user_name = "";
 			String password = "";
-			//edited mohan
-			String confirm_password="";
+			// edited mohan
+			String confirm_password = "";
 			String access_level = "";
 			try {
 				JSONObject model = (JSONObject) userlist.get(i);
 				user_name = model.getString("username");
 				password = model.getString("password");
-				confirm_password=password;
-				//edited mohan
-				//confirm_password= model.getString("confirm_password");
+				confirm_password = password;
+				// edited mohan
+				// confirm_password= model.getString("confirm_password");
 				//
 				access_level = model.getString("access_level");
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 				ApplicationLauncher.logger.error("RefreshUserList: JSONException2: " + e.getMessage());
 			}
-			username_list.add(new ProcalUserModel(user_name, 
-					password,confirm_password, access_level));
+			username_list.add(new ProcalUserModel(user_name,
+					password, confirm_password, access_level));
 		}
 
 	}
-/*	public void InformUser(String title, String info,AlertType Alert_type){
-		TextBoxDialog TextBoxDialogobj = new TextBoxDialog();
-		TextBoxDialogobj.TriggerUserInfoPlatFormLater(title, info,Alert_type);
-	}*/
-	//edited mohan
-	public boolean check_correct_password( String password,String confirm_password){
-		boolean password_status=false;
-		if(password.equals(confirm_password)){
 
-			password_status=true;
-		}
-		else{
-			password_status=false;
+	/*
+	 * public void InformUser(String title, String info,AlertType Alert_type){
+	 * TextBoxDialog TextBoxDialogobj = new TextBoxDialog();
+	 * TextBoxDialogobj.TriggerUserInfoPlatFormLater(title, info,Alert_type);
+	 * }
+	 */
+	// edited mohan
+	public boolean check_correct_password(String password, String confirm_password) {
+		boolean password_status = false;
+		if (password.equals(confirm_password)) {
+
+			password_status = true;
+		} else {
+			password_status = false;
 		}
 		return password_status;
 	}
-	//fin
-	
+	// fin
+
 	@FXML
-	public void btnUserAccessControlOnClick(){
+	public void btnUserAccessControlOnClick() {
 
 		ApplicationLauncher.logger.info("btnUserAccessControlOnClick :Entry");
 		UAC_Timer = new Timer();
 		UAC_Timer.schedule(new UserAccessControlDisplayTrigger(), 100);
 	}
-	
-	class UserAccessControlDisplayTrigger extends TimerTask{
 
+	class UserAccessControlDisplayTrigger extends TimerTask {
 
 		@Override
 		public void run() {
 
 			ApplicationLauncher.logger.debug("UserAccessControlDisplayTrigger : Run Entry");
 			Platform.runLater(() -> {
-			try {
-				
-				UserAccessControlDisplay();
-				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				ApplicationLauncher.logger.error("UserAccessControlDisplayTrigger: JSONException: "+e.getMessage());
-			}
+				try {
+
+					UserAccessControlDisplay();
+
+				} catch (JSONException e) {
+
+					e.printStackTrace();
+					ApplicationLauncher.logger
+							.error("UserAccessControlDisplayTrigger: JSONException: " + e.getMessage());
+				}
 			});
-			
+
 			UAC_Timer.cancel();
 		}
 
 	}
-	
-	public void UserAccessControlDisplay() throws JSONException{
+
+	public void UserAccessControlDisplay() throws JSONException {
 		ApplicationLauncher.logger.debug("UserAccessControlDisplay : Entry");
-		
 
-			//ApplicationLauncher.logger.info("loadModbusPlcGUI: entry");		
-			//ApplicationHomeController.setModbusPlcGuiDisplayed(true);
+		// ApplicationLauncher.logger.info("loadModbusPlcGUI: entry");
+		// ApplicationHomeController.setModbusPlcGuiDisplayed(true);
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/setting/UAC" + ConstantApp.THEME_FXML));
-			Scene newScene;
-			try {
-				newScene = new Scene(loader.load());
-			} catch (IOException ex) {
-				// TODO: handle error
-				ex.printStackTrace();
-				ApplicationLauncher.logger.error("UserAccessControlDisplay: IOException:"+ex.getMessage());
-				return;
-			}
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/setting/UAC" + ConstantApp.THEME_FXML));
+		Scene newScene;
+		try {
+			newScene = new Scene(loader.load());
+		} catch (IOException ex) {
 
-			Stage displayStage = new Stage();
-			displayStage.initModality(Modality.APPLICATION_MODAL);
-			//https://stackoverflow.com/questions/38481914/disable-background-stage-javafx?rq=1
-			displayStage.getIcons().add(new Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
-			displayStage.setScene(newScene);
-			displayStage.setTitle(ConstantVersion.APPLICATION_NAME +" - UAC");
-			displayStage.setResizable(false);
-			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-			int width = 860;//1083;//413+10;
-			int height =  520;//649+35;//849+35;//314+35;
-	/*		InstantMetricsStage.setX(primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth() - width);
-			InstantMetricsStage.setY(primaryScreenBounds.getMinY() + primaryScreenBounds.getHeight() - height);*/
-			displayStage.setWidth(width);
-			displayStage.setHeight(height);
+			ex.printStackTrace();
+			ApplicationLauncher.logger.error("UserAccessControlDisplay: IOException:" + ex.getMessage());
+			return;
+		}
 
-			displayStage.setAlwaysOnTop(false);
-			displayStage.show();
-			//displayStage.toBack();
+		Stage displayStage = new Stage();
+		displayStage.initModality(Modality.APPLICATION_MODAL);
+		// https://stackoverflow.com/questions/38481914/disable-background-stage-javafx?rq=1
+		displayStage.getIcons().add(new Image("file:images/" + ConstantVersion.APP_ICON_FILENAME));
+		displayStage.setScene(newScene);
+		displayStage.setTitle(ConstantVersion.APPLICATION_NAME + " - UAC");
+		displayStage.setResizable(false);
+		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		int width = 860;// 1083;//413+10;
+		int height = 520;// 649+35;//849+35;//314+35;
+		/*
+		 * InstantMetricsStage.setX(primaryScreenBounds.getMinX() +
+		 * primaryScreenBounds.getWidth() - width);
+		 * InstantMetricsStage.setY(primaryScreenBounds.getMinY() +
+		 * primaryScreenBounds.getHeight() - height);
+		 */
+		displayStage.setWidth(width);
+		displayStage.setHeight(height);
 
-/*			displayStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-				public void handle(WindowEvent we) {
-					we.consume();
-				}
+		displayStage.setAlwaysOnTop(false);
+		displayStage.show();
+		// displayStage.toBack();
 
-			}); */
+		/*
+		 * displayStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		 * public void handle(WindowEvent we) {
+		 * we.consume();
+		 * }
+		 * 
+		 * });
+		 */
 
-
-
-		
 	}
 
 }

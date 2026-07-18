@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -17,7 +16,6 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 
 public class S221_close_stop_latch2_Verific_Bay implements VerificTestBayState {
 
@@ -65,7 +63,7 @@ public class S221_close_stop_latch2_Verific_Bay implements VerificTestBayState {
             //BayUtils.delay(15000); // Delay for Pallets to reach destination Bay
             int palletMoveMentWaitTimeInSec =  ConstantConveyorConfig.VERIFIC_TO_STA2_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC ;//30;
             Verification.logger.info("S221_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta2 : start:");
-            while ( (palletMoveMentWaitTimeInSec>0) && (!ProjectExecutionController.getUserAbortedFlag()) ){
+            while ( (palletMoveMentWaitTimeInSec>0) && (!BayUtils.isUserAborted()) ){
             	Verification.logger.info("S221_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta2 : palletMoveMentWaitTimeInSec: " + palletMoveMentWaitTimeInSec);
             	 BayUtils.delay(1000);
             	 palletMoveMentWaitTimeInSec--;

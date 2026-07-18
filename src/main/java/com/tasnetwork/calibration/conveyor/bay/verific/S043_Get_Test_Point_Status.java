@@ -34,6 +34,7 @@ import com.tasnetwork.calibration.conveyor.remote.TestPointStatus;
 import com.tasnetwork.calibration.conveyor.remote.TestResult;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
@@ -419,7 +420,7 @@ public class S043_Get_Test_Point_Status implements VerificTestBayState  {
 						ConveyorDataManager.setVerific1BatchFailedReleasePalletRequested(false);
 						Verification.logger.debug("releasePalletToNextBayForBatchFailed: release pallet prompt user hit: NO");
 						ApplicationLauncher.logger.debug("releasePalletToNextBayForBatchFailed: ERROR_CODE_VERIFIC_032 :" + ConvErrorCodeMapping.ERROR_CODE_VERIFIC_032_MSG + " : Prompted");
-						ApplicationLauncher.InformUser(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_032_MSG, ConvErrorCodeMapping.ERROR_CODE_VERIFIC_032_MSG ,AlertType.ERROR);
+						WindowManager.InformUser(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_032_MSG, ConvErrorCodeMapping.ERROR_CODE_VERIFIC_032_MSG ,AlertType.ERROR);
 						userAbortedPalletRelease = true;
 					}
 					ConveyorDataManager.setVerific1BatchFailedPromptUserInputReceived(true);

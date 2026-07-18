@@ -10,14 +10,14 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for handling errors in the FT Bay.
+ */
 public class S22_error_Handling  implements FtBayState {
 
 	private Timer funtionalBayStopTaskTimer;
 	private BayResponse bayResponse = new BayResponse(); // Initialize here
 
-	public String getMyBayKey() {
-        return myBayKey;
-    }
 
 	@Override
 	public BayResponse handleRequest() {
@@ -36,19 +36,6 @@ public class S22_error_Handling  implements FtBayState {
 
 		int newRecordSerialNo = StateExecutorController.addToTestStatusGui(palletAvailableTest_I_F_Status);
 		Ft.logger.debug(String.format("[%s] : [ERROR_HANDLING] : [GUI_STATUS_UPDATE] - Added new GUI status record with serial no: %d for state %s.", getMyBayKey(), newRecordSerialNo, palletAvailableTest_I_F_Status.getStateName()));
-
-
-		// The commented-out loop seems to be for continuous error logging,
-		// but the current implementation immediately updates GUI and returns.
-		// If a continuous error state is intended, this loop logic needs to be re-evaluated.
-		/*
-		boolean status = true;
-		while(status){ //bayResponse.getStatus()){
-			status = bayResponse.getStatus();
-			FunctionalTestBay.logger.info("S22_error_Handling : Error");
-			Sleep(2000);
-		}
-		*/
 
 		// Update GUI after final action
 		palletAvailableTest_I_F_Status.setTestStatus(ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
@@ -130,15 +117,11 @@ public class S22_error_Handling  implements FtBayState {
 		}
 	}
 
-    // Dummy FunctionalTestBayStop class for compilation, replace with actual implementation
-    // This class is not provided in the original snippet but is referenced.
-    // Assuming it extends TimerTask and is in the same package or imported.
+
     private class FunctionalTestBayStop extends TimerTask {
         @Override
         public void run() {
             Ft.logger.debug(String.format("[%s] : [FunctionalTestBayStop] : [RUN] - FunctionalTestBayStop task executed.", getMyBayKey()));
-            // Actual stop logic would go here
-            // Example: Ft.stopProcess();
         }
     }
 }

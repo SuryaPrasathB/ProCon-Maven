@@ -9,8 +9,8 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.reportprofile.OperationProcessJsonReadModel;
 
 import javafx.scene.control.Alert.AlertType;
 
@@ -31,7 +31,7 @@ public class ConveyorConfigLoader {
 				Object retValue  = properties.get(key);
 				if (retValue == null) {
 					ApplicationLauncher.logger.error("getAttribute : config file: key:"+ key);
-					ApplicationLauncher.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
+					WindowManager.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
 
 					return null;
 				}
@@ -41,7 +41,7 @@ public class ConveyorConfigLoader {
 				e.printStackTrace();
 				ApplicationLauncher.logger.error("getAttribute : config file1: key:"+ key);
 				ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-				ApplicationLauncher.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+				WindowManager.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 				return null;
 
@@ -53,7 +53,7 @@ public class ConveyorConfigLoader {
 				JSONObject sectionObj = (JSONObject)properties.get(section);
 				if (sectionObj == null) {
 					ApplicationLauncher.logger.error("ConveyorConfigLoader: getAttribute : config file: section:"+ section);
-					ApplicationLauncher.InformUser("ConveyorConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
+					WindowManager.InformUser("ConveyorConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 					return null;
 				}
@@ -62,7 +62,7 @@ public class ConveyorConfigLoader {
 				e.printStackTrace();
 				ApplicationLauncher.logger.error("ConveyorConfigLoader: getAttribute : config file1: section:"+ section);
 				ApplicationLauncher.logger.error("ConveyorConfigLoader: getAttribute : Exception:"+ e.getMessage());
-				ApplicationLauncher.InformUser("ConveyorConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+				WindowManager.InformUser("ConveyorConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 				return null;
 
@@ -75,7 +75,7 @@ public class ConveyorConfigLoader {
 				if (retValue == null) {
 					ApplicationLauncher.logger.error("ConveyorConfigLoader: getString : config file: section:"+ section);
 					ApplicationLauncher.logger.error("ConveyorConfigLoader: getString : config file: key:"+ key);
-					//ApplicationLauncher.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+					//WindowManager.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 					return retValue;
 				}else{
@@ -86,7 +86,7 @@ public class ConveyorConfigLoader {
 				ApplicationLauncher.logger.error("ConveyorConfigLoader: getString : config file1: section:"+ section);
 				ApplicationLauncher.logger.error("ConveyorConfigLoader : getString : config file1: key:"+ key);
 				ApplicationLauncher.logger.error("ConveyorConfigLoader : getString : Exception:"+ e.getMessage());
-				ApplicationLauncher.InformUser("ConveyorConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+				WindowManager.InformUser("ConveyorConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 				return null;
 

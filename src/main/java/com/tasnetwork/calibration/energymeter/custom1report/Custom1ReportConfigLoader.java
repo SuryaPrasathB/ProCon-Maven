@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
@@ -30,7 +31,7 @@ public class Custom1ReportConfigLoader {
 			Object retValue  = properties.get(key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getAttribute : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -40,7 +41,7 @@ public class Custom1ReportConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getAttribute : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -52,7 +53,7 @@ public class Custom1ReportConfigLoader {
 			JSONObject sectionObj = (JSONObject)properties.get(section);
 			if (sectionObj == null) {
 				ApplicationLauncher.logger.error("Custom1ReportConfigLoader: getAttribute : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Custom1ReportConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Custom1ReportConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -61,7 +62,7 @@ public class Custom1ReportConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("Custom1ReportConfigLoader: getAttribute : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("Custom1ReportConfigLoader: getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Custom1ReportConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Custom1ReportConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -74,7 +75,7 @@ public class Custom1ReportConfigLoader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("Custom1ReportConfigLoader: getString : config file: section:"+ section);
 				ApplicationLauncher.logger.error("Custom1ReportConfigLoader: getString : config file: key:"+ key);
-				//ApplicationLauncher.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				//WindowManager.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}else{
@@ -85,7 +86,7 @@ public class Custom1ReportConfigLoader {
 			ApplicationLauncher.logger.error("Custom1ReportConfigLoader: getString : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("Custom1ReportConfigLoader : getString : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("Custom1ReportConfigLoader : getString : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Custom1ReportConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Custom1ReportConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 

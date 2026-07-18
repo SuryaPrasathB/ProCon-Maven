@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
@@ -38,7 +39,7 @@ public class ReportProfileOperationConfigLoader {
 			Object retValue  = properties.get(key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getAttribute : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -48,7 +49,7 @@ public class ReportProfileOperationConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getAttribute : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -60,7 +61,7 @@ public class ReportProfileOperationConfigLoader {
 			JSONObject sectionObj = (JSONObject)properties.get(section);
 			if (sectionObj == null) {
 				ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader: getAttribute : config file: section:"+ section);
-				ApplicationLauncher.InformUser("ReportProfileOperationConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("ReportProfileOperationConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -69,7 +70,7 @@ public class ReportProfileOperationConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader: getAttribute : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader: getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("ReportProfileOperationConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("ReportProfileOperationConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -82,7 +83,7 @@ public class ReportProfileOperationConfigLoader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader: getString : config file: section:"+ section);
 				ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader: getString : config file: key:"+ key);
-				//ApplicationLauncher.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				//WindowManager.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}else{
@@ -93,7 +94,7 @@ public class ReportProfileOperationConfigLoader {
 			ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader: getString : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader : getString : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("ReportProfileOperationConfigLoader : getString : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("ReportProfileOperationConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("ReportProfileOperationConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 

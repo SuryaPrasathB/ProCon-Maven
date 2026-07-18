@@ -13,14 +13,11 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 
+/**
+ * State class responsible for allowing a pallet to enter the FT Bay.
+ * It opens the upstream stopper (B4) to release the pallet into the bay.
+ */
 public class S02_let_the_pallet_to_FT_Bay implements FtBayState {
-
-    // Assuming 'myBayKey' is defined or can be derived for consistent logging
-    // If FtBayState interface implies a getMyBayKey() method, this should be used.
-    // Otherwise, ensure this class has a way to get its bay key (e.g., from a constructor).
-    public String getMyBayKey() {
-        return myBayKey;
-    }
 
     //===========================================================================================
     @Override

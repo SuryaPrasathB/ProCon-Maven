@@ -18,6 +18,9 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus; // Import for TestInterfaceStatus
 
+/**
+ * State class responsible for checking for a pallet at the Rejection Bay.
+ */
 public class S16_check_for_pallet_at_Rejection_Bay implements FtBayState {
 
 	private BayUtils bayUtils = new BayUtils();
@@ -25,10 +28,6 @@ public class S16_check_for_pallet_at_Rejection_Bay implements FtBayState {
 	private String bayStateSequenceId = ConstantBayStateManage.FT_BAY_HP_SEQ_18; // Adjusted sequence ID
 	private String palletSensorPortCname = ConstantBayPortNameMapping.REJECT_PORT_NAME_SNSR_PALLET;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_FT_021;
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -52,10 +51,7 @@ public class S16_check_for_pallet_at_Rejection_Bay implements FtBayState {
 		Ft.logger.info(String.format("[%s] : [PALLET_CHECK_REJECTION_BAY] : [WAITING_FOR_CLEARANCE] - Waiting for pallet to clear Rejection Bay...", getMyBayKey()));
 		while (isPalletPresent && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			responseReturn = isPalletAvailableAt_RejectionBay();	 
-			isPalletPresent = (boolean)responseReturn.getOrDefault("status", true); // Default to true if status is missing
-			// The TestInterfaceStatus object will be returned in responseReturn and handled by the method
-			
-			// Update GUI after each sensor read
+			isPalletPresent = (boolean)responseReturn.getOrDefault("status", true); // 
             StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn, ConstantConveyor.COMM_EXECUTION_STATUS_INP);
 
 

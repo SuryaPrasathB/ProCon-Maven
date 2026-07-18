@@ -20,12 +20,9 @@ import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.dashboard.ErrorCode;
 import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-
-import javafx.application.Platform;
 
 public class S059_08_Neutral_Calibration implements CalibrationBayState {
     private final CalibrationSummaryProcessor calibrationSummaryProcessor = CalibrationSummaryProcessor.getInstance();
@@ -148,7 +145,7 @@ public class S059_08_Neutral_Calibration implements CalibrationBayState {
             int dutWaitTimeCounter = 0;
             boolean dutAllProcessExecutionCompleted = false;
 
-            while (!ProjectExecutionController.getUserAbortedFlag() &&
+            while (!BayUtils.isUserAborted() &&
                    dutWaitTimeCounter < dutWaitTimeDurationMaxInSec &&
                    !dutAllProcessExecutionCompleted &&
                    !ConstantConveyor.ALL_LOOP_BREAK_FLAG &&
@@ -160,7 +157,7 @@ public class S059_08_Neutral_Calibration implements CalibrationBayState {
             }
             
             Calib.logger.debug("neutralCalibrationTask: dutWaitTimeDurationMaxInSec: " + dutWaitTimeDurationMaxInSec);
-            Calib.logger.debug("neutralCalibrationTask: getUserAbortedFlag(): " + ProjectExecutionController.getUserAbortedFlag());
+            Calib.logger.debug("neutralCalibrationTask: getUserAbortedFlag(): " + BayUtils.isUserAborted());
             Calib.logger.debug("neutralCalibrationTask: dutWaitTimeCounter: " + dutWaitTimeCounter);
             Calib.logger.debug("neutralCalibrationTask: ALL_LOOP_BREAK_FLAG: " + ConstantConveyor.ALL_LOOP_BREAK_FLAG);
             Calib.logger.debug("neutralCalibrationTask: isStopProcessRequestedCalibBay: " + Calib.isStopProcessRequestedCalibBay());

@@ -1,5 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.ft;
 
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,13 +19,14 @@ import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
-import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for writing serial numbers to the meters via optical probe.
+ */
 public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_05;
@@ -41,9 +43,6 @@ public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 	String testType = "";
 	String testCaseName = "";
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
     //===========================================================================================
     @Override
@@ -98,7 +97,7 @@ public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 			boolean dutAllProcessExecutionCompleted = false;
 
 			Ft.logger.info(String.format("[%s] : [PARALLEL_WRITE] : [WAITING] - Waiting for parallel serial write tasks to complete. Timeout: %d secs.", getMyBayKey(), dutWaitTimeDurationMaxInSec));
-			while ( (!ProjectExecutionController.getUserAbortedFlag()) && 
+			while ( (!BayUtils.isUserAborted()) && 
 					(dutWaitTimeCounter < dutWaitTimeDurationMaxInSec) && 
 					(!dutAllProcessExecutionCompleted) &&
 	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG) &&
@@ -129,7 +128,7 @@ public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 					 resultStatus = resultValue;
 					palletTracker.addResultToMeter(positionNo, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
 					if(resultStatus.equals(ConstantReport.REPORT_POPULATE_FAIL)){
-						PalletMeter responsePalletMeter = palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, ErrorCode.ERR_OPTICAL_WRITE_SERIAL_NO);
+						palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, ErrorCode.ERR_OPTICAL_WRITE_SERIAL_NO);
 					}
 				 }
 			}else{
@@ -154,7 +153,7 @@ public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 			   	resultStatus = resultValue;
 			   	palletTracker.addResultToMeter(positionNo, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
 			   	if(resultStatus.equals(ConstantReport.REPORT_POPULATE_FAIL)){
-			   		PalletMeter responsePalletMeter = palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, ErrorCode.ERR_OPTICAL_WRITE_SERIAL_NO);
+			   		palletTracker.updateMetersToPallet(getMyBayKey(), positionNo, resultStatus, ErrorCode.ERR_OPTICAL_WRITE_SERIAL_NO);
 			   	}
 	    	}
     	}
@@ -172,9 +171,7 @@ public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 			Thread.currentThread().interrupt(); // Restore the interrupted status
 		}
 	}
-	
-	// This method appears to be an internal/legacy method and not directly called from handleRequest().
-	// Its logging has been updated for consistency if it's used elsewhere.
+
 	private boolean checkAckForCommands() {
 		// This method needs actual implementation to check acknowledgment from devices.
 		Ft.logger.debug(String.format("[%s] : [COMM_ACK_CHECK] : [ENTRY] - Checking acknowledgment for commands.", getMyBayKey()));
@@ -278,8 +275,6 @@ public class S073_Set_Serial_Numbers_On_Meters implements FtBayState {
 		boolean status = checkAckForCommands();
         if (!status) {
             Ft.logger.warn(String.format("[%s] : [OPTICAL_SERIAL_WRITE] : [ACK_CHECK_FAILED] - Acknowledgment check failed for position %d. Proceeding with caution or returning.", getMyBayKey(), positionNum));
-            // Depending on criticality, you might want to fail the bayResponse here:
-            // bayResponse.setStatus(false); opticalReaderTestIntefaceStatus.setDeviceResponseStatus("Failed"); ... return bayResponse;
         }
 
         // Send Device Unlock Command

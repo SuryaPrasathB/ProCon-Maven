@@ -31,30 +31,28 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AboutController implements Initializable  {
+public class AboutController implements Initializable {
 
-	@FXML 
+	@FXML
 	private TextField txtFieldAppVersion;
 
-	@FXML 
+	@FXML
 	private TextField txtFieldDB_SchemaVersion;
 
-	@FXML 
+	@FXML
 	private TextField txtFieldProductName;
-	
-	@FXML 
+
+	@FXML
 	private TextField txtDesignedBy;
-	
 
-	@FXML 
+	@FXML
 	private TextField txtMarketedBy;
-	
-	@FXML 
-	private TextField txtRefStd;
-	
-	@FXML 
-	private TextField txtLdu;
 
+	@FXML
+	private TextField txtRefStd;
+
+	@FXML
+	private TextField txtLdu;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -65,31 +63,33 @@ public class AboutController implements Initializable  {
 	}
 
 	private void hideObjects() {
-		// TODO Auto-generated method stub
-		if(ProCalCustomerConfiguration.KIGG_1PHASE_20POSITION_2022){
+
+		if (ProCalCustomerConfiguration.KIGG_1PHASE_20POSITION_2022) {
 			txtDesignedBy.setText("");
 			txtMarketedBy.setText("");
 			txtRefStd.setText("");
 			txtLdu.setText("");
 			txtDesignedBy.setText("");
-			
+
 		}
 	}
 
 	public void TermsConditionsOnClick() {
 
-		//Alert alert = new Alert(AlertType.INFORMATION , ConstEULA.TERMS_AND_CONDITIONS, ButtonType.OK);
-		//alert.showAndWait();
-		ApplicationLauncher.logger.debug("TermsConditionsOnClick: entry");	
+		// Alert alert = new Alert(AlertType.INFORMATION ,
+		// ConstEULA.TERMS_AND_CONDITIONS, ButtonType.OK);
+		// alert.showAndWait();
+		ApplicationLauncher.logger.debug("TermsConditionsOnClick: entry");
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/setting/TermsCondition" + ConstantApp.THEME_FXML));
+		FXMLLoader loader = new FXMLLoader(
+				getClass().getResource("/fxml/setting/TermsCondition" + ConstantApp.THEME_FXML));
 		Scene newScene;
 		try {
 			newScene = new Scene(loader.load());
 		} catch (IOException ex) {
-			// TODO: handle error
+
 			ex.printStackTrace();
-			ApplicationLauncher.logger.error("TermsConditionsOnClick: IOException:"+ex.getMessage());
+			ApplicationLauncher.logger.error("TermsConditionsOnClick: IOException:" + ex.getMessage());
 			return;
 		}
 
@@ -97,24 +97,21 @@ public class AboutController implements Initializable  {
 
 		Stage primaryStage = ApplicationLauncher.getPrimaryStage();
 
-
 		CreateNewStage.initModality(Modality.WINDOW_MODAL);
 		CreateNewStage.initOwner(primaryStage);
-		CreateNewStage.getIcons().add(new Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
+		CreateNewStage.getIcons().add(new Image("file:images/" + ConstantVersion.APP_ICON_FILENAME));
 		CreateNewStage.setScene(newScene);
-		CreateNewStage.setTitle(ConstantVersion.APPLICATION_NAME );
+		CreateNewStage.setTitle(ConstantVersion.APPLICATION_NAME);
 		CreateNewStage.setAlwaysOnTop(true);
 		CreateNewStage.showAndWait();
-		
-
 
 	}
 
-/*	public void InformUser(String title, String info,AlertType Alert_type){
-		TextBoxDialog TextBoxDialogobj = new TextBoxDialog();
-		TextBoxDialogobj.TriggerUserInfoPlatFormLater(title, info, Alert_type);
-	}
-*/
-
+	/*
+	 * public void InformUser(String title, String info,AlertType Alert_type){
+	 * TextBoxDialog TextBoxDialogobj = new TextBoxDialog();
+	 * TextBoxDialogobj.TriggerUserInfoPlatFormLater(title, info, Alert_type);
+	 * }
+	 */
 
 }

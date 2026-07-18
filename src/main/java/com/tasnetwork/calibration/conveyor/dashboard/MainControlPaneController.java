@@ -45,6 +45,8 @@ import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -199,14 +201,13 @@ public class MainControlPaneController implements Initializable {
             btnRejectStart.setDisable(true);
             btnRejectStop.setDisable(true);
             btnRejectReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         rejectionBayStartTaskTimer = new Timer();
         activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
         rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -225,7 +226,7 @@ public class MainControlPaneController implements Initializable {
                     btnRejectStop.setStyle(""); // Enabled - Default
                     btnRejectReset.setDisable(false);
                     btnRejectReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -261,7 +262,7 @@ public class MainControlPaneController implements Initializable {
             btnRejectStop.setDisable(true);
             btnRejectStart.setDisable(true); // Corrected: Should disable start button
             btnRejectReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -269,7 +270,6 @@ public class MainControlPaneController implements Initializable {
             activeRejectionEngine.requestStop();
         rejectionBayStopTaskTimer = new Timer();
         rejectionBayStopTaskTimer.schedule(new RejectionBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -288,7 +288,7 @@ public class MainControlPaneController implements Initializable {
                     btnRejectStart.setStyle(""); // Enabled - Default
                     btnRejectReset.setDisable(false);
                     btnRejectReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -323,13 +323,12 @@ public class MainControlPaneController implements Initializable {
             btnRejectReset.setDisable(true);
             btnRejectStart.setDisable(true);
             btnRejectStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         rejectionBayResetTaskTimer = new Timer();
         rejectionBayResetTaskTimer.schedule(new RejectionBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -343,7 +342,7 @@ public class MainControlPaneController implements Initializable {
                     btnRejectStart.setStyle(""); // Enabled - Default
                     btnRejectStop.setDisable(false);
                     btnRejectStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -381,14 +380,13 @@ public class MainControlPaneController implements Initializable {
             btnFtStart.setDisable(true);
             btnFtStop.setDisable(true);
             btnFtReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // Functional Test logic (optional)
         funtionalBayStartTaskTimer = new Timer();
         activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
         funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -404,7 +402,7 @@ public class MainControlPaneController implements Initializable {
                     btnFtStop.setStyle(""); // Enabled - Default
                     btnFtReset.setDisable(false);
                     btnFtReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -440,7 +438,7 @@ public class MainControlPaneController implements Initializable {
             btnFtStop.setDisable(true);
             btnFtStart.setDisable(true);
             btnFtReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -449,7 +447,6 @@ public class MainControlPaneController implements Initializable {
         }
         funtionalBayStopTaskTimer = new Timer();
         funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
-
 
         // Wait for stop process to complete, then reset highlight
         Thread waitForStopCompletion = new Thread(() -> {
@@ -468,7 +465,7 @@ public class MainControlPaneController implements Initializable {
                     btnFtStart.setStyle(""); // Enabled - Default
                     btnFtReset.setDisable(false);
                     btnFtReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -507,13 +504,12 @@ public class MainControlPaneController implements Initializable {
             btnFtReset.setDisable(true);
             btnFtStart.setDisable(true);
             btnFtStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         funtionalBayResetTaskTimer = new Timer();
         funtionalBayResetTaskTimer.schedule(new FunctionalTestBayReset(), 100);
-
 
         // Wait for reset process to complete, then re-enable buttons
         Thread waitForResetCompletion = new Thread(() -> {
@@ -527,7 +523,7 @@ public class MainControlPaneController implements Initializable {
                     btnFtStart.setStyle(""); // Enabled - Default
                     btnFtStop.setDisable(false);
                     btnFtStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -566,14 +562,13 @@ public class MainControlPaneController implements Initializable {
             btnHvtStart.setDisable(true);
             btnHvtStop.setDisable(true);
             btnHvtReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         hvtBayStartTaskTimer = new Timer();
         activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
         hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -589,7 +584,7 @@ public class MainControlPaneController implements Initializable {
                     btnHvtStop.setStyle(""); // Enabled - Default
                     btnHvtReset.setDisable(false);
                     btnHvtReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -626,7 +621,7 @@ public class MainControlPaneController implements Initializable {
             btnHvtStop.setDisable(true);
             btnHvtStart.setDisable(true);
             btnHvtReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -635,7 +630,6 @@ public class MainControlPaneController implements Initializable {
         }
         hvtBayStopTaskTimer = new Timer();
         hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -655,7 +649,7 @@ public class MainControlPaneController implements Initializable {
                     btnHvtStart.setStyle(""); // Enabled - Default
                     btnHvtReset.setDisable(false);
                     btnHvtReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -694,13 +688,12 @@ public class MainControlPaneController implements Initializable {
             btnHvtReset.setDisable(true);
             btnHvtStart.setDisable(true);
             btnHvtStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         hvtBayResetTaskTimer = new Timer();
         hvtBayResetTaskTimer.schedule(new HighVoltageTestBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -714,7 +707,7 @@ public class MainControlPaneController implements Initializable {
                     btnHvtStart.setStyle(""); // Enabled - Default
                     btnHvtStop.setDisable(false);
                     btnHvtStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -753,14 +746,13 @@ public class MainControlPaneController implements Initializable {
             btnIrtStart.setDisable(true);
             btnIrtStop.setDisable(true);
             btnIrtReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         insResStartTaskTimer = new Timer();
         activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
         insResStartTaskTimer.schedule(activeIrEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -776,7 +768,7 @@ public class MainControlPaneController implements Initializable {
                     btnIrtStop.setStyle(""); // Enabled - Default
                     btnIrtReset.setDisable(false);
                     btnIrtReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -812,7 +804,7 @@ public class MainControlPaneController implements Initializable {
             btnIrtStop.setDisable(true);
             btnIrtStart.setDisable(true);
             btnIrtReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -821,7 +813,6 @@ public class MainControlPaneController implements Initializable {
         }
         insResStopTaskTimer = new Timer();
         insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -841,7 +832,7 @@ public class MainControlPaneController implements Initializable {
                     btnIrtStart.setStyle(""); // Enabled - Default
                     btnIrtReset.setDisable(false);
                     btnIrtReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -880,13 +871,12 @@ public class MainControlPaneController implements Initializable {
             btnIrtReset.setDisable(true);
             btnIrtStart.setDisable(true);
             btnIrtStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         insResResetTaskTimer = new Timer();
         insResResetTaskTimer.schedule(new InsulationResistanceTestBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -900,7 +890,7 @@ public class MainControlPaneController implements Initializable {
                     btnIrtStart.setStyle(""); // Enabled - Default
                     btnIrtStop.setDisable(false);
                     btnIrtStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -939,14 +929,13 @@ public class MainControlPaneController implements Initializable {
             btnCalibStart.setDisable(true);
             btnCalibStop.setDisable(true);
             btnCalibReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         calibrationStartTaskTimer = new Timer();
         activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
         calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -962,7 +951,7 @@ public class MainControlPaneController implements Initializable {
                     btnCalibStop.setStyle(""); // Enabled - Default
                     btnCalibReset.setDisable(false);
                     btnCalibReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -998,7 +987,7 @@ public class MainControlPaneController implements Initializable {
             btnCalibStop.setDisable(true);
             btnCalibStart.setDisable(true);
             btnCalibReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -1007,7 +996,6 @@ public class MainControlPaneController implements Initializable {
         }
         calibrationStopTaskTimer = new Timer();
         calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -1027,7 +1015,7 @@ public class MainControlPaneController implements Initializable {
                     btnCalibStart.setStyle(""); // Enabled - Default
                     btnCalibReset.setDisable(false);
                     btnCalibReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1066,13 +1054,12 @@ public class MainControlPaneController implements Initializable {
             btnCalibReset.setDisable(true);
             btnCalibStart.setDisable(true);
             btnCalibStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         calibrationResetTaskTimer = new Timer();
         calibrationResetTaskTimer.schedule(new CalibrationBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -1086,7 +1073,7 @@ public class MainControlPaneController implements Initializable {
                     btnCalibStart.setStyle(""); // Enabled - Default
                     btnCalibStop.setDisable(false);
                     btnCalibStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1123,14 +1110,13 @@ public class MainControlPaneController implements Initializable {
             btnWaitingBayStart.setDisable(true);
             btnWaitingBayStop.setDisable(true);
             btnWaitingBayReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         waitingBayStartTaskTimer = new Timer();
         activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
         waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1149,7 +1135,7 @@ public class MainControlPaneController implements Initializable {
                     btnWaitingBayStop.setStyle(""); // Enabled - Default
                     btnWaitingBayReset.setDisable(false);
                     btnWaitingBayReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1185,13 +1171,12 @@ public class MainControlPaneController implements Initializable {
             btnWaitingBayStop.setDisable(true);
             btnWaitingBayStart.setDisable(true);
             btnWaitingBayReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         waitingBayStopTaskTimer = new Timer();
         waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -1209,7 +1194,7 @@ public class MainControlPaneController implements Initializable {
                     btnWaitingBayStart.setStyle(""); // Enabled - Default
                     btnWaitingBayReset.setDisable(false);
                     btnWaitingBayReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1244,13 +1229,12 @@ public class MainControlPaneController implements Initializable {
             btnWaitingBayReset.setDisable(true);
             btnWaitingBayStart.setDisable(true);
             btnWaitingBayStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         waitingBayResetTaskTimer = new Timer();
         waitingBayResetTaskTimer.schedule(new WaitingBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -1264,7 +1248,7 @@ public class MainControlPaneController implements Initializable {
                     btnWaitingBayStart.setStyle(""); // Enabled - Default
                     btnWaitingBayStop.setDisable(false);
                     btnWaitingBayStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1303,14 +1287,13 @@ public class MainControlPaneController implements Initializable {
             btnVerificTestStart.setDisable(true);
             btnVerificTestStop.setDisable(true);
             btnVerificTestReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         verificStartTaskTimer = new Timer();
         activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
         verificStartTaskTimer.schedule(activeVerificEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1329,7 +1312,7 @@ public class MainControlPaneController implements Initializable {
                     btnVerificTestStop.setStyle(""); // Enabled - Default
                     btnVerificTestReset.setDisable(false);
                     btnVerificTestReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1365,7 +1348,7 @@ public class MainControlPaneController implements Initializable {
             btnVerificTestStop.setDisable(true);
             btnVerificTestStart.setDisable(true);
             btnVerificTestReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -1374,7 +1357,6 @@ public class MainControlPaneController implements Initializable {
         }
         verificStopTaskTimer = new Timer();
         verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -1397,7 +1379,7 @@ public class MainControlPaneController implements Initializable {
                     btnVerificTestStart.setStyle(""); // Enabled - Default
                     btnVerificTestReset.setDisable(false);
                     btnVerificTestReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1432,13 +1414,12 @@ public class MainControlPaneController implements Initializable {
             ref_btnVerificTestStop.setDisable(true);
             ref_btnVerificTestStart.setDisable(true);
             ref_btnVerificTestReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         verificStopTaskTimer = new Timer();
         verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -1461,7 +1442,7 @@ public class MainControlPaneController implements Initializable {
                     ref_btnVerificTestStart.setStyle(""); // Enabled - Default
                     ref_btnVerificTestReset.setDisable(false);
                     ref_btnVerificTestReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1500,13 +1481,12 @@ public class MainControlPaneController implements Initializable {
             btnVerificTestReset.setDisable(true);
             btnVerificTestStart.setDisable(true);
             btnVerificTestStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         verificResetTaskTimer = new Timer();
         verificResetTaskTimer.schedule(new VerificationTestBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -1520,7 +1500,7 @@ public class MainControlPaneController implements Initializable {
                     btnVerificTestStart.setStyle(""); // Enabled - Default
                     btnVerificTestStop.setDisable(false);
                     btnVerificTestStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1559,14 +1539,13 @@ public class MainControlPaneController implements Initializable {
             btnSctNlt1Start.setDisable(true);
             btnSctNlt1Stop.setDisable(true);
             btnSctNlt1Reset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         sctNlt1StartTaskTimer = new Timer();
         activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
         sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1585,7 +1564,7 @@ public class MainControlPaneController implements Initializable {
                     btnSctNlt1Stop.setStyle(""); // Enabled - Default
                     btnSctNlt1Reset.setDisable(false);
                     btnSctNlt1Reset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1621,13 +1600,12 @@ public class MainControlPaneController implements Initializable {
             btnSctNlt1Stop.setDisable(true);
             btnSctNlt1Start.setDisable(true);
             btnSctNlt1Reset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         sctNlt1StopTaskTimer = new Timer();
         sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -1650,7 +1628,7 @@ public class MainControlPaneController implements Initializable {
                     btnSctNlt1Start.setStyle(""); // Enabled - Default
                     btnSctNlt1Reset.setDisable(false);
                     btnSctNlt1Reset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1689,13 +1667,12 @@ public class MainControlPaneController implements Initializable {
             btnSctNlt1Reset.setDisable(true);
             btnSctNlt1Start.setDisable(true);
             btnSctNlt1Stop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         sctNlt1ResetTaskTimer = new Timer();
         sctNlt1ResetTaskTimer.schedule(new STA_NoLoadTestBay1Reset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -1709,7 +1686,7 @@ public class MainControlPaneController implements Initializable {
                     btnSctNlt1Start.setStyle(""); // Enabled - Default
                     btnSctNlt1Stop.setDisable(false);
                     btnSctNlt1Stop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1749,14 +1726,13 @@ public class MainControlPaneController implements Initializable {
             btnSctNlt2Start.setDisable(true);
             btnSctNlt2Stop.setDisable(true);
             btnSctNlt2Reset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         sctNlt2StartTaskTimer = new Timer();
         activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
         sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1775,7 +1751,7 @@ public class MainControlPaneController implements Initializable {
                     btnSctNlt2Stop.setStyle(""); // Enabled - Default
                     btnSctNlt2Reset.setDisable(false);
                     btnSctNlt2Reset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1812,13 +1788,12 @@ public class MainControlPaneController implements Initializable {
             btnSctNlt2Stop.setDisable(true);
             btnSctNlt2Start.setDisable(true);
             btnSctNlt2Reset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         sctNlt2StopTaskTimer = new Timer();
         sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-
 
         ApplicationLauncher.logger.info("SCT NLT BAY 2 : waitForStopCompletion: Thread trigger");
         // Wait for stop process to complete
@@ -1847,7 +1822,7 @@ public class MainControlPaneController implements Initializable {
                     btnSctNlt2Start.setStyle(""); // Enabled - Default
                     btnSctNlt2Reset.setDisable(false);
                     btnSctNlt2Reset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1887,13 +1862,12 @@ public class MainControlPaneController implements Initializable {
             btnSctNlt2Reset.setDisable(true);
             btnSctNlt2Start.setDisable(true);
             btnSctNlt2Stop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         sctNlt2ResetTaskTimer = new Timer();
         sctNlt2ResetTaskTimer.schedule(new STA_NoLoadTestBay2Reset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -1907,7 +1881,7 @@ public class MainControlPaneController implements Initializable {
                     btnSctNlt2Start.setStyle(""); // Enabled - Default
                     btnSctNlt2Stop.setDisable(false);
                     btnSctNlt2Stop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -1946,14 +1920,13 @@ public class MainControlPaneController implements Initializable {
             btnCommTestStart.setDisable(true);
             btnCommTestStop.setDisable(true);
             btnCommTestReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         commStartTaskTimer = new Timer();
         activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
         commStartTaskTimer.schedule(activeCommEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1970,7 +1943,7 @@ public class MainControlPaneController implements Initializable {
                     btnCommTestStop.setStyle(""); // Enabled - Default
                     btnCommTestReset.setDisable(false);
                     btnCommTestReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -2006,13 +1979,12 @@ public class MainControlPaneController implements Initializable {
             btnCommTestStop.setDisable(true);
             btnCommTestStart.setDisable(true);
             btnCommTestReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         commStopTaskTimer = new Timer();
         commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -2026,7 +1998,7 @@ public class MainControlPaneController implements Initializable {
                     btnCommTestStart.setStyle(""); // Enabled - Default
                     btnCommTestReset.setDisable(false);
                     btnCommTestReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -2061,13 +2033,12 @@ public class MainControlPaneController implements Initializable {
             btnCommTestReset.setDisable(true);
             btnCommTestStart.setDisable(true);
             btnCommTestStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         commResetTaskTimer = new Timer();
         commResetTaskTimer.schedule(new CommunicationTestBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -2081,7 +2052,7 @@ public class MainControlPaneController implements Initializable {
                     btnCommTestStart.setStyle(""); // Enabled - Default
                     btnCommTestStop.setDisable(false);
                     btnCommTestStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -2120,14 +2091,13 @@ public class MainControlPaneController implements Initializable {
             btnUnloadingStart.setDisable(true);
             btnUnloadingStop.setDisable(true);
             btnUnloadingReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         unloadingBayStartTaskTimer = new Timer();
         activeUnloadingEngine = new BayStateEngine(ConstantConveyor.UNLOADING_BAY_KEY, new Unloading());
         unloadingBayStartTaskTimer.schedule(activeUnloadingEngine, 100);
-
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -2147,7 +2117,7 @@ public class MainControlPaneController implements Initializable {
                     btnUnloadingStop.setStyle(""); // Enabled - Default
                     btnUnloadingReset.setDisable(false);
                     btnUnloadingReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -2183,7 +2153,7 @@ public class MainControlPaneController implements Initializable {
             btnUnloadingStop.setDisable(true);
             btnUnloadingStart.setDisable(true);
             btnUnloadingReset.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
@@ -2191,7 +2161,6 @@ public class MainControlPaneController implements Initializable {
             activeUnloadingEngine.requestStop();
         unloadingBayStopTaskTimer = new Timer();
         unloadingBayStopTaskTimer.schedule(new UnloadingBayStop(), 100);
-
 
         // Wait for stop process to complete
         Thread waitForStopCompletion = new Thread(() -> {
@@ -2206,7 +2175,7 @@ public class MainControlPaneController implements Initializable {
                     btnUnloadingStart.setStyle(""); // Enabled - Default
                     btnUnloadingReset.setDisable(false);
                     btnUnloadingReset.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -2241,13 +2210,12 @@ public class MainControlPaneController implements Initializable {
             btnUnloadingReset.setDisable(true);
             btnUnloadingStart.setDisable(true);
             btnUnloadingStop.setDisable(true);
-            ApplicationLauncher.setCursor(Cursor.WAIT);
+            WindowManager.setCursor(Cursor.WAIT);
         });
 
         // L O G I C
         unloadingBayResetTaskTimer = new Timer();
         unloadingBayResetTaskTimer.schedule(new UnloadingBayReset(), 100);
-
 
         // Wait for reset process to complete
         Thread waitForResetCompletion = new Thread(() -> {
@@ -2261,7 +2229,7 @@ public class MainControlPaneController implements Initializable {
                     btnUnloadingStart.setStyle(""); // Enabled - Default
                     btnUnloadingStop.setDisable(false);
                     btnUnloadingStop.setStyle(""); // Enabled - Default
-                    ApplicationLauncher.setCursor(Cursor.DEFAULT);
+                    WindowManager.setCursor(Cursor.DEFAULT);
                 });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -2282,7 +2250,7 @@ public class MainControlPaneController implements Initializable {
         try {
             Thread.sleep(timeInMsec);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
             ApplicationLauncher.logger.error("Sleep2 :InterruptedException:" + e.getMessage());
         }
@@ -2290,20 +2258,20 @@ public class MainControlPaneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
+
         refInit();
         guiObjectDisable();
     }
 
     private void refInit() {
-        // TODO Auto-generated method stub
+
         ref_btnVerificTestReset = btnVerificTestReset;
         ref_btnVerificTestStart = btnVerificTestStart;
         ref_btnVerificTestStop = btnVerificTestStop;
     }
 
     private void guiObjectDisable() {
-        // TODO Auto-generated method stub
+
         Platform.runLater(() -> {
             btnCommTestStart.setDisable(true);
             btnCommTestStop.setDisable(true);

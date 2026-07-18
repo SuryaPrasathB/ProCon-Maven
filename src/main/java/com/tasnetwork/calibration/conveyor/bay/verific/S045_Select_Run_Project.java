@@ -1,7 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.verific;
 
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +8,6 @@ import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
 //import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
@@ -17,17 +15,12 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
-import antlr.debug.Event;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class S045_Select_Run_Project implements VerificTestBayState  {
 
@@ -202,7 +195,7 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 		String presentBayKey = ConstantConveyor.VERIFICATION_BAY_KEY;
 
 		// Loop indefinitely until enough pallets are found
-		while (true && !ProjectExecutionController.getUserAbortedFlag() && !Verification.isStopProcessRequestedVerificBay()) {
+		while (true && !BayUtils.isUserAborted() && !Verification.isStopProcessRequestedVerificBay()) {
 			// Fetch the latest list of pallets
 			myPalletManageList = MySqlServiceManager.getPalletManageService()
 					.findByPresentBayKeyAndPalletActive(presentBayKey);
@@ -292,7 +285,7 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 	    String presentBayKey = ConstantConveyor.VERIFICATION_BAY_KEY;
 
 		
-	    while (true && !ProjectExecutionController.getUserAbortedFlag()) {
+	    while (true && !BayUtils.isUserAborted()) {
 	        palletManageList = MySqlServiceManager.getPalletManageService()
 	                .findByPresentBayKeyAndPalletActive(presentBayKey);
 

@@ -20,30 +20,31 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class TermsConditionController implements Initializable {
-    @FXML
-    private TextArea txtAreaTermsDisplay;
-    
-   /* @FXML
-    private CheckBox checkBoxAgreeTermsCondition;
-    
-    
-    @FXML
-    public CheckBox ref_checkBoxAgreeTermsCondition;*/
-    
+	@FXML
+	private TextArea txtAreaTermsDisplay;
+
+	/*
+	 * @FXML
+	 * private CheckBox checkBoxAgreeTermsCondition;
+	 * 
+	 * 
+	 * @FXML
+	 * public CheckBox ref_checkBoxAgreeTermsCondition;
+	 */
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+
 		txtAreaTermsDisplay.setText(ConstEULA.TERMS_AND_CONDITIONS);
 		txtAreaTermsDisplay.setEditable(false);
 		txtAreaTermsDisplay.setWrapText(true);
-		//ref_checkBoxAgreeTermsCondition = checkBoxAgreeTermsCondition;
-		//ref_checkBoxAgreeTermsCondition.setSelected(true);
-		
+		// ref_checkBoxAgreeTermsCondition = checkBoxAgreeTermsCondition;
+		// ref_checkBoxAgreeTermsCondition.setSelected(true);
+
 	}
-	
-	public void okayOnClick(){
+
+	public void okayOnClick() {
 		txtAreaTermsDisplay.getScene().getWindow().hide();
 	}
-	
 
 }

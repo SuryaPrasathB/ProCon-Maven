@@ -18,14 +18,14 @@
       <items>
         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
           <children>
-                  <VBox id="testScripts" fx:id="vbox_testscript" alignment="CENTER" layoutX="-2.0" layoutY="3.0" onMouseClicked="#onTestScriptsClickAction" prefHeight="95.0" prefWidth="104.0">
+                  <VBox id="dashboard" fx:id="vbox_dashboard" alignment="CENTER" layoutX="0.0" layoutY="10.0" onMouseClicked="#onDashboardClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../images/pen-edit-icon.png" />
+                              <Image url="@../../images/chart-bar-chart-icon.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="lbl_TestScript" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Project" textAlignment="CENTER" textFill="#090411" wrapText="false">
+                        <Label fx:id="lbl_Dashboard" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Dashboard" textAlignment="CENTER" textFill="#090411" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x1111" />
                            </font>
@@ -35,55 +35,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox id="Deployment" fx:id="vbox_deploy" alignment="CENTER" layoutX="-4.0" layoutY="107.0" onMouseClicked="#onDeploymentClickAction" prefHeight="95.0" prefWidth="104.0">
-                     <children>
-                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/deploy-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lbl_Deployment" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Deploy" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x11111" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox id="Deployment" fx:id="vbox_testrun" alignment="CENTER" layoutX="-3.0" layoutY="217.0" onMouseClicked="#onRunningStatusClickAction" prefHeight="95.0" prefWidth="104.0">
-                     <children>
-                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/dvd-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lbl_RunStatus" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Test Run" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x111112" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox id="devices" fx:id="vbox_system_config" alignment="CENTER" layoutX="-3.0" layoutY="443.0" onMouseClicked="#onDeviceClickAction" prefHeight="122.0" prefWidth="104.0" AnchorPane.topAnchor="443.0">
-                     <children>
-                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/compass-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lbl_Devices" alignment="CENTER" contentDisplay="CENTER" minWidth="56.0" prefHeight="33.0" prefWidth="67.0" style="&#10;" text="Settings" textAlignment="CENTER" wrapText="false">
-                           <font>
-                              <Font size="18.0" fx:id="x11" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox id="testScripts" fx:id="vbox_metertype" alignment="CENTER" layoutX="-3.0" layoutY="321.0" onMouseClicked="#onEMModelClickAction" prefHeight="122.0" prefWidth="104.0">
+                  <VBox id="testScripts" fx:id="vbox_metertype" alignment="CENTER" layoutX="0.0" layoutY="140.0" onMouseClicked="#onEMModelClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -100,7 +52,21 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox id="reports" fx:id="vbox_report" alignment="CENTER" layoutX="-1.0" layoutY="569.0" onMouseClicked="#onReportsClickAction" prefHeight="95.0" prefWidth="98.0">
+                  <VBox id="devices" fx:id="vbox_system_config" alignment="CENTER" layoutX="0.0" layoutY="270.0" onMouseClicked="#onDeviceClickAction" prefHeight="130.0" prefWidth="100.0">
+                     <children>
+                        <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/compass-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lbl_Devices" alignment="CENTER" contentDisplay="CENTER" minWidth="56.0" prefHeight="33.0" prefWidth="67.0" style="&#10;" text="Settings" textAlignment="CENTER" wrapText="false">
+                           <font>
+                              <Font size="18.0" fx:id="x11" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox id="reports" fx:id="vbox_report" alignment="CENTER" layoutX="0.0" layoutY="400.0" onMouseClicked="#onReportsClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="68.0" fitWidth="95.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -117,7 +83,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox id="reports" fx:id="vboxManualMode" alignment="CENTER" layoutX="-3.0" layoutY="678.0" onMouseClicked="#onManualModeClickAction" prefHeight="122.0" prefWidth="98.0">
+                  <VBox id="reports" fx:id="vboxManualMode" alignment="CENTER" layoutX="0.0" layoutY="530.0" onMouseClicked="#onManualModeClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="68.0" fitWidth="95.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -179,3 +145,5 @@
 <!--  <fx:include source="reports.fxml" />-->
 
 </VBox>
+
+

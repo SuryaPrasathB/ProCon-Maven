@@ -4,19 +4,11 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
+/**
+ * State class representing the idle condition in the FT Bay.
+ */
 public class S23_idle_condition implements FtBayState {
 
-    // Member variable to hold the bay key, crucial for structured logging
-    //private String myBayKey = "unknownBay"; // Default or can be set via constructor/setter
-
-    public String getMyBayKey() {
-        return myBayKey;
-    }
-
-    // Setter for myBayKey if it needs to be dynamically set (e.g., from a factory)
-/*    public void setMyBayKey(String myBayKey) {
-        this.myBayKey = myBayKey;
-    }*/
 
 	@Override
 	public BayResponse handleRequest() {

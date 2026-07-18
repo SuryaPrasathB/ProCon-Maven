@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.custom1report.Custom1ReportConfigLoader;
 import com.tasnetwork.calibration.marked_for_delete.PrintStyleModel;
 
@@ -39,7 +40,7 @@ public class ConstantAppConfigReader {
 			Object retValue  = properties.get(key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getAttribute : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -49,7 +50,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getAttribute : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -62,7 +63,7 @@ public class ConstantAppConfigReader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getString : config file: section:"+ section);
 				ApplicationLauncher.logger.error("getString : config file: key:"+ key);
-				//ApplicationLauncher.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				//WindowManager.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}else{
@@ -73,7 +74,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getString : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getString : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getString : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -86,7 +87,7 @@ public class ConstantAppConfigReader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getInt : config file: section:"+ section);
 				ApplicationLauncher.logger.error("getInt : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C02","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C02","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return 0;
 			}
@@ -96,7 +97,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getInt : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getInt : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getInt : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C021","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C021","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -110,7 +111,7 @@ public class ConstantAppConfigReader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getPrintStyleModel : config file: section:"+ section);
 				ApplicationLauncher.logger.error("getPrintStyleModel : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C02A","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C02A","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -120,7 +121,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getPrintStyleModel : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getPrintStyleModel : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getPrintStyleModel : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C021A","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C021A","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -133,7 +134,7 @@ public class ConstantAppConfigReader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getLong : config file: section:"+ section);
 				ApplicationLauncher.logger.error("getLong : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C03","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C03","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}
@@ -143,7 +144,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getLong : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getLong : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getLong : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C031","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C031","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -155,7 +156,7 @@ public class ConstantAppConfigReader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getDouble : config file: section:"+ section);
 				ApplicationLauncher.logger.error("getDouble : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C04","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C04","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}
@@ -165,7 +166,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getDouble : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getDouble : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getDouble : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C041","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C041","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -182,7 +183,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getBoolean : config file: section:"+ section);
 			ApplicationLauncher.logger.error("getBoolean : config file: key:"+ key);
 			ApplicationLauncher.logger.error("PropertyReader : getBoolean Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C05","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C05","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			
 		}
@@ -204,7 +205,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getIntegerList : config file: section:"+ section);
 			ApplicationLauncher.logger.error("getIntegerList : config file: key:"+ key);
 			ApplicationLauncher.logger.error("PropertyReader : getIntegerList Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C205","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C205","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			
 		}
@@ -226,7 +227,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getStringList : config file: section:"+ section);
 			ApplicationLauncher.logger.error("getStringList : config file: key:"+ key);
 			ApplicationLauncher.logger.error("PropertyReader : getStringList Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C206","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C206","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			
 		}
@@ -243,7 +244,7 @@ public class ConstantAppConfigReader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getFloat : config file: section:"+ section);
 				ApplicationLauncher.logger.error("getFloat : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C06","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C06","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return 0.0F;
 			}else{
@@ -254,7 +255,7 @@ public class ConstantAppConfigReader {
 			ApplicationLauncher.logger.error("getFloat : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getFloat : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getFloat : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C061","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C061","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return 0.0F;
 			
@@ -267,7 +268,7 @@ public class ConstantAppConfigReader {
 			JSONArray retValue = (JSONArray) properties.get(section);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getJsonArray : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C07","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C07","Kindly check section:"+section +" on config file",AlertType.ERROR);
 				
 				return retValue;
 			}
@@ -276,7 +277,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getJsonArray : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getJsonArray : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C071","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C071","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 			return null;
 
 		}
@@ -286,7 +287,7 @@ public class ConstantAppConfigReader {
 			JSONArray retValue = (JSONArray) getAttribute(section, key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getJsonArray : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C08","Kindly check section:"+section +" on config file\nError",AlertType.ERROR);
+				WindowManager.InformUser("Error-C08","Kindly check section:"+section +" on config file\nError",AlertType.ERROR);
 				
 				return retValue;
 			}
@@ -295,7 +296,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getJsonArray : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getJsonArray : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C081","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C081","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 			return null;
 
 		}
@@ -306,7 +307,7 @@ public class ConstantAppConfigReader {
 			JSONArray retValue = (JSONArray) properties.get(section);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getObjectArray : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C09","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C09","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -315,7 +316,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getObjectArray : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getObjectArray : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C091","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C091","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 
 			return null;
@@ -327,7 +328,7 @@ public class ConstantAppConfigReader {
 			JSONArray retValue = (JSONArray) getAttribute(section, key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getObjectArray : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C10","Kindly check key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C10","Kindly check key:"+key +" on config file",AlertType.ERROR);
 				return null;
 				
 			}
@@ -336,7 +337,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getObjectArray : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getObjectArray : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C101","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C101","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -348,7 +349,7 @@ public class ConstantAppConfigReader {
 			JSONArray retValue = (JSONArray) properties.get(section);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getList : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C11","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C11","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -357,7 +358,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getList : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getList : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C111","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C111","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 
 			return null;
@@ -370,7 +371,7 @@ public class ConstantAppConfigReader {
 			JSONArray retValue = (JSONArray) getAttribute(section, key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getList : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C12","Kindly check section: "+section + " , key: " + key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C12","Kindly check section: "+section + " , key: " + key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -379,7 +380,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getList : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getList : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C121","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C121","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 
 			return null;
@@ -393,7 +394,7 @@ public class ConstantAppConfigReader {
 			Map<String, Object> retValue = (Map<String, Object>) properties.get(section);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getMap : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C13","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C13","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -402,7 +403,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getMap : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getMap : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C131","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C131","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 
 			return null;
@@ -414,7 +415,7 @@ public class ConstantAppConfigReader {
 			JSONObject retValue = (JSONObject)properties.get(section);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getJsonObject : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C14","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C14","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -423,7 +424,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getJsonObject : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getJsonObject : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C141","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C141","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -436,7 +437,7 @@ public class ConstantAppConfigReader {
 			PrintStyleModel retValue = (PrintStyleModel)properties.get(section);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getJsonObject : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C14A","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C14A","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -445,7 +446,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getJsonObject : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getJsonObject : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C141A","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C141A","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -457,7 +458,7 @@ public class ConstantAppConfigReader {
 			JSONObject sectionObj = (JSONObject)properties.get(section);
 			if (sectionObj == null) {
 				ApplicationLauncher.logger.error("getAttribute : config file: section:"+ section);
-				ApplicationLauncher.InformUser("Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -466,7 +467,7 @@ public class ConstantAppConfigReader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getAttribute : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 

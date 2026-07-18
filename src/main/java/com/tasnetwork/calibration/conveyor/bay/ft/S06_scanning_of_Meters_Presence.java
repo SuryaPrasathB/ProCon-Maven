@@ -11,15 +11,14 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for checking if all expected meters are present in the pallet at the FT Bay.
+ */
 public class S06_scanning_of_Meters_Presence implements FtBayState {
 	
 	private String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
     
-    // Adjusted to return the constant directly as per your request
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
     //===========================================================================================
     @Override
@@ -75,7 +74,6 @@ public class S06_scanning_of_Meters_Presence implements FtBayState {
             bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_FT_008);  // Failure error code
         }
 
-        // Add or update GUI status (assuming StateExecutorController handles Platform.runLater() internally)
         StateExecutorController.addToTestStatusGui(testIntefaceStatus);
         StateExecutorController.updateTestStatusGui(testIntefaceStatus); // Update with final status
 
@@ -93,17 +91,6 @@ public class S06_scanning_of_Meters_Presence implements FtBayState {
         Map<String,Object> responseReturn = new HashMap<String,Object>();
 		responseReturn.put("status", false); // Default status to false
 
-        // --- ADD YOUR ACTUAL LOGIC HERE TO CHECK METER PRESENCE ---
-        // This method currently does not have the actual implementation.
-        // You would typically read sensor data, perhaps iterate through expected meter positions,
-        // and set the 'status' variable based on that.
-        // Example:
-        // IoPortInfo meterSensor1 = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.FT_METER_1_SENSOR);
-        // String meter1State = BayUtils.getInputDataFromBayV2(meterSensor1);
-        // if (meter1State.equals(Constant_IO_ActionMapping.OLD_OFF_NEW_ON)) { ... }
-        // For now, it will return false unless `StateExecutorController.simulateFtBayHappyPath` is true.
-
-        // Simulation for happy path
         if (StateExecutorController.simulateFtBayHappyPath) {
             status = true; // Simulate all meters present
             Ft.logger.debug(String.format("[%s] : [SIMULATION] : All meters present status overridden to TRUE.", getMyBayKey()));

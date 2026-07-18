@@ -1,5 +1,6 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
 import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
@@ -476,7 +477,7 @@ public class DashboardController implements Initializable {
 		try {
 			newScene = new Scene(loader.load());
 		} catch (IOException ex) {
-			// TODO: handle error
+
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("loadDutExecutor: IOException:" + ex.getMessage());
 			return;
@@ -998,42 +999,37 @@ public class DashboardController implements Initializable {
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
 
-
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
-
 
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
 
-
 		calibrationStopTaskTimer = new Timer();
-		calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
+		calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
 
-
-		if (activeWaitingEngine != null) activeWaitingEngine.requestStop();
+		if (activeWaitingEngine != null)
+			activeWaitingEngine.requestStop();
 		waitingBayStopTaskTimer = new Timer();
 		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
 
-
 		verificStopTaskTimer = new Timer();
-		verificStopTaskTimer.schedule(new VerificationTestBayStop(),100);
+		verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
 
-
-		if (activeStaNld1Engine != null) activeStaNld1Engine.requestStop();
+		if (activeStaNld1Engine != null)
+			activeStaNld1Engine.requestStop();
 		sctNlt1StopTaskTimer = new Timer();
-		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(),100);
+		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
 
-
-		if (activeStaNld2Engine != null) activeStaNld2Engine.requestStop();
+		if (activeStaNld2Engine != null)
+			activeStaNld2Engine.requestStop();
 		sctNlt2StopTaskTimer = new Timer();
-		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(),100);
+		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
 
-
-		if (activeCommEngine != null) activeCommEngine.requestStop();
+		if (activeCommEngine != null)
+			activeCommEngine.requestStop();
 		commStopTaskTimer = new Timer();
-		commStopTaskTimer.schedule(new CommunicationTestBayStop(),100);
-
+		commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
 
 		ApplicationLauncher.logger.info("btnAllStopOnClick : Exit:");
 	}
@@ -1043,7 +1039,7 @@ public class DashboardController implements Initializable {
 		try {
 			Thread.sleep(timeInMsec);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("Sleep2 :InterruptedException:" + e.getMessage());
 		}
@@ -1262,45 +1258,6 @@ public class DashboardController implements Initializable {
 		return false;
 	}
 
-	/*
-	 * public boolean addPalletToFirstAvailableVerificationBay(String palletName,
-	 * Map<Integer, String> meterListWithSerialNoMap) {
-	 * // Define the order of waiting bays to check (PP1 to PP4)
-	 * String[] verificBaysInOrder = {
-	 * ConstantConveyor.VERIFICATION_PP1_BAY_KEY,
-	 * ConstantConveyor.VERIFICATION_PP2_BAY_KEY,
-	 * ConstantConveyor.VERIFICATION_PP3_BAY_KEY,
-	 * ConstantConveyor.VERIFICATION_PP4_BAY_KEY
-	 * };
-	 * 
-	 * for (String bayKey : verificBaysInOrder) {
-	 * AnchorPane targetBay = bayKeyToContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.error("Invalid Verification bay key: " + bayKey);
-	 * continue;
-	 * }
-	 * 
-	 * // Check if bay is empty
-	 * boolean isBayEmpty = targetBay.getChildren().stream()
-	 * .noneMatch(node -> node.getUserData() instanceof PalletController);
-	 * 
-	 * if (isBayEmpty) {
-	 * // Found an empty bay - add the pallet here
-	 * addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
-	 * logEvent("Added pallet " + palletName + " to " + bayKey);
-	 * return true;
-	 * }
-	 * }
-	 * 
-	 * // All waiting bays are occupied
-	 * logEvent("Failed to add pallet " + palletName +
-	 * ": All Verification bays are occupied");
-	 * ApplicationLauncher.logger.
-	 * warn("All Verification bays are occupied - cannot add pallet " + palletName);
-	 * return false;
-	 * }
-	 */
-
 	public boolean addPalletToFirstAvailableVerificationBay(String palletName,
 			Map<Integer, String> meterListWithSerialNoMap) {
 		ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName);
@@ -1363,7 +1320,7 @@ public class DashboardController implements Initializable {
 					int waitTimeInMSec = 3000;
 					ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
 							+ palletName + " : awaiting for verific semlock acquiring entry: " + waitTimeInMSec);
-					while ((waitTimeInMSec > 0) && (!ProjectExecutionController.getUserAbortedFlag())
+					while ((waitTimeInMSec > 0) && (!BayUtils.isUserAborted())
 							&& (verific1BayLocked)) {
 						ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
 								+ palletName + " : still awaiting for verific semlock: " + waitTimeInMSec);
@@ -1461,7 +1418,7 @@ public class DashboardController implements Initializable {
 					int waitTimeInMSec = 3000;
 					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
 							+ " : awaiting for STA1 semlock acquiring entry: " + waitTimeInMSec);
-					while ((waitTimeInMSec > 0) && (!ProjectExecutionController.getUserAbortedFlag())
+					while ((waitTimeInMSec > 0) && (!BayUtils.isUserAborted())
 							&& (sta1BayLocked)) {
 						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
 								+ " : still awaiting for STA1 semlock: " + waitTimeInMSec);
@@ -1558,7 +1515,7 @@ public class DashboardController implements Initializable {
 					int waitTimeInMSec = 3000;
 					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
 							+ " : awaiting for STA2 semlock acquiring entry: " + waitTimeInMSec);
-					while ((waitTimeInMSec > 0) && (!ProjectExecutionController.getUserAbortedFlag())
+					while ((waitTimeInMSec > 0) && (!BayUtils.isUserAborted())
 							&& (sta2BayLocked)) {
 						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
 								+ " : still awaiting for STA2 semlock: " + waitTimeInMSec);
@@ -1746,672 +1703,6 @@ public class DashboardController implements Initializable {
 			}
 		});
 	}
-
-	// update for entry stopper event
-	/*
-	 * public void updateBayEntryStopper(String bayKey, boolean isOpen) {
-	 * ApplicationLauncher.logger.warn("updateBayEntryStopper : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.warn("updateBayEntryStopper: Invalid bay key: " +
-	 * bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setEntryStopperOpenIndicator(isOpen);
-	 * ApplicationLauncher.logger.info("updateBayEntryStopper: " + bayKey +
-	 * " : open -> " +isOpen);
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.warn("updateBayEntryStopper : No Bay found in " +
-	 * bayKey);
-	 * }
-	 * });
-	 * }
-	 */
-
-	/*
-	 * public void resetEntryStopperOpenIndicator(String bayKey) {
-	 * ApplicationLauncher.logger.warn("resetEntryStopperOpenIndicator : Entry: " +
-	 * bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetEntryStopperOpenIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.resetEntryStopperOpenIndicator();
-	 * ApplicationLauncher.logger.info("resetEntryStopperOpenIndicator: " + bayKey
-	 * );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("resetEntryStopperOpenIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 */
-
-	/*
-	 * public void resetExitStopperOpenIndicator(String bayKey) {
-	 * ApplicationLauncher.logger.warn("resetExitStopperOpenIndicator : Entry: " +
-	 * bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetExitStopperOpenIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.resetExitStopperOpenIndicator();
-	 * ApplicationLauncher.logger.info("resetExitStopperOpenIndicator: " + bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("resetExitStopperOpenIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void resetAllPalletsExistInBayIndicator(String bayKey) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetAllPalletsExistInBayIndicator : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetAllPalletsExistInBayIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.resetAllPalletsExistInBayIndicator();
-	 * ApplicationLauncher.logger.info("resetAllPalletsExistInBayIndicator: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("resetAllPalletsExistInBayIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * 
-	 * 
-	 * 
-	 * }
-	 * 
-	 * 
-	 * public void setAllPalletsExistInBayIndicator(String bayKey, boolean
-	 * isPalletExist) {
-	 * ApplicationLauncher.logger.warn("setAllPalletsExistInBayIndicator : Entry: "
-	 * + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInBayIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setAllPalletsExistInBayIndicator(isPalletExist);
-	 * ApplicationLauncher.logger.info("setAllPalletsExistInBayIndicator: " + bayKey
-	 * );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInBayIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * 
-	 * 
-	 * 
-	 * }
-	 * 
-	 * public void setAllPalletsExistInTargetBayIndicator(String bayKey, boolean
-	 * isPalletExist) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInTargetBayIndicator : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInTargetBayIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setAllPalletsExistInTargetBayIndicator(isPalletExist);
-	 * ApplicationLauncher.logger.info("setAllPalletsExistInTargetBayIndicator: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInTargetBayIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * 
-	 * 
-	 * 
-	 * }
-	 * 
-	 * 
-	 * public void resetPalletsExistInQueueIndicator(String bayKey) {
-	 * ApplicationLauncher.logger.warn("resetPalletsExistInQueueIndicator : Entry: "
-	 * + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetPalletsExistInQueueIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.resetPalletsExistInQueueIndicator();
-	 * ApplicationLauncher.logger.info("resetPalletsExistInQueueIndicator: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("resetPalletsExistInQueueIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void resetAllPalletsExistInTargetBayIndicator(String bayKey) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetAllPalletsExistInTargetBayIndicator : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("resetAllPalletsExistInTargetBayIndicator: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.resetAllPalletsExistInTargetBayIndicator();
-	 * ApplicationLauncher.logger.info("resetAllPalletsExistInTargetBayIndicator: "
-	 * + bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("resetAllPalletsExistInTargetBayIndicator : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * 
-	 * public void setEntryStopperOpenIndicatorVisible(String bayKey, boolean
-	 * makeVisible) {
-	 * ApplicationLauncher.logger.
-	 * warn("setEntryStopperOpenIndicatorVisible : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setEntryStopperOpenIndicatorVisible: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setEntryStopperOpenIndicatorVisible(makeVisible);
-	 * ApplicationLauncher.logger.info("setEntryStopperOpenIndicatorVisible: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setEntryStopperOpenIndicatorVisible : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void setExitStopperOpenIndicatorVisible(String bayKey, boolean
-	 * makeVisible) {
-	 * ApplicationLauncher.logger.
-	 * warn("setExitStopperOpenIndicatorVisible : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setExitStopperOpenIndicatorVisible: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setExitStopperOpenIndicatorVisible(makeVisible);
-	 * ApplicationLauncher.logger.info("setExitStopperOpenIndicatorVisible: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setExitStopperOpenIndicatorVisible : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void setAllPalletsExistInBayIndicatorVisible(String bayKey, boolean
-	 * makeVisible) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInBayIndicatorVisible : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInBayIndicatorVisible: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setAllPalletsExistInBayIndicatorVisible(makeVisible);
-	 * ApplicationLauncher.logger.info("setAllPalletsExistInBayIndicatorVisible: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInBayIndicatorVisible : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void setPalletsExistInQueueIndicatorVisible(String bayKey, boolean
-	 * makeVisible) {
-	 * ApplicationLauncher.logger.
-	 * warn("setPalletsExistInQueueIndicatorVisible : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setPalletsExistInQueueIndicatorVisible: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setPalletsExistInQueueIndicatorVisible(makeVisible);
-	 * ApplicationLauncher.logger.info("setPalletsExistInQueueIndicatorVisible: " +
-	 * bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setPalletsExistInQueueIndicatorVisible : No Bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * public void setAllPalletsExistInTargetBayIndicatorVisible(String bayKey,
-	 * boolean makeVisible) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInTargetBayIndicatorVisible : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInTargetBayIndicatorVisible: Invalid bay key: " +
-	 * bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setAllPalletsExistInTargetBayIndicatorVisible(makeVisible);
-	 * ApplicationLauncher.logger.
-	 * info("setAllPalletsExistInTargetBayIndicatorVisible: " + bayKey );
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("setAllPalletsExistInTargetBayIndicatorVisible : No Bay found in " +
-	 * bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * //update for exit stopper event
-	 * public void updateBayExitStopper(String bayKey, boolean isOpen) {
-	 * ApplicationLauncher.logger.warn("updateBayExitStopper : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.warn("updateBayExitStopper: Invalid bay key: " +
-	 * bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setExitStopperOpenIndicator(isOpen);
-	 * ApplicationLauncher.logger.info("updateBayExitStopper: " + bayKey +
-	 * " : open -> " +isOpen);
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.warn("updateBayExitStopper : No bay found in " +
-	 * bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * //update for pallet exist event
-	 * public void updateBayPalletsExistInQueue(String bayKey, boolean
-	 * isPalletExist) {
-	 * ApplicationLauncher.logger.warn("updateBayPalletsExistInQueue : Entry: " +
-	 * bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayPalletsExistInQueue: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setPalletsExistInQueueIndicator(isPalletExist);
-	 * ApplicationLauncher.logger.info("updateBayPalletsExistInQueue: " + bayKey +
-	 * " : isPalletExist -> " +isPalletExist);
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayPalletsExistInQueue : No bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * 
-	 * //update for pallet exist event
-	 * public void updateBayAllPalletsExistInNextTargetBay(String bayKey, boolean
-	 * isPalletExist) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayAllPalletsExistInNextTargetBay : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayAllPalletsExistInNextTargetBay: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setAllPalletsExistInTargetBayIndicator(isPalletExist);
-	 * ApplicationLauncher.logger.info("updateBayAllPalletsExistInNextTargetBay: " +
-	 * bayKey + " : isPalletExist -> " +isPalletExist);
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayAllPalletsExistInNextTargetBay : No bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * 
-	 * //update for pallet exist event
-	 * public void updateBayAllPalletsExistInBay(String bayKey, boolean
-	 * isPalletExist) {
-	 * ApplicationLauncher.logger.warn("updateBayAllPalletsExistInBay : Entry: " +
-	 * bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayAllPalletsExistInBay: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.setAllPalletsExistInBayIndicator(isPalletExist);
-	 * ApplicationLauncher.logger.info("updateBayAllPalletsExistInBay: " + bayKey +
-	 * " : isPalletExist -> " +isPalletExist);
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayAllPalletsExistInBay : No bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * //update for pallet exist event
-	 * public void updateBayMonitoringAllPalletsExistInBay(String bayKey) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringAllPalletsExistInBay : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringAllPalletsExistInBay: Invalid bay key: " + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.startBlinkingAllPalletsExistInBayIndicator();
-	 * ApplicationLauncher.logger.info("updateBayMonitoringAllPalletsExistInBay: " +
-	 * bayKey + " : monioring");
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringAllPalletsExistInBay : No bay found in " + bayKey);
-	 * }
-	 * });
-	 * }
-	 * 
-	 * //update for pallet exist event
-	 * public void updateBayMonitoringAllPalletsExistInTargetBayIndicator(String
-	 * bayKey) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringAllPalletsExistInTargetBayIndicator : Entry: " +
-	 * bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringAllPalletsExistInTargetBayIndicator: Invalid bay key: "
-	 * + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.startBlinkingAllPalletsExistInTargetBayIndicator();
-	 * ApplicationLauncher.logger.
-	 * info("updateBayMonitoringAllPalletsExistInTargetBayIndicator: " + bayKey +
-	 * " : monioring");
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringAllPalletsExistInTargetBayIndicator : No bay found in "
-	 * + bayKey);
-	 * }
-	 * });
-	 * }
-	 */
-	// update for pallet exist event
-	/*
-	 * public void updateBayMonitoringPalletsExistInQueueIndicator(String bayKey) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringPalletsExistInQueueIndicator : Entry: " + bayKey);
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringPalletsExistInQueueIndicator: Invalid bay key: " +
-	 * bayKey);
-	 * return;
-	 * }
-	 * 
-	 * for (Node node : targetBay.getChildren()) {
-	 * if (node.getUserData() instanceof BayViewController) {
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) node.getUserData();
-	 * bayController.startBlinkingPalletsExistInQueueIndicator();
-	 * ApplicationLauncher.logger.
-	 * info("updateBayMonitoringPalletsExistInQueueIndicator: " + bayKey +
-	 * " : monioring");
-	 * return;
-	 * }
-	 * }
-	 * ApplicationLauncher.logger.
-	 * warn("updateBayMonitoringPalletsExistInQueueIndicator : No bay found in " +
-	 * bayKey);
-	 * }
-	 * });
-	 * }
-	 */
 
 	/**
 	 * Moves a pallet from one bay to another.
@@ -3169,7 +2460,6 @@ public class DashboardController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		// TODO Auto-generated method stub
 		ref_eventLog = eventLog;
 		initializeBayKeyMap();
 		// bayIndicatorManager = new BayIndicatorManager(bayKeyToBayContainer);
@@ -3204,7 +2494,6 @@ public class DashboardController implements Initializable {
 	}
 
 	private void initAllBayView() {
-		// TODO Auto-generated method stub
 
 		getBayIndicatorManager().addDefaultBayView(ConstantConveyor.FT_BAY_KEY);
 
@@ -3523,7 +2812,7 @@ public class DashboardController implements Initializable {
 	}
 
 	public void guiInit() {
-		// TODO Auto-generated method stub
+
 		// tv_FTErrorCodeHistory.setVisible(false);
 		Platform.runLater(() -> {
 			// ref_btnDummy.setVisible(false);
@@ -3534,113 +2823,7 @@ public class DashboardController implements Initializable {
 	@FXML
 	private void addDummySampleData() {
 
-		// getBayIndicatorManager().stopTimeUpDisplay(ConstantConveyor.FT_BAY_KEY);
-		// getBayIndicatorManager().updateTpCountStatus(ConstantConveyor.FT_BAY_KEY,6,10);
 		getBayIndicatorManager().updateTpCountStatus(ConstantConveyor.VERIFICATION_PP1_BAY_KEY, 8);
-		// getBayIndicatorManager().stopProgressBarWithTime(ConstantConveyor.STA_NLD2_PP1_BAY_KEY);
-		// getBayIndicatorManager().stopProgressBarWithTpCount(ConstantConveyor.VERIFICATION_PP1_BAY_KEY);
-
-		/*
-		 * String customerName =
-		 * ConveyorDataManager.getTerminalBayConfig().getCustomerName();//"DevSys";
-		 * String bayType = "UNLDB";
-		 * 
-		 * ConveyorOutputMetrics metrics = conveyorOutputMetricsService
-		 * .findByCustomerNameBayTypeAndCurrentDate(customerName, bayType)
-		 * .orElseGet(() -> {
-		 * ConveyorOutputMetrics newMetrics = new ConveyorOutputMetrics();
-		 * newMetrics.setCustomerName(customerName);
-		 * newMetrics.setBayType(bayType);
-		 * newMetrics.setPalletOutput(0);
-		 * newMetrics.setTotalNoOfMeters(0);
-		 * newMetrics.setPassedMeters(0);
-		 * newMetrics.setFailedMeters(0);
-		 * newMetrics.setAverageHourlyOutput(0.0);
-		 * newMetrics.setCreatedAt(Date.from(LocalDate.now().atStartOfDay(ZoneId.
-		 * systemDefault()).toInstant()));
-		 * return newMetrics;
-		 * });
-		 * 
-		 * // 🧠 Randomize pass/fail count (total = 6 meters)
-		 * int totalMeters = 6;
-		 * int passCount = (int) (Math.random() * (totalMeters + 1)); // 0 to 6
-		 * int failCount = totalMeters - passCount;
-		 * 
-		 * // 🔄 Update counters
-		 * metrics.setPalletOutput(metrics.getPalletOutput() + 1);
-		 * metrics.setTotalNoOfMeters(metrics.getTotalNoOfMeters() + totalMeters);
-		 * metrics.setPassedMeters(metrics.getPassedMeters() + passCount);
-		 * metrics.setFailedMeters(metrics.getFailedMeters() + failCount);
-		 * metrics.setUserName(DeviceDataManagerController.getUserName());
-		 * metrics.setLocationName(ConveyorDataManager.getTerminalBayConfig().
-		 * getLocationName());
-		 * metrics.setPlantName(ConveyorDataManager.getTerminalBayConfig().getPlantName(
-		 * ));
-		 * metrics.setDepartmentName(ConveyorDataManager.getTerminalBayConfig().
-		 * getDepartmentName());
-		 * metrics.setLineNo(ConveyorDataManager.getTerminalBayConfig().getLineNo());
-		 * 
-		 * // ⏱️ Recalculate average hourly output
-		 * Date now = new Date();
-		 * long millis = now.getTime() - metrics.getCreatedAt().getTime();
-		 * double hours = millis / (1000.0 * 60 * 60);
-		 * if (hours < 1.0) hours = 1.0;
-		 * 
-		 * double average = metrics.getTotalNoOfMeters() / hours;
-		 * 
-		 * metrics.setAverageHourlyOutput(average);
-		 * metrics.setUpdatedAt(now);
-		 * 
-		 * conveyorOutputMetricsService.saveToDb(metrics);
-		 * 
-		 * // ✅ Optional: Also update ConveyorOutputMetricsSummary if needed
-		 * try {
-		 * ConveyorOutputMetricsSummary summary =
-		 * MySqlServiceManager.getConveyorOutputMetricsSummaryService()
-		 * .findByCustomerNameBayTypeAndCurrentDate(customerName, bayType)
-		 * .orElseGet(() -> {
-		 * ConveyorOutputMetricsSummary s = new ConveyorOutputMetricsSummary();
-		 * s.setCustomerName(customerName);
-		 * s.setBayType(bayType);
-		 * s.setCreatedAt(metrics.getCreatedAt());
-		 * s.setPalletOutput(0);
-		 * s.setTotalNoOfMeters(0);
-		 * s.setPassedMeters(0);
-		 * s.setFailedMeters(0);
-		 * s.setAverageHourlyOutput(0.0);
-		 * return s;
-		 * });
-		 * 
-		 * double avg = summary.getTotalNoOfMeters() / hours;
-		 * 
-		 * summary.setUpdatedAt(now);
-		 * summary.setPalletOutput(summary.getPalletOutput() + 1);
-		 * summary.setTotalNoOfMeters(summary.getTotalNoOfMeters() + totalMeters);
-		 * summary.setPassedMeters(summary.getPassedMeters() + passCount);
-		 * summary.setFailedMeters(summary.getFailedMeters() + failCount);
-		 * summary.setAverageHourlyOutput(avg);
-		 * 
-		 * summary.setLocationName(ConveyorDataManager.getTerminalBayConfig().
-		 * getLocationName());
-		 * summary.setPlantName(ConveyorDataManager.getTerminalBayConfig().getPlantName(
-		 * ));
-		 * summary.setDepartmentName(ConveyorDataManager.getTerminalBayConfig().
-		 * getDepartmentName());
-		 * summary.setLineNo(ConveyorDataManager.getTerminalBayConfig().getLineNo());
-		 * 
-		 * 
-		 * MySqlServiceManager.getConveyorOutputMetricsSummaryService().saveToDb(summary
-		 * );
-		 * } catch (Exception e) {
-		 * e.printStackTrace();
-		 * ApplicationLauncher.logger.
-		 * error("Failed to update ConveyorOutputMetricsSummary during dummy data insertion: "
-		 * + e.getMessage(), e);
-		 * }
-		 * 
-		 * ApplicationLauncher.logger.info("Dummy pallet added: " + passCount +
-		 * " PASS, " + failCount + " FAIL (Total: " + totalMeters + ")");
-		 */
 
 	}
 
@@ -3843,36 +3026,6 @@ public class DashboardController implements Initializable {
 
 	}
 
-	/*
-	 * private List<ConveyorOutputMetricsSummary>
-	 * filterByPeriod(List<ConveyorOutputMetricsSummary> list, LocalDateTime from) {
-	 * return list.stream()
-	 * .filter(m -> {
-	 * if (m.getCreatedAt() == null) return false;
-	 * LocalDateTime created =
-	 * m.getCreatedAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-	 * ;
-	 * return created.isAfter(from);
-	 * })
-	 * .collect(Collectors.toList());
-	 * }
-	 */
-
-	/*
-	 * private List<ConveyorOutputMetricsSummary>
-	 * filterByDays(List<ConveyorOutputMetricsSummary> list, LocalDateTime from) {
-	 * return list.stream()
-	 * .filter(m -> {
-	 * if (m.getDateH() == null) return false;
-	 * LocalDate dateH =
-	 * m.getDateH().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	 * return dateH.isAfter(from.toLocalDate()) ||
-	 * dateH.isEqual(from.toLocalDate());
-	 * })
-	 * .collect(Collectors.toList());
-	 * }
-	 */
-
 	private List<ConveyorOutputMetricsSummary> filterByDays(
 			List<ConveyorOutputMetricsSummary> list,
 			LocalDateTime from) {
@@ -3902,23 +3055,6 @@ public class DashboardController implements Initializable {
 				.collect(Collectors.toList());
 	}
 
-	/*
-	 * private List<ConveyorOutputMetricsSummary>
-	 * filterByPeriod(List<ConveyorOutputMetricsSummary> list, LocalDateTime from,
-	 * LocalDateTime to) {
-	 * return list.stream()
-	 * .filter(m -> {
-	 * if (m.getCreatedAt() == null) return false;
-	 * LocalDateTime created =
-	 * m.getCreatedAt().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-	 * ;
-	 * return (created.isAfter(from) || created.isEqual(from)) &&
-	 * created.isBefore(to);
-	 * })
-	 * .collect(Collectors.toList());
-	 * }
-	 */
-
 	private List<ConveyorOutputMetricsSummary> filterByPeriod(
 			List<ConveyorOutputMetricsSummary> list,
 			LocalDateTime from,
@@ -3931,13 +3067,6 @@ public class DashboardController implements Initializable {
 				.filter(m -> {
 					if (m.getDateH() == null)
 						return false;
-
-					// Convert Date to LocalDate (since dateH has no time component)
-					/*
-					 * LocalDate recordDate = m.getDateH().toInstant()
-					 * .atZone(ZoneId.systemDefault())
-					 * .toLocalDate();
-					 */
 
 					LocalDate recordDate = new java.util.Date(m.getDateH().getTime())
 							.toInstant()
@@ -3960,56 +3089,4 @@ public class DashboardController implements Initializable {
 	public BayIndicatorManager getBayIndicatorManager() {
 		return bayIndicatorManager;
 	}
-
-	/*
-	 * public void blinkQueueIndicator(String bayKey, boolean shouldBlink) {
-	 * BayStatusManager manager = bayStatusManagers.get(bayKey);
-	 * if (manager != null) {
-	 * if (shouldBlink) {
-	 * manager.startBlinkingQueueIndicator();
-	 * } else {
-	 * manager.stopBlinkingQueueIndicator();
-	 * }
-	 * }
-	 * }
-	 * 
-	 * public void setEntryStopperStatus(String bayKey, boolean isOpen) {
-	 * BayStatusManager manager = bayStatusManagers.get(bayKey);
-	 * if (manager != null) {
-	 * manager.setEntryStopperStatus(isOpen);
-	 * }
-	 * }
-	 * 
-	 * public void setExitStopperStatus(String bayKey, boolean isOpen) {
-	 * BayStatusManager manager = bayStatusManagers.get(bayKey);
-	 * if (manager != null) {
-	 * manager.setExitStopperStatus(isOpen);
-	 * }
-	 * }
-	 * 
-	 * public void setAllPalletsExistStatus(String bayKey, boolean exists) {
-	 * BayStatusManager manager = bayStatusManagers.get(bayKey);
-	 * if (manager != null) {
-	 * manager.setAllPalletsExistStatus(exists);
-	 * }
-	 * }
-	 * 
-	 * public void setTargetBayFreeStatus(String bayKey, boolean isFree) {
-	 * BayStatusManager manager = bayStatusManagers.get(bayKey);
-	 * if (manager != null) {
-	 * manager.setTargetBayFreeStatus(isFree);
-	 * }
-	 * }
-	 * 
-	 * public void blinkBayStatusIndicator(String bayKey, boolean shouldBlink) {
-	 * BayStatusManager manager = bayStatusManagers.get(bayKey);
-	 * if (manager != null) {
-	 * if (shouldBlink) {
-	 * manager.startBlinkingBayStatusIndicator();
-	 * } else {
-	 * manager.stopBlinkingBayStatusIndicator();
-	 * }
-	 * }
-	 * }
-	 */
 }

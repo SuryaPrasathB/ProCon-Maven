@@ -15,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
 import javafx.scene.control.Alert.AlertType;
@@ -37,7 +38,7 @@ public class ConstantRefStdConfigLoader {
 			Object retValue  = properties.get(key);
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("getAttribute : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C01","Kindly check key:"+key +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -47,7 +48,7 @@ public class ConstantRefStdConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("getAttribute : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C011","Kindly check key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -59,7 +60,7 @@ public class ConstantRefStdConfigLoader {
 			JSONObject sectionObj = (JSONObject)properties.get(section);
 			if (sectionObj == null) {
 				ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getAttribute : config file: section:"+ section);
-				ApplicationLauncher.InformUser("ConstantRefStdConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("ConstantRefStdConfigLoader: Error-C15","Kindly check section:"+section +" on config file",AlertType.ERROR);
 
 				return null;
 			}
@@ -68,7 +69,7 @@ public class ConstantRefStdConfigLoader {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getAttribute : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getAttribute : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("ConstantRefStdConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("ConstantRefStdConfigLoader: Error-C151","Kindly check section:"+section +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -81,7 +82,7 @@ public class ConstantRefStdConfigLoader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getString : config file: section:"+ section);
 				ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getString : config file: key:"+ key);
-				//ApplicationLauncher.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				//WindowManager.InformUser("Error-C01","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return retValue;
 			}else{
@@ -92,7 +93,7 @@ public class ConstantRefStdConfigLoader {
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getString : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader : getString : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader : getString : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("ConstantRefStdConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("ConstantRefStdConfigLoader : Error-C161","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return null;
 
@@ -105,7 +106,7 @@ public class ConstantRefStdConfigLoader {
 			if (retValue == null) {
 				ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getFloat : config file: section:"+ section);
 				ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getFloat : config file: key:"+ key);
-				ApplicationLauncher.InformUser("Error-C06","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
+				WindowManager.InformUser("Error-C06","Kindly check section:" +section +" and key:"+key +" on config file",AlertType.ERROR);
 
 				return 0.0F;
 			}else{
@@ -116,7 +117,7 @@ public class ConstantRefStdConfigLoader {
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getFloat : config file1: section:"+ section);
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getFloat : config file1: key:"+ key);
 			ApplicationLauncher.logger.error("ConstantRefStdConfigLoader: getFloat : Exception:"+ e.getMessage());
-			ApplicationLauncher.InformUser("Error-C061","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
+			WindowManager.InformUser("Error-C061","Kindly check section:" +section +" and key:"+key +" on config file\nError:"+e.getMessage(),AlertType.ERROR);
 
 			return 0.0F;
 			
@@ -200,5 +201,305 @@ public class ConstantRefStdConfigLoader {
 		ConstantRefStdConfigLoader.refStdConstantConfigFileName  = configFilePath + configFileName;
 	}
 	    
+
+
+	public static void loadRefStdConstantConfigProperty() {
+
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_1 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_1");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_2 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_2");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_3 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_3");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_4 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_4");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_5 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_5");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_6 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_6");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_7 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_7");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_8 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_8");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_9 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_9");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_10 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_10");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_11 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_11");
+		ConstantRefStdConfig.RSS_HTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_12 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_HTCT_CurrentThresholdInAmpsLevel_12");
+
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_AboveOrEqualLevel_12");
+
+		ConstantRefStdConfig.RSS_HTCT_ACTIVE_PULSE_CONSTANT_BELOW_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ActivePulseConstantInImpPerWh_BelowLevel_12");
+
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_12");
+
+		ConstantRefStdConfig.RSS_HTCT_REACTIVE_PULSE_CONSTANT_BELOW_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_HTCT_ReactivePulseConstantInImpPerWh_BelowLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_1 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_1");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_2 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_2");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_3 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_3");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_4 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_4");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_5 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_5");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_6 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_6");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_7 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_7");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_8 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_8");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_9 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_9");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_10 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_10");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_11 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_11");
+		ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_12 = ConstantRefStdConfigLoader
+				.getFloat("RefStdDeviceConstant", "RSS_LTCT_CurrentThresholdInAmpsLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_ABOVE_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentAboveOrEqualLevel_12");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_BELOW_OR_EQUAL_LEVEL_4_CURRENT_BELOW_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltBelowOrEqualLevel_4_CurrentBelowLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_ABOVE_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentAboveOrEqualLevel_12");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_4_CURRENT_BELOW_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_4_CurrentBelowLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_ABOVE_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentAboveOrEqualLevel_12");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_3_CURRENT_BELOW_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_3_CurrentBelowLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_ABOVE_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentAboveOrEqualLevel_12");
+		ConstantRefStdConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_VOLT_ABOVE_LEVEL_2_CURRENT_BELOW_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant",
+						"RSS_LTCT_ActivePulseConstantInImpPerWh_VoltAboveLevel_2_CurrentBelowLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_1 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_1");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_2 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_2");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_3 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_3");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_4 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_4");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_5 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_5");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_6 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_6");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_7 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_7");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_8 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_8");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_9 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_9");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_10 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_10");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_11 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_11");
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_ABOVE_OR_EQUAL_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_AboveOrEqualLevel_12");
+
+		ConstantRefStdConfig.RSS_LTCT_REACTIVE_PULSE_CONSTANT_BELOW_LEVEL_12 = ConstantRefStdConfigLoader
+				.getString("RefStdDeviceConstant", "RSS_LTCT_ReactivePulseConstantInImpPerWh_BelowLevel_12");
+
+	}
+
 }
 

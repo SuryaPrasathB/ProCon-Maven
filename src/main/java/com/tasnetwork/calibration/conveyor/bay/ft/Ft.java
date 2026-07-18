@@ -8,11 +8,16 @@ import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.StateFlow;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * Context manager for the Functional Test (FT) Bay.
+ * Implements {@link BayStateContext} to provide state management, transition logic,
+ * and error handling specific to the FT Bay. 
+ * Handles dynamic instantiation of state classes via reflection.
+ */
 public class Ft implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Ft.class.getPackage().getName());
 	private FtBayContext ftBayStateManager = new FtBayContext();
@@ -28,14 +33,21 @@ public class Ft implements BayStateContext {
 
 	public static boolean abort_FT_Bay = false;
 
+	/**
+	 * Callback invoked when the start process for the FT Bay is completed.
+	 */
 	@Override
 	public void onStartComplete() {
 		setStartProcessCompletedFtBay(true);
 	}
 
+	/**
+	 * Callback invoked when the stop process for the FT Bay is completed.
+	 * Updates the GUI to reflect the stopped status.
+	 */
 	@Override
 	public void onStopComplete() {
-		Ft.logger.debug("FunctionalTestBay : isStopProcessRequestedFtBay -Pass");
+		Ft.logger.debug("FT : isStopProcessRequestedFtBay");
 
 		String pathId = "Ex1";
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus(
@@ -51,20 +63,32 @@ public class Ft implements BayStateContext {
 				"StopRequested"// ConstantConveyor.COMM_EXECUTION_STATUS_INP
 		);
 
-		int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
+		StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 	}
 
+	/**
+	 * Sets the next state for the FT Bay based on the state name and error code.
+	 * Instantiates the state dynamically and assigns it to the state manager.
+	 *
+	 * @param stateName The name of the next state class to load.
+	 * @param errorCode The error code associated with a failure, if applicable.
+	 */
 	@Override
 	public void setNextState(String stateName, String errorCode) {
 		FtBayState newState;
 		if (stateName.equals("S22_error_Handling") || stateName.startsWith("ERROR")) {
-			newState = createErrorStateInstance(stateName, errorCode);
+			newState = FtBayState.createErrorState(stateName, errorCode);
 		} else {
-			newState = createFtBayStateInstance(stateName, errorCode);
+			newState = FtBayState.createState(stateName);
 		}
 		ftBayStateManager.setState(newState);
 	}
 
+	/**
+	 * Processes the currently active state in the FT Bay.
+	 *
+	 * @return A {@link BayResponse} indicating the success/failure status and any error codes.
+	 */
 	public BayResponse processCurrentState() {
 		// Process the current state
 		BayResponse bayStatus = ftBayStateManager.processPresentState();
@@ -76,73 +100,28 @@ public class Ft implements BayStateContext {
 		return bayStatus;
 	}
 
+	/**
+	 * Retrieves the previously processed state.
+	 *
+	 * @return The last {@link FtBayState} that was processed.
+	 */
 	public FtBayState getPreviousState() {
 		return ftBayStateManager.getLastProcessedBayState();
 	}
 
 	public ArrayList<StateFlow> tableStatePlanner_FtBay = new ArrayList<StateFlow>();
 
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
 
-		for (StateFlow row : getTableStatePlanner_FtBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public FtBayState createFtBayStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		Ft.logger.debug("createFtBayStateInstance : stateName: " + stateName);
-
-		if (stateName.startsWith("ERROR")) {
-			getErrorStateInstanceString(stateName);
-			return new S23_idle_condition();
-		} else {
-			Class<?> c = null;
-			try {
-				c = Class.forName(Ft.class.getPackage().getName() + "." + stateName);
-				// FtBayState ftBayStateObj=null;
-				Object ftBayStateObj = null;
-				try {
-					// ftBayStateObj = (FtBayState)c.newInstance();
-					ftBayStateObj = c.newInstance();
-					return (FtBayState) ftBayStateObj;
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-
-					e.printStackTrace();
-					throw new IllegalArgumentException("FT: Exception: Unknown state1: " + stateName);
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-
-					e.printStackTrace();
-					throw new IllegalArgumentException("FT: Exception: Unknown state2: " + stateName);
-				}
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new IllegalArgumentException("FT: Exception: Unknown state3: " + stateName);
-			}
-		}
-	}
-
-	// ==========================================================================================================================================
-	private FtBayState createErrorStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-			case "S22_error_Handling":
-				return new S22_error_Handling(errorCode);
-			default:
-				throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
 
 	// ==========================================================================================================================================
 
+	/**
+	 * Maps a conveyor error code to the corresponding error handling state name.
+	 * Used when a state fails and needs to determine the fallback path.
+	 *
+	 * @param errorCode The error code encountered.
+	 * @return The string name of the next state class to handle the error.
+	 */
 	@Override
 	public String getErrorStateInstanceString(String errorCode) {
 

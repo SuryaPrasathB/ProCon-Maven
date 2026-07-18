@@ -11,11 +11,11 @@ import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for turning off the divertor relay for FT Bay.
+ */
 public class S17_turn_off_divertor_relay_FT_Bay implements FtBayState {
 
-    public String getMyBayKey() {
-        return myBayKey;
-    }
 
     //===========================================================================================
     @Override

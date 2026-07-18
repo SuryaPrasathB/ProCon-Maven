@@ -12,11 +12,11 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for checking the status of stop latch B4 at the FT Bay.
+ */
 public class S28_check_for_stop_latch_B4_status_FT_Bay implements FtBayState {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
     //===========================================================================================
     @Override
@@ -87,8 +87,6 @@ public class S28_check_for_stop_latch_B4_status_FT_Bay implements FtBayState {
                 Ft.logger.debug(String.format("[%s] : [STOP_LATCH_B4_SENSOR_READ] : [RAW_STATE] : %s", getMyBayKey(), rawStateFromSensor));
 
                 // Interpret the raw state based on Constant_IO_ActionMapping
-                // Assuming OLD_OFF_NEW_ON means the stopper is activated/closed (sensor is ON)
-                // If it's not OLD_OFF_NEW_ON, it means it's inactive/open (sensor is OFF)
                 interpretedState = rawStateFromSensor.equals(Constant_IO_ActionMapping.ON) ? "STOPPER_CLOSED" : "STOPPER_OPENED";
                 Ft.logger.debug(String.format("[%s] : [STOP_LATCH_B4_SENSOR_READ] : [INTERPRETED_STATE] : %s (Raw: %s)", getMyBayKey(), interpretedState, rawStateFromSensor));
                 responseReturn.put("status", interpretedState);

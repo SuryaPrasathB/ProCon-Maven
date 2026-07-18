@@ -355,15 +355,10 @@
 	
 	"database": {
 	   "urlSample":"jdbc:mysql://topsmakproddb.c5nfso2sc2bd.ap-south-1.rds.amazonaws.com/topsmak",	
-	   "url1": "jdbc:mysql://127.0.0.1:3306/",   
-	   "url2":"jdbc:mysql://192.168.0.108:3306/",
 	   "url": "jdbc:mysql://localhost:3306/",
 	   "urlTailOption" : "?characterEncoding=latin1&useConfigs=maxPerformance&useSSL=false&allowPublicKeyRetrieval=true",
 	   "username":"root",
 	   "password":"lscontrols",
-	   "db_name1":"Procal_2_3_ram_pc_Dump20221213",
-	   "db_name2":"procal_v2_5_3_fuji_prod",
-	   "db_name3":"procal_v2_5_3",
 	   "db_name":"procon_v2_5_4",
 	   "db_namedsf":"procon_v2_5_4_prod_Dump20260307",
 	   "DefaultMySQL_InstalledLocation":"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",
@@ -461,7 +456,7 @@
 				"ResultValueFailBackGroundFillPattern": "SOLID_FOREGROUND",
 				"ResultValueErrorTextFailedColor": "BLACK",
 				"ResultValueErrorBackGroundFailedColor": "YELLOW",
-				"ResultValueErrorBackGroundFillPattern": "SQUARES"
+				"ResultValueErrorBackGroundFillPattern": "SQUARES",
 				
 				
 				"ResultStatusPassColorHighLightEnabled" : false,
@@ -475,7 +470,7 @@
 				"ResultStatusFailBackGroundFillPattern": "SOLID_FOREGROUND",
 				"ResultStatusErrorTextFailedColor": "BLACK",
 				"ResultStatusErrorBackGroundFailedColor": "YELLOW",
-				"ResultStatusErrorBackGroundFillPattern": "SQUARES"
+				"ResultStatusErrorBackGroundFillPattern": "SQUARES",
 				
 				
 				"ResultPageStatusPassColorHighLightEnabled" : false,
@@ -546,7 +541,7 @@
 		"3P_NearingTarget1CurrentReductionPercentage" : 10.0,
 		"3P_NearingTarget2Percent": 90.0,
 		"3P_NearingTarget2CurrentReductionPercentage" : 2.0
-	}
+	},
 	
 	"DeviceSettings": {
 		"PowerSource_Id": 1,

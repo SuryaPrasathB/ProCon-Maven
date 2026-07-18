@@ -33,7 +33,7 @@ import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 public class RestClient {
 
-	private static final int TIMEOUT_MS = 5000; 
+	private static final int TIMEOUT_MS = 5000;
 
 	RequestConfig requestConfig = RequestConfig.custom()
 			.setConnectTimeout(TIMEOUT_MS)
@@ -50,29 +50,29 @@ public class RestClient {
 	RestApiClusterResponse restApiClusterResponseData = new RestApiClusterResponse();
 	RestApiJsonBodyResponse restApiClusterResponseBodyData = new RestApiJsonBodyResponse();
 
-	public  void WaitForServerResponse(int WaitTimeInSec){
+	public void WaitForServerResponse(int WaitTimeInSec) {
 		int SleepCounter = WaitTimeInSec;
 
-		while ((!isResponseReceived()) && (SleepCounter > 0)){
+		while ((!isResponseReceived()) && (SleepCounter > 0)) {
 			Sleep(1000);
-			SleepCounter --;
+			SleepCounter--;
 
 		}
 	}
 
+	public void setBayData(ClusterServer clusterServer, String deviceId, String bayId, String outputId,
+			String outputValue) {
 
-	public void setBayData(ClusterServer clusterServer, String deviceId, String bayId, String outputId, String outputValue) {
-		// TODO Auto-generated method stub
 		ApplicationLauncher.logger.info("RestClient: setBayData: Entry : " + outputId);
 		setResponseReceived(false);
-		//setResponseData("");
+		// setResponseData("");
 		clearRestApiClusterResponseData();
-		//String endPoint = "api/device?"+outputId+"="+outputValue;
-		//String TARGET_URL = ServerSettingController.getRootUrl()
-		//		+"/"+endPoint;
+		// String endPoint = "api/device?"+outputId+"="+outputValue;
+		// String TARGET_URL = ServerSettingController.getRootUrl()
+		// +"/"+endPoint;
 
-		String endPoint = "/api/device/" + deviceId + "/bay/" + bayId +"/set";
-		String TARGET_URL = clusterServer.getRootUrl()+ endPoint;
+		String endPoint = "/api/device/" + deviceId + "/bay/" + bayId + "/set";
+		String TARGET_URL = clusterServer.getRootUrl() + endPoint;
 		ApplicationLauncher.logger.info("RestClient: setBayData: TARGET_URL: " + TARGET_URL);
 
 		try {
@@ -86,107 +86,126 @@ public class RestClient {
 			try (CloseableHttpResponse response = httpClient.execute(request)) {
 				String responseBody = EntityUtils.toString(response.getEntity());
 				setResponseReceived(true);
-				ApplicationLauncher.logger.info("RestClient: setBayData: responseBody: " + responseBody + " : " + outputId);
-
+				ApplicationLauncher.logger
+						.info("RestClient: setBayData: responseBody: " + responseBody + " : " + outputId);
 
 				Gson gson = new Gson();
 				RestApiClusterResponse myCurrentAPIResponse = new RestApiClusterResponse();
-				myCurrentAPIResponse = gson.fromJson(responseBody,RestApiClusterResponse.class);
+				myCurrentAPIResponse = gson.fromJson(responseBody, RestApiClusterResponse.class);
 				setRestApiClusterResponseData(myCurrentAPIResponse);
 
 				RestApiJsonBodyResponse myCurrentJsonApiResponse = new RestApiJsonBodyResponse();
-				//myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
+				// myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
 				myCurrentJsonApiResponse.setStatusCode("200");
 				JSONParser parser = new JSONParser();
 				try {
 					JSONObject jsonBodyData = (JSONObject) parser.parse(responseBody);
 					myCurrentJsonApiResponse.setJsonBodyResponse(jsonBodyData);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
-					ApplicationLauncher.logger.error("RestClient: setBayData:  ParseException : "+e.getMessage());
+					ApplicationLauncher.logger.error("RestClient: setBayData:  ParseException : " + e.getMessage());
 				}
 				setRestApiClusterResponseBodyData(myCurrentJsonApiResponse);
-				/*System.out.printf("Counter: %d -> Response: %s, Positive: %d (%.2f%%), Negative: %d (%.2f%%)%n",
-                        i, responseBody, positiveCount,
-                        (positiveCount / (double) i) * 100, negativeCount,
-                        (negativeCount / (double) i) * 100);*/
+				/*
+				 * System.out.
+				 * printf("Counter: %d -> Response: %s, Positive: %d (%.2f%%), Negative: %d (%.2f%%)%n"
+				 * ,
+				 * i, responseBody, positiveCount,
+				 * (positiveCount / (double) i) * 100, negativeCount,
+				 * (negativeCount / (double) i) * 100);
+				 */
 			}
 
 		} catch (IOException e) {
-			//negativeCount++;
-			//System.err.println("Request failed: " + e.getMessage());
-			ApplicationLauncher.logger.info("RestClient: setBayData : response failed : " + e.getMessage() + " : " + outputId);
+			// negativeCount++;
+			// System.err.println("Request failed: " + e.getMessage());
+			ApplicationLauncher.logger
+					.info("RestClient: setBayData : response failed : " + e.getMessage() + " : " + outputId);
 		}
-		/*    	Request request = new RequestBuilder("GET")
-				.setUrl(TARGET_URL)
-				.addQueryParameter(outputId, outputValue)
-				//.addParameter(outputId, outputValue)
-				//.setBody("ISO-8859-1")
-				//.addHeader("Content-Type", "application/x-www-form-urlencoded")
-				.build();
-    	ApplicationLauncher.logger.info("RestClient: setBayData: request getUrl: " + request.getUrl());
-    	AsyncHttpClient c = new AsyncHttpClient(new AsyncHttpClientConfig.Builder().setRequestTimeoutInMs(5000).build());
-    	Future f = null;
-
-    	try {
-
-    		//f = c.prepareGet(TARGET_URL).execute(new AsyncCompletionHandler<Response>() {
-    		f = c.prepareRequest(request).execute(new AsyncCompletionHandler<Response>() {
-    			@Override
-    			public Response onCompleted(Response response) throws IOException {
-    				ApplicationLauncher.logger.info("RestClient: setData: onCompleted");
-    				setResponseReceived(true);
-    				if(response.getStatusCode() == 200){
-    					Gson gson = new Gson();
-    					String myResp = new String();
-    					myResp=response.getResponseBody().toString();
-
-    					ApplicationLauncher.logger.debug("RestClient: setData : myResp:"+myResp);
-    					//setResponseData(myResp);
-    					RestApiClusterResponse myCurrentAPIResponse = new RestApiClusterResponse();
-    					myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
-    					setRestApiClusterResponseData(myCurrentAPIResponse);
-
-    					RestApiJsonBodyResponse myCurrentJsonApiResponse = new RestApiJsonBodyResponse();
-    					//myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
-    					myCurrentJsonApiResponse.setStatusCode(String.valueOf(response.getStatusCode()));
-    					JSONParser parser = new JSONParser();
-    					try {
-							JSONObject jsonBodyData = (JSONObject) parser.parse(myResp);
-							myCurrentJsonApiResponse.setJsonBodyResponse(jsonBodyData);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-							ApplicationLauncher.logger.error("RestClient: setData: ParseException : "+e.getMessage());
-						}
-    					setRestApiClusterResponseBodyData(myCurrentJsonApiResponse);
-
-
-
-    				}else{
-    					//ProjectExecutionController.updateServerStatus(ServerProperties.SERVER_CONNECTION_FAILED);
-    					ApplicationLauncher.logger.debug("RestClient: setData :Server failed");
-    				}
-    				c.close();
-    				return response;
-    			}
-
-
-
-    			@Override
-    			public void onThrowable(Throwable t) {
-    				ApplicationLauncher.logger.info("RestClient: setData: onThrowable:"+t.getMessage());
-
-    				//ScanDeviceController.getValidateCredResponseOnThrowTaskTrigger(t.getMessage());
-    				c.close();
-    			}
-    		});
-    	} catch (IOException e1) {
-    		// TODO Auto-generated catch block
-    		e1.printStackTrace();
-    		ApplicationLauncher.logger.error("RestClient: setData : IOException:" + e1.getMessage());
-    	}*/
+		/*
+		 * Request request = new RequestBuilder("GET")
+		 * .setUrl(TARGET_URL)
+		 * .addQueryParameter(outputId, outputValue)
+		 * //.addParameter(outputId, outputValue)
+		 * //.setBody("ISO-8859-1")
+		 * //.addHeader("Content-Type", "application/x-www-form-urlencoded")
+		 * .build();
+		 * ApplicationLauncher.logger.info("RestClient: setBayData: request getUrl: " +
+		 * request.getUrl());
+		 * AsyncHttpClient c = new AsyncHttpClient(new
+		 * AsyncHttpClientConfig.Builder().setRequestTimeoutInMs(5000).build());
+		 * Future f = null;
+		 * 
+		 * try {
+		 * 
+		 * //f = c.prepareGet(TARGET_URL).execute(new AsyncCompletionHandler<Response>()
+		 * {
+		 * f = c.prepareRequest(request).execute(new AsyncCompletionHandler<Response>()
+		 * {
+		 * 
+		 * @Override
+		 * public Response onCompleted(Response response) throws IOException {
+		 * ApplicationLauncher.logger.info("RestClient: setData: onCompleted");
+		 * setResponseReceived(true);
+		 * if(response.getStatusCode() == 200){
+		 * Gson gson = new Gson();
+		 * String myResp = new String();
+		 * myResp=response.getResponseBody().toString();
+		 * 
+		 * ApplicationLauncher.logger.debug("RestClient: setData : myResp:"+myResp);
+		 * //setResponseData(myResp);
+		 * RestApiClusterResponse myCurrentAPIResponse = new RestApiClusterResponse();
+		 * myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
+		 * setRestApiClusterResponseData(myCurrentAPIResponse);
+		 * 
+		 * RestApiJsonBodyResponse myCurrentJsonApiResponse = new
+		 * RestApiJsonBodyResponse();
+		 * //myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
+		 * myCurrentJsonApiResponse.setStatusCode(String.valueOf(response.getStatusCode(
+		 * )));
+		 * JSONParser parser = new JSONParser();
+		 * try {
+		 * JSONObject jsonBodyData = (JSONObject) parser.parse(myResp);
+		 * myCurrentJsonApiResponse.setJsonBodyResponse(jsonBodyData);
+		 * } catch (ParseException e) {
+		 * 
+		 * e.printStackTrace();
+		 * ApplicationLauncher.logger.error("RestClient: setData: ParseException : "+e.
+		 * getMessage());
+		 * }
+		 * setRestApiClusterResponseBodyData(myCurrentJsonApiResponse);
+		 * 
+		 * 
+		 * 
+		 * }else{
+		 * //ProjectExecutionController.updateServerStatus(ServerProperties.
+		 * SERVER_CONNECTION_FAILED);
+		 * ApplicationLauncher.logger.debug("RestClient: setData :Server failed");
+		 * }
+		 * c.close();
+		 * return response;
+		 * }
+		 * 
+		 * 
+		 * 
+		 * @Override
+		 * public void onThrowable(Throwable t) {
+		 * ApplicationLauncher.logger.info("RestClient: setData: onThrowable:"+t.
+		 * getMessage());
+		 * 
+		 * //ScanDeviceController.getValidateCredResponseOnThrowTaskTrigger(t.getMessage
+		 * ());
+		 * c.close();
+		 * }
+		 * });
+		 * } catch (IOException e1) {
+		 * 
+		 * e1.printStackTrace();
+		 * ApplicationLauncher.logger.error("RestClient: setData : IOException:" +
+		 * e1.getMessage());
+		 * }
+		 */
 		ApplicationLauncher.logger.info("RestClient: setBayData: Exit : " + outputId);
 	}
 
@@ -213,24 +232,27 @@ public class RestClient {
 				ApplicationLauncher.logger.info("RestClient: responseBody: " + responseBody + " : " + inputPortId);
 				setResponseReceived(true);
 				RestApiJsonBodyResponse myCurrentAPIResponse = new RestApiJsonBodyResponse();
-				//myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
+				// myCurrentAPIResponse = gson.fromJson(myResp,RestApiClusterResponse.class);
 				myCurrentAPIResponse.setStatusCode("200");
-				//ApplicationLauncher.logger.debug("getBayData: getStatusCode-1 :"+myCurrentAPIResponse.getStatusCode());
-				//myCurrentAPIResponse.setStatusCode(String.valueOf(response.getStatus()));
-				//ApplicationLauncher.logger.debug("getBayData: getStatusCode-1 :"+myCurrentAPIResponse.getStatus());
+				// ApplicationLauncher.logger.debug("getBayData: getStatusCode-1
+				// :"+myCurrentAPIResponse.getStatusCode());
+				// myCurrentAPIResponse.setStatusCode(String.valueOf(response.getStatus()));
+				// ApplicationLauncher.logger.debug("getBayData: getStatusCode-1
+				// :"+myCurrentAPIResponse.getStatus());
 				JSONParser parser = new JSONParser();
 				try {
 					JSONObject jsonBodyData = (JSONObject) parser.parse(responseBody);
 					myCurrentAPIResponse.setJsonBodyResponse(jsonBodyData);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
-					ApplicationLauncher.logger.error("RestClient: ParseException : "+e.getMessage());
+					ApplicationLauncher.logger.error("RestClient: ParseException : " + e.getMessage());
 				}
-				//myCurrentAPIResponse.setStatus(status);
+				// myCurrentAPIResponse.setStatus(status);
 				setRestApiClusterResponseBodyData(myCurrentAPIResponse);
-				//setRestApiClusterResponseBodyData();
-				//ApplicationLauncher.logger.info("RestClient: responseBody: " + responseBody + " : " + inputPortId);
+				// setRestApiClusterResponseBodyData();
+				// ApplicationLauncher.logger.info("RestClient: responseBody: " + responseBody +
+				// " : " + inputPortId);
 			}
 		} catch (Exception e) {
 			ApplicationLauncher.logger.info("RestClient: response failed : " + e.getMessage() + " : " + inputPortId);
@@ -242,19 +264,22 @@ public class RestClient {
 		}
 	}
 
-	public void sendMeterStatusUpdate(ClusterServer clusterServer,String targetDisplay, int positionNo, String serialNo, String status, String reason) {
+	public void sendMeterStatusUpdate(ClusterServer clusterServer, String targetDisplay, int positionNo,
+			String serialNo, String status, String reason) {
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: Entry: " + targetDisplay);
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: targetDisplay: " + targetDisplay);
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: positionNo: " + positionNo);
-		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: getIpAddress: " + clusterServer.getIpAddress());
-		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: getClusterId: " + clusterServer.getClusterId());
+		ApplicationLauncher.logger
+				.info("RestClient: sendMeterStatusUpdate: getIpAddress: " + clusterServer.getIpAddress());
+		ApplicationLauncher.logger
+				.info("RestClient: sendMeterStatusUpdate: getClusterId: " + clusterServer.getClusterId());
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: getPort: " + clusterServer.getPort());
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: getRootUrl: " + clusterServer.getRootUrl());
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: hit1: " + positionNo);
-		//String url = "http://127.0.0.1:5001/api/"+targetDisplay+"/" + positionNo;
-		String url = clusterServer.getRootUrl()+ targetDisplay + positionNo;
+		// String url = "http://127.0.0.1:5001/api/"+targetDisplay+"/" + positionNo;
+		String url = clusterServer.getRootUrl() + targetDisplay + positionNo;
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: hit2: " + positionNo);
-		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: URL -> <" + url + ">" );
+		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: URL -> <" + url + ">");
 
 		try {
 			HttpPut postRequest = new HttpPut(url);
@@ -274,12 +299,14 @@ public class RestClient {
 			StringEntity entity = new StringEntity(jsonBody.toJSONString(), "UTF-8");
 			postRequest.setEntity(entity);
 
-			ApplicationLauncher.logger.debug("RestClient: sendMeterStatusUpdate: Payload -> " + jsonBody.toJSONString());
+			ApplicationLauncher.logger
+					.debug("RestClient: sendMeterStatusUpdate: Payload -> " + jsonBody.toJSONString());
 
 			try (CloseableHttpResponse response = httpClient.execute(postRequest)) {
 				int statusCode = response.getStatusLine().getStatusCode();
 				String responseBody = EntityUtils.toString(response.getEntity());
-				//ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: Response -> " + responseBody);
+				// ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: Response
+				// -> " + responseBody);
 				if (statusCode >= 200 && statusCode < 300) {
 					ApplicationLauncher.logger.info("HTTP PUT Success: Status Code = " + statusCode);
 					ApplicationLauncher.logger.info("Response Body: " + responseBody);
@@ -297,15 +324,18 @@ public class RestClient {
 		ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: Exit");
 	}
 
-
-	public void sendPalletWithMetersStatusUpdate(ClusterServer clusterServer,String targetDisplay,String palletQrCode, List<Map<String, Object>> metersData) {
-		ApplicationLauncher.logger.info("RestClient: sendPalletWithMetersStatusUpdate: Entry for pallet: " + palletQrCode);
+	public void sendPalletWithMetersStatusUpdate(ClusterServer clusterServer, String targetDisplay, String palletQrCode,
+			List<Map<String, Object>> metersData) {
+		ApplicationLauncher.logger
+				.info("RestClient: sendPalletWithMetersStatusUpdate: Entry for pallet: " + palletQrCode);
 
 		try {
-			//String url = "http://127.0.0.1:5001/api/unloading_meters";  // Change endpoint as needed
-			String url = clusterServer.getRootUrl()+ targetDisplay ;
-			//ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: hit2: " + positionNo);
-			ApplicationLauncher.logger.info("RestClient: sendPalletWithMetersStatusUpdate: URL -> <" + url + ">" );
+			// String url = "http://127.0.0.1:5001/api/unloading_meters"; // Change endpoint
+			// as needed
+			String url = clusterServer.getRootUrl() + targetDisplay;
+			// ApplicationLauncher.logger.info("RestClient: sendMeterStatusUpdate: hit2: " +
+			// positionNo);
+			ApplicationLauncher.logger.info("RestClient: sendPalletWithMetersStatusUpdate: URL -> <" + url + ">");
 			HttpPost postRequest = new HttpPost(url); // Or use HttpPut
 			postRequest.addHeader("Content-Type", "application/json");
 
@@ -325,7 +355,8 @@ public class RestClient {
 
 			requestJson.put("meters", metersArray);
 
-			ApplicationLauncher.logger.info("sendPalletWithMetersStatusUpdate: Payload -> " + requestJson.toJSONString());
+			ApplicationLauncher.logger
+					.info("sendPalletWithMetersStatusUpdate: Payload -> " + requestJson.toJSONString());
 
 			StringEntity entity = new StringEntity(requestJson.toJSONString(), "UTF-8");
 			postRequest.setEntity(entity);
@@ -335,10 +366,12 @@ public class RestClient {
 				String responseBody = EntityUtils.toString(response.getEntity());
 
 				if (statusCode >= 200 && statusCode < 300) {
-					ApplicationLauncher.logger.info("sendPalletWithMetersStatusUpdate: Success - Status Code = " + statusCode);
+					ApplicationLauncher.logger
+							.info("sendPalletWithMetersStatusUpdate: Success - Status Code = " + statusCode);
 					ApplicationLauncher.logger.debug("Response Body: " + responseBody);
 				} else {
-					ApplicationLauncher.logger.warn("sendPalletWithMetersStatusUpdate: Failed - Status Code = " + statusCode);
+					ApplicationLauncher.logger
+							.warn("sendPalletWithMetersStatusUpdate: Failed - Status Code = " + statusCode);
 					ApplicationLauncher.logger.warn("Response Body: " + responseBody);
 				}
 			}
@@ -350,36 +383,42 @@ public class RestClient {
 		ApplicationLauncher.logger.info("RestClient: sendPalletWithMetersStatusUpdate: Exit");
 	}
 
-/*	public void sendIdleStatusUpdate(ClusterServer clusterServer, String tailEndUrl) {
-		ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: Entry");
-
-		try {
-			String url = clusterServer.getRootUrl() + tailEndUrl;
-			ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: URL -> <" + url + ">");
-
-			HttpGet getRequest = new HttpGet(url);
-			getRequest.addHeader("Accept", "application/json");
-
-			try (CloseableHttpResponse response = httpClient.execute(getRequest)) {
-				int statusCode = response.getStatusLine().getStatusCode();
-				String responseBody = EntityUtils.toString(response.getEntity());
-
-				if (statusCode >= 200 && statusCode < 300) {
-					ApplicationLauncher.logger.info("sendIdleStatusUpdate: Success - Status Code = " + statusCode);
-					ApplicationLauncher.logger.debug("Response Body: " + responseBody);
-				} else {
-					ApplicationLauncher.logger.warn("sendIdleStatusUpdate: Failed - Status Code = " + statusCode);
-					ApplicationLauncher.logger.warn("Response Body: " + responseBody);
-				}
-			}
-
-		} catch (Exception e) {
-			ApplicationLauncher.logger.error("sendIdleStatusUpdate: Exception -> " + e.getMessage(), e);
-		}
-
-		ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: Exit");
-	}*/
-
+	/*
+	 * public void sendIdleStatusUpdate(ClusterServer clusterServer, String
+	 * tailEndUrl) {
+	 * ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: Entry");
+	 * 
+	 * try {
+	 * String url = clusterServer.getRootUrl() + tailEndUrl;
+	 * ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: URL -> <"
+	 * + url + ">");
+	 * 
+	 * HttpGet getRequest = new HttpGet(url);
+	 * getRequest.addHeader("Accept", "application/json");
+	 * 
+	 * try (CloseableHttpResponse response = httpClient.execute(getRequest)) {
+	 * int statusCode = response.getStatusLine().getStatusCode();
+	 * String responseBody = EntityUtils.toString(response.getEntity());
+	 * 
+	 * if (statusCode >= 200 && statusCode < 300) {
+	 * ApplicationLauncher.logger.
+	 * info("sendIdleStatusUpdate: Success - Status Code = " + statusCode);
+	 * ApplicationLauncher.logger.debug("Response Body: " + responseBody);
+	 * } else {
+	 * ApplicationLauncher.logger.
+	 * warn("sendIdleStatusUpdate: Failed - Status Code = " + statusCode);
+	 * ApplicationLauncher.logger.warn("Response Body: " + responseBody);
+	 * }
+	 * }
+	 * 
+	 * } catch (Exception e) {
+	 * ApplicationLauncher.logger.error("sendIdleStatusUpdate: Exception -> " +
+	 * e.getMessage(), e);
+	 * }
+	 * 
+	 * ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: Exit");
+	 * }
+	 */
 
 	public void sendIdleStatusUpdate(ClusterServer clusterServer, String tailEndUrl) {
 		ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: Entry");
@@ -391,34 +430,34 @@ public class RestClient {
 			HttpGet getRequest = new HttpGet(url);
 			getRequest.addHeader("Accept", "application/json");
 
-			//try 
-				response = httpClient.execute(getRequest); //{
-				int statusCode = response.getStatusLine().getStatusCode();
-				String responseBody = EntityUtils.toString(response.getEntity());
+			// try
+			response = httpClient.execute(getRequest); // {
+			int statusCode = response.getStatusLine().getStatusCode();
+			String responseBody = EntityUtils.toString(response.getEntity());
 
-				if (statusCode >= 200 && statusCode < 300) {
-					ApplicationLauncher.logger.info("sendIdleStatusUpdate: Success - Status Code = " + statusCode);
-					ApplicationLauncher.logger.debug("Response Body: " + responseBody);
-				} else {
-					ApplicationLauncher.logger.warn("sendIdleStatusUpdate: Failed - Status Code = " + statusCode);
-					ApplicationLauncher.logger.warn("Response Body: " + responseBody);
-				}
-			//}
+			if (statusCode >= 200 && statusCode < 300) {
+				ApplicationLauncher.logger.info("sendIdleStatusUpdate: Success - Status Code = " + statusCode);
+				ApplicationLauncher.logger.debug("Response Body: " + responseBody);
+			} else {
+				ApplicationLauncher.logger.warn("sendIdleStatusUpdate: Failed - Status Code = " + statusCode);
+				ApplicationLauncher.logger.warn("Response Body: " + responseBody);
+			}
+			// }
 
 		} catch (Exception e) {
 			ApplicationLauncher.logger.error("sendIdleStatusUpdate: Exception -> " + e.getMessage(), e);
-		}finally {
-            // Properly close resources
-            try {
-                if (response != null) {
-                    response.close();
-                }
-                // Don't close httpClient if using shared connection manager
-                // It will be managed by the connection manager
-            } catch (IOException e) {
-            	ApplicationLauncher.logger.error("sendIdleStatusUpdate: Error closing resources: " + e.getMessage());
-            }
-        }
+		} finally {
+			// Properly close resources
+			try {
+				if (response != null) {
+					response.close();
+				}
+				// Don't close httpClient if using shared connection manager
+				// It will be managed by the connection manager
+			} catch (IOException e) {
+				ApplicationLauncher.logger.error("sendIdleStatusUpdate: Error closing resources: " + e.getMessage());
+			}
+		}
 
 		ApplicationLauncher.logger.info("RestClient: sendIdleStatusUpdate: Exit");
 	}
@@ -427,8 +466,10 @@ public class RestClient {
 		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: Entry");
 		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: targetDisplay: " + targetDisplay);
 		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: palletNumber: " + palletNumber);
-		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: getIpAddress: " + clusterServer.getIpAddress());
-		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: getRootUrl: " + clusterServer.getRootUrl());
+		ApplicationLauncher.logger
+				.info("RestClient: sendPalletNumberUpdate: getIpAddress: " + clusterServer.getIpAddress());
+		ApplicationLauncher.logger
+				.info("RestClient: sendPalletNumberUpdate: getRootUrl: " + clusterServer.getRootUrl());
 
 		String url = clusterServer.getRootUrl() + targetDisplay;
 		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: URL -> <" + url + ">");
@@ -444,7 +485,8 @@ public class RestClient {
 			StringEntity entity = new StringEntity(jsonBody.toJSONString(), "UTF-8");
 			putRequest.setEntity(entity);
 
-			ApplicationLauncher.logger.debug("RestClient: sendPalletNumberUpdate: Payload -> " + jsonBody.toJSONString());
+			ApplicationLauncher.logger
+					.debug("RestClient: sendPalletNumberUpdate: Payload -> " + jsonBody.toJSONString());
 
 			try (CloseableHttpResponse response = httpClient.execute(putRequest)) {
 				int statusCode = response.getStatusLine().getStatusCode();
@@ -466,9 +508,6 @@ public class RestClient {
 		ApplicationLauncher.logger.info("RestClient: sendPalletNumberUpdate: Exit");
 	}
 
-
-
-
 	public boolean isResponseReceived() {
 		return responseReceived;
 	}
@@ -485,15 +524,14 @@ public class RestClient {
 		this.restApiClusterResponseBodyData = restApiClusterResponseBodyData;
 	}
 
-
 	public void Sleep(int timeInMsec) {
 
 		try {
 			Thread.sleep(timeInMsec);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-			ApplicationLauncher.logger.error("Sleep :InterruptedException:"+ e.getMessage());
+			ApplicationLauncher.logger.error("Sleep :InterruptedException:" + e.getMessage());
 		}
 
 	}
@@ -503,11 +541,9 @@ public class RestClient {
 		setRestApiClusterResponseData(clearCurrentAPIResponseData);
 	}
 
-
 	public RestApiClusterResponse getRestApiClusterResponseData() {
 		return restApiClusterResponseData;
 	}
-
 
 	public void setRestApiClusterResponseData(RestApiClusterResponse restApiClusterResponseData) {
 		this.restApiClusterResponseData = restApiClusterResponseData;

@@ -10,6 +10,9 @@ import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for releasing the pallet to the Rejection Bay.
+ */
 public class S20_let_the_pallet_to_Rejection_Bay implements FtBayState {
 
 /*    String LOW    = "OPEN";

@@ -17,7 +17,6 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 
 public class S01_check_for_pallets_at_Verific_Bay implements VerificTestBayState {
 
@@ -38,42 +37,6 @@ public class S01_check_for_pallets_at_Verific_Bay implements VerificTestBayState
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-
-
-		/*Map<String,Object> responseReturn =  isPalletAvailableAt_VerificBay();	 
-		boolean isPalletAvailableAt_VerificBay = (boolean)responseReturn.get("status");
-
-		BayUtils.delay(1000);
-
-		responseReturn =  isPalletAvailableAt_VerificBay();	 
-		isPalletAvailableAt_VerificBay = (boolean)responseReturn.get("status");
-
-
-		while (!isPalletAvailableAt_VerificBay &&
-				(!ConstantConveyor.ALL_LOOP_BREAK_FLAG))  {
-			VerificationTestBay.logger.info("S01_check_for_pallets_at_Verific_Bay : No pallet Available at Verification Bay");
-			BayUtils.delay(1000);
-
-			responseReturn =  isPalletAvailableAt_VerificBay();	 
-			isPalletAvailableAt_VerificBay = (boolean)responseReturn.get("status");
-
-			BayUtils.delay(1000);
-
-			responseReturn =  isPalletAvailableAt_VerificBay();	 
-			isPalletAvailableAt_VerificBay = (boolean)responseReturn.get("status");
-
-			ProjectExecutionController.getUserAbortedFlag();
-		}
-
-		if (isPalletAvailableAt_VerificBay) {
-			VerificationTestBay.logger.info("S01_check_for_pallets_at_Verific_Bay : Pallet Available");
-			bayResponse.setStatus(true);
-			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-		} else {
-			VerificationTestBay.logger.info("S01_check_for_pallets_at_Verific_Bay : Pallet Not Available");
-			bayResponse.setStatus(false);
-			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_001);
-		}*/
 
 		boolean isPalletAvailableAt_VerificBay;
 		long startTime;

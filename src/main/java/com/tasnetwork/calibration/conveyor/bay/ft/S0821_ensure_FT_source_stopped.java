@@ -14,14 +14,10 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * Duplicate/Alternative state class for ensuring the FT source is stopped.
+ */
 public class S0821_ensure_FT_source_stopped implements FtBayState {
-
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-	String CLOSE  = "CLOSE";  
-	String OPEN   = "OPEN";
-	String ON  = "On";
-	String OFF  = "Off";*/
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
@@ -42,7 +38,7 @@ public class S0821_ensure_FT_source_stopped implements FtBayState {
 		Map<String,Object> responseReturn =  new HashMap<String,Object>();//ftBay_FingerTipLatch_Status();
 		String ftSourcePresentState = "";
 
-		while (try_count <= 3) {
+		while (try_count <= 3 && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			responseReturn =  ftBay_SourceStatusPin_Status();
 			ftSourcePresentState = (String)responseReturn.get("responseData");
 			setPalletAvailableTest_I_F_Status((TestInterfaceStatus)responseReturn.get("testInterfaceStatus"));
@@ -81,7 +77,6 @@ public class S0821_ensure_FT_source_stopped implements FtBayState {
 		String status = "";
 		//============================================================================================		 
 		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_SRC_STATUS_PIN); 
-		// OutputPortInfo portInfo = Utils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_RED_LED);
 
 		if (portInfo != null) {
 			Ft.logger.debug("PortId    : " + portInfo.getPortId());
@@ -103,15 +98,6 @@ public class S0821_ensure_FT_source_stopped implements FtBayState {
 						ConstantConveyor.COMM_EXECUTION_STATUS_INP
 						);
 				
-				/*testIntefaceStatus.setBayName(ConstantConveyor.FT_BAY_KEY);
-				testIntefaceStatus.setStateName(ConstantBayStateManage.FT_BAY_HP_SEQ_11);
-				testIntefaceStatus.setPositionNo(getSequencePathId());
-				testIntefaceStatus.setcName(ConstantBayPortNameMapping.FT_PORT_NAME_SRC_STATUS_PIN);
-				testIntefaceStatus.setTestStatus(ConstantConveyor.COMM_EXECUTION_STATUS_INP);
-				testIntefaceStatus.setDeviceType(ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT);
-				testIntefaceStatus.setSerialStatus(ConstantConveyor.COMM_STATUS_NOT_APPLICABLE);
-				testIntefaceStatus.setPortName(portInfo.getPortId());*/
-				
 				int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 				testIntefaceStatus.setSerialNo(String.valueOf(newRecordSerialNo));
 			}else{
@@ -123,10 +109,6 @@ public class S0821_ensure_FT_source_stopped implements FtBayState {
         }
 
 		BayUtils bayUtils = new BayUtils();
-
-		/*state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-				portInfo.getBayId(), 
-				portInfo.getPortId()) ;*/
 		
 		state = bayUtils.getInputDataFromBayV2(portInfo) ;
 
@@ -158,7 +140,6 @@ public class S0821_ensure_FT_source_stopped implements FtBayState {
 		responseReturn.put("responseData", state);
 		responseReturn.put("testInterfaceStatus", testIntefaceStatus);
 		
-		//status = state.equals(ON) ? "SRC_OFF" : "SRC_ON";
 		Ft.logger.debug("S082_ensure_FT_source_stopped : ftBay_SourceStatusPin_Status : status : " + status);
 		//============================================================================================	   
 

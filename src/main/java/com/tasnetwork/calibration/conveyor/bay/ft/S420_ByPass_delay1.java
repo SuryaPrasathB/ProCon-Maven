@@ -14,9 +14,6 @@ public class S420_ByPass_delay1 implements FtBayState{
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-
-
-
 		int delayTimeInSec = 20;
 		Ft.logger.info("S420_ByPass_delay1 : Delay Time Entry in Sec: " + delayTimeInSec);
 		while (delayTimeInSec >0 

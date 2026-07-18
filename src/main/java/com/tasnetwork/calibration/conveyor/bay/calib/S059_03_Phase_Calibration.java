@@ -3,8 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.All;
-
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -19,18 +17,13 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.dutprocess.ParallelTaskManager;
 import com.tasnetwork.calibration.conveyor.pallet.CalibrationSummaryProcessor;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
-import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.conveyor.dashboard.BayActionHandler;
 import com.tasnetwork.calibration.conveyor.dashboard.ErrorCode;
 import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.calibration.energymeter.util.YesNoDialog;
 import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
 
 import javafx.application.Platform;
@@ -258,7 +251,7 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
             int dutWaitTimeCounter = 0;
             boolean dutAllProcessExecutionCompleted = false;
 
-            while (!ProjectExecutionController.getUserAbortedFlag() &&
+            while (!BayUtils.isUserAborted() &&
                    dutWaitTimeCounter < dutWaitTimeDurationMaxInSec &&
                    !dutAllProcessExecutionCompleted &&
                    !ConstantConveyor.ALL_LOOP_BREAK_FLAG &&
@@ -270,7 +263,7 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
             }
             
             Calib.logger.debug("phaseCalibrationTask: dutWaitTimeDurationMaxInSec: " + dutWaitTimeDurationMaxInSec);
-            Calib.logger.debug("phaseCalibrationTask: getUserAbortedFlag(): " + ProjectExecutionController.getUserAbortedFlag());
+            Calib.logger.debug("phaseCalibrationTask: getUserAbortedFlag(): " + BayUtils.isUserAborted());
             Calib.logger.debug("phaseCalibrationTask: dutWaitTimeCounter: " + dutWaitTimeCounter);
             Calib.logger.debug("phaseCalibrationTask: ALL_LOOP_BREAK_FLAG: " + ConstantConveyor.ALL_LOOP_BREAK_FLAG);
             Calib.logger.debug("phaseCalibrationTask: isStopProcessRequestedCalibBay: " + Calib.isStopProcessRequestedCalibBay());

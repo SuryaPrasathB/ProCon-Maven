@@ -14,7 +14,6 @@ import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
@@ -50,7 +49,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		// if PF is not set, or if an initial step fails (unless aborted by user).
 		do {
 			// Check if the user has aborted the operation before starting a new iteration
-			if (ProjectExecutionController.getUserAbortedFlag()) {
+			if (BayUtils.isUserAborted()) {
 				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : User aborted, exiting calibration process.");
 				bayResponse.setStatus(false); // Set status to false
 
@@ -78,39 +77,39 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			Calib.logger.info("Start 40V: Delay Started");
 
 			// 45 sec delay - Capacitor Charging Time
-/*			if (!ProjectExecutionController.getUserAbortedFlag()) {
+/*			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
 			
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}
-			if (!ProjectExecutionController.getUserAbortedFlag()) {
+			if (!BayUtils.isUserAborted()) {
 				BayUtils.delay(5000);
 			}*/
 			
 			int waitTimeInSec = DeviceDataManagerController.getConveyorConfigParsedKey().getCalibSuperCapacitorChargeWaitTimeInSec();//90;//45
 			Calib.logger.info("Start 40V: CalibSuperCapacitorChargeWaitTimeInSec: " + waitTimeInSec);
-			while( (waitTimeInSec>0) && (!ProjectExecutionController.getUserAbortedFlag()) ){
-				if (!ProjectExecutionController.getUserAbortedFlag()) {
+			while( (waitTimeInSec>0) && (!BayUtils.isUserAborted()) ){
+				if (!BayUtils.isUserAborted()) {
 					BayUtils.delay(1000);
 				}
 				waitTimeInSec--;
@@ -166,7 +165,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			int retry_count = 5;
 			boolean voltageSet = false;
 			for (int i = 0; i < retry_count; i++) {
-				if (ProjectExecutionController.getUserAbortedFlag()) break; // Allow abort during retries
+				if (BayUtils.isUserAborted()) break; // Allow abort during retries
 				responseReturn = checkVoltageStart();
 				voltageSet = (boolean) responseReturn.get("status");
 				if (voltageSet) {
@@ -177,7 +176,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			}
 
 			if (!voltageSet) {
-				if (ProjectExecutionController.getUserAbortedFlag()) {
+				if (BayUtils.isUserAborted()) {
 					Calib.logger.info("S059_02_Power_Source_Start_Main_CT : User aborted during VOLTAGE check retries.");
 					allCalibrationStepsCompleted = false; // Mark as not completed
 					bayResponse.setStatus(false);
@@ -196,7 +195,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			// --- 3. Validate Current Start Status ---
 			boolean currentSet = false;
 			for (int i = 0; i < retry_count; i++) {
-				if (ProjectExecutionController.getUserAbortedFlag()) break; // Allow abort during retries
+				if (BayUtils.isUserAborted()) break; // Allow abort during retries
 				responseReturn = checkCurrentStart();
 				currentSet = (boolean) responseReturn.get("status");
 
@@ -220,7 +219,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			boolean pfSet = false;
 			int pf_internal_retry_count = 3;
 			for (int i = 0; i < pf_internal_retry_count; i++) {
-				if (ProjectExecutionController.getUserAbortedFlag()) {
+				if (BayUtils.isUserAborted()) {
 					pfSet = false; // Ensure flag is false if aborted
 					break; // Allow abort during retries
 				}
@@ -235,7 +234,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 
 
 			if (!pfSet) {
-				if (ProjectExecutionController.getUserAbortedFlag()) {
+				if (BayUtils.isUserAborted()) {
 					Calib.logger.info("S059_02_Power_Source_Start_Main_CT : User aborted during PF check retries.");
 					allCalibrationStepsCompleted = false; // Mark as not completed
 					bayResponse.setStatus(false);
@@ -251,7 +250,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 				allCalibrationStepsCompleted = true; // All steps passed successfully for this iteration
 			}
 
-		} while (!allCalibrationStepsCompleted && !ProjectExecutionController.getUserAbortedFlag() && !Calib.isStopProcessRequestedCalibBay());
+		} while (!allCalibrationStepsCompleted && !BayUtils.isUserAborted() && !Calib.isStopProcessRequestedCalibBay());
 
 		// Final update to bayResponse status based on whether all steps were truly completed
 		// or if the loop was exited due to an abort.

@@ -17,14 +17,15 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 import javafx.application.Platform;
 
+/**
+ * State class responsible for ensuring that the FT Source has successfully started.
+ * Polls the source status pin to verify the active state.
+ */
 public class S072_ensure_FT_source_started implements FtBayState {
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -43,7 +44,7 @@ public class S072_ensure_FT_source_started implements FtBayState {
 		setSequencePathId("p1"); // Set sequence path ID for this operation
 		setPalletAvailableTest_I_F_Status (null); // Resetting for current operation
 
-		while (try_count <= 3) {
+		while (try_count <= 3 && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			Ft.logger.debug(String.format("[%s] : [FT_SOURCE_STATUS_CHECK] : [RETRY] - Attempt %d of 4 to verify FT source status.", getMyBayKey(), try_count + 1));
 			
 			responseReturn = ftBay_SourceStatusPin_Status();
@@ -89,7 +90,7 @@ public class S072_ensure_FT_source_started implements FtBayState {
 				}
 			});
 
-			while (!ConstantConveyor.isFT_LDU_PLACEMENT()) {
+			while (!ConstantConveyor.isFT_LDU_PLACEMENT() && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 				long elapsedTime = (System.currentTimeMillis() - startTime) / 1000; // in seconds
 
 				Platform.runLater(() -> {
@@ -213,7 +214,6 @@ public class S072_ensure_FT_source_started implements FtBayState {
 		Ft.logger.debug(String.format("[%s] : [FT_SOURCE_STATUS_PIN] : [RAW_STATE] : %s", getMyBayKey(), state));
 
 		// Interpret the raw state from the sensor
-		// If OLD_OFF_NEW_ON means the source is active/on, then interpretedState should be OLD_CLOSE_NEW_OPEN (representing "closed circuit" or "active")
 		String interpretedState = state.equals(Constant_IO_ActionMapping.ON) ? Constant_IO_ActionMapping.OPEN : Constant_IO_ActionMapping.CLOSE;
 
 		if(StateExecutorController.simulateFtBayHappyPath){
@@ -232,8 +232,6 @@ public class S072_ensure_FT_source_started implements FtBayState {
 		}
 		
 		// Check for timeout or invalid response
-		// This logic `portInfo.getPortId().equals(state)` seems to be a generic check for timeout.
-		// If the actual state string returned matches the port ID string, it might indicate an error.
 		if(portInfo.getPortId().equals(state)){ 
 			testIntefaceStatus.setDeviceResponseData("TimeOut");
 			Ft.logger.warn(String.format("[%s] : [FT_SOURCE_STATUS_PIN] : [TIMEOUT] - FT Source status pin read timed out or invalid response. Raw state: %s", getMyBayKey(), state));
@@ -241,7 +239,6 @@ public class S072_ensure_FT_source_started implements FtBayState {
 			testIntefaceStatus.setDeviceResponseData(interpretedState); // Store the actual response state
 		}
 		
-		// Update GUI with final status (assuming StateExecutorController.updateTestStatusGui handles Platform.runLater() internally)
 		StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 		responseReturn.put("status", status); // Return the boolean status

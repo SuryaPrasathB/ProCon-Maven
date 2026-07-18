@@ -17,14 +17,14 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 import javafx.application.Platform;
 
+/**
+ * Duplicate/Alternative state class for stopping the FT source.
+ */
 public class S0811_stop_FT_source implements FtBayState {
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -67,7 +67,7 @@ public class S0811_stop_FT_source implements FtBayState {
 				}
 			});
 
-			while (!ConstantConveyor.isFT_OPTICAL_REMOVED()) {
+			while (!ConstantConveyor.isFT_OPTICAL_REMOVED() && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 				long elapsedTime = (System.currentTimeMillis() - startTime) / 1000; // in seconds
 
 				Platform.runLater(() -> {
@@ -167,8 +167,6 @@ public class S0811_stop_FT_source implements FtBayState {
 		}
 	}
 
-	
-
 	//============================================================================================================================================  
 
 	private Map<String,Object> stopFtSource() {
@@ -200,7 +198,6 @@ public class S0811_stop_FT_source implements FtBayState {
 					ConstantConveyor.COMM_EXECUTION_STATUS_INP
 					);
 
-			// Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
 			StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 		} else {
 			// Log a clear error if the port information is missing
@@ -209,8 +206,7 @@ public class S0811_stop_FT_source implements FtBayState {
 			testIntefaceStatus.setDeviceResponseData("O/P port not found");
 			// Ensure GUI status is updated even for config errors
 			StateExecutorController.addToTestStatusGui(testIntefaceStatus); 
-			StateExecutorController.updateTestStatusGui(testIntefaceStatus); // This line had a typo in previous code: `StateExecutorStatusController`
-
+			StateExecutorController.updateTestStatusGui(testIntefaceStatus); 
 			responseReturn.put("status", false);
 			responseReturn.put("responseData", "CONFIG_ERROR"); // Indicate configuration error
 			responseReturn.put("testInterfaceStatus", testIntefaceStatus);
@@ -239,9 +235,6 @@ public class S0811_stop_FT_source implements FtBayState {
 		// Log the raw state received from the control system for debugging
 		Ft.logger.debug(String.format("[%s] : [FT_SOURCE_STOP_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 
-		// Assuming OLD_ON_NEW_OFF signifies successful deactivation and OLD_OPEN_NEW_CLOSE is the 'OFF' state of the pin
-		// This logic appears to be interpreting the returned 'state' to match the desired final pin state.
-		// If setOutputDataToBay returns the *actual resulting state* then this is correct.
 		boolean actualStateMatchesExpected = state.equals(Constant_IO_ActionMapping.OFF); 
 		String interpretedState = actualStateMatchesExpected ? Constant_IO_ActionMapping.CLOSE : Constant_IO_ActionMapping.OPEN;
 
@@ -259,17 +252,13 @@ public class S0811_stop_FT_source implements FtBayState {
 			status = false; // Set local status
 		}
 
-		// Check for timeout or invalid response
-		// This logic `portInfo.getPortId().equals(state)` seems to be a generic check for timeout.
-		// If the actual state string returned matches the port ID string, it might indicate an error.
 		if(portInfo.getPortId().equals(state)){ 
 			testIntefaceStatus.setDeviceResponseData("TimeOut");
 			Ft.logger.warn(String.format("[%s] : [FT_SOURCE_STOP_COMMAND] : [TIMEOUT] - FT Source stop command timed out or invalid response. Raw state: %s", getMyBayKey(), state));
 		}else{
 			testIntefaceStatus.setDeviceResponseData(interpretedState); // Store the actual interpreted state
 		}
-		
-		// Update GUI with final status (assuming StateExecutorController.updateTestStatusGui handles Platform.runLater() internally)
+
 		StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 		responseReturn.put("responseData", interpretedState); // Use the interpreted state in responseData

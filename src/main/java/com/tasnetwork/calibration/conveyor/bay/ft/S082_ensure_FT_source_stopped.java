@@ -14,14 +14,14 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for ensuring the FT source is stopped.
+ */
 public class S082_ensure_FT_source_stopped implements FtBayState {
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//===========================================================================================
 	@Override
@@ -40,7 +40,7 @@ public class S082_ensure_FT_source_stopped implements FtBayState {
 		setSequencePathId("p1"); // Set sequence path ID for this operation
 		setPalletAvailableTest_I_F_Status (null); // Resetting for current operation
 
-		while (try_count <= 3) {
+		while (try_count <= 3 && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			Ft.logger.debug(String.format("[%s] : [FT_SOURCE_STATUS_CHECK] : [RETRY] - Attempt %d of 4 to verify FT source status.", getMyBayKey(), try_count + 1));
 			
 			responseReturn = ftBay_SourceStatusPin_Status();
@@ -67,7 +67,6 @@ public class S082_ensure_FT_source_stopped implements FtBayState {
 		    Ft.logger.error(String.format("[%s] : [FT_SOURCE_STATUS_CHECK] : [FINAL_FAILURE] - Failed to ensure FT source is stopped after %d attempts. Final state: %s. Error: %s", getMyBayKey(), try_count, ftSourcePresentState, ConvErrorCodeMapping.ERROR_CODE_FT_031));
 		}
 
-		// Assuming StateExecutorController.updateTestInterfaceStatusOnGui handles Platform.runLater() internally
 		StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn,ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 
 		// Structured log for sequence exit
@@ -85,10 +84,7 @@ public class S082_ensure_FT_source_stopped implements FtBayState {
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus();
 
 		String state = ""; // Raw state read from sensor
-		// Note: The original code declared a 'status' String variable here that was not consistent with boolean status.
-		// Using a boolean 'isSuccess' for clarity now.
-		
-		//============================================================================================		 
+	 
 		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_SRC_STATUS_PIN); 
 
 		if (portInfo != null) {
@@ -166,9 +162,6 @@ public class S082_ensure_FT_source_stopped implements FtBayState {
 			isSuccess = false; // Set local status to false if source is ON
 		}
 		
-		// Check for timeout or invalid response
-		// This logic `portInfo.getPortId().equals(state)` seems to be a generic check for timeout.
-		// If the actual state string returned matches the port ID string, it might indicate an error.
 		if(portInfo.getPortId().equals(state)){ 
 			testIntefaceStatus.setDeviceResponseData("TimeOut");
 			Ft.logger.warn(String.format("[%s] : [FT_SOURCE_STATUS_PIN_READ] : [TIMEOUT] - FT Source status pin read timed out or invalid response. Raw state: %s", getMyBayKey(), state));
@@ -176,7 +169,6 @@ public class S082_ensure_FT_source_stopped implements FtBayState {
 			testIntefaceStatus.setDeviceResponseData(interpretedState); // Store the actual interpreted state
 		}
 		
-		// Update GUI with final status (assuming StateExecutorController.updateTestStatusGui handles Platform.runLater() internally)
 		StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 		responseReturn.put("responseData", interpretedState); // Use the interpreted state in responseData

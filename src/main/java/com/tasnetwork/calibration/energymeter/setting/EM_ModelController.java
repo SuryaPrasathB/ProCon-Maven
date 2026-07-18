@@ -13,8 +13,8 @@ import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
+import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.project.ProjectController;
 import com.tasnetwork.calibration.energymeter.testprofiles.TestCaseData;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
@@ -36,67 +36,66 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class EM_ModelController implements Initializable {
-	
-	
+
 	@FXML
 	private ComboBox<String> cmbBxMeterType;
-	
+
 	@FXML
 	private ComboBox<String> cmbBxCT_Type;
 
 	@FXML
 	private ComboBox<String> cmbBxFrequency;
 
-	@FXML 
+	@FXML
 	private TextField txtEM_Model_ModelName;
-	
-	@FXML 
+
+	@FXML
 	private Label lbl_ratedVoltage;
 
-	@FXML 
+	@FXML
 	private TextField txtCustomerName;
 
-	@FXML 
+	@FXML
 	private TextField txtBaseCurrent;
 
-	@FXML 
+	@FXML
 	private TextField txtMaxCurrent;
 
-	@FXML 
+	@FXML
 	private TextField txtRatedVoltage;
 
-	@FXML 
+	@FXML
 	private TextField txtNoOfImpulsesPerKWH;
 
 	@FXML
 	private TextField txtEM_Model_ClassValue;
 
-	@FXML 
+	@FXML
 	private TextField txtPowerSourceModelName;
 
-	@FXML 
+	@FXML
 	private TextField txt_ctrratio;
 
-	@FXML 
+	@FXML
 	private TextField txt_ptrratio;
 
-	@FXML 
+	@FXML
 	private Button btn_add;
 
-	@FXML 
+	@FXML
 	private Button btn_remove;
 
-	@FXML 
+	@FXML
 	private Button btn_save;
 
-	@FXML 
+	@FXML
 	private Button btn_reset;
-	
-	private  static Button ref_btn_add;
-	private  static Button ref_btn_remove;
-	private  static Button ref_btn_save;
-	private  static Button ref_btn_reset;
-	
+
+	private static Button ref_btn_add;
+	private static Button ref_btn_remove;
+	private static Button ref_btn_save;
+	private static Button ref_btn_reset;
+
 	private static Label ref_lbl_ratedVoltage;
 
 	@FXML
@@ -108,14 +107,12 @@ public class EM_ModelController implements Initializable {
 	@FXML
 	private TableColumn<EnergyMeterModel, String> emModelNameColumn;
 
-
 	private ObservableList<EnergyMeterModel> emModelDataList = FXCollections.observableArrayList();
 
 	public EM_ModelController() {
 		RefreshModelList();
 
 	}
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -124,7 +121,7 @@ public class EM_ModelController implements Initializable {
 		ref_btn_save = btn_save;
 		ref_btn_reset = btn_reset;
 		ref_lbl_ratedVoltage = lbl_ratedVoltage;
-		
+
 		updateMeterTypeInEMModel();
 		updateCT_TypeInEMModel();
 		updateFrequencyInEMModel();
@@ -155,38 +152,39 @@ public class EM_ModelController implements Initializable {
 			});
 		});
 
-		// 3. Wrap the FilteredList in a SortedList. 
+		// 3. Wrap the FilteredList in a SortedList.
 		SortedList<EnergyMeterModel> sortedData = new SortedList<>(filteredData);
 
 		// 4. Bind the SortedList comparator to the TableView comparator.
-		// 	  Otherwise, sorting the TableView would have no effect.
+		// Otherwise, sorting the TableView would have no effect.
 		sortedData.comparatorProperty().bind(customer_EM_Model_Table.comparatorProperty());
 
 		// 5. Add sorted (and filtered) data to the table.
 		customer_EM_Model_Table.setItems(sortedData);
 
-		customer_EM_Model_Table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-			if (newSelection != null) {
-				ApplicationLauncher.logger.info("New row selected: " + newSelection.getCustomerName() + ":" + newSelection.getEmModelName()); 
-				loadEnergyMeterProperties(newSelection);
-			}
-		});
+		customer_EM_Model_Table.getSelectionModel().selectedItemProperty()
+				.addListener((obs, oldSelection, newSelection) -> {
+					if (newSelection != null) {
+						ApplicationLauncher.logger.info("New row selected: " + newSelection.getCustomerName() + ":"
+								+ newSelection.getEmModelName());
+						loadEnergyMeterProperties(newSelection);
+					}
+				});
 		ApplicationLauncher.logger.info(" User Level: Entry");
-		if((ConstantApp.USER_ACCESS_LEVEL.equals(ConstantApp.TESTER_ACCESS_LEVEL)) 
-				|| (ConstantApp.USER_ACCESS_LEVEL.equals(ConstantApp.READONLY_ACCESS_LEVEL))){
+		if ((ConstantApp.USER_ACCESS_LEVEL.equals(ConstantApp.TESTER_ACCESS_LEVEL))
+				|| (ConstantApp.USER_ACCESS_LEVEL.equals(ConstantApp.READONLY_ACCESS_LEVEL))) {
 			ApplicationLauncher.logger.info(" User Level: Tester");
 			btn_add.setDisable(true);
 			btn_remove.setDisable(true);
 			btn_save.setDisable(true);
 			btn_reset.setDisable(true);
 		}
-		
-		if(ProcalFeatureEnable.USER_ACCESS_CONTROL_ENABLED){
+
+		if (ProcalFeatureEnable.USER_ACCESS_CONTROL_ENABLED) {
 			applyUacSettings();
 		}
 
 	}
-
 
 	public void loadEnergyMeterProperties(EnergyMeterModel newSelection) {
 
@@ -204,10 +202,9 @@ public class EM_ModelController implements Initializable {
 		txt_ptrratio.setText(newSelection.getPtr_Ratio());
 	}
 
-	
 	public void updateCT_TypeInEMModel() {
 		cmbBxCT_Type.getItems().clear();
-		cmbBxCT_Type.getItems().addAll(ConstantApp.METER_CT_TYPE_LTCT,ConstantApp.METER_CT_TYPE_HTCT);
+		cmbBxCT_Type.getItems().addAll(ConstantApp.METER_CT_TYPE_LTCT, ConstantApp.METER_CT_TYPE_HTCT);
 		cmbBxCT_Type.getSelectionModel().select(ConstantApp.DEFAULT_CT_TYPE);
 
 	}
@@ -227,8 +224,8 @@ public class EM_ModelController implements Initializable {
 
 	public void onEmModelAddClick() {
 
-		emModelDataList.add(new EnergyMeterModel("", "",ConstantApp.DefaultMeterType,"0.0","0.0","0.0","0", "0.0","50",ConstantApp.DEFAULT_CT_TYPE,"1","1"));
-
+		emModelDataList.add(new EnergyMeterModel("", "", ConstantApp.DefaultMeterType, "0.0", "0.0", "0.0", "0", "0.0",
+				"50", ConstantApp.DEFAULT_CT_TYPE, "1", "1"));
 
 		int row = emModelDataList.size() - 1;
 
@@ -246,8 +243,6 @@ public class EM_ModelController implements Initializable {
 		RefreshModelList();
 	}
 
-
-
 	public void onEmModelResetClick() {
 		txtCustomerName.setText("");
 		txtEM_Model_ModelName.setText("");
@@ -263,7 +258,6 @@ public class EM_ModelController implements Initializable {
 		txt_ptrratio.setText("1");
 	}
 
-
 	public void onEmModelSaveClick() {
 		int row = customer_EM_Model_Table.getSelectionModel().getSelectedIndex();
 		String customer_name = txtCustomerName.getText();
@@ -278,50 +272,51 @@ public class EM_ModelController implements Initializable {
 		String ct_type = cmbBxCT_Type.getSelectionModel().getSelectedItem();
 		String ctr_ratio = txt_ctrratio.getText();
 		String ptr_ratio = txt_ptrratio.getText();
-		ProjectController.setProjectEM_CT_Type(ct_type);
-		boolean status = Validate_User_em_input_parameters(customer_name, 
-				model_name, model_type, model_class, current_ib, current_imax, 
-				voltage_vd, impulses_per_unit, frequency, ct_type,ctr_ratio, ptr_ratio);
-		if(status){
-			MySQL_Controller.sp_add_em_model(customer_name, 
-					model_name, model_type, model_class, current_ib, 
-					current_imax, voltage_vd, impulses_per_unit, 
+		// ProjectController.setProjectEM_CT_Type(ct_type);
+		boolean status = Validate_User_em_input_parameters(customer_name,
+				model_name, model_type, model_class, current_ib, current_imax,
+				voltage_vd, impulses_per_unit, frequency, ct_type, ctr_ratio, ptr_ratio);
+		if (status) {
+			MySQL_Controller.sp_add_em_model(customer_name,
+					model_name, model_type, model_class, current_ib,
+					current_imax, voltage_vd, impulses_per_unit,
 					frequency, ct_type, ctr_ratio, ptr_ratio);
 			RefreshModelList();
 			customer_EM_Model_Table.getSelectionModel().select(row);
 			customer_EM_Model_Table.getFocusModel().focus(row);
-			InformUser("Save success","Data saved successfully",AlertType.INFORMATION);
-		}
-		else{
+			InformUser("Save success", "Data saved successfully", AlertType.INFORMATION);
+		} else {
 			ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  Failure");
-			InformUser("Save failure","Data save failed due to invalid data",AlertType.ERROR);
+			InformUser("Save failure", "Data save failed due to invalid data", AlertType.ERROR);
 		}
 	}
 
 	public boolean Validate_User_em_input_parameters(String customer_name,
 			String model_name, String model_type, String model_class,
-			String current_ib, String current_imax, String voltage_vd, 
+			String current_ib, String current_imax, String voltage_vd,
 			String impulses_per_unit, String frequency, String ct_type, String ctr_ratio,
-			String ptr_ratio){
+			String ptr_ratio) {
 		boolean validation_status = false;
 		validation_status = GuiUtils.Validate_voltage(voltage_vd);
-		if(validation_status){
+		if (validation_status) {
 			ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  voltage_vd: Success");
 			validation_status = GuiUtils.Validate_current(current_ib);
-			if(validation_status){
+			if (validation_status) {
 				ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  current_ib: Success");
 				validation_status = GuiUtils.Validate_current(current_imax);
-				if(validation_status){
+				if (validation_status) {
 					ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  current_imax: Success");
 					validation_status = Validate_impulses_per_unit(impulses_per_unit);
-					if(validation_status){
-						ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  impulses_per_unit: Success");
+					if (validation_status) {
+						ApplicationLauncher.logger
+								.info("Validate_User_em_input_parameters:  impulses_per_unit: Success");
 						validation_status = GuiUtils.Validate_frequency(frequency);
-						if(validation_status){
+						if (validation_status) {
 							ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  frequency: Success");
 							validation_status = GuiUtils.is_float(ctr_ratio);
-							if(validation_status){
-								ApplicationLauncher.logger.info("Validate_User_em_input_parameters:  ctr_ratio: Success");
+							if (validation_status) {
+								ApplicationLauncher.logger
+										.info("Validate_User_em_input_parameters:  ctr_ratio: Success");
 								validation_status = GuiUtils.is_float(ptr_ratio);
 							}
 						}
@@ -334,14 +329,14 @@ public class EM_ModelController implements Initializable {
 	}
 
 	public boolean Validate_impulses_per_unit(String impulses_per_unit) {
-		if(GuiUtils.FormatPulseRate(impulses_per_unit) != null){
+		if (GuiUtils.FormatPulseRate(impulses_per_unit) != null) {
 			return true;
 		}
 		return false;
 
 	}
 
-	public void RefreshModelList(){
+	public void RefreshModelList() {
 		emModelDataList.clear();
 		JSONObject Modeldata = MySQL_Controller.sp_getem_model_list();
 		ApplicationLauncher.logger.info("RefreshModelList: Modeldata: " + Modeldata);
@@ -350,20 +345,20 @@ public class EM_ModelController implements Initializable {
 			modellist = Modeldata.getJSONArray("EM_models");
 			ApplicationLauncher.logger.info("RefreshModelList:ModelList: " + modellist);
 		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
-			ApplicationLauncher.logger.error("RefreshModelList: JSONException:"+e1.getMessage());
+			ApplicationLauncher.logger.error("RefreshModelList: JSONException:" + e1.getMessage());
 		}
 		for (int i = 0; i < modellist.length(); i++) {
 
-			String customer_name ="";
+			String customer_name = "";
 			String model_name = "";
 			String model_type = "";
-			String model_class ="";
-			String current_ib ="";
-			String current_imax ="";
-			String voltage_vd ="";
-			String impulses_per_unit ="";
+			String model_class = "";
+			String current_ib = "";
+			String current_imax = "";
+			String voltage_vd = "";
+			String impulses_per_unit = "";
 			String model_freq = "";
 			String ct_type = "";
 			String ctr_ratio = "";
@@ -384,77 +379,73 @@ public class EM_ModelController implements Initializable {
 				ptr_ratio = model.getString("ptr_ratio");
 				ApplicationLauncher.logger.info("RefreshModelList: customer_name: " + customer_name);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
+
 				ApplicationLauncher.logger.error("RefreshModelList: JSONException: " + e.toString());
 				e.printStackTrace();
 			}
-			emModelDataList.add(new EnergyMeterModel(customer_name, 
-					model_name, model_type, current_ib, current_imax, 
-					voltage_vd, impulses_per_unit, model_class, 
-					model_freq,ct_type,ctr_ratio, ptr_ratio));
+			emModelDataList.add(new EnergyMeterModel(customer_name,
+					model_name, model_type, current_ib, current_imax,
+					voltage_vd, impulses_per_unit, model_class,
+					model_freq, ct_type, ctr_ratio, ptr_ratio));
 		}
 
 	}
 
-	public static void InformUser(String title, String info,AlertType Alert_type){
+	public static void InformUser(String title, String info, AlertType Alert_type) {
 		TextBoxDialog TextBoxDialogobj = new TextBoxDialog();
 		TextBoxDialogobj.TriggerUserInfoPlatFormLater(title, info, Alert_type);
 	}
-	
+
 	private static void applyUacSettings() {
-		// TODO Auto-generated method stub
+
 		ApplicationLauncher.logger.info("EM_ModelController : applyUacSettings :  Entry");
-		ArrayList<UacDataModel> uacSelectProfileScreenList = DeviceDataManagerController.getUacSelectProfileScreenList();
+		ArrayList<UacDataModel> uacSelectProfileScreenList = DeviceDataManagerController
+				.getUacSelectProfileScreenList();
 		String screenName = "";
-		for (int i = 0; i < uacSelectProfileScreenList.size(); i++){
+		for (int i = 0; i < uacSelectProfileScreenList.size(); i++) {
 
 			screenName = uacSelectProfileScreenList.get(i).getScreenName();
 			switch (screenName) {
 				case ConstantApp.UAC_METER_PROFILE_SCREEN:
-					
-					
-					if(!uacSelectProfileScreenList.get(i).getExecutePossible()){
-						//ref_btn_get_results.setDisable(true);
-						
+
+					if (!uacSelectProfileScreenList.get(i).getExecutePossible()) {
+						// ref_btn_get_results.setDisable(true);
+
 					}
-					
-					if(!uacSelectProfileScreenList.get(i).getAddPossible()){
+
+					if (!uacSelectProfileScreenList.get(i).getAddPossible()) {
 						ref_btn_add.setDisable(true);
-						
+
 					}
-					
-					if(!uacSelectProfileScreenList.get(i).getUpdatePossible()){
+
+					if (!uacSelectProfileScreenList.get(i).getUpdatePossible()) {
 						ref_btn_save.setDisable(true);
-						
+
 					}
-					
-					if(!uacSelectProfileScreenList.get(i).getDeletePossible()){
+
+					if (!uacSelectProfileScreenList.get(i).getDeletePossible()) {
 						ref_btn_remove.setDisable(true);
 						ref_btn_reset.setDisable(true);
-						
+
 					}
 					break;
-					
-								
-	
+
 				default:
 					break;
 			}
-			
-				
-				
+
 		}
 	}
-	
+
 	@FXML
-	public void cmbBxMetrTypeOnChange(){
-		
+	public void cmbBxMetrTypeOnChange() {
+
 		String selectedMeterType = cmbBxMeterType.getSelectionModel().getSelectedItem().toString();
-		if(selectedMeterType.contains(ConstantApp.METER_TYPE_THREE_PHASE_DELTA_ACTIVE)){
+		if (selectedMeterType.contains(ConstantApp.METER_TYPE_THREE_PHASE_DELTA_ACTIVE)) {
 			ref_lbl_ratedVoltage.setText(ConstantApp.LABEL_DISPLAY_THREE_PHASE_DELTA);
-		}else if(selectedMeterType.contains(ConstantApp.METER_TYPE_THREE_PHASE_DELTA_REACTIVE)){
+		} else if (selectedMeterType.contains(ConstantApp.METER_TYPE_THREE_PHASE_DELTA_REACTIVE)) {
 			ref_lbl_ratedVoltage.setText(ConstantApp.LABEL_DISPLAY_THREE_PHASE_DELTA);
-		}else{
+		} else {
 			ref_lbl_ratedVoltage.setText(ConstantApp.LABEL_DISPLAY_THREE_PHASE_STAR);
 		}
 	}

@@ -9,13 +9,14 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
+/**
+ * State class responsible for ensuring the divertor relay is turned off for FT Bay.
+ */
 public class S18_ensure_divertor_relay_turned_off_FT_Bay implements FtBayState {
 
-    public String getMyBayKey() {
-        return myBayKey;
-    }
 
     //===========================================================================================
     @Override
@@ -32,7 +33,7 @@ public class S18_ensure_divertor_relay_turned_off_FT_Bay implements FtBayState {
 
         // Loop to retry checking the divertor relay status
         Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_CHECK] : [RETRY_LOOP_START] - Starting retry loop to confirm relay is off (Max retries: %d).", getMyBayKey(), MAX_RETRY_COUNT));
-        while (try_count <= MAX_RETRY_COUNT) {
+        while (try_count <= MAX_RETRY_COUNT && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
     		Map<String,Object> responseReturn =  ftBay_DivertorRelay_Status();
     		// Ensure safe retrieval from map, defaulting to an unexpected state string
     		String ftBay_DivertorRelay_CurrentStatus = (String)responseReturn.getOrDefault("status", "UNEXPECTED_STATUS");

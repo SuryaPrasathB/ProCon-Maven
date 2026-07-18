@@ -16,6 +16,7 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantProTamp;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.WindowManager;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -26,7 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 
-public class FirmwareUpgradeController  implements Initializable{
+public class FirmwareUpgradeController implements Initializable {
 
 	Timer ScanDrivesTaskTimer;
 
@@ -37,7 +38,6 @@ public class FirmwareUpgradeController  implements Initializable{
 	Timer DeployTaskTimer;
 
 	private static final ExecutorService threadPool = Executors.newCachedThreadPool();
-
 
 	@FXML
 	private Button btnScanDrives;
@@ -55,31 +55,32 @@ public class FirmwareUpgradeController  implements Initializable{
 
 	@FXML
 	private ComboBox cmbBxListOfAvailableDrives;
-	public static  ComboBox ref_cmbBxListOfAvailableDrives;
-
+	public static ComboBox ref_cmbBxListOfAvailableDrives;
 
 	@FXML
 	private ComboBox cmBxUpgradeType;
-	public static  ComboBox ref_cmBxUpgradeType;
+	public static ComboBox ref_cmBxUpgradeType;
 
 	@FXML
 	private ComboBox cmbBxListOfScannedFiles;
-	public static  ComboBox ref_cmbBxListOfScannedFiles;
+	public static ComboBox ref_cmbBxListOfScannedFiles;
 
 	@FXML
 	private Button btnDeploy;
 	public static Button ref_btnDeploy;
 
-	public static  void updateListOfDrives(String[] Drives){
+	public static void updateListOfDrives(String[] Drives) {
 		ApplicationLauncher.logger.debug("Entering activity updateListOfDrives");
-		//AvailableDriveList.setAdapter(value1);
+		// AvailableDriveList.setAdapter(value1);
 		// Spinner dropdown1 = findViewById(R.id.list_of_drives);
-		//value1 = new String[]{"1", "2", "3"};
+		// value1 = new String[]{"1", "2", "3"};
 
-		// ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainContext, android.R.layout.simple_spinner_dropdown_item, value1);//Collections.singletonList(value1)
-		//spinnerListOfDrives.setAdapter(adapter);
+		// ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainContext,
+		// android.R.layout.simple_spinner_dropdown_item,
+		// value1);//Collections.singletonList(value1)
+		// spinnerListOfDrives.setAdapter(adapter);
 		Platform.runLater(() -> {
-			if(Drives.length!=0){
+			if (Drives.length != 0) {
 				ref_cmbBxListOfAvailableDrives.getItems().setAll(Drives);
 				ref_cmbBxListOfAvailableDrives.getSelectionModel().select(0);
 				ref_cmbBxListOfAvailableDrives.setDisable(false);
@@ -88,157 +89,119 @@ public class FirmwareUpgradeController  implements Initializable{
 				ref_btnValidate.setDisable(true);
 				ref_btnDeploy.setDisable(true);
 				ref_cmBxUpgradeType.setDisable(true);
-				/*    			ref_cmbBxListOfLogFolder.setDisable(false);
-    			ref_btnViewLogFile.setDisable(true);
-    			ref_cmbBxListOfLogFiles.setDisable(true);*/
+				/*
+				 * ref_cmbBxListOfLogFolder.setDisable(false);
+				 * ref_btnViewLogFile.setDisable(true);
+				 * ref_cmbBxListOfLogFiles.setDisable(true);
+				 */
 			}
 		});
 		ApplicationLauncher.logger.debug("finishing activity updateListOfDrives");
-		/*        if(Drives.length!=0){
-            //UpdateUtilityScanFilesButton(true);//Button(true);
-        }*/
+		/*
+		 * if(Drives.length!=0){
+		 * //UpdateUtilityScanFilesButton(true);//Button(true);
+		 * }
+		 */
 
 	}
 
-	public static  void updatefilesinselecteddrive(String[] selectedfile){
+	public static void updatefilesinselecteddrive(String[] selectedfile) {
 		ApplicationLauncher.logger.debug("Entering activity updatefilesinselecteddrive");
-		//AvailableDriveList.setAdapter(value1);
-		// Spinner dropdown1 = findViewById(R.id.list_of_drives);
-		//value1 = new String[]{"1", "2", "3"};
 
 		Platform.runLater(() -> {
-			if(selectedfile.length!=0){
+			if (selectedfile.length != 0) {
 				ref_cmbBxListOfScannedFiles.getItems().setAll(selectedfile);
 				ref_cmbBxListOfScannedFiles.getSelectionModel().select(0);
-				//ref_btnScanFiles.setDisable(false);
+				// ref_btnScanFiles.setDisable(false);
 				ref_cmbBxListOfScannedFiles.setDisable(false);
 				ref_btnValidate.setDisable(false);
 				ref_btnDeploy.setDisable(true);
-				/*    			ref_cmbBxListOfLogFolder.setDisable(false);
-    			ref_btnViewLogFile.setDisable(true);
-    			ref_cmbBxListOfLogFiles.setDisable(true);*/
+				/*
+				 * ref_cmbBxListOfLogFolder.setDisable(false);
+				 * ref_btnViewLogFile.setDisable(true);
+				 * ref_cmbBxListOfLogFiles.setDisable(true);
+				 */
 			}
 		});
 
-		//ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(MainContext, android.R.layout.simple_spinner_dropdown_item, value2);//Collections.singletonList(value1)
-		//spinnerListOfFilesinDrives.setAdapter(adapter1);
 		ApplicationLauncher.logger.debug("finishing activity updatefilesinselecteddrive");
-		//if(value2.length!=0){
-		//   UpdateUtilityValidateButton(true);
-		//}
 
 	}
 
-	public static  void updateValidationResult(final String validation_result) {
+	public static void updateValidationResult(final String validation_result) {
 		ApplicationLauncher.logger.debug("Entering activity updateValidationResult");
 		ConvErrorCodeMapping.Error_Msg();
 		JSONObject validate_reason = ConvErrorCodeMapping.ERROR_CODE_MSG;
 		String Error_msgs = null;
 
-		//try {
+		// try {
 		Error_msgs = ConvErrorCodeMapping.getKeyErrorCodeID(validation_result);
 		ApplicationLauncher.logger.debug("Error_msgs" + Error_msgs);
-		/*        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-		//StringBuilder validate_reason1=new StringBuilder();
+		/*
+		 * } catch (JSONException e) {
+		 * e.printStackTrace();
+		 * }
+		 */
+		// StringBuilder validate_reason1=new StringBuilder();
 		String validate_reason1;
-		if(validation_result.equals("ERROR_CODE_401")){
-			
-			validate_reason1=(ConvErrorCodeMapping.ERROR_CODE_401_MSG);
-			//UpdateUtilityDeployButton(true);
+		if (validation_result.equals("ERROR_CODE_401")) {
+
+			validate_reason1 = (ConvErrorCodeMapping.ERROR_CODE_401_MSG);
+			// UpdateUtilityDeployButton(true);
 			ref_btnDeploy.setDisable(false);
 
-		}
-		else{
-			//StringBuilder validate_reason1=new StringBuilder();
-			//validate_reason1.append(validation_result);
-			//validate_reason1.append(" : ");
-			//validate_reason1.append( Error_msgs);
-			validate_reason1 =validation_result+" : "+Error_msgs;
+		} else {
+
+			validate_reason1 = validation_result + " : " + Error_msgs;
 
 		}
-		//validation_result.concat(Error_msgs);
-		//        AlertDialog.Builder builder = new AlertDialog.Builder(MainContext);
-		//
-		//        builder.setTitle("Validation Result")
-		//                .setMessage(validate_reason1)
-		//
-		//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		//                    public void onClick(DialogInterface dialog, int id) {
-		//                        //System.out.println("Validation Result" + validate_reason1);
-		//                    }
-		//                });
-		//        AlertDialog alter = builder.create();
-		//        alter.show();
-		ApplicationLauncher.InformUser("Validation Result",validate_reason1,AlertType.INFORMATION);
+
+		WindowManager.InformUser("Validation Result", validate_reason1, AlertType.INFORMATION);
 		ApplicationLauncher.logger.debug("finishing activity updateValidationResult");
 
-
 	}
-	
-	public static  void updateDeployStatus(final String Deploy_Result_status){
+
+	public static void updateDeployStatus(final String Deploy_Result_status) {
 		ApplicationLauncher.logger.info("Entering activity updateDeployStatus");
-		String Deploy_msg="Deployed successfully,required Panel reboot for new version execution";
-		if(Deploy_Result_status.equals("Deploy Failed")){
-			Deploy_msg=Deploy_Result_status;
-			//Deploy_msg = Deploy_Result_status + ": "+ErrorCodeMapping.getKeyValue(Deploy_Result_status);
+		String Deploy_msg = "Deployed successfully,required Panel reboot for new version execution";
+		if (Deploy_Result_status.equals("Deploy Failed")) {
+			Deploy_msg = Deploy_Result_status;
+			// Deploy_msg = Deploy_Result_status + ":
+			// "+ErrorCodeMapping.getKeyValue(Deploy_Result_status);
 		}
 
-		ApplicationLauncher.InformUser("Deploy Result",Deploy_msg,AlertType.INFORMATION);
-		//        AlertDialog.Builder builder= new AlertDialog.Builder(MainContext);
-		//
-		//        builder.setTitle("Deploy Result")
-		//                .setMessage(Deploy_msg)
-		//
-		//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		//                    public void onClick(DialogInterface dialog, int id) {
-		//                        System.out.println("Deploy Result"+Deploy_Result_status);
-		//                    }
-		//                });
-		//        AlertDialog alter = builder.create();
-		//        alter.show();
+		WindowManager.InformUser("Deploy Result", Deploy_msg, AlertType.INFORMATION);
+
 		ApplicationLauncher.logger.info("finishing activity updateDeployStatus");
 	}
 
-	public static  void updateDeployStatusV2(final String Deploy_Result_status){
+	public static void updateDeployStatusV2(final String Deploy_Result_status) {
 		ApplicationLauncher.logger.info("Entering activity updateDeployStatusV2");
-		String Deploy_msg="Deployed successfully,required Panel reboot for new version execution";
-		if(!Deploy_Result_status.equals("Success")){
-			//Deploy_msg=Deploy_Result_status;
-			Deploy_msg = Deploy_Result_status + ": "+ConvErrorCodeMapping.getKeyValue(Deploy_Result_status);
+		String Deploy_msg = "Deployed successfully,required Panel reboot for new version execution";
+		if (!Deploy_Result_status.equals("Success")) {
+			// Deploy_msg=Deploy_Result_status;
+			Deploy_msg = Deploy_Result_status + ": " + ConvErrorCodeMapping.getKeyValue(Deploy_Result_status);
 		}
 
-		ApplicationLauncher.InformUser("Deploy Result",Deploy_msg,AlertType.INFORMATION);
-		//        AlertDialog.Builder builder= new AlertDialog.Builder(MainContext);
-		//
-		//        builder.setTitle("Deploy Result")
-		//                .setMessage(Deploy_msg)
-		//
-		//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		//                    public void onClick(DialogInterface dialog, int id) {
-		//                        System.out.println("Deploy Result"+Deploy_Result_status);
-		//                    }
-		//                });
-		//        AlertDialog alter = builder.create();
-		//        alter.show();
+		WindowManager.InformUser("Deploy Result", Deploy_msg, AlertType.INFORMATION);
+
 		ApplicationLauncher.logger.info("finishing activity updateDeployStatus");
 	}
-	
-	public static  void updateDeployGUI_Status(final String Deploy_Result_status){
+
+	public static void updateDeployGUI_Status(final String Deploy_Result_status) {
 		ApplicationLauncher.logger.info("Entering activity updateDeployGUI_Status");
-		String Deploy_msg="Deployed successfully,required Panel reboot for new version execution";
-		if(!Deploy_Result_status.equals("Success")){
-			//Deploy_msg=Deploy_Result_status;
-			Deploy_msg = Deploy_Result_status + ": "+ConvErrorCodeMapping.getKeyValue(Deploy_Result_status);
+		String Deploy_msg = "Deployed successfully,required Panel reboot for new version execution";
+		if (!Deploy_Result_status.equals("Success")) {
+			// Deploy_msg=Deploy_Result_status;
+			Deploy_msg = Deploy_Result_status + ": " + ConvErrorCodeMapping.getKeyValue(Deploy_Result_status);
 		}
 
-		ApplicationLauncher.InformUser("Deploy Result",Deploy_msg,AlertType.INFORMATION);
+		WindowManager.InformUser("Deploy Result", Deploy_msg, AlertType.INFORMATION);
 
 		ApplicationLauncher.logger.info("finishing activity updateDeployGUI_Status");
 	}
 
-	public void  InitTaskExecution(){
+	public void InitTaskExecution() {
 		ApplicationLauncher.logger.info("FirmwareUpgradeController :initialize: Entry");
 		refAssignmentInit();
 		ref_cmBxUpgradeType.getItems().addAll(ConstantProTamp.UPGRADE_UTILITY_TYPE_LIST);
@@ -251,7 +214,7 @@ public class FirmwareUpgradeController  implements Initializable{
 
 	}
 
-	public void  refAssignmentInit(){
+	public void refAssignmentInit() {
 		ref_btnScanFiles = btnScanFiles;
 		ref_btnValidate = btnValidate;
 		ref_cmbBxListOfAvailableDrives = cmbBxListOfAvailableDrives;
@@ -263,14 +226,12 @@ public class FirmwareUpgradeController  implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
-		if(ConstantProTamp.TARGET_DEVICE_IS_WINDOWS){
+		if (ConstantProTamp.TARGET_DEVICE_IS_WINDOWS) {
 			InitTaskExecution();
-		}
-		else {
-			ApplicationLauncher.setCursor(Cursor.WAIT);
-			//ApplicationHomeController.DisableLeftMenuButtonsForTestRun();
+		} else {
+			WindowManager.setCursor(Cursor.WAIT);
+			// ApplicationHomeController.DisableLeftMenuButtonsForTestRun();
 			Task<Void> jfxTask = new Task<Void>() {
 				@Override
 				protected Void call() throws Exception {
@@ -282,8 +243,8 @@ public class FirmwareUpgradeController  implements Initializable{
 			};
 
 			jfxTask.setOnSucceeded(event -> {
-				//ApplicationLauncher.logger.debug ("InitCounter: " + InitCounter);
-				ApplicationLauncher.setCursor(Cursor.DEFAULT);
+				// ApplicationLauncher.logger.debug ("InitCounter: " + InitCounter);
+				WindowManager.setCursor(Cursor.DEFAULT);
 				ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
 			});
 
@@ -304,12 +265,8 @@ public class FirmwareUpgradeController  implements Initializable{
 	public void ScanDrives() {
 		AsyncClientManager asyncClient = new AsyncClientManager();
 
-
 		asyncClient.tamperScanAvailabledrives();
 	}
-
-
-
 
 	public void ScanFilesTrigger() {
 		ApplicationLauncher.logger.info("ScanFilesTrigger : Entry");
@@ -317,13 +274,11 @@ public class FirmwareUpgradeController  implements Initializable{
 		ScanFilesTaskTimer.schedule(new ScanFilesTask(), 100);
 	}
 
-
-
 	public void ScanFiles() {
 
-		String SelectedDrive = ref_cmbBxListOfAvailableDrives.getSelectionModel().getSelectedItem().toString();;
+		String SelectedDrive = ref_cmbBxListOfAvailableDrives.getSelectionModel().getSelectedItem().toString();
+		;
 		AsyncClientManager asyncClient = new AsyncClientManager();
-
 
 		asyncClient.tamperScanfilesindrives(SelectedDrive);
 	}
@@ -334,16 +289,14 @@ public class FirmwareUpgradeController  implements Initializable{
 		ValidateTaskTimer.schedule(new ValidateTask(), 100);
 	}
 
-
-
 	public void ValidateFiles() {
 
-		String SelectedFile = ref_cmbBxListOfScannedFiles.getSelectionModel().getSelectedItem().toString();;
-		
-		String SelectedUpgradeType = ref_cmBxUpgradeType.getSelectionModel().getSelectedItem().toString();
-		ApplicationLauncher.logger.info("ValidateFiles : SelectedUpgradeType : "+SelectedUpgradeType);
-		AsyncClientManager asyncClient = new AsyncClientManager();
+		String SelectedFile = ref_cmbBxListOfScannedFiles.getSelectionModel().getSelectedItem().toString();
+		;
 
+		String SelectedUpgradeType = ref_cmBxUpgradeType.getSelectionModel().getSelectedItem().toString();
+		ApplicationLauncher.logger.info("ValidateFiles : SelectedUpgradeType : " + SelectedUpgradeType);
+		AsyncClientManager asyncClient = new AsyncClientManager();
 
 		asyncClient.tampervalidateselectedfile(SelectedFile);
 	}
@@ -354,72 +307,63 @@ public class FirmwareUpgradeController  implements Initializable{
 		DeployTaskTimer.schedule(new DeployTask(), 100);
 	}
 
-
-
 	public void DeployFiles() {
 
 		String SelectedUpgradeType = ref_cmBxUpgradeType.getSelectionModel().getSelectedItem().toString();
-		ApplicationLauncher.logger.info("DeployFiles : SelectedUpgradeType : "+SelectedUpgradeType);
-		
+		ApplicationLauncher.logger.info("DeployFiles : SelectedUpgradeType : " + SelectedUpgradeType);
+
 		AsyncClientManager asyncClient = new AsyncClientManager();
 
-
-		if(SelectedUpgradeType.equals("Firmware")){
-			//asyncClient.tamperDeployFile();
+		if (SelectedUpgradeType.equals("Firmware")) {
+			// asyncClient.tamperDeployFile();
 			asyncClient.tamperDeployFileV2();
 		}
-		//asyncClient.tamperDeployFile();
-		if(SelectedUpgradeType.equals("GUI Application")){
+		// asyncClient.tamperDeployFile();
+		if (SelectedUpgradeType.equals("GUI Application")) {
 			asyncClient.tamperDeployGUIFile();
 		}
 	}
 
 	class ScanDrivesTask extends TimerTask {
-		
+
 		public void run() {
 			ApplicationLauncher.logger.debug("ScanDrivesTask :Entry");
-			ApplicationLauncher.setCursor(Cursor.WAIT);
+			WindowManager.setCursor(Cursor.WAIT);
 			ScanDrives();
-			ApplicationLauncher.setCursor(Cursor.DEFAULT);
+			WindowManager.setCursor(Cursor.DEFAULT);
 
 		}
 	};
-	
+
 	class DeployTask extends TimerTask {
-
-
 
 		public void run() {
 			ApplicationLauncher.logger.debug("DeployTask :Entry");
-			ApplicationLauncher.setCursor(Cursor.WAIT);
+			WindowManager.setCursor(Cursor.WAIT);
 			DeployFiles();
-			ApplicationLauncher.setCursor(Cursor.DEFAULT);
+			WindowManager.setCursor(Cursor.DEFAULT);
 
 		}
 	};
-	
+
 	class ValidateTask extends TimerTask {
-
-
 
 		public void run() {
 			ApplicationLauncher.logger.debug("ValidateTask :Entry");
-			ApplicationLauncher.setCursor(Cursor.WAIT);
+			WindowManager.setCursor(Cursor.WAIT);
 			ValidateFiles();
-			ApplicationLauncher.setCursor(Cursor.DEFAULT);
+			WindowManager.setCursor(Cursor.DEFAULT);
 
 		}
 	};
-	
+
 	class ScanFilesTask extends TimerTask {
-
-
 
 		public void run() {
 			ApplicationLauncher.logger.debug("ScanFilesTask :Entry");
-			ApplicationLauncher.setCursor(Cursor.WAIT);
+			WindowManager.setCursor(Cursor.WAIT);
 			ScanFiles();
-			ApplicationLauncher.setCursor(Cursor.DEFAULT);
+			WindowManager.setCursor(Cursor.DEFAULT);
 
 		}
 	};

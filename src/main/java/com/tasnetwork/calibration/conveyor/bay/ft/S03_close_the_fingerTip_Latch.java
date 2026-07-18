@@ -11,11 +11,15 @@ import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+/**
+ * State class responsible for issuing the command to close the fingertip latch
+ * in the FT Bay.
+ * It triggers the output port to close the latch to secure the pallet.
+ */
 public class S03_close_the_fingerTip_Latch implements FtBayState {
 
 	String sequencePathId = "p1";
@@ -23,65 +27,73 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 
 	BayUtils bayUtils = new BayUtils();
 
-    // Assuming 'myBayKey' is defined or can be derived for consistent logging
-    // If FtBayState interface implies a getMyBayKey() method, this should be used.
-    public String getMyBayKey() {
-        return ConstantConveyor.FT_BAY_KEY; // Default for FT Bay
-    }
-
-	//===========================================================================================
+	// ===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
 		// Structured log entry for sequence start
-		Ft.logger.info(String.format("[%s] : [FINGERTIP_CLOSE] : [SEQUENCE_ENTRY] - Initiating close fingertip latch sequence.", getMyBayKey()));
+		Ft.logger.info(String.format(
+				"[%s] : [FINGERTIP_CLOSE] : [SEQUENCE_ENTRY] - Initiating close fingertip latch sequence.",
+				getMyBayKey()));
 
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true); // Assume success initially
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601); // Default success code
 
-		BayUtils.delay(1000); // This delay can be blocking; ensure this sequence is called from a background thread.
+		BayUtils.delay(1000); // This delay can be blocking; ensure this sequence is called from a background
+								// thread.
 
 		setSequencePathId("p1");
-		setPalletAvailableTest_I_F_Status (null); // Resetting for current operation
+		setPalletAvailableTest_I_F_Status(null); // Resetting for current operation
 
-		Map<String,Object> responseReturn = close_FingerTipLatch_FtBay();
-		// Assuming StateExecutorController.updateTestInterfaceStatusOnGui handles Platform.runLater() internally
-		StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn,ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
+		Map<String, Object> responseReturn = close_FingerTipLatch_FtBay();
+		// Assuming StateExecutorController.updateTestInterfaceStatusOnGui handles
+		// Platform.runLater() internally
+		StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn,
+				ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 
-		boolean closeFingerTipLatch_FtBay = (boolean)responseReturn.get("status");
+		boolean closeFingerTipLatch_FtBay = (boolean) responseReturn.get("status");
 
 		if (closeFingerTipLatch_FtBay) {
 			// Structured log for success
-			Ft.logger.info(String.format("[%s] : [FINGERTIP_CLOSE] : [SUCCESS] - Finger Tip Latch closed successfully.", getMyBayKey()));
+			Ft.logger.info(String.format("[%s] : [FINGERTIP_CLOSE] : [SUCCESS] - Finger Tip Latch closed successfully.",
+					getMyBayKey()));
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-			//ConveyorDeviceDataManagerController.getDashboardObject().updateBayEntryStopper(getMyBayKey(),false);
+			// ConveyorDeviceDataManagerController.getDashboardObject().updateBayEntryStopper(getMyBayKey(),false);
 		} else {
 			// Structured log for failure with error code
-			Ft.logger.error(String.format("[%s] : [FINGERTIP_CLOSE] : [FAILED] - Failed to close Finger Tip Latch. Error: %s", getMyBayKey(), ConvErrorCodeMapping.ERROR_CODE_FT_027));
+			Ft.logger.error(
+					String.format("[%s] : [FINGERTIP_CLOSE] : [FAILED] - Failed to close Finger Tip Latch. Error: %s",
+							getMyBayKey(), ConvErrorCodeMapping.ERROR_CODE_FT_027));
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_FT_027);
 		}
 
 		// Structured log for sequence exit
-		Ft.logger.info(String.format("[%s] : [FINGERTIP_CLOSE] : [SEQUENCE_EXIT] - Finger Tip Latch close sequence completed.", getMyBayKey()));
+		Ft.logger.info(
+				String.format("[%s] : [FINGERTIP_CLOSE] : [SEQUENCE_EXIT] - Finger Tip Latch close sequence completed.",
+						getMyBayKey()));
 		return bayResponse;
 	}
-	//============================================================================================================================================
+	// ============================================================================================================================================
 
-	private Map<String,Object> close_FingerTipLatch_FtBay() {
+	private Map<String, Object> close_FingerTipLatch_FtBay() {
 		// Structured debug log for method entry
-		Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [REQUEST_ENTRY] - Requesting to close fingertip latch.", getMyBayKey()));
+		Ft.logger.debug(String.format(
+				"[%s] : [FINGERTIP_LATCH_COMMAND] : [REQUEST_ENTRY] - Requesting to close fingertip latch.",
+				getMyBayKey()));
 
 		boolean status = false;
-		Map<String,Object> responseReturn = new HashMap<String,Object>();
+		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
 		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_FINGER_TIP);
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus();
 
 		if (portInfo != null) {
-			Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [PORT_INFO] - PortId: %s, ClusterId: %s, BayId: %s", getMyBayKey(), portInfo.getPortId(), portInfo.getClusterId(), portInfo.getBayId()));
+			Ft.logger.debug(String.format(
+					"[%s] : [FINGERTIP_LATCH_COMMAND] : [PORT_INFO] - PortId: %s, ClusterId: %s, BayId: %s",
+					getMyBayKey(), portInfo.getPortId(), portInfo.getClusterId(), portInfo.getBayId()));
 
 			// Initialize TestInterfaceStatus
 			testIntefaceStatus = new TestInterfaceStatus(
@@ -96,26 +108,29 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 					"Waiting",
 					ConstantConveyor.COMM_EXECUTION_STATUS_INP);
 
-			// Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
+			// Add to GUI (assuming StateExecutorController.addToTestStatusGui handles
+			// Platform.runLater() internally)
 			StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 
 			String state = "";
 			String outputActive = Constant_IO_ActionMapping.OPEN;
 
 			try {
-				if(ProcalFeatureEnable.MODBUS_PLC_SLAVE_MODE){
+				if (ProcalFeatureEnable.MODBUS_PLC_SLAVE_MODE) {
 					state = getBayUtils().setOutputDataToPlcBay(portInfo.getClusterId(),
-		                    portInfo.getBayId(),
-		                    portInfo.getPortId(),
-		                    outputActive);
-		        }else{
-		        	state = getBayUtils().setOutputDataToBay( portInfo.getClusterId(),
 							portInfo.getBayId(),
-							portInfo.getPortId(),outputActive) ;
-		        }
+							portInfo.getPortId(),
+							outputActive);
+				} else {
+					state = getBayUtils().setOutputDataToBay(portInfo.getClusterId(),
+							portInfo.getBayId(),
+							portInfo.getPortId(), outputActive);
+				}
 			} catch (Exception e) {
 				// Log any exceptions during output data transmission
-				Ft.logger.error(String.format("[%s] : [COMMUNICATION_ERROR] : [FINGERTIP_LATCH_COMMAND] - Failed to send close command to fingertip latch. Port: %s. Error: %s", getMyBayKey(), portInfo.getPortId(), e.getMessage()), e);
+				Ft.logger.error(String.format(
+						"[%s] : [COMMUNICATION_ERROR] : [FINGERTIP_LATCH_COMMAND] - Failed to send close command to fingertip latch. Port: %s. Error: %s",
+						getMyBayKey(), portInfo.getPortId(), e.getMessage()), e);
 				testIntefaceStatus.setDeviceResponseStatus("Error");
 				testIntefaceStatus.setDeviceResponseData("Communication Error");
 				StateExecutorController.updateTestStatusGui(testIntefaceStatus); // Update GUI with error status
@@ -129,32 +144,37 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 			Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 
 			// Determine status based on expected response
-			// Assuming OLD_OFF_NEW_ON signifies successful closure based on previous context.
+			// Assuming OLD_OFF_NEW_ON signifies successful closure based on previous
+			// context.
 			status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
 			// Update TestInterfaceStatus based on command status
 			testIntefaceStatus.setPortName(portInfo.getPortId());
-			if(status){
+			if (status) {
 				testIntefaceStatus.setDeviceResponseStatus("Success");
-			}else{
+			} else {
 				testIntefaceStatus.setDeviceResponseStatus("Failed");
 			}
 
-			if(portInfo.getPortId().equals(state)){
+			if (portInfo.getPortId().equals(state)) {
 				testIntefaceStatus.setDeviceResponseData("TimeOut");
-				Ft.logger.warn(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [TIMEOUT] - Fingertip latch command timed out. Raw state: %s", getMyBayKey(), state));
-			}else{
+				Ft.logger.warn(String.format(
+						"[%s] : [FINGERTIP_LATCH_COMMAND] : [TIMEOUT] - Fingertip latch command timed out. Raw state: %s",
+						getMyBayKey(), state));
+			} else {
 				testIntefaceStatus.setDeviceResponseData(state);
 			}
 
-		}
-		else {
+		} else {
 			// Log a clear error if the port information is missing
-			Ft.logger.error(String.format("[%s] : [CONFIG_ERROR] : [FINGERTIP_LATCH_COMMAND] - Output port not found for fingertip latch: %s", getMyBayKey(), ConstantBayPortNameMapping.FT_PORT_NAME_FINGER_TIP));
+			Ft.logger.error(String.format(
+					"[%s] : [CONFIG_ERROR] : [FINGERTIP_LATCH_COMMAND] - Output port not found for fingertip latch: %s",
+					getMyBayKey(), ConstantBayPortNameMapping.FT_PORT_NAME_FINGER_TIP));
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
 			testIntefaceStatus.setDeviceResponseData("O/P port not found");
 			// Ensure GUI status is updated even for config errors
-			StateExecutorController.addToTestStatusGui(testIntefaceStatus); // Add if not already added, or update if already present.
+			StateExecutorController.addToTestStatusGui(testIntefaceStatus); // Add if not already added, or update if
+																			// already present.
 			StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 			responseReturn.put("status", false); // Ensure status is false if portInfo is null
@@ -163,13 +183,16 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 			return responseReturn; // Early exit if critical config is missing
 		}
 
-		if(StateExecutorController.simulateFtBayHappyPath){
+		if (StateExecutorController.simulateFtBayHappyPath) {
 			status = true;
 			// Shortened and moved to TRACE level for minimal impact
-			Ft.logger.debug(String.format("[%s] : [SIMULATION] : Fingertip latch close status overridden to TRUE.", getMyBayKey()));
+			Ft.logger.debug(String.format("[%s] : [SIMULATION] : Fingertip latch close status overridden to TRUE.",
+					getMyBayKey()));
 		}
 
-		// Update GUI with final status (assuming StateExecutorController.updateTestStatusGui handles Platform.runLater() internally)
+		// Update GUI with final status (assuming
+		// StateExecutorController.updateTestStatusGui handles Platform.runLater()
+		// internally)
 		StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 		responseReturn.put("status", status);
@@ -177,8 +200,10 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 		responseReturn.put("testInterfaceStatus", testIntefaceStatus);
 
 		// Structured debug log for method exit
-		Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [REQUEST_EXIT] - Fingertip latch close request completed. Status: %s", getMyBayKey(), status));
-		return responseReturn ;
+		Ft.logger.debug(String.format(
+				"[%s] : [FINGERTIP_LATCH_COMMAND] : [REQUEST_EXIT] - Fingertip latch close request completed. Status: %s",
+				getMyBayKey(), status));
+		return responseReturn;
 	}
 
 	public BayUtils getBayUtils() {

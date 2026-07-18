@@ -21,7 +21,6 @@ import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.deployment.ProjectExecutionController;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
@@ -31,6 +30,10 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 import javafx.application.Platform;
 
+/**
+ * State class responsible for performing optical probe scanning of the meters at the FT Bay.
+ * Prompts user to place optical probes and reads meter serial numbers.
+ */
 public class S070_opticalProbe_Scanning_of_Meters implements FtBayState {
 
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_05;
@@ -47,9 +50,6 @@ public class S070_opticalProbe_Scanning_of_Meters implements FtBayState {
 	
 	private String myBaySeqId = ConstantBayStateManage.BAY_HP_SEQ_10;
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
     //===========================================================================================
     @Override
@@ -77,7 +77,7 @@ public class S070_opticalProbe_Scanning_of_Meters implements FtBayState {
                     }
                 });
 	            
-	            while (!ConstantConveyor.isFT_OPTICAL_PLACED()) {
+	            while (!ConstantConveyor.isFT_OPTICAL_PLACED() && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 	            	long elapsedTime = (System.currentTimeMillis() - startTime) / 1000; // in seconds
 	
 	                Platform.runLater(() -> {
@@ -244,7 +244,7 @@ public class S070_opticalProbe_Scanning_of_Meters implements FtBayState {
 			boolean dutAllProcessExecutionCompleted = false;
 
             Ft.logger.info(String.format("[%s] : [PARALLEL_SCAN] : [WAITING] - Waiting for parallel QR scan tasks to complete. Timeout: %d secs.", getMyBayKey(), dutWaitTimeDurationMaxInSec));
-			while ( (!ProjectExecutionController.getUserAbortedFlag()) && 
+			while ( (!BayUtils.isUserAborted()) && 
 					(dutWaitTimeCounter < dutWaitTimeDurationMaxInSec) && 
 					(!dutAllProcessExecutionCompleted) &&
 	        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG) &&

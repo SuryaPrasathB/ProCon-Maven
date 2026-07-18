@@ -14,6 +14,9 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor; // Import 
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus; // Import for TestInterfaceStatus
 
+/**
+ * State class responsible for ensuring the divertor relay is turned on for FT Bay.
+ */
 public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
 
 	BayUtils bayUtils = new BayUtils();
@@ -21,9 +24,6 @@ public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
     // Assuming a sequence ID relevant to this operation might be needed for TestInterfaceStatus
     private String myBaySeqId = ConstantBayStateManage.FT_BAY_HP_SEQ_15; // Example, adjust if a more specific one exists
 
-    public String getMyBayKey() {
-        return myBayKey;
-    }
 
     //===========================================================================================
     @Override
@@ -40,14 +40,13 @@ public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
         boolean isRelayTurnedOnSuccessfully = false; // To track the boolean status from ftBay_DivertorRelay_Status()
         String divertorRelayPresentState = ""; // To hold the interpreted state from the sensor
 
-        while (try_count <= 3) { // Loop up to 4 attempts
+        while (try_count <= 3 && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) { // Loop up to 4 attempts
             Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_ON_CHECK] : [RETRY] - Attempt %d of 4 to verify Divertor Relay status.", getMyBayKey(), try_count + 1));
 
             responseReturn = ftBay_DivertorRelay_Status();
             isRelayTurnedOnSuccessfully = (boolean)responseReturn.get("status"); // Retrieve the boolean status
             divertorRelayPresentState = (String)responseReturn.get("responseData"); // Retrieve the interpreted state from sensor
             
-            // Assuming StateExecutorController.updateTestInterfaceStatusOnGui handles Platform.runLater() internally
             StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn, ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
 
             // Check if relay is turned on and the status indicates success
@@ -60,7 +59,7 @@ public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
                 Ft.logger.warn(String.format("[%s] : [DIVERTOR_RELAY_ON_CHECK] : [MISMATCH] - Divertor Relay status is not ON. Expected: %s, Actual: %s. Retrying...", getMyBayKey(), Constant_IO_ActionMapping.OPEN, divertorRelayPresentState));
                 bayResponse.setStatus(false);
                 bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_FT_018);    
-                BayUtils.delay(1000); // Blocking delay; ensure handleRequest() is called from a background thread.
+                BayUtils.delay(1000);
                 try_count++;
             }
         }
@@ -89,13 +88,6 @@ public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
         boolean isSuccess = false; // Local boolean status for the operation
         
         //============================================================================================
-        // Note: This method is named "_Status" and seems to read a sensor.
-        // However, it uses `BayUtils.getOutputPortDetails` which implies controlling an output.
-        // If this is truly a sensor read for the *state* of the divertor relay, it should use an InputPort.
-        // Assuming there's a sensor (input port) associated with the divertor relay's state.
-        // If not, this logic might be checking the *command status* which is less reliable than actual sensor feedback.
-        // For now, I will assume it's reading the state of the *output pin* itself, which is possible but not a sensor.
-        // If there's a separate sensor, `ConstantBayPortNameMapping.FT_PORT_NAME_DIVERTOR_RELAY_STATUS_SENSOR` would be more appropriate.
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.FT_PORT_NAME_DIVERTOR_RELAY);
         
         if (portInfo != null) {
@@ -114,7 +106,7 @@ public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
                     "Waiting", // Initial status for GUI
                     ConstantConveyor.COMM_EXECUTION_STATUS_INP
             );
-            // Add to GUI (assuming StateExecutorController.addToTestStatusGui handles Platform.runLater() internally)
+
             int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testInterfaceStatus);
             testInterfaceStatus.setSerialNo(String.valueOf(newRecordSerialNo));
 
@@ -135,8 +127,7 @@ public class S13_ensure_divertor_relay_turned_on_FT_Bay implements FtBayState {
             }
             
             Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_SENSOR_READ] : [RAW_STATE] : %s", getMyBayKey(), rawStateFromSensor));
-            
-            // Interpret the raw state. Assuming OLD_OFF_NEW_ON indicates an "active" or "ON" state from the sensor.
+
             String interpretedState = rawStateFromSensor.equals(Constant_IO_ActionMapping.ON) ? Constant_IO_ActionMapping.OPEN : Constant_IO_ActionMapping.CLOSE;
 
             Ft.logger.debug(String.format("[%s] : [DIVERTOR_RELAY_SENSOR_READ] : [INTERPRETED_STATE] : %s", getMyBayKey(), interpretedState));

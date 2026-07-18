@@ -16,11 +16,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 
+/**
+ * State class responsible for opening stop latch B4 at the FT Bay.
+ */
 public class S27_open_stop_latch_b4_FT_Bay implements FtBayState {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	//boolean simulateFtBayHappyPath = true; // This is a class variable, but typically accessed statically.
 	String sequencePathId = "p1";
@@ -98,7 +98,7 @@ public class S27_open_stop_latch_b4_FT_Bay implements FtBayState {
 			Ft.logger.debug(String.format("[%s] : [STOP_LATCH_B4_OPERATION] : [PORT_INFO] - PortId: %s, ClusterId: %s, BayId: %s", getMyBayKey(), portInfo.getPortId(), portInfo.getClusterId(), portInfo.getBayId()));
 			testInterfaceStatus.setPortName(portInfo.getPortId()); // Set port name for GUI
 
-			String outputActive = Constant_IO_ActionMapping.OFF; // Assuming OLD_ON_NEW_OFF means 'open' or 'deactivate'
+			String outputActive = Constant_IO_ActionMapping.OFF;
 			Ft.logger.debug(String.format("[%s] : [STOP_LATCH_B4_OPERATION] : [SET_OUTPUT] - Attempting to set output to %s for port %s.", getMyBayKey(), outputActive, portInfo.getPortId()));
 
 			try {
@@ -108,7 +108,6 @@ public class S27_open_stop_latch_b4_FT_Bay implements FtBayState {
 				Ft.logger.debug(String.format("[%s] : [STOP_LATCH_B4_OPERATION] : [RAW_OUTPUT_STATE] : %s", getMyBayKey(), rawOutputState));
 
 				// Check if the operation was successful based on the returned state
-				// Assuming success if the returned state matches the desired active state
 				status = rawOutputState.equals(Constant_IO_ActionMapping.OFF);
 
 			} catch (Exception e) {
