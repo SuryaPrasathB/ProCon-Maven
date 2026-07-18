@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.loading;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,6 +13,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S05_open_stop_latch_Loading_Bay implements LoadingBayState {
 
+    /**
+     * Opens the stop latch at the Loading Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Loading.logger.info("S05_open_stop_latch_Loading_Bay : Entry");

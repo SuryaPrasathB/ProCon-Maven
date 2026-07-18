@@ -4,15 +4,9 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
-import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.spring.orm.model.StateFlow;
-
-import javafx.scene.control.TableView;
 
 public class Loading implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Loading.class.getPackage().getName()); 
@@ -38,10 +32,10 @@ public class Loading implements BayStateContext {
 	@Override
 	public void setNextState(String stateName, String errorCode) {
 		LoadingBayState newState;
-		if (stateName.equals("S04_error_Handling") || stateName.startsWith("ERROR")) {
-			newState = createErrorStateInstance(stateName, errorCode);
+		if (stateName.equals("S03_error_Handling") || stateName.startsWith("ERROR")) {
+			newState = LoadingBayState.createErrorState(stateName, errorCode);
 		} else {
-			newState = createLoadingBayStateInstance(stateName);
+			newState = LoadingBayState.createState(stateName);
 		}
 		loadingBayStateManager.setState(newState);
 	}
@@ -61,49 +55,6 @@ public class Loading implements BayStateContext {
 
 	//public TableView<StateFlow> tableStatePlanner_LoadingBay = new TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_LoadingBay = new ArrayList<StateFlow>();
-
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_LoadingBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static LoadingBayState createLoadingBayStateInstance(String stateName) {
-	        // Create and return an instance of the state class based on the state name
-	        switch (stateName) {
-	            case "S01_check_for_LoadingBay_pushButton_status":
-	                return new S01_check_for_LoadingBay_pushButton_status();
-	            case "S02_let_pallet_outside_loading_bay":
-	                return new S02_let_pallet_outside_loading_bay();
-	            case "S03_error_Handling":
-	                return new S03_error_Handling(); 
-	            case "S04_idle_condition":
-	                return new S04_idle_condition(); 
-	            case "S05_open_stop_latch_Loading_Bay":
-	                return new S05_open_stop_latch_Loading_Bay();
-	            case "S06_close_stop_latch_Loading_Bay":
-	                return new S06_close_stop_latch_Loading_Bay();
-	            default:
-	                throw new IllegalArgumentException("Unknown state: " + stateName);
-	        }
-	    }
-
-	private LoadingBayState createErrorStateInstance(String stateName, String errorCode) {  
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-		case "S22_error_Handling":
-			return new S03_error_Handling(errorCode);
-		default:
-			throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
 
 	@Override
 	public String getErrorStateInstanceString(String errorCode) {
