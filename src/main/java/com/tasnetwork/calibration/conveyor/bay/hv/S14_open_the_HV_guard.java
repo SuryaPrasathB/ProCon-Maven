@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -22,6 +21,11 @@ public class S14_open_the_HV_guard implements HvtBayState {
 
     //===========================================================================================
 	
+	/**
+     * Opens the HV guard at the HVT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Hv.logger.info("S14_open_the_HV_guard : Entry");
@@ -84,9 +88,6 @@ public class S14_open_the_HV_guard implements HvtBayState {
             Hv.logger.debug("PortId    : " + portInfo.getPortId());
             Hv.logger.debug("ClusterId : " + portInfo.getClusterId());
             Hv.logger.debug("BayId     : " + portInfo.getBayId());
-        } else {
-            Hv.logger.debug("S14_open_the_HV_guard : Output port not found");
-            return responseReturn ;
         }
 
         BayUtils bayUtils = new BayUtils();

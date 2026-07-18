@@ -126,12 +126,12 @@ public class FunctionalTestBayStop extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						if (nextStateName.equals("S22_error_Handling")) {
-							FtBayState nextState2 = FtBayState.createErrorState(nextStateName, errorCode);
-							setNextState(nextState2); // Set the next state dynamically
+							FtBayState nextState = FtBayState.createErrorState(nextStateName, errorCode);
+							setNextState(nextState); // Set the next state dynamically
 						} else {
 							// Set the next state based on the success column
-							FtBayState nextState2 = FtBayState.createState(nextStateName);
-							setNextState(nextState2); // Set the next state dynamically
+							FtBayState nextState = FtBayState.createState(nextStateName);
+							setNextState(nextState); // Set the next state dynamically
 						}
 					}
 

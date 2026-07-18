@@ -3,25 +3,21 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_functionaltest.FunctionalTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S30_turn_off_tower_lamp_HVT_Bay implements HvtBayState {
 
-/*    String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE  = "Off"; //"On";
-    String OPEN   = "On"; //"Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
-    //===========================================================================================
+	/**
+     * Turns off the tower lamp at the HVT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Hv.logger.info("S30_turn_off_tower_lamp_HVT_Bay : Entry");
@@ -35,8 +31,6 @@ public class S30_turn_off_tower_lamp_HVT_Bay implements HvtBayState {
 	    
         if (turn_on_red_lamp) {   	
         	Hv.logger.info("S30_turn_off_tower_lamp_HVT_Bay : turn_on_tower_lamp : Success");
-            
-            //BayUtils.delay(500);
             
             responseReturn =  turn_off_tower_lamp();	           
             boolean turn_off_green_lamp = (boolean)responseReturn.get("status");          

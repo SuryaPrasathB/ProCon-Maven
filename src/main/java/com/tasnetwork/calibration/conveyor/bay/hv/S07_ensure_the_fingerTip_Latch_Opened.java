@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,16 +13,11 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S07_ensure_the_fingerTip_Latch_Opened implements HvtBayState {
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-  /*  String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE  = "On";
-    String OPEN   = "Off";
-    String ON  = "On";
- 	String OFF  = "Off";    */
-    //===========================================================================================
+	/**
+     * Ensures that the fingertip latch is opened at the HVT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Hv.logger.info("S07_ensure_the_fingerTip_Latch_Opened : Entry");
@@ -78,10 +72,6 @@ public class S07_ensure_the_fingerTip_Latch_Opened implements HvtBayState {
 
         BayUtils bayUtils = new BayUtils();
         
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
-		
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
         state = state.equals(Constant_IO_ActionMapping.OFF) ? Constant_IO_ActionMapping.CLOSE : Constant_IO_ActionMapping.OPEN;

@@ -12,13 +12,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S09_let_the_pallet_to_IRT_Bay implements HvtBayState {
 
-  /*  String LOW    = "OPEN";
-    String HIGH   = "CLOSE";
-    String CLOSE  = "Off";
-    String OPEN   = "On";
-    String ON  = "On";
- 	String OFF  = "Off";*/
-    //===========================================================================================
+	/**
+     * Lets the pallet move to the IRT Bay by manipulating the stop latch.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Hv.logger.info("S09_let_the_pallet_to_IRT_Bay : Entry");

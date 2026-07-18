@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,15 +13,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S051_stop_HV_source implements HvtBayState {
 
-	/*
-	 * String LOW = "START";
-	 * String HIGH = "STOP";
-	 * String CLOSE = "Off";
-	 * String OPEN = "On";
-	 * String ON = "On";
-	 * String OFF = "Off";
+	/**
+	 * Stops the High Voltage source at the HVT Bay by turning on the stop pin.
+	 *
+	 * @return BayResponse indicating success or failure.
 	 */
-	// ===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
 		Hv.logger.info("S051_stop_HV_source : Entry");
@@ -58,50 +53,6 @@ public class S051_stop_HV_source implements HvtBayState {
 		Hv.logger.info("S051_stop_HV_source : Exit");
 		return bayResponse;
 	}
-	// ============================================================================================================================================
-
-	/*
-	 * private Map<String, Object> stopHvSource() {
-	 * 
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : stopHvSource : Entry");
-	 * 
-	 * boolean status = false;
-	 * Map<String,Object> responseReturn = new HashMap<String,Object>();
-	 * responseReturn.put("status", false);
-	 * 
-	 * status = turn_on_stop_pin_hv_bay();
-	 * 
-	 * if (status) {
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : stopHvSource : Turned on Source Stop Pin : Success"
-	 * );
-	 * BayUtils.delay(500);
-	 * } else {
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : stopHvSource : Failed to turn on Source Stop Pin"
-	 * );
-	 * status = false;
-	 * }
-	 * status = true;
-	 * status = turn_off_stop_pin_hv_bay();
-	 * if (status) {
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : stopHvSource : Turned Off Source Stop Pin : Success"
-	 * );
-	 * 
-	 * } else {
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : stopHvSource : Failed to turn off Source Stop Pin"
-	 * );
-	 * status = false;
-	 * }
-	 * 
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : stopHvSource : Exit");
-	 * return responseReturn;
-	 * }
-	 */
 	// ============================================================================================================================================
 
 	private Map<String, Object> turn_on_stop_pin_hv_bay() {

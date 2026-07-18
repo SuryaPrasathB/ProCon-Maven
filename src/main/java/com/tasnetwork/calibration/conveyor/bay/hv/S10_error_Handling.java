@@ -4,7 +4,6 @@ import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 public class S10_error_Handling implements HvtBayState {
 
@@ -12,19 +11,18 @@ public class S10_error_Handling implements HvtBayState {
 
 	BayResponse bayResponse = new BayResponse();
 
+	/**
+	 * Error handling state for the HVT Bay.
+	 * Schedules the stop task timer upon error.
+	 *
+	 * @return BayResponse.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Hv.logger.info("S10_error_Handling : Entry");
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
-
-		/*
-		 * while(bayResponse.getStatus()){
-		 * HighVoltageTestBay.logger.info("S10_error_Handling : Error");
-		 * Sleep(2000);
-		 * }
-		 */
 
 		return bayResponse;
 	}

@@ -8,7 +8,6 @@ public class HvtBayContext {
 	private HvtBayState lastProcessedBayState;
 	
 	public HvtBayContext() {
-	//	hvtBayState = new  ();
 	}
 	
 	public void setState(HvtBayState state) {

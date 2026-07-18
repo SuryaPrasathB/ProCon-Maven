@@ -4,7 +4,6 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -15,15 +14,12 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 
 public class S06_open_the_fingerTip_Latch implements HvtBayState {
-    
-  /*  String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE  = "Off";
-    String OPEN   = "On";
-    String ON  = "On";
- 	String OFF  = "Off";*/
-    
-    //===========================================================================================
+
+	/**
+     * Opens the fingertip latch at the HVT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Hv.logger.info("S06_open_the_fingerTip_Latch : Entry");

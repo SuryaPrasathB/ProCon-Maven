@@ -3,23 +3,22 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_functionaltest.FunctionalTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S13_close_stop_latch_HVT_Bay implements HvtBayState {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	
+	/**
+     * Closes the stop latch at the HVT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
     	Hv.logger.info("S13_close_stop_latch_HV_Bay : Entry");
@@ -91,10 +90,6 @@ public class S13_close_stop_latch_HVT_Bay implements HvtBayState {
 
             Hv.logger.debug("S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : state : " + state);
             
-            /*if (simulateHvBayHappyPath) {
-                state = Constant_IO_ActionMapping.OFF;
-            }*/
-
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
             Hv.logger.debug("S13_close_stop_latch_HV_Bay : close_StopLatch_HV_Bay : status : " + status);

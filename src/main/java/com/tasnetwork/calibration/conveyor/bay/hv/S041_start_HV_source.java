@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -17,20 +16,16 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S041_start_HV_source implements HvtBayState {
 
-	/*
-	 * String LOW = "START";
-	 * String HIGH = "STOP";
-	 * String CLOSE = "Off";
-	 * String OPEN = "On";
-	 * String ON = "On";
-	 * String OFF = "Off";
-	 */
 	BayUtils bayUtils = new BayUtils();
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	// ===========================================================================================
+	/**
+	 * Starts the High Voltage source at the HVT Bay by turning on the start pin.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Hv.logger.info("S041_start_HV_source : Entry");
@@ -72,46 +67,7 @@ public class S041_start_HV_source implements HvtBayState {
 	}
 	// ============================================================================================================================================
 
-	/*
-	 * private boolean startHvSource() {
-	 * 
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : startHvSource : Entry");
-	 * 
-	 * boolean status = false;
-	 * 
-	 * status = turn_on_start_pin_hv_bay();
-	 * if (status) {
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : startHvSource : Turned on Source Start Pin : Success"
-	 * );
-	 * BayUtils.delay(500);
-	 * } else {
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : startHvSource : Failed to turn on Source Start Pin"
-	 * );
-	 * status = false;
-	 * }
-	 * status = true;
-	 * status = turn_off_start_pin_hv_bay();
-	 * if (status) {
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : startHvSource : Turned Off Source Start Pin : Success"
-	 * );
-	 * 
-	 * } else {
-	 * HighVoltageTestBay.logger.
-	 * debug("S12_turn_on_start_pin_hv_bay : startHvSource : Failed to turn off Source Start Pin"
-	 * );
-	 * status = false;
-	 * }
-	 * 
-	 * HighVoltageTestBay.logger.debug("S041_start_HV_source : startHvSource : Exit"
-	 * );
-	 * return responseReturn;
-	 * }
-	 */
-	// ============================================================================================================================================
+
 
 	private Map<String, Object> turn_on_start_pin_hv_bay() {
 		Hv.logger.debug("S041_start_HV_source : turn_on_start_pin_hv_bay : Entry");
@@ -243,43 +199,7 @@ public class S041_start_HV_source implements HvtBayState {
 		this.palletAvailableTest_I_F_Status = palletAvailableTest_I_F_Status;
 	}
 
-	/*
-	 * private Map<String,Object> turn_off_start_pin_hv_bay() {
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : hvBay_StartPin_Status : Entry");
-	 * 
-	 * boolean status = false;
-	 * Map<String,Object> responseReturn = new HashMap<String,Object>();
-	 * responseReturn.put("status", false);
-	 * 
-	 * IoPortInfo portInfo =
-	 * BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.
-	 * HV_PORT_NAME_SRC_START);
-	 * 
-	 * if (portInfo != null) {
-	 * HighVoltageTestBay.logger.debug("PortId    : " + portInfo.getPortId());
-	 * HighVoltageTestBay.logger.debug("ClusterId : " + portInfo.getClusterId());
-	 * HighVoltageTestBay.logger.debug("BayId     : " + portInfo.getBayId());
-	 * } else {
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : Output port not found");
-	 * return responseReturn ;
-	 * }
-	 * 
-	 * BayUtils bayUtils = new BayUtils();
-	 * 
-	 * String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-	 * portInfo.getBayId(),
-	 * portInfo.getPortId(),
-	 * Constant_IO_ActionMapping.OPEN);
-	 * status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : hvBay_StartPin_Status : status : " + status);
-	 * HighVoltageTestBay.logger.
-	 * debug("S041_start_HV_source : hvBay_StartPin_Status : Exit");
-	 * return responseReturn;
-	 * }
-	 */
+
 
 	// ============================================================================================================================================
 

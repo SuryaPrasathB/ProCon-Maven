@@ -3,13 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
@@ -18,9 +16,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S12_open_stop_latch_HVT_Bay implements HvtBayState {
 	PalletTrackerController palletTracker = new PalletTrackerController();
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+	/**
+     * Opens the stop latch at the HVT Bay to let the pallet move to the next bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Hv.logger.info("S12_open_stop_latch_HV_Bay : Entry");
@@ -58,7 +58,7 @@ public class S12_open_stop_latch_HVT_Bay implements HvtBayState {
 	            bayResponse.setStatus(true);
 	            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 	            
-	            palletTracker.switchPalletToNextBay(myBayKey, ConstantConveyor.IR_BAY_KEY);
+	            palletTracker.switchPalletToNextBay(getMyBayKey(), ConstantConveyor.IR_BAY_KEY);
 	            
 	            BayUtils.delay(1000);
 	        } else {
@@ -102,15 +102,7 @@ public class S12_open_stop_latch_HVT_Bay implements HvtBayState {
 
             Hv.logger.debug("S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : state : " + state);
            
-        /*    if (simulateHvBayHappyPath) {
-                state = Constant_IO_ActionMapping.ON;
-            }*/
-
             status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false ;
-            
-           /* PalletTrackerController palletTracker = new PalletTrackerController();
-            palletTracker.switchPalletToNextBay(myBayKey, ConstantConveyor.IR_BAY_KEY);*/
-
             Hv.logger.debug("S12_open_stop_latch_HV_Bay : open_StopLatch_HvBay : status : " + status);
 
         } else {

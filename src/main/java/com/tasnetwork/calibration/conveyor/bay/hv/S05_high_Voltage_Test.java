@@ -25,7 +25,7 @@ import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S05_high_Voltage_Test implements HvtBayState {
-    private String myBayKey = ConstantConveyor.HV_BAY_KEY;
+
     private String sequencePathId = "p1";
     private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
     private String resultStatus = "";
@@ -104,7 +104,7 @@ public class S05_high_Voltage_Test implements HvtBayState {
         // Update dashboard to indicate testing in progress
         for (int position = 1; position <= ConstantBayPortNameMapping.NUM_OF_METERS_IN_ONE_PALLET; position++) {
             ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
-                    myBayKey, position, MeterStatus.TESTING, ErrorCode.ERR_601);
+                    getMyBayKey(), position, MeterStatus.TESTING, ErrorCode.ERR_601);
         }
 
         // 1. Read HV meter - check voltage (e.g., 4KV)
@@ -157,7 +157,7 @@ public class S05_high_Voltage_Test implements HvtBayState {
 
         // Update dashboard with final results
         PalletTrackerController palletTracker = new PalletTrackerController();
-        String myPalletDistinctId = PalletTrackerController.getPresentPalletAtBayMap().get(myBayKey);
+        String myPalletDistinctId = PalletTrackerController.getPresentPalletAtBayMap().get(getMyBayKey());
         PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
         int meterPassedCount = 0;
         int meterFailedCount = 0;
@@ -171,8 +171,8 @@ public class S05_high_Voltage_Test implements HvtBayState {
                 meterFailedCount++;
             }
             ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
-                    myBayKey, position, meterStatus, errorCode);
-            palletTracker.addMeterResultSummary(position, resultStatus, resultStatus, myBayKey, testType, testCaseName);
+                    getMyBayKey(), position, meterStatus, errorCode);
+            palletTracker.addMeterResultSummary(position, resultStatus, resultStatus, getMyBayKey(), testType, testCaseName);
         }
 
         // Update pallet management with pass/fail counts
@@ -217,7 +217,7 @@ public class S05_high_Voltage_Test implements HvtBayState {
         
         for (int i = 0; i < hvExecutionTime_InSec; i++) {	
         	
-        	Hv.logger.debug("S05_high_Voltage_Test: Waiting 1 min for IR: " + myBayKey);
+        	Hv.logger.debug("S05_high_Voltage_Test: Waiting 1 min for IR: " + getMyBayKey());
             BayUtils.delay(1000);
             if(Hv.isStopProcessRequestedHvtBay()){
             	Hv.logger.debug("S05_high_Voltage_Test: in hv wait time stop requested: " + Hv.isStopProcessRequestedHvtBay());
@@ -288,7 +288,7 @@ public class S05_high_Voltage_Test implements HvtBayState {
 
         boolean status = true;
         PalletTrackerController palletTracker = new PalletTrackerController();
-        String myPalletDistinctId = PalletTrackerController.getPresentPalletAtBayMap().get(myBayKey);
+        String myPalletDistinctId = PalletTrackerController.getPresentPalletAtBayMap().get(getMyBayKey());
         PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
 
         String[] inputPins = new String[] {
@@ -314,7 +314,7 @@ public class S05_high_Voltage_Test implements HvtBayState {
 
             // Update GUI with voltage sensing result
             TestInterfaceStatus testInterfaceStatus = new TestInterfaceStatus(
-                    myBayKey,
+                    getMyBayKey(),
                     ConstantBayStateManage.BAY_HP_SEQ_10,
                     ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
                     "HV2",
@@ -335,10 +335,10 @@ public class S05_high_Voltage_Test implements HvtBayState {
             MeterStatus meterStatus = isVoltageSensed ? MeterStatus.PASSED : MeterStatus.FAILED;
             String errorCode = isVoltageSensed ? ErrorCode.ERR_601 : ErrorCode.ERR_000;
             ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
-                    myBayKey, i + 1, meterStatus, errorCode);
+                    getMyBayKey(), i + 1, meterStatus, errorCode);
 
-            palletTracker.addResultToMeter(i + 1, resultStatus, resultValue, myBayKey, testType, testCaseName);
-            palletTracker.addMeterResultSummary(i + 1, resultStatus, resultStatus, myBayKey, testType, testCaseName);
+            palletTracker.addResultToMeter(i + 1, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
+            palletTracker.addMeterResultSummary(i + 1, resultStatus, resultStatus, getMyBayKey(), testType, testCaseName);
 
             if (isVoltageSensed) {
                 meterPassedCount++;
@@ -394,14 +394,6 @@ public class S05_high_Voltage_Test implements HvtBayState {
         responseReturn.put("status", status);
         Hv.logger.debug("S05_high_Voltage_Test: isVoltageSensedinHvSrcInput: Exit");
         return responseReturn;
-    }
-
-    public String getMyBayKey() {
-        return myBayKey;
-    }
-
-    public void setMyBayKey(String myBayKey) {
-        this.myBayKey = myBayKey;
     }
 
     public String getSequencePathId() {

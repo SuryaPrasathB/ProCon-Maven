@@ -14,11 +14,8 @@ public class FtBayContext {
 	
 	/**
 	 * Initializes a new context for the FT Bay.
-	 * Sets the default initial state to check for a pallet. This is usually overridden
-	 * immediately by the database-driven state planner during engine startup.
 	 */
 	public FtBayContext() {
-		ftBayState = new S01_check_for_pallet_at_FT_Bay();
 	}
 	
 	/**

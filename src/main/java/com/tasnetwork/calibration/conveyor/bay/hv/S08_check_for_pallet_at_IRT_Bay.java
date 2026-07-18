@@ -3,14 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
-import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -25,10 +22,11 @@ public class S08_check_for_pallet_at_IRT_Bay implements HvtBayState {
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_HVT_013;
 	private boolean logEnabled = true;
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
+	/**
+	 * Checks if a pallet is available at the IRT Bay before letting it move from HVT.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Hv.logger.info("S08_check_for_pallet_at_IRT_Bay : Entry");
@@ -78,59 +76,7 @@ public class S08_check_for_pallet_at_IRT_Bay implements HvtBayState {
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_HVT_013);
 		}
 
-		/*boolean isPalletAvailableAt_IRTBay;
-        long startTime;
-        boolean stableDetection = false;
 
-        // Initial delay before checking
-        BayUtils.delay(ConstantConveyor.STABLE_PALLET_TIME);
-
-        while (!stableDetection && !ConstantConveyor.ALL_LOOP_BREAK_FLAG && !HighVoltageTestBay2.isStopProcessRequestedHvtBay()) {
-            Map<String, Object> responseReturn = isPalletAvailableAt_IRTBay();
-            isPalletAvailableAt_IRTBay = (boolean) responseReturn.get("status");
-
-            if (isPalletAvailableAt_IRTBay) {
-                startTime = System.currentTimeMillis();
-
-                while (System.currentTimeMillis() - startTime < ConstantConveyor.STABLE_PALLET_TIME) {
-                    BayUtils.delay(1000); // Small delay to prevent CPU overuse
-                    responseReturn = isPalletAvailableAt_IRTBay();
-                    isPalletAvailableAt_IRTBay = (boolean) responseReturn.get("status");
-
-                    if (!isPalletAvailableAt_IRTBay) {
-                        break; // Reset if detection is lost
-                    }
-                }
-
-                // If detection lasted for stable pallet time, confirm stability
-                if (isPalletAvailableAt_IRTBay) {
-                    stableDetection = true;
-                }
-            } else {
-                HighVoltageTestBay.logger.info("S08_check_for_pallet_at_IRT_Bay : No pallet Available at IRT Bay");
-                BayUtils.delay(1000);
-            }
-        }
-
-        if (stableDetection) {
-            HighVoltageTestBay.logger.info("S08_check_for_pallet_at_IRT_Bay : Pallet Available");
-            bayResponse.setStatus(true);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_602);
-        } else {
-            HighVoltageTestBay.logger.info("S08_check_for_pallet_at_IRT_Bay : Pallet Not Available");
-            bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_HVT_013);
-        }
-		 */
-
-		/*	CheckForPalletAtBay bayPalletService = new CheckForPalletAtBay(HighVoltageTestBay.logger, 
-				getMyBayKey(),
-				getBayStateSequenceId(), 
-				getPalletSensorPortCname(), 
-				getFailStateErrorCode(),
-				StateExecutorController.simulateIrBayHappyPath);
-		bayResponse = bayPalletService.checkForPalletAtBayProcess();
-		 */
 
 		Hv.logger.info("S08_check_for_pallet_at_IRT_Bay : Exit");
 		return bayResponse;
@@ -148,9 +94,6 @@ public class S08_check_for_pallet_at_IRT_Bay implements HvtBayState {
 		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_SNSR_PALLET);
 
 		if (portInfo != null) {
-			/*            Hv.logger.debug("PortId    : " + portInfo.getPortId());
-            Hv.logger.debug("ClusterId : " + portInfo.getClusterId());
-            Hv.logger.debug("BayId     : " + portInfo.getBayId());*/
 
 			if(logEnabled) {
 				Hv.logger.debug("isPalletAvailableAt_IRTBay : getClusterId: " +portInfo.getClusterId() + " -> getBayId: " + portInfo.getBayId() + " -> getPortId: " + portInfo.getPortId() );
@@ -163,10 +106,6 @@ public class S08_check_for_pallet_at_IRT_Bay implements HvtBayState {
 		}
 
 		BayUtils bayUtils = new BayUtils();
-
-		/*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(),
-                portInfo.getBayId(),
-                portInfo.getPortId());*/
 
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
 		if(logEnabled) {
