@@ -3,15 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.ir;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
-import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
-//import com.tasnetwork.calibration.conveyor.bay_highvoltagetest.HighVoltageTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -20,51 +16,24 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S01_check_for_pallet_at_IRT_Bay implements IrtBayState {
 
- /*   String LOW = "OPEN";
-    String HIGH = "CLOSE";*/
-
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01 ;
 	private String palletSensorPortCname =  ConstantBayPortNameMapping.IR_PORT_NAME_SNSR_PALLET ;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_IRT_001 ;
 	
 
 	private boolean logEnabled = true;
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	
+
+	/**
+     * Checks if a pallet has arrived at the IRT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Ir.logger.info("S01_check_for_pallet_at_IRT_Bay : Entry");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-
-
- 		/*Map<String,Object> responseReturn =  isPalletAvailableAt_IRTBay();	 
-		boolean isPalletAvailableAt_IRTBay = (boolean)responseReturn.get("status");
-	    
-        
-        while (!isPalletAvailableAt_IRTBay && 
-        		!InsulationResistanceTestBay.isStopProcessRequestedIrtBay() &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-		
-            InsulationResistanceTestBay.logger.info("S01_check_for_pallet_at_IRT_Bay : No pallet Available at IRT Bay");
-            BayUtils.delay(1000);
-             	
-      	  responseReturn =  isPalletAvailableAt_IRTBay();	 
-  		  isPalletAvailableAt_IRTBay = (boolean)responseReturn.get("status");
-        }
-
-        if (isPalletAvailableAt_IRTBay) {
-            InsulationResistanceTestBay.logger.info("S01_check_for_pallet_at_IRT_Bay : Pallet Available");
-            bayResponse.setStatus(true);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        } else {
-            InsulationResistanceTestBay.logger.info("S01_check_for_pallet_at_IRT_Bay : Pallet Not Available");
-            bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_IRT_001);
-        }*/
         
 		boolean isPalletAvailableAt_IRTBay;
 		long startTime;
@@ -114,14 +83,6 @@ public class S01_check_for_pallet_at_IRT_Bay implements IrtBayState {
 		    bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_IRT_001);
 		}
 
-        
-	 	/*CheckForPalletAtBay bayPalletService = new CheckForPalletAtBay(InsulationResistanceTestBay.logger, 
-				getMyBayKey(),
-				getBayStateSequenceId(),//ConstantBayStateManage.BAY_HP_SEQ_01, 
-				getPalletSensorPortCname(), 
-				getFailStateErrorCode(),
-				StateExecutorController.simulateIrBayHappyPath);
-		bayResponse = bayPalletService.checkForPalletAtBayProcess();*/ 
 		if(bayResponse.getStatus()) {
 			BayUtils bayUtils = new BayUtils();
 			bayUtils.markAsCompleteForPreviousBayPallet(getMyBayKey(),Ir.logger);

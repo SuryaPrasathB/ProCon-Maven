@@ -7,6 +7,11 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 
 public class S11_idle_condition implements IrtBayState {
+	/**
+	 * Idle condition state for the IRT Bay.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Ir.logger.info("S11_idle_condition : Entry");
@@ -22,7 +27,7 @@ public class S11_idle_condition implements IrtBayState {
 		while (!idleComplete &&
         		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 			for(int i = 0; i < 2; i ++) {
-				Ir.logger.info("S23_idle_condition : Waiting in Idle Condition" + myBayKey);
+				Ir.logger.info("S11_idle_condition : Waiting in Idle Condition" + getMyBayKey());
 				BayUtils.delay(1000);
 			}
 			idleComplete = true;
@@ -30,17 +35,14 @@ public class S11_idle_condition implements IrtBayState {
 		
 		if (Ir.isStartProcessRequestedIrtBay()) {
 			Ir.setStopProcessCompletedIrtBay(true);
-			//InsulationResistanceTestBay.setResetProcessRequestedIrtBay(false);
 		}
 
 		if (Ir.isStopProcessRequestedIrtBay()) {
 			Ir.setStopProcessCompletedIrtBay(true);
-			//InsulationResistanceTestBay.setStopProcessRequestedIrtBay(false);
 		}
 
 		if (Ir.isResetProcessRequestedIrtBay()) {
 			Ir.setResetProcessCompletedIrtBay(true);
-			//InsulationResistanceTestBay.setResetProcessRequestedIrtBay(false);
 		}
 
 		return bayResponse;

@@ -1,6 +1,5 @@
 package com.tasnetwork.calibration.conveyor.bay.hv;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 

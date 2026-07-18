@@ -7,15 +7,18 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S420_ByPass_delay1 implements IrtBayState{
 
+	/**
+	 * Bypass delay state for the IRT Bay.
+	 * Provides a workaround delay.
+	 *
+	 * @return BayResponse indicating success or failure.
+	 */
 	@Override
 	public BayResponse handleRequest() {
 		Ir.logger.info("S420_ByPass_delay1 : Entry");
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-
-
-
 
 		int delayTimeInSec = 20;
 		Ir.logger.info("S420_ByPass_delay1 : Delay Time Entry in Sec: " + delayTimeInSec);

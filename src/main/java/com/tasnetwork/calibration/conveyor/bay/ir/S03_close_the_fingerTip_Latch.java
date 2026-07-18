@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.ir;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -13,14 +12,13 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S03_close_the_fingerTip_Latch implements IrtBayState {
-    
-  /*  String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE  = "On";
-    String OPEN   = "Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
+
     //===========================================================================================
+    /**
+     * Closes the fingertip latch at the IRT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Ir.logger.info("S03_close_the_fingerTip_Latch : Entry");

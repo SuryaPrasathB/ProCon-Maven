@@ -3,8 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.ir;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
@@ -14,6 +12,11 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S30_turn_off_tower_lamp_IRT_Bay implements IrtBayState {
 
+    /**
+     * Turns off the tower lamp at the IRT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Ir.logger.info("S30_turn_off_tower_lamp1_IRT_Bay : Entry");
@@ -26,8 +29,6 @@ public class S30_turn_off_tower_lamp_IRT_Bay implements IrtBayState {
 
         if (turn_on_red_lamp) {
             Ir.logger.info("S30_turn_off_tower_lamp1_IRT_Bay : Tower Lamp Turned On");
-
-            //BayUtils.delay(500);
 
             responseReturn = turn_off_tower_lamp();
             boolean turn_off_red_lamp = (boolean)responseReturn.get("status");

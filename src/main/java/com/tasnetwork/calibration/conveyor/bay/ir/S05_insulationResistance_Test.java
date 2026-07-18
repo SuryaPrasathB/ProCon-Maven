@@ -27,7 +27,6 @@ import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S05_insulationResistance_Test implements IrtBayState {
-    private String myBayKey = ConstantConveyor.IR_BAY_KEY;
     private HashMap<Integer, Float> irValues = new HashMap<>();
     private String testType = ConstantConveyor.IR_RESULT_KEY;
     private String testCaseName = ConstantConveyor.IR_RESULT_TEST_NAME;
@@ -133,8 +132,6 @@ public class S05_insulationResistance_Test implements IrtBayState {
 	        
 	    }
 
-        //palletTracker.refreshPalletManageDataFromDb();
-        //palletTracker.refreshPalletManageDataFromDbv2("ir-populatePassResults");
         Ir.logger.debug("S05_insulationResistance_Test: populatePassResults: Exit");
     }
 
@@ -333,8 +330,6 @@ public class S05_insulationResistance_Test implements IrtBayState {
         myPalletManage.setNoOfMeterFailed(meterFailedCount.get());
         MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
 
-        //palletTracker.refreshPalletManageDataFromDb();
-        //palletTracker.refreshPalletManageDataFromDbv2("ir-validateIrValuesForAllMeters");
         Ir.logger.debug("S05_insulationResistance_Test: validateIrValuesForAllMeters: Exit");
         return status;
     }
@@ -454,13 +449,5 @@ public class S05_insulationResistance_Test implements IrtBayState {
         responseReturn.put("status", status);
         Ir.logger.debug("S05_insulationResistance_Test: turn_off_ir_meter_read_disable: Exit");
         return responseReturn;
-    }
-
-    public String getMyBayKey() {
-        return myBayKey;
-    }
-
-    public void setMyBayKey(String myBayKey) {
-        this.myBayKey = myBayKey;
     }
 }

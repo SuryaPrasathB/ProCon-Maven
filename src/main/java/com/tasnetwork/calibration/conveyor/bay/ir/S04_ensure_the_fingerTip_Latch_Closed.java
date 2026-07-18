@@ -3,13 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.ir;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_highvoltagetest.HighVoltageTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
@@ -17,27 +15,21 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S04_ensure_the_fingerTip_Latch_Closed implements IrtBayState {
 	
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN"; */  
-	
 	public String getMyBayKey() {
 		return myBayKey;
 	}
 	
-    //===========================================================================================
+    /**
+     * Ensures the fingertip latch is closed at the IRT Bay.
+     *
+     * @return BayResponse indicating success or failure.
+     */
     @Override
     public BayResponse handleRequest() {
         Ir.logger.info("S04_ensure_the_fingerTip_Latch_Closed : Entry");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        
-        /*for(int i = 0; i < 60; i ++) {
-        	InsulationResistanceTestBay.logger.info("S11_idle_condition : Waiting IR for 1 min" + myBayKey);
-			BayUtils.delay(1000);
-		}*/
      
 		int try_count = 0;
 		 
@@ -69,8 +61,6 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements IrtBayState {
 						bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
 					} 
 				}
-//				bayResponse.setStatus(true);
-//				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 				break;
 			} else {
 				bayResponse.setStatus(false);
@@ -103,10 +93,6 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements IrtBayState {
         }
 
         BayUtils bayUtils = new BayUtils();
-        
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
 		
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
