@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-//import com.tasnetwork.calibration.conveyor.bay_functionaltest.FunctionalTestBay;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 

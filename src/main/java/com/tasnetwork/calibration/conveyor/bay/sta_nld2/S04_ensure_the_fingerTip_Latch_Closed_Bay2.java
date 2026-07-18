@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -16,14 +15,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S04_ensure_the_fingerTip_Latch_Closed_Bay2 implements STA_NoLoadTestBay2State {
 	
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";   */
-	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -59,8 +51,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed_Bay2 implements STA_NoLoadTes
 						bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
 					} 
 				}
-//				bayResponse.setStatus(true);
-//				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
+
 				break;
 			} else {
 				bayResponse.setStatus(false);
@@ -94,9 +85,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed_Bay2 implements STA_NoLoadTes
 
         BayUtils bayUtils = new BayUtils();
         
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
+
 		
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
@@ -107,13 +96,11 @@ public class S04_ensure_the_fingerTip_Latch_Closed_Bay2 implements STA_NoLoadTes
 		}
 		 
         responseReturn.put("responseData", state);
-		//responseReturn.put("status", state);
+
         
-        if(state.equals(Constant_IO_ActionMapping.OPEN)){
-			//testIntefaceStatus.setDeviceResponseStatus("Success");
+		if(state.equals(Constant_IO_ActionMapping.OPEN)){
 			responseReturn.put("status", true);
 		}else{
-			//testIntefaceStatus.setDeviceResponseStatus("Failed");
 			responseReturn.put("status", false);
 		}
 		

@@ -6,18 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.xml.ws.Endpoint;
-
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.S046_Stop_Execution_Bay2;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
-//import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteResponse;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
@@ -177,12 +171,7 @@ public class S045_Select_Run_Project_Bay2 implements STA_NoLoadTestBay2State  {
 
 	    int[][] customOrder = ConstantConveyor.LDU_PLACEMENT_ORDER;
 	    	
-/*	    	{
-	            {3, 1}, {3, 2}, {3, 3}, {3, 4}, {3, 5}, {3, 6},
-	            {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6},
-	            {1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6},
-	            {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}
-	    };*/
+
 
 	    for (int globalPos = 0; globalPos < customOrder.length; globalPos++) {
 	        int palletIndex = customOrder[globalPos][0];
@@ -251,12 +240,7 @@ public class S045_Select_Run_Project_Bay2 implements STA_NoLoadTestBay2State  {
 		// Pallet 3 positions 1-6
 		int[][] customOrder = ConstantConveyor.LDU_PLACEMENT_ORDER;
 			
-/*			{
-				{3, 1}, {3, 2}, {3, 3}, {3, 4}, {3, 5}, {3, 6}, // Pallet 3
-				{2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, // Pallet 2
-				{1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6}, // Pallet 1
-				{0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}  // Pallet 0
-		};*/
+
 
 		for (int globalPos = 0; globalPos < customOrder.length; globalPos++) {
 			int palletIndex = customOrder[globalPos][0];

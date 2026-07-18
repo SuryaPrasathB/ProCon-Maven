@@ -3,9 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
-
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantStateModes;
@@ -27,7 +24,7 @@ public class STA_NoLoadTestBay2Bypass extends TimerTask {
 		manageSTA_NoLoadTestBay2BypassStates2();
 
 		String pathId = "ExR";
-		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus(
+		new TestInterfaceStatus(
 				ConstantConveyor.STA_NLD2_BAY_KEY,
 				"", // ConstantBayStateManage.Hv_BAY_HP_SEQ_01,
 				"", // ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
@@ -39,8 +36,6 @@ public class STA_NoLoadTestBay2Bypass extends TimerTask {
 				"", // "Waiting",
 				"Bypass Completed"// ConstantConveyor.COMM_EXECUTION_STATUS_INP
 		);
-
-		int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 	}
 
 	// ====================================================================================================================
@@ -89,7 +84,6 @@ public class STA_NoLoadTestBay2Bypass extends TimerTask {
 
 		// Set the first state from the table outside the while loops
 		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
 		String errorCode = "";
 
 		if (getTableStatePlanner_StaBay2().size() > 0) {
@@ -125,14 +119,9 @@ public class STA_NoLoadTestBay2Bypass extends TimerTask {
 						STA_NoLoadTestBay2State nextState = createStateInstance(nextStateName, errorCode);
 						setNextState(nextState); // Set the next state dynamically
 					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-
 					for (StateFlow row : getTableStatePlanner_StaBay2()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
 							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
 							break; // Exit the loop once the next state is found
 						}
 					}

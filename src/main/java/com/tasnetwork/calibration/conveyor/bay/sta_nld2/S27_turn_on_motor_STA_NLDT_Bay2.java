@@ -3,25 +3,19 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.Constant_Motor_Requirement;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_verificationtest.VerificationTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S27_turn_on_motor_STA_NLDT_Bay2 implements STA_NoLoadTestBay2State {
 
-	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {

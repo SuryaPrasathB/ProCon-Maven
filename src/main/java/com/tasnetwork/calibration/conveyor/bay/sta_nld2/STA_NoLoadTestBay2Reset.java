@@ -5,15 +5,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
-
-import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.spring.orm.model.StateFlow;
-
-import javafx.scene.control.TableView;
 
 public class STA_NoLoadTestBay2Reset extends TimerTask{
 	//public static Logger logger = Logger.getLogger(STA_NoLoadTestBay2.class.getPackage().getName()); 
@@ -36,7 +31,6 @@ public class STA_NoLoadTestBay2Reset extends TimerTask{
 
 		// Set the first state from the table outside the while loops
 		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
 		if(getTableStatePlanner_StaNldTestBay2().size()>0) {
 
 			// Fetch the first state from the table to start the process
@@ -68,14 +62,9 @@ public class STA_NoLoadTestBay2Reset extends TimerTask{
 						STA_NoLoadTestBay2State nextState = createSctNltBay2StateInstance(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
 					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
 					for (StateFlow row : getTableStatePlanner_StaNldTestBay2()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
 							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
 							break; // Exit the loop once the next state is found
 						}
 					}
@@ -167,17 +156,6 @@ public class STA_NoLoadTestBay2Reset extends TimerTask{
 
 	//public TableView<StateFlow> tableStatePlanner_SctNltBay2 = new TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_StaNldTestBay2 = new ArrayList<StateFlow>();
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_StaNldTestBay2()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
 	// Helper method to create a state instance dynamically based on the state name
 	public static STA_NoLoadTestBay2State createSctNltBay2StateInstance(String stateName) {
 		try {

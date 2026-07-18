@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -15,13 +14,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S07_ensure_the_fingerTip_Latch_Opened_Bay2 implements STA_NoLoadTestBay2State {
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";  */ 
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -76,19 +69,15 @@ public class S07_ensure_the_fingerTip_Latch_Opened_Bay2 implements STA_NoLoadTes
 
         BayUtils bayUtils = new BayUtils();
         
-       /* String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
+
 		
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
         state = state.equals(Constant_IO_ActionMapping.OFF) ? Constant_IO_ActionMapping.CLOSE : Constant_IO_ActionMapping.OPEN;
 
         if(state.equals(Constant_IO_ActionMapping.CLOSE)){
-			//testIntefaceStatus.setDeviceResponseStatus("Success");
 			responseReturn.put("status", true);
 		}else{
-			//testIntefaceStatus.setDeviceResponseStatus("Failed");
 			responseReturn.put("status", false);
 		}
         
@@ -96,7 +85,7 @@ public class S07_ensure_the_fingerTip_Latch_Opened_Bay2 implements STA_NoLoadTes
         	state = Constant_IO_ActionMapping.OPEN; 
         }
         
-		//responseReturn.put("status", state);
+
 		responseReturn.put("responseData", state); 
 		
 		

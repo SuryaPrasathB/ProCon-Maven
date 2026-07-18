@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -16,9 +15,6 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S15_open_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2State {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	@Override
 	public BayResponse handleRequest() {
@@ -26,7 +22,6 @@ public class S15_open_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Stat
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-		//BayUtils.delay(2000);
 
 		Map<String, Object> responseReturn = open_StopLatch_SCT_NLT_Bay2();
 
@@ -36,7 +31,6 @@ public class S15_open_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Stat
 			StaNld_Bay2.logger.info("S15_open_stop_latch_SCT_NLT_Bay2 : Stop Latch Opened");
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-			//BayUtils.delay(1000);
 
 			int palletMoveMentWaitTimeInSec =  ConstantConveyorConfig.STA2_TO_UNLOADING_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC ;//30;
 			StaNld_Bay2.logger.info("S15_open_stop_latch_SCT_NLT_Bay2 : palletMoveMentSta2ToUnloading : start:");
@@ -114,9 +108,6 @@ public class S15_open_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Stat
 					outputActive);
 
 			StaNld_Bay2.logger.debug("S15_open_stop_latch_SCT_NLT_Bay2 : open_StopLatch_SCT_NLT_Bay2 : state : " + state);
-			/*if (simulateSCTNLTBay2HappyPath) {
-                state = Constant_IO_ActionMapping.ON;
-            }*/
 
 			status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 

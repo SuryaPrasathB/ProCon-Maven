@@ -1,13 +1,8 @@
 package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-//import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
@@ -21,9 +16,7 @@ public class S042_Start_Execution_Bay2 implements STA_NoLoadTestBay2State  {
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
 	//===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
@@ -45,10 +38,7 @@ public class S042_Start_Execution_Bay2 implements STA_NoLoadTestBay2State  {
 		
 		String procalServerResponse = procalRemoteSender.sendStartCommandToProcal(stdNldt2ClusterServer, endpoint);
 		
-		/*while (!procalServerResponse.equals("startTestExecuteInitiated")){//isVoltageStartAcknowledged()) {
-			CalibrationBay.logger.info("S042_Start_Execution : Start Execution : awaiting..");		
-			BayUtils.delay(1000);
-		}*/		
+
 		
 		if (procalServerResponse.equals("startTestExecuteInitiated")) {
 			BayUtils.delay(1000);

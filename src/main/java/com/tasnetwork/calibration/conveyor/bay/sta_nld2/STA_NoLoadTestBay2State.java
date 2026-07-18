@@ -5,5 +5,8 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 public interface STA_NoLoadTestBay2State {
 	String myBayKey = ConstantConveyor.STA_NLD2_BAY_KEY;
+	default String getMyBayKey() {
+		return myBayKey;
+	}
 	BayResponse handleRequest();
 }
