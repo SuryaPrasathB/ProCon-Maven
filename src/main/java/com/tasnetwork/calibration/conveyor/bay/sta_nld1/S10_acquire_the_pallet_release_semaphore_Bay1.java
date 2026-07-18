@@ -1,11 +1,7 @@
 package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 
-import java.util.Map;
 import java.util.concurrent.Semaphore;
-
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.conveyor.util.SemaphoreManager;
@@ -15,9 +11,7 @@ public class S10_acquire_the_pallet_release_semaphore_Bay1 implements STA_NoLoad
 	BayResponse bayResponse = new BayResponse();
 	private static final Semaphore semaphore = SemaphoreManager.getSemaphore(); //Shared Semaphore 
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
 	
 	@Override
     public BayResponse handleRequest() {
@@ -32,20 +26,7 @@ public class S10_acquire_the_pallet_release_semaphore_Bay1 implements STA_NoLoad
 			StaNld_Bay1.logger.info("S10_aquire_the_pallet_release_semaphore : BAY 1 : Semaphore acquired successfully.");
 			StaNld_Bay1.logger.info("S10_aquire_the_pallet_release_semaphore : BAY 1 : semaphore : " + semaphore.availablePermits());
 			
-			/*if (ProconFeatureEnable.MOTOR_CONTROL_ENABLE) {
-				BayUtils bayUtils = new BayUtils();
-				Map<String, Object> responseReturn = bayUtils.set_motor_required(getMyBayKey());
-				boolean set_motor_required = (boolean) responseReturn.get("status");
-				if (set_motor_required) {
-					StaNld_1.logger.info("set_motor_required : Success");
-					bayResponse.setStatus(true);
-					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-				} else {
-					StaNld_1.logger.info("Failed to set_motor_required ");
-					bayResponse.setStatus(false);
-					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
-				} 
-			}*/
+
 			ConveyorDataManager.setSta1PalletsExitInProgress(true);
 			bayResponse.setStatus(true);
 	        bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);

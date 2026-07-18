@@ -3,14 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -18,15 +15,12 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S08_check_for_pallets_at_outArea_1_Bay1 implements STA_NoLoadTestBay1State {
 
-	private BayUtils bayUtils = new BayUtils();
-	private String sequencePathId = "p1";
+
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01 ;
 	private String palletSensorPortCname =  ConstantBayPortNameMapping.SCT_NLT_BAY1_SNSR_PALLET2 ;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_014 ;
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
     @Override
     public BayResponse handleRequest() {
         StaNld_Bay1.logger.info("S08_check_for_pallets_at_outArea_1 : Entry");
@@ -35,29 +29,7 @@ public class S08_check_for_pallets_at_outArea_1_Bay1 implements STA_NoLoadTestBa
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
 
-		/*Map<String,Object> responseReturn =  isPalletAvailableAt_outArea1();	 
-		boolean isPalletAvailableAt_outArea1 = (boolean)responseReturn.get("status");
-	    
-        while (isPalletAvailableAt_outArea1 &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-        	 STA_NoLoadTestBay1.logger.info("S08_check_for_pallets_at_outArea_1 : Pallet Available at Out Area 1");
-             BayUtils.delay(1000);
 
-    		 responseReturn =  isPalletAvailableAt_outArea1();	 
-    		  isPalletAvailableAt_outArea1 = (boolean)responseReturn.get("status");
-    	    
-           
-        }
-
-        if (!isPalletAvailableAt_outArea1) {
-            STA_NoLoadTestBay1.logger.info("S08_check_for_pallets_at_outArea_1 : No Pallet Available");
-            bayResponse.setStatus(true);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        } else {
-            STA_NoLoadTestBay1.logger.info("S08_check_for_pallets_at_outArea_1 : Pallet Available");
-            bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_014);
-        }*/
         
         boolean isPalletAvailableAt_outArea1;
         long startTime;
@@ -104,14 +76,7 @@ public class S08_check_for_pallets_at_outArea_1_Bay1 implements STA_NoLoadTestBa
         }
 
         
-		/*CheckForPalletAtBay bayPalletService = new CheckForPalletAtBay(FunctionalTestBay2.logger, 
-				getMyBayKey(),
-				getBayStateSequenceId(), 
-				getPalletSensorPortCname(), 
-				getFailStateErrorCode(),
-				StateExecutorController.simulateFtBayHappyPath);
-			bayResponse = bayPalletService.checkForPalletAtBayProcess();
-*/
+
 
         StaNld_Bay1.logger.info("S08_check_for_pallets_at_outArea_1 : Exit");
         return bayResponse;
@@ -137,9 +102,7 @@ public class S08_check_for_pallets_at_outArea_1_Bay1 implements STA_NoLoadTestBa
 
         BayUtils bayUtils = new BayUtils();
         
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(),
-                portInfo.getBayId(),
-                portInfo.getPortId());*/
+
 		
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
 
@@ -166,10 +129,7 @@ public class S08_check_for_pallets_at_outArea_1_Bay1 implements STA_NoLoadTestBa
 	}
 
 
-/*	public void setBayStateSequenceId(String bayStateSequenceId) {
-		this.bayStateSequenceId = bayStateSequenceId;
-	}
-	*/
+
 	public void setBayStateSequenceId(String bayStateSequenceId) {
 		this.bayStateSequenceId = bayStateSequenceId;
 	}

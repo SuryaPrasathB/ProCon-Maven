@@ -9,7 +9,7 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.Constant_Motor_Requirement;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_verificationtest.S05_verification_Test;
+
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
@@ -18,9 +18,7 @@ public class S16_open_stop_latch_STA_NLDT_Bay1 implements STA_NoLoadTestBay1Stat
 
 	static int palletsPassedSTA_NLDT_Bay1 = 0;
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
 	
     @Override
     public BayResponse handleRequest() {
@@ -107,9 +105,6 @@ public class S16_open_stop_latch_STA_NLDT_Bay1 implements STA_NoLoadTestBay1Stat
                                                      outputActive);
 
             StaNld_Bay1.logger.debug("S16_open_stop_latch_SCT_NLT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : " + state);
-            /*if (simulateSCTNLTBay1HappyPath) {
-                state = Constant_IO_ActionMapping.ON;
-            }*/
 
             status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
             

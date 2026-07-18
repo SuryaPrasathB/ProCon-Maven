@@ -1,41 +1,26 @@
 package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
-//import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.remote.ProCalTestResultsResponse;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteResponse;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.remote.Result;
-import com.tasnetwork.calibration.conveyor.remote.TestPointStatus;
 import com.tasnetwork.calibration.conveyor.remote.TestResult;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
-import io.restassured.path.json.JsonPath;
-import javafx.application.Platform;
-import jdk.nashorn.internal.ir.Flags;
 
 public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State  {
 
@@ -44,9 +29,7 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 	String sequencePathId = "p1";
 	
 	//private String myBayKey = ConstantConveyor.STA_NLD1_BAY_KEY;
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
 	//===========================================================================================
@@ -160,9 +143,6 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 		PalletTrackerController palletTracker = new PalletTrackerController();
 
 		try {
-			JSONObject jsonObject = new JSONObject(myProcalRemoteResult);
-			JSONArray results = jsonObject.getJSONArray("Results");
-
 			presentBayKey = ConstantConveyor.STA_NLD1_BAY_KEY; // STNLD1B
 
 			// Fetch the list of pallets
@@ -237,38 +217,11 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 					//PalletManage selectedPallet = null;
 					//int mappedPosition = positionNo;
 	
-					/*if (ConstantConveyor.STA_NLD1_PALLET1_POSITIONS.contains(pos)) { //Arrays.asList(new Integer[]{1, 2, 3, 22, 23, 24})
-						selectedPallet = myPalletManageList.get(3);
-						mappedPosition = (positionNo == 22) ? 4 : (positionNo == 23) ? 5 : (positionNo == 24) ? 6 : positionNo;
-					} else if (ConstantConveyor.STA_NLD1_PALLET2_POSITIONS.contains(pos)) {
-						selectedPallet = myPalletManageList.get(2);
-						mappedPosition = (positionNo == 19) ? 4 : (positionNo == 20) ? 5 : (positionNo == 21) ? 6 : positionNo - 3;
-					} else if (ConstantConveyor.STA_NLD1_PALLET3_POSITIONS.contains(pos)) {
-						selectedPallet = myPalletManageList.get(1);
-						mappedPosition = (positionNo == 16) ? 4 : (positionNo == 17) ? 5 : (positionNo == 18) ? 6 : positionNo - 6;
-					} else if (ConstantConveyor.STA_NLD1_PALLET4_POSITIONS.contains(pos)) {
-						selectedPallet = myPalletManageList.get(0);
-						mappedPosition = positionNo - 9;
-					}
-					
-					if (ConstantConveyor.STA_NLD1_PALLET1_POSITIONS.contains(positionNo)) { //Arrays.asList(new Integer[]{1, 2, 3, 22, 23, 24})
-						selectedPallet = myPalletManageList.get(3);
-						mappedPosition = positionNo; // 1-6 -> already 1-6
-					} else if (ConstantConveyor.STA_NLD1_PALLET2_POSITIONS.contains(positionNo)) {
-						selectedPallet = myPalletManageList.get(2);
-						mappedPosition = positionNo - 6; // 7-12 -> 1-6
-					} else if (ConstantConveyor.STA_NLD1_PALLET3_POSITIONS.contains(positionNo)) {
-						selectedPallet = myPalletManageList.get(1);
-						mappedPosition = positionNo - 12; // 13-18 -> 1-6
-					} else if (ConstantConveyor.STA_NLD1_PALLET4_POSITIONS.contains(positionNo)) {
-						selectedPallet = myPalletManageList.get(0);
-						mappedPosition = positionNo - 18; // 19-24 -> 1-6
-					}*/
+
 	
 					//if (selectedPallet != null) {
 					if(positionNo!=0){
 						StaNld_Bay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Adding result to Meter : " + positionNo);
-						/*palletTracker.addResultToMeter(mappedPosition, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);*/
 						//palletTracker.addResultToPalletMeter(mappedPosition, resultStatus, resultValue, getMyBayKey(), selectedPallet, testType, testCaseName);
 						palletTracker.addResultToPalletMeterV1_1(positionNo,  dutSerialNo , resultStatus,  resultValue,  getMyBayKey(), palletDistinctId,  testType,  testCaseName ,error_min, error_max );
 	
@@ -278,17 +231,12 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 							testCaseName = ConstantConveyor.STA_RESULT_TEST_NAME; //"Starting Current";
 						}
 						
-						/*palletTracker.addMeterResultSummary(positionNo, resultStatus, resultStatus, getMyBayKey(), testType, testType);*/
 						//palletTracker.addMeterResultSummaryWithPalletDetails(positionNo, resultStatus, resultStatus, testCaseName,  testType, selectedPallet);
 						
 						palletTracker.addMeterResultSummaryWithPalletDetailsV2(positionNo,dutSerialNo, resultStatus, resultStatus, testCaseName,  testType, palletDistinctId);
 					}else{
 						StaNld_Bay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Skipping : " + positionNo);
 					}
-						//palletTracker.addMeterResultSummary(mappedPosition, resultStatus, resultStatus, testType, testType, selectedPallet);
-					/*} else {
-						StaNld_Bay1.logger.warn("S043_Get_Test_Point_Status : addTestPointMeterResults : No matching pallet found for position: " + positionNo);
-					}*/
 				}catch(Exception e) {
 					e.printStackTrace();
 					StaNld_Bay1.logger.error("S043_Get_Test_Point_Status procalResult : Exception2: " + e.getMessage());
@@ -304,65 +252,6 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 	}
 
 
-	/*private void addTestPointMeterResults(String myProcalRemoteResult) {
-		STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Entry ");
-
-		PalletTrackerController palletTracker = new PalletTrackerController();
-
-		presentBayKey = ConstantConveyor.STA_NLD1_BAY_KEY; // STNLD1B
-
-		List<PalletManage> myPalletManageList = MySqlServiceManager.getPalletManageService().findByPresentBayKey(presentBayKey);
-
-		STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : myPalletManageList : " + myPalletManageList);
-
-		try {	
-
-			JSONObject jsonObject = new JSONObject(myProcalRemoteResult);
-			JSONArray results = jsonObject.getJSONArray("Results");
-
-			for (int i = 0; i < results.length(); i++) {
-				JSONObject result = results.getJSONObject(i);
-
-				int positionNo = result.getInt("device_name");
-				String resultValue = result.getString("error_value");
-				String resultStatus = result.getString("test_status").equals("P") ? "Pass" : "Fail";
-				String testCaseName = result.getString("test_case_name");
-				String testType = testCaseName.startsWith("NLD") ? "NLD" : "STA";
-
-				STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Adding result to Meter : " + positionNo);
-				palletTracker.addMeterResultOnClick(positionNo, resultStatus, resultValue, testCaseName, testType);
-			}
-		} catch (org.json.JSONException e) {
-	        STA_NoLoadTestBay1.logger.error("Error parsing JSON: " + e.getMessage(), e);
-	    }	
-
-		STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Exit ");
-
-	}*/
-
-
-	/*private void addTestPointMeterResults() {
-		STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Entry ");
-
-		PalletTrackerController palletTracker = new PalletTrackerController();
-
-		int positionNo = 5;
-		String resultStatus = "Pass" ; 
-		String resultValue = "0";
-		String testCaseName = "NLD_01-115U";
-		String testType = "NLD";
-		int palletBayStateSelectedIndex = 0;
-		PalletManage myPalletManage = new PalletManage();
-
-		for (int i = 1; i <= 6; i++) {
-			STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Adding result to Meter : " + i);
-			palletTracker.addMeterResultOnClick(i, resultStatus, resultValue, testCaseName, testType); //, palletBayStateSelectedIndex, myPalletManage);
-
-		}
-
-		STA_NoLoadTestBay1.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Exit ");
-
-	}*/
 
 	//============================================================================================================================================  
 
@@ -382,9 +271,7 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 		this.palletAvailableTest_I_F_Status = palletAvailableTest_I_F_Status;
 	}
 
-/*	public String getMyBayKey() {
-		return myBayKey;
-	}*/
+
 
 
 }

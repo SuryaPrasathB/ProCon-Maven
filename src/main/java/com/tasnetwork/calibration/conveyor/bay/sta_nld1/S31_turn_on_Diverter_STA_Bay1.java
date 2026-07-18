@@ -13,12 +13,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S31_turn_on_Diverter_STA_Bay1 implements STA_NoLoadTestBay1State {
 
-/*    String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE = "On";
-    String OPEN  = "Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {

@@ -3,15 +3,12 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
-//import com.tasnetwork.calibration.conveyor.bay_verificationtest.S19_open_stop_latch_Verific_Bay;
-//import com.tasnetwork.calibration.conveyor.bay_verificationtest.VerificationTestBay;
+
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
@@ -21,9 +18,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
 public class S17_close_stop_latch2_STA_NLDT_Bay1 implements STA_NoLoadTestBay1State {
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
     @Override
     public BayResponse handleRequest() {
     	PalletTrackerController palletTracker = new PalletTrackerController();
@@ -117,9 +112,6 @@ public class S17_close_stop_latch2_STA_NLDT_Bay1 implements STA_NoLoadTestBay1St
                                                      outputInactive);
 
             StaNld_Bay1.logger.debug("S17_close_stop_latch2_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : " + state);
-            /*if (simulateSCTNLTBay1HappyPath) {
-                state = Constant_IO_ActionMapping.OFF;
-            }*/
 
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 

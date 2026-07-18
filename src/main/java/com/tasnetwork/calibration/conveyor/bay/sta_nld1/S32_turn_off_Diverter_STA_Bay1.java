@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,12 +13,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S32_turn_off_Diverter_STA_Bay1 implements STA_NoLoadTestBay1State {
 
-   /* String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE = "On";
-    String OPEN  = "Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {

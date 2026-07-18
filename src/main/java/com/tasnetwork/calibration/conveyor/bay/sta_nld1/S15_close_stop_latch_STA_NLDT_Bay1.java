@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -65,9 +64,6 @@ public class S15_close_stop_latch_STA_NLDT_Bay1 implements STA_NoLoadTestBay1Sta
                                                      outputInactive);
 
             StaNld_Bay1.logger.debug("S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : " + state);
-            /*if (simulateSCTNLTBay1HappyPath) {
-                state = Constant_IO_ActionMapping.OFF;
-            }*/
 
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 

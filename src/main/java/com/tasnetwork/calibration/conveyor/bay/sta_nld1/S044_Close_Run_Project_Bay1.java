@@ -1,16 +1,9 @@
 package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.xml.ws.Endpoint;
-
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-//import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteResponse;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;

@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -16,14 +15,8 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S04_ensure_the_fingerTip_Latch_Closed_Bay1 implements STA_NoLoadTestBay1State {
 	
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";  */ 
-	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -56,8 +49,6 @@ public class S04_ensure_the_fingerTip_Latch_Closed_Bay1 implements STA_NoLoadTes
 						bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
 					} 
 				}
-//				bayResponse.setStatus(true);
-//				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 				break;
 			} else {
 				bayResponse.setStatus(false);
@@ -91,10 +82,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed_Bay1 implements STA_NoLoadTes
 
         BayUtils bayUtils = new BayUtils();
         
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                    portInfo.getBayId(), 
-                                                    portInfo.getPortId());*/
-		
+
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
         state = state.equals(Constant_IO_ActionMapping.ON) ? Constant_IO_ActionMapping.OPEN : Constant_IO_ActionMapping.CLOSE;

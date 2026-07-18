@@ -14,9 +14,6 @@ public class S420_ByPass_delay1_Bay1 implements STA_NoLoadTestBay1State{
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-
-
-
 		int delayTimeInSec = 20;
 		StaNld_Bay1.logger.info("S420_ByPass_delay1 : Delay Time Entry in Sec: " + delayTimeInSec);
 		while (delayTimeInSec >0 

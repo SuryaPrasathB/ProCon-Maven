@@ -8,7 +8,6 @@ public class STA_NoLoadTestBay1Context {
 	private STA_NoLoadTestBay1State lastProcessedBayState;
 	
 	public STA_NoLoadTestBay1Context() {
-	//	sclNltBay1State = new ();
 	}
 	
 	public void setState(STA_NoLoadTestBay1State state) {

@@ -14,9 +14,6 @@ public class S14_idle_condition_Bay1 implements STA_NoLoadTestBay1State {
 		boolean printLogAlreadyDone = false;
 		boolean idleComplete = false;
 
-		
-
-
 		while (!idleComplete &&
         		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 			for(int i = 0; i < 5; i ++) {
@@ -36,7 +33,6 @@ public class S14_idle_condition_Bay1 implements STA_NoLoadTestBay1State {
 
 		if (StaNld_Bay1.isStopProcessRequestedStaNldBay1()) {
 			StaNld_Bay1.setStopProcessCompletedStaNldBay1(true);
-			//StaNld_1.setStopProcessRequestedStaNldBay1(false);
 		}
 
 		return bayResponse;

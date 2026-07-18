@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,13 +13,7 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S07_ensure_the_fingerTip_Latch_Opened_Bay1 implements STA_NoLoadTestBay1State {
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	/*String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";  */ 
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -76,10 +69,7 @@ public class S07_ensure_the_fingerTip_Latch_Opened_Bay1 implements STA_NoLoadTes
 
         BayUtils bayUtils = new BayUtils();
         
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
-		
+
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
         state = state.equals(Constant_IO_ActionMapping.OFF) ? Constant_IO_ActionMapping.CLOSE : Constant_IO_ActionMapping.OPEN;
