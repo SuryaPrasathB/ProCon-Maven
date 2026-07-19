@@ -4,15 +4,10 @@ package com.tasnetwork.calibration.conveyor.bay.unloading;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
-
-import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.spring.orm.model.StateFlow;
-
-import javafx.scene.control.TableView;
 
 public class UnloadingBayReset extends TimerTask{
 	//public static Logger logger = Logger.getLogger(UnloadingBay.class.getPackage().getName()); 
@@ -35,14 +30,13 @@ public class UnloadingBayReset extends TimerTask{
 
 		// Set the first state from the table outside the while loops
 		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
 		if(getTableStatePlanner_UnloadingBay().size()>0) {
 
 			// Fetch the first state from the table to start the process
 			StateFlow presentRow = getTableStatePlanner_UnloadingBay().get(currentIndex);
 			StateFlow nextRow = presentRow ; 
 			String currentStateName = presentRow.getState(); // Get the current state from the row
-			UnloadingBayState currentState = createUnloadingBayStateInstance(currentStateName); // Create the state instance
+			UnloadingBayState currentState = UnloadingBayState.createState(currentStateName); // Create the state instance
 			setNextState(currentState); // Set the first state
 	
 	
@@ -64,17 +58,12 @@ public class UnloadingBayReset extends TimerTask{
 	
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						// Set the next state based on the success column
-						UnloadingBayState nextState = createUnloadingBayStateInstance(nextStateName);
+						UnloadingBayState nextState = UnloadingBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
 					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
 					for (StateFlow row : getTableStatePlanner_UnloadingBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
 							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
 							break; // Exit the loop once the next state is found
 						}
 					}
@@ -95,10 +84,10 @@ public class UnloadingBayReset extends TimerTask{
 	
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						if (nextStateName.equals("S10_error_Handling")) {
-							UnloadingBayState nextState2 = createErrorStateInstance(nextStateName, errorCode);
+							UnloadingBayState nextState2 = UnloadingBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically
 						} else {
-							UnloadingBayState nextState2 = createUnloadingBayStateInstance(nextStateName);
+							UnloadingBayState nextState2 = UnloadingBayState.createState(nextStateName);
 							setNextState(nextState2); // Set the next state dynamically
 						}
 					
@@ -126,21 +115,7 @@ public class UnloadingBayReset extends TimerTask{
 	}
 
 	//=====================================================================================================================
-	
-/*	public static void singleStateTestRun(UnloadingBayState currentState){
-		UnloadingBay.logger.debug("singleStateTestRun : Entry");
-		
-		setNextState(currentState);
-		
-		BayResponse bayStatus = processCurrentState();
-		
-		UnloadingBay.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		UnloadingBay.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		UnloadingBay.logger.debug("singleStateTestRun : Exit");
-	}*/
-	
-	//=====================================================================================================================
-	
+
 	public void setNextState(UnloadingBayState newState) {
 		//Set previous state here 
 
@@ -165,64 +140,6 @@ public class UnloadingBayReset extends TimerTask{
 
 	//public TableView<StateFlow> tableStatePlanner_FtBay = new TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_UnloadingBay = new ArrayList<StateFlow>();
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_UnloadingBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static UnloadingBayState createUnloadingBayStateInstance(String stateName) {
-        // Create and return an instance of the state class based on the state name
-        switch (stateName) {
-            case "S01_check_for_pallet_at_Unloading_Bay":
-                return new S01_check_for_pallet_at_Unloading_Bay();
-            case "S02_qR_Code_Scanning_of_Pallet":
-                return new S02_qR_Code_Scanning_of_Pallet();
-            case "S03_check_for_empty_pallet":
-                return new S03_check_for_empty_pallet();
-            case "S04_check_for_failed_meters":
-                return new S04_check_for_failed_meters();
-            case "S05_indicate_the_status_of_meters":
-                return new S05_indicate_the_status_of_meters();
-            case "S06_check_for_alarm_pushButton_status":
-                return new S06_check_for_alarm_pushButton_status();
-            case "S07_check_for_loadingBay_pushButton_status":
-                return new S07_check_for_loadingBay_pushButton_status();
-            case "S08_check_for_pallet_at_Loading_Bay":
-                return new S08_check_for_pallet_at_Loading_Bay();
-            case "S09_let_the_pallet_to_Loading_Bay":
-                return new S09_let_the_pallet_to_Loading_Bay();
-            case "S10_error_Handling":
-                return new S10_error_Handling(); 
-            case "S11_idle_condition":
-                return new S11_idle_condition(); 
-            case "S12_close_stop_latch_Unloading_Bay":
-                return new S12_close_stop_latch_Unloading_Bay();
-            case "S13_open_stop_latch_Unloading_Bay":
-                return new S13_open_stop_latch_Unloading_Bay();
-            default:
-                throw new IllegalArgumentException("Unknown state: " + stateName);
-        }
-    }
-
-
-	private UnloadingBayState createErrorStateInstance(String stateName, String errorCode) {  
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-		case "S10_error_Handling":
-			return new S10_error_Handling(errorCode);
-		default:
-			throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
-
 	private String getErrorStateInstance(String errorCode) {
 
 		switch (errorCode) {

@@ -7,10 +7,7 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 public class S11_idle_condition implements UnloadingBayState {
 	
 	
-	public String getMyBayKey() {
-        return myBayKey;
-    }
-	
+
 	@Override
 	public BayResponse handleRequest() {
 		Unloading.logger.info("S11_idle_condition : Entry");
@@ -19,17 +16,6 @@ public class S11_idle_condition implements UnloadingBayState {
 		bayResponse.setErrorCode("NO_ERROR_001");
 
 		boolean idleComplete = false;
-
-/*		if (Unloading.isResetProcessRequestedUnloadingBay()) {
-			Unloading.setResetProcessCompletedUnloadingBay(true);
-			Unloading.setResetProcessRequestedUnloadingBay(false);
-		}
-
-		if (Unloading.isStopProcessRequestedUnloadingBay()) {
-			Unloading.setStopProcessCompletedUnloadingBay(true);
-			Unloading.setStopProcessRequestedUnloadingBay(false);
-		}*/
-
 
 		while (!idleComplete &&
         		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {

@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.unloading;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,12 +13,6 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S30_turn_off_tower_lamp_Unloading_Bay implements UnloadingBayState {
 
-/*    String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE  = "Off"; //"On";
-    String OPEN   = "On"; //"Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {

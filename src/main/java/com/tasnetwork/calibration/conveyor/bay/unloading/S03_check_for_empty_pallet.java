@@ -3,13 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.unloading;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
@@ -18,10 +16,6 @@ import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController
 
 public class S03_check_for_empty_pallet implements UnloadingBayState {
 	private boolean logEnabled = true;
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 
 	// ===========================================================================================
 	@Override

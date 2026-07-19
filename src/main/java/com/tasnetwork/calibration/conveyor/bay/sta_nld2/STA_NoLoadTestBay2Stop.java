@@ -1,6 +1,5 @@
 package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -38,8 +37,9 @@ public class STA_NoLoadTestBay2Stop extends TimerTask {
 			StateFlow presentRow = getTableStatePlanner_StaNldTestBay2().get(currentIndex);
 			StateFlow nextRow = presentRow;
 			String currentStateName = presentRow.getState(); // Get the current state from the row
-			STA_NoLoadTestBay2State currentState = createSctNltBay2StateInstance(currentStateName); // Create the state
-																									// instance
+			STA_NoLoadTestBay2State currentState = STA_NoLoadTestBay2State.createState(currentStateName); // Create the
+																											// state
+			// instance
 			setNextState(currentState); // Set the first state
 
 			StaNld_Bay2.logger.debug("STA_NoLoadTestBay2Stop : manageSta2StopStates : getTableStatePlanner2 : Size : "
@@ -60,7 +60,7 @@ public class STA_NoLoadTestBay2Stop extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						// Set the next state based on the success column
-						STA_NoLoadTestBay2State nextState = createSctNltBay2StateInstance(nextStateName);
+						STA_NoLoadTestBay2State nextState = STA_NoLoadTestBay2State.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
 					}
 					for (StateFlow row : getTableStatePlanner_StaNldTestBay2()) {
@@ -85,13 +85,15 @@ public class STA_NoLoadTestBay2Stop extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						if (nextStateName.equals("S13_error_Handling")) {
-							STA_NoLoadTestBay2State nextState2 = createErrorStateInstance(nextStateName, errorCode);
+							STA_NoLoadTestBay2State nextState2 = STA_NoLoadTestBay2State.createErrorState(nextStateName,
+									errorCode);
 							setNextState(nextState2); // Set the next state dynamically
 						} else if (nextStateName.equals("S13_error_Handling_Bay2")) {// S13_error_Handling_Bay2")) {
-							STA_NoLoadTestBay2State nextState2 = createErrorStateInstance(nextStateName, errorCode);
+							STA_NoLoadTestBay2State nextState2 = STA_NoLoadTestBay2State.createErrorState(nextStateName,
+									errorCode);
 							setNextState(nextState2); // Set the next state dynamically
 						} else {
-							STA_NoLoadTestBay2State nextState2 = createSctNltBay2StateInstance(nextStateName);
+							STA_NoLoadTestBay2State nextState2 = STA_NoLoadTestBay2State.createState(nextStateName);
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
@@ -164,42 +166,6 @@ public class STA_NoLoadTestBay2Stop extends TimerTask {
 	// public TableView<StateFlow> tableStatePlanner_SctNltBay2 = new
 	// TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_StaNldTestBay2 = new ArrayList<StateFlow>();
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static STA_NoLoadTestBay2State createSctNltBay2StateInstance(String stateName) {
-		try {
-			// Get the fully qualified class name dynamically
-			String packageName = STA_NoLoadTestBay2State.class.getPackage().getName(); // Adjust if necessary
-			Class<?> c = Class.forName(packageName + "." + stateName);
-
-			// Ensure the class is a subclass of STA_NoLoadTestBay2State
-			if (!STA_NoLoadTestBay2State.class.isAssignableFrom(c)) {
-				throw new IllegalArgumentException("Invalid state class: " + stateName);
-			}
-
-			// Create an instance using the default constructor
-			return (STA_NoLoadTestBay2State) c.getDeclaredConstructor().newInstance();
-		} catch (ClassNotFoundException e) {
-			throw new IllegalArgumentException("Unknown state: " + stateName, e);
-		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException
-				| InvocationTargetException e) {
-			throw new IllegalArgumentException("Error instantiating state: " + stateName, e);
-		}
-	}
-
-	private STA_NoLoadTestBay2State createErrorStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-			case "S22_error_Handling":
-				return new S13_error_Handling_Bay2(errorCode);
-			case "S13_error_Handling_Bay2":
-				return new S13_error_Handling_Bay2(errorCode);
-			case "S22_error_Handling_Bay2":
-				return new S13_error_Handling_Bay2(errorCode);
-			default:
-				throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
 
 	private String getErrorStateInstance(String errorCode) {
 

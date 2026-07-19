@@ -3,60 +3,29 @@ package com.tasnetwork.calibration.conveyor.bay.unloading;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S08_check_for_pallet_at_Loading_Bay implements UnloadingBayState {
 
-	private BayUtils bayUtils = new BayUtils();
-	private String sequencePathId = "p1";
 	private String bayStateSequenceId    = ConstantBayStateManage.BAY_HP_SEQ_01;
 	private String palletSensorPortCname =  ConstantBayPortNameMapping.UNLOADING_PORT_NAME_SNSR_PALLET ;
 	private String failStateErrorCode    = ConvErrorCodeMapping.ERROR_CODE_UNLOADING_008;
 	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	
+
     @Override
     public BayResponse handleRequest() {
         Unloading.logger.info("S08_check_for_pallet_at_Loading_Bay : Entry");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-
-
-	/*	Map<String,Object> responseReturn =  isPalletAvailableAt_LoadingBay();	 
-		boolean isPalletAvailableAt_LoadingBay = (boolean)responseReturn.get("status");
-	    
-        while (!isPalletAvailableAt_LoadingBay &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-            UnloadingBay.logger.info("S08_check_for_pallet_at_Loading_Bay : No pallet Available at Loading Bay");
-            BayUtils.delay(1000);
-            
-            responseReturn =  isPalletAvailableAt_LoadingBay();	 
-    		 isPalletAvailableAt_LoadingBay = (boolean)responseReturn.get("status");          
-        }
-
-        if (isPalletAvailableAt_LoadingBay) {
-            UnloadingBay.logger.info("S08_check_for_pallet_at_Loading_Bay : Pallet Available");
-            bayResponse.setStatus(true);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        } else {
-            UnloadingBay.logger.info("S08_check_for_pallet_at_Loading_Bay : Pallet Not Available");
-            bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_UNLOADING_008);
-        }*/
         
         boolean isPalletAvailableAt_LoadingBay;
         long startTime;

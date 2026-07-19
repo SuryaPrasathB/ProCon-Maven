@@ -25,7 +25,7 @@ public class STA_NoLoadTestBay2SingleStateTestRun extends TimerTask {
 		StaNld_Bay2.logger.debug("ShortCircuit_NoLoadTestBay2SingleStateTestRun : singleStateTestRun : Entry");
 
 		String stateName = StatePlannerController.ref_cmbBxSelectSingleState.getSelectionModel().getSelectedItem();
-		STA_NoLoadTestBay2State currentState = StaNld_Bay2.createSctNltBay2StateInstance(stateName);
+		STA_NoLoadTestBay2State currentState = STA_NoLoadTestBay2State.createState(stateName);
 
 		setNextState(currentState);
 

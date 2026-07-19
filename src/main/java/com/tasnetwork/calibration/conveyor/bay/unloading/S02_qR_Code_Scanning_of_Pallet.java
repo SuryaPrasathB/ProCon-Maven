@@ -1,18 +1,11 @@
 package com.tasnetwork.calibration.conveyor.bay.unloading;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.json.simple.JSONObject;
 
@@ -26,39 +19,22 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.dashboard.ErrorCode;
 import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.testreport.ReportUtils;
-import com.tasnetwork.calibration.energymeter.testreport.TestReportController;
-import com.tasnetwork.calibration.energymeter.testreport.TestReportConveyorController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.spring.orm.service.ConveyorOutputMetricsService;
-import com.tasnetwork.spring.orm.service.ConveyorOutputMetricsSummaryService;
 
 import javafx.application.Platform;
 
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetrics;
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetricsSummary;
-
 public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
-
-	private boolean restApiSendIndividualMeterStatus = false;
-	// Define the URL for your Python unloading application's single meter update
-	// API
-	private static final String UNLOADING_SINGLE_METER_API_URL = "http://127.0.0.1:5002/api/unloading_meters/"; // Base
-																												// URL
-																												// for
-																												// PUT
 
 	private String flowPathId = "p1";
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_05;
@@ -66,27 +42,10 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 	private int palletQrScannerPositionId = ConstantBayPortNameMapping.QR_SCNR_UNLOADING_BAY_PALLET_POS_ID;
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	private ConveyorOutputMetricsService conveyorOutputMetricsService;
-	private ConveyorOutputMetricsSummaryService conveyorOutputMetricsSummaryService;
-	// private String myBayKey; // This should be initialized when the state machine
-	// for a specific bay starts.
-
 	public S02_qR_Code_Scanning_of_Pallet() {
-		this.conveyorOutputMetricsService = MySqlServiceManager.getConveyorOutputMetricsService();
-		this.conveyorOutputMetricsSummaryService = MySqlServiceManager.getConveyorOutputMetricsSummaryService();
-		// myBayKey needs to be set dynamically per bay instance.
-		// For demonstration, let's assume it's set via a setter or passed during
-		// instantiation.
+		MySqlServiceManager.getConveyorOutputMetricsService();
+		MySqlServiceManager.getConveyorOutputMetricsSummaryService();
 	}
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	/*
-	 * public void setMyBayKey(String myBayKey) {
-	 * this.myBayKey = myBayKey;
-	 * }
-	 */
 
 	// ==============================================================================================================================================================
 	@Override
@@ -355,42 +314,36 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 				ApplicationLauncher.logger.debug(
 						"updateConveyorMetrics: Unloading: positionNo: " + positionNo + " status :<" + status + ">");
 
-				if (positionNo != null) {
-					// sendunloadingMeterUpdate(positionNo, serialNo, status, reason);
-					// BayUtils.delay(20000);
-					// sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
-					// MeterStatus meterStatus = status.equals("Pass") ? MeterStatus.PASSED :
-					// MeterStatus.FAILED;
-					MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS) ? MeterStatus.PASSED
-							: MeterStatus.FAILED;
-					if (status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
-						meterStatus = MeterStatus.PASSED;
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " Pass hit1");
-					} else if (status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
-						meterStatus = MeterStatus.FAILED;
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " Fail hit2");
-					} else if (status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " WFR hit3");
-						meterStatus = MeterStatus.FAILED;
-					} else {
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " others hit4");
-						meterStatus = MeterStatus.FAILED;
-					}
-					// ConveyorDeviceDataManagerController.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
-					// getMyBayKey(), positionNo, meterStatus, reason);
-					ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPositionWithSerialNo(
-							getMyBayKey(), positionNo, serialNo, meterStatus,
-							reason.replace(ConstantConveyor.REASON_RESULT_FAILED_DISPLAY, "").replace("\n", ""));// .replace(ConstantConveyor.REASON_RESULT_WFR_DISPLAY,
-																													// ""));
+				// sendunloadingMeterUpdate(positionNo, serialNo, status, reason);
+				// BayUtils.delay(20000);
+				// sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
+				// MeterStatus meterStatus = status.equals("Pass") ? MeterStatus.PASSED :
+				// MeterStatus.FAILED;
+				MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS) ? MeterStatus.PASSED
+						: MeterStatus.FAILED;
+				if (status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
+					meterStatus = MeterStatus.PASSED;
+					ApplicationLauncher.logger
+							.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " Pass hit1");
+				} else if (status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
+					meterStatus = MeterStatus.FAILED;
+					ApplicationLauncher.logger
+							.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " Fail hit2");
+				} else if (status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
+					ApplicationLauncher.logger
+							.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " WFR hit3");
+					meterStatus = MeterStatus.FAILED;
 				} else {
 					ApplicationLauncher.logger
-							.debug("batchUpdateMeters: Unloading: Meter ID is null, skipping update for: " + serialNo);
-					// allUpdatesInitiatedSuccessfully = false;
+							.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " others hit4");
+					meterStatus = MeterStatus.FAILED;
 				}
+				// ConveyorDeviceDataManagerController.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
+				// getMyBayKey(), positionNo, meterStatus, reason);
+				ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPositionWithSerialNo(
+						getMyBayKey(), positionNo, serialNo, meterStatus,
+						reason.replace(ConstantConveyor.REASON_RESULT_FAILED_DISPLAY, "").replace("\n", ""));// .replace(ConstantConveyor.REASON_RESULT_WFR_DISPLAY,
+																												// ""));
 			} catch (Exception e) {
 				ApplicationLauncher.logger
 						.error("batchUpdateMeters: Unloading: Error initiating update for meter data: "
@@ -403,20 +356,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 	public List<Map<String, Object>> readPalletMetersData(String selectedBayTypeKey, String palletDistinctId) {
 		Unloading.logger.debug("readPalletMetersData: Entry for bay: " + selectedBayTypeKey);
 		try {
-			/*
-			 * Unloading.logger.error("readPalletMetersData: getPresentPalletAtBayMap : " +
-			 * PalletTrackerController.getPresentPalletAtBayMap());
-			 * List<PalletManage> myPalletManage =
-			 * MySqlServiceManager.getPalletManageService().
-			 * findByPalletQrIdAndExitNotAppeared(palletQrCode);
-			 * 
-			 * if (myPalletManage.size()==0) {
-			 * Unloading.logger.
-			 * error("readPalletMetersData: PalletManage not found for pallet Qr code " +
-			 * palletQrCode);
-			 * return null;
-			 * }
-			 */
 
 			PalletManage myPalletManage = null;// MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
 			// Optional<PalletManage> myPalletManageOptional =
@@ -430,19 +369,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 						+ " : " + palletDistinctId);
 				Unloading.logger.debug("Unloading : readPalletMetersData: result found for " + palletDistinctId
 						+ " : getPalletDistinctId: " + myPalletManage.getPalletDistinctId());
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " + myPalletManage.g);
-				// Rejection.logger.debug("Rejection : readPalletMetersData: result found for "
-				// + palletQrId + " : getPalletDistinctId: " +
-				// myPalletManage.getPalletDistinctId());
-				/*
-				 * TestReportConveyorController testReportConveyorController = new
-				 * TestReportConveyorController();
-				 * testReportConveyorController.exportPalletMeterResult(myPalletManage);
-				 */
 			} else {
 				Unloading.logger.debug(
 						"readPalletMetersData: result not found for " + selectedBayTypeKey + " : " + palletDistinctId);
@@ -561,55 +487,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 		}
 	}
 
-	/*
-	 * public static void sendunloadingMeterUpdate(int positionNo, String serialNo,
-	 * String status, String reason) {
-	 * new Thread(() -> {
-	 * try {
-	 * String rawJsonPayload = String.format(
-	 * "{\"id\": %d, \"serialNo\": \"%s\", \"status\": \"%s\", \"reason\": \"%s\", \"timestamp\": \"%s\"}"
-	 * ,
-	 * positionNo,
-	 * serialNo,
-	 * status,
-	 * reason,
-	 * LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"
-	 * ))
-	 * );
-	 * 
-	 * String jsonPayloadForCurl = "\"" + rawJsonPayload.replace("\"", "\\\"") +
-	 * "\"";
-	 * 
-	 * String[] command = {
-	 * "curl",
-	 * "-X", "PUT",
-	 * "-H", "Content-Type: application/json",
-	 * "-d", jsonPayloadForCurl,
-	 * UNLOADING_SINGLE_METER_API_URL + positionNo
-	 * };
-	 * 
-	 * ProcessBuilder pb = new ProcessBuilder(command);
-	 * pb.inheritIO();
-	 * 
-	 * System.out.println("Sending unloading API Update: " +
-	 * Arrays.toString(command));
-	 * Process process = pb.start();
-	 * int exitCode = process.waitFor();
-	 * System.out.println("Curl command for unloading app exited with code: " +
-	 * exitCode);
-	 * 
-	 * } catch (IOException | InterruptedException e) {
-	 * System.err.println("Error sending unloading meter update: " +
-	 * e.getMessage());
-	 * e.printStackTrace();
-	 * if (e instanceof InterruptedException) {
-	 * Thread.currentThread().interrupt();
-	 * }
-	 * }
-	 * }).start();
-	 * }
-	 */
-
 	public void sendRestApiMeterStatusUpdate(int positionNo, String serialNo, String status, String reason) {
 		Unloading.logger.debug("sendRestApiMeterStatusUpdate: Entry");
 		new Thread(() -> {
@@ -640,49 +517,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 			}
 		}).start();
 	}
-
-	// public void sendPalletWithMetersStatusUpdate(ClusterServer
-	// clusterServer,String targetDisplay,String palletQrCode, List<Map<String,
-	// Object>> metersData) {
-	/*
-	 * public void sendRestApiMeterStatusUpdate(int positionNo, String serialNo,
-	 * String status, String reason) {
-	 * Unloading.logger.debug("sendRestApiMeterStatusUpdate: Entry");
-	 * new Thread(() -> {
-	 * try {
-	 * Unloading.logger.debug("sendRestApiMeterStatusUpdate: status-1: <" + status +
-	 * "> : positionNo: " + positionNo);
-	 * //ConveyorClientManager cluster1ClientManager = new ConveyorClientManager();
-	 * String terminalId = ConstantConveyorConfig.MY_TERMINAL_ID;
-	 * String clusterId =
-	 * ConstantConveyorConfig.CONVEYOR_UNLOADING_CLUSTER_ID;//"4";
-	 * BayUtils bayUtils = new BayUtils();
-	 * ClusterServer clusterServer = bayUtils.getServerDetails(terminalId,
-	 * clusterId);
-	 * ConveyorClientManager cluster4ClientManager =
-	 * ConveyorClientManager.getInstance(clusterId);
-	 * String targetDisplay=
-	 * ConstantConveyorConfig.REST_API_TAIL_END_UNLOADING_DISPLAY;//
-	 * "rejection_meters";
-	 * String status2 = status.replace(ConstantReport.REPORT_POPULATE_WFR,
-	 * ConstantReport.REPORT_POPULATE_PASS).toUpperCase();
-	 * Unloading.logger.debug("sendRestApiMeterStatusUpdate: status-2: <" + status2
-	 * + "> : positionNo: " + positionNo);
-	 * cluster4ClientManager.getRestConvClient().sendMeterStatusUpdate(clusterServer
-	 * ,targetDisplay,positionNo, serialNo, status2, reason);
-	 * Unloading.logger.debug("sendRestApiMeterStatusUpdate: Exit");
-	 * } catch (Exception e) {
-	 * Unloading.logger.
-	 * error("sendRestApiMeterStatusUpdate : Error sending Unloading meter update: "
-	 * + e.getMessage() + " : Position :" +positionNo);
-	 * e.printStackTrace();
-	 * if (e instanceof InterruptedException) {
-	 * Thread.currentThread().interrupt(); // Restore interrupt status
-	 * }
-	 * }
-	 * }).start();
-	 * }
-	 */
 
 	public void sendPalletWithMetersStatusUpdate(String palletQrCode, List<Map<String, Object>> metersData) {
 		Unloading.logger.debug("sendPalletWithMetersStatusUpdate: Entry");
@@ -922,44 +756,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements UnloadingBayState {
 					"metricsUpdateUnloadingMeters: bayType (myBayKey) is null or empty. Cannot update daily metrics.");
 			return false;
 		}
-
-		/*
-		 * for (Map<String, Object> meterData : metersToUpdate) {
-		 * try {
-		 * Integer positionNo = (Integer) meterData.get("rackPositionNo");
-		 * String serialNo = (String) meterData.get("meterSerialNo");
-		 * String status = (String) meterData.get("overallTestResultStatus");
-		 * String reason = (String) meterData.get("errorCode");
-		 * 
-		 * if (positionNo != null) {
-		 * //sendunloadingMeterUpdate(positionNo, serialNo, status, reason);
-		 * if(restApiSendIndividualMeterStatus) {
-		 * sendRestApiPalletUpdate(palletQrCode);
-		 * BayUtils.delay(100);
-		 * sendRestApiMeterStatusUpdate(positionNo, serialNo, status, reason);
-		 * }
-		 * } else {
-		 * Unloading.logger.
-		 * error("metricsUpdateUnloadingMeters: Meter ID is null, skipping update for: "
-		 * + serialNo);
-		 * allUpdatesInitiatedSuccessfully = false;
-		 * }
-		 * } catch (Exception e) {
-		 * Unloading.logger.
-		 * error("metricsUpdateUnloadingMeters: Error initiating update for meter data: "
-		 * + meterData + ". Exception: " + e.getMessage(), e);
-		 * allUpdatesInitiatedSuccessfully = false;
-		 * }
-		 * }
-		 */
-
-		/*
-		 * if(!restApiSendIndividualMeterStatus) {
-		 * //String palletQrCodeWithBayName = "Unloading Bay : " + palletQrCode;
-		 * //sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
-		 * sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
-		 * }
-		 */
 
 		BayUtils bayUtils = new BayUtils();
 		allUpdatesInitiatedSuccessfully = bayUtils.updateConveyorMetrics(
