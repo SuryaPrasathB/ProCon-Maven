@@ -36,13 +36,10 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
     private String testType = ConstantConveyor.CALIBRATION_RESULT_KEY;
     private String testCaseName = ConstantConveyor.PHASE_CALIB_RESULT_TEST_NAME;
     private boolean allPass = false;
-    
-    
-    private boolean calibWorkaround = true;
-    //private int allFailedCount = 0;
-    
+
     /**
      * Handles the phase calibration test request for the conveyor bay.
+     * 
      * @return BayResponse indicating the test status and error code
      */
     @Override
@@ -68,7 +65,8 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
             while (!ConstantConveyor.isCALIB_CURRENT_STABLE() && !Calib.isStopProcessRequestedCalibBay()) {
                 long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
                 Platform.runLater(() -> {
-                    StateExecutorController.ref_tf_CALIB_prompt.setText("Is Current Stable ? - " + elapsedTime + " secs");
+                    StateExecutorController.ref_tf_CALIB_prompt
+                            .setText("Is Current Stable ? - " + elapsedTime + " secs");
                 });
 
                 if (toggle) {
@@ -88,83 +86,94 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
                 StateExecutorController.ref_tf_CALIB_prompt.clear();
             });
         }
-        
-//        if(calibWorkaround) {
-//        	calibBofaPowerSourceStableWorkaround();
-//        }
-        
+
+        // if(calibWorkaround) {
+        // calibBofaPowerSourceStableWorkaround();
+        // }
+
         if (ProconFeatureEnable.WAIT_FOR_POWER_STABLE_IN_CALIB) {
-        	ConstantConveyor.setCALIB_CURRENT_STABLE(false);
-        	Calib.logger.debug("S059_03_Phase_Calibration : setCALIB_CURRENT_STABLE: false");
-        	Platform.runLater(()->{
-				String header = "Calib Bay : Is power stable?";
-				String title  = "Calib Bay";
-				/*String userInputData =  GuiUtils.textFieldInputDialogDisplay(header,title);
+            ConstantConveyor.setCALIB_CURRENT_STABLE(false);
+            Calib.logger.debug("S059_03_Phase_Calibration : setCALIB_CURRENT_STABLE: false");
+            Platform.runLater(() -> {
+                String header = "Calib Bay : Is power stable?";
+                String title = "Calib Bay";
+                /*
+                 * String userInputData = GuiUtils.textFieldInputDialogDisplay(header,title);
+                 * 
+                 * if (!userInputData.isEmpty()) {
+                 * //System.out.println(result.get());
+                 * 
+                 * Calib.logger.debug("S059_03_Phase_Calibration: userInputData: " +
+                 * userInputData);
+                 * 
+                 * //setPopulateType(ConstantReportV2.POPULATE_DATA_TYPE_ONLY_HEADERS);
+                 * //ref_tvOperationParamProfile.getItems().clear();
+                 * }
+                 */
 
-				if (!userInputData.isEmpty()) {
-					//System.out.println(result.get());
+                /*
+                 * YesNoDialog dialog = new YesNoDialog(title, header,
+                 * YesNoDialog.MessageType.WARNING);
+                 * dialog.show();
+                 * 
+                 * dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
+                 * if (Boolean.TRUE.equals(newVal)) {
+                 * // YES clicked
+                 * Calib.logger.debug("S059_03_Phase_Calibration : stable prompt user hit: Yes"
+                 * );
+                 * } else {
+                 * // NO clicked or dialog closed
+                 * Calib.logger.debug("S059_03_Phase_Calibration : stable prompt user hit: No");
+                 * }
+                 * });
+                 */
 
-					Calib.logger.debug("S059_03_Phase_Calibration: userInputData: " + userInputData);
-					
-					//setPopulateType(ConstantReportV2.POPULATE_DATA_TYPE_ONLY_HEADERS);
-					//ref_tvOperationParamProfile.getItems().clear();
-				}*/
-				
-				/*YesNoDialog dialog = new YesNoDialog(title, header, YesNoDialog.MessageType.WARNING);
-			    dialog.show();
+                // Platform.runLater(() -> {
+                YesNoDialogFX dialog = new YesNoDialogFX(title, header, YesNoDialogFX.MessageType.WARNING);
+                dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
+                    if (Boolean.TRUE.equals(newVal)) {
+                        Calib.logger.debug("Stable prompt user hit: YES");
+                    } else {
+                        Calib.logger.debug("Stable prompt user hit: NO");
+                    }
+                    ConstantConveyor.setCALIB_CURRENT_STABLE(true);
+                    Calib.logger.debug("S059_03_Phase_Calibration : setCALIB_CURRENT_STABLE: true");
+                });
+                dialog.show(); // This will NOT block the JavaFX thread
+                Calib.logger.debug("Prompt shown, returning immediately");
+                // });
 
-			    dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
-			        if (Boolean.TRUE.equals(newVal)) {
-			            // YES clicked
-			        	Calib.logger.debug("S059_03_Phase_Calibration : stable prompt user hit: Yes");
-			        } else {
-			            // NO clicked or dialog closed
-			        	Calib.logger.debug("S059_03_Phase_Calibration : stable prompt user hit: No");
-			        }
-			    });*/
-			    
-				//Platform.runLater(() -> {
-				    YesNoDialogFX dialog = new YesNoDialogFX(title, header,YesNoDialogFX.MessageType.WARNING);
-				    dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
-				        if (Boolean.TRUE.equals(newVal)) {
-				        	Calib.logger.debug("Stable prompt user hit: YES");
-				        } else {
-				        	Calib.logger.debug("Stable prompt user hit: NO");
-				        }
-				        ConstantConveyor.setCALIB_CURRENT_STABLE(true);
-				        Calib.logger.debug("S059_03_Phase_Calibration : setCALIB_CURRENT_STABLE: true");
-				    });
-				    dialog.show(); // This will NOT block the JavaFX thread 
-				    Calib .logger.debug("Prompt shown, returning immediately");
-				//});
-			    
-				//ConstantConveyor.setCALIB_CURRENT_STABLE(true);
-				//Calib.logger.debug("S059_03_Phase_Calibration : setCALIB_CURRENT_STABLE: true");
-			});
-        	
-        	boolean toggle = false;
-           //long startTime = System.currentTimeMillis();
-        	Calib.logger.debug("S059_03_Phase_Calibration : awaiting for user input for power stable: Entry");
-        	while (!ConstantConveyor.isCALIB_CURRENT_STABLE() && !Calib.isStopProcessRequestedCalibBay()) {
-                //long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
-                //Platform.runLater(() -> {
-                //    StateExecutorController.ref_tf_CALIB_prompt.setText("Is Current Stable ? - " + elapsedTime + " secs");
-                //});
-        		//Calib.logger.debug("S059_03_Phase_Calibration : awaiting for user input for power stable: still waiting");
+                // ConstantConveyor.setCALIB_CURRENT_STABLE(true);
+                // Calib.logger.debug("S059_03_Phase_Calibration : setCALIB_CURRENT_STABLE:
+                // true");
+            });
+
+            boolean toggle = false;
+            // long startTime = System.currentTimeMillis();
+            Calib.logger.debug("S059_03_Phase_Calibration : awaiting for user input for power stable: Entry");
+            while (!ConstantConveyor.isCALIB_CURRENT_STABLE() && !Calib.isStopProcessRequestedCalibBay()) {
+                // long elapsedTime = (System.currentTimeMillis() - startTime) / 1000;
+                // Platform.runLater(() -> {
+                // StateExecutorController.ref_tf_CALIB_prompt.setText("Is Current Stable ? - "
+                // + elapsedTime + " secs");
+                // });
+                // Calib.logger.debug("S059_03_Phase_Calibration : awaiting for user input for
+                // power stable: still waiting");
                 if (toggle) {
                     turn_on_tower_lamp2();
                 } else {
                     turn_off_tower_lamp2();
                 }
                 toggle = !toggle;
-                //Calib.logger.debug("S059_03_Phase_Calibration-v2: Waiting for Stable Current");
+                // Calib.logger.debug("S059_03_Phase_Calibration-v2: Waiting for Stable
+                // Current");
                 BayUtils.delay(100);
             }
-        	
-        	Calib.logger.debug("S059_03_Phase_Calibration : awaiting for user input for power stable: Exit");
-        	
+
+            Calib.logger.debug("S059_03_Phase_Calibration : awaiting for user input for power stable: Exit");
+
         }
-        
+
         Map<String, Object> responseReturn = phaseCalibrationTask();
         boolean phaseCalibrationStatus = (boolean) responseReturn.get("status");
 
@@ -172,47 +181,50 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
             Calib.logger.info("S059_03_Phase_Calibration: Calibration Test Successful");
             bayResponse.setStatus(true);
             bayResponse.setErrorCode(ErrorCode.ERR_601);
-            if(!Calib.isStopProcessRequestedCalibBay()){
-	            for (int i = 1; i <= ConstantConveyor.PHASE_CALIB_WAIT_TIME; i++) {
-	                Calib.logger.info("S059_03_Phase_Calibration: Waiting for Phase Calib: T-" + (ConstantConveyor.PHASE_CALIB_WAIT_TIME - i) + "secs");
-	                BayUtils.delay(1000);
-	            }
-	        }else{
-	        	Calib.logger.info("S059_03_Phase_Calibration: Skipping wait time due to stop request");
-	        }
+            if (!Calib.isStopProcessRequestedCalibBay()) {
+                for (int i = 1; i <= ConstantConveyor.PHASE_CALIB_WAIT_TIME; i++) {
+                    Calib.logger.info("S059_03_Phase_Calibration: Waiting for Phase Calib: T-"
+                            + (ConstantConveyor.PHASE_CALIB_WAIT_TIME - i) + "secs");
+                    BayUtils.delay(1000);
+                }
+            } else {
+                Calib.logger.info("S059_03_Phase_Calibration: Skipping wait time due to stop request");
+            }
         } else {
             Calib.logger.info("S059_03_Phase_Calibration: Calibration Test Failed");
             bayResponse.setStatus(true);
-            bayResponse.setErrorCode(ErrorCode.ERR_601);  // Do not reject at calibration bay
+            bayResponse.setErrorCode(ErrorCode.ERR_601); // Do not reject at calibration bay
         }
 
         Calib.logger.info("S059_03_Phase_Calibration: Exit");
         return bayResponse;
     }
-    
+
     public void calibBofaPowerSourceStableWorkaround() {
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: Entry");
-    	
-    	BayActionHandler calibBayHandler = new BayActionHandler(ConstantConveyor.CALIBRATION_BAY_KEY);
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-1 : 2 sec");
-    	BayUtils.delay(2000);
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: stopping power source");
-    	calibBayHandler.stopCalibrationSource();
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-2 : 2 sec");
-    	BayUtils.delay(2000);
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: make Main CT");
-    	calibBayHandler.makeCalibrationMainCT();
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-3 : 2 sec");
-    	BayUtils.delay(2000);
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: starting power source");
-    	calibBayHandler.startCalibrationSource();
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-4 : 2 sec");
-    	BayUtils.delay(2000);
-    	Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: Exit");
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: Entry");
+
+        BayActionHandler calibBayHandler = new BayActionHandler(ConstantConveyor.CALIBRATION_BAY_KEY);
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-1 : 2 sec");
+        BayUtils.delay(2000);
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: stopping power source");
+        calibBayHandler.stopCalibrationSource();
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-2 : 2 sec");
+        BayUtils.delay(2000);
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: make Main CT");
+        calibBayHandler.makeCalibrationMainCT();
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-3 : 2 sec");
+        BayUtils.delay(2000);
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: starting power source");
+        calibBayHandler.startCalibrationSource();
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: delay-4 : 2 sec");
+        BayUtils.delay(2000);
+        Calib.logger.debug("S059_03_Phase_Calibration : calibBofaPowerSourceStableWorkaround: Exit");
     }
 
     /**
-     * Executes the phase calibration task for all meters, updating the dashboard with results.
+     * Executes the phase calibration task for all meters, updating the dashboard
+     * with results.
+     * 
      * @return Map containing the test status
      */
     public Map<String, Object> phaseCalibrationTask() {
@@ -225,26 +237,27 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
         ParallelTaskManager dutManager = new ParallelTaskManager();
         PalletTrackerController palletTracker = new PalletTrackerController();
         String myPalletDistinctId = PalletTrackerController.getPresentPalletAtBayMap().get(myBayKey);
-        PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
+        PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
+                .findFirstByPalletDistinctId(myPalletDistinctId);
 
         int maxDeviceConnected = ConstantConveyor.MAX_DEVICES_CONNECTED;
         int meterPassedCount = 0;
         int meterFailedCount = 0;
-        //allFailedCount = 0;
+        // allFailedCount = 0;
         if (ProconFeatureEnable.CALIB_PHASE_DUT_EXECUTION_PROCESS_IN_PARALLEL) {
             boolean monitorAlreadyInitiated = false;
             for (int positionNo = 1; positionNo <= maxDeviceConnected; positionNo++) {
-                //dutManager.startDutCalibrationProcess(positionNo);
-            	if(!Calib.isStopProcessRequestedCalibBay()){
-	            	dutManager.startDutPhaseCalibrationProcess(positionNo);
-	                if (!monitorAlreadyInitiated) {
-	                    dutManager.monitorDutControlProcessTrigger();
-	                    monitorAlreadyInitiated = true;
-	                }
-            	}else{
-            		 Calib.logger.debug("S059_03_Phase_Calibration: isStopProcessRequestedCalibBay: hit");
-            		break;
-            	}
+                // dutManager.startDutCalibrationProcess(positionNo);
+                if (!Calib.isStopProcessRequestedCalibBay()) {
+                    dutManager.startDutPhaseCalibrationProcess(positionNo);
+                    if (!monitorAlreadyInitiated) {
+                        dutManager.monitorDutControlProcessTrigger();
+                        monitorAlreadyInitiated = true;
+                    }
+                } else {
+                    Calib.logger.debug("S059_03_Phase_Calibration: isStopProcessRequestedCalibBay: hit");
+                    break;
+                }
             }
 
             int dutWaitTimeDurationMaxInSec = 300;
@@ -252,30 +265,35 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
             boolean dutAllProcessExecutionCompleted = false;
 
             while (!BayUtils.isUserAborted() &&
-                   dutWaitTimeCounter < dutWaitTimeDurationMaxInSec &&
-                   !dutAllProcessExecutionCompleted &&
-                   !ConstantConveyor.ALL_LOOP_BREAK_FLAG &&
-                   !Calib.isStopProcessRequestedCalibBay()) {
+                    dutWaitTimeCounter < dutWaitTimeDurationMaxInSec &&
+                    !dutAllProcessExecutionCompleted &&
+                    !ConstantConveyor.ALL_LOOP_BREAK_FLAG &&
+                    !Calib.isStopProcessRequestedCalibBay()) {
                 Sleep(1000);
                 dutWaitTimeCounter++;
                 dutAllProcessExecutionCompleted = dutManager.isDutAllControlProcessCompleted();
-                Calib.logger.debug("phaseCalibrationTask: dutWaitTimeCounter: " + dutWaitTimeCounter + "/" + dutWaitTimeDurationMaxInSec + " : dutAllProcessExecutionCompleted: " + dutAllProcessExecutionCompleted);
+                Calib.logger.debug("phaseCalibrationTask: dutWaitTimeCounter: " + dutWaitTimeCounter + "/"
+                        + dutWaitTimeDurationMaxInSec + " : dutAllProcessExecutionCompleted: "
+                        + dutAllProcessExecutionCompleted);
             }
-            
+
             Calib.logger.debug("phaseCalibrationTask: dutWaitTimeDurationMaxInSec: " + dutWaitTimeDurationMaxInSec);
             Calib.logger.debug("phaseCalibrationTask: getUserAbortedFlag(): " + BayUtils.isUserAborted());
             Calib.logger.debug("phaseCalibrationTask: dutWaitTimeCounter: " + dutWaitTimeCounter);
             Calib.logger.debug("phaseCalibrationTask: ALL_LOOP_BREAK_FLAG: " + ConstantConveyor.ALL_LOOP_BREAK_FLAG);
-            Calib.logger.debug("phaseCalibrationTask: isStopProcessRequestedCalibBay: " + Calib.isStopProcessRequestedCalibBay());
-            //Calib.logger.debug("phaseCalibrationTask: dutWaitTimeDurationMaxInSec: " + dutWaitTimeDurationMaxInSec);
-            
+            Calib.logger.debug(
+                    "phaseCalibrationTask: isStopProcessRequestedCalibBay: " + Calib.isStopProcessRequestedCalibBay());
+            // Calib.logger.debug("phaseCalibrationTask: dutWaitTimeDurationMaxInSec: " +
+            // dutWaitTimeDurationMaxInSec);
+
             if (dutManager.isDutAllControlProcessCompleted()) {
                 Calib.logger.debug("phaseCalibrationTask: All DUT tasks completed");
                 allPass = true;
 
                 for (int positionNo = 1; positionNo <= maxDeviceConnected; positionNo++) {
                     String resultSummary = dutManager.getDutResultSummary(positionNo);
-                    Calib.logger.debug("phaseCalibrationTask: result position Id: " + positionNo + " : " + resultSummary);
+                    Calib.logger
+                            .debug("phaseCalibrationTask: result position Id: " + positionNo + " : " + resultSummary);
 
                     // Update GUI with calibration result
                     TestInterfaceStatus testInterfaceStatus = new TestInterfaceStatus(
@@ -288,8 +306,7 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
                             "-",
                             ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
                             testCaseName,
-                            ConstantConveyor.COMM_EXECUTION_STATUS_INP
-                    );
+                            ConstantConveyor.COMM_EXECUTION_STATUS_INP);
                     int serialNo = StateExecutorController.addToTestStatusGui(testInterfaceStatus);
                     testInterfaceStatus.setSerialNo(String.valueOf(serialNo));
 
@@ -315,7 +332,8 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
                     ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
                             myBayKey, positionNo, meterStatus, errorCode);
 
-                    palletTracker.addMeterResultSummary(positionNo, resultStatus, resultValue, myBayKey, testType, testCaseName);
+                    palletTracker.addMeterResultSummary(positionNo, resultStatus, resultValue, myBayKey, testType,
+                            testCaseName);
                     calibrationSummaryProcessor.addPhaseCalibrationResult(positionNo, resultStatus);
                 }
             } else {
@@ -328,7 +346,8 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
                 boolean[] statuses = new boolean[maxDeviceConnected];
                 for (int positionNo = 1; positionNo <= maxDeviceConnected; positionNo++) {
                     statuses[positionNo - 1] = devSysEnergyMeter.phaseCalibrationProcess(positionNo);
-                    Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: Meter " + positionNo + " : status: " + statuses[positionNo - 1]);
+                    Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: Meter " + positionNo
+                            + " : status: " + statuses[positionNo - 1]);
                 }
 
                 allPass = true;
@@ -344,8 +363,7 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
                             "-",
                             ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
                             testCaseName,
-                            ConstantConveyor.COMM_EXECUTION_STATUS_INP
-                    );
+                            ConstantConveyor.COMM_EXECUTION_STATUS_INP);
                     int serialNo = StateExecutorController.addToTestStatusGui(testInterfaceStatus);
                     testInterfaceStatus.setSerialNo(String.valueOf(serialNo));
 
@@ -371,7 +389,8 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
                     ConveyorDataManager.getDashboardObject().updatePalletMeterStatusByBayAndPosition(
                             myBayKey, positionNo, meterStatus, errorCode);
 
-                    palletTracker.addMeterResultSummary(positionNo, resultStatus, resultValue, myBayKey, testType, testCaseName);
+                    palletTracker.addMeterResultSummary(positionNo, resultStatus, resultValue, myBayKey, testType,
+                            testCaseName);
                     calibrationSummaryProcessor.addPhaseCalibrationResult(positionNo, resultStatus);
                 }
             }
@@ -386,46 +405,25 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
         if (StateExecutorController.simulateCalibBayHappyPath) {
             status = true;
         } else {
-        	int maxDutSupported = DeviceDataManagerController.getConveyorConfigParsedKey().getMaxDutSupported();
-        	//status = allPass; 
-        	if(meterFailedCount==maxDutSupported){ // updated by Gopi on version d0.8.4.3 01-July-2025
-        		Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: all status: failed");
-        		status = allPass;
-        	}else{
-        		Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: atleast one failed: still continuing testing");
-        		status = true;
-        	}
-            
+            int maxDutSupported = DeviceDataManagerController.getConveyorConfigParsedKey().getMaxDutSupported();
+            // status = allPass;
+            if (meterFailedCount == maxDutSupported) { // updated by Gopi on version d0.8.4.3 01-July-2025
+                Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: all status: failed");
+                status = allPass;
+            } else {
+                Calib.logger.debug(
+                        "S059_03_Phase_Calibration: phaseCalibrationTask: atleast one failed: still continuing testing");
+                status = true;
+            }
+
         }
-        
-        //status = true; // Do not reject at calibration bay
+
+        // status = true; // Do not reject at calibration bay
 
         responseReturn.put("status", status);
         Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: status: " + status);
         Calib.logger.debug("S059_03_Phase_Calibration: phaseCalibrationTask: Exit");
         return responseReturn;
-    }
-
-    /**
-     * Turns on tower lamp 1.
-     */
-    private void turn_on_tower_lamp1() {
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP2);
-        if (portInfo != null) {
-            BayUtils bayUtils = new BayUtils();
-            bayUtils.setOutputDataToBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), Constant_IO_ActionMapping.OPEN);
-        }
-    }
-
-    /**
-     * Turns off tower lamp 1.
-     */
-    private void turn_off_tower_lamp1() {
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP2);
-        if (portInfo != null) {
-            BayUtils bayUtils = new BayUtils();
-            bayUtils.setOutputDataToBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), Constant_IO_ActionMapping.CLOSE);
-        }
     }
 
     /**
@@ -435,7 +433,8 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP1);
         if (portInfo != null) {
             BayUtils bayUtils = new BayUtils();
-            bayUtils.setOutputDataToBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), Constant_IO_ActionMapping.OPEN);
+            bayUtils.setOutputDataToBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
+                    Constant_IO_ActionMapping.OPEN);
         }
     }
 
@@ -446,12 +445,14 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP1);
         if (portInfo != null) {
             BayUtils bayUtils = new BayUtils();
-            bayUtils.setOutputDataToBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), Constant_IO_ActionMapping.CLOSE);
+            bayUtils.setOutputDataToBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
+                    Constant_IO_ActionMapping.CLOSE);
         }
     }
 
     /**
      * Pauses execution for the specified time.
+     * 
      * @param timeInMsec Time to sleep in milliseconds
      */
     public void Sleep(int timeInMsec) {
@@ -460,9 +461,5 @@ public class S059_03_Phase_Calibration implements CalibrationBayState {
         } catch (InterruptedException e) {
             Calib.logger.error("Sleep: InterruptedException: " + e.getMessage());
         }
-    }
-
-    public String getMyBayKey() {
-        return myBayKey;
     }
 }

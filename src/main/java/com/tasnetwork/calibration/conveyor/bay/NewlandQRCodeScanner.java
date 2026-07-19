@@ -1,15 +1,11 @@
 package com.tasnetwork.calibration.conveyor.bay;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantQrScanner;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
@@ -17,7 +13,6 @@ import com.tasnetwork.calibration.conveyor.serial.director.QrScannerDirector;
 import com.tasnetwork.calibration.conveyor.serial.messenger.QrScannerMessenger;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmQrScanner;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
-import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.DeleteMeConstant;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
@@ -73,96 +68,6 @@ public class NewlandQRCodeScanner {
 
 	public static final String GOOD_READ_BEEP_ENABLE = "30323033303130";
 	public static final String GOOD_READ_BEEP_DISABLE = "30323033303030";
-
-	// ============================================================================================
-
-	private boolean qR_code_scanner_init() {
-		ApplicationLauncher.logger.debug("qR_code_scanner_init" + "Entry");
-
-		boolean status = false;
-
-		String[] scannerID = new String[ConstantBayPortNameMapping.NUM_OF_QR_CODE_SCANNERS_TERM_1];
-		String baudRate = "";
-		String verificType = "";
-		String dataBits = "";
-		String numOfStopBits = "";
-
-		// 1. RS232 COMM SETTING
-		for (int i = 0; i < ConstantBayPortNameMapping.NUM_OF_QR_CODE_SCANNERS_TERM_1; i++) {
-			status = configRS232Comm(scannerID[i], baudRate, verificType, dataBits, numOfStopBits);
-			if (!status) {
-				ApplicationLauncher.logger
-						.debug("qR_code_scanner_init: configRS232Comm for : " + scannerID[i] + " Failed");
-			}
-		}
-
-		// 2. ENABLE_COMMAND_PROGRAMMING
-		for (int i = 0; i < ConstantBayPortNameMapping.NUM_OF_QR_CODE_SCANNERS_TERM_1; i++) {
-			status = enableCommandProgramming(scannerID[i]);
-			if (!status) {
-				ApplicationLauncher.logger
-						.debug("qR_code_scanner_init: configRS232Comm for : " + scannerID[i] + " Failed");
-			}
-		}
-
-		// 3. ENABLE ANALOG TRIGGER MODE
-		for (int i = 0; i < ConstantBayPortNameMapping.NUM_OF_QR_CODE_SCANNERS_TERM_1; i++) {
-			String receivedData = analogTrigger(scannerID[i]);
-
-			if (receivedData == null || receivedData.isEmpty()) {
-				return false;
-			} // Invalid input
-
-			if (receivedData.length() == 1) {
-				return false;
-			} // Not enough data
-
-			// Verify the first and last bytes
-			if (!(receivedData.equalsIgnoreCase("06"))) {
-				return false; // Invalid format
-			}
-
-			if (!status) {
-				ApplicationLauncher.logger
-						.debug("qR_code_scanner_init: analog Trigger for : " + scannerID[i] + " Failed");
-			}
-		}
-
-		ApplicationLauncher.logger.debug("qR_code_scanner_init" + "Exit");
-		return status;
-	}
-
-	// ============================================================================================
-
-	/*
-	 * public String scan_QR_code(String scannerID){
-	 * ApplicationLauncher.logger.debug("scan_QR_code : "+ scannerID + "Entry");
-	 * 
-	 * //boolean status = false;
-	 * String receivedData = analogTrigger(scannerID); // ANALOG_TRIGGER_SETTING
-	 * 
-	 * // Convert received data to a readable string
-	 * String scannedData = extractScannedData(receivedData);
-	 * ApplicationLauncher.logger.debug("scan_QR_code: scannedData: " +
-	 * scannedData);
-	 * 
-	 * if (scannedData.equals("06")) {
-	 * // status = false;
-	 * ApplicationLauncher.logger.debug("scan_QR_code: " + scannerID +
-	 * "Failed : No QR Code Available");
-	 * scannedData = "NO_QR_CODE_AVAILABLE" ;
-	 * }
-	 * else{
-	 * ApplicationLauncher.logger.debug("scan_QR_code: " + scannerID +
-	 * "Failed : No QR Code Available");
-	 * scannedData = "SCNR_NW" ;
-	 * }
-	 * 
-	 * 
-	 * ApplicationLauncher.logger.debug("scan_QR_code : "+ scannerID + " : Exit");
-	 * return scannedData;
-	 * }
-	 */
 
 	// =================================================================
 	public String scan_QR_code(int positionNum) {
@@ -448,299 +353,10 @@ public class NewlandQRCodeScanner {
 		return qrData;
 	}
 
-	// ============================================================================================
-
-	private boolean triggerStop(String scannerID) {
-		ApplicationLauncher.logger.debug("triggerStop : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(TRIGGER_STOP_SETTINGS, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // TRIGGER_STOP_SETTINGS
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("triggerStop : Trigger Stop Failed");
-		}
-
-		ApplicationLauncher.logger.debug("triggerStop : Exit");
-		return status;
-	}
-
-	// ============================================================================================
-
-	private boolean enableCommandProgramming(String scannerID) {
-		ApplicationLauncher.logger.debug("enableCommandProgramming : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(ENABLE_COMMAND_PROGRAMMING, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // ENABLE_COMMAND_PROGRAMMING
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("enableCommandProgramming : Failed to enable Command Programming ");
-		}
-
-		ApplicationLauncher.logger.debug("enableCommandProgramming : Exit");
-		return status;
-	}
-	// ============================================================================================
-
-	private boolean disableCommandProgramming(String scannerID) {
-		ApplicationLauncher.logger.debug("disableCommandProgramming : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(DISABLE_COMMAND_PROGRAMMING, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // DISABLE_COMMAND_PROGRAMMING
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("disableCommandProgramming : Failed to disable Command Programming ");
-		}
-
-		ApplicationLauncher.logger.debug("disableCommandProgramming : Exit");
-		return status;
-	}
-
-	// ============================================================================================
-
-	private boolean enable1dBarCode(String scannerID) {
-		ApplicationLauncher.logger.debug("enable1dBarCode : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(ENABLE_1D_BAR_CODES, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // ENABLE_1D_BAR_CODES
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("enable1dBarCode : Failed to enable 1D bar code");
-		}
-
-		ApplicationLauncher.logger.debug("enable1dBarCode : Exit");
-		return status;
-	}
-	// ============================================================================================
-
-	private boolean disable1dBarCode(String scannerID) {
-		ApplicationLauncher.logger.debug("disable1dBarCode : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(DISABLE_1D_BAR_CODES, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // DISABLE_1D_BAR_CODES
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("enable1dBarCode : Failed to disable 1D bar code");
-		}
-
-		ApplicationLauncher.logger.debug("disable1dBarCode : Exit");
-		return status;
-	}
-
-	// ============================================================================================
-
-	private boolean enable2dBarCode(String scannerID) {
-		ApplicationLauncher.logger.debug("enable2dBarCode : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(ENABLE_2D_BAR_CODES, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // ENABLE_2D_BAR_CODES
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("enable2dBarCode : Failed to enable 1D bar code");
-		}
-
-		ApplicationLauncher.logger.debug("enable2dBarCode : Exit");
-		return status;
-	}
-	// ============================================================================================
-
-	private boolean disable2dBarCode(String scannerID) {
-		ApplicationLauncher.logger.debug("disable2dBarCode : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(DISABLE_2D_BAR_CODES, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // DISABLE_2D_BAR_CODES
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("disable2dBarCode : Failed to disable 1D bar code");
-		}
-
-		ApplicationLauncher.logger.debug("disable2dBarCode : Exit");
-		return status;
-	}
-
-	// ============================================================================================
-	private boolean enableAllBarCode(String scannerID) {
-		ApplicationLauncher.logger.debug("enableAllBarCode : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(GOOD_READ_BEEP_ENABLE, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // GOOD_READ_BEEP_ENABLE
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("enableAllBarCode : Failed to enable 1D bar code");
-		}
-
-		ApplicationLauncher.logger.debug("enableAllBarCode : Exit");
-		return status;
-
-	}
-	// ============================================================================================
-
-	private boolean disableAllBarCode(String scannerID) {
-		ApplicationLauncher.logger.debug("disableAllBarCode : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(GOOD_READ_BEEP_DISABLE, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // GOOD_READ_BEEP_DISABLE
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("disableAllBarCode : Failed to disable 1D bar code");
-		}
-
-		ApplicationLauncher.logger.debug("disableAllBarCode : Exit");
-		return status;
-
-	}
-
-	// ============================================================================================
-	private boolean enableGoodReadBeep(String scannerID) {
-		ApplicationLauncher.logger.debug("enableGoodReadBeep : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(ENABLE_ALL_BAR_CODES, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // ENABLE_ALL_BAR_CODES
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("enableGoodReadBeep : Failed to enable good read beep");
-		}
-
-		ApplicationLauncher.logger.debug("enableGoodReadBeep : Exit");
-		return status;
-
-	}
-	// ============================================================================================
-
-	private boolean disableGoodReadBeep(String scannerID) {
-		ApplicationLauncher.logger.debug("disableGoodReadBeep : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(DISABLE_ALL_BAR_CODES, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // DISABLE_ALL_BAR_CODES
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("disableGoodReadBeep : Failed to disable good read beep");
-		}
-
-		ApplicationLauncher.logger.debug("disableGoodReadBeep : Exit");
-		return status;
-
-	}
-	// ============================================================================================
-
-	private boolean saveAsUserDefault(String scannerID) {
-		ApplicationLauncher.logger.debug("saveAsUserDefault : Entry");
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(SAVE_AS_USER_DEFAULT, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // SAVE_AS_USER_DEFAULT
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("saveAsUserDefault : Failed to save As user default");
-		}
-
-		ApplicationLauncher.logger.debug("saveAsUserDefault : Exit");
-		return status;
-
-	}
-
-	// ============================================================================================
-
-	private boolean configRS232Comm(String scannerID, String baudRate, String verificType, String dataBits,
-			String numOfStopBits) {
-		ApplicationLauncher.logger.debug("configRS232Comm : Entry");
-
-		boolean status = false;
-
-		boolean isResponseExpected = true;
-		status = sendReadCommandQrCodeScanner(BAUD_RATE_9600_BPS, isResponseExpected,
-				NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // BAUD_RATE_9600_BPS
-
-		if (status) {
-			BayUtils.delay(10);
-			isResponseExpected = true;
-			status = sendReadCommandQrCodeScanner(RS232_NO_VERIFY, isResponseExpected,
-					NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // RS232_NO_VERIFY
-		} else {
-			status = false;
-			ApplicationLauncher.logger.debug("configRS232Comm : Failed to set baud rate");
-		}
-
-		if (status) {
-			BayUtils.delay(10);
-			isResponseExpected = true;
-			status = sendReadCommandQrCodeScanner(RS232_8_DIGITS, isResponseExpected,
-					NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // RS232_8_DIGITS
-		} else {
-			status = false;
-			ApplicationLauncher.logger.debug("configRS232Comm : Failed to set verification type");
-		}
-
-		if (status) {
-			BayUtils.delay(10);
-			isResponseExpected = true;
-			status = sendReadCommandQrCodeScanner(RS232_ONE_STOP_BIT, isResponseExpected,
-					NOT_GOOD_READ_EXPECTED_DATA_IN_HEX); // RS232_ONE_STOP_BIT
-		} else {
-			status = false;
-			ApplicationLauncher.logger.debug("configRS232Comm : Failed to set num of data bits");
-		}
-
-		if (!status) {
-			status = false;
-			ApplicationLauncher.logger.debug("configRS232Comm : Failed to set num of stop bits");
-		}
-
-		ApplicationLauncher.logger.debug("configRS232Comm : Exit");
-		return status;
-	}
-	// ============================================================================================
-
 	boolean sendReadCommandQrCodeScanner(String command, boolean isResponseExpected, String expectedDataInHex) {
-
-		boolean status = false;
-		// boolean isResponseExpected = true;
 
 		String payLoadInHex = command; // ANALOG_TRIGGER_SETTING;//startTestEndFrame ;xcvxc
 		ApplicationLauncher.logger.info("send: payLoadInHex: " + payLoadInHex);
-
-		/*
-		 * String addressStr = BofaManager.asciiToHex(String.valueOf((char)(address +
-		 * ConstantPowerSourceBofa.LDU_ADDRESS_ADDITION))) ;
-		 * 
-		 * if (address == ConstantPowerSourceBofa.LDU_INT_BROADCAST_ADDRESS) {
-		 * addressStr = ConstantPowerSourceBofa.LDU_HEX_BROADCAST_ADDRESS ;
-		 * }
-		 */
 
 		int timeDelayInMilliSec = 0;
 		// String expectedDataInHex = "06";//ConstantPowerSourceBofa.ER_LDU_STARTS_WITH
@@ -755,16 +371,11 @@ public class NewlandQRCodeScanner {
 			// if(ProcalFeatureEnable.PWRSRC_PORT_MANAGER_V2_ENABLED) {
 			responseData = pwrSrcBofaMessenger.getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
 			responseData = GUIUtils.asciiToHex(responseData);
-
-			status = true;
-			// status = processResponse(readTheConstantOfLiveReferenceMeterCmdFrame,
-			// CurrentReadData);
 		} else {
 			if (!isResponseExpected) {
 				if (responseStatus.equals(DeleteMeConstant.NO_RESPONSE)) {
 					ApplicationLauncher.logger
 							.info("sendDataToBofaAfterSemaPhoreAcquired : no response expected success");
-					status = true;
 				}
 			}
 		}
@@ -781,26 +392,7 @@ public class NewlandQRCodeScanner {
 			return null; // Invalid input
 		}
 
-		// Split into hex bytes
-		// String[] hexBytes = hexData.trim().split("(?<=\\G..)"); // Split every 2
-		// characters
 		String[] hexBytes = hexData.trim().split("(?<=\\G..)"); // Split every 2 characters
-		// ApplicationLauncher.logger.info("extractScannedData: hexBytes : " +
-		// Arrays.toString(hexBytes));
-
-		// Handle the case where only the start byte '06' is received
-		// if (hexBytes.length == 1 &&
-		// hexBytes[0].equalsIgnoreCase(NOT_GOOD_READ_EXPECTED_DATA_IN_HEX)){//"06")) {
-		/*
-		 * if (hexBytes.length == 1 &&
-		 * hexBytes[0].equalsIgnoreCase(NOT_GOOD_READ_EXPECTED_DATA_IN_HEX)){//"06")) {
-		 * ApplicationLauncher.logger.
-		 * info("extractScannedData: Only start byte '06' received. Returning '06' directly."
-		 * );
-		 * return NOT_GOOD_READ_EXPECTED_DATA_IN_HEX; // Return just the start byte if
-		 * that's the only data
-		 * }
-		 */
 
 		if (hexData.equals(NOT_GOOD_READ_EXPECTED_DATA_IN_HEX)) {
 			return GUIUtils
@@ -812,45 +404,6 @@ public class NewlandQRCodeScanner {
 			return null; // Not enough data
 		}
 
-		// Verify terminators
-		/*
-		 * if (!hexBytes[0].equalsIgnoreCase(NOT_GOOD_READ_EXPECTED_DATA_IN_HEX)||
-		 * //"06") ||
-		 * !hexBytes[hexBytes.length - 2].equalsIgnoreCase("0D") ||
-		 * !hexBytes[hexBytes.length - 1].equalsIgnoreCase("0A")) {
-		 * ApplicationLauncher.logger.
-		 * info("extractScannedData: Invalid format or terminator");
-		 * return null; // Invalid format
-		 * }
-		 */
-
-		// Calculate data length and extract data bytes
-		/*
-		 * int dataLength = hexBytes.length -
-		 * ((GOOD_READ_EXPECTED_BEGIN_DATA_IN_HEX.length()/2) + 2); // Exclude 06 (start
-		 * byte) and 0D 0A (terminators)
-		 * ApplicationLauncher.logger.info("extractScannedData: Data length : " +
-		 * dataLength);
-		 * 
-		 * byte[] scannedBytes = new byte[dataLength];
-		 * for (int i = 0; i < dataLength; i++) {
-		 * try {
-		 * // scannedBytes[i] = (byte) Integer.parseInt(hexBytes[i + 1], 16); // Start
-		 * after 06
-		 * scannedBytes[i] = (byte) Integer.parseInt(hexBytes[i], 16); // Start after 06
-		 * } catch (NumberFormatException e) {
-		 * ApplicationLauncher.logger.
-		 * error("extractScannedData: Invalid hex byte at index " + (i + 1) + " : " +
-		 * hexBytes[i + 1], e);
-		 * return null; // Invalid data
-		 * }
-		 * }
-		 */
-
-		// ApplicationLauncher.logger.info("extractScannedData: Extracted bytes : " +
-		// Arrays.toString(scannedBytes));
-
-		// Convert bytes to string
 		String result = GUIUtils.hexToAsciiV2(hexData.replace(GOOD_READ_EXPECTED_BEGIN_DATA_IN_HEX, "")); // new
 																											// String(scannedBytes,
 																											// StandardCharsets.UTF_8);
@@ -870,14 +423,4 @@ public class NewlandQRCodeScanner {
 	}
 
 	// ============================================================================================
-
-	/*
-	 * public void ScanForSerialPorts(){
-	 * ApplicationLauncher.logger.info("ScanForSerialPorts: Entry");
-	 * ApplicationHomeController.update_left_status("Scanning serial ports"
-	 * ,ConstantApp.LEFT_STATUS_DEBUG);
-	 * SerialDM_Obj.ScanForSerialCommPort();
-	 * }
-	 */
-
 }

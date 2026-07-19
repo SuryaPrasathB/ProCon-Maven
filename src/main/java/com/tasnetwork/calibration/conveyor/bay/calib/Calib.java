@@ -1,20 +1,13 @@
 package com.tasnetwork.calibration.conveyor.bay.calib;
 
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-// import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
-// import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-// import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-// import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.StateFlow;
-
-// import javafx.scene.control.TableView;
 
 public class Calib implements BayStateContext {
 	public static Logger logger = Logger.getLogger(Calib.class.getPackage().getName()); 
@@ -43,9 +36,9 @@ public class Calib implements BayStateContext {
 	public void setNextState(String stateName, String errorCode) {
 		CalibrationBayState newState;
 		if (stateName.equals("S10_error_Handling") || stateName.startsWith("ERROR")) {
-			newState = createErrorStateInstance(stateName, errorCode);
+			newState = CalibrationBayState.createErrorState(stateName, errorCode);
 		} else {
-			newState = createCalibBayStateInstance(stateName);
+			newState = CalibrationBayState.createState(stateName);
 		}
 		calibBayStateManager.setState(newState);
 	}
@@ -65,49 +58,6 @@ public class Calib implements BayStateContext {
 
 	//public TableView<StateFlow> tableStatePlanner_CalibBay = new TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_CalibBay = new ArrayList<StateFlow>();
-
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_CalibBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static CalibrationBayState createCalibBayStateInstance(String stateName) {
-		try {
-			// Get the fully qualified class name dynamically
-			String packageName = CalibrationBayState.class.getPackage().getName(); // Adjust if necessary
-			Class<?> c = Class.forName(packageName + "." + stateName);
-
-			// Ensure the class is a subclass of CalibrationBayState
-			if (!CalibrationBayState.class.isAssignableFrom(c)) {
-				throw new IllegalArgumentException("Invalid state class: " + stateName);
-			}
-
-			// Create an instance using the default constructor
-			return (CalibrationBayState) c.getDeclaredConstructor().newInstance();
-		} catch (ClassNotFoundException e) {
-			throw new IllegalArgumentException("Unknown state: " + stateName, e);
-		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-			throw new IllegalArgumentException("Error instantiating state: " + stateName, e);
-		}
-	}
-
-	private CalibrationBayState createErrorStateInstance(String stateName, String errorCode) {  
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-		case "S10_error_Handling":
-			return new  S10_error_Handling(errorCode);
-		default:
-			throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
 
 	@Override
 	public String getErrorStateInstanceString(String errorCode) {

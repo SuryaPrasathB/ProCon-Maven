@@ -1,19 +1,10 @@
 package com.tasnetwork.calibration.conveyor.bay;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
 import com.tasnetwork.calibration.conveyor.bay.ir.IR_ReadResult;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
-import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
 import com.tasnetwork.calibration.conveyor.serial.director.MegaOhmPmDirector;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmMegaOhmPm;
-import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.util.IEEE754_Format;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
@@ -36,68 +27,10 @@ public class EIC_MegaOhmMeter {
         ApplicationLauncher.logger.debug("sendCommandToPanelIrMeter : Entry");
         boolean status = false;
 
-        String response = "";
         String responseData = "";
         String commPortID = deviceSetting.getPortName();
         String commBaudRate = deviceSetting.getBaudRate();
-        // ScanForSerialPorts();
-        /*
-         * JSONObject cNamePortSettingData =
-         * MySQL_Controller.sp_get_cname_port_setting(comPortCname);
-         * 
-         * try {
-         * if(cNamePortSettingData.has("port_name")){
-         * commPortID = cNamePortSettingData.getString("port_name");
-         * 
-         * //cmbBxLDU_PortSelection2.setValue(saved_ldu2_setting.getString("port_name"))
-         * ;
-         * } else {
-         * //cmbBxLDU_PortSelection2.setValue("");
-         * ApplicationLauncher.logger.
-         * info("sendCommandToPanelIrMeter: port_name-1: Data not retrieved from DB");
-         * 
-         * }
-         * 
-         * } catch (JSONException e) {
-         * 
-         * e.printStackTrace();
-         * ApplicationLauncher.logger.
-         * error("sendCommandToPanelIrMeter: JSONException5-2:"+e.getMessage());
-         * //cmbBxLDU_PortSelection2.setValue("");
-         * ApplicationLauncher.logger.
-         * info("sendCommandToPanelIrMeter: port_name-2: Data not retrieved from database"
-         * );
-         * 
-         * }
-         * 
-         * try {
-         * if(cNamePortSettingData.has("baud_rate")){
-         * commBaudRate = cNamePortSettingData.getString("baud_rate");
-         * 
-         * //cmbBxLDU_PortSelection2.setValue(saved_ldu2_setting.getString("port_name"))
-         * ;
-         * } else {
-         * //cmbBxLDU_PortSelection2.setValue("");
-         * ApplicationLauncher.logger.
-         * info("sendCommandToPanelIrMeter: baudrate-1: Data not retrieved from DB");
-         * 
-         * }
-         * 
-         * } catch (JSONException e) {
-         * 
-         * e.printStackTrace();
-         * ApplicationLauncher.logger.
-         * error("sendCommandToPanelIrMeter: JSONException5-2:"+e.getMessage());
-         * //cmbBxLDU_PortSelection2.setValue("");
-         * ApplicationLauncher.logger.
-         * info("sendCommandToPanelIrMeter: baudrate-2: Data not retrieved from database"
-         * );
-         * 
-         * }
-         */
 
-        // qrPortSettingData.getString(key)//getCurrentLDU_ComPortID1();
-        // String commBaudRate = //getCurrentLDU_ComBaudRate1();
         try {
             if ((!commBaudRate.isEmpty()) && (!commPortID.isEmpty())) {
                 SpmMegaOhmPm serialPortManagerQrScanner = new SpmMegaOhmPm("eic-slv-" + slaveId, ER_LENGTH_ASCII);
@@ -134,16 +67,6 @@ public class EIC_MegaOhmMeter {
             e.printStackTrace();
             ApplicationLauncher.logger.error("sendCommandToPanelIrMeter: Exception-X" + e.getMessage());
         }
-        /*
-         * if(DisplayDataObj.ValidateAllComPortAccessible()){
-         * boolean isResponseExpected = true;
-         * status = sendReadCommandQrCodeScanner(ANALOG_TRIGGER_SETTING,
-         * isResponseExpected, EXPECTED_DATA_IN_HEX); // ANALOG_TRIGGER_SETTING
-         * }
-         */
-
-        // DisplayDataObj.pwrSrcDisconnectPort_V2();
-        // SerialDM_Obj.DisconnectPwrSrc();
 
         ApplicationLauncher.logger.debug("sendCommandToPanelIrMeter : Exit");
         return responseData;
@@ -168,38 +91,7 @@ public class EIC_MegaOhmMeter {
                 ApplicationLauncher.logger.debug("EIC_MegaOhmMeter : readMegaOhmMeter : Invalid Slave ID!");
                 return new IR_ReadResult(defaultValue, status);
             }
-            /*
-             * String slaveIdHex = String.format("%02X", slaveIdValue); // Format as
-             * 2-character hex string
-             * 
-             * // Combine all parts into the frame (without CRC)
-             * String frame = slaveIdHex + FUNCTION_CODE + REGISTER_ADDRESS + NUM_BYTES;
-             * 
-             * // Calculate CRC for the frame
-             * String crc = calculateCRC(frame);
-             * 
-             * // Combine the frame and CRC to get the final frame
-             * String commandFrame = frame + crc;
-             */
-
-            // Print the final frame
-            // ApplicationLauncher.logger.debug("EIC_MegaOhmMeter : readMegaOhmMeter :
-            // Command: " + commandFrame);
-            // NewlandQRCodeScanner qrScannerObj = new NewlandQRCodeScanner();
-            // EIC_MegaOhmMeter eicMegaOhmMeter = new EIC_MegaOhmMeter();
-            // String responseHex =
-            // sendCommandToPanelIrMeter(ConstantBayPortNameMapping.COM_PORT_EIC_MEGA,slaveId);
             String responseHex = sendCommandToPanelIrMeter(deviceSetting, slaveId);
-            // Receiving Response
-            // =================================================================//
-
-            // String responseHex = ""; // Placeholder for response, replace with actual
-            // `send(commandFrame)`
-
-            // Extract the float value
-            // float value = extractFloatFromResponse(responseHex);
-            // ApplicationLauncher.logger.debug("EIC_MegaOhmMeter : readMegaOhmMeter :
-            // Extracted Float Value: " + value);
 
             if (responseHex == null) {
                 status = false;

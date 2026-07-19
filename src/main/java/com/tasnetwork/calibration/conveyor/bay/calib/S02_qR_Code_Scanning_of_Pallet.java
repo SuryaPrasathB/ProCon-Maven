@@ -1,15 +1,13 @@
 package com.tasnetwork.calibration.conveyor.bay.calib;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
 import com.tasnetwork.calibration.conveyor.bay.bookshelf.QrCodeScanningPallet;
-//import com.tasnetwork.calibration.conveyor.bay_functionaltest.FunctionalTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -31,10 +29,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements CalibrationBayState {
 
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
 	// ===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
@@ -43,48 +37,6 @@ public class S02_qR_Code_Scanning_of_Pallet implements CalibrationBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-		/*
-		 * setSequencePathId("p1");
-		 * setPalletAvailableTest_I_F_Status (null);
-		 * 
-		 * Map<String,Object> responseReturn = do_QR_Code_Scanning_Pallet_CalibBay();
-		 * String do_QR_Code_Scanning_Pallet_CalibBay = (String)
-		 * responseReturn.get("responseData");
-		 * 
-		 * StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn,
-		 * ConstantConveyor.COMM_EXECUTION_STATUS_COMPLETED);
-		 * 
-		 * String status = do_QR_Code_Scanning_Pallet_CalibBay ; // Call the function to
-		 * scan pallet QR codes
-		 * 
-		 * if (status.equals("GOOD")) {
-		 * CalibrationBay.logger.
-		 * info("S02_qR_Code_Scanning_of_Pallet : QR Code Scanning Successful");
-		 * // Logic for success case (status is true)
-		 * bayResponse.setStatus(true);
-		 * bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601); // Success
-		 * error code
-		 * } else if(status.equals("NO_QR_CODE_AVAILABLE")){
-		 * CalibrationBay.logger.
-		 * info("S02_qR_Code_Scanning_of_Pallet : QR Code Scanning Failed");
-		 * CalibrationBay.logger.
-		 * info("S02_qR_Code_Scanning_of_Pallet : Issue with Pallet Side");
-		 * // Logic for failure case (status is false)
-		 * bayResponse.setStatus(false);
-		 * bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_006); //
-		 * Failure error code
-		 * }
-		 * else if(status.equals("SCNR_NW")){
-		 * CalibrationBay.logger.
-		 * info("S02_qR_Code_Scanning_of_Pallet : QR Code Scanning Failed");
-		 * CalibrationBay.logger.
-		 * info("S02_qR_Code_Scanning_of_Pallet : Issue with Scanner Side");
-		 * // Logic for failure case (status is false)
-		 * bayResponse.setStatus(false);
-		 * bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_006); //
-		 * Failure error code
-		 * }
-		 */
 		QrCodeScanningPallet bayPalletService = new QrCodeScanningPallet(Calib.logger,
 				getMyBayKey(),
 				getBayStateSequenceId(),

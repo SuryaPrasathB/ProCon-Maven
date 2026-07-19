@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,13 +13,7 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S07_ensure_the_fingerTip_Latch_Opened implements CalibrationBayState {
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";*/   
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {

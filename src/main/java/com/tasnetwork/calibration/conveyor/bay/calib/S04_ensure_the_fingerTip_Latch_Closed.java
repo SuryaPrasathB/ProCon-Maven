@@ -3,14 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
-import com.tasnetwork.calibration.conveyor.bay.Constant_Motor_Requirement;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_functionaltest.FunctionalTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
@@ -21,16 +18,7 @@ import javafx.application.Platform;
 
 public class S04_ensure_the_fingerTip_Latch_Closed implements CalibrationBayState {
 	
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";   */
-	
 	BayUtils bayUtils = new BayUtils();
-	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 	
     //===========================================================================================
     @Override
@@ -76,28 +64,6 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements CalibrationBayStat
 				try_count++;
 			}
 		}
-
-		/*if (ProconFeatureEnable.PLACE_OPTICAL_READERS) {
-
-			int i = 0;
-			for (int i = 1; i < ConstantConveyor.FT_OPTICAL_DELAY_TIME; i++) {
-			while (!ConstantConveyor.isCALIB_OPTICAL_PLACED()) {
-				i++;
-				int i_final = i;
-				Platform.runLater(() -> {
-					StateExecutorController.ref_tf_CALIB_prompt.setText("Place Optical Readers - " + i_final + " secs");
-				});
-
-				BayUtils.delay(1000);
-				CalibrationBay.logger.debug("Calibration : Waiting to place Optical Readers");
-			}
-			
-			ConstantConveyor.setCALIB_OPTICAL_PLACED(false);
-			i = 0;
-			Platform.runLater(() -> {
-				StateExecutorController.ref_tf_CALIB_prompt.clear();
-			});
-		}*/
 		
 		// WITH IR BAY LAMP TOGGLE
 		if (ProconFeatureEnable.WAIT_FOR_USER_INPUT) {
@@ -153,10 +119,10 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements CalibrationBayStat
 
       	BayUtils bayUtils = new BayUtils();
 
-      	String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
+      	bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
       			portInfo.getBayId(), 
       			portInfo.getPortId(),
-      			Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the relay "On"
+      			Constant_IO_ActionMapping.OPEN);
       }
 
       private void turn_off_tower_lamp1() {
@@ -166,39 +132,12 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements CalibrationBayStat
 
       	BayUtils bayUtils = new BayUtils();
 
-      	String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
+      	bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
       			portInfo.getBayId(), 
       			portInfo.getPortId(),
       			Constant_IO_ActionMapping.CLOSE); // Use CLOSE to represent turning the relay "On"
       }
 
-      private void turn_on_tower_lamp2() {
-
-      	//============================================================================================
-      	IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP1);
-
-      	BayUtils bayUtils = new BayUtils();
-
-      	String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
-      			portInfo.getBayId(), 
-      			portInfo.getPortId(),
-      			Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the relay "On"
-      }
-
-      private void turn_off_tower_lamp2() {
-
-      	//============================================================================================
-      	IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP1);
-
-      	BayUtils bayUtils = new BayUtils();
-
-      	String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
-      			portInfo.getBayId(), 
-      			portInfo.getPortId(),
-      			Constant_IO_ActionMapping.CLOSE); // Use CLOSE to represent turning the relay "On"
-      }
-      
-  	//============================================================================================================================================ 
     //============================================================================================================================================  
 
     private Map<String, Object> calibBay_FingerTipLatch_Status() {

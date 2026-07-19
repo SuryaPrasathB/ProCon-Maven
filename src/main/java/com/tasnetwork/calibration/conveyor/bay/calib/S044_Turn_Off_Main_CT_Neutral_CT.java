@@ -3,12 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.transform.Source;
-
-import org.omg.CORBA.FloatSeqHelper;
-import org.springframework.cglib.transform.impl.AddDelegateTransformer;
-
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;

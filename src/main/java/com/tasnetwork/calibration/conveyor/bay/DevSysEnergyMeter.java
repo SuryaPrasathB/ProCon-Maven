@@ -7,16 +7,13 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantDutDevSys;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.serial.director.DutDirector;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
@@ -206,67 +203,6 @@ public class DevSysEnergyMeter {
 			spManager.disconnectDut();
 			return status;
 		}
-		// =============================
-		// 3.5 calibration lock
-		/*
-		 * if (status) {
-		 * eachBaylogger.debug("DevSysEnergyMeter : calibrationProcess : Position No: "
-		 * + positionNum
-		 * +" : sending Device Calib In Neutral Circuit Command: Success ");
-		 * status = sendCalibrationLockCommand(positionNum,spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.debug("DevSysEnergyMeter : calibrationProcess : Position No: "
-		 * + positionNum
-		 * +" : sending Device Calib In Neutral Circuit Command: Failed ");
-		 * spManager.disconnectDut();
-		 * return status;
-		 * }
-		 */
-
-		// ACCURACY - READ CURRENT
-		// 4.1 read phase current
-		/*
-		 * if (status) {
-		 * eachBaylogger.debug("DevSysEnergyMeter : calibrationProcess : Position No: "
-		 * + positionNum +" : sending Device Calibration Lock Command: Success ");
-		 * status = devSysEnergyMeter.sendReadPhaseCurrentCommand(spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.debug("DevSysEnergyMeter : calibrationProcess : Position No: "
-		 * + positionNum +" : sending Device Calibration Lock Command: Failed ");
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 * 
-		 * // 4.2 read neutral current
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : calibrationProcess : Reading Phase Current : Success "
-		 * );
-		 * status = devSysEnergyMeter.sendReadNeutralCurrentCommand(spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : calibrationProcess : Reading Phase Current : Failed "
-		 * );
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 * 
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : calibrationProcess : Reading Neutral Current : Success "
-		 * );
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : calibrationProcess : Reading Neutral Current : Failed "
-		 * );
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 */
 
 		if (status) {
 			eachBaylogger.debug("DevSysEnergyMeter : ********************************************************");
@@ -339,34 +275,6 @@ public class DevSysEnergyMeter {
 				eachBaylogger.error("DevSysEnergyMeter : phaseCalibrationProcess : Exception : " + e.getMessage());
 			}
 		}
-		// String portCname = "";
-		// =============
-		/*
-		 * if (positionNum == 1) {
-		 * portCname = "CALIB_BAY_DUT1";
-		 * }
-		 * //=============
-		 * else if (positionNum == 2) {
-		 * portCname = "CALIB_BAY_DUT2";
-		 * }
-		 * //=============
-		 * else if (positionNum == 3) {
-		 * portCname = "CALIB_BAY_DUT3";
-		 * }
-		 * //=============
-		 * else if (positionNum == 4) {
-		 * portCname = "CALIB_BAY_DUT4";
-		 * }
-		 * //=============
-		 * else if (positionNum == 5) {
-		 * portCname = "CALIB_BAY_DUT5";
-		 * }
-		 * //=============
-		 * else if (positionNum == 6) {
-		 * portCname = "CALIB_BAY_DUT6";
-		 * }
-		 */
-		// =============
 
 		// SpmDut spManager = serialPortInit(portCname);
 		if (spManager == null) {
@@ -403,89 +311,6 @@ public class DevSysEnergyMeter {
 			spManager.disconnectDut();
 			return status;
 		}
-
-		// 3.3 change circuit to neutral ct.
-		// pending
-
-		// 3.4 device calibration in neutral circuit
-		/*
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calib In Phase Circuit Command: Success ");
-		 * status = sendDeviceCalibInNeutralCktCommand(positionNum,spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calib In Phase Circuit Command: Failed ");
-		 * spManager.disconnectDut();
-		 * return status;
-		 * }
-		 */
-		// =============================
-		// 3.5 calibration lock
-		/*
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calib In Neutral Circuit Command: Success ");
-		 * status = sendCalibrationLockCommand(positionNum,spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calib In Neutral Circuit Command: Failed ");
-		 * spManager.disconnectDut();
-		 * return status;
-		 * }
-		 */
-
-		// ACCURACY - READ CURRENT
-		// 4.1 read phase current
-		/*
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calibration Lock Command: Success ");
-		 * status = devSysEnergyMeter.sendReadPhaseCurrentCommand(spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calibration Lock Command: Failed ");
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 * 
-		 * // 4.2 read neutral current
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Reading Phase Current : Success "
-		 * );
-		 * status = devSysEnergyMeter.sendReadNeutralCurrentCommand(spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Reading Phase Current : Failed "
-		 * );
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 * 
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Reading Neutral Current : Success "
-		 * );
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : phaseCalibrationProcess : Reading Neutral Current : Failed "
-		 * );
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 */
 
 		if (status) {
 			eachBaylogger.debug("DevSysEnergyMeter : ********************************************************");
@@ -558,34 +383,6 @@ public class DevSysEnergyMeter {
 				eachBaylogger.error("DevSysEnergyMeter : neutralCalibrationProcess : Exception : " + e.getMessage());
 			}
 		}
-		// String portCname = "";
-		// =============
-		/*
-		 * if (positionNum == 1) {
-		 * portCname = "CALIB_BAY_DUT1";
-		 * }
-		 * //=============
-		 * else if (positionNum == 2) {
-		 * portCname = "CALIB_BAY_DUT2";
-		 * }
-		 * //=============
-		 * else if (positionNum == 3) {
-		 * portCname = "CALIB_BAY_DUT3";
-		 * }
-		 * //=============
-		 * else if (positionNum == 4) {
-		 * portCname = "CALIB_BAY_DUT4";
-		 * }
-		 * //=============
-		 * else if (positionNum == 5) {
-		 * portCname = "CALIB_BAY_DUT5";
-		 * }
-		 * //=============
-		 * else if (positionNum == 6) {
-		 * portCname = "CALIB_BAY_DUT6";
-		 * }
-		 */
-		// =============
 
 		// SpmDut spManager = serialPortInit(portCname);
 		if (spManager == null) {
@@ -608,29 +405,6 @@ public class DevSysEnergyMeter {
 			return status;
 		}
 
-		// 3.2 change circuit to main ct.
-		// pending
-
-		// 3.2 device calibration in phase circuit
-		/*
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : sending Memory Clear Command : Success "
-		 * );
-		 * status = sendDeviceCalibInPhaseCktCommand(positionNum,spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : sending Memory Clear Command : Failed "
-		 * );
-		 * spManager.disconnectDut();
-		 * return status;
-		 * }
-		 */
-
-		// 3.3 change circuit to neutral ct.
-		// pending
-
 		// 3.4 device calibration in neutral circuit
 		if (status) {
 			eachBaylogger.debug("DevSysEnergyMeter : neutralCalibrationProcess : Position No: " + positionNum
@@ -643,69 +417,6 @@ public class DevSysEnergyMeter {
 			spManager.disconnectDut();
 			return status;
 		}
-		// =============================
-		// 3.5 calibration lock
-		/*
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calib In Neutral Circuit Command: Success ");
-		 * status = sendCalibrationLockCommand(positionNum,spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calib In Neutral Circuit Command: Failed ");
-		 * spManager.disconnectDut();
-		 * return status;
-		 * }
-		 */
-
-		// ACCURACY - READ CURRENT
-		// 4.1 read phase current
-		/*
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calibration Lock Command: Success ");
-		 * status = devSysEnergyMeter.sendReadPhaseCurrentCommand(spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Position No: " +
-		 * positionNum +" : sending Device Calibration Lock Command: Failed ");
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 * 
-		 * // 4.2 read neutral current
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Reading Phase Current : Success "
-		 * );
-		 * status = devSysEnergyMeter.sendReadNeutralCurrentCommand(spManager);
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Reading Phase Current : Failed "
-		 * );
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 * 
-		 * if (status) {
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Reading Neutral Current : Success "
-		 * );
-		 * } else {
-		 * status = false ;
-		 * eachBaylogger.
-		 * debug("DevSysEnergyMeter : neutralCalibrationProcess : Reading Neutral Current : Failed "
-		 * );
-		 * spManager.disconnectPwrSrc();
-		 * return status;
-		 * }
-		 */
 
 		if (status) {
 			eachBaylogger.debug("DevSysEnergyMeter : ********************************************************");
@@ -740,8 +451,6 @@ public class DevSysEnergyMeter {
 	public BayResponse sendReadPhaseCurrentCommandV2(SpmDut spManager) {
 
 		eachBaylogger.debug("DevSysEnergyMeter : calibrationProcess : sendReadPhaseCurrentCommandV2 : Entry");
-		boolean status = false;
-
 		BayResponse bayResponse = new BayResponse();
 
 		// String currentValue = "" ;
@@ -925,15 +634,6 @@ public class DevSysEnergyMeter {
 				.debug("DevSysEnergyMeter : sendReadNeutralCurrentCommand : sendReadNeutralCurrentCommand : Entry");
 		boolean status = false;
 
-		String currentValue = "";
-		/*
-		 * String currentValue = "" ;
-		 * 
-		 * String receivedData = "";//sendCommand(DevSysEnergyMeterCommands.DEVGINST)
-		 * // receivedData =
-		 * "02004B0000FFFFFFFF0000300000000000000200000002004B5F2F0031010101030D0A" ;
-		 */
-
 		DutDirector pwrSrcDirector = new DutDirector(spManager);
 		Map<String, Object> responseMap = pwrSrcDirector.sendCommandToDut(DevSysEnergyMeter.DEVGINST,
 				DevSysEnergyMeter.ER_DATA_IN_HEX);
@@ -1003,7 +703,6 @@ public class DevSysEnergyMeter {
 
 	public BayResponse sendReadNeutralCurrentCommandV2(SpmDut spManager) {
 		eachBaylogger.debug("DevSysEnergyMeter : sendReadNeutralCurrentCommandV2 : Entry");
-		boolean status = false;
 		BayResponse bayResponse = new BayResponse();
 		// String currentValue = "" ;
 		/*
@@ -1597,7 +1296,6 @@ public class DevSysEnergyMeter {
 	public SpmDut serialPortInit(String portCname) {
 
 		boolean status = false;
-		String response = "";
 		String commPortID = "";
 		String commBaudRate = "";
 		SpmDut spManager = null;
@@ -1699,7 +1397,6 @@ public class DevSysEnergyMeter {
 	public SpmDut serialPortInitV2(DeviceSetting deviceSetting) {
 
 		boolean status = false;
-		String response = "";
 		String commPortID = deviceSetting.getPortName();
 		String commBaudRate = deviceSetting.getBaudRate();
 		String portCname = deviceSetting.getCanName();

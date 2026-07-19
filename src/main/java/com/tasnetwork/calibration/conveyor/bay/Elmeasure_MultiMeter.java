@@ -1,16 +1,8 @@
 package com.tasnetwork.calibration.conveyor.bay;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.tasnetwork.calibration.conveyor.bay.hv.HV_ReadResult;
-import com.tasnetwork.calibration.conveyor.bay.ir.IR_ReadResult;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
-import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
 import com.tasnetwork.calibration.conveyor.serial.director.VoltPmDirector;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmVoltPm;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -37,56 +29,6 @@ public class Elmeasure_MultiMeter {
 		String response = "";
 		String commPortID = deviceSetting.getPortName();
 		String commBaudRate = deviceSetting.getBaudRate();
-		// ScanForSerialPorts();
-		/*
-		 * JSONObject cNamePortSettingData =
-		 * MySQL_Controller.sp_get_cname_port_setting(comPortCname);
-		 * 
-		 * try {
-		 * if(cNamePortSettingData.has("port_name")){
-		 * commPortID = cNamePortSettingData.getString("port_name");
-		 * 
-		 * //cmbBxLDU_PortSelection2.setValue(saved_ldu2_setting.getString("port_name"))
-		 * ;
-		 * } else {
-		 * //cmbBxLDU_PortSelection2.setValue("");
-		 * ApplicationLauncher.logger.
-		 * info("sendCommandToPanelHvMeter: port_name-1: Data not retrieved from DB");
-		 * 
-		 * }
-		 * 
-		 * } catch (JSONException e) {
-		 * 
-		 * e.printStackTrace();
-		 * ApplicationLauncher.logger.
-		 * error("sendCommandToPanelHvMeter: JSONException5-2:"+e.getMessage());
-		 * //cmbBxLDU_PortSelection2.setValue("");
-		 * ApplicationLauncher.logger.
-		 * info("sendCommandToPanelHvMeter: port_name-2: Data not retrieved from database"
-		 * );
-		 * 
-		 * }
-		 * 
-		 * try {
-		 * if(cNamePortSettingData.has("baud_rate")){
-		 * commBaudRate = cNamePortSettingData.getString("baud_rate");
-		 * 
-		 * } else {
-		 * ApplicationLauncher.logger.
-		 * info("sendCommandToPanelHvMeter: baudrate-1: Data not retrieved from DB");
-		 * 
-		 * }
-		 * 
-		 * } catch (JSONException e) {
-		 * e.printStackTrace();
-		 * ApplicationLauncher.logger.
-		 * error("sendCommandToPanelHvMeter: JSONException5-2:"+e.getMessage());
-		 * ApplicationLauncher.logger.
-		 * info("sendCommandToPanelHvMeter: baudrate-2: Data not retrieved from database"
-		 * );
-		 * 
-		 * }
-		 */
 
 		try {
 			ApplicationLauncher.logger.debug("sendCommandToPanelHvMeter : try ");

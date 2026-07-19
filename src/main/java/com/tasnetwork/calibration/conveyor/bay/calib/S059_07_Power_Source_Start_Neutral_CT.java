@@ -1,9 +1,7 @@
-// S059_07_Power_Source_Start_Neutral_CT.java (Modified)
 package com.tasnetwork.calibration.conveyor.bay.calib;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional; // Added for Optional<ButtonType>
 import java.util.concurrent.CountDownLatch; // Added for blocking until UI interaction
 
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
@@ -20,12 +18,6 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.stage.Stage; // For setting icon
-
-// Assuming ConstantVersion is available for APP_ICON_FILENAME
-// import com.tasnetwork.calibration.conveyor.constant.ConstantVersion;
-
 
 public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayState {
 
@@ -52,14 +44,14 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 		if (voltage_current_start_initiated) {
 			Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : Voltage Current Start Command Initiated");
 
-			//Calib.logger.info("S059_04_Current_Stop : 10secs Wait Time");
-			//BayUtils.delay(10000); // Delay after sending start command
-			if(ConstantConveyor.CALIB_SANGYONG_SOURCE_CONNECTED){
+			// Calib.logger.info("S059_04_Current_Stop : 10secs Wait Time");
+			// BayUtils.delay(10000); // Delay after sending start command
+			if (ConstantConveyor.CALIB_SANGYONG_SOURCE_CONNECTED) {
 				Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : 15 secs Wait Time");
-				BayUtils.delay(5000);//10000); // Delay for 10 seconds as per PLC TIMER
+				BayUtils.delay(5000);// 10000); // Delay for 10 seconds as per PLC TIMER
 				BayUtils.delay(5000);
 				BayUtils.delay(5000);
-			}else{
+			} else {
 				Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : 10secs Wait Time");
 				BayUtils.delay(10000); // Delay for 10 seconds as per PLC TIMER
 			}
@@ -74,7 +66,8 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 					break;
 				}
 				BayUtils.delay(2000);
-				Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : Exit (Neutral Voltage Start Check) Retrying : " + i);
+				Calib.logger.info(
+						"S059_07_Power_Source_Start_Neutral_CT : Exit (Neutral Voltage Start Check) Retrying : " + i);
 			}
 
 			if (!neutralVoltageSet) {
@@ -96,7 +89,8 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 					break;
 				}
 				BayUtils.delay(2000);
-				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : Exit (Neutral Current Start Check) Retrying : " + i);
+				Calib.logger.info(
+						"S059_02_Power_Source_Start_Main_CT : Exit (Neutral Current Start Check) Retrying : " + i);
 			}
 
 			if (!neutralCurrentSet) {
@@ -115,19 +109,23 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 				pfSet = (boolean) responseReturn.get("status");
 
 				if (!pfSet) {
-					Calib.logger.warn("S059_07_Power_Source_Start_Neutral_CT : PF Not set to 0.5. Prompting user to adjust.");
+					Calib.logger.warn(
+							"S059_07_Power_Source_Start_Neutral_CT : PF Not set to 0.5. Prompting user to adjust.");
 					// Call the method to display the alert and wait for user acknowledgment
 					displayPfNotSetAlert(); // Reuses the same alert method
-					Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : User acknowledged PF alert. Re-checking PF parameters.");
+					Calib.logger.info(
+							"S059_07_Power_Source_Start_Neutral_CT : User acknowledged PF alert. Re-checking PF parameters.");
 				}
 			} while (!pfSet && !Calib.isStopProcessRequestedCalibBay()); // Continue looping as long as PF is not set
 
-			Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : PF is successfully set to 0.5. Proceeding with calibration.");
+			Calib.logger.info(
+					"S059_07_Power_Source_Start_Neutral_CT : PF is successfully set to 0.5. Proceeding with calibration.");
 			// If all checks pass, the overall status is true
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 		} else {
-			Calib.logger.info("S059_07_Power_Source_Start_Neutral_CT : Voltage Current Start Command Failed to Initiate");
+			Calib.logger
+					.info("S059_07_Power_Source_Start_Neutral_CT : Voltage Current Start Command Failed to Initiate");
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
 		}
@@ -144,8 +142,10 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 	// ============================================================================================================================================
 
 	/**
-	 * This method displays a standard JavaFX Alert dialog to the user when the PF is not set.
-	 * It uses JavaFX's Platform.runLater to ensure UI operations are on the FX Application Thread
+	 * This method displays a standard JavaFX Alert dialog to the user when the PF
+	 * is not set.
+	 * It uses JavaFX's Platform.runLater to ensure UI operations are on the FX
+	 * Application Thread
 	 * and a CountDownLatch to block the calling thread until the user clicks 'OK'.
 	 */
 	private void displayPfNotSetAlert() {
@@ -159,15 +159,9 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 				alert.setHeaderText(null); // No header text
 				alert.setContentText("PF Not set to 0.5. Please set it and press OK to continue.");
 
-				// Optionally add an icon to the dialog stage
-				// You'll need to ensure ConstantVersion.APP_ICON_FILENAME is accessible
-				// and the image path is correct.
-				Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-				// Uncomment the following line if ConstantVersion and the image path are valid
-				// stage.getIcons().add(new Image("file:images/" + ConstantVersion.APP_ICON_FILENAME));
+				alert.getDialogPane().getScene().getWindow();
 
-				// Show the dialog and wait for user interaction
-				Optional<ButtonType> result = alert.showAndWait();
+				alert.showAndWait();
 
 				// If the user clicks OK, or simply closes the dialog, the latch counts down.
 				// For this specific use case (PF not set, user must fix), we assume
@@ -180,7 +174,8 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 			}
 		});
 
-		// Block the current thread until the JavaFX dialog is closed and the latch is counted down
+		// Block the current thread until the JavaFX dialog is closed and the latch is
+		// counted down
 		try {
 			latch.await();
 		} catch (InterruptedException e) {
@@ -198,8 +193,10 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 		responseReturn.put("status", false);
 
 		// ============================================================================================
-		// This port is for the general voltage/current start command, which might be common
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_240V_VOLTAGE_CURRENT_START);
+		// This port is for the general voltage/current start command, which might be
+		// common
+		IoPortInfo portInfo = BayUtils
+				.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_240V_VOLTAGE_CURRENT_START);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -237,7 +234,8 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 	/**
 	 * Checks the voltage start status specifically for the Neutral CT.
 	 * Assumes a distinct port for Neutral CT voltage status.
-	 * You may need to define `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_NEUTRAL_VOLTAGE_START_STATUS`.
+	 * You may need to define
+	 * `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_NEUTRAL_VOLTAGE_START_STATUS`.
 	 */
 	private Map<String, Object> checkNeutralVoltageStart() {
 		Calib.logger.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralVoltageStart : Entry");
@@ -247,14 +245,16 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 		responseReturn.put("status", false);
 
 		// Using a new port name for Neutral CT voltage start status
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_START_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_START_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
 			Calib.logger.debug("ClusterId : " + portInfo.getClusterId());
 			Calib.logger.debug("BayId     : " + portInfo.getBayId());
 		} else {
-			Calib.logger.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralVoltageStart : Input port not found");
+			Calib.logger
+					.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralVoltageStart : Input port not found");
 			return responseReturn;
 		}
 
@@ -282,7 +282,8 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 	/**
 	 * Checks the current start status specifically for the Neutral CT.
 	 * Assumes a distinct port for Neutral CT current status.
-	 * You may need to define `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_NEUTRAL_CURRENT_START_STATUS`.
+	 * You may need to define
+	 * `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_NEUTRAL_CURRENT_START_STATUS`.
 	 */
 	private Map<String, Object> checkNeutralCurrentStart() {
 		Calib.logger.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralCurrentStart : Entry");
@@ -292,14 +293,16 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 		responseReturn.put("status", false);
 
 		// Using a new port name for Neutral CT current start status
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_START_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_START_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
 			Calib.logger.debug("ClusterId : " + portInfo.getClusterId());
 			Calib.logger.debug("BayId     : " + portInfo.getBayId());
 		} else {
-			Calib.logger.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralCurrentStart : Input port not found");
+			Calib.logger
+					.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralCurrentStart : Input port not found");
 			return responseReturn;
 		}
 
@@ -327,7 +330,8 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 	/**
 	 * Checks the Power Factor (PF) parameters specifically for the Neutral CT.
 	 * Assumes a distinct port for Neutral CT PF status.
-	 * You may need to define `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_NEUTRAL_05L_PF_STATUS`.
+	 * You may need to define
+	 * `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_NEUTRAL_05L_PF_STATUS`.
 	 */
 	private Map<String, Object> checkNeutralPFParameters() {
 		Calib.logger.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralPFParameters : Entry");
@@ -337,14 +341,16 @@ public class S059_07_Power_Source_Start_Neutral_CT implements CalibrationBayStat
 		responseReturn.put("status", false);
 
 		// Using a new port name for Neutral CT 0.5L PF status
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_05L_PF_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_05L_PF_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
 			Calib.logger.debug("ClusterId : " + portInfo.getClusterId());
 			Calib.logger.debug("BayId     : " + portInfo.getBayId());
 		} else {
-			Calib.logger.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralPFParameters : Input port not found");
+			Calib.logger
+					.debug("S059_07_Power_Source_Start_Neutral_CT : checkNeutralPFParameters : Input port not found");
 			return responseReturn;
 		}
 

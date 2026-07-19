@@ -1,14 +1,11 @@
 package com.tasnetwork.calibration.conveyor.bay.bookshelf;
 
-// import java.io.IOException;
 import java.util.ArrayList;
-// import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-// import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,18 +17,13 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_Pallet_Bay_Map;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
-// import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-// import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-// import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
-// import com.tasnetwork.calibration.conveyor.dashboard.DashboardController;
 import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-// import com.tasnetwork.calibration.energymeter.testreport.TestReportConveyorController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 import com.tasnetwork.spring.orm.model.PalletManage;
@@ -258,7 +250,7 @@ public class QrCodeScanningPallet {
 		Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
 		if (myPalletManage != null) {
 			palletMeterSetList = myPalletManage.getPalletMeterList();
-			List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
+			palletMeterSetList.stream()
 					.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
 			for (PalletMeter eachPalletMeter : palletMeterSetList) {
 				meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(), eachPalletMeter.getMeterSerialNo());
@@ -437,7 +429,7 @@ public class QrCodeScanningPallet {
 
 				myPalletManage = myPalletManageList.get(0);
 				palletMeterSetList = myPalletManage.getPalletMeterList();
-				List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
+				palletMeterSetList.stream()
 						.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
 				for (PalletMeter eachPalletMeter : palletMeterSetList) {
 					meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
@@ -505,7 +497,7 @@ public class QrCodeScanningPallet {
 				meterListWithSerialNoMap.clear();
 				// myPalletManage = myPalletManageList.get(0);
 				palletMeterSetList = eachPalletManage.getPalletMeterList();
-				List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
+				palletMeterSetList.stream()
 						.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
 				for (PalletMeter eachPalletMeter : palletMeterSetList) {
 					meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
@@ -575,149 +567,6 @@ public class QrCodeScanningPallet {
 		// palletTrackerController.refreshPalletManageDataFromDbv2("Qr-Pallet-refreshDashBoard");
 
 	}
-
-	/*
-	 * public void refreshDashBoard(PalletTrackerController
-	 * palletTrackerController,String palletQrId, String selectedBayTypeKey , String
-	 * palletDistinctId ){
-	 * 
-	 * 
-	 * Map<Integer,String> meterListWithSerialNoMap = new HashMap<Integer,String>();
-	 * //String palletDistinctId =
-	 * palletTrackerController.addNewPalletManage(selectedBayTypeKey,palletQrId,
-	 * meterListWithSerialNoMap);
-	 * 
-	 * //String palletDistinctId = "";
-	 * 
-	 * 
-	 * 
-	 * PalletManage myPalletManage =
-	 * MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(
-	 * palletDistinctId);
-	 * 
-	 * Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
-	 * if(myPalletManage!=null){
-	 * palletMeterSetList = myPalletManage.getPalletMeterList();
-	 * List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
-	 * .sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(
-	 * Collectors.toList());
-	 * for(PalletMeter eachPalletMeter : palletMeterSetList){
-	 * meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
-	 * eachPalletMeter.getMeterSerialNo());
-	 * }
-	 * }
-	 * 
-	 * 
-	 * // If the scanned pallet is in the verification bay, update all pallets in
-	 * the bay
-	 * 
-	 * 
-	 * if (selectedBayTypeKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-	 * eachBaylogger.
-	 * debug("qrCodePalletScanning: verification bay : refreshDashBoard: Pallet Bay State Already Exists"
-	 * );
-	 * }else if (selectedBayTypeKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
-	 * 
-	 * 
-	 * eachBaylogger.
-	 * debug("qrCodePalletScanning: Waiting Bay: refreshDashBoard:  AUTOMATE REPORTS"
-	 * );
-	 * 
-	 * }else if (selectedBayTypeKey.equals(ConstantConveyor.UNLOADING_BAY_KEY)) {
-	 * eachBaylogger.
-	 * debug("qrCodePalletScanning: Unloading Bay: refreshDashBoard : AUTOMATE REPORTS"
-	 * );
-	 * List<PalletManage> myPalletManageList =
-	 * MySqlServiceManager.getPalletManageService().
-	 * findByPalletQrIdAndExitNotAppeared(palletQrId);
-	 * if (myPalletManageList.size()>0) {
-	 * ApplicationLauncher.logger.
-	 * error("readPalletMetersData: getPalletDistinctId: " +
-	 * myPalletManageList.get(0).getPalletDistinctId());
-	 * 
-	 * myPalletManage = myPalletManageList.get(0);
-	 * palletMeterSetList = myPalletManage.getPalletMeterList();
-	 * List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
-	 * .sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(
-	 * Collectors.toList());
-	 * for(PalletMeter eachPalletMeter : palletMeterSetList){
-	 * meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
-	 * eachPalletMeter.getMeterSerialNo());
-	 * }
-	 * }
-	 * 
-	 * 
-	 * } else if (selectedBayTypeKey.equals(ConstantConveyor.REJECTION_BAY_KEY)) {
-	 * eachBaylogger.debug("qrCodePalletScanning: rejected bay: ");
-	 * palletTrackerController.addPalletBayState(selectedBayTypeKey);
-	 * }else if (ConstantConveyor.ENTRY_BAY_LIST.contains(selectedBayTypeKey)) {
-	 * eachBaylogger.
-	 * debug("qrCodePalletScanning: EntryBAy List : No ActivePalletMap :  selectedBayTypeKey : "
-	 * + selectedBayTypeKey);
-	 * 
-	 * 
-	 * palletDistinctId =
-	 * palletTrackerController.addNewPalletManage(selectedBayTypeKey,palletQrId,
-	 * meterListWithSerialNoMap);
-	 * updatePalletViewer(selectedBayTypeKey, palletQrId);
-	 * 
-	 * }else {
-	 * eachBaylogger.debug("qrCodePalletScanning: other bays: ");
-	 * 
-	 * if (PalletTrackerController.getActivePalletMap().containsKey(palletQrId)) {
-	 * eachBaylogger.
-	 * debug("qrCodePalletScanning: getActivePalletMap exist : selectedBayTypeKey: "
-	 * + selectedBayTypeKey);
-	 * eachBaylogger.debug("getActivePalletMap() : " +
-	 * PalletTrackerController.getActivePalletMap());
-	 * 
-	 * palletDistinctId =
-	 * PalletTrackerController.getActivePalletMap().get(palletQrId);
-	 * 
-	 * updatePalletViewer(selectedBayTypeKey, palletQrId);
-	 * palletTrackerController.addPalletBayState(selectedBayTypeKey);
-	 * } else {
-	 * eachBaylogger.
-	 * debug("qrCodePalletScanning: No ActivePalletMap-2 :  selectedBayTypeKey : " +
-	 * selectedBayTypeKey);
-	 * 
-	 * 
-	 * palletDistinctId =
-	 * palletTrackerController.addNewPalletManage(selectedBayTypeKey,palletQrId,
-	 * meterListWithSerialNoMap);
-	 * updatePalletViewer(selectedBayTypeKey, palletQrId);
-	 * }
-	 * }
-	 * ConveyorDeviceDataManagerController.getDashboardObject().removePalletFromBay(
-	 * selectedBayTypeKey);
-	 * ConveyorDeviceDataManagerController.getDashboardObject().
-	 * addNewPalletViewDashboard(selectedBayTypeKey, palletQrId,
-	 * meterListWithSerialNoMap);
-	 * 
-	 * Map<Integer, MeterStatus> statusMap = new HashMap<>();
-	 * statusMap.put(1, MeterStatus.IDLE);
-	 * statusMap.put(2, MeterStatus.IDLE);
-	 * statusMap.put(3, MeterStatus.IDLE);
-	 * statusMap.put(4, MeterStatus.IDLE);
-	 * statusMap.put(5, MeterStatus.IDLE);
-	 * statusMap.put(6, MeterStatus.IDLE);
-	 * 
-	 * Map<Integer, String> errorCodeMap = new HashMap<>();
-	 * 
-	 * errorCodeMap.put(1, "");
-	 * errorCodeMap.put(2, "");
-	 * errorCodeMap.put(3, "");
-	 * errorCodeMap.put(4, "");
-	 * errorCodeMap.put(5, "");
-	 * errorCodeMap.put(6, "");
-	 * Platform.runLater(()->{
-	 * ConveyorDeviceDataManagerController.getDashboardObject().
-	 * updateDashBoardPalletStatus(palletQrId, statusMap, errorCodeMap);
-	 * });
-	 * //palletTrackerController.refreshPalletManageDataFromDb();
-	 * palletTrackerController.refreshPalletManageDataFromDbv2("refreshDashBoard");
-	 * }
-	 */
 
 	public void updatePalletViewer(String selectedBayTypeKey, String palletQrId) {
 		switch (selectedBayTypeKey) {

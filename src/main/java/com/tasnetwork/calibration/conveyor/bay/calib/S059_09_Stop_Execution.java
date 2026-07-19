@@ -15,14 +15,13 @@ import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.pallet.CalibrationSummaryProcessor;
 import com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 import javafx.application.Platform;
 
 public class S059_09_Stop_Execution implements CalibrationBayState {
 
-    private final CalibrationSummaryProcessor calibrationSummaryProcessor = CalibrationSummaryProcessor.getInstance();
+	private final CalibrationSummaryProcessor calibrationSummaryProcessor = CalibrationSummaryProcessor.getInstance();
 
 	static boolean stopExecutionRequested = false;
 
@@ -35,8 +34,6 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 	String resultValue = "";
 	String testType = "";
 	String testCaseName = "";
-
-	private String myBayKey = ConstantConveyor.CALIBRATION_BAY_KEY;
 
 	// ===========================================================================================
 	@Override
@@ -54,14 +51,14 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		if (voltage_current_stop_initiated) {
 			Calib.logger.info("S059_09_Stop_Execution : Voltage Current Stop Command Initiated");
 
-			//Calib.logger.info("S059_04_Current_Stop : 10secs Wait Time");
-			//BayUtils.delay(10000); // Delay after sending stop command
-			if(ConstantConveyor.CALIB_SANGYONG_SOURCE_CONNECTED){
+			// Calib.logger.info("S059_04_Current_Stop : 10secs Wait Time");
+			// BayUtils.delay(10000); // Delay after sending stop command
+			if (ConstantConveyor.CALIB_SANGYONG_SOURCE_CONNECTED) {
 				Calib.logger.info("S059_09_Stop_Execution : 15 secs Wait Time");
-				BayUtils.delay(5000);//10000); // Delay for 10 seconds as per PLC TIMER
+				BayUtils.delay(5000);// 10000); // Delay for 10 seconds as per PLC TIMER
 				BayUtils.delay(5000);
 				BayUtils.delay(5000);
-			}else{
+			} else {
 				Calib.logger.info("S059_09_Stop_Execution : 10secs Wait Time");
 				BayUtils.delay(10000); // Delay for 10 seconds as per PLC TIMER
 			}
@@ -129,24 +126,26 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 
 			StateExecutorController.getRef_btn_CalibRemove().setDisable(false);
 
-			Calib.logger.debug("S081_stop_FT_source : CALIB_OPTICAL_REMOVED :" + ConstantConveyor.isCALIB_OPTICAL_REMOVED());
+			Calib.logger.debug(
+					"S081_stop_FT_source : CALIB_OPTICAL_REMOVED :" + ConstantConveyor.isCALIB_OPTICAL_REMOVED());
 
 			while (!ConstantConveyor.isCALIB_OPTICAL_REMOVED() && !Calib.isStopProcessRequestedCalibBay()) {
 				long elapsedTime = (System.currentTimeMillis() - startTime) / 1000; // in seconds
 
 				Platform.runLater(() -> {
-					StateExecutorController.ref_tf_CALIB_prompt.setText("Remove Optical Readers - " + elapsedTime + " secs");
+					StateExecutorController.ref_tf_CALIB_prompt
+							.setText("Remove Optical Readers - " + elapsedTime + " secs");
 				});
 
 				// Alternate the tower lamp state
 				if (toggle) {
-					turn_on_tower_lamp1();  // Turn ON Lamp 1
+					turn_on_tower_lamp1(); // Turn ON Lamp 1
 					BayUtils.delay(100);
-					//turn_off_tower_lamp2(); // Turn OFF Lamp 2
+					// turn_off_tower_lamp2(); // Turn OFF Lamp 2
 				} else {
 					turn_off_tower_lamp1(); // Turn OFF Lamp 1
 					BayUtils.delay(100);
-					//turn_on_tower_lamp2();// Turn ON Lamp 2
+					// turn_on_tower_lamp2();// Turn ON Lamp 2
 				}
 
 				toggle = !toggle; // Flip the flag for next iteration
@@ -163,8 +162,7 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		}
 
 		updateCalibrationResult();
-		
-		
+
 		Calib.logger.info("S059_09_Stop_Execution : Exit");
 		return bayResponse;
 	}
@@ -179,7 +177,8 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		responseReturn.put("status", false);
 
 		// ============================================================================================
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_CURRENT_STOP);
+		IoPortInfo portInfo = BayUtils
+				.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_CURRENT_STOP);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -217,10 +216,12 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 	/**
 	 * Checks the voltage stop status.
 	 * Assumes an input port that indicates the voltage has successfully stopped.
-	 * You will need to define `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_STOP_STATUS`
+	 * You will need to define
+	 * `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_STOP_STATUS`
 	 * with the correct port name in your `ConstantBayPortNameMapping` class.
 	 *
-	 * @return A Map containing a "status" boolean, true if voltage stop is confirmed, false otherwise.
+	 * @return A Map containing a "status" boolean, true if voltage stop is
+	 *         confirmed, false otherwise.
 	 */
 	private Map<String, Object> checkVoltageStopStatus() {
 		Calib.logger.debug("S059_09_Stop_Execution : checkVoltageStopStatus : Entry");
@@ -229,7 +230,8 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_STOP_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_STOP_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -265,10 +267,12 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 	/**
 	 * Checks the current stop status.
 	 * Assumes an input port that indicates the current has successfully stopped.
-	 * You will need to define `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_STOP_STATUS`
+	 * You will need to define
+	 * `ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_STOP_STATUS`
 	 * with the correct port name in your `ConstantBayPortNameMapping` class.
 	 *
-	 * @return A Map containing a "status" boolean, true if current stop is confirmed, false otherwise.
+	 * @return A Map containing a "status" boolean, true if current stop is
+	 *         confirmed, false otherwise.
 	 */
 	private Map<String, Object> checkCurrentStopStatus() {
 		Calib.logger.debug("S059_09_Stop_Execution : checkCurrentStopStatus : Entry");
@@ -277,7 +281,8 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_STOP_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_STOP_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -309,7 +314,6 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		return responseReturn;
 	}
 
-
 	// ============================================================================================================================================
 
 	private void updateCalibrationResult() {
@@ -318,17 +322,20 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 		String selectedBayTypeKey = getMyBayKey();
 		String myPalletDistinctId = PalletTrackerController.getPresentPalletAtBayMap().get(selectedBayTypeKey);
 
-		PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
+		MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
 
 		for (int positionNo = 1; positionNo <= ConstantConveyor.MAX_DEVICES_CONNECTED; positionNo++) {
 
 			resultStatus = calibrationSummaryProcessor.getOverallCalibrationResult(positionNo);
 			resultValue = resultStatus;
 
-			testCaseName = ConstantConveyor.SUMMARY_CALIB_RESULT_TEST_NAME;//CALIB_RESULT_TEST_NAME; //"Calibration";
-			testType = ConstantConveyor.CALIBRATION_RESULT_KEY; //"CALIB";
-			Calib.logger.info("S059_09_Stop_Execution : updateCalibrationResult: testType: " + testType + " ,testCaseName:" + testCaseName + " , resultStatus: " + resultStatus + " ,resultValue: " +resultValue);
-			palletTracker.addMeterResultSummary(positionNo, resultStatus, resultValue, getMyBayKey(), testType, testCaseName);
+			testCaseName = ConstantConveyor.SUMMARY_CALIB_RESULT_TEST_NAME;// CALIB_RESULT_TEST_NAME; //"Calibration";
+			testType = ConstantConveyor.CALIBRATION_RESULT_KEY; // "CALIB";
+			Calib.logger
+					.info("S059_09_Stop_Execution : updateCalibrationResult: testType: " + testType + " ,testCaseName:"
+							+ testCaseName + " , resultStatus: " + resultStatus + " ,resultValue: " + resultValue);
+			palletTracker.addMeterResultSummary(positionNo, resultStatus, resultValue, getMyBayKey(), testType,
+					testCaseName);
 		}
 	}
 
@@ -341,10 +348,10 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 
 		BayUtils bayUtils = new BayUtils();
 
-		String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+		bayUtils.setOutputDataToBay(portInfo.getClusterId(),
 				portInfo.getBayId(),
 				portInfo.getPortId(),
-				Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the relay "On"
+				Constant_IO_ActionMapping.OPEN);
 	}
 
 	private void turn_off_tower_lamp1() {
@@ -354,36 +361,10 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 
 		BayUtils bayUtils = new BayUtils();
 
-		String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+		bayUtils.setOutputDataToBay(portInfo.getClusterId(),
 				portInfo.getBayId(),
 				portInfo.getPortId(),
-				Constant_IO_ActionMapping.CLOSE); // Use CLOSE to represent turning the relay "On"
-	}
-
-	private void turn_on_tower_lamp2() {
-
-		// ============================================================================================
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP1);
-
-		BayUtils bayUtils = new BayUtils();
-
-		String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-				portInfo.getBayId(),
-				portInfo.getPortId(),
-				Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the relay "On"
-	}
-
-	private void turn_off_tower_lamp2() {
-
-		// ============================================================================================
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.IR_PORT_NAME_TWR_LAMP1);
-
-		BayUtils bayUtils = new BayUtils();
-
-		String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-				portInfo.getBayId(),
-				portInfo.getPortId(),
-				Constant_IO_ActionMapping.CLOSE); // Use CLOSE to represent turning the relay "On"
+				Constant_IO_ActionMapping.CLOSE);
 	}
 
 	// ============================================================================================================================================
@@ -412,13 +393,5 @@ public class S059_09_Stop_Execution implements CalibrationBayState {
 
 	public static void setStopExecutionRequested(boolean stopExecutionRequested) {
 		S059_09_Stop_Execution.stopExecutionRequested = stopExecutionRequested;
-	}
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
-	public void setMyBayKey(String myBayKey) {
-		this.myBayKey = myBayKey;
 	}
 }

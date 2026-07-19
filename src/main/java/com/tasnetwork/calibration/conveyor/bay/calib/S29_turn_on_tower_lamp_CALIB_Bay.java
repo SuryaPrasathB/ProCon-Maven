@@ -3,8 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
@@ -22,18 +20,18 @@ public class S29_turn_on_tower_lamp_CALIB_Bay implements CalibrationBayState {
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
         // Turn ON the tower lamp
-        Map<String,Object> responseReturn = turn_on_tower_lamp();
-        boolean turn_on_lamp = (boolean)responseReturn.get("status");
+        Map<String, Object> responseReturn = turn_on_tower_lamp();
+        boolean turn_on_lamp = (boolean) responseReturn.get("status");
 
         if (turn_on_lamp) {
             Calib.logger.info("S29_turn_on_tower_lamp_CALIB_Bay : RED Tower Lamp Turned On");
-            
+
             // Delay for 500ms
-            //BayUtils.delay(500);
-            
+            // BayUtils.delay(500);
+
             // Turn OFF the tower lamp
             responseReturn = turn_off_tower_lamp();
-            boolean turn_off_lamp = (boolean)responseReturn.get("status");
+            boolean turn_off_lamp = (boolean) responseReturn.get("status");
 
             if (turn_off_lamp) {
                 Calib.logger.info("S29_turn_on_tower_lamp_CALIB_Bay : GREEN Tower Lamp Turned Off");
@@ -54,14 +52,14 @@ public class S29_turn_on_tower_lamp_CALIB_Bay implements CalibrationBayState {
         return bayResponse;
     }
 
-    //=====================================================================
+    // =====================================================================
     // Function to turn ON the tower lamp
-    //=====================================================================
-    private Map<String,Object> turn_on_tower_lamp() {
+    // =====================================================================
+    private Map<String, Object> turn_on_tower_lamp() {
         Calib.logger.debug("S29_turn_on_tower_lamp_CALIB_Bay : turn_on_tower_lamp : Entry");
 
         boolean status = false;
-        Map<String,Object> responseReturn = new HashMap<>();
+        Map<String, Object> responseReturn = new HashMap<>();
         responseReturn.put("status", false);
 
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_TWR_LAMP2);
@@ -69,9 +67,9 @@ public class S29_turn_on_tower_lamp_CALIB_Bay implements CalibrationBayState {
         if (portInfo != null) {
             BayUtils bayUtils = new BayUtils();
             String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                       portInfo.getBayId(),
-                                                       portInfo.getPortId(),
-                                                       Constant_IO_ActionMapping.OPEN);
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    Constant_IO_ActionMapping.OPEN);
             status = state.equals(Constant_IO_ActionMapping.ON);
         }
 
@@ -79,14 +77,14 @@ public class S29_turn_on_tower_lamp_CALIB_Bay implements CalibrationBayState {
         return responseReturn;
     }
 
-    //=====================================================================
+    // =====================================================================
     // Function to turn OFF the tower lamp
-    //=====================================================================
-    private Map<String,Object> turn_off_tower_lamp() {
+    // =====================================================================
+    private Map<String, Object> turn_off_tower_lamp() {
         Calib.logger.debug("S29_turn_on_tower_lamp_CALIB_Bay : turn_off_tower_lamp : Entry");
 
         boolean status = false;
-        Map<String,Object> responseReturn = new HashMap<>();
+        Map<String, Object> responseReturn = new HashMap<>();
         responseReturn.put("status", false);
 
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_TWR_LAMP1);
@@ -94,9 +92,9 @@ public class S29_turn_on_tower_lamp_CALIB_Bay implements CalibrationBayState {
         if (portInfo != null) {
             BayUtils bayUtils = new BayUtils();
             String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                       portInfo.getBayId(),
-                                                       portInfo.getPortId(),
-                                                       Constant_IO_ActionMapping.CLOSE);
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    Constant_IO_ActionMapping.CLOSE);
             status = state.equals(Constant_IO_ActionMapping.OFF);
         }
 

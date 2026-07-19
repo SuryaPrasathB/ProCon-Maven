@@ -18,9 +18,7 @@ public class S043_Turn_On_Neutral_CT implements CalibrationBayState {
 	
     BayUtils bayUtils = new BayUtils();
     String sequencePathId = "p1";
-    private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
-
-	//===========================================================================================
+    //===========================================================================================
     @Override
     public BayResponse handleRequest() {
         Calib.logger.info("S043_Turn_On_Neutral_CT : Entry");

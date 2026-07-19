@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional; // Added for Optional<ButtonType>
 import java.util.concurrent.CountDownLatch; // For blocking until UI interaction
 
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
@@ -21,8 +20,6 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 import javafx.application.Platform;
 import javafx.scene.control.Alert; // Added for Alert
 import javafx.scene.control.Alert.AlertType; // Added for AlertType
-import javafx.scene.control.ButtonType; // Added for ButtonType
-import javafx.stage.Stage; // Added for Stage (for icon)
 
 public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 
@@ -39,7 +36,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 	public BayResponse handleRequest() {
 		Calib.logger.info("S059_02_Power_Source_Start_Main_CT : Entry");
 		BayResponse bayResponse = new BayResponse();
-		// Initialize bayResponse to success, will be updated if any step fails or aborts
+		// Initialize bayResponse to success, will be updated if any step fails or
+		// aborts
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
@@ -53,62 +51,34 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : User aborted, exiting calibration process.");
 				bayResponse.setStatus(false); // Set status to false
 
-				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_999); // Use a specific abort error code if available
+				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_999); // Use a specific abort error code if
+																				// available
 				break; // Exit the do-while loop immediately
 			}
-			
+
 			Map<String, Object> responseReturn;
 
 			// --- 1. Set 40V, Stop, Set 240V ---
 
 			Calib.logger.info("Start 40V: voltage_current_start(40)");
-			
+
 			// Step 1: Start 40V
 			Map<String, Object> start40Response = voltage_current_start(40);
-			boolean start40Success = (boolean) start40Response.get("status");			
+			boolean start40Success = (boolean) start40Response.get("status");
 
 			if (!start40Success) {
-			    Calib.logger.error("Step Failed: voltage_current_start(40)");
-			    bayResponse.setStatus(false);
-			    bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
-			    continue;
+				Calib.logger.error("Step Failed: voltage_current_start(40)");
+				bayResponse.setStatus(false);
+				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
+				continue;
 			}
-			
+
 			Calib.logger.info("Start 40V: Delay Started");
 
-			// 45 sec delay - Capacitor Charging Time
-/*			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}
-			if (!BayUtils.isUserAborted()) {
-				BayUtils.delay(5000);
-			}*/
-			
-			int waitTimeInSec = DeviceDataManagerController.getConveyorConfigParsedKey().getCalibSuperCapacitorChargeWaitTimeInSec();//90;//45
+			int waitTimeInSec = DeviceDataManagerController.getConveyorConfigParsedKey()
+					.getCalibSuperCapacitorChargeWaitTimeInSec();// 90;//45
 			Calib.logger.info("Start 40V: CalibSuperCapacitorChargeWaitTimeInSec: " + waitTimeInSec);
-			while( (waitTimeInSec>0) && (!BayUtils.isUserAborted()) ){
+			while ((waitTimeInSec > 0) && (!BayUtils.isUserAborted())) {
 				if (!BayUtils.isUserAborted()) {
 					BayUtils.delay(1000);
 				}
@@ -117,47 +87,47 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			Calib.logger.info("Start 40V: Delay Complete");
 
 			// Step 2: stop
-			
+
 			Calib.logger.info("Stop: voltage_current_stop()");
-			
+
 			Map<String, Object> stopResponse = voltage_current_stop();
 			boolean stopSuccess = (boolean) stopResponse.get("status");
 
 			if (!stopSuccess) {
-			    Calib.logger.error("Step Failed: voltage_current_stop()");
-			    bayResponse.setStatus(false);
-			    bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
-			    continue;
+				Calib.logger.error("Step Failed: voltage_current_stop()");
+				bayResponse.setStatus(false);
+				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
+				continue;
 			}
 
 			Calib.logger.info("Stop: Delay Started");
 
 			BayUtils.delay(5000);
-			
+
 			Calib.logger.info("Stop: Delay Complete");
 
 			// Step 3: Start 240V
-						
+
 			Calib.logger.info("Start 240V: voltage_current_start(240)");
 
 			Map<String, Object> start240Response = voltage_current_start(240);
 			boolean start240Success = (boolean) start240Response.get("status");
 
 			if (!start240Success) {
-			    Calib.logger.error("Step Failed: voltage_current_start(240)");
-			    bayResponse.setStatus(false);
-			    bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
-			    continue;
+				Calib.logger.error("Step Failed: voltage_current_start(240)");
+				bayResponse.setStatus(false);
+				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_003);
+				continue;
 			}
 
 			Calib.logger.info("S059_02_Power_Source_Start_Main_CT : Voltage Current Started");
-			//Calib.logger.info("S059_04_Current_Stop : 10secs Wait Time");
-			if(ConstantConveyor.CALIB_SANGYONG_SOURCE_CONNECTED){
+			// Calib.logger.info("S059_04_Current_Stop : 10secs Wait Time");
+			if (ConstantConveyor.CALIB_SANGYONG_SOURCE_CONNECTED) {
 				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : 15 secs Wait Time");
-				BayUtils.delay(5000);//10000); // Delay for 10 seconds as per PLC TIMER
+				BayUtils.delay(5000);// 10000); // Delay for 10 seconds as per PLC TIMER
 				BayUtils.delay(5000);
 				BayUtils.delay(5000);
-			}else{
+			} else {
 				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : 10secs Wait Time");
 				BayUtils.delay(10000); // Delay for 10 seconds as per PLC TIMER
 			}
@@ -165,7 +135,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			int retry_count = 5;
 			boolean voltageSet = false;
 			for (int i = 0; i < retry_count; i++) {
-				if (BayUtils.isUserAborted()) break; // Allow abort during retries
+				if (BayUtils.isUserAborted())
+					break; // Allow abort during retries
 				responseReturn = checkVoltageStart();
 				voltageSet = (boolean) responseReturn.get("status");
 				if (voltageSet) {
@@ -177,7 +148,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 
 			if (!voltageSet) {
 				if (BayUtils.isUserAborted()) {
-					Calib.logger.info("S059_02_Power_Source_Start_Main_CT : User aborted during VOLTAGE check retries.");
+					Calib.logger
+							.info("S059_02_Power_Source_Start_Main_CT : User aborted during VOLTAGE check retries.");
 					allCalibrationStepsCompleted = false; // Mark as not completed
 					bayResponse.setStatus(false);
 					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_999);
@@ -195,7 +167,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			// --- 3. Validate Current Start Status ---
 			boolean currentSet = false;
 			for (int i = 0; i < retry_count; i++) {
-				if (BayUtils.isUserAborted()) break; // Allow abort during retries
+				if (BayUtils.isUserAborted())
+					break; // Allow abort during retries
 				responseReturn = checkCurrentStart();
 				currentSet = (boolean) responseReturn.get("status");
 
@@ -228,10 +201,10 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 				if (pfSet) {
 					break; // PF set, exit internal retry loop
 				}
-				Calib.logger.warn("S059_02_Power_Source_Start_Main_CT : PF not set to 0.5. Internal retry " + (i + 1) + " of " + pf_internal_retry_count + ".");
+				Calib.logger.warn("S059_02_Power_Source_Start_Main_CT : PF not set to 0.5. Internal retry " + (i + 1)
+						+ " of " + pf_internal_retry_count + ".");
 				BayUtils.delay(3000); // Small delay between internal PF checks
 			}
-
 
 			if (!pfSet) {
 				if (BayUtils.isUserAborted()) {
@@ -241,18 +214,22 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_999);
 					break; // Exit the main do-while loop
 				}
-				Calib.logger.warn("S059_02_Power_Source_Start_Main_CT : PF Not set to 0.5 after internal retries. Prompting user to adjust.");
+				Calib.logger.warn(
+						"S059_02_Power_Source_Start_Main_CT : PF Not set to 0.5 after internal retries. Prompting user to adjust.");
 				displayPfNotSetAlert(); // This will block until user clicks OK
-				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : User acknowledged PF alert. Re-checking all parameters from start.");
+				Calib.logger.info(
+						"S059_02_Power_Source_Start_Main_CT : User acknowledged PF alert. Re-checking all parameters from start.");
 				allCalibrationStepsCompleted = false; // Set to false to trigger outer loop re-run
 			} else {
-				Calib.logger.info("S059_02_Power_Source_Start_Main_CT : PF is successfully set to 0.5. Proceeding with calibration.");
+				Calib.logger.info(
+						"S059_02_Power_Source_Start_Main_CT : PF is successfully set to 0.5. Proceeding with calibration.");
 				allCalibrationStepsCompleted = true; // All steps passed successfully for this iteration
 			}
 
 		} while (!allCalibrationStepsCompleted && !BayUtils.isUserAborted() && !Calib.isStopProcessRequestedCalibBay());
 
-		// Final update to bayResponse status based on whether all steps were truly completed
+		// Final update to bayResponse status based on whether all steps were truly
+		// completed
 		// or if the loop was exited due to an abort.
 		if (allCalibrationStepsCompleted) {
 			bayResponse.setStatus(true);
@@ -260,8 +237,9 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		} else {
 			// If allCalibrationStepsCompleted is false here, it means either:
 			// 1. User aborted (status and error code set inside the loop)
-			// 2. An intermediate step failed and the loop continued, then user might have aborted
-			//    or it simply ended up with allCalibrationStepsCompleted as false.
+			// 2. An intermediate step failed and the loop continued, then user might have
+			// aborted
+			// or it simply ended up with allCalibrationStepsCompleted as false.
 			// The status and error code from the last failure or abort will persist.
 		}
 
@@ -272,8 +250,10 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 	// ============================================================================================================================================
 
 	/**
-	 * This method displays a standard JavaFX Alert dialog to the user when the PF is not set.
-	 * It uses JavaFX's Platform.runLater to ensure UI operations are on the FX Application Thread
+	 * This method displays a standard JavaFX Alert dialog to the user when the PF
+	 * is not set.
+	 * It uses JavaFX's Platform.runLater to ensure UI operations are on the FX
+	 * Application Thread
 	 * and a CountDownLatch to block the calling thread until the user clicks 'OK'.
 	 */
 	private void displayPfNotSetAlert() {
@@ -287,15 +267,9 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 				alert.setHeaderText(null); // No header text
 				alert.setContentText("PF Not set to 0.5. Please set it and press OK to continue.");
 
-				// Optionally add an icon to the dialog stage
-				// You'll need to ensure ConstantVersion.APP_ICON_FILENAME is accessible
-				// and the image path is correct.
-				Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-				// Uncomment the following line if ConstantVersion and the image path are valid
-				// stage.getIcons().add(new Image("file:images/" + ConstantVersion.APP_ICON_FILENAME));
+				alert.getDialogPane().getScene().getWindow();
 
-				// Show the dialog and wait for user interaction
-				Optional<ButtonType> result = alert.showAndWait();
+				alert.showAndWait();
 
 				// If the user clicks OK, or simply closes the dialog, the latch counts down.
 				// For this specific use case (PF not set, user must fix), we assume
@@ -308,7 +282,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			}
 		});
 
-		// Block the current thread until the JavaFX dialog is closed and the latch is counted down
+		// Block the current thread until the JavaFX dialog is closed and the latch is
+		// counted down
 		try {
 			latch.await();
 		} catch (InterruptedException e) {
@@ -316,8 +291,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			Calib.logger.error("Interrupted while waiting for PF alert acknowledgment.", e);
 		}
 	}
-	
-	
+
 	private void displayVoltageNotSetAlert() {
 		// CountDownLatch to block the current thread until the dialog is closed
 		final CountDownLatch latch = new CountDownLatch(1);
@@ -329,15 +303,9 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 				alert.setHeaderText(null); // No header text
 				alert.setContentText("Voltage Start Failed after retries. Please check CALIBRATION SOURCE");
 
-				// Optionally add an icon to the dialog stage
-				// You'll need to ensure ConstantVersion.APP_ICON_FILENAME is accessible
-				// and the image path is correct.
-				Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-				// Uncomment the following line if ConstantVersion and the image path are valid
-				// stage.getIcons().add(new Image("file:images/" + ConstantVersion.APP_ICON_FILENAME));
+				alert.getDialogPane().getScene().getWindow();
 
-				// Show the dialog and wait for user interaction
-				Optional<ButtonType> result = alert.showAndWait();
+				alert.showAndWait();
 
 				// If the user clicks OK, or simply closes the dialog, the latch counts down.
 				// For this specific use case (PF not set, user must fix), we assume
@@ -350,7 +318,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 			}
 		});
 
-		// Block the current thread until the JavaFX dialog is closed and the latch is counted down
+		// Block the current thread until the JavaFX dialog is closed and the latch is
+		// counted down
 		try {
 			latch.await();
 		} catch (InterruptedException e) {
@@ -369,11 +338,13 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 
 		// ============================================================================================
 		IoPortInfo portInfo;
-		
-		if(voltage == 40) {
-			portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_40V_VOLTAGE_CURRENT_START);
+
+		if (voltage == 40) {
+			portInfo = BayUtils
+					.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_40V_VOLTAGE_CURRENT_START);
 		} else {
-			portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_240V_VOLTAGE_CURRENT_START);
+			portInfo = BayUtils
+					.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_240V_VOLTAGE_CURRENT_START);
 		}
 
 		if (portInfo != null) {
@@ -407,7 +378,7 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		return responseReturn;
 
 	}
-	
+
 	// ============================================================================================================================================
 
 	private Map<String, Object> voltage_current_stop() {
@@ -418,7 +389,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		responseReturn.put("status", false);
 
 		// ============================================================================================
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_CURRENT_STOP);
+		IoPortInfo portInfo = BayUtils
+				.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_CURRENT_STOP);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -461,7 +433,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_START_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_VOLTAGE_START_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -501,7 +474,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_START_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_CURRENT_START_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());
@@ -541,7 +515,8 @@ public class S059_02_Power_Source_Start_Main_CT implements CalibrationBayState {
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
-		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_05L_PF_STATUS);
+		IoPortInfo portInfo = BayUtils
+				.getInputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BOFA_05L_PF_STATUS);
 
 		if (portInfo != null) {
 			Calib.logger.debug("PortId    : " + portInfo.getPortId());

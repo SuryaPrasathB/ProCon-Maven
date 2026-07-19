@@ -3,12 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.transform.Source;
-
-import org.omg.CORBA.FloatSeqHelper;
-import org.springframework.cglib.transform.impl.AddDelegateTransformer;
-
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -22,61 +16,60 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S059_00_Turn_Off_Main_CT_Neutral_CT implements CalibrationBayState {
 
-	static volatile boolean ctResetRequest = false;  
-	static volatile boolean ctResetRequestAcknowledged = false; 
+	static volatile boolean ctResetRequest = false;
+	static volatile boolean ctResetRequestAcknowledged = false;
 
 	BayUtils bayUtils = new BayUtils();
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	//===========================================================================================
+	// ===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
 		Calib.logger.info("S059_00_Turn_Off_Main_CT_Neutral_CT : Entry");
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
-		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601 );
+		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-		Map<String,Object> responseReturn =  turn_on_break_pin();	 
-		boolean turn_on_main_ct_make_pin = (boolean)responseReturn.get("status");
+		Map<String, Object> responseReturn = turn_on_break_pin();
+		boolean turn_on_main_ct_make_pin = (boolean) responseReturn.get("status");
 
-		if (turn_on_main_ct_make_pin) {   	
+		if (turn_on_main_ct_make_pin) {
 			Calib.logger.info("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : Success");
 
 			BayUtils.delay(500);
 			BayUtils.delay(1500);
-			responseReturn =  turn_off_break_pin();	           
-			boolean turn_off_main_ct_make_pin = (boolean)responseReturn.get("status");          
+			responseReturn = turn_off_break_pin();
+			boolean turn_off_main_ct_make_pin = (boolean) responseReturn.get("status");
 			BayUtils.delay(2000);
 			if (turn_off_main_ct_make_pin) {
 				Calib.logger.info("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : Success");
 				bayResponse.setStatus(true);
 				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-			} 
-			else {
+			} else {
 				Calib.logger.info("S059_00_Turn_Off_Main_CT_Neutral_CT : Failed to turn_off_break_pin Calib Bay");
 				bayResponse.setStatus(false);
-				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026 );
-			}    
+				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
+			}
 		} else {
 			Calib.logger.info("S059_00_Turn_Off_Main_CT_Neutral_CT : Failed to turn_on_main_ct_make_pin Calib Bay");
 			bayResponse.setStatus(false);
-			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026 );
+			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
 		}
-		
+
 		Calib.logger.info("S059_00_Turn_Off_Main_CT_Neutral_CT : Exit");
 		return bayResponse;
 	}
-	//============================================================================================================================================  
+	// ============================================================================================================================================
 
-	private Map<String,Object> turn_on_break_pin() {
+	private Map<String, Object> turn_on_break_pin() {
 		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : Entry");
 
-		boolean status = false; 
-		Map<String,Object> responseReturn = new HashMap<String,Object>();
+		boolean status = false;
+		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BREAK_CT );
+		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BREAK_CT);
 
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus();
 
@@ -105,7 +98,7 @@ public class S059_00_Turn_Off_Main_CT_Neutral_CT implements CalibrationBayState 
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
 			testIntefaceStatus.setDeviceResponseData("O/P port not found");
 
-			return responseReturn ;
+			return responseReturn;
 		}
 
 		BayUtils bayUtils = new BayUtils();
@@ -117,45 +110,44 @@ public class S059_00_Turn_Off_Main_CT_Neutral_CT implements CalibrationBayState 
 
 		status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-		if(StateExecutorController.simulateCalibBayHappyPath){
-			status = true; 
+		if (StateExecutorController.simulateCalibBayHappyPath) {
+			status = true;
 		}
 
-		if(state.equals(Constant_IO_ActionMapping.OPEN)){
+		if (state.equals(Constant_IO_ActionMapping.OPEN)) {
 			testIntefaceStatus.setDeviceResponseStatus("Success");
-			//responseReturn.put("status", true); 
-			status = true ;
-		}else{
+			// responseReturn.put("status", true);
+			status = true;
+		} else {
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
-			//responseReturn.put("status", false);
-			status = false ;
+			// responseReturn.put("status", false);
+			status = false;
 		}
-		if(portInfo.getPortId().equals(state)){
+		if (portInfo.getPortId().equals(state)) {
 			state = "TimeOut";
 			testIntefaceStatus.setDeviceResponseData("TimeOut");
-		}else{
+		} else {
 			testIntefaceStatus.setDeviceResponseData(state);
 		}
-
 
 		responseReturn.put("status", status);
 		responseReturn.put("responseData", state);
 		responseReturn.put("testInterfaceStatus", testIntefaceStatus);
 
-		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : status : " + status); 
+		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : status : " + status);
 		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_on_break_pin : Exit");
 		return responseReturn;
 	}
 
-	//============================================================================================================================================ 
-	
-	private Map<String,Object> turn_off_break_pin() {
+	// ============================================================================================================================================
+
+	private Map<String, Object> turn_off_break_pin() {
 		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : Entry");
 
-		boolean status = false; 
-		Map<String,Object> responseReturn = new HashMap<String,Object>();
+		boolean status = false;
+		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
-		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BREAK_CT );
+		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.CALIB_PORT_NAME_BREAK_CT);
 
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus();
 
@@ -184,7 +176,7 @@ public class S059_00_Turn_Off_Main_CT_Neutral_CT implements CalibrationBayState 
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
 			testIntefaceStatus.setDeviceResponseData("O/P port not found");
 
-			return responseReturn ;
+			return responseReturn;
 		}
 
 		BayUtils bayUtils = new BayUtils();
@@ -196,37 +188,36 @@ public class S059_00_Turn_Off_Main_CT_Neutral_CT implements CalibrationBayState 
 
 		status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
-		if(StateExecutorController.simulateCalibBayHappyPath){
-			status = true; 
+		if (StateExecutorController.simulateCalibBayHappyPath) {
+			status = true;
 		}
 
-		if(state.equals(Constant_IO_ActionMapping.CLOSE)){
+		if (state.equals(Constant_IO_ActionMapping.CLOSE)) {
 			testIntefaceStatus.setDeviceResponseStatus("Success");
-			//responseReturn.put("status", true); 
-			status = true ;
-		}else{
+			// responseReturn.put("status", true);
+			status = true;
+		} else {
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
-			//responseReturn.put("status", false);
-			status = false ;
+			// responseReturn.put("status", false);
+			status = false;
 		}
-		if(portInfo.getPortId().equals(state)){
+		if (portInfo.getPortId().equals(state)) {
 			state = "TimeOut";
 			testIntefaceStatus.setDeviceResponseData("TimeOut");
-		}else{
+		} else {
 			testIntefaceStatus.setDeviceResponseData(state);
 		}
-
 
 		responseReturn.put("status", status);
 		responseReturn.put("responseData", state);
 		responseReturn.put("testInterfaceStatus", testIntefaceStatus);
 
-		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : status : " + status); 
+		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : status : " + status);
 		Calib.logger.debug("S059_00_Turn_Off_Main_CT_Neutral_CT : turn_off_break_pin : Exit");
 		return responseReturn;
 	}
 
-	//============================================================================================================================================  
+	// ============================================================================================================================================
 
 	public String getSequencePathId() {
 		return sequencePathId;
@@ -243,21 +234,21 @@ public class S059_00_Turn_Off_Main_CT_Neutral_CT implements CalibrationBayState 
 	public void setPalletAvailableTest_I_F_Status(TestInterfaceStatus palletAvailableTest_I_F_Status) {
 		this.palletAvailableTest_I_F_Status = palletAvailableTest_I_F_Status;
 	}
+
 	public static boolean isCtResetRequest() {
 		return ctResetRequest;
 	}
+
 	public static boolean isCtResetRequestAcknowledged() {
 		return ctResetRequestAcknowledged;
 	}
+
 	public static void setCtResetRequest(boolean ctResetRequest) {
 		S059_00_Turn_Off_Main_CT_Neutral_CT.ctResetRequest = ctResetRequest;
 	}
+
 	public static void setCtResetRequestAcknowledged(boolean ctResetRequestAcknowledged) {
 		S059_00_Turn_Off_Main_CT_Neutral_CT.ctResetRequestAcknowledged = ctResetRequestAcknowledged;
 	}
- 
-
-
 
 }
-
