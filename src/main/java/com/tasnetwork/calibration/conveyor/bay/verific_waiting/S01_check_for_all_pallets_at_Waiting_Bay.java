@@ -3,14 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.verific_waiting;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -18,17 +15,10 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S01_check_for_all_pallets_at_Waiting_Bay implements WaitingBayState {
 
-	private BayUtils bayUtils = new BayUtils();
-	private String sequencePathId = "p1";
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01;
 	private String palletSensorPortCname =  ConstantBayPortNameMapping.WAITING_PORT_NAME_SNSR_PALLET;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_WAITING_001;
 	private boolean logEnabled = true;
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
 	@Override
 	public BayResponse handleRequest() {
 		VerificWaiting.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Entry");
@@ -92,63 +82,6 @@ public class S01_check_for_all_pallets_at_Waiting_Bay implements WaitingBayState
 
 
 		//======================================================================
-
-		/*Map<String,Object> responseReturn =  isPalletAvailableAt_WaitingBay();	 
-		boolean isPalletAvailableAt_WaitingBay = (boolean)responseReturn.get("status");
-
-		while (!isPalletAvailableAt_WaitingBay &&
-				(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-
-			WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : No pallet Available at Waiting Bay");
-			BayUtils.delay(1000);
-
-			responseReturn =  isPalletAvailableAt_WaitingBay();	 ///
-			isPalletAvailableAt_WaitingBay = (boolean)responseReturn.get("status");///
-
-
-		}
-
-        if (isPalletAvailableAt_WaitingBay) {
-            WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Pallet Available");
-            bayResponse.setStatus(true);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        } else {
-            WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Pallet Not Available");
-            bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_WAITING_001);
-        }*/
-		//======================================================================
-
-		/*		int consecutiveChecks = 0;
-		int requiredChecks = 2;  // Number of times the pallet must be detected in a row
-
-		while (consecutiveChecks < requiredChecks) {
-		    WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Checking for pallet presence...");
-		    BayUtils.delay(1000);
-
-		    responseReturn = isPalletAvailableAt_WaitingBay();
-		    boolean currentCheck = (boolean) responseReturn.get("status");
-
-		    if (currentCheck) {
-		        consecutiveChecks++;  // Increase count if pallet is detected
-		        WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Pallet detected! Count: " + consecutiveChecks);
-		    } else {
-		        consecutiveChecks = 0;  // Reset count if detection fails
-		        WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : No pallet detected. Resetting check count.");
-		    }
-		}
-
-		WaitingBay.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Pallet confirmed as present.");
-		bayResponse.setStatus(true);
-		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-		 */
-		/*CheckForPalletAtBay bayPalletService = new CheckForPalletAtBay(FunctionalTestBay2.logger, 
-				getMyBayKey(),
-				getBayStateSequenceId(), 
-				getPalletSensorPortCname(), 
-				getFailStateErrorCode(),
-				StateExecutorController.simulateFtBayHappyPath);
-			bayResponse = bayPalletService.checkForPalletAtBayProcess();*/
 
 		VerificWaiting.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Exit");
 		return bayResponse;

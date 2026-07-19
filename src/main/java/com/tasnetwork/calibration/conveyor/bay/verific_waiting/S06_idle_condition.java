@@ -4,8 +4,6 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
-
-
 public class S06_idle_condition implements WaitingBayState {
 	@Override
 	public BayResponse handleRequest() {
@@ -26,10 +24,9 @@ public class S06_idle_condition implements WaitingBayState {
 			VerificWaiting.setResetProcessRequestedWaitingBay(false);
 		}
 
-
 		while (!idleComplete &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-			for(int i = 0; i < 5; i ++) {
+				(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			for (int i = 0; i < 5; i++) {
 				VerificWaiting.logger.info("S23_idle_condition : Waiting in Idle Condition");
 				BayUtils.delay(1000);
 			}

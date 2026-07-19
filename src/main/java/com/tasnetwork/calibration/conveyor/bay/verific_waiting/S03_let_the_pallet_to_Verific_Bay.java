@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific_waiting;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -14,11 +13,7 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
-	//===========================================================================================
+	// ===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
 		VerificWaiting.logger.info("S03_let_the_pallet_to_Verific_Bay : Entry");
@@ -26,21 +21,21 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-		//=============================================================
+		// =============================================================
 
-		Map<String,Object> responseReturn =  open_StopLatch_WaitingBay();	 
-		boolean open_StopLatch_WaitingBay = (boolean)responseReturn.get("status");
+		Map<String, Object> responseReturn = open_StopLatch_WaitingBay();
+		boolean open_StopLatch_WaitingBay = (boolean) responseReturn.get("status");
 
 		boolean openSuccess = open_StopLatch_WaitingBay;
-		if(openSuccess) {
-			
+		if (openSuccess) {
+
 			BayUtils.delay(20000); // Time to allow pallets to move into bay
 
-			responseReturn =  close_StopLatch_WaitingBay();	 
-			boolean close_StopLatch_WaitingBay = (boolean)responseReturn.get("status");
+			responseReturn = close_StopLatch_WaitingBay();
+			boolean close_StopLatch_WaitingBay = (boolean) responseReturn.get("status");
 
-			boolean closeSuccess = close_StopLatch_WaitingBay;    
-			if(closeSuccess) {
+			boolean closeSuccess = close_StopLatch_WaitingBay;
+			if (closeSuccess) {
 				VerificWaiting.logger.info("S03_let_the_pallet_to_Verific_Bay : Opening and Closing Stopper Success");
 				if (ProconFeatureEnable.MOTOR_CONTROL_ENABLE) {
 					BayUtils bayUtils = new BayUtils();
@@ -48,48 +43,45 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 					boolean set_motor_not_required = (boolean) responseReturn.get("status");
 					if (set_motor_not_required) {
 						VerificWaiting.logger
-						.info("S04_ensure_all_pallets_reached_Verific_Bay : set_motor_not_required : Success");
+								.info("S04_ensure_all_pallets_reached_Verific_Bay : set_motor_not_required : Success");
 						bayResponse.setStatus(true);
 						bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 					} else {
 						VerificWaiting.logger
-						.info("S04_ensure_all_pallets_reached_Verific_Bay : Failed to set_motor_not_required ");
+								.info("S04_ensure_all_pallets_reached_Verific_Bay : Failed to set_motor_not_required ");
 						bayResponse.setStatus(false);
 						bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
-					} 
+					}
 				} else {
 					bayResponse.setStatus(true);
 					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 				}
-			}    
-			else{
+			} else {
 				VerificWaiting.logger.info("S03_let_the_pallet_to_Verific_Bay : Closing Stopper Failed");
 				bayResponse.setStatus(false);
-				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_WAITING_006);  // Assuming 602 for failure
+				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_WAITING_006); // Assuming 602 for failure
 			}
-		}
-		else{
+		} else {
 			VerificWaiting.logger.info("S03_let_the_pallet_to_Verific_Bay : Opening Stopper Failed");
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_WAITING_005);
 		}
 
-		
-		//=============================================================
+		// =============================================================
 
 		VerificWaiting.logger.info("S03_let_the_pallet_to_Verific_Bay : Exit");
 		return bayResponse;
 	}
 
-	//============================================================================================================================================
+	// ============================================================================================================================================
 
 	private Map<String, Object> open_StopLatch_WaitingBay() {
 		VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : open_StopLatch_WaitingBay : Entry");
 
 		boolean status = false;
-		Map<String,Object> responseReturn = new HashMap<String,Object>();
+		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
-		//============================================================================================		 
+		// ============================================================================================
 		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.WAITING_PORT_NAME_STPR);
 
 		if (portInfo != null) {
@@ -98,7 +90,7 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 			VerificWaiting.logger.debug("BayId     : " + portInfo.getBayId());
 		} else {
 			VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : Stopper Output port not found");
-			return responseReturn ;
+			return responseReturn;
 		}
 
 		BayUtils bayUtils = new BayUtils();
@@ -109,29 +101,29 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 				Constant_IO_ActionMapping.CLOSE);
 		status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
-		if(StateExecutorController.simulateWaitingBayHappyPath){
+		if (StateExecutorController.simulateWaitingBayHappyPath) {
 			status = true;
 		}
 
-		VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : open_StopLatch_WaitingBay : status : " + status);
-		//============================================================================================  
+		VerificWaiting.logger
+				.debug("S03_let_the_pallet_to_Verific_Bay : open_StopLatch_WaitingBay : status : " + status);
+		// ============================================================================================
 		responseReturn.put("status", status);
-
 
 		VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : open_StopLatch_WaitingBay : Exit");
 		return responseReturn;
 	}
 
-	//============================================================================================================================================
+	// ============================================================================================================================================
 
-	private Map<String,Object> close_StopLatch_WaitingBay() {
+	private Map<String, Object> close_StopLatch_WaitingBay() {
 		VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : close_StopLatch_WaitingBay : Entry");
 
 		boolean status = false;
-		Map<String,Object> responseReturn = new HashMap<String,Object>();
+		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
-		//============================================================================================		 
+		// ============================================================================================
 		IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.WAITING_PORT_NAME_STPR);
 
 		if (portInfo != null) {
@@ -140,7 +132,7 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 			VerificWaiting.logger.debug("BayId     : " + portInfo.getBayId());
 		} else {
 			VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : Stopper Output port not found");
-			return responseReturn ;
+			return responseReturn;
 		}
 
 		BayUtils bayUtils = new BayUtils();
@@ -151,12 +143,13 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 				Constant_IO_ActionMapping.OPEN);
 		status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-		if(StateExecutorController.simulateWaitingBayHappyPath){
+		if (StateExecutorController.simulateWaitingBayHappyPath) {
 			status = true;
 		}
 
-		VerificWaiting.logger.debug("S03_let_the_pallet_to_Verific_Bay : close_StopLatch_WaitingBay : status : " + status);
-		//============================================================================================   
+		VerificWaiting.logger
+				.debug("S03_let_the_pallet_to_Verific_Bay : close_StopLatch_WaitingBay : status : " + status);
+		// ============================================================================================
 
 		responseReturn.put("status", status);
 
@@ -164,5 +157,5 @@ public class S03_let_the_pallet_to_Verific_Bay implements WaitingBayState {
 		return responseReturn;
 	}
 
-	//============================================================================================================================================
+	// ============================================================================================================================================
 }

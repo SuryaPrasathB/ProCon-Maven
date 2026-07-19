@@ -4,15 +4,10 @@ package com.tasnetwork.calibration.conveyor.bay.verific_waiting;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
-
-import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.spring.orm.model.StateFlow;
-
-import javafx.scene.control.TableView;
 
 public class WaitingBayReset extends TimerTask{
 	//public static Logger logger = Logger.getLogger(WaitingBay.class.getPackage().getName()); 
@@ -36,14 +31,13 @@ public class WaitingBayReset extends TimerTask{
 
 		// Set the first state from the table outside the while loops
 		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
 		if(getTableStatePlanner_WaitingBay().size()>0) {
 
 			// Fetch the first state from the table to start the process
 			StateFlow presentRow = getTableStatePlanner_WaitingBay().get(currentIndex);
 			StateFlow nextRow = presentRow ; 
 			String currentStateName = presentRow.getState(); // Get the current state from the row
-			WaitingBayState currentState = createWaitingBayStateInstance(currentStateName); // Create the state instance
+			WaitingBayState currentState = WaitingBayState.createState(currentStateName); // Create the state instance
 			setNextState(currentState); // Set the first state
 	
 	
@@ -65,17 +59,12 @@ public class WaitingBayReset extends TimerTask{
 	
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						// Set the next state based on the success column
-						WaitingBayState nextState = createWaitingBayStateInstance(nextStateName);
+						WaitingBayState nextState = WaitingBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
 					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-	
 					for (StateFlow row : getTableStatePlanner_WaitingBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
 							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
 							break; // Exit the loop once the next state is found
 						}
 					}
@@ -96,10 +85,10 @@ public class WaitingBayReset extends TimerTask{
 	
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						if (nextStateName.equals("S05_error_Handling")) {
-							WaitingBayState nextState2 =  createErrorStateInstance(nextStateName, errorCode);
+							WaitingBayState nextState2 =  WaitingBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically
 						} else {
-							WaitingBayState nextState2 = createWaitingBayStateInstance(nextStateName);
+							WaitingBayState nextState2 = WaitingBayState.createState(nextStateName);
 							setNextState(nextState2); // Set the next state dynamically
 						}
 					
@@ -126,21 +115,7 @@ public class WaitingBayReset extends TimerTask{
 	}
 
 	//=====================================================================================================================
-	
-/*	public static void singleStateTestRun(WaitingBayState currentState){
-		WaitingBay.logger.debug("singleStateTestRun : Entry");
-		
-		setNextState(currentState);
-		
-		BayResponse bayStatus = processCurrentState();
-		
-		WaitingBay.logger.debug("singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		WaitingBay.logger.debug("singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		WaitingBay.logger.debug("singleStateTestRun : Exit");
-	}*/
-	
-	//=====================================================================================================================
-	
+
 	public void setNextState(WaitingBayState newState) {
 		//Set previous state here 
 
@@ -166,53 +141,6 @@ public class WaitingBayReset extends TimerTask{
 	//public TableView<StateFlow> tableStatePlanner_WaitingBay = new TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_WaitingBay = new ArrayList<StateFlow>();
 	
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_WaitingBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static WaitingBayState createWaitingBayStateInstance(String stateName) {           
-	        // Create and return an instance of the state class based on the state name
-	        switch (stateName) {
-	            case "S01_check_for_all_pallets_at_Waiting_Bay":
-	                return new S01_check_for_all_pallets_at_Waiting_Bay();
-	            case "S02_check_for_pallets_at_Verific_Bay":
-	                return new S02_check_for_pallets_at_Verific_Bay();
-	            case "S03_let_the_pallet_to_Verific_Bay":
-	                return new S03_let_the_pallet_to_Verific_Bay();
-	            case "S04_ensure_all_pallets_reached_Verific_Bay":
-	                return new S04_ensure_all_pallets_reached_Verific_Bay();
-	            case "S05_error_Handling":
-	                return new S05_error_Handling(); 
-	            case "S06_idle_condition":
-	                return new S06_idle_condition(); 
-	            case "S07_open_stop_latch_Waiting_Bay":
-	                return new S07_open_stop_latch_Waiting_Bay();
-	            case "S08_close_stop_latch_Waiting_Bay":
-	                return new S08_close_stop_latch_Waiting_Bay();
-	            default:
-	                throw new IllegalArgumentException("Unknown state: " + stateName);
-	        }
-	    }
-
-	private WaitingBayState createErrorStateInstance(String stateName, String errorCode) {  
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-		case "S05_error_Handling":
-			return new S05_error_Handling(errorCode);
-		default:
-			throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
-
 	private String getErrorStateInstance(String errorCode) {
 
 		switch (errorCode) {
