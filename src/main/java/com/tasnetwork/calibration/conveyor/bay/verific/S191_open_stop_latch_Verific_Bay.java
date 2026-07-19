@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -16,10 +15,6 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S191_open_stop_latch_Verific_Bay implements VerificTestBayState {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	
 	static int palletsPassedVerificBay = 0;
     @Override
     public BayResponse handleRequest() {

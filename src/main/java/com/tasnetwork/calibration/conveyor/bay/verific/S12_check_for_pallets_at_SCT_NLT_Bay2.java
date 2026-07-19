@@ -3,33 +3,22 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
-import com.tasnetwork.calibration.conveyor.bay.Constant_Motor_Requirement;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.bookshelf.CheckForPalletAtBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S12_check_for_pallets_at_SCT_NLT_Bay2 implements VerificTestBayState {
 
-	private BayUtils bayUtils = new BayUtils();
-	private String sequencePathId = "p1";
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01 ;
 	private String palletSensorPortCname =  ConstantBayPortNameMapping.SCT_NLT_BAY2_SNSR_PALLET1 ;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_VERIFIC_014 ;
-
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-
 	@Override
 	public BayResponse handleRequest() {
 		Verification.logger.info("S12_check_for_pallets_at_SCT_NLT_Bay2 : Entry");
@@ -37,10 +26,6 @@ public class S12_check_for_pallets_at_SCT_NLT_Bay2 implements VerificTestBayStat
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-
-		//Map<String,Object> responseReturn =  isPalletAvailableAt_SCT_NLT_Bay2();	 
-		//boolean isPalletAvailableAt_SCT_NLT_Bay2 = (boolean)responseReturn.get("status");
-		
 		Map<String,Object> responseReturn =  new HashMap<String,Object> ();	 
 		boolean isPalletAvailableAt_SCT_NLT_Bay2 = false;
 		
@@ -72,19 +57,6 @@ public class S12_check_for_pallets_at_SCT_NLT_Bay2 implements VerificTestBayStat
 			stableDetectionForNoPallet = true;
 		}
 
-		/*while (!isPalletAvailableAt_SCT_NLT_Bay2 &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {       	
-
-            VerificationTestBay.logger.info("S12_check_for_pallets_at_SCT_NLT_Bay2 : No pallet Available at SCT NLT Bay 2");
-            BayUtils.delay(1000);
-
-
-  		  responseReturn =  isPalletAvailableAt_SCT_NLT_Bay2();	 
-  		  isPalletAvailableAt_SCT_NLT_Bay2 = (boolean)responseReturn.get("status");
-
-        }*/
-
-		//if (!isPalletAvailableAt_SCT_NLT_Bay2) {
 		if (stableDetectionForNoPallet) {
             Verification.logger.info("S12_check_for_pallets_at_SCT_NLT_Bay2 : No Pallet Available");
             ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInNextTargetBay(getMyBayKey(),false);
@@ -112,25 +84,6 @@ public class S12_check_for_pallets_at_SCT_NLT_Bay2 implements VerificTestBayStat
             	}
             
             }
-			//Verification.logger.info("S12_check_for_pallets_at_SCT_NLT_Bay2 : No Pallet Available");
-
-			/*if (ProconFeatureEnable.MOTOR_CONTROL_ENABLE) {
-				BayUtils bayUtils = new BayUtils();
-				responseReturn = bayUtils.set_motor_required(getMyBayKey(), Constant_Motor_Requirement.VERIFIC_MOTOR_STA2_REQUIRED);
-				boolean set_motor_required = (boolean) responseReturn.get("status");
-				if (set_motor_required) {
-					VerificationTestBay.logger.info("set_motor_required : Success");
-					bayResponse.setStatus(true);
-					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-				} else {
-					VerificationTestBay.logger.info("Failed to set_motor_required ");
-					bayResponse.setStatus(false);
-					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
-				} 
-			} else {
-				bayResponse.setStatus(true);
-				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-			}*/
 
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
@@ -141,16 +94,6 @@ public class S12_check_for_pallets_at_SCT_NLT_Bay2 implements VerificTestBayStat
 
 			BayUtils.delay(5000);
 		}
-
-
-		/*CheckForPalletAtBay bayPalletService = new CheckForPalletAtBay(FunctionalTestBay2.logger, 
-				getMyBayKey(),
-				getBayStateSequenceId(), 
-				getPalletSensorPortCname(), 
-				getFailStateErrorCode(),
-				StateExecutorController.simulateFtBayHappyPath);
-			bayResponse = bayPalletService.checkForPalletAtBayProcess();*/
-
 
 		Verification.logger.info("S12_check_for_pallets_at_SCT_NLT_Bay2 : Exit");
 		return bayResponse;

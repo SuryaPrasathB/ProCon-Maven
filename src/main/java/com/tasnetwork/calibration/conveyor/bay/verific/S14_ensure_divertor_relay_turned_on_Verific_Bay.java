@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -13,11 +12,7 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S14_ensure_divertor_relay_turned_on_Verific_Bay implements VerificTestBayState {
-	
-/*	String LOW   = "OFF";
-	String HIGH  = "ON";
-    String ON    = "ON";   
-    String OFF   = "OFF";  */
+
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -68,11 +63,7 @@ public class S14_ensure_divertor_relay_turned_on_Verific_Bay implements VerificT
         }
 
         BayUtils bayUtils = new BayUtils();
-        
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
-		
+
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
         state = state.equals(Constant_IO_ActionMapping.ON) ? Constant_IO_ActionMapping.ON : Constant_IO_ActionMapping.OFF;

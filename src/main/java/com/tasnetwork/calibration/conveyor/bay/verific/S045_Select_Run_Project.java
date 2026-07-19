@@ -8,7 +8,6 @@ import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-//import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
@@ -24,9 +23,6 @@ import javafx.application.Platform;
 
 public class S045_Select_Run_Project implements VerificTestBayState  {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 	BayUtils bayUtils = new BayUtils();
 
 	List<PalletManage> myPalletManageList;
@@ -202,15 +198,7 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 
 			if (myPalletManageList.size() < 4) {
 				Verification.logger.error("Not enough pallets (" + myPalletManageList.size() + ") in Verification Bay. Displaying alert.");
-				// Display the non-blocking alert. This method will block the current thread
-				// until the user dismisses the dialog (e.g., by clicking OK).
 				displayNotEnoughPalletsAlert();
-
-				// After the alert is dismissed, the loop will continue, and the pallet list
-				// will be re-fetched in the next iteration.
-
-				// It's good practice to add a small delay here to prevent
-				// busy-waiting if the user takes time to resolve the issue.
 				try {
 					Thread.sleep(1000); // Wait 1 second before re-checking
 				} catch (InterruptedException e) {
@@ -225,20 +213,8 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 			}
 		}
 
-		// Order of mapping: [palletIndex, rackPosition]
-		// New custom order as requested:
-		// Pallet 0 positions 1-6
-		// Pallet 1 positions 1-6
-		// Pallet 2 positions 1-6
-		// Pallet 3 positions 1-6
 		int[][] customOrder = ConstantConveyor.LDU_PLACEMENT_ORDER;
-			
-/*			{
-				{3, 1}, {3, 2}, {3, 3}, {3, 4}, {3, 5}, {3, 6}, // Pallet 3
-				{2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, // Pallet 2
-				{1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6}, // Pallet 1
-				{0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}  // Pallet 0
-		};*/
+
 
 		for (int globalPos = 0; globalPos < customOrder.length; globalPos++) {
 			int palletIndex = customOrder[globalPos][0];
@@ -309,14 +285,6 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 	    }
 
 	    int[][] customOrder = ConstantConveyor.LDU_PLACEMENT_ORDER;
-	    	
-	    	
-/*	    	{
-	            {3, 1}, {3, 2}, {3, 3}, {3, 4}, {3, 5}, {3, 6},
-	            {2, 1}, {2, 2}, {2, 3}, {2, 4}, {2, 5}, {2, 6},
-	            {1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6},
-	            {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}
-	    };*/
 
 	    for (int globalPos = 0; globalPos < customOrder.length; globalPos++) {
 	        int palletIndex = customOrder[globalPos][0];
@@ -367,35 +335,6 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 	 * The calling thread will block until the user dismisses the dialog.
 	 */
 	private void displayNotEnoughPalletsAlert() {
-		// CountDownLatch to block the current thread until the dialog is closed.
-		// This makes the alert "non-blocking" for the UI, but "blocking" for the
-		// calling thread's logic flow, which is desired for re-checking pallets.
-		/*final CountDownLatch latch = new CountDownLatch(1);
-
-		Platform.runLater(() -> {
-			try {
-				Alert alert = new Alert(AlertType.WARNING); // Use WARNING type for the alert
-				alert.setTitle("Pallet Count Warning");
-				alert.setHeaderText(null); // No header text
-				alert.setContentText("Not Enough Pallets in Verification Bay, Please check bay / pallet manage.");
-
-				alert.setOnHidden(event -> latch.countDown()); // Non-blocking
-				
-				alert.show();
-
-			} catch (Exception e) {
-				Verification.logger.error("Failed to display 'Not Enough Pallets' alert dialog: " + e.getMessage(), e);
-				latch.countDown();
-			}
-		});
-		
-		// Wait for the alert to be closed
-		try {
-			latch.await();
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-			Verification.logger.warn("Alert wait interrupted.", e);
-		}*/
 	}
 
 	//============================================================================================================================================  

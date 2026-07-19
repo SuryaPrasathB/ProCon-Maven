@@ -13,12 +13,6 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S13_turn_on_Diverter_Verific_Bay implements VerificTestBayState {
 
-/*    String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE = "On";
-    String OPEN  = "Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {

@@ -3,8 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-//import com.tasnetwork.calibration.conveyor.bay_calibration.CalibrationBay;
-//import com.tasnetwork.calibration.conveyor.bay_verificationtest.S046_Stop_Execution;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
@@ -17,9 +15,6 @@ public class S046_Stop_Execution implements VerificTestBayState  {
 	BayUtils bayUtils = new BayUtils();
 
 	String sequencePathId = "p1";
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
 	//===========================================================================================

@@ -20,9 +20,6 @@ public class S044_Close_Run_Project implements VerificTestBayState  {
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 	//===========================================================================================
 	@Override
 	public BayResponse handleRequest() {

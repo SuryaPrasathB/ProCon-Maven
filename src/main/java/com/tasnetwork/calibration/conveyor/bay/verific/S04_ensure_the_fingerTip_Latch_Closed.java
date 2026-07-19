@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -15,15 +14,7 @@ import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S04_ensure_the_fingerTip_Latch_Closed implements VerificTestBayState {
-	
-/*	String LOW   = "OPEN";
-	String HIGH  = "CLOSE";
-    String CLOSE  = "CLOSE";  
-    String OPEN   = "OPEN";*/   
-	
-	public String getMyBayKey() {
-		return myBayKey;
-	}
+ 
     //===========================================================================================
     @Override
     public BayResponse handleRequest() {
@@ -95,11 +86,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements VerificTestBayStat
         }
 
         BayUtils bayUtils = new BayUtils();
-        
-        /*String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(), 
-                                                     portInfo.getBayId(), 
-                                                     portInfo.getPortId());*/
-		
+
 		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
               
         state = state.equals(Constant_IO_ActionMapping.ON) ? Constant_IO_ActionMapping.OPEN : Constant_IO_ActionMapping.CLOSE;

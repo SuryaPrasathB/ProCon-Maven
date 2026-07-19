@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S18_idle_condition implements VerificTestBayState {
 	@Override

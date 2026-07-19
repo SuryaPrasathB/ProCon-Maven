@@ -8,7 +8,6 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_functionaltest.FunctionalTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
@@ -19,10 +18,6 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S221_close_stop_latch2_Verific_Bay implements VerificTestBayState {
 
-	public String getMyBayKey() {
-		return myBayKey;
-	}
-	
     @Override
     public BayResponse handleRequest() {
     	PalletTrackerController palletTracker = new PalletTrackerController();

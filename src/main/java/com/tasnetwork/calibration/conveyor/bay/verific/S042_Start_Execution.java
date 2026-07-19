@@ -1,8 +1,5 @@
 package com.tasnetwork.calibration.conveyor.bay.verific;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -19,9 +16,6 @@ public class S042_Start_Execution implements VerificTestBayState  {
 
 	String sequencePathId = "p1";
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
-	public String getMyBayKey() {
-		return myBayKey;
-	}
 	//===========================================================================================
 	@Override
 	public BayResponse handleRequest() {

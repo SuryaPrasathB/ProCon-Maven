@@ -3,8 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
-
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -40,7 +38,7 @@ public class VerificationTestBayBypass extends TimerTask {
 				"Bypass Completed"// ConstantConveyor.COMM_EXECUTION_STATUS_INP
 		);
 
-		int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
+		StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 	}
 
 	// ====================================================================================================================
@@ -89,7 +87,6 @@ public class VerificationTestBayBypass extends TimerTask {
 
 		// Set the first state from the table outside the while loops
 		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
 		String errorCode = "";
 
 		if (getTableStatePlanner_FtBay().size() > 0) {
@@ -98,10 +95,8 @@ public class VerificationTestBayBypass extends TimerTask {
 			StateFlow presentRow = getTableStatePlanner_FtBay().get(currentIndex);
 			StateFlow nextRow = presentRow;
 			String currentStateName = presentRow.getState(); // Get the current state from the row
-			VerificTestBayState currentState = createVerificTestBayStateInstance(currentStateName, errorCode); // Create
-																												// the
-																												// state
-																												// instance
+			VerificTestBayState currentState = VerificTestBayState.createState(currentStateName); // Create the state
+																									// instance
 			setNextState(currentState); // Set the first state
 
 			Verification.logger.debug(
@@ -124,17 +119,15 @@ public class VerificationTestBayBypass extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						// Set the next state based on the success column
-						VerificTestBayState nextState = createVerificTestBayStateInstance(nextStateName, errorCode);
+						VerificTestBayState nextState = VerificTestBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
 					}
-					boolean stateFound = false;
 					// Re-fetch the current row for the next iteration
 
 					for (StateFlow row : getTableStatePlanner_FtBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
 							nextRow = row; // Set the next row based on the matched state
 							// currentIndex = presentRow.;
-							stateFound = true;
 							break; // Exit the loop once the next state is found
 						}
 					}
@@ -154,11 +147,11 @@ public class VerificationTestBayBypass extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						if (nextStateName.equals("S17_error_Handling")) {
-							VerificTestBayState nextState2 = createErrorStateInstance(nextStateName, errorCode);
+							VerificTestBayState nextState2 = VerificTestBayState.createErrorState(nextStateName,
+									errorCode);
 							setNextState(nextState2); // Set the next state dynamically
 						} else {
-							VerificTestBayState nextState2 = createVerificTestBayStateInstance(nextStateName,
-									errorCode);
+							VerificTestBayState nextState2 = VerificTestBayState.createState(nextStateName);
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
@@ -185,46 +178,6 @@ public class VerificationTestBayBypass extends TimerTask {
 	}
 
 	// ===============================================================================================
-	private VerificTestBayState createErrorStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-			case "S17_error_Handling":
-				return new S17_error_Handling(errorCode);
-			default:
-				throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public VerificTestBayState createVerificTestBayStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		Verification.logger.debug("createVerificTestBayStateInstance : stateName: " + stateName);
-
-		Class<?> c = null;
-		try {
-			c = Class.forName(Verification.class.getPackage().getName() + "." + stateName);
-			// VerificTestBayState VerificTestBayStateObj=null;
-			Object VerificTestBayStateObj = null;
-			try {
-				// VerificTestBayStateObj = (VerificTestBayState)c.newInstance();
-				VerificTestBayStateObj = c.newInstance();
-				return (VerificTestBayState) VerificTestBayStateObj;
-			} catch (InstantiationException e) {
-
-				e.printStackTrace();
-				throw new IllegalArgumentException("FT: Exception: Unknown state1: " + stateName);
-			} catch (IllegalAccessException e) {
-
-				e.printStackTrace();
-				throw new IllegalArgumentException("FT: Exception: Unknown state2: " + stateName);
-			}
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-			throw new IllegalArgumentException("FT: Exception: Unknown state3: " + stateName);
-		}
-
-	}
 	// ==========================================================================================================================================
 
 	private String getErrorStateInstance(String errorCode) {

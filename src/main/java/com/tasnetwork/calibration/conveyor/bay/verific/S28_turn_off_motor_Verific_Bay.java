@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -12,26 +11,19 @@ import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
-public class S28_turn_off_motor_Verific_Bay implements VerificTestBayState{
+public class S28_turn_off_motor_Verific_Bay implements VerificTestBayState {
 
-/*    String LOW   = "OPEN";
-    String HIGH  = "CLOSE";
-    String CLOSE  = "Off"; //"On";
-    String OPEN   = "On"; //"Off";
-    String ON  = "On";
- 	String OFF  = "Off";*/
-    //===========================================================================================
+    // ===========================================================================================
     @Override
     public BayResponse handleRequest() {
         Verification.logger.info("S28_turn_off_motor_Verific_Bay : Entry");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        
 
-        Map<String,Object> responseReturn =  turn_off();	 
-		boolean turn_off = (boolean)responseReturn.get("status");
-		
+        Map<String, Object> responseReturn = turn_off();
+        boolean turn_off = (boolean) responseReturn.get("status");
+
         if (turn_off) {
             Verification.logger.info("S28_turn_off_motor_Verific_Bay : Motor Turned Off");
             bayResponse.setStatus(true);
@@ -46,45 +38,44 @@ public class S28_turn_off_motor_Verific_Bay implements VerificTestBayState{
         return bayResponse;
     }
 
-    //============================================================================================================================================  
+    // ============================================================================================================================================
 
-    private Map<String,Object> turn_off() {
+    private Map<String, Object> turn_off() {
         Verification.logger.debug("S28_turn_off_motor_Verific_Bay : turn_off : Entry");
 
         boolean status = false;
-        Map<String,Object> responseReturn = new HashMap<String,Object>();
-		responseReturn.put("status", false);
-        
-        //============================================================================================
+        Map<String, Object> responseReturn = new HashMap<String, Object>();
+        responseReturn.put("status", false);
+
+        // ============================================================================================
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_MOTOR_CTRL);
-        
+
         if (portInfo != null) {
             Verification.logger.debug("PortId    : " + portInfo.getPortId());
             Verification.logger.debug("ClusterId : " + portInfo.getClusterId());
             Verification.logger.debug("BayId     : " + portInfo.getBayId());
         } else {
             Verification.logger.debug("S28_turn_off_motor_Verific_Bay : Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         BayUtils bayUtils = new BayUtils();
-        
-        String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
-                                              portInfo.getBayId(), 
-                                              portInfo.getPortId(),
-                                              Constant_IO_ActionMapping.CLOSE); // Use OPEN to represent turning the relay "Off"                              
+
+        String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                portInfo.getBayId(),
+                portInfo.getPortId(),
+                Constant_IO_ActionMapping.CLOSE); // Use OPEN to represent turning the relay "Off"
 
         status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
         Verification.logger.debug("S28_turn_off_motor_Verific_Bay : turn_off : status : " + status);
-        //============================================================================================  
-        
-        if(StateExecutorController.simulateSCTNLTBay1HappyPath){
-        	status = true; 
+        // ============================================================================================
+
+        if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
+            status = true;
         }
 
-		responseReturn.put("status", status);
-		
+        responseReturn.put("status", status);
+
         return responseReturn;
     }
 }
-

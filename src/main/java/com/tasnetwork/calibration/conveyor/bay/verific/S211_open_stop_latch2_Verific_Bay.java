@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -16,7 +15,7 @@ public class S211_open_stop_latch2_Verific_Bay implements VerificTestBayState {
 
     @Override
     public BayResponse handleRequest() {
-    	Verification.logger.info("S211_open_stop_latch2_Verific_Bay : Entry");
+        Verification.logger.info("S211_open_stop_latch2_Verific_Bay : Entry");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
@@ -34,7 +33,7 @@ public class S211_open_stop_latch2_Verific_Bay implements VerificTestBayState {
         } else {
             Verification.logger.info("S211_open_stop_latch2_Verific_Bay : Failed to Open Stop Latch");
             bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_021 );
+            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_021);
         }
 
         Verification.logger.info("S211_open_stop_latch2_Verific_Bay : Exit");
@@ -48,7 +47,7 @@ public class S211_open_stop_latch2_Verific_Bay implements VerificTestBayState {
         Map<String, Object> responseReturn = new HashMap<>();
         responseReturn.put("status", false);
 
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR2 );
+        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR2);
 
         String state = "";
         if (portInfo != null) {
@@ -58,37 +57,40 @@ public class S211_open_stop_latch2_Verific_Bay implements VerificTestBayState {
 
             String outputActive = Constant_IO_ActionMapping.OFF;
             BayUtils bayUtils = new BayUtils();
-            
-             state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                     portInfo.getBayId(),
-                                                     portInfo.getPortId(),
-                                                     outputActive);
 
-            Verification.logger.debug("S211_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : state : " + state);
-            /*if (simulateVerificationBayHappyPath) {
-                state = Constant_IO_ActionMapping.ON;
-            }*/
+            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    outputActive);
+
+            Verification.logger
+                    .debug("S211_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : state : " + state);
+            /*
+             * if (simulateVerificationBayHappyPath) {
+             * state = Constant_IO_ActionMapping.ON;
+             * }
+             */
 
             status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
-            
-    		if(StateExecutorController.simulateVerificBayHappyPath){
-    			state = Constant_IO_ActionMapping.OPEN;
-    		}
 
+            if (StateExecutorController.simulateVerificBayHappyPath) {
+                state = Constant_IO_ActionMapping.OPEN;
+            }
 
-            Verification.logger.debug("S211_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : status : " + status);
+            Verification.logger
+                    .debug("S211_open_stop_latch2_Verific_Bay : open_StopLatch_Verific_Bay : status : " + status);
 
         } else {
             Verification.logger.debug("S211_open_stop_latch2_Verific_Bay : Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         responseReturn.put("status", status);
         responseReturn.put("responseData", state);
 
-        Verification.logger.debug("S211_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : " + status);
+        Verification.logger
+                .debug("S211_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : status : " + status);
         Verification.logger.debug("S211_open_stop_latch2_Verific_Bay : verificBay_StopLatch_Status : Exit");
         return responseReturn;
     }
 }
-

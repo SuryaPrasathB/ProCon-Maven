@@ -1,37 +1,28 @@
 package com.tasnetwork.calibration.conveyor.bay.verific;
 
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.tasnetwork.calibration.conveyor.StatePlannerController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
-import com.tasnetwork.calibration.conveyor.bay.unloading.Unloading;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.spring.orm.model.StateFlow;
 
-import javafx.scene.control.TableView;
-
 public class Verification implements BayStateContext {
-	public static Logger logger = Logger.getLogger(Verification.class.getPackage().getName()); 
-	private VerificationBayContext VerificTestBayStateManager = new VerificationBayContext(); 
-	
-	public static boolean startProcessRequestedVerificBay = false ;
-	public static boolean stopProcessRequestedVerificBay = false ;
-	public static boolean resetProcessRequestedVerificBay = false ;
+	public static Logger logger = Logger.getLogger(Verification.class.getPackage().getName());
+	private VerificationBayContext VerificTestBayStateManager = new VerificationBayContext();
 
-	public static boolean startProcessCompletedVerificBay = false ;
-	public static boolean stopProcessCompletedVerificBay = false ;
-	public static boolean resetProcessCompletedVerificBay = false ;
-	
-	public static boolean abort_VerificTest_Bay = false ;
+	public static boolean startProcessRequestedVerificBay = false;
+	public static boolean stopProcessRequestedVerificBay = false;
+	public static boolean resetProcessRequestedVerificBay = false;
+
+	public static boolean startProcessCompletedVerificBay = false;
+	public static boolean stopProcessCompletedVerificBay = false;
+	public static boolean resetProcessCompletedVerificBay = false;
+
+	public static boolean abort_VerificTest_Bay = false;
+
 	@Override
 	public void onStartComplete() {
 		setStartProcessCompletedVerificBay(true);
@@ -46,87 +37,50 @@ public class Verification implements BayStateContext {
 	public void setNextState(String stateName, String errorCode) {
 		VerificTestBayState newState;
 		if (stateName.equals("S17_error_Handling") || stateName.startsWith("ERROR")) {
-			newState = createErrorStateInstance(stateName, errorCode);
+			newState = VerificTestBayState.createErrorState(stateName, errorCode);
 		} else {
-			newState = createVerificTestBayStateInstance(stateName);
+			newState = VerificTestBayState.createState(stateName);
 		}
 		VerificTestBayStateManager.setState(newState);
 	}
 
-	public BayResponse processCurrentState(){
+	public BayResponse processCurrentState() {
 		// Process the current state
 		BayResponse bayStatus = VerificTestBayStateManager.processPresentState();
 
-		Verification.logger.debug("processCurrentState : " + VerificTestBayStateManager.getState().getClass().getSimpleName() + " : Status     : " + bayStatus.isStatus());
-		Verification.logger.debug("processCurrentState : " + VerificTestBayStateManager.getState().getClass().getSimpleName() + " : Error Code : " + bayStatus.getErrorCode());
-		return bayStatus ;
+		Verification.logger
+				.debug("processCurrentState : " + VerificTestBayStateManager.getState().getClass().getSimpleName()
+						+ " : Status     : " + bayStatus.isStatus());
+		Verification.logger
+				.debug("processCurrentState : " + VerificTestBayStateManager.getState().getClass().getSimpleName()
+						+ " : Error Code : " + bayStatus.getErrorCode());
+		return bayStatus;
 	}
 
-	public VerificTestBayState getPreviousState(){
+	public VerificTestBayState getPreviousState() {
 		return VerificTestBayStateManager.getLastProcessedBayState();
 	}
 
-	//public TableView<StateFlow> tableStatePlanner_VerificBay = new TableView<StateFlow>();
+	// public TableView<StateFlow> tableStatePlanner_VerificBay = new
+	// TableView<StateFlow>();
 	public ArrayList<StateFlow> tableStatePlanner_VerificBay = new ArrayList<StateFlow>();
-	// Helper method to find the row by state name
-	private StateFlow findRowByStateName(String stateName) {
-
-		for (StateFlow row : getTableStatePlanner_VerificBay()) {
-			if (row.getState().equals(stateName)) {
-				return row;
-			}
-		}
-		return null;
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public static VerificTestBayState createVerificTestBayStateInstance(String stateName) {
-	    try {
-	        // Get the fully qualified class name dynamically
-	        String packageName = VerificTestBayState.class.getPackage().getName(); // Adjust if necessary
-	        Class<?> c = Class.forName(packageName + "." + stateName);
-
-	        // Ensure the class is a subclass of VerificTestBayState
-	        if (!VerificTestBayState.class.isAssignableFrom(c)) {
-	            throw new IllegalArgumentException("Invalid state class: " + stateName);
-	        }
-
-	        // Create an instance using the default constructor
-	        return (VerificTestBayState) c.getDeclaredConstructor().newInstance();
-	    } catch (ClassNotFoundException e) {
-	        throw new IllegalArgumentException("Unknown state: " + stateName, e);
-	    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-	        throw new IllegalArgumentException("Error instantiating state: " + stateName, e);
-	    }
-	}
-	
-	private VerificTestBayState createErrorStateInstance(String stateName, String errorCode) {  
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-		case "S17_error_Handling":
-			return new S17_error_Handling(errorCode);
-		default:
-			throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
 
 	@Override
 	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
-		case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_022 :
-			return "S01_check_for_pallets_at_Verific_Bay";
-		case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_013 :
-			return "S12_check_for_pallets_at_SCT_NLT_Bay2";
-		case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_014 :
-			return "S08_check_for_pallets_at_SCT_NLT_Bay1";
-		case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_030 :
-			return S18_idle_condition.class.getSimpleName();
-		case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_031 :
-			return S18_idle_condition.class.getSimpleName();
-		default:
-			return "S17_error_Handling";
+			case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_022:
+				return "S01_check_for_pallets_at_Verific_Bay";
+			case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_013:
+				return "S12_check_for_pallets_at_SCT_NLT_Bay2";
+			case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_014:
+				return "S08_check_for_pallets_at_SCT_NLT_Bay1";
+			case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_030:
+				return S18_idle_condition.class.getSimpleName();
+			case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_031:
+				return S18_idle_condition.class.getSimpleName();
+			default:
+				return "S17_error_Handling";
 		}
 	}
 
@@ -186,7 +140,4 @@ public class Verification implements BayStateContext {
 		Verification.startProcessCompletedVerificBay = startProcessCompletedVerificBay;
 	}
 
-
-
 }
-
