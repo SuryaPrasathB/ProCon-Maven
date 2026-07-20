@@ -2954,14 +2954,8 @@ public class StateExecutorController implements Initializable {
 	public void btnAllStartOnClick() {
 		ApplicationLauncher.logger.info("btnFtStartOnClick : Invoked:");
 
-		// btnAllStart.setStyle("-fx-background-color: #FF5733;");
-		/*
-		 * btnAllStart.setDisable(true);
-		 * btnAllStop.setDisable(false);
-		 */
-
-		ref_tvTestStatus.getItems().clear();
-		allData.clear();
+		btnAllStart.setDisable(true);
+		btnAllStop.setDisable(false);
 
 		funtionalBayStartTaskTimer = new Timer();
 		activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
@@ -2969,41 +2963,35 @@ public class StateExecutorController implements Initializable {
 
 		hvtBayStartTaskTimer = new Timer();
 		activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-		hvtBayStartTaskTimer.schedule(activeHvEngine, 200);
+		hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
 
 		insResStartTaskTimer = new Timer();
 		activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-		insResStartTaskTimer.schedule(activeIrEngine, 300);
+		insResStartTaskTimer.schedule(activeIrEngine, 100);
 
-		/*
-		 * calibrationStartTaskTimer = new Timer();
-		 * calibrationStartTaskTimer.schedule(new CalibrationBay2(),400);
-		 * 
-		 * 
-		 * waitingBayStartTaskTimer = new Timer();
-		 * waitingBayStartTaskTimer.schedule(new WaitingBay2(), 100);
-		 * 
-		 * 
-		 * verificStartTaskTimer = new Timer();
-		 * verificStartTaskTimer.schedule(new VerificationTestBay2(),100);
-		 * 
-		 * verificStartTaskTimer.cancel();
-		 */
+		calibrationStartTaskTimer = new Timer();
+		activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
+		calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
 
-		/*
-		 * sctNlt1StartTaskTimer = new Timer();
-		 * sctNlt1StartTaskTimer.schedule(new STA_NoLoadTestBay1_2(),100);
-		 * 
-		 * 
-		 * sctNlt2StartTaskTimer = new Timer();
-		 * sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2_2(),100);
-		 * 
-		 * 
-		 * commStartTaskTimer = new Timer();
-		 * commStartTaskTimer.schedule(new CommunicationTestBay2(),100);
-		 * 
-		 * commStartTaskTimer.cancel();
-		 */
+		waitingBayStartTaskTimer = new Timer();
+		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
+		waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
+
+		verificStartTaskTimer = new Timer();
+		activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
+		verificStartTaskTimer.schedule(activeVerificEngine, 100);
+
+		sctNlt1StartTaskTimer = new Timer();
+		activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
+		sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+
+		sctNlt2StartTaskTimer = new Timer();
+		activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
+		sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+
+		commStartTaskTimer = new Timer();
+		activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
+		commStartTaskTimer.schedule(activeCommEngine, 100);
 
 		ApplicationLauncher.logger.info("btnFtStartOnClick : EXIT:");
 	}
@@ -3020,7 +3008,6 @@ public class StateExecutorController implements Initializable {
 		StaNld_Bay1.abort_SCT_NLT_Bay1 = true;
 		StaNld_Bay2.abort_SCT_NLT_Bay2 = true;
 		Comm.abort_CommTest_Bay = true;
-		// ggg add waiting bay
 
 		Ft.setStopProcessRequestedFtBay(true);
 		Hv.setStopProcessRequestedHvtBay(true);
@@ -3029,15 +3016,12 @@ public class StateExecutorController implements Initializable {
 		Verification.setStopProcessRequestedVerificBay(true);
 		StaNld_Bay1.setStopProcessRequestedStaNldBay1(true);
 		StaNld_Bay2.setStopProcessRequestedStaNldBay2(true);
-		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test10  : true");
+		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test2  : true");
 		Comm.setStopProcessRequestedCommBay(true);
 		VerificWaiting.setStopProcessRequestedWaitingBay(true);
 
-		/*
-		 * btnAllStart.setStyle("-fx-background-color: #FF5733;");
-		 * btnAllStart.setDisable(false);
-		 * btnAllStop.setDisable(true);
-		 */
+		btnAllStart.setDisable(false);
+		btnAllStop.setDisable(true);
 
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
@@ -3048,35 +3032,32 @@ public class StateExecutorController implements Initializable {
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
 
-		/*
-		 * calibrationStopTaskTimer = new Timer();
-		 * calibrationStopTaskTimer.schedule(new CalibrationBayStop(),100);
-		 * 
-		 * 
-		 * waitingBayStopTaskTimer = new Timer();
-		 * waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-		 * 
-		 * 
-		 * verificStopTaskTimer = new Timer();
-		 * verificStopTaskTimer.schedule(new VerificationTestBayStop(),100);
-		 * 
-		 * verificStopTaskTimer.cancel();
-		 */
+		calibrationStopTaskTimer = new Timer();
+		calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
 
-		/*
-		 * sctNlt1StopTaskTimer = new Timer();
-		 * sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(),100);
-		 * 
-		 * 
-		 * sctNlt2StopTaskTimer = new Timer();
-		 * sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(),100);
-		 * 
-		 * 
-		 * commStopTaskTimer = new Timer();
-		 * commStopTaskTimer.schedule(new CommunicationTestBayStop(),100);
-		 * 
-		 * 
-		 */
+		if (activeWaitingEngine != null)
+			activeWaitingEngine.requestStop();
+		waitingBayStopTaskTimer = new Timer();
+		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
+
+		verificStopTaskTimer = new Timer();
+		verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
+
+		if (activeStaNld1Engine != null)
+			activeStaNld1Engine.requestStop();
+		sctNlt1StopTaskTimer = new Timer();
+		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
+
+		if (activeStaNld2Engine != null)
+			activeStaNld2Engine.requestStop();
+		sctNlt2StopTaskTimer = new Timer();
+		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
+
+		if (activeCommEngine != null)
+			activeCommEngine.requestStop();
+		commStopTaskTimer = new Timer();
+		commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
+
 		ApplicationLauncher.logger.info("btnAllStopOnClick : Exit:");
 	}
 

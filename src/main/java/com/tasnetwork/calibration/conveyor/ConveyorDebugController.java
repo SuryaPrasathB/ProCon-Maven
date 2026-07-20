@@ -9,26 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import com.sun.org.apache.xpath.internal.functions.FuncId;
-import com.sun.org.apache.xpath.internal.functions.Function;
-import com.tasnetwork.calibration.conveyor.AsyncHttpClient.AsyncClientManager;
 import com.tasnetwork.calibration.conveyor.AsyncHttpClient.ConveyorClientManager;
-import com.tasnetwork.calibration.conveyor.AsyncHttpClient.ServerProperties;
-import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
 import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
 import com.tasnetwork.calibration.conveyor.bay.configloader.DutDevice;
@@ -37,66 +25,23 @@ import com.tasnetwork.calibration.conveyor.bay.configloader.OutputPort;
 import com.tasnetwork.calibration.conveyor.bay.configloader.QrScanner;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
-import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
-//import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBay2;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayReset;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayStop;
-import com.tasnetwork.calibration.conveyor.bay.comm.Comm;
-//import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBay2;
-import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
-//import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBay2;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Reset;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Reset;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
-//import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2_2;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
-//import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBay2;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayStop;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantProTamp;
-import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayStop;
-import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteResponse;
-import com.tasnetwork.calibration.conveyor.remote.ProcalRemoteSender;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.spring.orm.model.ResultSummary;
-import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -104,15 +49,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.ComboBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
-import javafx.scene.control.cell.ComboBoxTableCell;
 
 public class ConveyorDebugController implements Initializable {
 
@@ -130,160 +67,8 @@ public class ConveyorDebugController implements Initializable {
 	public static final boolean simulateWaitingBayHappyPath = true;
 
 	public static Logger logger = Logger.getLogger(ConveyorDebugController.class.getPackage().getName());// ConveyorDebugController.class
-																											// );
-	// ==================== STATE PLANNER
-	// ===============================================================//
-	/*
-	 * @FXML
-	 * public TableView<StateFlowRow> tableStatePlanner;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnPath;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnState;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnStateErrorCode;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnSuccess;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnSuccessErrorCode;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnFailed;
-	 * 
-	 * @FXML
-	 * public TableColumn<StateFlowRow, String> columnFailedErrorCode;
-	 * 
-	 * 
-	 * public static TableView<StateFlowRow> tableStatePlanner_FtBay_UI = new
-	 * TableView<StateFlowRow>();
-	 * 
-	 * private final ObservableList<String> stateNames =
-	 * FXCollections.observableArrayList(
-	 */
-
-	/*
-	 * "Check for Pallet",
-	 * "Check Stopper Before Bay Status",
-	 * "Open Stopper Before Bay",
-	 * "Close Stopper Before Bay",
-	 * "Close FingerTip Latch",
-	 * "Ensure FingerTip Latch Closed",
-	 * "Soucre Start",
-	 * "Ensure Source Started",
-	 * "Functional Test",
-	 * "Source Stop",
-	 * "Ensure Source Stopped",
-	 * "Close Divertor Relay",
-	 * "Open Divertor Relay",
-	 * "Open FingerTip Latch",
-	 * "Ensure FingerTip Latch Opened",
-	 * "Open Stopper At Bay",
-	 * "Close Stopper At Bay",
-	 * "Error Handling",
-	 * "Idle Condition"
-	 */
-
-	/*
-	 * "S01_check_for_pallet_at_FT_Bay",
-	 * "S02_let_the_pallet_to_FT_Bay",
-	 * "S03_close_the_fingerTip_Latch",
-	 * "S04_ensure_the_fingerTip_Latch_Closed",
-	 * "S05_qR_Code_Scanning_of_Pallet",
-	 * "S06_scanning_of_Meters_Presence",
-	 * "S07_qR_Code_Scanning_of_Meters",
-	 * "S071_start_FT_source",
-	 * "S072_ensure_FT_source_started",
-	 * "S08_functional_Test",
-	 * "S081_stop_FT_source",
-	 * "S082_ensure_FT_source_stopped",
-	 * "S09_open_the_fingerTip_Latch",
-	 * "S10_ensure_the_fingerTip_Latch_Opened",
-	 * "S11_check_for_pallet_at_HVT_Bay",
-	 * "S12_turn_on_divertor_relay_FT_Bay",
-	 * "S13_ensure_divertor_relay_turned_on_FT_Bay",
-	 * "S14_let_the_pallet_to_HVT_Bay",
-	 * "S15_ensure_pallet_reached_HVT_Bay",
-	 * "S16_check_for_pallet_at_Rejection_Bay",
-	 * "S17_turn_off_divertor_relay_FT_Bay",
-	 * "S18_ensure_divertor_relay_turned_off_FT_Bay",
-	 * "S19_wait_for_reset_button_ip_Rejection_Bay",
-	 * "S20_let_the_pallet_to_Rejection_Bay",
-	 * "S21_ensure_pallet_reached_Reject_Bay",
-	 * "S22_error_Handling"
-	 * 
-	 * 
-	 * );
-	 */
 
 	private final Map<String, String> stateCodeMap = new HashMap<>();
-
-	// Populate the map with state names and their corresponding state codes
-	/*
-	 * private void initializeStateCodeMap() {
-	 * stateCodeMap.put("Select State", "No State Selected");
-	 * stateCodeMap.put("Check for Pallet", "STATE_CODE_001");
-	 * stateCodeMap.put("Check Stopper Before Bay Status", "STATE_CODE_002");
-	 * stateCodeMap.put("Open Stopper Before Bay", "STATE_CODE_003");
-	 * stateCodeMap.put("Close Stopper Before Bay", "STATE_CODE_004");
-	 * stateCodeMap.put("Close FingerTip Latch", "STATE_CODE_005");
-	 * stateCodeMap.put("Ensure FingerTip Latch Closed", "STATE_CODE_006");
-	 * stateCodeMap.put("Soucre Start", "STATE_CODE_007");
-	 * stateCodeMap.put("Ensure Source Started", "STATE_CODE_008");
-	 * stateCodeMap.put("Functional Test", "STATE_CODE_009");
-	 * stateCodeMap.put("Source Stop", "STATE_CODE_010");
-	 * stateCodeMap.put("Ensure Source Stopped", "STATE_CODE_011");
-	 * stateCodeMap.put("Close Divertor Relay", "STATE_CODE_012");
-	 * stateCodeMap.put("Open Divertor Relay", "STATE_CODE_013");
-	 * stateCodeMap.put("Open FingerTip Latch", "STATE_CODE_014");
-	 * stateCodeMap.put("Ensure FingerTip Latch Opened", "STATE_CODE_015");
-	 * stateCodeMap.put("Open Stopper At Bay", "STATE_CODE_016");
-	 * stateCodeMap.put("Close Stopper At Bay", "STATE_CODE_017");
-	 * stateCodeMap.put("Error Handling", "STATE_CODE_018");
-	 * stateCodeMap.put("Idle Condition", "STATE_CODE_019");
-	 * 
-	 * // Add other states as needed...
-	 * 
-	 * stateCodeMap.put("S01_check_for_pallet_at_FT_Bay", "STATE_CODE_001");
-	 * stateCodeMap.put("S02_let_the_pallet_to_FT_Bay", "STATE_CODE_002");
-	 * stateCodeMap.put("S03_close_the_fingerTip_Latch", "STATE_CODE_003");
-	 * stateCodeMap.put("S04_ensure_the_fingerTip_Latch_Closed","STATE_CODE_004");
-	 * stateCodeMap.put("S05_qR_Code_Scanning_of_Pallet", "STATE_CODE_005");
-	 * stateCodeMap.put("S06_scanning_of_Meters_Presence", "STATE_CODE_006");
-	 * stateCodeMap.put("S07_qR_Code_Scanning_of_Meters", "STATE_CODE_007");
-	 * stateCodeMap.put("S071_start_FT_source", "STATE_CODE_008");
-	 * stateCodeMap.put("S072_ensure_FT_source_started", "STATE_CODE_009");
-	 * stateCodeMap.put("S08_functional_Test", "STATE_CODE_010");
-	 * stateCodeMap.put("S081_stop_FT_source", "STATE_CODE_011");
-	 * stateCodeMap.put("S082_ensure_FT_source_stopped", "STATE_CODE_012");
-	 * stateCodeMap.put("S09_open_the_fingerTip_Latch", "STATE_CODE_013");
-	 * stateCodeMap.put("S10_ensure_the_fingerTip_Latch_Opened","STATE_CODE_014");
-	 * stateCodeMap.put("S11_check_for_pallet_at_HVT_Bay", "STATE_CODE_015");
-	 * stateCodeMap.put("S12_turn_on_divertor_relay_FT_Bay", "STATE_CODE_016");
-	 * stateCodeMap.put("S13_ensure_divertor_relay_turned_on_FT_Bay",
-	 * "STATE_CODE_017");
-	 * stateCodeMap.put("S14_let_the_pallet_to_HVT_Bay", "STATE_CODE_018");
-	 * stateCodeMap.put("S15_ensure_pallet_reached_HVT_Bay", "STATE_CODE_019");
-	 * stateCodeMap.put("S16_check_for_pallet_at_Rejection_Bay", "STATE_CODE_020");
-	 * stateCodeMap.put("S17_turn_off_divertor_relay_FT_Bay", "STATE_CODE_021");
-	 * stateCodeMap.put("S18_ensure_divertor_relay_turned_off_FT_Bay",
-	 * "STATE_CODE_022");
-	 * stateCodeMap.put("S19_wait_for_reset_button_ip_Rejection_Bay",
-	 * "STATE_CODE_023");
-	 * stateCodeMap.put("S20_let_the_pallet_to_Rejection_Bay", "STATE_CODE_024");
-	 * stateCodeMap.put("S21_ensure_pallet_reached_Reject_Bay", "STATE_CODE_025");
-	 * stateCodeMap.put("S22_error_Handling", "STATE_CODE_026");
-	 * 
-	 * }
-	 */
-	/*
-	 * private final ObservableList<StateFlowRow> stateFlowRows =
-	 * FXCollections.observableArrayList();
-	 */
 
 	// =============================================================================================================================================
 	@FXML

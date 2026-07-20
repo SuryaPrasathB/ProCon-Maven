@@ -1,7 +1,29 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import java.io.IOException;
+import java.net.URL;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.stream.Collectors;
+
+import org.json.JSONException;
+
 import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
 import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
 import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayStop;
@@ -13,7 +35,6 @@ import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
 import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
-import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
@@ -24,15 +45,12 @@ import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.dashboard.PalletController.BayActionType;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetrics;
 import com.tasnetwork.spring.orm.model.ConveyorOutputMetricsSummary;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
@@ -70,35 +88,6 @@ import javafx.stage.Popup; // Import Popup
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
-
-import java.io.IOException;
-import java.net.URL;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.Timer;
-import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import org.json.JSONException;
 
 /**
  * Controller for the conveyor dashboard, managing pallet views, bay updates,
@@ -287,7 +276,6 @@ public class DashboardController implements Initializable {
 	private static TextArea ref_eventLog;
 	private static boolean conveyorDebugGUILoaded = false;
 	private final List<AnchorPane> allContainers = new ArrayList<>();
-	private final ObservableList<ErrorCodeEntry> errorCodeEntries = FXCollections.observableArrayList();
 	private final Map<String, AnchorPane> bayKeyToPalletContainer = new HashMap<>();
 	private final Map<String, AnchorPane> bayKeyToBayContainer = new HashMap<>();
 	// For Motor Control Popup
@@ -308,8 +296,6 @@ public class DashboardController implements Initializable {
 	private Button btnAllStop;
 	@FXML
 	private Button btnDummy;
-	static private Button ref_btnDummy;
-
 	Timer funtionalBayStartTaskTimer;
 	Timer calibrationStartTaskTimer;
 	Timer insResStartTaskTimer;
@@ -372,11 +358,9 @@ public class DashboardController implements Initializable {
 	@FXML
 	private ComboBox<String> periodComboBox;
 
-	private ConveyorOutputMetricsService conveyorOutputMetricsService;
 	private ConveyorOutputMetricsSummaryService conveyorOutputMetricsSummaryService;
 
 	public void setConveyorOutputMetricsService(ConveyorOutputMetricsService service) {
-		this.conveyorOutputMetricsService = service;
 	}
 
 	public void setConveyorOutputMetricsSummaryService(ConveyorOutputMetricsSummaryService service) {
@@ -462,7 +446,6 @@ public class DashboardController implements Initializable {
 		ref_bay20Container = bay20Container;
 		ref_rejectionBayContainer = rejectionBayContainer;
 		ref_unloadingBayContainer = unloadingBayContainer;
-		ref_btnDummy = btnDummy;
 	}
 
 	public void loadDutExecutor() throws JSONException {
@@ -717,19 +700,6 @@ public class DashboardController implements Initializable {
 		return null;
 	}
 
-	private String getBayKeyForBayContainer(AnchorPane container) {
-
-		ApplicationLauncher.logger.debug("getBayKeyForBayContainer: Entry ");
-		for (Map.Entry<String, AnchorPane> entry : bayKeyToBayContainer.entrySet()) {
-			ApplicationLauncher.logger.debug("getBayKeyForBayContainer: entry.getValue(): " + entry.getValue());
-			if (entry.getValue() == container) {
-				ApplicationLauncher.logger.debug("getBayKeyForBayContainer: Hit1 ");
-				return entry.getKey();
-			}
-		}
-		return null;
-	}
-
 	private void handleContainerAction(AnchorPane container, PalletController.BayActionType actionType) {
 		// Find the pallet in this container if any
 		/*
@@ -936,15 +906,15 @@ public class DashboardController implements Initializable {
 
 		hvtBayStartTaskTimer = new Timer();
 		activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-		hvtBayStartTaskTimer.schedule(activeHvEngine, 200);
+		hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
 
 		insResStartTaskTimer = new Timer();
 		activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-		insResStartTaskTimer.schedule(activeIrEngine, 300);
+		insResStartTaskTimer.schedule(activeIrEngine, 100);
 
 		calibrationStartTaskTimer = new Timer();
 		activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-		calibrationStartTaskTimer.schedule(activeCalibEngine, 400);
+		calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
 
 		waitingBayStartTaskTimer = new Timer();
 		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
@@ -1045,69 +1015,6 @@ public class DashboardController implements Initializable {
 		}
 
 	}
-
-	/*
-	 * public void addDefaultBayInDashboard(String bayKey) {
-	 * 
-	 * 
-	 * AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
-	 * if (targetBay == null) {
-	 * logEvent("Failed to add pallet: Invalid bay key " + bayKey);
-	 * ApplicationLauncher.logger.warn("addDefaultBayInDashboard: Invalid bay key "
-	 * + bayKey);
-	 * return;
-	 * }
-	 * 
-	 * // Changed from lambda to Runnable for Java 8 compatibility
-	 * Platform.runLater(new Runnable() {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * if (targetBay.getChildren().stream().anyMatch(new
-	 * java.util.function.Predicate<Node>() {
-	 * 
-	 * @Override
-	 * public boolean test(Node node) {
-	 * return node.getUserData() instanceof PalletController;
-	 * }
-	 * })) {
-	 * logEvent("Failed to add pallet: Bay " + bayKey +
-	 * " already contains a pallet");
-	 * ApplicationLauncher.logger.warn("addDefaultBayInDashboard: Bay " + bayKey +
-	 * " already contains a Bay");
-	 * return;
-	 * }
-	 * 
-	 * try {
-	 * FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/conveyor/" +
-	 * bayViewFxmlFileName + ConstantApp.THEME_FXML));
-	 * Node pallet = loader.load();
-	 * // Changed to explicit cast for Java 8 compatibility
-	 * BayViewController bayController = (BayViewController) loader.getController();
-	 * bayController.resetEntryStopperOpenIndicator();
-	 * bayController.resetExitStopperOpenIndicator();
-	 * bayController.resetAllPalletsExistInBayIndicator();
-	 * bayController.resetPalletsExistInQueueIndicator();
-	 * bayController.resetAllPalletsExistInTargetBayIndicator();
-	 * 
-	 * 
-	 * pallet.setUserData(bayController);
-	 * 
-	 * targetBay.getChildren().add(pallet);
-	 * //logEvent("Added pallet " + palletQrId + " to " + bayKey);
-	 * ApplicationLauncher.logger.info("addDefaultBayInDashboard: Added bay to " +
-	 * bayKey);
-	 * //Sleep(20000);
-	 * //palletController.stopBlinkingQueueIndicator();
-	 * } catch (IOException e) {
-	 * //logEvent("Failed to add pallet: " + e.getMessage());
-	 * ApplicationLauncher.logger.error("addDefaultBayInDashboard: IOException: " +
-	 * e.getMessage());
-	 * }
-	 * }
-	 * });
-	 * }
-	 */
 
 	/**
 	 * Adds a new pallet view to the specified bay.

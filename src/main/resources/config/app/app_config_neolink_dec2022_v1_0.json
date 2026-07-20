@@ -25,7 +25,7 @@
 	},
 	
 	"app": {
-		"AppInstanceServerPort": 8083
+		"AppInstanceServerPort": 8083,
 		"PowerSrc":"PS-01",
 		"RefStd":"Ref-03",
 		"LDU":"LDU-05",
@@ -55,7 +55,7 @@
 		"RefStdFeedBackCurrentFineTuneAllowedPercentage_notused": 0.25,
 		"RefStdFeedBackCurrentFineTuneWaitTimeInSec": 120,
 		"RefStdFeedBackCurrentFineTuneConfirmationCount": 3,
-		"RefStdFeedBackControlSendDataToPowerSourceRefreshTimeInMsec" : 1700,
+		"RefStdFeedBackControlSendDataToPowerSourceRefreshTimeInMsec" : 1700
 	},
 	
 	"StablizationValidation": {
@@ -255,8 +255,8 @@
 		"CustomReportExportAsPdf" : false,
 		"ExcelLastRow" : 99,
 		"ExcelLastColumn" : 99,
-		"ReportProfileDefaultActiveCustomerId" : "2"
-		"ReportProfileDefaultActiveGroupName" : ["RPG1","RPG2","RPG3","RPG4","RPG5","RPG6","*.*"]
+		"ReportProfileDefaultActiveCustomerId" : "2",
+		"ReportProfileDefaultActiveGroupName" : ["RPG1","RPG2","RPG3","RPG4","RPG5","RPG6","*.*"],
 		"PrintStyle" : [
 		
 			{ 	"ReportPrintStyleId" : 1 ,

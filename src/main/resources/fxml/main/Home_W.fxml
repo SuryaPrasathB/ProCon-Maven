@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="831.0" prefWidth="1024.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.ApplicationHomeController">
+<VBox prefHeight="831.0" prefWidth="1024.0" stylesheets="@../../resources/config/style/application_W.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.energymeter.ApplicationHomeController">
   <children>
     <SplitPane dividerPositions="0.1643835616438356" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
@@ -83,14 +83,14 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox id="reports" fx:id="vboxManualMode" alignment="CENTER" layoutX="0.0" layoutY="530.0" onMouseClicked="#onManualModeClickAction" prefHeight="130.0" prefWidth="100.0">
+                  <VBox id="reports" fx:id="vboxDebug" alignment="CENTER" layoutX="0.0" layoutY="530.0" onMouseClicked="#onDebugClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="68.0" fitWidth="95.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/Settings.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="lbl_ManualMode" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Debug&#10;Mode" textAlignment="CENTER" wrapText="false">
+                        <Label fx:id="lbl_Debug" alignment="CENTER" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Debug&#10;Mode" textAlignment="CENTER" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x1111111" />
                            </font>
@@ -145,5 +145,3 @@
 <!--  <fx:include source="reports.fxml" />-->
 
 </VBox>
-
-

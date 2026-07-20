@@ -99,7 +99,7 @@ public class ApplicationHomeController implements Initializable {
 	private Label lbl_EM_Model;
 
 	@FXML
-	private Label lbl_ManualMode;
+	private Label lbl_Debug;
 
 	@FXML
 	private Label lbl_Dashboard;
@@ -108,8 +108,8 @@ public class ApplicationHomeController implements Initializable {
 	private VBox vbox_dashboard;
 
 	@FXML
-	private VBox vboxManualMode;
-	private static VBox ref_vboxManualMode;
+	private VBox vboxDebug;
+	private static VBox ref_vboxDebug;
 
 	@FXML
 	private VBox vbox_report;
@@ -157,7 +157,7 @@ public class ApplicationHomeController implements Initializable {
 		lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
 		lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 		lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_ManualMode.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+		lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 
 		unloadChildNodeFXML();
 		Parent nodeFromFXML = getNodeFromFXML("/fxml/setting/SystemSetting" + ConstantApp.THEME_FXML);
@@ -179,12 +179,13 @@ public class ApplicationHomeController implements Initializable {
 	private void onDashboardClickAction() throws IOException {
 		ApplicationLauncher.logger.info("You clicked Dashboard Icon!");
 
-		if (lbl_Dashboard != null)
+		if (lbl_Dashboard != null) {
 			lbl_Dashboard.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
-		lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_ManualMode.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+		}
 
 		update_left_status("Dashboard", ConstantApp.LEFT_STATUS_DEBUG);
 		unloadChildNodeFXML();
@@ -193,50 +194,21 @@ public class ApplicationHomeController implements Initializable {
 	}
 
 	@FXML
-	private void onManualModeClickAction() throws IOException {
+	private void onDebugClickAction() throws IOException {
+		ApplicationLauncher.logger.info("You clicked Debug Icon!");
 
-		ApplicationLauncher.logger.info("You clicked Manual Mode Icon!");
-
-		if (lbl_Dashboard != null)
+		if (lbl_Dashboard != null) {
 			lbl_Dashboard.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-
-		lbl_ManualMode.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
-
-		unloadChildNodeFXML();
-		Parent nodeFromFXML = null; // getNodeFromFXML("/fxml/deployment/ProjectExecution" +
-									// ConstantApp.THEME_FXML);
-
-		if (ProcalFeatureEnable.PROCAL_LAB_MODE) {
-			ProcalFeatureEnable.PROPOWER_SRC_ONLY = true;
+			lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+			lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 		}
-		// ApplicationLauncher.logger.info("Loading Conveyor Debug mode");
-		// nodeFromFXML = getNodeFromFXML("/fxml/deployment/ProjectExecutionProPower" +
-		// ConstantApp.THEME_FXML);
-		// nodeFromFXML =
-		// getNodeFromFXML("/fxml/deployment/ProjectExecutionProPowerWithOutEnergyDisplay"
-		// + ConstantApp.THEME_FXML);
-		//// nodeFromFXML = getNodeFromFXML("/fxml/conveyor/ConveyorDebugV2" +
-		// ConstantApp.THEME_FXML);
-		// nodeFromFXML = getNodeFromFXML("/fxml/setting/BayTracker" +
-		// ConstantApp.THEME_FXML);
 
-		// Parent nodeFromFXML = getNodeFromFXML("/fxml/deployment/ProjectExecutionV2" +
-		// ConstantApp.THEME_FXML);
-		update_left_status("Manual Mode", ConstantApp.LEFT_STATUS_DEBUG);
-		// childPane.getChildren().add(nodeFromFXML);
-
-		/*
-		 * if(ProcalFeatureEnable.LSCS_CALIBRATION_MODE_ENABLED){
-		 * if(!calibrationStageAlreadyLoaded){
-		 * lscsSourceCalibrationStageDisplay();
-		 * calibrationStageAlreadyLoaded = true;
-		 * }
-		 * }
-		 */
-
+		update_left_status("Dashboard", ConstantApp.LEFT_STATUS_DEBUG);
+		unloadChildNodeFXML();
+		Parent nodeFromFXML = getNodeFromFXML("/fxml/conveyor/PalletTracker_W.fxml");
+		childPane.getChildren().add(nodeFromFXML);
 	}
 
 	@FXML
@@ -249,7 +221,7 @@ public class ApplicationHomeController implements Initializable {
 		lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 		lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
 		lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		lbl_ManualMode.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+		lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 
 		unloadChildNodeFXML();
 		/*
@@ -296,7 +268,7 @@ public class ApplicationHomeController implements Initializable {
 		lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 		lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 		lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
-		lbl_ManualMode.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+		lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 
 		unloadChildNodeFXML();
 		Parent nodeFromFXML = getNodeFromFXML("/fxml/setting/EM_Model" + ConstantApp.THEME_FXML);
@@ -309,7 +281,7 @@ public class ApplicationHomeController implements Initializable {
 		ref_vbox_system_config.setDisable(true);
 		ref_vbox_metertype.setDisable(true);
 		ref_vbox_report.setDisable(true);
-		ref_vboxManualMode.setDisable(true);
+		ref_vboxDebug.setDisable(true);
 	}
 
 	public static void DisableLeftMenuButtonsForTestRun() {
@@ -341,14 +313,14 @@ public class ApplicationHomeController implements Initializable {
 				ref_vbox_report.setDisable(false);
 			}
 			if (isUacManualModeScreenDisplayEnabled()) {
-				ref_vboxManualMode.setDisable(false);
+				ref_vboxDebug.setDisable(false);
 			}
 
 		} else {
 			ref_vbox_system_config.setDisable(false);
 			ref_vbox_metertype.setDisable(false);
 			ref_vbox_report.setDisable(false);
-			ref_vboxManualMode.setDisable(false);
+			ref_vboxDebug.setDisable(false);
 		}
 	}
 
@@ -410,7 +382,7 @@ public class ApplicationHomeController implements Initializable {
 
 		SetInstantMetricsGUI_Displayed(false);
 		setLduAllDataViewGUI_Displayed(false);
-		ref_vboxManualMode = vboxManualMode;
+		ref_vboxDebug = vboxDebug;
 		ref_vbox_report = vbox_report;
 		ref_vbox_metertype = vbox_metertype;
 		ref_vbox_system_config = vbox_system_config;
@@ -685,7 +657,7 @@ public class ApplicationHomeController implements Initializable {
 				case ConstantApp.UAC_MANUAL_MODE_SCREEN:
 
 					if (!uacSelectProfileScreenList.get(i).getVisibleEnabled()) {
-						ref_vboxManualMode.setDisable(true);
+						ref_vboxDebug.setDisable(true);
 						setUacManualModeScreenDisplayEnabled(false);
 
 					}
