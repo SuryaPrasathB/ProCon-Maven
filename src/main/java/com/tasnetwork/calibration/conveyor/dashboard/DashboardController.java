@@ -46,6 +46,7 @@ import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
@@ -672,17 +673,6 @@ public class DashboardController implements Initializable {
 					}
 				};
 				menu.attachToNode(container);
-				// Status manager
-				/*
-				 * BayStatusManager statusManager = new BayStatusManager(
-				 * PalletController.getRectEntryStopperOpen(),
-				 * PalletController.getRef_rectExitStopperOpen(),
-				 * PalletController.getRef_rectAllPalletsExistInBay(),
-				 * PalletController.getRef_rectPalletsExistInQueue(),
-				 * PalletController.getRef_rectTargetBayAllPalletsFree()
-				 * );
-				 * bayStatusManagers.put(bayKey, statusManager);
-				 */
 			}
 		}
 	}
@@ -2369,7 +2359,6 @@ public class DashboardController implements Initializable {
 
 		ref_eventLog = eventLog;
 		initializeBayKeyMap();
-		// bayIndicatorManager = new BayIndicatorManager(bayKeyToBayContainer);
 		bayIndicatorManager = new BayIndicatorManager(bayKeyToBayContainer, bayViewFxmlFileName);
 		initializeBayContainer();
 		refInit();
@@ -2398,6 +2387,8 @@ public class DashboardController implements Initializable {
 		periodComboBox.setItems(options);
 		periodComboBox.setValue("Today"); // default
 		// refreshMetricsTable(); // refresh initially
+
+		ConveyorDataManager.setDashboardObject(this);
 	}
 
 	private void initAllBayView() {
