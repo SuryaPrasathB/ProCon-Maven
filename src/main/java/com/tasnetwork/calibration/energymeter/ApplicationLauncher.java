@@ -1,28 +1,29 @@
 package com.tasnetwork.calibration.energymeter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Properties;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+
 import com.tasnetwork.calibration.conveyor.ConveyorPalletTracking;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigLoader;
@@ -33,8 +34,8 @@ import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
-import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdRadiant;
 import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfigLoader;
+import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdRadiant;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.ConveyorConfigLoader;
@@ -48,10 +49,11 @@ import com.tasnetwork.calibration.energymeter.reportprofile.ReportProfileOperati
 import com.tasnetwork.calibration.energymeter.testreport.config.ReportConfigLoader;
 import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
+import com.tasnetwork.calibration.energymeter.util.SystemUtils;
 import com.tasnetwork.spring.config.ConfigLoader;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import com.tasnetwork.calibration.energymeter.util.SystemUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -69,11 +71,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 public class ApplicationLauncher extends Application {
 
+	/** Application-wide Log4j logger. */
 	public static Logger logger = Logger.getLogger(ConstantVersion.APPLICATION_NAME);
 	private static Stage primaryStage;
 	public static boolean allready_running = false;
 	public static boolean reportGenerationFlag = false;
 
+	/**
+	 * Initializes system properties used by application startup and logging.
+	 */
 	static {
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
@@ -86,6 +92,11 @@ public class ApplicationLauncher extends Application {
 
 	public static ConfigurableApplicationContext springContext;
 
+	/**
+	 * Starts the Spring application context before the JavaFX UI is created.
+	 *
+	 * @throws Exception when Spring Boot cannot be initialized
+	 */
 	@Override
 	public void init() throws Exception {
 		String[] args = getParameters().getRaw().toArray(new String[0]);
@@ -94,12 +105,24 @@ public class ApplicationLauncher extends Application {
 		springContext.getBean(ConfigLoader.class);
 	}
 
+	/**
+	 * Closes the Spring application context during JavaFX shutdown.
+	 *
+	 * @throws Exception when the application context cannot be closed
+	 */
 	@Override
 	public void stop() throws Exception {
 		logger.info("Shutting down Spring Boot and JavaFX application...");
 		springContext.close();
 	}
 
+	/**
+	 * Logs uncaught exceptions and restores the application cursor when report
+	 * generation fails.
+	 *
+	 * @param t the thread on which the exception occurred
+	 * @param e the uncaught exception
+	 */
 	public static void handleException(Thread t, Throwable e) {
 		logger.info("ApplicationLauncher : Unhandled Exception Entry: " + e);
 		logger.info("ApplicationLauncher : Unhandled getname:" + t.getName());
@@ -133,8 +156,6 @@ public class ApplicationLauncher extends Application {
 			Platform.runLater(() -> {
 				Alert alert = new Alert(AlertType.ERROR);
 				Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-				// stage.getIcons().add(new
-				// Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
 				stage.getIcons().add(new Image(
 						ApplicationLauncher.class.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
 				alert.setTitle(ConstantVersion.APPLICATION_NAME);
@@ -165,6 +186,13 @@ public class ApplicationLauncher extends Application {
 
 	}
 
+	/**
+	 * Initializes the primary JavaFX stage, application configuration, database
+	 * services, and the first application screen.
+	 *
+	 * @param initStage JavaFX-provided initial stage
+	 * @throws Exception when startup initialization cannot be completed
+	 */
 	@Override
 	public void start(Stage initStage) throws Exception {
 
@@ -184,11 +212,9 @@ public class ApplicationLauncher extends Application {
 				if (WindowManager.check_alerttype_btn()) {
 					logger.info("<------------ Spring App Context closing... ---------->\n");
 					if (ProcalFeatureEnable.REPORT_GENERATION_V2_ENABLED) {
-						// DeviceDataManagerController.getSpringAppCtx().close();
 						ApplicationLauncher.springContext.close();
 					}
 					logger.info("<------------ Spring App Context closed ---------->\n");
-					// ctx.close();
 					logger.info(
 							"<------------Exiting " + ConstantVersion.APPLICATION_NAME + " application---------->\n");
 					Platform.exit();
@@ -322,12 +348,8 @@ public class ApplicationLauncher extends Application {
 
 						alert.getButtonTypes().clear();
 						alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
-
-						// Deactivate Defaultbehavior for yes-Button:
 						Button yesButton = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
 						yesButton.setDefaultButton(true);
-
-						// Activate Defaultbehavior for no-Button:
 						Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
 						noButton.setDefaultButton(false);
 
@@ -391,6 +413,10 @@ public class ApplicationLauncher extends Application {
 		}
 	}
 
+	/**
+	 * Configures Log4j from the bundled {@code log4j.properties} resource.
+	 * Displays an error dialog and terminates when logging cannot be configured.
+	 */
 	public static void initLogger() {
 		String log4jConfigFile = "log4j.properties";
 		try {
@@ -426,56 +452,29 @@ public class ApplicationLauncher extends Application {
 
 	}
 
+	/**
+	 * Returns the primary application window.
+	 *
+	 * @return the primary JavaFX stage
+	 */
 	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
+	/**
+	 * Stores the primary application window for use by dialogs and popup screens.
+	 *
+	 * @param pStage the initialized primary JavaFX stage
+	 */
 	public static void setPrimaryStage(Stage pStage) {
 		ApplicationLauncher.primaryStage = pStage;
 	}
 
-	public void EnableFileLog() {
-		Date date = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-		File Outfile = new File("std.out_" + dateFormat.format(date) + ".txt");
-		File Errorfile = new File("std.Error_" + dateFormat.format(date) + ".txt");
-
-		try {
-
-			System.setOut(new PrintStream(Outfile));
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-			ApplicationLauncher.logger.error("EnableFileLog: FileNotFoundException1: " + e.getMessage());
-		}
-
-		try {
-			System.setErr(new PrintStream(Errorfile));
-
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-			ApplicationLauncher.logger.error("EnableFileLog: FileNotFoundException2: " + e.getMessage());
-		}
-
-	}
-
-	public void TestDebugData(Integer CreepTimeInSec) {
-
-		ApplicationLauncher.logger.info("test :Entry");
-		int sec = (CreepTimeInSec % 60);
-		int min = CreepTimeInSec / 60;
-		if (min > 99) {
-			min = 0;
-		}
-
-		ApplicationLauncher.logger.info("test :sec:" + sec);
-		ApplicationLauncher.logger.info("test :min:" + min);
-		String CreepTimeDuration = String.format("%02d", min) + String.format("%02d", sec);
-		ApplicationLauncher.logger.info("test :CreepTimeDuration:" + CreepTimeDuration);
-
-	}
-
+	/**
+	 * Launches the JavaFX application.
+	 *
+	 * @param args command-line arguments passed to the application
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

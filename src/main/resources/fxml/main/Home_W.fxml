@@ -35,7 +35,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox id="testScripts" fx:id="vbox_metertype" alignment="CENTER" layoutX="0.0" layoutY="140.0" onMouseClicked="#onEMModelClickAction" prefHeight="130.0" prefWidth="100.0">
+                  <VBox id="testScripts" fx:id="vbox_meterprofile" alignment="CENTER" layoutX="0.0" layoutY="140.0" onMouseClicked="#onMeterProfileClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +52,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox id="devices" fx:id="vbox_system_config" alignment="CENTER" layoutX="0.0" layoutY="270.0" onMouseClicked="#onDeviceClickAction" prefHeight="130.0" prefWidth="100.0">
+                  <VBox id="devices" fx:id="vbox_settings" alignment="CENTER" layoutX="0.0" layoutY="270.0" onMouseClicked="#onSettingsClickAction" prefHeight="130.0" prefWidth="100.0">
                      <children>
                         <ImageView accessibleHelp="Devices_help" accessibleRoleDescription="Devicesss" accessibleText="Devicessss sdafsd" fitHeight="75.0" fitWidth="68.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
