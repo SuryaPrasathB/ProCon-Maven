@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.comm;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -57,39 +56,40 @@ public class S14_open_stop_latch2_COMM_Bay implements CommTestBayState {
 
             String outputActive = Constant_IO_ActionMapping.OFF;
             BayUtils bayUtils = new BayUtils();
-            
-             state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                     portInfo.getBayId(),
-                                                     portInfo.getPortId(),
-                                                     outputActive);
+
+            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    outputActive);
 
             Comm.logger.debug("S14_open_stop_latch2_COMM_Bay : open_StopLatch_COMM_Bay : state : " + state);
-            /*if (simulateCommBayHappyPath) {
-                state = Constant_IO_ActionMapping.ON;
-            }*/
+            /*
+             * if (simulateCommBayHappyPath) {
+             * state = Constant_IO_ActionMapping.ON;
+             * }
+             */
 
             status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
-            if(StateExecutorController.simulateCommBayHappyPath){
-            	status = true; 
+            if (StateExecutorController.simulateCommBayHappyPath) {
+                status = true;
             }
-             
+
             Comm.logger.debug("S14_open_stop_latch2_COMM_Bay : open_StopLatch_COMM_Bay : status : " + status);
 
         } else {
             Comm.logger.debug("S14_open_stop_latch2_COMM_Bay : Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         responseReturn.put("status", status);
         responseReturn.put("responseData", state);
 
-        Comm.logger.debug("S14_open_stop_latch2_COMM_Bay : commBay_StopLatch_Status : status : " + status); 
+        Comm.logger.debug("S14_open_stop_latch2_COMM_Bay : commBay_StopLatch_Status : status : " + status);
 
-		responseReturn.put("status", status);
-		
+        responseReturn.put("status", status);
+
         Comm.logger.debug("S14_open_stop_latch2_COMM_Bay : commBay_StopLatch_Status : Exit");
         return responseReturn;
     }
 }
-

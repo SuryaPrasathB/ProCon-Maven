@@ -3,14 +3,11 @@ package com.tasnetwork.calibration.conveyor.bay.comm;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
-
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantStateModes;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.StateFlow;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
@@ -40,7 +37,7 @@ public class CommBayBypass extends TimerTask {
 				"Bypass Completed"// ConstantConveyor.COMM_EXECUTION_STATUS_INP
 		);
 
-		int newRecordSerialNo = StateExecutorController.addToTestStatusGui(testIntefaceStatus);
+		StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 	}
 
 	// ====================================================================================================================
@@ -87,17 +84,13 @@ public class CommBayBypass extends TimerTask {
 
 		// Set the first state from the table outside the while loops
 		int currentIndex = 0; // Start from the first row
-		boolean abortFlag = false; // Abort flag to stop the process
 		String errorCode = "";
 		if (getTableStatePlanner_FtBay().size() > 0) {
 			// Fetch the first state from the table to start the process
 			StateFlow presentRow = getTableStatePlanner_FtBay().get(currentIndex);
 			StateFlow nextRow = presentRow;
 			String currentStateName = presentRow.getState(); // Get the current state from the row
-			CommTestBayState currentState = createCommTestBayStateInstance(currentStateName, errorCode); // Create the
-																											// state
-																											// instance
-			setNextState(currentState); // Set the first state
+			CommTestBayState.createState(currentStateName);
 
 			Comm.logger.debug("CommBay : manageCommBayBypassStates2 : getTableStatePlanner2 : Size : "
 					+ getTableStatePlanner_FtBay().size());
@@ -118,17 +111,12 @@ public class CommBayBypass extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						// Set the next state based on the success column
-						CommTestBayState nextState = createCommTestBayStateInstance(nextStateName, errorCode);
+						CommTestBayState nextState = CommTestBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
 					}
-					boolean stateFound = false;
-					// Re-fetch the current row for the next iteration
-
 					for (StateFlow row : getTableStatePlanner_FtBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
 							nextRow = row; // Set the next row based on the matched state
-							// currentIndex = presentRow.;
-							stateFound = true;
 							break; // Exit the loop once the next state is found
 						}
 					}
@@ -148,10 +136,10 @@ public class CommBayBypass extends TimerTask {
 
 					if (nextStateName != null && !nextStateName.isEmpty()) {
 						if (nextStateName.equals("S10_error_Handling")) {
-							CommTestBayState nextState2 = createErrorStateInstance(nextStateName, errorCode);
+							CommTestBayState nextState2 = CommTestBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically
 						} else {
-							CommTestBayState nextState2 = createCommTestBayStateInstance(nextStateName, errorCode);
+							CommTestBayState nextState2 = CommTestBayState.createState(nextStateName);
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
@@ -175,46 +163,6 @@ public class CommBayBypass extends TimerTask {
 	}
 
 	// ===============================================================================================
-	private CommTestBayState createErrorStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		switch (stateName) {
-			case "S10_error_Handling":
-				return new S10_error_Handling(errorCode);
-			default:
-				throw new IllegalArgumentException("Unknown state: " + stateName);
-		}
-	}
-
-	// Helper method to create a state instance dynamically based on the state name
-	public CommTestBayState createCommTestBayStateInstance(String stateName, String errorCode) {
-		// Create and return an instance of the state class based on the state name
-		Comm.logger.debug("createCommTestBayStateInstance : stateName: " + stateName);
-
-		Class<?> c = null;
-		try {
-			c = Class.forName(Comm.class.getPackage().getName() + "." + stateName);
-			// CommTestBayState CommTestBayStateObj=null;
-			Object CommTestBayStateObj = null;
-			try {
-				// CommTestBayStateObj = (CommTestBayState)c.newInstance();
-				CommTestBayStateObj = c.newInstance();
-				return (CommTestBayState) CommTestBayStateObj;
-			} catch (InstantiationException e) {
-
-				e.printStackTrace();
-				throw new IllegalArgumentException("FT: Exception: Unknown state1: " + stateName);
-			} catch (IllegalAccessException e) {
-
-				e.printStackTrace();
-				throw new IllegalArgumentException("FT: Exception: Unknown state2: " + stateName);
-			}
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-			throw new IllegalArgumentException("FT: Exception: Unknown state3: " + stateName);
-		}
-
-	}
 	// ==========================================================================================================================================
 
 	private String getErrorStateInstance(String errorCode) {

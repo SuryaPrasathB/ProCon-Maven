@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.bay.comm;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
@@ -30,7 +29,7 @@ public class S13_close_stop_latch_COMM_Bay implements CommTestBayState {
             Comm.logger.info("S13_close_stop_latch_COMM_Bay : Stop Latch Closed");
             bayResponse.setStatus(true);
             bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-            //BayUtils.delay(1000);
+            // BayUtils.delay(1000);
         } else {
             Comm.logger.info("S13_close_stop_latch_COMM_Bay : Failed to Close Stop Latch");
             bayResponse.setStatus(false);
@@ -58,28 +57,30 @@ public class S13_close_stop_latch_COMM_Bay implements CommTestBayState {
 
             String outputActive = Constant_IO_ActionMapping.ON;
             BayUtils bayUtils = new BayUtils();
-            
-             state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                     portInfo.getBayId(),
-                                                     portInfo.getPortId(),
-                                                     outputActive);
+
+            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    outputActive);
 
             Comm.logger.debug("S13_close_stop_latch_COMM_Bay : close_StopLatch_COMM_Bay : state : " + state);
-            /*if (simulateCommBayHappyPath) {
-                state = Constant_IO_ActionMapping.OFF;
-            }*/
+            /*
+             * if (simulateCommBayHappyPath) {
+             * state = Constant_IO_ActionMapping.OFF;
+             * }
+             */
 
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-            if(StateExecutorController.simulateCommBayHappyPath){
-            	status = true; 
+            if (StateExecutorController.simulateCommBayHappyPath) {
+                status = true;
             }
-             
+
             Comm.logger.debug("S13_close_stop_latch_COMM_Bay : close_StopLatch_COMM_Bay : status : " + status);
 
         } else {
             Comm.logger.debug("S13_close_stop_latch_COMM_Bay : Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         responseReturn.put("status", status);
@@ -90,4 +91,3 @@ public class S13_close_stop_latch_COMM_Bay implements CommTestBayState {
         return responseReturn;
     }
 }
-
