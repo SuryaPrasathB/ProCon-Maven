@@ -5,7 +5,7 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
-public class S420_ByPass_delay1_Bay1 implements STA_NoLoadTestBay1State{
+public class S420_ByPass_delay1_Bay1 implements STA_NoLoadTestBay1State {
 
 	@Override
 	public BayResponse handleRequest() {
@@ -14,17 +14,16 @@ public class S420_ByPass_delay1_Bay1 implements STA_NoLoadTestBay1State{
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-		int delayTimeInSec = 20;
+		int delayTimeInSec = 5;
 		StaNld_Bay1.logger.info("S420_ByPass_delay1 : Delay Time Entry in Sec: " + delayTimeInSec);
-		while (delayTimeInSec >0 
-				&& !ConstantConveyor.ALL_LOOP_BREAK_FLAG 
+		while (delayTimeInSec > 0
+				&& !ConstantConveyor.ALL_LOOP_BREAK_FLAG
 				&& !StaNld_Bay1.isStopProcessRequestedStaNldBay1()) {
 			delayTimeInSec--;
 			BayUtils.delay(1000);
 			StaNld_Bay1.logger.info("S420_ByPass_delay1 : Delay Time waiting in Sec: " + delayTimeInSec);
 		}
 		StaNld_Bay1.logger.info("S420_ByPass_delay1 : Delay Time Exit in Sec: " + delayTimeInSec);
-
 
 		StaNld_Bay1.logger.info("S420_ByPass_delay1 : Exit");
 		return bayResponse;

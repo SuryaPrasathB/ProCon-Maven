@@ -31,7 +31,7 @@ public class S420_ByPass_delay1 implements HvtBayState {
 
 		// workaround added delay for the S03_close_the_fingerTip_Latch - HV finger -
 		// #Gopi-09-06-2025
-		int delayTimeInSec = 20;
+		int delayTimeInSec = 5;
 		Hv.logger.info("S420_ByPass_delay1 : Delay Time Entry in Sec: " + delayTimeInSec);
 		while (delayTimeInSec > 0 && !ConstantConveyor.ALL_LOOP_BREAK_FLAG && !Hv.isStopProcessRequestedHvtBay()) {
 			delayTimeInSec--;

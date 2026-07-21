@@ -14,7 +14,7 @@ public class S420_ByPass_delay1 implements WaitingBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-		int delayTimeInSec = 20;
+		int delayTimeInSec = 5;
 		VerificWaiting.logger.info("S420_ByPass_delay1 : Delay Time Entry in Sec: " + delayTimeInSec);
 		while (delayTimeInSec > 0
 				&& !ConstantConveyor.ALL_LOOP_BREAK_FLAG
