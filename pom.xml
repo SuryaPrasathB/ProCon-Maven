@@ -230,6 +230,13 @@
 		
 		
 		
+		<!-- Reflections - Classpath scanning for automatic bay state discovery -->
+		<dependency>
+		    <groupId>org.reflections</groupId>
+		    <artifactId>reflections</artifactId>
+		    <version>0.10.2</version>
+		</dependency>
+		
 	</dependencies>
 	<repositories>
 		    <repository>
