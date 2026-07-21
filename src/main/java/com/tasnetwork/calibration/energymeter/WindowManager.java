@@ -23,6 +23,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Optional;
 
+import javafx.scene.control.ProgressBar;
+import javafx.concurrent.Task;
+import javafx.scene.layout.Priority;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -58,25 +62,17 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 
 public class WindowManager {
 
-	private static VBox splashLayout;
-	private static boolean SplashFadeOut = false;
+	private static Parent splashLayout;
 	private static final int SPLASH_WIDTH = 676;
 	private static final int SPLASH_HEIGHT = 227;
 
 	public static void SplashInit() {
-
-		// File file = new File("@../../images/procal-splash.png");
-		// ImageView splash = new ImageView(new Image(file.toURI().toString()));
-		// ImageView splash = new ImageView(new
-		// Image("file:images/"+ConstantVersion.SPLASH_FILENAME));
-		ImageView splash = new ImageView(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
-				.getResourceAsStream("/images/" + ConstantVersion.SPLASH_FILENAME)));
-
-		splashLayout = new VBox();
-		splashLayout.getChildren().addAll(splash);
-		splashLayout.setStyle(
-				"-fx-padding: 5; -fx-background-color: lightblue; -fx-border-width:5; -fx-border-color: linear-gradient(to bottom, lightblue, derive(lightblue, 50%));");
-		splashLayout.setEffect(new DropShadow());
+		try {
+			splashLayout = javafx.fxml.FXMLLoader.load(WindowManager.class.getResource("/fxml/main/SplashPage_W.fxml"));
+			splashLayout.setEffect(new DropShadow());
+		} catch (IOException e) {
+			ApplicationLauncher.logger.error("Failed to load splash screen FXML: " + e.getMessage());
+		}
 	}
 
 	public static void showSplash(Stage splashStage) {
@@ -93,41 +89,31 @@ public class WindowManager {
 		splashStage.centerOnScreen();
 		splashStage.show();
 		splashStage.toFront();
-		FadeTransition fadeSplash = new FadeTransition(Duration.seconds(3.0), splashLayout);
+		FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.0), splashLayout);
 		fadeSplash.setFromValue(0.0);
 		fadeSplash.setToValue(1.0);
-		SplashFadeOut = false;
-		fadeSplash.setOnFinished(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent actionEvent) {
-				ApplicationLauncher.logger
-						.info("ApplicationLauncher : showSplash Entry0");
-				if (SplashFadeOut) {
-					ApplicationLauncher.logger
-							.info("ApplicationLauncher : showSplash Entry1");
-					splashStage.hide();
-					LoginPage();
-				} else {
-					try {
-						ApplicationLauncher.logger
-								.info("ApplicationLauncher : showSplash Entry2");
-						Thread.sleep(2000);
-						fadeSplash.setFromValue(1.0);
-						fadeSplash.setToValue(0.0);
-						fadeSplash.playFromStart();
-						ApplicationLauncher.logger
-								.info("ApplicationLauncher : showSplash Entry3");
-						SplashFadeOut = true;
-					} catch (InterruptedException e) {
+		fadeSplash.play();
+	}
 
-						e.printStackTrace();
-					}
-				}
+	public static void hideSplashAndShowLogin(Stage splashStage, Parent loginPageRoot) {
+		FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.0), splashLayout);
+		fadeSplash.setFromValue(1.0);
+		fadeSplash.setToValue(0.0);
+		fadeSplash.setOnFinished(e -> {
+			splashStage.hide();
+			if (loginPageRoot != null) {
+				// Optimization: We could have a LoginPage(Parent root) method,
+				// but for now we just call LoginPage() which loads from FXML.
+				// To fully use the cache we would need to pass it in.
+				// Let's just call LoginPage() for now.
+				LoginPage();
+			} else {
+				LoginPage();
 			}
 		});
 		fadeSplash.play();
-
 	}
+
 
 	public static void start(Stage initStage) throws Exception {
 
@@ -148,256 +134,255 @@ public class WindowManager {
 					ApplicationLauncher.logger
 							.info("<------------ Spring App Context closing... ---------->\n");
 					if (ProcalFeatureEnable.REPORT_GENERATION_V2_ENABLED) {
-						// DeviceDataManagerController.getSpringAppCtx().close();
 						ApplicationLauncher.springContext.close();
 					}
 					ApplicationLauncher.logger
 							.info("<------------ Spring App Context closed ---------->\n");
-					// ctx.close();
 					ApplicationLauncher.logger.info(
 							"<------------Exiting " + ConstantVersion.APPLICATION_NAME + " application---------->\n");
 					Platform.exit();
 					System.exit(0);
-				}
-
-				else {
+				} else {
 					e.consume();
 				}
 			}
 		});
 		ApplicationLauncher.setPrimaryStage(initStage);
 
-		AppConfigLoader.LoadConfigProperty();
-		ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_CONFIG_FILE_PATH,
-				ConstantAppConfig.REPORT_CONFIG_FILE_NAME);
-		ReportConfigLoader.init();
-		ApplicationLauncher.logger
-				.info("ApplicationLauncher : CONFIG_FILE_VERSION: " + ConstantVersion.CONFIG_FILE_VERSION);
-		ApplicationLauncher.logger
-				.info("ApplicationLauncher : REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ: "
-						+ ConstantRefStdRadiant.REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ);
+		Stage splashStage = new Stage();
+		showSplash(splashStage);
 
-		AssertValidation.assertLicenceVerification();
-
-		GuiUtils.FormatPulseRate("2500000000");
-		GuiUtils.FormatPulseRate("125");
-		com.tasnetwork.calibration.energymeter.util.SystemUtils
-				.deleteLogFilesOlderThanNdays(ConstantAppConfig.DeleteLogFilesforX_NoOfPreviousDays, "./logs/");
-		// AssertValidation.AssertLagLead();
-		boolean dbConnected = MySQL_Controller.ValidateDB_Schema_Exist();
-		if (dbConnected) {
-
-			AppConfigLoader.LoadPropertiesFromDB();
-
-			assertNoOtherInstanceRunning();
-
-			Thread.sleep(2000);
-			if ((!ApplicationLauncher.allready_running)) {
-
-				// ProcalFeatureEnable.Init();
-				ProCalCustomerConfiguration.Init();
-				ConstantApp.powerSourceInit();
-				ConstantReport.ConstReportInit();
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test1");
-				ReportConfigManager.LoadReportHeaderConfigProperty();
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test2");
-				ReportConfigManager.LoadReportExcelConfigProperty();
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test3");
-				ReportConfigManager.LoadReportFileLocationProperty();
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test4");
-
-				// LscsCalibrationConfigLoader.setLscsCalibrationFileName(ConstantAppConfig.LSCS_POWER_SOURCE_CALIBRATION_FILE_PATH
-				// ,ConstantAppConfig.LSCS_POWER_SOURCE_CALIBRATION_FILE_NAME);
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test5");
-				ConstantRefStdConfigLoader.setRefStdConstantConfigFileName(
-						ConstantAppConfig.REFSTD_CONSTANT_CONFIG_FILE_PATH,
-						ConstantAppConfig.REFSTD_CONSTANT_CONFIG_FILE_NAME);
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test6");
-				ReportProfileOperationConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_PROFILEV2_FILE_PATH,
-						ConstantAppConfig.REPORT_PROFILEV2_FILE_NAME);
-
-				TerminalBayConfigLoader.setConfigFilePathName(ConstantConveyorConfig.TERMINAL_CONFIG_FILE_PATH,
-						ConstantConveyorConfig.TERMINAL_CONFIG_FILE_NAME);
-				TerminalBayConfigLoader.init();
-				// String configFilePath = "src\\resources\\DevSysTerminalConfigV1_1.json";
-				// DeviceDataManagerController.getMyConveyorTree().init(configFilePath);
-				MySqlServiceManager.springDataInit();
-				ConstantConveyor.init();
-
-				if (ProconFeatureEnable.CONVEYOR_DEVICE_SETTING_SPRING_ENABLED) {
-					ConveyorDataManager.loadDeviceSettingFromDb();
-				}
-
-				ConstantRefStdConfigLoader.init();
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test7");
-				com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfigLoader
-						.loadRefStdConstantConfigProperty();
-				// ApplicationLauncher.logger.debug("ApplicationLauncher: Test8");
-				// LscsCalibrationConfigLoader.init();
-				ConveyorPalletTracking.resetPositionToMeterSerialNoMapToDefaultMappings();
-
-				ReportProfileOperationConfigLoader.init();
-				// if(ProcalFeatureEnable.CONVEYOR_FEATURE_ENABLED) {
-				ConveyorConfigLoader.setConveyorConfigFileName(ConstantAppConfig.CONVEYOR_CONFIG_FILE_PATH,
-						ConstantAppConfig.CONVEYOR_CONFIG_FILE_NAME);
-				ConveyorConfigLoader.init();
-				ApplicationLauncher.logger
-						.info("Conveyor: getMaxNoOfDutSupported: "
-								+ DeviceDataManagerController.getConveyorConfigParsedKey().getMaxDutSupported());
-
-				ApplicationLauncher.logger
-						.info("Conveyor: getDutHardwareIdInitialValue: " + DeviceDataManagerController
-								.getConveyorConfigParsedKey().getDutHardwareIdInitialValue());
-
-				// }
-				if (ProcalFeatureEnable.REPORT_GENERATION_V2_ENABLED) {
-					DeviceDataManagerController.springDataInit();
-					appConfigInit();
-				} else {
-					// DeviceDataManagerController.getSpringAppCtx().close();
-					// JavaFXSpringApp.springContext.close();
-				}
-
+		Task<Integer> initTask = new Task<Integer>() {
+			@Override
+			protected Integer call() throws Exception {
 				try {
-					if (ConstantAppConfig.REPORT_PROFILE_CONFIG_PATH_LIST.size() > 1) {
-						Custom1ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_PROFILE_PATH,
-								ConstantAppConfig.REPORT_PROFILE_CONFIG_PATH_LIST.get(1));
-						Custom1ReportConfigLoader.init();
-					} else {
-						ApplicationLauncher.logger
-								.info("start: custome report profile not loaded!");
-					}
-				} catch (Exception e) {
-
-					e.printStackTrace();
+					AppConfigLoader.LoadConfigProperty();
+					ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_CONFIG_FILE_PATH,
+							ConstantAppConfig.REPORT_CONFIG_FILE_NAME);
+					ReportConfigLoader.init();
 					ApplicationLauncher.logger
-							.error("start: Exception: " + e.getMessage());
-
-				}
-
-				BayUtils.init();
-				/* BayUtils_Cluster2.init(); */
-				// AssertValidation.assertGetTargetVoltageRms();
-				// AssertValidation.assertGetTargetCurrentRms();
-				// AssertValidation.assertCalculateDegreeWithPf();
-				// ConstantFeatureEnable.Init();
-				// ConstantReport.ConstReportInit();
-				// AssertValidation.dutCommandTesting();
-				// AssertValidation.assertGenerateNextNewHardwareIds();
-				// AssertValidation.fetchPalletsByBayState();
-				Thread.setDefaultUncaughtExceptionHandler(ApplicationLauncher::handleException);
-				boolean systemStatus = false;
-				boolean systemStatusExceptionOccured = false;
-				try {
-					systemStatus = com.tasnetwork.calibration.energymeter.util.SystemUtils.LoadSystemTime();
-
-				} catch (Exception e) {
-
-					e.printStackTrace();
+							.info("ApplicationLauncher : CONFIG_FILE_VERSION: " + ConstantVersion.CONFIG_FILE_VERSION);
 					ApplicationLauncher.logger
-							.error("start: system status Exception: " + e.getMessage());
-					systemStatusExceptionOccured = true;
+							.info("ApplicationLauncher : REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ: "
+									+ ConstantRefStdRadiant.REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ);
 
-				}
-				if (systemStatus) {
+					AssertValidation.assertLicenceVerification();
 
-					SplashAndLoginDisplay();
-					// LoginPage();
-				} else {
+					GuiUtils.FormatPulseRate("2500000000");
+					GuiUtils.FormatPulseRate("125");
+					com.tasnetwork.calibration.energymeter.util.SystemUtils
+							.deleteLogFilesOlderThanNdays(ConstantAppConfig.DeleteLogFilesforX_NoOfPreviousDays, "./logs/");
+					
+					boolean dbConnected = MySQL_Controller.ValidateDB_Schema_Exist();
+					if (dbConnected) {
+						AppConfigLoader.LoadPropertiesFromDB();
+						assertNoOtherInstanceRunning();
 
-					if (ProcalFeatureEnable.LICENSE_FEATURE_DISPLAY_ENABLED) {
+						Thread.sleep(1500); // Give ServerSocket time to bind
 
-						Alert alert = new Alert(AlertType.CONFIRMATION);
-						Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-						// stage.getIcons().add(new
-						// Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class.getResourceAsStream("/images/"
-						// + ConstantVersion.APP_ICON_FILENAME));
-						stage.getIcons().add(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
-								.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
-						alert.setTitle(ConstantVersion.APPLICATION_NAME);
-						alert.setHeaderText(ErrorCodeMapping.ERROR_CODE_3002);
-						alert.setContentText(ErrorCodeMapping.ERROR_CODE_3002_MSG);
+						if ((!ApplicationLauncher.allready_running)) {
+							ProCalCustomerConfiguration.Init();
+							ConstantApp.powerSourceInit();
+							ConstantReport.ConstReportInit();
+							ReportConfigManager.LoadReportHeaderConfigProperty();
+							ReportConfigManager.LoadReportExcelConfigProperty();
+							ReportConfigManager.LoadReportFileLocationProperty();
 
-						if (systemStatusExceptionOccured) {
-							alert.setHeaderText(ErrorCodeMapping.ERROR_CODE_3003);
-							alert.setContentText(ErrorCodeMapping.ERROR_CODE_3003_MSG);
-						}
+							ConstantRefStdConfigLoader.setRefStdConstantConfigFileName(
+									ConstantAppConfig.REFSTD_CONSTANT_CONFIG_FILE_PATH,
+									ConstantAppConfig.REFSTD_CONSTANT_CONFIG_FILE_NAME);
+							ReportProfileOperationConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_PROFILEV2_FILE_PATH,
+									ConstantAppConfig.REPORT_PROFILEV2_FILE_NAME);
 
-						alert.getButtonTypes().clear();
-						alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+							TerminalBayConfigLoader.setConfigFilePathName(ConstantConveyorConfig.TERMINAL_CONFIG_FILE_PATH,
+									ConstantConveyorConfig.TERMINAL_CONFIG_FILE_NAME);
+							TerminalBayConfigLoader.init();
+							MySqlServiceManager.springDataInit();
+							ConstantConveyor.init();
 
-						// Deactivate Defaultbehavior for yes-Button:
-						Button yesButton = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
-						yesButton.setDefaultButton(true);
+							if (ProconFeatureEnable.CONVEYOR_DEVICE_SETTING_SPRING_ENABLED) {
+								ConveyorDataManager.loadDeviceSettingFromDb();
+							}
 
-						// Activate Defaultbehavior for no-Button:
-						Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
-						noButton.setDefaultButton(false);
+							ConstantRefStdConfigLoader.init();
+							com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfigLoader
+									.loadRefStdConstantConfigProperty();
+							ConveyorPalletTracking.resetPositionToMeterSerialNoMapToDefaultMappings();
 
-						final Optional<ButtonType> result = alert.showAndWait();
-						if (result.get() == ButtonType.YES) {
-							licenseHandlePage();
-						} else {
+							ReportProfileOperationConfigLoader.init();
+							ConveyorConfigLoader.setConveyorConfigFileName(ConstantAppConfig.CONVEYOR_CONFIG_FILE_PATH,
+									ConstantAppConfig.CONVEYOR_CONFIG_FILE_NAME);
+							ConveyorConfigLoader.init();
 							ApplicationLauncher.logger
-									.info("<------------Exit " + ConstantVersion.APPLICATION_NAME
-											+ " application with error code 00---------->\n");
-							Platform.exit();
-							System.exit(0);
+									.info("Conveyor: getMaxNoOfDutSupported: "
+											+ DeviceDataManagerController.getConveyorConfigParsedKey().getMaxDutSupported());
+
+							ApplicationLauncher.logger
+									.info("Conveyor: getDutHardwareIdInitialValue: " + DeviceDataManagerController
+											.getConveyorConfigParsedKey().getDutHardwareIdInitialValue());
+
+							if (ProcalFeatureEnable.REPORT_GENERATION_V2_ENABLED) {
+								DeviceDataManagerController.springDataInit();
+								appConfigInit();
+							}
+
+							try {
+								if (ConstantAppConfig.REPORT_PROFILE_CONFIG_PATH_LIST.size() > 1) {
+									Custom1ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_PROFILE_PATH,
+											ConstantAppConfig.REPORT_PROFILE_CONFIG_PATH_LIST.get(1));
+									Custom1ReportConfigLoader.init();
+								} else {
+									ApplicationLauncher.logger
+											.info("start: custome report profile not loaded!");
+								}
+							} catch (Exception e) {
+								e.printStackTrace();
+								ApplicationLauncher.logger
+										.error("start: Exception: " + e.getMessage());
+							}
+
+							BayUtils.init();
+							Thread.setDefaultUncaughtExceptionHandler(ApplicationLauncher::handleException);
+							boolean systemStatus = false;
+							boolean systemStatusExceptionOccured = false;
+							try {
+								systemStatus = com.tasnetwork.calibration.energymeter.util.SystemUtils.LoadSystemTime();
+							} catch (Exception e) {
+								e.printStackTrace();
+								ApplicationLauncher.logger
+										.error("start: system status Exception: " + e.getMessage());
+								systemStatusExceptionOccured = true;
+							}
+							if (systemStatus) {
+								return 0; // Success
+							} else {
+								return systemStatusExceptionOccured ? 2 : 1; 
+							}
+
+						} else {
+							return 3;
 						}
-
 					} else {
-
-						Alert alert = new Alert(AlertType.ERROR);
-						Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-						// stage.getIcons().add(new
-						// Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class.getResourceAsStream("/images/"
-						// + ConstantVersion.APP_ICON_FILENAME));
-						stage.getIcons().add(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
-								.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
-						alert.setTitle(ConstantVersion.APPLICATION_NAME);
-						alert.setHeaderText(ErrorCodeMapping.ERROR_CODE_3001);
-						String s = ErrorCodeMapping.ERROR_CODE_3001_MSG;
-						alert.setContentText(s);
-						alert.showAndWait();
-						ApplicationLauncher.logger.info("<------------Exit "
-								+ ConstantVersion.APPLICATION_NAME + " application with error code 0---------->\n");
-						Platform.exit();
-						System.exit(0);
+						return !MySQL_Interface.bDB_SchemaExist ? 4 : 5;
 					}
-
+				} catch (Exception e) {
+					e.printStackTrace();
+					return -1;
 				}
+			}
+		};
 
+		initTask.setOnSucceeded(event -> {
+			int status = initTask.getValue();
+			switch (status) {
+				case 0:
+					hideSplashAndShowLogin(splashStage, null);
+					break;
+				case 1:
+					splashStage.hide();
+					handleLicenseError(false);
+					break;
+				case 2:
+					splashStage.hide();
+					handleLicenseError(true);
+					break;
+				case 3:
+					splashStage.hide();
+					handleAlreadyRunningError();
+					break;
+				case 4:
+					splashStage.hide();
+					Install_New_schema();
+					break;
+				case 5:
+					splashStage.hide();
+					ApplicationLauncher.logger.info("<------------Exit "
+							+ ConstantVersion.APPLICATION_NAME + " application exit with errorcode 1\n---------->\n");
+					Platform.exit();
+					System.exit(1);
+					break;
+				default:
+					splashStage.hide();
+					Platform.exit();
+					break;
+			}
+		});
+
+		initTask.setOnFailed(event -> {
+			splashStage.hide();
+			initTask.getException().printStackTrace();
+			Platform.exit();
+		});
+
+		Thread initThread = new Thread(initTask);
+		initThread.setDaemon(true);
+		initThread.start();
+	}
+
+	private static void handleLicenseError(boolean systemStatusExceptionOccured) {
+		if (ProcalFeatureEnable.LICENSE_FEATURE_DISPLAY_ENABLED) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+			stage.getIcons().add(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
+					.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
+			alert.setTitle(ConstantVersion.APPLICATION_NAME);
+			alert.setHeaderText(ErrorCodeMapping.ERROR_CODE_3002);
+			alert.setContentText(ErrorCodeMapping.ERROR_CODE_3002_MSG);
+
+			if (systemStatusExceptionOccured) {
+				alert.setHeaderText(ErrorCodeMapping.ERROR_CODE_3003);
+				alert.setContentText(ErrorCodeMapping.ERROR_CODE_3003_MSG);
+			}
+
+			alert.getButtonTypes().clear();
+			alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+
+			Button yesButton = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
+			yesButton.setDefaultButton(true);
+
+			Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
+			noButton.setDefaultButton(false);
+
+			final Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.YES) {
+				licenseHandlePage();
 			} else {
-
-				Alert alert = new Alert(AlertType.INFORMATION);
-				Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-				// stage.getIcons().add(new
-				// Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class.getResourceAsStream("/images/"
-				// + ConstantVersion.APP_ICON_FILENAME));
-				stage.getIcons().add(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
-						.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
-				alert.setTitle(ConstantVersion.APPLICATION_NAME);
-				String s = ConstantVersion.APPLICATION_NAME + " already running";
-				alert.setContentText(s);
-
-				alert.showAndWait();
 				ApplicationLauncher.logger
-						.info("<------------Exit " + ConstantVersion.APPLICATION_NAME + " application---------->\n");
+						.info("<------------Exit " + ConstantVersion.APPLICATION_NAME
+								+ " application with error code 00---------->\n");
 				Platform.exit();
 				System.exit(0);
-
 			}
 		} else {
-			if (!MySQL_Interface.bDB_SchemaExist) {
-				Install_New_schema();
-			} else {
-
-				ApplicationLauncher.logger.info("<------------Exit "
-						+ ConstantVersion.APPLICATION_NAME + " application exit with errorcode 1\n---------->\n");
-				Platform.exit();
-				System.exit(1);
-			}
+			Alert alert = new Alert(AlertType.ERROR);
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+			stage.getIcons().add(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
+					.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
+			alert.setTitle(ConstantVersion.APPLICATION_NAME);
+			alert.setHeaderText(ErrorCodeMapping.ERROR_CODE_3001);
+			alert.setContentText(ErrorCodeMapping.ERROR_CODE_3001_MSG);
+			alert.showAndWait();
+			ApplicationLauncher.logger.info("<------------Exit "
+					+ ConstantVersion.APPLICATION_NAME + " application with error code 0---------->\n");
+			Platform.exit();
+			System.exit(0);
 		}
+	}
+
+	private static void handleAlreadyRunningError() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class
+				.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
+		alert.setTitle(ConstantVersion.APPLICATION_NAME);
+		String s = ConstantVersion.APPLICATION_NAME + " already running";
+		alert.setContentText(s);
+
+		alert.showAndWait();
+		ApplicationLauncher.logger
+				.info("<------------Exit " + ConstantVersion.APPLICATION_NAME + " application---------->\n");
+		Platform.exit();
+		System.exit(0);
 	}
 
 	public static void appConfigInit() {
@@ -532,13 +517,7 @@ public class WindowManager {
 
 	}
 
-	public static void SplashAndLoginDisplay() {
-
-		Stage stage1 = new Stage();
-
-		showSplash(stage1);
-
-	}
+	
 
 	public static void LoginPage() {
 

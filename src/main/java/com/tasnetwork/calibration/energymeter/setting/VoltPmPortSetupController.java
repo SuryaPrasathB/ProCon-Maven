@@ -4367,6 +4367,20 @@ public class VoltPmPortSetupController implements Initializable {
 	}
 
 	public void scanSerialPortAndUpdateDisplay() {
+        new Thread(() -> {
+            java.util.List<String> availablePorts = new java.util.ArrayList<>();
+            java.util.Enumeration sysPorts = CommPortIdentifier.getPortIdentifiers();
+            while (sysPorts.hasMoreElements()) {
+                CommPortIdentifier curPort = (CommPortIdentifier) sysPorts.nextElement();
+                if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                    availablePorts.add(curPort.getName());
+                }
+            }
+            
+            javafx.application.Platform.runLater(() -> {
+                // Mock enumeration to inject ports into original UI code
+                java.util.Enumeration ports = java.util.Collections.enumeration(availablePorts);
+
 
 		/*
 		 * cmbBxPowerSrcPortSelection.getItems().clear();
@@ -4431,72 +4445,72 @@ public class VoltPmPortSetupController implements Initializable {
 		 * }
 		 */
 
-		Enumeration ports = CommPortIdentifier.getPortIdentifiers();
+		// Enumeration ports is now provided above
 
 		while (ports.hasMoreElements()) {
-			CommPortIdentifier curPort = (CommPortIdentifier) ports.nextElement();
+			String curPortName = (String) ports.nextElement();
 
-			if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+			if (true) {
 				/*
-				 * cmbBxPowerSrcPortSelection.getItems().add(curPort.getName());
-				 * cmbBxRefStdPortSelection.getItems().add(curPort.getName());
+				 * cmbBxPowerSrcPortSelection.getItems().add(curPortName);
+				 * cmbBxRefStdPortSelection.getItems().add(curPortName);
 				 */
-				cmbBxVoltPm1_PortSelection.getItems().add(curPort.getName());
-				// cmbBxVoltPm2_PortSelection.getItems().add(curPort.getName());
+				cmbBxVoltPm1_PortSelection.getItems().add(curPortName);
+				// cmbBxVoltPm2_PortSelection.getItems().add(curPortName);
 				/*
-				 * cmbBxLDU_PortSelection3.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection4.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection5.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection6.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection7.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection8.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection9.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection10.getItems().add(curPort.getName());
+				 * cmbBxLDU_PortSelection3.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection4.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection5.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection6.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection7.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection8.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection9.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection10.getItems().add(curPortName);
 				 * 
-				 * cmbBxLDU_PortSelection11.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection12.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection13.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection14.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection15.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection16.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection17.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection18.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection19.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection20.getItems().add(curPort.getName());
+				 * cmbBxLDU_PortSelection11.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection12.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection13.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection14.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection15.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection16.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection17.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection18.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection19.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection20.getItems().add(curPortName);
 				 * 
-				 * cmbBxLDU_PortSelection21.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection22.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection23.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection24.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection25.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection26.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection27.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection28.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection29.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection30.getItems().add(curPort.getName());
+				 * cmbBxLDU_PortSelection21.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection22.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection23.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection24.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection25.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection26.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection27.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection28.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection29.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection30.getItems().add(curPortName);
 				 * 
-				 * cmbBxLDU_PortSelection31.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection32.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection33.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection34.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection35.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection36.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection37.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection38.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection39.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection40.getItems().add(curPort.getName());
+				 * cmbBxLDU_PortSelection31.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection32.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection33.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection34.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection35.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection36.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection37.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection38.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection39.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection40.getItems().add(curPortName);
 				 * if((ConstantConfig.TOTAL_NO_OF_SUPPORTED_RACK > 40) &&
 				 * (ConstantConfig.TOTAL_NO_OF_SUPPORTED_RACK ==
 				 * ProcalFeatureEnable.TOTAL_NO_OF_SUPPORTED_RACK_MAX_POSITION)){
 				 * 
-				 * cmbBxLDU_PortSelection41.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection42.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection43.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection44.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection45.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection46.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection47.getItems().add(curPort.getName());
-				 * cmbBxLDU_PortSelection48.getItems().add(curPort.getName());
+				 * cmbBxLDU_PortSelection41.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection42.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection43.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection44.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection45.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection46.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection47.getItems().add(curPortName);
+				 * cmbBxLDU_PortSelection48.getItems().add(curPortName);
 				 * }
 				 */
 			}
@@ -4872,7 +4886,10 @@ public class VoltPmPortSetupController implements Initializable {
 		 * }
 		 */
 
-	}
+	
+            });
+        }).start();
+}
 
 	public void SaveOnClick() {
 		String pwr_type = ConstantApp.SOURCE_TYPE_POWER_SOURCE;

@@ -23,7 +23,7 @@
                <children>
                 <AnchorPane layoutX="4.0" layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="1778.0">
                      <children>
-                        <TableView fx:id="tvPalletManage" layoutX="4.0" layoutY="3.0" prefHeight="330.0" prefWidth="1764.0">
+                        <TableView fx:id="tvPalletManage" layoutX="4.0" layoutY="3.0" prefHeight="295.0" prefWidth="1764.0">
                           <columns>
                             <TableColumn fx:id="colPmSerialNo" prefWidth="61.59999942779541" sortable="false" text="S.No" />
                               <TableColumn fx:id="colPmPalletActive" prefWidth="73.60000610351562" sortable="false" text="Active" />
@@ -43,6 +43,13 @@
                               <TableColumn fx:id="colPmTestResultStatus" prefWidth="100.0" sortable="false" text="P-Result Status" />
                           </columns>
                         </TableView>
+                        <javafx.scene.layout.HBox alignment="CENTER_RIGHT" layoutX="4.0" layoutY="302.0" prefHeight="30.0" prefWidth="1764.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="btnPrevPage" onAction="#onPrevPageClick" text="Previous" />
+                                <Label fx:id="lblPageInfo" text="Page 1 of 1" />
+                                <Button fx:id="btnNextPage" onAction="#onNextPageClick" text="Next" />
+                            </children>
+                        </javafx.scene.layout.HBox>
                      </children>
                   </AnchorPane>
                </children>

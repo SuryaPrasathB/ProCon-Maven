@@ -607,6 +607,20 @@ public class DevicePortSetupController implements Initializable {
 	}
 
 	public void scanSerialPortAndUpdateDisplay() {
+        new Thread(() -> {
+            java.util.List<String> availablePorts = new java.util.ArrayList<>();
+            java.util.Enumeration sysPorts = CommPortIdentifier.getPortIdentifiers();
+            while (sysPorts.hasMoreElements()) {
+                CommPortIdentifier curPort = (CommPortIdentifier) sysPorts.nextElement();
+                if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                    availablePorts.add(curPort.getName());
+                }
+            }
+            
+            javafx.application.Platform.runLater(() -> {
+                // Mock enumeration to inject ports into original UI code
+                java.util.Enumeration ports = java.util.Collections.enumeration(availablePorts);
+
 
 		cmbBxPowerSrcPortSelection.getItems().clear();
 		cmbBxRefStdPortSelection.getItems().clear();
@@ -619,24 +633,24 @@ public class DevicePortSetupController implements Initializable {
 			ref_cmbBxHarmonics_PortSelection.getItems().clear();
 		}
 
-		Enumeration ports = CommPortIdentifier.getPortIdentifiers();
+		// Enumeration ports is now provided above
 
 		while (ports.hasMoreElements()) {
-			CommPortIdentifier curPort = (CommPortIdentifier) ports.nextElement();
+			String curPortName = (String) ports.nextElement();
 
-			if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-				cmbBxPowerSrcPortSelection.getItems().add(curPort.getName());
-				cmbBxRefStdPortSelection.getItems().add(curPort.getName());
-				cmbBxLDU_PortSelection.getItems().add(curPort.getName());
+			if (true) {
+				cmbBxPowerSrcPortSelection.getItems().add(curPortName);
+				cmbBxRefStdPortSelection.getItems().add(curPortName);
+				cmbBxLDU_PortSelection.getItems().add(curPortName);
 				if (ProcalFeatureEnable.ICT_INTERFACE_ENABLED) {
-					ref_cmbBxICT_PortSelection.getItems().add(curPort.getName());
+					ref_cmbBxICT_PortSelection.getItems().add(curPortName);
 				}
 				if (ProcalFeatureEnable.LSCS_POWER_SOURCE_HARMONICS_DSP_SLAVE_SERIAL_CONNECTED) {
-					ref_cmbBxHarmonics_PortSelection.getItems().add(curPort.getName());
+					ref_cmbBxHarmonics_PortSelection.getItems().add(curPortName);
 				}
 
 				if (ProcalFeatureEnable.CONVEYOR_FEATURE_ENABLED) {
-					ref_cmbBxHarmonics_PortSelection.getItems().add(curPort.getName());
+					ref_cmbBxHarmonics_PortSelection.getItems().add(curPortName);
 				}
 
 			}
@@ -691,7 +705,10 @@ public class DevicePortSetupController implements Initializable {
 			DeviceDataManagerController.scanForRefStdSerialCommPortV2();
 		}
 
-	}
+	
+            });
+        }).start();
+}
 
 	public void SaveOnClick() {
 		String pwr_type = ConstantApp.SOURCE_TYPE_POWER_SOURCE;

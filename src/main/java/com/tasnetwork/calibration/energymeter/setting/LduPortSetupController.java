@@ -1197,16 +1197,30 @@ public class LduPortSetupController implements Initializable {
 	}
 
 	public void scanSerialPortAndUpdateDisplay() {
+        new Thread(() -> {
+            java.util.List<String> availablePorts = new java.util.ArrayList<>();
+            java.util.Enumeration sysPorts = CommPortIdentifier.getPortIdentifiers();
+            while (sysPorts.hasMoreElements()) {
+                CommPortIdentifier curPort = (CommPortIdentifier) sysPorts.nextElement();
+                if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                    availablePorts.add(curPort.getName());
+                }
+            }
+            
+            javafx.application.Platform.runLater(() -> {
+                // Mock enumeration to inject ports into original UI code
+                java.util.Enumeration ports = java.util.Collections.enumeration(availablePorts);
+
 
 		ref_cmbBxLdu1_PortSelection.getItems().clear();
 
-		Enumeration ports = CommPortIdentifier.getPortIdentifiers();
+		// Enumeration ports is now provided above
 
 		while (ports.hasMoreElements()) {
-			CommPortIdentifier curPort = (CommPortIdentifier) ports.nextElement();
+			String curPortName = (String) ports.nextElement();
 
-			if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-				ref_cmbBxLdu1_PortSelection.getItems().add(curPort.getName());
+			if (true) {
+				ref_cmbBxLdu1_PortSelection.getItems().add(curPortName);
 			}
 		}
 
@@ -1216,5 +1230,8 @@ public class LduPortSetupController implements Initializable {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("scanSerialPortAndUpdateDisplay: Exception3-1:" + e.getMessage());
 		}
-	}
+	
+            });
+        }).start();
+}
 }

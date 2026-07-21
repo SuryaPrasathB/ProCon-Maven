@@ -418,6 +418,20 @@ public class PalletTrackerController implements Initializable {
 	private TableView<MeterResultSummary> tvMeterResultSummary;
 	private static TableView<MeterResultSummary> ref_tvMeterResultSummary;
 
+	private static int currentPage = 0;
+	private static int pageSize = 100;
+
+	@FXML
+	private Button btnPrevPage;
+	@FXML
+	private Button btnNextPage;
+	@FXML
+	private javafx.scene.control.Label lblPageInfo;
+	
+	private static Button ref_btnPrevPage;
+	private static Button ref_btnNextPage;
+	private static javafx.scene.control.Label ref_lblPageInfo;
+
 	private static AtomicInteger palletManageSerialNoAtomic = new AtomicInteger(1);
 	private AtomicInteger palletBayStateSerialNoAtomic = new AtomicInteger(1);
 
@@ -462,6 +476,9 @@ public class PalletTrackerController implements Initializable {
 		ref_tvPalletMeter = tvPalletMeter;
 
 		ref_tvMeterResultSummary = tvMeterResultSummary;
+		ref_btnPrevPage = btnPrevPage;
+		ref_btnNextPage = btnNextPage;
+		ref_lblPageInfo = lblPageInfo;
 
 	}
 
@@ -517,6 +534,20 @@ public class PalletTrackerController implements Initializable {
 		refreshPalletManageDataFromDbv2("PalletTracker-refreshDataOnClick");
 		ApplicationLauncher.logger.debug("loadDataConfig : getPresentPalletAtBayMap() : " + getPresentPalletAtBayMap());
 		ApplicationLauncher.logger.debug("refreshDataOnClick : Exit");
+	}
+
+	@FXML
+	public void onPrevPageClick(ActionEvent event) {
+		if (currentPage > 0) {
+			currentPage--;
+			refreshPalletManageDataFromDbv2("Pagination-Prev");
+		}
+	}
+
+	@FXML
+	public void onNextPageClick(ActionEvent event) {
+		currentPage++;
+		refreshPalletManageDataFromDbv2("Pagination-Next");
 	}
 
 	public void refreshPalletManageDataFromDbv2(String invokedBy) {
@@ -581,21 +612,34 @@ public class PalletTrackerController implements Initializable {
 		int days = ConstantConveyorConfig.PALLET_MANAGE_RECENT_NO_OF_DAYS_DISPLAY;
 
 		List<PalletManage> palletManageList = new ArrayList<PalletManage>();
+		org.springframework.data.domain.Page<PalletManage> pageResult = null;
 		if (days == 0) {
-			palletManageList = MySqlServiceManager.getPalletManageService().findAll();
+			pageResult = MySqlServiceManager.getPalletManageService().findAllPaginated(currentPage, pageSize);
 		} else {
 			// LocalDateTime cutoffDate = LocalDateTime.now().minusDays(days);
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_YEAR, -days);
 			Date cutoffDate = calendar.getTime();
-			palletManageList = MySqlServiceManager.getPalletManageService().findByCreatedAtAfter(cutoffDate);
+			pageResult = MySqlServiceManager.getPalletManageService().findByCreatedAtAfterPaginated(cutoffDate, currentPage, pageSize);
 		}
+		palletManageList = pageResult.getContent();
+		int totalPages = pageResult.getTotalPages();
+		
 		// ref_tvPalletManage.getItems().addAll(palletManageList);
 		// reOrderedPalletManageSerialNo();
 		List<PalletManage> palletManageListFinal = palletManageList;
 		Platform.runLater(() -> {
 			ref_tvPalletManage.getItems().setAll(palletManageListFinal); // optional: setAll replaces existing items
 			reOrderedPalletManageSerialNo();
+			if (ref_lblPageInfo != null) {
+				ref_lblPageInfo.setText("Page " + (currentPage + 1) + " of " + (totalPages == 0 ? 1 : totalPages));
+			}
+			if (ref_btnPrevPage != null) {
+				ref_btnPrevPage.setDisable(currentPage == 0);
+			}
+			if (ref_btnNextPage != null) {
+				ref_btnNextPage.setDisable(currentPage >= totalPages - 1 || totalPages == 0);
+			}
 		});
 
 		// LOGIC UPDATED - 28/2/2025 -- findByPalletActive

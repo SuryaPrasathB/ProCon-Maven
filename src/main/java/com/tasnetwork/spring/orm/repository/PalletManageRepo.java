@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -40,10 +41,12 @@ public interface PalletManageRepo extends JpaRepository<PalletManage, Long>{
 	public List<PalletManage> findByPalletActive(boolean palletActive);
 	
 	public List<PalletManage> findByCreatedAtAfterOrderByCreatedAtDesc(Date cutoff);
+	public Page<PalletManage> findByCreatedAtAfterOrderByCreatedAtDesc(Date cutoff, Pageable pageable);
 	
 	public List<PalletManage> findByPalletConvEntryDateH(String palletConvEntryDateH);
 	
 	public List<PalletManage> findAllByOrderByPalletDistinctIdAsc();
+	public Page<PalletManage> findAllByOrderByCreatedAtDesc(Pageable pageable);
 	    
 	public List<PalletManage> findByPalletConvEntryTimeEpochBetweenAndPalletExecutionStatus(String startEpoch, String endEpoch, String palletExecutionStatus);
 	

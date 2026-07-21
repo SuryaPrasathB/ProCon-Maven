@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
@@ -67,6 +68,11 @@ public class PalletManageService {
 	}
 	
 	@Transactional
+	public Page<PalletManage> findAllPaginated(int page, int size) {
+		return palletManageRepo.findAllByOrderByCreatedAtDesc(PageRequest.of(page, size));
+	}
+	
+	@Transactional
 	public List<PalletManage> findAllByOrderByPalletDistinctIdAsc() {
 		return palletManageRepo.findAllByOrderByPalletDistinctIdAsc();
 	}
@@ -81,6 +87,11 @@ public class PalletManageService {
 	@Transactional
 	public List<PalletManage> findByCreatedAtAfter(Date  cutoff) {
 		return palletManageRepo.findByCreatedAtAfterOrderByCreatedAtDesc(cutoff);
+	}
+	
+	@Transactional
+	public Page<PalletManage> findByCreatedAtAfterPaginated(Date cutoff, int page, int size) {
+		return palletManageRepo.findByCreatedAtAfterOrderByCreatedAtDesc(cutoff, PageRequest.of(page, size));
 	}
 	
 	@Transactional

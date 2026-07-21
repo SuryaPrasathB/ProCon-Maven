@@ -192,13 +192,22 @@ public class ApplicationHomeController implements Initializable {
 			applyUacSettings();
 		}
 
-		Platform.runLater(() -> {
-			try {
-				onDashboardClickAction();
-			} catch (IOException e) {
-				ApplicationLauncher.logger.error("Failed to load dashboard on startup: " + e.getMessage());
+		try {
+			if (lbl_Dashboard != null) {
+				lbl_Dashboard.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
+				lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+				lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+				lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
+				lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
 			}
-		});
+
+			update_left_status("Dashboard", ConstantApp.LEFT_STATUS_DEBUG);
+			unloadChildNodeFXML();
+			Parent nodeFromFXML = getNodeFromFXML("/fxml/conveyor/Dashboard_v1_5_W.fxml");
+			childPane.getChildren().add(nodeFromFXML);
+		} catch (IOException e) {
+			ApplicationLauncher.logger.error("Failed to load dashboard on startup: " + e.getMessage());
+		}
 	}
 
 	// ==========================================
@@ -229,19 +238,6 @@ public class ApplicationHomeController implements Initializable {
 	@FXML
 	private void onDashboardClickAction() throws IOException {
 		ApplicationLauncher.logger.info("You clicked Dashboard Icon!");
-
-		if (lbl_Dashboard != null) {
-			lbl_Dashboard.setTextFill(Color.web(HIGHLIGHT_COLOUR_RED));
-			lbl_Devices.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-			lbl_Report.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-			lbl_EM_Model.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-			lbl_Debug.setTextFill(Color.web(HIGHLIGHT_COLOUR_BLACK));
-		}
-
-		update_left_status("Dashboard", ConstantApp.LEFT_STATUS_DEBUG);
-		unloadChildNodeFXML();
-		Parent nodeFromFXML = getNodeFromFXML("/fxml/conveyor/Dashboard_v1_5_W.fxml");
-		childPane.getChildren().add(nodeFromFXML);
 	}
 
 	/**

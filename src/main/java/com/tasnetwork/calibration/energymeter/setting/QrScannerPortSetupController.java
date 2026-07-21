@@ -2080,6 +2080,20 @@ public class QrScannerPortSetupController implements Initializable {
 	}
 
 	public void scanSerialPortAndUpdateDisplay() {
+        new Thread(() -> {
+            java.util.List<String> availablePorts = new java.util.ArrayList<>();
+            java.util.Enumeration sysPorts = CommPortIdentifier.getPortIdentifiers();
+            while (sysPorts.hasMoreElements()) {
+                CommPortIdentifier curPort = (CommPortIdentifier) sysPorts.nextElement();
+                if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                    availablePorts.add(curPort.getName());
+                }
+            }
+            
+            javafx.application.Platform.runLater(() -> {
+                // Mock enumeration to inject ports into original UI code
+                java.util.Enumeration ports = java.util.Collections.enumeration(availablePorts);
+
 
 		/*
 		 * cmbBxPowerSrcPortSelection.getItems().clear();
@@ -2101,29 +2115,29 @@ public class QrScannerPortSetupController implements Initializable {
 		ref_cmbBxQr12_PortSelection.getItems().clear();
 		ref_cmbBxQr13_PortSelection.getItems().clear();
 
-		Enumeration ports = CommPortIdentifier.getPortIdentifiers();
+		// Enumeration ports is now provided above
 
 		while (ports.hasMoreElements()) {
-			CommPortIdentifier curPort = (CommPortIdentifier) ports.nextElement();
+			String curPortName = (String) ports.nextElement();
 
-			if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+			if (true) {
 				/*
-				 * cmbBxPowerSrcPortSelection.getItems().add(curPort.getName());
-				 * cmbBxRefStdPortSelection.getItems().add(curPort.getName());
+				 * cmbBxPowerSrcPortSelection.getItems().add(curPortName);
+				 * cmbBxRefStdPortSelection.getItems().add(curPortName);
 				 */
-				ref_cmbBxQr1_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr2_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr3_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr4_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr5_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr6_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr7_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr8_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr9_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr10_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr11_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr12_PortSelection.getItems().add(curPort.getName());
-				ref_cmbBxQr13_PortSelection.getItems().add(curPort.getName());
+				ref_cmbBxQr1_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr2_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr3_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr4_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr5_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr6_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr7_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr8_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr9_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr10_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr11_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr12_PortSelection.getItems().add(curPortName);
+				ref_cmbBxQr13_PortSelection.getItems().add(curPortName);
 
 			}
 		}
@@ -2483,7 +2497,10 @@ public class QrScannerPortSetupController implements Initializable {
 		 * }
 		 */
 
-	}
+	
+            });
+        }).start();
+}
 
 	public void SaveOnClick() {
 		String pwr_type = ConstantApp.SOURCE_TYPE_POWER_SOURCE;

@@ -372,17 +372,34 @@ public class SystemSettingController implements Initializable {
 	}
 
 	public void scanSerialPort() {
+        new Thread(() -> {
+            java.util.List<String> availablePorts = new java.util.ArrayList<>();
+            java.util.Enumeration sysPorts = CommPortIdentifier.getPortIdentifiers();
+            while (sysPorts.hasMoreElements()) {
+                CommPortIdentifier curPort = (CommPortIdentifier) sysPorts.nextElement();
+                if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                    availablePorts.add(curPort.getName());
+                }
+            }
+            
+            javafx.application.Platform.runLater(() -> {
+                // Mock enumeration to inject ports into original UI code
+                java.util.Enumeration ports = java.util.Collections.enumeration(availablePorts);
 
-		Enumeration ports = CommPortIdentifier.getPortIdentifiers();
+
+		// Enumeration ports is now provided above
 		getPresentSerialPortList().clear();
 		while (ports.hasMoreElements()) {
-			CommPortIdentifier curPort = (CommPortIdentifier) ports.nextElement();
+			String curPortName = (String) ports.nextElement();
 
-			if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-				getPresentSerialPortList().add(curPort.getName());
+			if (true) {
+				getPresentSerialPortList().add(curPortName);
 			}
 		}
-	}
+	
+            });
+        }).start();
+}
 
 	private static void applyUacSettings() {
 
