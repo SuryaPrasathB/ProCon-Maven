@@ -11,8 +11,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import org.json.simple.JSONArray;
 import org.json.JSONException;

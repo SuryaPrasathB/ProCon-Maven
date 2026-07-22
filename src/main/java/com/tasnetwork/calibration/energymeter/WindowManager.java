@@ -47,6 +47,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.effect.DropShadow;
@@ -428,10 +429,18 @@ public class WindowManager {
 		alert.setTitle(ConstantVersion.APPLICATION_NAME + " Exit");
 		String s = "Are you sure, you want to exit?";
 		alert.setContentText(s);
+		
+		ButtonType exitButton = new ButtonType("Exit", ButtonBar.ButtonData.OK_DONE);
+		ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+		alert.getButtonTypes().setAll(exitButton, cancelButton);
+		
+		Button btnExit = (Button) alert.getDialogPane().lookupButton(exitButton);
+		btnExit.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+		
 		boolean check_test_run = false;
 		Optional<ButtonType> result = alert.showAndWait();
 
-		if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+		if ((result.isPresent()) && (result.get() == exitButton)) {
 			check_test_run = true;
 		}
 		/*

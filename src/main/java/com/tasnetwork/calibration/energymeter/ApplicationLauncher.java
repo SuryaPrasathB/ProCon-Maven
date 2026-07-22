@@ -191,6 +191,12 @@ public class ApplicationLauncher extends Application {
 	 * Displays an error dialog and terminates when logging cannot be configured.
 	 */
 	public static void initLogger() {
+		cleanOldLogs();
+		String logLevel = System.getProperty("log.level");
+		if (logLevel == null || logLevel.trim().isEmpty()) {
+			System.setProperty("log.level", "DEBUG");
+		}
+
 		String log4jConfigFile = "log4j.properties";
 		try {
 			InputStream inputStream = ApplicationLauncher.class.getClassLoader().getResourceAsStream(log4jConfigFile);
@@ -223,6 +229,26 @@ public class ApplicationLauncher extends Application {
 
 		}
 
+	}
+
+	private static void cleanOldLogs() {
+		java.io.File logDir = new java.io.File("./logs");
+		if (logDir.exists() && logDir.isDirectory()) {
+			long thirtyDaysAgo = System.currentTimeMillis() - (30L * 24 * 60 * 60 * 1000);
+			java.io.File[] files = logDir.listFiles();
+			if (files != null) {
+				for (java.io.File file : files) {
+					if (file.isFile() && file.getName().endsWith(".txt")) {
+						if (file.lastModified() < thirtyDaysAgo) {
+							boolean deleted = file.delete();
+							if (deleted) {
+								System.out.println("Deleted old log file: " + file.getName());
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
