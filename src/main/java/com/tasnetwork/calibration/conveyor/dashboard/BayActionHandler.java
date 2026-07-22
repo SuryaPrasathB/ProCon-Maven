@@ -46,6 +46,14 @@ public class BayActionHandler {
 
 	public void handleActionByBayType(PalletController.BayActionType actionType) {
 		new Thread(() -> {
+			if (actionType == PalletController.BayActionType.BAY_START ||
+				actionType == PalletController.BayActionType.BAY_STOP ||
+				actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
+				actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+				handleEngineLifecycleActions(actionType);
+				return;
+			}
+
 			switch (bayTypeKey) {
 				case ConstantConveyor.FT_BAY_KEY:
 					handleFunctionalTestAction(actionType);
@@ -1635,5 +1643,89 @@ public class BayActionHandler {
 		ApplicationLauncher.logger.warn("bypassModeInActive: Entry for " + bayTypeKey);
 		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, false);
 		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, false);
+	}
+
+	private void handleEngineLifecycleActions(PalletController.BayActionType actionType) {
+		if (actionType == PalletController.BayActionType.BAY_STOP) {
+			triggerStopFlagsForBay();
+			return;
+		}
+
+		if (actionType == PalletController.BayActionType.BAY_START || 
+			actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
+			actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+
+			String mode = com.tasnetwork.calibration.conveyor.constant.ConstantStateModes.RUN;
+			if (actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+				mode = com.tasnetwork.calibration.conveyor.constant.ConstantStateModes.RELEASE_METERS;
+			}
+			
+			// Stop current running process first
+			triggerStopFlagsForBay();
+			try { Thread.sleep(200); } catch (Exception e) {} // Give time for loop to break
+			
+			com.tasnetwork.calibration.conveyor.bay.BayStateContext context = getContextForBay();
+			if (context != null) {
+				// Clear stop flags
+				clearStopFlagsForBay();
+				com.tasnetwork.calibration.conveyor.bay.BayStateEngine engine = 
+					new com.tasnetwork.calibration.conveyor.bay.BayStateEngine(getBaseBayKey(), context, mode);
+				if (actionType == PalletController.BayActionType.RUN_BAY_ONCE) {
+					engine.requestRunOnce();
+				}
+				new java.util.Timer().schedule(engine, 100);
+			}
+		}
+	}
+	
+	private String getBaseBayKey() {
+		if (bayTypeKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) return ConstantConveyor.WAITING_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY)) return ConstantConveyor.VERIFICATION_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY)) return ConstantConveyor.STA_NLD1_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY)) return ConstantConveyor.STA_NLD2_BAY_KEY;
+		return bayTypeKey;
+	}
+
+	private com.tasnetwork.calibration.conveyor.bay.BayStateContext getContextForBay() {
+		switch (getBaseBayKey()) {
+			case ConstantConveyor.FT_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.ft.Ft();
+			case ConstantConveyor.HV_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.hv.Hv();
+			case ConstantConveyor.IR_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.ir.Ir();
+			case ConstantConveyor.CALIBRATION_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.calib.Calib();
+			case ConstantConveyor.WAITING_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting();
+			case ConstantConveyor.VERIFICATION_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.verific.Verification();
+			case ConstantConveyor.STA_NLD1_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1();
+			case ConstantConveyor.STA_NLD2_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2();
+			case ConstantConveyor.COMMUNICATION_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.comm.Comm();
+		}
+		return null;
+	}
+
+	private void triggerStopFlagsForBay() {
+		switch (getBaseBayKey()) {
+			case ConstantConveyor.FT_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ft.Ft.stopProcessRequestedFtBay = true; break;
+			case ConstantConveyor.HV_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.hv.Hv.stopProcessRequestedHvtBay = true; break;
+			case ConstantConveyor.IR_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ir.Ir.stopProcessRequestedIrtBay = true; break;
+			case ConstantConveyor.CALIBRATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.calib.Calib.stopProcessRequestedCalibBay = true; break;
+			case ConstantConveyor.WAITING_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting.stopProcessRequestedWaitingBay = true; break;
+			case ConstantConveyor.VERIFICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific.Verification.stopProcessRequestedVerificBay = true; break;
+			case ConstantConveyor.STA_NLD1_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1.stopProcessRequestedStaNldBay1 = true; break;
+			case ConstantConveyor.STA_NLD2_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2.stopProcessRequestedStaNldBay2 = true; break;
+			case ConstantConveyor.COMMUNICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.comm.Comm.stopProcessRequestedCommBay = true; break;
+		}
+	}
+
+	private void clearStopFlagsForBay() {
+		switch (getBaseBayKey()) {
+			case ConstantConveyor.FT_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ft.Ft.stopProcessRequestedFtBay = false; break;
+			case ConstantConveyor.HV_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.hv.Hv.stopProcessRequestedHvtBay = false; break;
+			case ConstantConveyor.IR_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ir.Ir.stopProcessRequestedIrtBay = false; break;
+			case ConstantConveyor.CALIBRATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.calib.Calib.stopProcessRequestedCalibBay = false; break;
+			case ConstantConveyor.WAITING_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting.stopProcessRequestedWaitingBay = false; break;
+			case ConstantConveyor.VERIFICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific.Verification.stopProcessRequestedVerificBay = false; break;
+			case ConstantConveyor.STA_NLD1_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1.stopProcessRequestedStaNldBay1 = false; break;
+			case ConstantConveyor.STA_NLD2_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2.stopProcessRequestedStaNldBay2 = false; break;
+			case ConstantConveyor.COMMUNICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.comm.Comm.stopProcessRequestedCommBay = false; break;
+		}
 	}
 }

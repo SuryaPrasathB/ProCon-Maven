@@ -43,6 +43,15 @@ import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
+import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayBypass;
+import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayBypass;
+import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayBypass;
+import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayBypass;
+import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass;
+import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass;
+import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
+import com.tasnetwork.calibration.conveyor.bay.comm.CommBayBypass;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -1035,40 +1044,72 @@ public class DashboardController implements Initializable {
 		btnAllStop.setDisable(false);
 
 		funtionalBayStartTaskTimer = new Timer();
-		activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-		funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.FT_BAY_KEY)) {
+			funtionalBayStartTaskTimer.schedule(new FunctionalTestBayBypass(), 100);
+		} else {
+			activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
+			funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
+		}
 
 		hvtBayStartTaskTimer = new Timer();
-		activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-		hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.HV_BAY_KEY)) {
+			hvtBayStartTaskTimer.schedule(new HighVoltageTestBayBypass(), 100);
+		} else {
+			activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
+			hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
+		}
 
 		insResStartTaskTimer = new Timer();
-		activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-		insResStartTaskTimer.schedule(activeIrEngine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.IR_BAY_KEY)) {
+			insResStartTaskTimer.schedule(new InsulationResistanceTestBayBypass(), 100);
+		} else {
+			activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
+			insResStartTaskTimer.schedule(activeIrEngine, 100);
+		}
 
 		calibrationStartTaskTimer = new Timer();
-		activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-		calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.CALIBRATION_BAY_KEY)) {
+			calibrationStartTaskTimer.schedule(new CalibrationBayBypass(), 100);
+		} else {
+			activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
+			calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
+		}
 
 		waitingBayStartTaskTimer = new Timer();
 		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
 		waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
 
 		verificStartTaskTimer = new Timer();
-		activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-		verificStartTaskTimer.schedule(activeVerificEngine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+			verificStartTaskTimer.schedule(new VerificationTestBayBypass(), 100);
+		} else {
+			activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
+			verificStartTaskTimer.schedule(activeVerificEngine, 100);
+		}
 
 		sctNlt1StartTaskTimer = new Timer();
-		activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-		sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.STA_NLD1_BAY_KEY)) {
+			sctNlt1StartTaskTimer.schedule(new STA_NoLoadTestBay1Bypass(), 100);
+		} else {
+			activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
+			sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+		}
 
 		sctNlt2StartTaskTimer = new Timer();
-		activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-		sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.STA_NLD2_BAY_KEY)) {
+			sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Bypass(), 100);
+		} else {
+			activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
+			sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+		}
 
 		commStartTaskTimer = new Timer();
-		activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-		commStartTaskTimer.schedule(activeCommEngine, 100);
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.COMMUNICATION_BAY_KEY)) {
+			commStartTaskTimer.schedule(new CommBayBypass(), 100);
+		} else {
+			activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
+			commStartTaskTimer.schedule(activeCommEngine, 100);
+		}
 
 		ApplicationLauncher.logger.info("btnFtStartOnClick : EXIT:");
 	}
@@ -1076,6 +1117,9 @@ public class DashboardController implements Initializable {
 	@FXML
 	public void btnAllStopOnClick() {
 		ApplicationLauncher.logger.info("btnAllStopOnClick : Invoked:");
+
+		ConstantConveyor.ALL_LOOP_BREAK_FLAG = true;
+		BayUtils.setUserAborted(true);
 
 		Ft.setStopProcessRequestedFtBay(true);
 		Hv.abort_HVT_Bay = true;
@@ -1102,15 +1146,23 @@ public class DashboardController implements Initializable {
 
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
+		if (activeFtEngine != null)
+			activeFtEngine.requestStop();
 
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
+		if (activeHvEngine != null)
+			activeHvEngine.requestStop();
 
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
+		if (activeIrEngine != null)
+			activeIrEngine.requestStop();
 
 		calibrationStopTaskTimer = new Timer();
 		calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+		if (activeCalibEngine != null)
+			activeCalibEngine.requestStop();
 
 		if (activeWaitingEngine != null)
 			activeWaitingEngine.requestStop();
@@ -1119,6 +1171,8 @@ public class DashboardController implements Initializable {
 
 		verificStopTaskTimer = new Timer();
 		verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
+		if (activeVerificEngine != null)
+			activeVerificEngine.requestStop();
 
 		if (activeStaNld1Engine != null)
 			activeStaNld1Engine.requestStop();

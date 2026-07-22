@@ -26,7 +26,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements CommTestBayState {
 
 		int try_count = 0;
 
-		while (try_count <= 3) {
+		while (try_count <= 3 && !Comm.isStopProcessRequestedCommBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
 			Map<String, Object> responseReturn = commBay_FingerTipLatch_Status();
 			String commBay_FingerTipLatch_Status = (String) responseReturn.get("status");

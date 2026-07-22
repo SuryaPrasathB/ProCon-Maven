@@ -26,7 +26,7 @@ public class S14_ensure_divertor_relay_turned_on_Verific_Bay implements VerificT
 
         int try_count = 0;
 
-        while (try_count <= 3) {
+        while (try_count <= 3 && !Verification.isStopProcessRequestedVerificBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
             Map<String, Object> responseReturn = divertorRelay_Status();
             String divertorRelay_Status = (String) responseReturn.get("status");

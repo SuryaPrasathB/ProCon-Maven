@@ -10,4 +10,5 @@ public class ConstantStateModes {
 	public static final String STOP 		= "STOP";
 	public static final String RESET		= "RESET";
 	public static final String BAY_BYPASS 	= "BAY_BYPASS";
+	public static final String RELEASE_METERS = "RELEASE_METERS";
 }

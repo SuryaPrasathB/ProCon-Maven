@@ -30,7 +30,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements VerificTestBayStat
 
         int try_count = 0;
 
-        while (try_count <= 3) {
+        while (try_count <= 3 && !Verification.isStopProcessRequestedVerificBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
             Map<String, Object> responseReturn = verificBay_FingerTipLatch_Status();
             String verificBay_FingerTipLatch_Status = (String) responseReturn.get("status");

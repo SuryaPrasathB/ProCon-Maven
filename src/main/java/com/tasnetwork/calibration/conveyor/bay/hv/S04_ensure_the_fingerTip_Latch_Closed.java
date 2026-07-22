@@ -41,7 +41,7 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements HvtBayState {
 		Map<String, Object> responseReturn = new HashMap<String, Object>();// ftBay_FingerTipLatch_Status();
 		String fingerLatchPresentState = "";// (String)responseReturn.get("responseData");
 
-		while (try_count <= 3) {
+		while (try_count <= 3 && !Hv.isStopProcessRequestedHvtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
 			responseReturn = hvtBay_FingerTipLatch_Status();
 			// String hvtBay_FingerTipLatch_Status = (String)responseReturn.get("status");

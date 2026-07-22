@@ -27,7 +27,7 @@ public class S07_ensure_the_fingerTip_Latch_Opened_Bay1 implements STA_NoLoadTes
 
         int try_count = 0;
 
-        while (try_count <= 3) {
+        while (try_count <= 3 && !StaNld_Bay1.isStopProcessRequestedStaNldBay1() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
             Map<String, Object> responseReturn = sctNltBay1_FingerTipLatch_Status();
             String sctNltBay1_FingerTipLatch_Status = (String) responseReturn.get("status");

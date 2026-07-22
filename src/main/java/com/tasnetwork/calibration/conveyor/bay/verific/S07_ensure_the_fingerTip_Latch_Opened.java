@@ -9,6 +9,7 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
@@ -24,7 +25,7 @@ public class S07_ensure_the_fingerTip_Latch_Opened implements VerificTestBayStat
 
         int try_count = 0;
 
-        while (try_count <= 3) {
+        while (try_count <= 3 && !Verification.isStopProcessRequestedVerificBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
             Map<String, Object> responseReturn = verificBay_FingerTipLatch_Status();
             String verificBay_FingerTipLatch_Status = (String) responseReturn.get("status");

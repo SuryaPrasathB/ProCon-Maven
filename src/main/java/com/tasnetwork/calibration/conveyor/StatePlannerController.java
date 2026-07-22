@@ -136,7 +136,7 @@ public class StatePlannerController implements Initializable {
 		ref_cmbBxSelectBayType.getSelectionModel().select(0);
 
 		cmbModeSelection.getItems().addAll(ConstantStateModes.RUN, ConstantStateModes.STOP, ConstantStateModes.RESET,
-				ConstantStateModes.BAY_BYPASS);
+				ConstantStateModes.BAY_BYPASS, ConstantStateModes.RELEASE_METERS);
 		cmbModeSelection.getSelectionModel().select("RUN"); // Set default selection
 		cmbModeSelection.valueProperty().addListener((observable, oldValue, newValue) -> {
 			ApplicationLauncher.logger.debug(newValue + " is selected for execution mode");

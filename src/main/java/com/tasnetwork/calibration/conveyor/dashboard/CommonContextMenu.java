@@ -24,6 +24,12 @@ public abstract class CommonContextMenu {
     }
 
     private void initializeMenuItems() {
+            addMenuItem(PalletController.BayActionType.BAY_START);
+            addMenuItem(PalletController.BayActionType.BAY_STOP);
+            addMenuItem(PalletController.BayActionType.RUN_BAY_ONCE);
+            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
+            contextMenu.getItems().add(new javafx.scene.control.SeparatorMenuItem());
+
         if (bayTypeKey.equals(ConstantConveyor.FT_BAY_KEY)) {										// FUNCTIONAL
             //addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);
@@ -35,9 +41,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.DIVERTER_DOWN);
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_ENTRY);
             addMenuItem(PalletController.BayActionType.UNBLOCK_BAY_ENTRY);
-            addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
             addMenuItem(PalletController.BayActionType.UNBLOCK_BAY_EXIT);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
@@ -47,7 +51,6 @@ public abstract class CommonContextMenu {
            // addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);
         	addFingertipSubmenu();
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
@@ -57,7 +60,6 @@ public abstract class CommonContextMenu {
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);
         	addFingertipSubmenu();
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
@@ -73,7 +75,6 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.MAIN_CT);
             addMenuItem(PalletController.BayActionType.NEUTRAL_CT);
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
@@ -81,7 +82,6 @@ public abstract class CommonContextMenu {
             addBypassSubmenu();
         } else if (bayTypeKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {						// WAITING 
         	addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
-        	addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.PALLETS_CLEARED);
             //addMenuItem(PalletController.BayActionType.PALLETS_BLOCK);
             addMenuItem(PalletController.BayActionType.REFRESH);
@@ -95,7 +95,6 @@ public abstract class CommonContextMenu {
 			//addNoEntrySubmenu();
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT2);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.DIVERTER_UP);
             addMenuItem(PalletController.BayActionType.DIVERTER_DOWN);
             addMenuItem(PalletController.BayActionType.PALLETS_CLEARED);
@@ -111,7 +110,6 @@ public abstract class CommonContextMenu {
 			//addNoEntrySubmenu();
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT2);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.DIVERTER_UP);
             addMenuItem(PalletController.BayActionType.DIVERTER_DOWN);
             addMenuItem(PalletController.BayActionType.REFRESH);
@@ -124,7 +122,6 @@ public abstract class CommonContextMenu {
 			addFingertipSubmenu();
 			//addNoEntrySubmenu();
             addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
-            addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
             addMenuItem(PalletController.BayActionType.DIVERTER_UP);
             addMenuItem(PalletController.BayActionType.DIVERTER_DOWN);
             addMenuItem(PalletController.BayActionType.REFRESH);
