@@ -41,6 +41,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
         } else if (bayTypeKey.equals(ConstantConveyor.HV_BAY_KEY)) {								// HIGH VOLTAGE
             //addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
            // addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);
@@ -50,6 +51,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
         } else if (bayTypeKey.equals(ConstantConveyor.IR_BAY_KEY)) {								// INSULATION RESISTANCE
             //addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);
@@ -59,6 +61,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
         } else if (bayTypeKey.equals(ConstantConveyor.CALIBRATION_BAY_KEY)) {						// CALIBRATION
             //addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);
@@ -75,6 +78,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
         } else if (bayTypeKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {						// WAITING 
         	addMenuItem(PalletController.BayActionType.BLOCK_BAY_EXIT);
         	addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
@@ -83,6 +87,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
 		} else if (bayTypeKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY)) {					// VERIFICATION
 			//addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);  
@@ -98,6 +103,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
 		} else if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY)) {						// STA NLD BAY 1
 			//addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE);    
@@ -111,6 +117,7 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
 		} else if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY)) {						// STA NLD BAY 2
 			//addMenuItem(PalletController.BayActionType.FINGERTIP_ENGAGE);
             //addMenuItem(PalletController.BayActionType.FINGERTIP_DISENGAGE); 
@@ -123,14 +130,17 @@ public abstract class CommonContextMenu {
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
             addHaltPalletSubmenu();
+            addBypassSubmenu();
 		}else if (bayTypeKey.startsWith(ConstantConveyor.REJECTION_BAY_KEY)) {						// STA NLD BAY 2
 
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
+            addBypassSubmenu();
 		}else if (bayTypeKey.startsWith(ConstantConveyor.UNLOADING_BAY_KEY)) {						// STA NLD BAY 2
 
             addMenuItem(PalletController.BayActionType.REFRESH);
             addNoEntrySubmenu();
+            addBypassSubmenu();
 		}
         else {
             ApplicationLauncher.logger.warn("CommonContextMenu: Unknown bayType: <" + bayTypeKey + ">");
@@ -195,6 +205,20 @@ public abstract class CommonContextMenu {
         
         // Add the main menu to the context menu
         contextMenu.getItems().add(haltPalletMenu);
+    }
+
+    private void addBypassSubmenu() {
+        Menu bypassMenu = new Menu("Bypass Mode");
+        
+        MenuItem bypassActiveItem = new MenuItem(PalletController.BayActionType.BYPASS_MODE_ACTIVE.toString());
+        bypassActiveItem.setOnAction(e -> handleAction(PalletController.BayActionType.BYPASS_MODE_ACTIVE));
+        
+        MenuItem bypassInactiveItem = new MenuItem(PalletController.BayActionType.BYPASS_MODE_INACTIVE.toString());
+        bypassInactiveItem.setOnAction(e -> handleAction(PalletController.BayActionType.BYPASS_MODE_INACTIVE));
+        
+        bypassMenu.getItems().addAll(bypassActiveItem, bypassInactiveItem);
+        
+        contextMenu.getItems().add(bypassMenu);
     }
 
     // Abstract method to be implemented by concrete classes

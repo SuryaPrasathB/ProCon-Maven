@@ -64,7 +64,9 @@ public class S29_turn_on_tower_lamp_COMM_Bay implements CommTestBayState {
         String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                 portInfo.getBayId(),
                 portInfo.getPortId(),
-                Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the relay "On"
+                Constant_IO_ActionMapping.OPEN);
+
+        // Use CLOSE to represent turning the relay "On"
 
         status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 

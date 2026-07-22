@@ -67,6 +67,7 @@ public class S06_open_the_fingerTip_Latch implements VerificTestBayState {
 				portInfo.getBayId(),
 				portInfo.getPortId(),
 				Constant_IO_ActionMapping.CLOSE);
+
 		status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
 		if (status) {

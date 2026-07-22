@@ -64,7 +64,9 @@ public class S30_turn_off_tower_lamp_COMM_Bay implements CommTestBayState {
         String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                 portInfo.getBayId(),
                 portInfo.getPortId(),
-                Constant_IO_ActionMapping.CLOSE); // Use OPEN to represent turning the relay "Off"
+                Constant_IO_ActionMapping.CLOSE);
+
+        // Use OPEN to represent turning the relay "Off"
 
         status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
         Comm.logger.debug("S30_turn_off_tower_lamp_COMM_Bay : turn_off_tower_lamp : status : " + status);

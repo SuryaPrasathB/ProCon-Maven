@@ -55,6 +55,7 @@ public class S16_close_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Sta
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_STPR);
 
         String state = "";
+
         if (portInfo != null) {
             StaNld_Bay2.logger.debug("PortId    : " + portInfo.getPortId());
             StaNld_Bay2.logger.debug("ClusterId : " + portInfo.getClusterId());
@@ -62,35 +63,36 @@ public class S16_close_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Sta
 
             String outputActive = Constant_IO_ActionMapping.ON;
             BayUtils bayUtils = new BayUtils();
-            
-            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                     portInfo.getBayId(),
-                                                     portInfo.getPortId(),
-                                                     outputActive);
 
-            StaNld_Bay2.logger.debug("S16_close_stop_latch_SCT_NLT_Bay2 : close_StopLatch_SCT_NLT_Bay2 : state : " + state);
+            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    outputActive);
+
+            StaNld_Bay2.logger
+                    .debug("S16_close_stop_latch_SCT_NLT_Bay2 : close_StopLatch_SCT_NLT_Bay2 : state : " + state);
 
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
             PalletTrackerController palletTracker = new PalletTrackerController();
             palletTracker.switchBatchToNextBay(myBayKey, ConstantConveyor.UNLOADING_BAY_KEY);
-            if(StateExecutorController.simulateSCTNLTBay2HappyPath){
-            	status = true; 
+            if (StateExecutorController.simulateSCTNLTBay2HappyPath) {
+                status = true;
             }
-             
 
-            StaNld_Bay2.logger.debug("S16_close_stop_latch_SCT_NLT_Bay2 : close_StopLatch_SCT_NLT_Bay2 : status : " + status);
+            StaNld_Bay2.logger
+                    .debug("S16_close_stop_latch_SCT_NLT_Bay2 : close_StopLatch_SCT_NLT_Bay2 : status : " + status);
 
         } else {
             StaNld_Bay2.logger.debug("S16_close_stop_latch_SCT_NLT_Bay2 : Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         responseReturn.put("status", status);
         responseReturn.put("responseData", state);
 
-        StaNld_Bay2.logger.debug("S16_close_stop_latch_SCT_NLT_Bay2 : sctNltBay2_StopLatch_Status : status : " + status);
+        StaNld_Bay2.logger
+                .debug("S16_close_stop_latch_SCT_NLT_Bay2 : sctNltBay2_StopLatch_Status : status : " + status);
         StaNld_Bay2.logger.debug("S16_close_stop_latch_SCT_NLT_Bay2 : sctNltBay2_StopLatch_Status : Exit");
         return responseReturn;
     }
 }
-

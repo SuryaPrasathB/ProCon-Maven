@@ -79,7 +79,9 @@ public class S30_turn_off_tower_lamp_Verific_Bay implements VerificTestBayState 
         String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                 portInfo.getBayId(),
                 portInfo.getPortId(),
-                Constant_IO_ActionMapping.CLOSE); // Use OPEN to represent turning the relay "Off"
+                Constant_IO_ActionMapping.CLOSE);
+
+        // Use OPEN to represent turning the relay "Off"
 
         status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
         Verification.logger.debug("S30_turn_off_tower_lamp_Verific_Bay : turn_off_tower_lamp : status : " + status);

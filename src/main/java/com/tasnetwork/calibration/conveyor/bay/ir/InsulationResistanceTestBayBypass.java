@@ -102,8 +102,7 @@ public class InsulationResistanceTestBayBypass extends TimerTask {
 							+ getTableStatePlanner_HvBay().size());
 			// setStopProcessCompletedHvBay(false);
 			// setStopProcessRequestedHvBay(false);
-			while (!Ir.isStopProcessCompletedIrtBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			while (!Ir.isStopProcessCompletedIrtBay() && !Ir.isStopProcessRequestedIrtBay() && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 				// Process the current state
 				BayResponse bayStatus = processCurrentState();
 
@@ -164,6 +163,10 @@ public class InsulationResistanceTestBayBypass extends TimerTask {
 		} else {
 			Ir.logger.debug(
 					"InsulationResistanceTestBay : manageInsulationResistanceTestBayBypassStates2 : getTableStatePlanner2 : No states found in the planner");
+		}
+
+		if (Ir.isStopProcessRequestedIrtBay()) {
+			Ir.setStopProcessCompletedIrtBay(true);
 		}
 
 		// =================================================================================================

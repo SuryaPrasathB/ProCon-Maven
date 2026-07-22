@@ -77,6 +77,7 @@ public class S09_let_the_pallet_to_Unloading_Bay implements CommTestBayState {
                 portInfo.getBayId(),
                 portInfo.getPortId(),
                 Constant_IO_ActionMapping.CLOSE);
+
         status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
         if (StateExecutorController.simulateCommBayHappyPath) {

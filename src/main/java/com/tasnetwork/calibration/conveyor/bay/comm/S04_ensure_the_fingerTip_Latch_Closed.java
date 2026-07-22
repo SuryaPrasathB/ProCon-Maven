@@ -9,8 +9,10 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S04_ensure_the_fingerTip_Latch_Closed implements CommTestBayState {
 
@@ -69,7 +71,21 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements CommTestBayState {
 
 		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.COMM_PORT_NAME_SNSR_FINGER_TIP);
 
+		TestInterfaceStatus testInterfaceStatus = null;
 		if (portInfo != null) {
+			testInterfaceStatus = new TestInterfaceStatus(
+					ConstantConveyor.COMMUNICATION_BAY_KEY,
+					"-",
+					ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+					"-",
+					"-",
+					portInfo.getPortId(),
+					ConstantBayPortNameMapping.COMM_PORT_NAME_SNSR_FINGER_TIP,
+					ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+					"Executing",
+					ConstantConveyor.COMM_EXECUTION_STATUS_INP);
+			StateExecutorController.addToTestStatusGui(testInterfaceStatus);
+
 			Comm.logger.debug("PortId    : " + portInfo.getPortId());
 			Comm.logger.debug("ClusterId : " + portInfo.getClusterId());
 			Comm.logger.debug("BayId     : " + portInfo.getBayId());
@@ -85,6 +101,12 @@ public class S04_ensure_the_fingerTip_Latch_Closed implements CommTestBayState {
 		 * String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(),
 		 * portInfo.getBayId(),
 		 * portInfo.getPortId());
+		 * if (testInterfaceStatus != null) {
+		 * testInterfaceStatus.setDeviceResponseData(state);
+		 * testInterfaceStatus.setTestStatus("Success");
+		 * StateExecutorController.updateTestStatusGui(testInterfaceStatus);
+		 * }
+		 * 
 		 */
 
 		String state = bayUtils.getInputDataFromBayV2(portInfo);

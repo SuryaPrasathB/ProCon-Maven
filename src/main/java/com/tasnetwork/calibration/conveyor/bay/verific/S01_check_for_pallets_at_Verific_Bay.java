@@ -8,6 +8,9 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
+import com.tasnetwork.calibration.conveyor.StateExecutorController;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 //import com.tasnetwork.calibration.conveyor.bay_waiting.WaitingBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
@@ -29,6 +32,10 @@ public class S01_check_for_pallets_at_Verific_Bay implements VerificTestBayState
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
+
+		ConveyorDataManager.getDashboardObject().removePalletFromBay(getMyBayKey());
+		ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+				.updateBayMonitoringAllPalletsExistInBay(getMyBayKey());
 
 		boolean isPalletAvailableAt_VerificBay;
 		long startTime;
@@ -79,6 +86,8 @@ public class S01_check_for_pallets_at_Verific_Bay implements VerificTestBayState
 
 		if (stableDetection) {
 			Verification.logger.info("S01_check_for_pallets_at_Verific_Bay : Pallet Available");
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+					.updateBayAllPalletsExistInBay(getMyBayKey(), true);
 			Verification.logger.info("S01_check_for_pallets_at_Verific_Bay : Sleep");
 
 			// ConstantConveyor.VERIFICATION_BAY_PALLETS_CLEARED = false;
@@ -110,7 +119,20 @@ public class S01_check_for_pallets_at_Verific_Bay implements VerificTestBayState
 
 		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_SNSR_PALLET);
 
+		TestInterfaceStatus testInterfaceStatus = null;
 		if (portInfo != null) {
+			testInterfaceStatus = new TestInterfaceStatus(
+					ConstantConveyor.VERIFICATION_BAY_KEY,
+					"-",
+					ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+					"-",
+					"-",
+					portInfo.getPortId(),
+					ConstantBayPortNameMapping.VERIFIC_PORT_NAME_SNSR_PALLET,
+					ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+					"Executing",
+					ConstantConveyor.COMM_EXECUTION_STATUS_INP);
+			StateExecutorController.addToTestStatusGui(testInterfaceStatus);
 
 			if (logEnabled) {
 				/*
@@ -135,6 +157,12 @@ public class S01_check_for_pallets_at_Verific_Bay implements VerificTestBayState
 		 * String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(),
 		 * portInfo.getBayId(),
 		 * portInfo.getPortId());
+		 * if (testInterfaceStatus != null) {
+		 * testInterfaceStatus.setDeviceResponseData(state);
+		 * testInterfaceStatus.setTestStatus("Success");
+		 * StateExecutorController.updateTestStatusGui(testInterfaceStatus);
+		 * }
+		 * 
 		 */
 
 		String state = bayUtils.getInputDataFromBayV2(portInfo);

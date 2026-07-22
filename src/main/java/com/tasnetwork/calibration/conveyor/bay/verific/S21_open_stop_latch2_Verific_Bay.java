@@ -51,6 +51,7 @@ public class S21_open_stop_latch2_Verific_Bay implements VerificTestBayState {
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR2);
 
         String state = "";
+
         if (portInfo != null) {
             Verification.logger.debug("PortId    : " + portInfo.getPortId());
             Verification.logger.debug("ClusterId : " + portInfo.getClusterId());

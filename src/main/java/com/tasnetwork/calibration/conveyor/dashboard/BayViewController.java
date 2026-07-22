@@ -1,11 +1,11 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -61,11 +61,78 @@ public class BayViewController {
 	@FXML
 	private ImageView imgPalletsLocked;
 
+	private String bayKey;
+	private boolean isPalletsLocked = false;
+	private boolean isExitClosed = false;
+	private boolean isEntryClosed = false;
+
+	public void setBayKey(String bayKey) {
+		this.bayKey = bayKey;
+		if (bayKey != null && bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {
+			if (imgPalletsLocked != null) imgPalletsLocked.setVisible(false);
+		}
+		if (imgByPassMode != null && bayKey != null) {
+			imgByPassMode.setVisible(com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.isBayFullyBypassed(bayKey));
+		}
+	}
+
 	@FXML
 	public void initialize() {
 		refInitAssignment();
 		toolTipInit();
 
+		if (imgPalletsLocked != null) {
+			imgPalletsLocked.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && bayKey != null) {
+					PalletController.BayActionType action = isPalletsLocked
+							? PalletController.BayActionType.FINGERTIP_DISENGAGE
+							: PalletController.BayActionType.FINGERTIP_ENGAGE;
+
+					BayActionHandler handler = new BayActionHandler(bayKey);
+					handler.handleActionByBayType(action);
+				}
+			});
+		}
+
+		if (imgByPassMode != null) {
+			imgByPassMode.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && bayKey != null) {
+					boolean isBypassed = com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.isBayFullyBypassed(bayKey);
+					PalletController.BayActionType action = isBypassed
+							? PalletController.BayActionType.BYPASS_MODE_INACTIVE
+							: PalletController.BayActionType.BYPASS_MODE_ACTIVE;
+
+					BayActionHandler handler = new BayActionHandler(bayKey);
+					handler.handleActionByBayType(action);
+				}
+			});
+		}
+
+		if (rectExitStopperOpen != null) {
+			rectExitStopperOpen.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && bayKey != null) {
+					PalletController.BayActionType action = isExitClosed
+							? PalletController.BayActionType.UNBLOCK_BAY_EXIT
+							: PalletController.BayActionType.BLOCK_BAY_EXIT;
+
+					BayActionHandler handler = new BayActionHandler(bayKey);
+					handler.handleActionByBayType(action);
+				}
+			});
+		}
+
+		if (rectEntryStopperOpen != null) {
+			rectEntryStopperOpen.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && bayKey != null) {
+					PalletController.BayActionType action = isEntryClosed
+							? PalletController.BayActionType.UNBLOCK_BAY_ENTRY
+							: PalletController.BayActionType.BLOCK_BAY_ENTRY;
+
+					BayActionHandler handler = new BayActionHandler(bayKey);
+					handler.handleActionByBayType(action);
+				}
+			});
+		}
 	}
 
 	private void toolTipInit() {
@@ -228,12 +295,14 @@ public class BayViewController {
 
 	public void setEntryStopperOpenIndicator(boolean isOpen) {
 		stopBlinkingEntryStopperOpenIndicator();
+		isEntryClosed = !isOpen;
 		// rectEntryStopperOpen.setFill(Color.TRANSPARENT);esdfd
 		rectEntryStopperOpen.setFill(isOpen ? Color.LIMEGREEN : Color.RED);
 	}
 
 	public void setExitStopperOpenIndicator(boolean isOpen) {
 		stopBlinkingExitStopperOpenIndicator();
+		isExitClosed = !isOpen;
 		rectExitStopperOpen.setFill(isOpen ? Color.LIMEGREEN : Color.RED);
 	}
 
@@ -330,8 +399,22 @@ public class BayViewController {
 	}
 
 	public void palletsLockedImageDisplayOn(boolean isDisplayOn) {
-
-		imgPalletsLocked.setVisible(isDisplayOn);
+		isPalletsLocked = isDisplayOn;
+		if (bayKey != null && bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {
+			imgPalletsLocked.setVisible(false);
+			return;
+		}
+		if (!isDisplayOn) {
+			javafx.scene.effect.ColorAdjust grayscale = new javafx.scene.effect.ColorAdjust();
+			grayscale.setSaturation(-1.0);
+			grayscale.setBrightness(-0.7);
+			imgPalletsLocked.setEffect(grayscale);
+			imgPalletsLocked.setOpacity(0.7);
+		} else {
+			imgPalletsLocked.setEffect(null);
+			imgPalletsLocked.setOpacity(1.0);
+		}
+		imgPalletsLocked.setVisible(true);
 	}
 
 	public void byPassModeImageDisplayOn(boolean isDisplayOn) {
@@ -491,3 +574,4 @@ public class BayViewController {
 	}
 
 }
+

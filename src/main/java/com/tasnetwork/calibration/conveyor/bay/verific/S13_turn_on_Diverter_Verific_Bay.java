@@ -13,7 +13,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S13_turn_on_Diverter_Verific_Bay implements VerificTestBayState {
 
-    //===========================================================================================
+    // ===========================================================================================
     @Override
     public BayResponse handleRequest() {
         Verification.logger.info("S13_turn_on_Diverter_of_Verific_Bay : Entry");
@@ -21,9 +21,9 @@ public class S13_turn_on_Diverter_Verific_Bay implements VerificTestBayState {
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
-		Map<String,Object> responseReturn =  turn_on_diverter_of_Verific_Bay();	 
-		boolean turn_on_diverter_of_Verific_Bay = (boolean)responseReturn.get("status");
-	    
+        Map<String, Object> responseReturn = turn_on_diverter_of_Verific_Bay();
+        boolean turn_on_diverter_of_Verific_Bay = (boolean) responseReturn.get("status");
+
         if (turn_on_diverter_of_Verific_Bay) {
             Verification.logger.info("S13_turn_on_Diverter_of_Verific_Bay : Diverter Turned On");
             bayResponse.setStatus(true);
@@ -38,44 +38,48 @@ public class S13_turn_on_Diverter_Verific_Bay implements VerificTestBayState {
         return bayResponse;
     }
 
-    //============================================================================================================================================  
+    // ============================================================================================================================================
 
-    private Map<String,Object> turn_on_diverter_of_Verific_Bay() {
+    private Map<String, Object> turn_on_diverter_of_Verific_Bay() {
         Verification.logger.debug("S13_turn_on_Diverter_of_Verific_Bay : verificBay_Diverter_Status : Entry");
 
         boolean status = false;
-        Map<String,Object> responseReturn = new HashMap<String,Object>();
-		responseReturn.put("status", false);
-        
-        //============================================================================================  
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_DIVERTOR_RELAY);
-        
+        Map<String, Object> responseReturn = new HashMap<String, Object>();
+        responseReturn.put("status", false);
+
+        // ============================================================================================
+        IoPortInfo portInfo = BayUtils
+                .getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_DIVERTOR_RELAY);
+
         if (portInfo != null) {
             Verification.logger.debug("PortId    : " + portInfo.getPortId());
             Verification.logger.debug("ClusterId : " + portInfo.getClusterId());
             Verification.logger.debug("BayId     : " + portInfo.getBayId());
         } else {
             Verification.logger.debug("S13_turn_on_Diverter_of_Verific_Bay : Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         BayUtils bayUtils = new BayUtils();
-        
-        String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(), 
-                                              portInfo.getBayId(), 
-                                              portInfo.getPortId(),
-                                              Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the diverter "On"
-        status = state.equals(Constant_IO_ActionMapping.ON) ? true : false; 
 
-		if(StateExecutorController.simulateVerificBayHappyPath){
-			status = true; 
-		}
-        
-        Verification.logger.debug("S13_turn_on_Diverter_of_Verific_Bay : verificBay_Diverter_Status : status : " + status);
-        //============================================================================================   
+        String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                portInfo.getBayId(),
+                portInfo.getPortId(),
+                Constant_IO_ActionMapping.OPEN);
 
-		responseReturn.put("status", status);
-		
+        // Use CLOSE to represent turning the diverter "On"
+        status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
+
+        if (StateExecutorController.simulateVerificBayHappyPath) {
+            status = true;
+        }
+
+        Verification.logger
+                .debug("S13_turn_on_Diverter_of_Verific_Bay : verificBay_Diverter_Status : status : " + status);
+        // ============================================================================================
+
+        responseReturn.put("status", status);
+
         Verification.logger.debug("S13_turn_on_Diverter_of_Verific_Bay : verificBay_Diverter_Status : Exit");
         return responseReturn;
     }

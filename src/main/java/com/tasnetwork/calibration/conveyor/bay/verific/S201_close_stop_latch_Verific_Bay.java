@@ -50,6 +50,7 @@ public class S201_close_stop_latch_Verific_Bay implements VerificTestBayState {
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR);
 
         String state = "";
+
         if (portInfo != null) {
             Verification.logger.debug("PortId    : " + portInfo.getPortId());
             Verification.logger.debug("ClusterId : " + portInfo.getClusterId());

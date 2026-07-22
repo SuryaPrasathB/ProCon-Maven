@@ -13,58 +13,56 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 
 public class S15_let_the_pallets_to_SCT_NLT_Bay2 implements VerificTestBayState {
 
-    //===========================================================================================
+    // ===========================================================================================
     @Override
     public BayResponse handleRequest() {
         Verification.logger.info("S15_let_the_pallets_to_SCT_NLT_Bay2 : Entry");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-   
-        //=============================================================
 
-		Map<String,Object> responseReturn =  open_StopLatch_VerificBay();	 
-		boolean open_StopLatch_VerificBay = (boolean)responseReturn.get("status");
-	    
+        // =============================================================
+
+        Map<String, Object> responseReturn = open_StopLatch_VerificBay();
+        boolean open_StopLatch_VerificBay = (boolean) responseReturn.get("status");
+
         boolean openSuccess = open_StopLatch_VerificBay;
-        if(openSuccess) {
+        if (openSuccess) {
             BayUtils.delay(500);
 
-    		 responseReturn =  close_StopLatch_VerificBay();	 
-    		boolean close_StopLatch_VerificBay = (boolean)responseReturn.get("status");
-    	    
-            boolean closeSuccess = close_StopLatch_VerificBay;    
-            if(closeSuccess) {
+            responseReturn = close_StopLatch_VerificBay();
+            boolean close_StopLatch_VerificBay = (boolean) responseReturn.get("status");
+
+            boolean closeSuccess = close_StopLatch_VerificBay;
+            if (closeSuccess) {
                 Verification.logger.info("S15_let_the_pallets_to_SCT_NLT_Bay2 : Opening and Closing Stopper Success");
                 bayResponse.setStatus(true);
                 bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-            }    
-            else{
+            } else {
                 Verification.logger.info("S15_let_the_pallets_to_SCT_NLT_Bay2 : Closing Stopper Failed");
                 bayResponse.setStatus(false);
-                bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_009);  // Assuming 602 for failure
+                bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_009); // Assuming 602 for failure
             }
-        }
-        else{
+        } else {
             Verification.logger.info("S15_let_the_pallets_to_SCT_NLT_Bay2 : Opening Stopper Failed");
             bayResponse.setStatus(false);
             bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_VERIFIC_008);
         }
-        //=============================================================
+        // =============================================================
 
         Verification.logger.info("S15_let_the_pallets_to_SCT_NLT_Bay2 : Exit");
         return bayResponse;
     }
- 
-    //============================================================================================================================================
 
-    private Map<String,Object> open_StopLatch_VerificBay() {
+    // ============================================================================================================================================
+
+    private Map<String, Object> open_StopLatch_VerificBay() {
         Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : open_StopLatch_VerificBay : Entry");
 
         boolean status = false;
-        Map<String,Object> responseReturn = new HashMap<String,Object>();
-		responseReturn.put("status", false);
-        //============================================================================================		 
+        Map<String, Object> responseReturn = new HashMap<String, Object>();
+        responseReturn.put("status", false);
+        // ============================================================================================
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR);
 
         if (portInfo != null) {
@@ -73,40 +71,41 @@ public class S15_let_the_pallets_to_SCT_NLT_Bay2 implements VerificTestBayState 
             Verification.logger.debug("BayId     : " + portInfo.getBayId());
         } else {
             Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : Stopper Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         BayUtils bayUtils = new BayUtils();
-        
+
         String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                              portInfo.getBayId(),
-                                              portInfo.getPortId(),
-                                              Constant_IO_ActionMapping.CLOSE);
+                portInfo.getBayId(),
+                portInfo.getPortId(),
+                Constant_IO_ActionMapping.CLOSE);
+
         status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
-        
-		if(StateExecutorController.simulateVerificBayHappyPath){
-			state = Constant_IO_ActionMapping.OPEN;
-		}
 
-        Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : open_StopLatch_VerificBay : status : " + status);
-        //============================================================================================  
-		responseReturn.put("status", status);
+        if (StateExecutorController.simulateVerificBayHappyPath) {
+            state = Constant_IO_ActionMapping.OPEN;
+        }
 
-        
+        Verification.logger
+                .debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : open_StopLatch_VerificBay : status : " + status);
+        // ============================================================================================
+        responseReturn.put("status", status);
+
         Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : open_StopLatch_VerificBay : Exit");
         return responseReturn;
     }
- 
-    //============================================================================================================================================
 
-    private Map<String,Object> close_StopLatch_VerificBay() {
+    // ============================================================================================================================================
+
+    private Map<String, Object> close_StopLatch_VerificBay() {
         Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : close_StopLatch_VerificBay : Entry");
 
         boolean status = false;
-        Map<String,Object> responseReturn = new HashMap<String,Object>();
-		responseReturn.put("status", false);
-        
-        //============================================================================================		 
+        Map<String, Object> responseReturn = new HashMap<String, Object>();
+        responseReturn.put("status", false);
+
+        // ============================================================================================
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR);
 
         if (portInfo != null) {
@@ -115,24 +114,25 @@ public class S15_let_the_pallets_to_SCT_NLT_Bay2 implements VerificTestBayState 
             Verification.logger.debug("BayId     : " + portInfo.getBayId());
         } else {
             Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : Stopper Output port not found");
-            return responseReturn ;
+            return responseReturn;
         }
 
         BayUtils bayUtils = new BayUtils();
-        
-        String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                              portInfo.getBayId(),
-                                              portInfo.getPortId(),
-                                              Constant_IO_ActionMapping.OPEN);
-        status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
-        Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : close_StopLatch_VerificBay : status : " + status);
-        //============================================================================================   
 
-		responseReturn.put("status", status);
-		
+        String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                portInfo.getBayId(),
+                portInfo.getPortId(),
+                Constant_IO_ActionMapping.OPEN);
+        status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
+        Verification.logger
+                .debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : close_StopLatch_VerificBay : status : " + status);
+        // ============================================================================================
+
+        responseReturn.put("status", status);
+
         Verification.logger.debug("S15_let_the_pallets_to_SCT_NLT_Bay2 : close_StopLatch_VerificBay : Exit");
         return responseReturn;
     }
-    
-    //============================================================================================================================================
+
+    // ============================================================================================================================================
 }

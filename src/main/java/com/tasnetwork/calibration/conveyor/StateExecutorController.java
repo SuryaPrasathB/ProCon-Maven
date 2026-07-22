@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
@@ -43,7 +44,6 @@ import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Reset;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
-import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Reset;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
@@ -64,15 +64,13 @@ import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 //import groovyjarjarantlr4.v4.parse.ANTLRParser.v3tokenSpec_return;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class StateExecutorController implements Initializable {
@@ -328,43 +326,7 @@ public class StateExecutorController implements Initializable {
 	private static Button ref_btn_VerificDone;
 
 	@FXML
-	private TableView<TestInterfaceStatus> tvTestStatus;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsSerialNo;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsBayName;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsStateName;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsDeviceType;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsPathNo;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsPositionNo;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsCname;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsPortName;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsSerialStatus;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsQrResponse;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsQrData;
-
-	@FXML
-	private TableColumn<TestInterfaceStatus, String> colTsStatus;
+	private TabPane tpTestStatusBays;
 
 	@FXML
 	private Button btnFilter;
@@ -387,7 +349,6 @@ public class StateExecutorController implements Initializable {
 	private ComboBox cmbBxFilterPosition;
 	private static ComboBox ref_cmbBxFilterPosition;
 
-	private static TableView<TestInterfaceStatus> ref_tvTestStatus;
 	private static TableColumn<TestInterfaceStatus, String> ref_colTsSerialNo;
 	private static TableColumn<TestInterfaceStatus, String> ref_colTsBayName;
 	private static TableColumn<TestInterfaceStatus, String> ref_colTsStateName;
@@ -478,6 +439,7 @@ public class StateExecutorController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		setupTestStatusTabs();
 
 		refInit();
 		guiInit();
@@ -489,32 +451,6 @@ public class StateExecutorController implements Initializable {
 	}
 
 	public void guiInit() {
-
-		// T E S T S T A T U S - Column Values
-		ref_colTsSerialNo.setCellValueFactory(cellData -> cellData.getValue().getSerialNoProperty());
-		ref_colTsBayName.setCellValueFactory(cellData -> cellData.getValue().getBayNameProperty());
-		ref_colTsStateName.setCellValueFactory(cellData -> cellData.getValue().getStateNameProperty());
-		ref_colTsDeviceType.setCellValueFactory(cellData -> cellData.getValue().getDeviceTypeProperty());
-		ref_colTsPathNo.setCellValueFactory(cellData -> cellData.getValue().getPathNoProperty());
-		ref_colTsPositionNo.setCellValueFactory(cellData -> cellData.getValue().getPositionNoProperty());
-		ref_colTsCname.setCellValueFactory(cellData -> cellData.getValue().getcNameProperty());
-		ref_colTsPortName.setCellValueFactory(cellData -> cellData.getValue().getPortNameProperty());
-		ref_colTsSerialStatus.setCellValueFactory(cellData -> cellData.getValue().getSerialStatusProperty());
-		ref_colTsQrResponse.setCellValueFactory(cellData -> cellData.getValue().getDeviceResponseStatusProperty());
-		ref_colTsQrData.setCellValueFactory(cellData -> cellData.getValue().getDeviceResponseDataProperty());
-		ref_colTsStatus.setCellValueFactory(cellData -> cellData.getValue().getTestStatusProperty());
-
-		/*
-		 * // DISABLE ALL STOP BUTTONS
-		 * btnFtStop.setDisable(true);
-		 * btnHvtStop.setDisable(true);
-		 * btnIrtStop.setDisable(true);
-		 * btnCalibStop.setDisable(true);
-		 * btnVerificTestStop.setDisable(true);
-		 * btnSctNlt1Stop.setDisable(true);
-		 * btnSctNlt2Stop.setDisable(true);
-		 * btnCommTestStop.setDisable(true);
-		 */
 
 		// F I L T E R C O M B O B O X
 		// ====================================================================
@@ -542,21 +478,6 @@ public class StateExecutorController implements Initializable {
 	}
 
 	public void refInit() {
-
-		ref_tvTestStatus = tvTestStatus;
-		ref_colTsSerialNo = colTsSerialNo;
-		ref_colTsBayName = colTsBayName;
-		ref_colTsStateName = colTsStateName;
-		ref_colTsDeviceType = colTsDeviceType;
-		ref_colTsPathNo = colTsPathNo;
-		ref_colTsPositionNo = colTsPositionNo;
-		ref_colTsCname = colTsCname;
-		ref_colTsPortName = colTsPortName;
-
-		ref_colTsSerialStatus = colTsSerialStatus;
-		ref_colTsQrResponse = colTsQrResponse;
-		ref_colTsQrData = colTsQrData;
-		ref_colTsStatus = colTsStatus;
 
 		ref_btnFilter = btnFilter;
 
@@ -668,7 +589,7 @@ public class StateExecutorController implements Initializable {
 		btnRejectReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		rejectionBayStartTaskTimer = new Timer();
@@ -884,7 +805,7 @@ public class StateExecutorController implements Initializable {
 		btnFtReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		funtionalBayStartTaskTimer = new Timer();
@@ -1096,7 +1017,7 @@ public class StateExecutorController implements Initializable {
 		btnHvtReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		hvtBayStartTaskTimer = new Timer();
@@ -1311,7 +1232,7 @@ public class StateExecutorController implements Initializable {
 		btnIrtReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		insResStartTaskTimer = new Timer();
@@ -1524,7 +1445,7 @@ public class StateExecutorController implements Initializable {
 		btnCalibReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		calibrationStartTaskTimer = new Timer();
@@ -1737,7 +1658,7 @@ public class StateExecutorController implements Initializable {
 		btnWaitingBayStop.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		waitingBayStartTaskTimer = new Timer();
@@ -1895,7 +1816,7 @@ public class StateExecutorController implements Initializable {
 		btnVerificTestReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		verificStartTaskTimer = new Timer();
@@ -2111,7 +2032,7 @@ public class StateExecutorController implements Initializable {
 		btnSctNlt1Reset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		sctNlt1StartTaskTimer = new Timer();
@@ -2327,7 +2248,7 @@ public class StateExecutorController implements Initializable {
 		btnSctNlt2Reset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		sctNlt2StartTaskTimer = new Timer();
@@ -2543,7 +2464,7 @@ public class StateExecutorController implements Initializable {
 		btnCommTestReset.setDisable(false);
 
 		// L O G I C
-		ref_tvTestStatus.getItems().clear();
+
 		allData.clear();
 
 		commStartTaskTimer = new Timer();
@@ -2864,63 +2785,13 @@ public class StateExecutorController implements Initializable {
 	 */
 
 	public static void updateTestStatusGui(TestInterfaceStatus testInterfaceStatus) {
-		Platform.runLater(() -> {
-			try {
-				if (testInterfaceStatus == null || testInterfaceStatus.getSerialNo() == null) {
-					ApplicationLauncher.logger
-							.warn("updateTestStatusGui: Input testInterfaceStatus or its serialNo is null");
-					return;
-				}
-
-				// Acquire the semaphore (wait if another thread is already executing this)
-				testStatusDisplaySemaphore.acquire();
-
-				try {
-					ObservableList<TestInterfaceStatus> items = ref_tvTestStatus.getItems();
-
-					// Find and update the matching item
-					for (int i = 0; i < items.size(); i++) {
-						TestInterfaceStatus e = items.get(i);
-						if (e != null && e.getSerialNo() != null &&
-								e.getSerialNo().equals(testInterfaceStatus.getSerialNo())) {
-							try {
-								e.setTestStatus(testInterfaceStatus.getTestStatus());
-								e.setDeviceResponseStatus(testInterfaceStatus.getDeviceResponseStatus());
-								e.setDeviceResponseData(testInterfaceStatus.getDeviceResponseData());
-								e.setPortName(testInterfaceStatus.getPortName());
-							} catch (Exception ex) {
-								ApplicationLauncher.logger
-										.error("updateTestStatusGui: Exception during update: " + ex.getMessage(), ex);
-							}
-							break; // Assuming serialNo is unique
-						}
-					}
-
-					ref_tvTestStatus.refresh();
-				} finally {
-					// Always release the semaphore, even if an exception occurs
-					testStatusDisplaySemaphore.release();
-				}
-
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				ApplicationLauncher.logger
-						.error("updateTestStatusGui: Thread was interrupted while waiting for semaphore");
-			} catch (Exception ex) {
-				ApplicationLauncher.logger.error("updateTestStatusGui: Outer Exception: " + ex.getMessage(), ex);
-			}
-		});
+		com.tasnetwork.calibration.conveyor.logger.BayStatusLogger.getInstance().updateStatus(testInterfaceStatus);
 	}
 
 	public static int addToTestStatusGui(TestInterfaceStatus testIntefaceStatus) {
 		try {
 			testIntefaceStatus.setSerialNo(String.valueOf(getSerialNoTestStatusAtomic().get()));
-			ref_tvTestStatus.getItems().add(testIntefaceStatus);
-			Platform.runLater(() -> {
-				ref_tvTestStatus.refresh();
-			});
-			// ref_tvTestStatus.refresh();
-			allData.add(testIntefaceStatus);
+			com.tasnetwork.calibration.conveyor.logger.BayStatusLogger.getInstance().logNewStatus(testIntefaceStatus);
 		} catch (Exception ex) {
 			ApplicationLauncher.logger.error("updateTestStatusGui: Exception-X: " + ex.getMessage());
 		}
@@ -2946,6 +2817,93 @@ public class StateExecutorController implements Initializable {
 	// ============================================================================================================================================
 
 	// ============================================================================================================================================
+
+	private void setupTestStatusTabs() {
+		// Create All Bays Tab
+		javafx.scene.control.Tab allBaysTab = new javafx.scene.control.Tab("All Bays");
+		javafx.scene.control.TableView<TestInterfaceStatus> allBaysTable = createTestStatusTableView();
+		allBaysTable.setItems(com.tasnetwork.calibration.conveyor.logger.BayStatusLogger.getInstance().getAllBaysLog());
+		allBaysTab.setContent(allBaysTable);
+		tpTestStatusBays.getTabs().add(allBaysTab);
+
+		// Create individual bay tabs
+		for (String bayKey : com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STATE_SEQUENCE_LIST) {
+			javafx.scene.control.Tab bayTab = new javafx.scene.control.Tab(bayKey);
+			javafx.scene.control.TableView<TestInterfaceStatus> bayTable = createTestStatusTableView();
+			bayTable.setItems(
+					com.tasnetwork.calibration.conveyor.logger.BayStatusLogger.getInstance().getLogForBay(bayKey));
+			bayTab.setContent(bayTable);
+			tpTestStatusBays.getTabs().add(bayTab);
+		}
+	}
+
+	private javafx.scene.control.TableView<TestInterfaceStatus> createTestStatusTableView() {
+		javafx.scene.control.TableView<TestInterfaceStatus> table = new javafx.scene.control.TableView<>();
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colSNo = new javafx.scene.control.TableColumn<>(
+				"S.No");
+		colSNo.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("serialNo"));
+		colSNo.setPrefWidth(60);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colBay = new javafx.scene.control.TableColumn<>(
+				"Bay Name");
+		colBay.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("bayName"));
+		colBay.setPrefWidth(120);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colState = new javafx.scene.control.TableColumn<>(
+				"State Name");
+		colState.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("stateName"));
+		colState.setPrefWidth(250);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colType = new javafx.scene.control.TableColumn<>(
+				"Type");
+		colType.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("deviceType"));
+		colType.setPrefWidth(100);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colPath = new javafx.scene.control.TableColumn<>(
+				"Path No.");
+		colPath.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("pathNo"));
+		colPath.setPrefWidth(80);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colPos = new javafx.scene.control.TableColumn<>(
+				"Pos. No");
+		colPos.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("positionNo"));
+		colPos.setPrefWidth(80);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colPort = new javafx.scene.control.TableColumn<>(
+				"Port Name");
+		colPort.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("portName"));
+		colPort.setPrefWidth(120);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colCName = new javafx.scene.control.TableColumn<>(
+				"C-Name");
+		colCName.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("cName"));
+		colCName.setPrefWidth(250);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colSerialStat = new javafx.scene.control.TableColumn<>(
+				"Serial Status");
+		colSerialStat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("serialStatus"));
+		colSerialStat.setPrefWidth(120);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colRespStat = new javafx.scene.control.TableColumn<>(
+				"Response Status");
+		colRespStat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("deviceResponseStatus"));
+		colRespStat.setPrefWidth(120);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colRespData = new javafx.scene.control.TableColumn<>(
+				"Response Data");
+		colRespData.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("deviceResponseData"));
+		colRespData.setPrefWidth(240);
+
+		javafx.scene.control.TableColumn<TestInterfaceStatus, String> colTestStat = new javafx.scene.control.TableColumn<>(
+				"Test Status");
+		colTestStat.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("testStatus"));
+		colTestStat.setPrefWidth(197);
+
+		table.getColumns().addAll(colSNo, colBay, colState, colType, colPath, colPos, colPort, colCName, colSerialStat,
+				colRespStat, colRespData, colTestStat);
+		return table;
+	}
 
 	// A L L S T A R T O N C L I C K
 	// ===========================================================================================================
@@ -3163,12 +3121,10 @@ public class StateExecutorController implements Initializable {
 					filteredDataList = new ArrayList<>();
 				}
 
-				ref_tvTestStatus.getItems().clear();
-
 				// Print the filtered list
-				filteredDataList.forEach(item ->
+				// filteredDataList.forEach(item ->
 				// ApplicationLauncher.logger.error("Filtered List Item: " + item)
-				ref_tvTestStatus.getItems().add(item));
+				// ref_tvTestStatus.getItems().add(item));
 
 				filteredDataList.clear();
 

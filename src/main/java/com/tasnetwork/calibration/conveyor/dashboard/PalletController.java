@@ -64,8 +64,9 @@ public class PalletController {
 		NO_ENTRY_INACTIVE("Off"),
 		HALT_PALLET_ACTIVE("On"),
 		HALT_PALLET_INACTIVE("Off"),
+		BYPASS_MODE_ACTIVE("On"),
+		BYPASS_MODE_INACTIVE("Off"),
 		REFRESH("Refresh");
-		// LAST_PALLET_DISPLAY("Last Pallet");
 
 		private final String displayName;
 

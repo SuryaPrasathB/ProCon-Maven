@@ -368,34 +368,178 @@ public class DashboardController implements Initializable {
 		this.conveyorOutputMetricsSummaryService = service;
 	}
 
-	/**
-	 * Initializes the dashboard, setting up containers, error code history, and
-	 * debug GUIs.
-	 */
-	@FXML
-	public void initialize() {
-		/*
-		 * ref_eventLog = eventLog;
-		 * initializeBayKeyMap();
-		 * initializeBayContainer();
-		 * refInit();
-		 * 
-		 * initializeMotorControlTab(); // Initialize the motor control tab logic
-		 * initializeMainControlTab() ; // Initialize the main control tab logic
-		 * initializeLaunchersTab() ;
-		 * 
-		 * try {
-		 * if (ConstantConveyorConfig.CONVEYOR_DEBUG_SCREEN_DISPLAY_ENABLED &&
-		 * !conveyorDebugGUILoaded) {
-		 * loadConveyorDebugGUI();
-		 * loadPalletTrackerGUI();
-		 * loadDutExecutor();
-		 * }
-		 * } catch (Exception e) {
-		 * ApplicationLauncher.logger.error("initialize: Failed to load debug GUIs: " +
-		 * e.getMessage());
-		 * }
-		 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		ref_eventLog = eventLog;
+		initializeBayKeyMap();
+		bayIndicatorManager = new BayIndicatorManager(bayKeyToBayContainer, bayViewFxmlFileName);
+		initializeBayContainer();
+		refInit();
+		guiInit();
+
+		initializeMotorControlTab(); // Initialize the motor control tab logic
+		initializeMainControlTab(); // Initialize the main control tab logic
+		initializeLaunchersTab();
+		initAllBayView();
+
+		try {
+			if (ConstantConveyorConfig.CONVEYOR_DEBUG_SCREEN_DISPLAY_ENABLED && !conveyorDebugGUILoaded) {
+				/*
+				 * loadConveyorDebugGUI();
+				 * loadPalletTrackerGUI();
+				 * loadDutExecutor();
+				 */
+			}
+		} catch (Exception e) {
+			ApplicationLauncher.logger.error("initialize: Exception: Failed to load debug GUIs: " + e.getMessage());
+		}
+
+		ObservableList<String> options = FXCollections.observableArrayList(
+				"Today", "Yesterday", "This Week", "Last Week", "Last 7 Days",
+				"This Month", "Last Month", "This Year", "Last Year", "All Time");
+		periodComboBox.setItems(options);
+		periodComboBox.setValue("Today"); // default
+
+		ConveyorDataManager.setDashboardObject(this);
+
+		refreshInitialConveyorStatus();
+	}
+
+	private void refreshInitialConveyorStatus() {
+		new Thread(() -> {
+			try {
+				// Wait slightly for UI to be ready
+				Thread.sleep(1000);
+
+				com.tasnetwork.calibration.conveyor.bay.BayUtils bayUtils = new com.tasnetwork.calibration.conveyor.bay.BayUtils();
+				BayActionHandler bayActionHandler = new BayActionHandler("");
+				BayIndicatorManager indicatorManager = ConveyorDataManager.getDashboardObject()
+						.getBayIndicatorManager();
+
+				// Mapping for Fingertip latches
+				java.util.Map<String, String> fingertipPorts = new java.util.HashMap<>();
+				fingertipPorts.put(ConstantConveyor.FT_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.HV_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.HV_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.IR_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.IR_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.CALIBRATION_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.CALIB_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.VERIFICATION_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.VERIFIC_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.STA_NLD1_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.STA_NLD2_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.COMMUNICATION_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.COMM_PORT_NAME_FINGER_TIP);
+				fingertipPorts.put(ConstantConveyor.UNLOADING_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.UNLOADING_PORT_NAME_FINGER_TIP);
+
+				// Mapping for Stoppers
+				java.util.Map<String, String> stopperPorts = new java.util.HashMap<>();
+				stopperPorts.put(ConstantConveyor.FT_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_AT);
+				stopperPorts.put(ConstantConveyor.HV_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.HV_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.IR_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.IR_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.CALIBRATION_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.CALIB_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.VERIFICATION_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.WAITING_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.WAITING_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.STA_NLD1_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.STA_NLD2_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.COMMUNICATION_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.COMM_PORT_NAME_STPR);
+				stopperPorts.put(ConstantConveyor.UNLOADING_BAY_KEY,
+						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.UNLOADING_PORT_NAME_STPR);
+
+				for (String bayKey : stopperPorts.keySet()) {
+					ApplicationLauncher.logger.info("refreshInitialConveyorStatus: Processing bayKey: " + bayKey);
+
+					// 1. Fetch Latch (FINGER_TIP) State from OUTPUT
+					String fingertipPort = fingertipPorts.get(bayKey);
+					if (fingertipPort != null) {
+						com.tasnetwork.calibration.conveyor.bay.IoPortInfo fingertipPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
+								.getOutputPortDetails(fingertipPort);
+						if (fingertipPortInfo != null) {
+							String state = bayUtils.getInputDataFromPlcBayV2(fingertipPortInfo);
+							boolean isOpen = com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping.OFF
+									.equalsIgnoreCase(state);
+							ApplicationLauncher.logger.info("refreshInitialConveyorStatus [FINGERTIP] - bayKey: "
+									+ bayKey
+									+ " | port: " + fingertipPort + " | state: " + state + " | isOpen: " + isOpen);
+							javafx.application.Platform.runLater(() -> {
+								indicatorManager.setPalletsLockedImageDisplayOn(bayKey, isOpen);
+							});
+						} else {
+							ApplicationLauncher.logger
+									.warn("refreshInitialConveyorStatus [FINGERTIP] - Port info null for port: "
+											+ fingertipPort);
+						}
+					}
+
+					// 2. Fetch Stopper State from OUTPUT
+					String stopperPort = stopperPorts.get(bayKey);
+					if (stopperPort != null) {
+						com.tasnetwork.calibration.conveyor.bay.IoPortInfo stopperPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
+								.getOutputPortDetails(stopperPort);
+						if (stopperPortInfo != null) {
+							String state = bayUtils.getInputDataFromPlcBayV2(stopperPortInfo);
+							boolean isOpen = com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping.OFF
+									.equalsIgnoreCase(state);
+							ApplicationLauncher.logger.info("refreshInitialConveyorStatus [STOPPER] - bayKey: " + bayKey
+									+ " | port: " + stopperPort + " | state: " + state + " | isOpen: " + isOpen);
+							javafx.application.Platform.runLater(() -> {
+								indicatorManager.updateBayExitStopper(bayKey, !isOpen);
+							});
+						} else {
+							ApplicationLauncher.logger.warn(
+									"refreshInitialConveyorStatus [STOPPER] - Port info null for port: " + stopperPort);
+						}
+					}
+
+					// Fetch Entry Stopper for FT Bay explicitly
+					if (ConstantConveyor.FT_BAY_KEY.equals(bayKey)) {
+						com.tasnetwork.calibration.conveyor.bay.IoPortInfo entryStopperPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
+								.getOutputPortDetails(com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4);
+						if (entryStopperPortInfo != null) {
+							String state = bayUtils.getInputDataFromPlcBayV2(entryStopperPortInfo);
+							boolean isOpen = com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping.OFF
+									.equalsIgnoreCase(state);
+							ApplicationLauncher.logger.info("refreshInitialConveyorStatus [ENTRY STOPPER] - bayKey: " + bayKey
+									+ " | port: " + com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4 + " | state: " + state + " | isOpen: " + isOpen);
+							javafx.application.Platform.runLater(() -> {
+								indicatorManager.updateBayEntryStopper(bayKey, !isOpen);
+							});
+						}
+					}
+				}
+
+				// 3. Trigger Pallet Refreshes
+				if (bayActionHandler != null) {
+					bayActionHandler.refreshFtBay();
+					bayActionHandler.refreshHvBay();
+					bayActionHandler.refreshIrBay();
+					bayActionHandler.refreshCalibBay();
+					bayActionHandler.refreshVerific1Bay();
+					bayActionHandler.refreshWaitingVerific1Bay();
+					bayActionHandler.refreshSta1Bay();
+					bayActionHandler.refreshSta2Bay();
+					bayActionHandler.refreshRejectionBay();
+					bayActionHandler.refreshUnloadingBay();
+				}
+
+			} catch (Exception e) {
+				ApplicationLauncher.logger.error("Error fetching initial conveyor status: " + e.getMessage(), e);
+			}
+		}).start();
 	}
 
 	/**
@@ -2352,43 +2496,6 @@ public class DashboardController implements Initializable {
 
 	public static void setRef_unloadingBayContainer(AnchorPane ref_unloadingBayContainer) {
 		DashboardController.ref_unloadingPalletContainer = ref_unloadingBayContainer;
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-
-		ref_eventLog = eventLog;
-		initializeBayKeyMap();
-		bayIndicatorManager = new BayIndicatorManager(bayKeyToBayContainer, bayViewFxmlFileName);
-		initializeBayContainer();
-		refInit();
-		guiInit();
-
-		initializeMotorControlTab(); // Initialize the motor control tab logic
-		initializeMainControlTab(); // Initialize the main control tab logic
-		initializeLaunchersTab();
-		initAllBayView();
-
-		try {
-			if (ConstantConveyorConfig.CONVEYOR_DEBUG_SCREEN_DISPLAY_ENABLED && !conveyorDebugGUILoaded) {
-				/*
-				 * loadConveyorDebugGUI();
-				 * loadPalletTrackerGUI();
-				 * loadDutExecutor();
-				 */
-			}
-		} catch (Exception e) {
-			ApplicationLauncher.logger.error("initialize: Exception: Failed to load debug GUIs: " + e.getMessage());
-		}
-
-		ObservableList<String> options = FXCollections.observableArrayList(
-				"Today", "Yesterday", "This Week", "Last Week", "Last 7 Days",
-				"This Month", "Last Month", "This Year", "Last Year", "All Time");
-		periodComboBox.setItems(options);
-		periodComboBox.setValue("Today"); // default
-		// refreshMetricsTable(); // refresh initially
-
-		ConveyorDataManager.setDashboardObject(this);
 	}
 
 	private void initAllBayView() {

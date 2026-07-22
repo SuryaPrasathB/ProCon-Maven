@@ -101,8 +101,7 @@ public class STA_NoLoadTestBay2Bypass extends TimerTask {
 							+ getTableStatePlanner_StaBay2().size());
 			// setStopProcessCompletedHvBay(false);
 			// setStopProcessRequestedHvBay(false);
-			while (!StaNld_Bay2.isStopProcessCompletedStaNldBay2() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			while (!StaNld_Bay2.isStopProcessCompletedStaNldBay2() && !StaNld_Bay2.isStopProcessRequestedStaNldBay2() && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 				// Process the current state
 				BayResponse bayStatus = processCurrentState();
 
@@ -162,6 +161,10 @@ public class STA_NoLoadTestBay2Bypass extends TimerTask {
 		} else {
 			StaNld_Bay2.logger.debug(
 					"STA_NoLoadTestBay2 : manageSTA_NoLoadTestBay2BypassStates2 :  : No states found in the planner");
+		}
+
+		if (StaNld_Bay2.isStopProcessRequestedStaNldBay2()) {
+			StaNld_Bay2.setStopProcessCompletedStaNldBay2(true);
 		}
 		// =================================================================================================
 		StaNld_Bay2.logger.debug("STA_NoLoadTestBay2 : manageSTA_NoLoadTestBay2BypassStates2 : Exit");

@@ -63,7 +63,9 @@ public class S27_turn_on_motor_Verific_Bay implements VerificTestBayState {
         String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                 portInfo.getBayId(),
                 portInfo.getPortId(),
-                Constant_IO_ActionMapping.OPEN); // Use CLOSE to represent turning the relay "On"
+                Constant_IO_ActionMapping.OPEN);
+
+        // Use CLOSE to represent turning the relay "On"
 
         status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 

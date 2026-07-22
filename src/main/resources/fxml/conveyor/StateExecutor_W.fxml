@@ -537,25 +537,7 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="1760.0">
                                        <children>
-                                          <TableView fx:id="tvTestStatus" layoutX="4.0" layoutY="8.0" prefHeight="418.0" prefWidth="1753.0">
-                                             <columns>
-                                                <TableColumn fx:id="colTsSerialNo" maxWidth="60.0" prefWidth="60.0" text="S.No" />
-                                                <TableColumn fx:id="colTsBayName" maxWidth="120.0" prefWidth="120.0" text="Bay &#10;Name" />
-                                                <TableColumn fx:id="colTsStateName" maxWidth="250.0" prefWidth="250.0" text="State Name" />
-                                                <TableColumn fx:id="colTsDeviceType" maxWidth="100.0" prefWidth="100.0" text="Type" />
-                                                <TableColumn fx:id="colTsPathNo" maxWidth="80.0" text="Path No." />
-                                                <TableColumn fx:id="colTsPositionNo" maxWidth="80.0" text="Pos. No" />
-                                                <TableColumn fx:id="colTsPortName" maxWidth="120.0" prefWidth="120.0" text="Port Name" />
-                                                <TableColumn fx:id="colTsCname" maxWidth="250.0" prefWidth="250.0" text="C-Name" />
-                                                <TableColumn fx:id="colTsSerialStatus" maxWidth="120.0" prefWidth="120.0" text="Serial&#10;Status" />
-                                                <TableColumn fx:id="colTsQrResponse" maxWidth="120.0" prefWidth="120.0" text="Response &#10;Status" />
-                                                <TableColumn fx:id="colTsQrData" maxWidth="2000.0" prefWidth="240.0" text="Response &#10;Data" />
-                                                <TableColumn fx:id="colTsStatus" maxWidth="241.60014648437505" prefWidth="197.599853515625" text="Test Status" />
-                                             </columns>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </TableView>
+                                           <TabPane fx:id="tpTestStatusBays" layoutX="4.0" layoutY="8.0" prefHeight="418.0" prefWidth="1753.0" tabClosingPolicy="UNAVAILABLE" />
                                        </children>
                                     </AnchorPane>
                                  </content>

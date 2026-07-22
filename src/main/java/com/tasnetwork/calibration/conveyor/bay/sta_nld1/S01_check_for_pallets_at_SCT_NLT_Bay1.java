@@ -8,6 +8,9 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
+import com.tasnetwork.calibration.conveyor.StateExecutorController;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
@@ -29,6 +32,10 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay1 implements STA_NoLoadTestBay1
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
         StaNld_Bay1.setStopProcessRequestedStaNldBay1(false);
+
+        ConveyorDataManager.getDashboardObject().removePalletFromBay(getMyBayKey());
+        ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+                .updateBayMonitoringAllPalletsExistInBay(getMyBayKey());
 
         boolean isPalletAvailableAt_SCT_NLTBay1;
         long startTime;
@@ -68,6 +75,8 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay1 implements STA_NoLoadTestBay1
 
         if (stableDetection) {
             StaNld_Bay1.logger.info("S01_check_for_pallets_at_SCT_NLT_Bay1 : Pallet Available");
+            ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+                    .updateBayAllPalletsExistInBay(getMyBayKey(), true);
             bayResponse.setStatus(true);
             bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
             ConveyorDataManager.setSta1PalletsAllCleared(false);
@@ -93,7 +102,20 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay1 implements STA_NoLoadTestBay1
 
         IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.SCT_NLT_BAY1_SNSR_PALLET1);
 
+        TestInterfaceStatus testInterfaceStatus = null;
         if (portInfo != null) {
+            testInterfaceStatus = new TestInterfaceStatus(
+                    ConstantConveyor.STA_NLD1_BAY_KEY,
+                    "-",
+                    ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+                    "-",
+                    "-",
+                    portInfo.getPortId(),
+                    ConstantBayPortNameMapping.SCT_NLT_BAY1_SNSR_PALLET1,
+                    ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+                    "Executing",
+                    ConstantConveyor.COMM_EXECUTION_STATUS_INP);
+            StateExecutorController.addToTestStatusGui(testInterfaceStatus);
             if (logEnabled) {
 
                 StaNld_Bay1.logger.debug("isPalletAvailableAt_SCT_NLTBay1 : getClusterId: " + portInfo.getClusterId()
@@ -110,6 +132,7 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay1 implements STA_NoLoadTestBay1
         BayUtils bayUtils = new BayUtils();
 
         String state = bayUtils.getInputDataFromBayV2(portInfo);
+
         if (logEnabled) {
             StaNld_Bay1.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay1 : state : " + state);
         }

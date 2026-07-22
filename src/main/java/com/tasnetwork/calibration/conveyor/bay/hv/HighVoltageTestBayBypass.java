@@ -97,8 +97,7 @@ public class HighVoltageTestBayBypass extends TimerTask {
 					"HighVoltageTestBay : manageHighVoltageTestBayBypassStates2 : getTableStatePlanner2 : Size : "
 							+ getTableStatePlanner_HvBay().size());
 
-			while (!Hv.isStopProcessCompletedHvtBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			while (!Hv.isStopProcessCompletedHvtBay() && !Hv.isStopProcessRequestedHvtBay() && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 				// Process the current state
 				BayResponse bayStatus = processCurrentState();
 
@@ -159,6 +158,10 @@ public class HighVoltageTestBayBypass extends TimerTask {
 		} else {
 			Hv.logger.debug(
 					"HighVoltageTestBay : manageHighVoltageTestBayBypassStates2 : No states found in the planner");
+		}
+
+		if (Hv.isStopProcessRequestedHvtBay()) {
+			Hv.setStopProcessCompletedHvtBay(true);
 		}
 
 		// =================================================================================================

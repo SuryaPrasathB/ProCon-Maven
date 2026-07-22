@@ -13,310 +13,338 @@ import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController
 
 public class S19_release_pallets_from_STA_NLDT_Bay1 implements STA_NoLoadTestBay1State {
 
-    @Override
-    public BayResponse handleRequest() {
+        @Override
+        public BayResponse handleRequest() {
 
-        StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Entry");
-        BayResponse bayResponse = new BayResponse();
-        bayResponse.setStatus(true);
-        bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-        BayUtils.delay(4000);
+                StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Entry");
+                BayResponse bayResponse = new BayResponse();
+                bayResponse.setStatus(true);
+                bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
+                BayUtils.delay(4000);
 
-        bayResponse = releasePalletsFromStaNlt_Bay1();
+                bayResponse = releasePalletsFromStaNlt_Bay1();
 
+                StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Exit");
+                return bayResponse;
+        }
 
-        StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Exit");
-        return bayResponse;
-    }
+        private BayResponse releasePalletsFromStaNlt_Bay1() {
 
-    private BayResponse releasePalletsFromStaNlt_Bay1() {
+                int noOfPalletsExited = 0;
+                int maxNoOfPalletsInStaNld1 = DeviceDataManagerController.getConveyorConfigParsedKey()
+                                .getMaxNoOfPalletsInStaNld1();
+                int postDelaySta1ExitOpenStopLatch1_InMsec = 1000
+                                * DeviceDataManagerController.getConveyorConfigParsedKey()
+                                                .getPostDelaySta1ExitOpenStopLatch1_InSec();
+                int postDelaySta1ExitOpenStopLatch2_InMsec = 1000
+                                * DeviceDataManagerController.getConveyorConfigParsedKey()
+                                                .getPostDelaySta1ExitOpenStopLatch2_InSec();
+                int postDelaySta1ExitCloseStopLatch1_InMsec = 1000
+                                * DeviceDataManagerController.getConveyorConfigParsedKey()
+                                                .getPostDelaySta1ExitCloseStopLatch1_InSec();
+                int postDelaySta1ExitCloseStopLatch2_InMsec = 1000
+                                * DeviceDataManagerController.getConveyorConfigParsedKey()
+                                                .getPostDelaySta1ExitCloseStopLatch2_InSec();
 
-        int noOfPalletsExited = 0;
-        int maxNoOfPalletsInStaNld1 = DeviceDataManagerController.getConveyorConfigParsedKey()
-                .getMaxNoOfPalletsInStaNld1();
-        int postDelaySta1ExitOpenStopLatch1_InMsec = 1000
-                * DeviceDataManagerController.getConveyorConfigParsedKey().getPostDelaySta1ExitOpenStopLatch1_InSec();
-        int postDelaySta1ExitOpenStopLatch2_InMsec = 1000
-                * DeviceDataManagerController.getConveyorConfigParsedKey().getPostDelaySta1ExitOpenStopLatch2_InSec();
-        int postDelaySta1ExitCloseStopLatch1_InMsec = 1000
-                * DeviceDataManagerController.getConveyorConfigParsedKey().getPostDelaySta1ExitCloseStopLatch1_InSec();
-        int postDelaySta1ExitCloseStopLatch2_InMsec = 1000
-                * DeviceDataManagerController.getConveyorConfigParsedKey().getPostDelaySta1ExitCloseStopLatch2_InSec();
+                BayResponse bayResponse = close_StopLatch2_SCT_NLT_Bay1();
 
-        BayResponse bayResponse = close_StopLatch2_SCT_NLT_Bay1();
+                if (bayResponse.getStatus()) {
+                        StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Stop Latch Closed");
 
+                        noOfPalletsExited = 0;
+                        while ((noOfPalletsExited <= maxNoOfPalletsInStaNld1)
+                                        && (!StaNld_Bay1.isStopProcessRequestedStaNldBay1())) {
+                                if (noOfPalletsExited < maxNoOfPalletsInStaNld1) {
+                                        BayUtils.delay(postDelaySta1ExitCloseStopLatch2_InMsec);
+                                        StaNld_Bay1.logger
+                                                        .info("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : Hit1 ");
+                                        bayResponse = open_StopLatch_SCT_NLT_Bay1();
+                                        if (bayResponse.getStatus()) {
+                                                BayUtils.delay(postDelaySta1ExitOpenStopLatch1_InMsec);
+                                                StaNld_Bay1.logger
+                                                                .info("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Hit2 ");
+                                                bayResponse = close_StopLatch_SCT_NLT_Bay1();
+                                                if (bayResponse.getStatus()) {
+                                                        BayUtils.delay(postDelaySta1ExitCloseStopLatch1_InMsec);
+                                                        StaNld_Bay1.logger.info(
+                                                                        "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : Hit3 ");
+                                                        bayResponse = open_StopLatch2_SCT_NLT_Bay1();
+                                                        if (bayResponse.getStatus()) {
+                                                                StaNld_Bay1.logger.info(
+                                                                                "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : Hit4 ");
+                                                                BayUtils.delay(postDelaySta1ExitOpenStopLatch2_InMsec);
+                                                                bayResponse = close_StopLatch2_SCT_NLT_Bay1();
+                                                                noOfPalletsExited++;
+                                                                StaNld_Bay1.logger.info(
+                                                                                "S19_release_pallets_from_STA_NLDT_Bay1 : noOfPalletsExited :"
+                                                                                                + noOfPalletsExited);
+                                                                if (!bayResponse.getStatus()) {
+                                                                        StaNld_Bay1.logger.info(
+                                                                                        "S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Close Stop Latch2");
+                                                                        bayResponse.setStatus(false);
+                                                                        bayResponse.setErrorCode(
+                                                                                        ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_018);
+                                                                }
+                                                        } else {
+                                                                StaNld_Bay1.logger
+                                                                                .info("S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Open Stop Latch2");
+                                                                bayResponse.setStatus(false);
+                                                                bayResponse.setErrorCode(
+                                                                                ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_019);
+                                                        }
+                                                } else {
+                                                        StaNld_Bay1.logger
+                                                                        .info("S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Close Stop Latch1");
+                                                        bayResponse.setStatus(false);
+                                                        bayResponse.setErrorCode(
+                                                                        ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_007);
+                                                }
+                                        } else {
+                                                StaNld_Bay1.logger.info(
+                                                                "S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Open Stop Latch1");
+                                                bayResponse.setStatus(false);
+                                                bayResponse.setErrorCode(
+                                                                ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_005);
+                                                break;
+                                        }
+                                } else {
+                                        bayResponse.setStatus(true);
+                                        bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
+                                        PalletTrackerController palletTracker = new PalletTrackerController();
+                                        palletTracker.switchBatchToNextBay(myBayKey,
+                                                        ConstantConveyor.UNLOADING_BAY_KEY);
+                                        StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : achieved :"
+                                                        + noOfPalletsExited);
+                                        noOfPalletsExited++;
 
-        if (bayResponse.getStatus()) {
-            StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Stop Latch Closed");
-
-            noOfPalletsExited = 0;
-            while ((noOfPalletsExited <= maxNoOfPalletsInStaNld1)
-                    && (!StaNld_Bay1.isStopProcessRequestedStaNldBay1())) {
-                if (noOfPalletsExited < maxNoOfPalletsInStaNld1) {
-                    BayUtils.delay(postDelaySta1ExitCloseStopLatch2_InMsec);
-                    StaNld_Bay1.logger
-                            .info("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : Hit1 ");
-                    bayResponse = open_StopLatch_SCT_NLT_Bay1();
-                    if (bayResponse.getStatus()) {
-                        BayUtils.delay(postDelaySta1ExitOpenStopLatch1_InMsec);
-                        StaNld_Bay1.logger
-                                .info("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Hit2 ");
-                        bayResponse = close_StopLatch_SCT_NLT_Bay1();
-                        if (bayResponse.getStatus()) {
-                            BayUtils.delay(postDelaySta1ExitCloseStopLatch1_InMsec);
-                            StaNld_Bay1.logger.info(
-                                    "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : Hit3 ");
-                            bayResponse = open_StopLatch2_SCT_NLT_Bay1();
-                            if (bayResponse.getStatus()) {
-                                StaNld_Bay1.logger.info(
-                                        "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : Hit4 ");
-                                BayUtils.delay(postDelaySta1ExitOpenStopLatch2_InMsec);
-                                bayResponse = close_StopLatch2_SCT_NLT_Bay1();
-                                noOfPalletsExited++;
-                                StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : noOfPalletsExited :"
-                                        + noOfPalletsExited);
-                                if (!bayResponse.getStatus()) {
-                                    StaNld_Bay1.logger.info(
-                                            "S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Close Stop Latch2");
-                                    bayResponse.setStatus(false);
-                                    bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_018);
                                 }
-                            } else {
-                                StaNld_Bay1.logger
-                                        .info("S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Open Stop Latch2");
-                                bayResponse.setStatus(false);
-                                bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_019);
-                            }
-                        } else {
-                            StaNld_Bay1.logger
-                                    .info("S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Close Stop Latch1");
-                            bayResponse.setStatus(false);
-                            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_007);
                         }
-                    } else {
-                        StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Open Stop Latch1");
-                        bayResponse.setStatus(false);
-                        bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_005);
-                        break;
-                    }
                 } else {
-                    bayResponse.setStatus(true);
-                    bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-                    PalletTrackerController palletTracker = new PalletTrackerController();
-                    palletTracker.switchBatchToNextBay(myBayKey, ConstantConveyor.UNLOADING_BAY_KEY);
-                    StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : achieved :" + noOfPalletsExited);
-                    noOfPalletsExited++;
-
+                        StaNld_Bay1.logger.info(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Close Stop Latch-begin");
+                        bayResponse.setStatus(false);
+                        bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_018);
                 }
-            }
-        } else {
-            StaNld_Bay1.logger.info("S19_release_pallets_from_STA_NLDT_Bay1 : Failed to Close Stop Latch-begin");
-            bayResponse.setStatus(false);
-            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY1_018);
+
+                return bayResponse;
         }
 
+        private BayResponse close_StopLatch_SCT_NLT_Bay1() {
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Entry");
 
-        return bayResponse;
-    }
+                boolean status = false;
 
-    private BayResponse close_StopLatch_SCT_NLT_Bay1() {
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Entry");
+                BayResponse bayResponse = new BayResponse();
+                IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
 
-        boolean status = false;
+                String state = "";
 
-        BayResponse bayResponse = new BayResponse();
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
+                if (portInfo != null) {
+                        StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
+                        StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
+                        StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
 
-        String state = "";
-        if (portInfo != null) {
-            StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
-            StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
-            StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
+                        String outputInactive = Constant_IO_ActionMapping.ON;
 
-            String outputInactive = Constant_IO_ActionMapping.ON;
+                        BayUtils bayUtils = new BayUtils();
 
-            BayUtils bayUtils = new BayUtils();
+                        state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                                        portInfo.getBayId(),
+                                        portInfo.getPortId(),
+                                        outputInactive);
 
-            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                    portInfo.getBayId(),
-                    portInfo.getPortId(),
-                    outputInactive);
+                        StaNld_Bay1.logger
+                                        .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : "
+                                                        + state);
 
-            StaNld_Bay1.logger
-                    .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : " + state);
+                        status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-            status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
+                        if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
+                                status = true;
+                        }
 
-            if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
-                status = true;
-            }
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : "
+                                                        + status);
 
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : " + status);
+                } else {
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Output port not found");
+                }
 
-        } else {
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Output port not found");
+                bayResponse.setStatus(status);
+                bayResponse.setResponseData(state);
+
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : "
+                                                + status);
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Exit");
+                return bayResponse;
         }
 
+        private BayResponse open_StopLatch_SCT_NLT_Bay1() {
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : Entry");
 
-        bayResponse.setStatus(status);
-        bayResponse.setResponseData(state);
+                boolean status = false;
 
-        StaNld_Bay1.logger
-                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : " + status);
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : Exit");
-        return bayResponse;
-    }
+                BayResponse bayResponse = new BayResponse();
+                IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
 
-    private BayResponse open_StopLatch_SCT_NLT_Bay1() {
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : Entry");
+                String state = "";
+                if (portInfo != null) {
+                        StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
+                        StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
+                        StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
 
-        boolean status = false;
+                        String outputActive = Constant_IO_ActionMapping.OFF;
+                        BayUtils bayUtils = new BayUtils();
 
-        BayResponse bayResponse = new BayResponse();
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
+                        state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                                        portInfo.getBayId(),
+                                        portInfo.getPortId(),
+                                        outputActive);
 
-        String state = "";
-        if (portInfo != null) {
-            StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
-            StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
-            StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
+                        StaNld_Bay1.logger
+                                        .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : "
+                                                        + state);
 
-            String outputActive = Constant_IO_ActionMapping.OFF;
-            BayUtils bayUtils = new BayUtils();
+                        status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
-            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                    portInfo.getBayId(),
-                    portInfo.getPortId(),
-                    outputActive);
+                        if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
+                                status = true;
+                        }
 
-            StaNld_Bay1.logger
-                    .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : state : " + state);
+                        StaNld_Bay1.logger
+                                        .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : "
+                                                        + status);
 
-            status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
+                } else {
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1: Output port not found");
+                        return bayResponse;// responseReturn ;
+                }
 
-            if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
-                status = true;
-            }
+                bayResponse.setStatus(status);
+                bayResponse.setResponseData(state);
 
-            StaNld_Bay1.logger
-                    .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : " + status);
-
-        } else {
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1: Output port not found");
-            return bayResponse;// responseReturn ;
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : "
+                                                + status);
+                StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : Exit");
+                return bayResponse;
         }
 
+        private BayResponse close_StopLatch2_SCT_NLT_Bay1() {
+                StaNld_Bay1.logger.debug(
+                                "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : Entry");
 
-        bayResponse.setStatus(status);
-        bayResponse.setResponseData(state);
+                boolean status = false;
 
-        StaNld_Bay1.logger
-                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : status : " + status);
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch_SCT_NLT_Bay1 : Exit");
-        return bayResponse;
-    }
+                BayResponse bayResponse = new BayResponse();
+                IoPortInfo portInfo = BayUtils
+                                .getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR2);
 
-    private BayResponse close_StopLatch2_SCT_NLT_Bay1() {
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : Entry");
+                String state = "";
+                if (portInfo != null) {
+                        StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
+                        StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
+                        StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
 
-        boolean status = false;
+                        String outputInactive = Constant_IO_ActionMapping.ON;
 
-        BayResponse bayResponse = new BayResponse();
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR2);
+                        BayUtils bayUtils = new BayUtils();
 
-        String state = "";
-        if (portInfo != null) {
-            StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
-            StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
-            StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
+                        state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                                        portInfo.getBayId(),
+                                        portInfo.getPortId(),
+                                        outputInactive);
 
-            String outputInactive = Constant_IO_ActionMapping.ON;
+                        StaNld_Bay1.logger
+                                        .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : state : "
+                                                        + state);
 
-            BayUtils bayUtils = new BayUtils();
+                        status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                    portInfo.getBayId(),
-                    portInfo.getPortId(),
-                    outputInactive);
+                        if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
+                                status = true;
+                        }
 
-            StaNld_Bay1.logger
-                    .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : state : " + state);
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : status : "
+                                                        + status);
 
-            status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
+                } else {
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1: Output port not found");
+                }
 
-            if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
-                status = true;
-            }
+                bayResponse.setStatus(status);
+                bayResponse.setResponseData(state);
 
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : status : " + status);
-
-        } else {
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1: Output port not found");
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : status : "
+                                                + status);
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : Exit");
+                return bayResponse;
         }
 
+        private BayResponse open_StopLatch2_SCT_NLT_Bay1() {
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : Entry");
 
-        bayResponse.setStatus(status);
-        bayResponse.setResponseData(state);
+                boolean status = false;
 
-        StaNld_Bay1.logger
-                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : status : " + status);
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : close_StopLatch2_SCT_NLT_Bay1 : Exit");
-        return bayResponse;
-    }
+                BayResponse bayResponse = new BayResponse();
+                IoPortInfo portInfo = BayUtils
+                                .getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR2);
 
-    private BayResponse open_StopLatch2_SCT_NLT_Bay1() {
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : Entry");
+                String state = "";
+                if (portInfo != null) {
+                        StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
+                        StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
+                        StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
 
-        boolean status = false;
+                        String outputActive = Constant_IO_ActionMapping.OFF;
+                        BayUtils bayUtils = new BayUtils();
 
-        BayResponse bayResponse = new BayResponse();
-        IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR2);
+                        state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                                        portInfo.getBayId(),
+                                        portInfo.getPortId(),
+                                        outputActive);
 
-        String state = "";
-        if (portInfo != null) {
-            StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
-            StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
-            StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
+                        StaNld_Bay1.logger
+                                        .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : state : "
+                                                        + state);
 
-            String outputActive = Constant_IO_ActionMapping.OFF;
-            BayUtils bayUtils = new BayUtils();
+                        status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
 
-            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                    portInfo.getBayId(),
-                    portInfo.getPortId(),
-                    outputActive);
+                        if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
+                                status = true;
+                        }
 
-            StaNld_Bay1.logger
-                    .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : state : " + state);
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : status : "
+                                                        + status);
 
-            status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
+                } else {
+                        StaNld_Bay1.logger.debug(
+                                        "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1: Output port not found");
+                        return bayResponse;
+                }
 
-            if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
-                status = true;
-            }
+                bayResponse.setStatus(status);
+                bayResponse.setResponseData(state);
 
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : status : " + status);
-
-        } else {
-            StaNld_Bay1.logger.debug(
-                    "S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1: Output port not found");
-            return bayResponse;
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : status : "
+                                                + status);
+                StaNld_Bay1.logger
+                                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : Exit");
+                return bayResponse;
         }
-
-
-        bayResponse.setStatus(status);
-        bayResponse.setResponseData(state);
-
-        StaNld_Bay1.logger
-                .debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : status : " + status);
-        StaNld_Bay1.logger.debug("S19_release_pallets_from_STA_NLDT_Bay1 : open_StopLatch2_SCT_NLT_Bay1 : Exit");
-        return bayResponse;
-    }
 
 }

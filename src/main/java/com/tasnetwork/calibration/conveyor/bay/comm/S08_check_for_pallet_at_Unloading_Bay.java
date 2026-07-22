@@ -8,6 +8,9 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
+import com.tasnetwork.calibration.conveyor.StateExecutorController;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -96,7 +99,21 @@ public class S08_check_for_pallet_at_Unloading_Bay implements CommTestBayState {
 
         IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.UNLOADING_PORT_NAME_SNSR_PALLET);
 
+        TestInterfaceStatus testInterfaceStatus = null;
         if (portInfo != null) {
+            testInterfaceStatus = new TestInterfaceStatus(
+                    ConstantConveyor.COMMUNICATION_BAY_KEY,
+                    "-",
+                    ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+                    "-",
+                    "-",
+                    portInfo.getPortId(),
+                    ConstantBayPortNameMapping.UNLOADING_PORT_NAME_SNSR_PALLET,
+                    ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+                    "Executing",
+                    ConstantConveyor.COMM_EXECUTION_STATUS_INP);
+            StateExecutorController.addToTestStatusGui(testInterfaceStatus);
+
             Comm.logger.debug("PortId    : " + portInfo.getPortId());
             Comm.logger.debug("ClusterId : " + portInfo.getClusterId());
             Comm.logger.debug("BayId     : " + portInfo.getBayId());
@@ -111,6 +128,12 @@ public class S08_check_for_pallet_at_Unloading_Bay implements CommTestBayState {
          * String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(),
          * portInfo.getBayId(),
          * portInfo.getPortId());
+         * if (testInterfaceStatus != null) {
+         * testInterfaceStatus.setDeviceResponseData(state);
+         * testInterfaceStatus.setTestStatus("Success");
+         * StateExecutorController.updateTestStatusGui(testInterfaceStatus);
+         * }
+         * 
          */
 
         String state = bayUtils.getInputDataFromBayV2(portInfo);

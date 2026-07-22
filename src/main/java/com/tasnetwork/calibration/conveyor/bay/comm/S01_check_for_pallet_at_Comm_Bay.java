@@ -8,11 +8,11 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-//import com.tasnetwork.calibration.conveyor.bay_highvoltagetest.HighVoltageTestBay;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S01_check_for_pallet_at_Comm_Bay implements CommTestBayState {
 
@@ -82,7 +82,21 @@ public class S01_check_for_pallet_at_Comm_Bay implements CommTestBayState {
 
         IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.COMM_PORT_NAME_SNSR_PALLET);
 
+        TestInterfaceStatus testInterfaceStatus = null;
         if (portInfo != null) {
+            testInterfaceStatus = new TestInterfaceStatus(
+                    ConstantConveyor.COMMUNICATION_BAY_KEY,
+                    "-",
+                    ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+                    "-",
+                    "-",
+                    portInfo.getPortId(),
+                    ConstantBayPortNameMapping.COMM_PORT_NAME_SNSR_PALLET,
+                    ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+                    "Executing",
+                    ConstantConveyor.COMM_EXECUTION_STATUS_INP);
+            StateExecutorController.addToTestStatusGui(testInterfaceStatus);
+
             Comm.logger.debug("PortId    : " + portInfo.getPortId());
             Comm.logger.debug("ClusterId : " + portInfo.getClusterId());
             Comm.logger.debug("BayId     : " + portInfo.getBayId());

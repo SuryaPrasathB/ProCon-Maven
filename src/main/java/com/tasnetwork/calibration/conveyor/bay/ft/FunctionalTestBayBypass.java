@@ -177,6 +177,10 @@ public class FunctionalTestBayBypass extends TimerTask {
 					.debug("FunctionalTestBay : manageFunctionalTestBayBypassStates2 : No states found in the planner");
 		}
 
+		if (Ft.isStopProcessRequestedFtBay()) {
+			Ft.setStopProcessCompletedFtBay(true);
+		}
+
 		// =================================================================================================
 		Ft.logger.debug("FunctionalTestBay : manageFunctionalTestBayBypassStates2 : Exit");
 

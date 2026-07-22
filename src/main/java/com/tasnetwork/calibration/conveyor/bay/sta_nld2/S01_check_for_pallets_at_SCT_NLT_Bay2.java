@@ -8,6 +8,9 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
+import com.tasnetwork.calibration.conveyor.StateExecutorController;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -17,11 +20,10 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 public class S01_check_for_pallets_at_SCT_NLT_Bay2 implements STA_NoLoadTestBay2State {
 
 	private String bayStateSequenceId = ConstantBayStateManage.BAY_HP_SEQ_01;
-	private String palletSensorPortCname =  ConstantBayPortNameMapping.SCT_NLT_BAY2_SNSR_PALLET1;
+	private String palletSensorPortCname = ConstantBayPortNameMapping.SCT_NLT_BAY2_SNSR_PALLET1;
 	private String failStateErrorCode = ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_001;
 
 	private boolean logEnabled = true;
-
 
 	@Override
 	public BayResponse handleRequest() {
@@ -32,13 +34,16 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay2 implements STA_NoLoadTestBay2
 		StaNld_Bay2.setStopProcessRequestedStaNldBay2(false);
 		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test1  : false");
 
+		ConveyorDataManager.getDashboardObject().removePalletFromBay(getMyBayKey());
+		ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+				.updateBayMonitoringAllPalletsExistInBay(getMyBayKey());
 
 		boolean isPalletAvailableAt_SCT_NLTBay2;
 		long startTime;
 		boolean stableDetection = false;
 
-		while ((!stableDetection) && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)  
-				&& (!StaNld_Bay2.isStopProcessRequestedStaNldBay2()) ){
+		while ((!stableDetection) && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)
+				&& (!StaNld_Bay2.isStopProcessRequestedStaNldBay2())) {
 			Map<String, Object> responseReturn = isPalletAvailableAt_SCT_NLTBay2();
 			isPalletAvailableAt_SCT_NLTBay2 = (boolean) responseReturn.get("status");
 
@@ -60,8 +65,9 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay2 implements STA_NoLoadTestBay2
 					stableDetection = true;
 				}
 			} else {
-				if(logEnabled) {
-					StaNld_Bay2.logger.info("S01_check_for_pallets_at_SCT_NLT_Bay2 : No pallet Available at SCT NLT Bay2");
+				if (logEnabled) {
+					StaNld_Bay2.logger
+							.info("S01_check_for_pallets_at_SCT_NLT_Bay2 : No pallet Available at SCT NLT Bay2");
 				}
 				BayUtils.delay(1000);
 			}
@@ -70,6 +76,8 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay2 implements STA_NoLoadTestBay2
 
 		if (stableDetection) {
 			StaNld_Bay2.logger.info("S01_check_for_pallets_at_SCT_NLT_Bay2 : Pallet Available");
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+					.updateBayAllPalletsExistInBay(getMyBayKey(), true);
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 			ConveyorDataManager.setSta2PalletsAllCleared(false);
@@ -79,70 +87,79 @@ public class S01_check_for_pallets_at_SCT_NLT_Bay2 implements STA_NoLoadTestBay2
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_001);
 		}
 
-
-
-
 		StaNld_Bay2.logger.info("S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit");
 		return bayResponse;
 	}
 
 	// =======================================================================================================================================================
 
-	private Map<String,Object> isPalletAvailableAt_SCT_NLTBay2() {
-		if(logEnabled) {
+	private Map<String, Object> isPalletAvailableAt_SCT_NLTBay2() {
+		if (logEnabled) {
 			StaNld_Bay2.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay2 : isPalletAvailableAt_SCT_NLTBay2:  Entry");
 		}
 		boolean status = false;
-		Map<String,Object> responseReturn = new HashMap<String,Object>();
+		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 
 		IoPortInfo portInfo = BayUtils.getInputPortDetails(ConstantBayPortNameMapping.SCT_NLT_BAY2_SNSR_PALLET1);
 
+		TestInterfaceStatus testInterfaceStatus = null;
 		if (portInfo != null) {
+			testInterfaceStatus = new TestInterfaceStatus(
+					ConstantConveyor.STA_NLD2_BAY_KEY,
+					"-",
+					ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
+					"-",
+					"-",
+					portInfo.getPortId(),
+					ConstantBayPortNameMapping.SCT_NLT_BAY2_SNSR_PALLET1,
+					ConstantConveyor.COMM_STATUS_NOT_APPLICABLE,
+					"Executing",
+					ConstantConveyor.COMM_EXECUTION_STATUS_INP);
+			StateExecutorController.addToTestStatusGui(testInterfaceStatus);
 
-
-
-			if(logEnabled) {
-				StaNld_Bay2.logger.debug("isPalletAvailableAt_SCT_NLTBay2 : getClusterId: " +portInfo.getClusterId() + " -> getBayId: " + portInfo.getBayId() + " -> getPortId: " + portInfo.getPortId() );
+			if (logEnabled) {
+				StaNld_Bay2.logger.debug("isPalletAvailableAt_SCT_NLTBay2 : getClusterId: " + portInfo.getClusterId()
+						+ " -> getBayId: " + portInfo.getBayId() + " -> getPortId: " + portInfo.getPortId());
 			}
 		} else {
-			if(logEnabled) {
+			if (logEnabled) {
 				StaNld_Bay2.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay2 : Output port not found");
 			}
-			return responseReturn ;
+			return responseReturn;
 		}
 
 		BayUtils bayUtils = new BayUtils();
 
+		String state = bayUtils.getInputDataFromBayV2(portInfo);
+		if (testInterfaceStatus != null) {
+			testInterfaceStatus.setDeviceResponseData(state);
+			testInterfaceStatus.setTestStatus("Success");
+			StateExecutorController.updateTestStatusGui(testInterfaceStatus);
+		}
 
-
-		String state = bayUtils.getInputDataFromBayV2(portInfo) ;
-		if(logEnabled) {
+		if (logEnabled) {
 			StaNld_Bay2.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay2 : state : " + state);
 		}
 		status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-		if(StateExecutorController.simulateSCTNLTBay2HappyPath){
-			status = true; 
+		if (StateExecutorController.simulateSCTNLTBay2HappyPath) {
+			status = true;
 		}
-		if(logEnabled) {
-			StaNld_Bay2.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay2 : status : " + status); 
+		if (logEnabled) {
+			StaNld_Bay2.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay2 : status : " + status);
 		}
 		responseReturn.put("status", status);
 
-		if(logEnabled) {
+		if (logEnabled) {
 			StaNld_Bay2.logger.debug("S01_check_for_pallets_at_SCT_NLT_Bay2 : Exit");
 		}
 		return responseReturn;
 	}
 
-
-
 	public String getBayStateSequenceId() {
 		return bayStateSequenceId;
 	}
-
-
 
 	public void setBayStateSequenceId(String bayStateSequenceId) {
 		this.bayStateSequenceId = bayStateSequenceId;

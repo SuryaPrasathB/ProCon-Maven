@@ -50,6 +50,7 @@ public class S13_close_stop_latch_COMM_Bay implements CommTestBayState {
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.COMM_PORT_NAME_STPR);
 
         String state = "";
+
         if (portInfo != null) {
             Comm.logger.debug("PortId    : " + portInfo.getPortId());
             Comm.logger.debug("ClusterId : " + portInfo.getClusterId());

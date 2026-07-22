@@ -64,6 +64,7 @@ public class S03_close_the_fingerTip_Latch implements CommTestBayState {
                 portInfo.getBayId(),
                 portInfo.getPortId(),
                 Constant_IO_ActionMapping.OPEN);
+
         status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
         if (StateExecutorController.simulateCommBayHappyPath) {

@@ -97,8 +97,7 @@ public class CalibrationBayBypass extends TimerTask {
 					+ getTableStatePlanner_FtBay().size());
 			// setStopProcessCompletedFtBay(false);
 			// setStopProcessRequestedFtBay(false);
-			while (!Calib.isStopProcessCompletedCalibBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			while (!Calib.isStopProcessCompletedCalibBay() && !Calib.isStopProcessRequestedCalibBay() && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 				// Process the current state
 				BayResponse bayStatus = processCurrentState();
 
@@ -157,6 +156,10 @@ public class CalibrationBayBypass extends TimerTask {
 			}
 		} else {
 			Calib.logger.debug("CalibrationBay : manageCalibrationBayBypassStates2  : No states found in the planner");
+		}
+
+		if (Calib.isStopProcessRequestedCalibBay()) {
+			Calib.setStopProcessCompletedCalibBay(true);
 		}
 
 		// =================================================================================================

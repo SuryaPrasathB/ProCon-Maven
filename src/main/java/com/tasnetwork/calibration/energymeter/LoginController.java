@@ -90,7 +90,6 @@ public class LoginController extends AnchorPane {
 	}
 
 	public void keyBoardEnterAction(KeyEvent e) {
-		ApplicationLauncher.logger.debug("keyBoardEnterAction : Entry");
 		if (e.getCode().equals(KeyCode.ENTER))
 			LoginOnClick();
 	}

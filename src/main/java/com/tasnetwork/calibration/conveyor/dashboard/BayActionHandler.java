@@ -9,12 +9,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.net.ssl.SSLException;
-
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
@@ -101,16 +98,6 @@ public class BayActionHandler {
 					ApplicationLauncher.logger
 							.warn("handleActionByBayType: Unknown bayType " + bayTypeKey + " for action " + actionType);
 			}
-			// If any UI updates were needed after the action, they would typically
-			// be handled here using Platform.runLater(). However, since this
-			// BayActionHandler class itself does not have direct access to UI components,
-			// such updates would usually be delegated back to a UI controller.
-			// Example (conceptual, assuming a UI controller would receive a callback):
-			// Platform.runLater(() -> {
-			// // DashboardController.updateStatusLabel("Action for " + bayTypeKey + "
-			// completed.");
-			// // Or trigger other UI changes if necessary
-			// });
 		}).start();
 	}
 
@@ -137,9 +124,16 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveSta2();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case BLOCK_BAY_EXIT:
 				closeSTANLD2BayStopper1();
 				break;
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openSTANLD2BayStopper1();
 				break;
@@ -269,12 +263,19 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveSta1();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case BLOCK_BAY_EXIT:
 				closeSTANLD1BayStopper1();
 				break;
 			case BLOCK_BAY_EXIT2:
 				closeSTANLD1BayStopper2();
 				break;
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openSTANLD1BayStopper1();
 				openSTANLD1BayStopper2();
@@ -374,6 +375,12 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveVerific1();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case BLOCK_BAY_EXIT:
 				closeVerificationBayStopper1();
 				break;
@@ -381,6 +388,7 @@ public class BayActionHandler {
 				closeVerificationBayStopper2();
 				break;
 
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openVerificationBayStopper1();
 				openVerificationBayStopper2();
@@ -487,6 +495,7 @@ public class BayActionHandler {
 			case BLOCK_BAY_EXIT:
 				closeWaitingBayStopper();
 				break;
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openWaitingBayStopper();
 				break;
@@ -501,6 +510,12 @@ public class BayActionHandler {
 				break;
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveVerific1Waiting();
+				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
 				break;
 			case PALLETS_CLEARED:
 				clearAllFlagsForPalletEntryInVerific1WaitingBay();
@@ -602,113 +617,6 @@ public class BayActionHandler {
 
 		ApplicationLauncher.logger.info("refreshSta2Bay: Exit ");
 	}
-
-	/*
-	 * public void refreshPalletsInWaitingVerific1Bay() {
-	 * ApplicationLauncher.logger.info("refreshPalletsInWaitingVerific1Bay: Entry "
-	 * );
-	 * 
-	 * 
-	 * 
-	 * ConveyorDeviceDataManagerController.getDashboardObject().
-	 * removeAllPalletsFromWaitingVerific1Bays();
-	 * ApplicationLauncher.logger.
-	 * info("refreshPalletsInWaitingVerific1Bay: batch update: all WaitingVerific1 removed"
-	 * );
-	 * 
-	 * BayUtils.delay(100);
-	 * ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: batch update : delay done :for removal: "
-	 * );
-	 * String bayKey = ConstantConveyor.WAITING_BAY_KEY;
-	 * Map<Integer,String> meterListWithSerialNoMap = new HashMap<Integer,String>();
-	 * Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
-	 * List<PalletManage> palletManageList =
-	 * bayUtils.fetchPalletsByBayState(bayKey);
-	 * ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: refreshDashBoard: palletManageList size: "
-	 * + palletManageList.size());
-	 * boolean scannedPalletQrIdExist = false;
-	 * for(PalletManage eachPalletManage : palletManageList ) {
-	 * ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: fetchPalletsByBayState: getPalletDistinctId:    "
-	 * + eachPalletManage.getPalletDistinctId());
-	 * //ApplicationLauncher.logger.
-	 * debug("refreshDashBoard : fetchPalletsByBayState: palletQrId:    " +
-	 * palletQrId);
-	 * 
-	 * if(eachPalletManage.getPalletDistinctId().contains(palletQrId)) {
-	 * scannedPalletQrIdExist = true;
-	 * ApplicationLauncher.logger.
-	 * debug("refreshDashBoard : fetchPalletsByBayState: scannedPalletQrIdExist in fetch list"
-	 * );
-	 * }
-	 * }
-	 * String palletName = "";
-	 * //ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: batch update ");
-	 * for(PalletManage eachPalletManage : palletManageList ) {
-	 * meterListWithSerialNoMap.clear();
-	 * //myPalletManage = myPalletManageList.get(0);
-	 * palletMeterSetList = eachPalletManage.getPalletMeterList();
-	 * List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
-	 * .sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(
-	 * Collectors.toList());
-	 * for(PalletMeter eachPalletMeter : palletMeterSetList){
-	 * meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
-	 * eachPalletMeter.getMeterSerialNo());
-	 * }
-	 * //ConveyorDeviceDataManagerController.getDashboardObject().
-	 * removePalletFromBay(selectedBayTypeKey);
-	 * palletName = eachPalletManage.getPalletQrId();
-	 * ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: batch update : palletName: " +
-	 * palletName);
-	 * 
-	 * //ConveyorDeviceDataManagerController.getDashboardObject().
-	 * addPalletToFirstAvailableVerificationBay(palletName,
-	 * meterListWithSerialNoMap);
-	 * ConveyorDeviceDataManagerController.getDashboardObject().
-	 * addPalletToFirstAvailableWaitingBay(palletName, meterListWithSerialNoMap);
-	 * ApplicationLauncher.logger.
-	 * info("refreshPalletsInWaitingVerific1Bay: batch update: WaitingVerific1 added"
-	 * );
-	 * 
-	 * BayUtils.delay(100);
-	 * Map<Integer, MeterStatus> statusMap = new HashMap<>();
-	 * statusMap.put(1, MeterStatus.IDLE);
-	 * statusMap.put(2, MeterStatus.IDLE);
-	 * statusMap.put(3, MeterStatus.IDLE);
-	 * statusMap.put(4, MeterStatus.IDLE);
-	 * statusMap.put(5, MeterStatus.IDLE);
-	 * statusMap.put(6, MeterStatus.IDLE);
-	 * 
-	 * Map<Integer, String> errorCodeMap = new HashMap<>();
-	 * 
-	 * errorCodeMap.put(1, "");
-	 * errorCodeMap.put(2, "");
-	 * errorCodeMap.put(3, "");
-	 * errorCodeMap.put(4, "");
-	 * errorCodeMap.put(5, "");
-	 * errorCodeMap.put(6, "");
-	 * //Platform.runLater(()->{
-	 * ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: batch update : updateDashBoardPalletStatus : "
-	 * + palletName);
-	 * ConveyorDeviceDataManagerController.getDashboardObject().
-	 * updateDashBoardPalletStatus(palletName, statusMap, errorCodeMap);
-	 * 
-	 * BayUtils.delay(50);
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("refreshPalletsInWaitingVerific1Bay: batch update : delay done :palletName: "
-	 * + palletName);
-	 * 
-	 * }
-	 * 
-	 * ApplicationLauncher.logger.info("refreshWaitingVerific1Bay: Exit ");
-	 * }
-	 */
 
 	public void refreshMultiplePalletInBay(String bayKey) {
 		ApplicationLauncher.logger.info("refreshMultiplePalletInBay: Entry: " + bayKey);
@@ -821,7 +729,7 @@ public class BayActionHandler {
 				meterListWithSerialNoMap.clear();
 				// myPalletManage = myPalletManageList.get(0);
 				palletMeterSetList = eachPalletManage.getPalletMeterList();
-				List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
+				palletMeterSetList.stream()
 						.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
 				for (PalletMeter eachPalletMeter : palletMeterSetList) {
 					meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
@@ -1029,12 +937,6 @@ public class BayActionHandler {
 		ConveyorDataManager.setWaitingVerific1BayPalletsAllCleared(true);
 	}
 
-	private void blockPalletsInVerific1WaitingBay() {
-		ApplicationLauncher.logger.warn("blockPalletsInVerific1WaitingBay : Entry");
-
-		ConveyorDataManager.setWaitingVerific1BayPalletsAllCleared(false);
-	}
-
 	private void closeWaitingBayStopper() {
 		ApplicationLauncher.logger.warn("closeWaitingBayStopper : Entry");
 
@@ -1076,6 +978,12 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveCalib();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case SOURCE_START:
 				startCalibrationSource();
 				break;
@@ -1093,6 +1001,7 @@ public class BayActionHandler {
 			case BLOCK_BAY_EXIT:
 				closeCalibrationBayStopper();
 				break;
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openCalibrationBayStopper();
 				break;
@@ -1443,9 +1352,16 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveIr();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case BLOCK_BAY_EXIT:
 				closeInsulationResistanceTestStopper();
 				break;
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openInsulationResistanceTestStopper();
 				break;
@@ -1510,9 +1426,16 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveHv();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case BLOCK_BAY_EXIT:
 				closeHighVoltageTestStopper();
 				break;
+			case UNBLOCK_BAY_EXIT:
 			case RELEASE_METER_FROM_BAY:
 				openHighVoltageTestStopper();
 				break;
@@ -1586,6 +1509,12 @@ public class BayActionHandler {
 			case HALT_PALLET_INACTIVE:
 				haltPalletInActiveFt();
 				break;
+			case BYPASS_MODE_ACTIVE:
+				bypassModeActive();
+				break;
+			case BYPASS_MODE_INACTIVE:
+				bypassModeInActive();
+				break;
 			case SOURCE_START:
 				startFunctionalTestSource();
 				break;
@@ -1595,14 +1524,13 @@ public class BayActionHandler {
 			case BLOCK_BAY_ENTRY:
 				closeFunctionalTestStopperEntry();
 				break;
-
 			case UNBLOCK_BAY_ENTRY:
 				openFunctionalTestStopperEntry();
 				break;
+
 			case BLOCK_BAY_EXIT:
 				closeFunctionalTestStopperExit();
 				break;
-
 			case UNBLOCK_BAY_EXIT:
 				openFunctionalTestStopperExit();
 				break;
@@ -1749,45 +1677,15 @@ public class BayActionHandler {
 		}
 	}
 
-	/*
-	 * private Map<String, Object> voltage_current_start() {
-	 * IoPortInfo portInfo =
-	 * BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.
-	 * CALIB_PORT_NAME_BOFA_VOLTAGE_CURRENT_START);
-	 * 
-	 * if (portInfo != null) {
-	 * CalibrationBay.logger.debug("PortId    : " + portInfo.getPortId());
-	 * CalibrationBay.logger.debug("ClusterId : " + portInfo.getClusterId());
-	 * CalibrationBay.logger.debug("BayId     : " + portInfo.getBayId());
-	 * 
-	 * BayUtils bayUtils = new BayUtils();
-	 * 
-	 * String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-	 * portInfo.getBayId(),
-	 * portInfo.getPortId(),
-	 * Constant_IO_ActionMapping.OLD_OFF_NEW_ON);
-	 * 
-	 * status = state.equals(Constant_IO_ActionMapping.OLD_OFF_NEW_ON) ? true :
-	 * false;
-	 * 
-	 * if (StateExecutorController.simulateCalibBayHappyPath) {
-	 * status = true;
-	 * }
-	 * 
-	 * CalibrationBay.logger.
-	 * debug("S059_02_Power_Source_Start_Main_CT : voltage_current_start : status : "
-	 * + status);
-	 * //
-	 * =============================================================================
-	 * ===============
-	 * 
-	 * responseReturn.put("status", status);
-	 * 
-	 * CalibrationBay.logger.
-	 * debug("S059_02_Power_Source_Start_Main_CT : voltage_current_start : Exit");
-	 * return responseReturn;
-	 * 
-	 * }
-	 */
+	private void bypassModeActive() {
+		ApplicationLauncher.logger.warn("bypassModeActive: Entry for " + bayTypeKey);
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, true);
+		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, true);
+	}
 
+	private void bypassModeInActive() {
+		ApplicationLauncher.logger.warn("bypassModeInActive: Entry for " + bayTypeKey);
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, false);
+		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, false);
+	}
 }

@@ -64,7 +64,9 @@ public class S28_turn_off_motor_Verific_Bay implements VerificTestBayState {
         String state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
                 portInfo.getBayId(),
                 portInfo.getPortId(),
-                Constant_IO_ActionMapping.CLOSE); // Use OPEN to represent turning the relay "Off"
+                Constant_IO_ActionMapping.CLOSE);
+
+        // Use OPEN to represent turning the relay "Off"
 
         status = state.equals(Constant_IO_ActionMapping.OFF) ? true : false;
         Verification.logger.debug("S28_turn_off_motor_Verific_Bay : turn_off : status : " + status);

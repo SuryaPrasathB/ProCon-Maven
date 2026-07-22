@@ -104,8 +104,7 @@ public class VerificationTestBayBypass extends TimerTask {
 							+ getTableStatePlanner_FtBay().size());
 			// setStopProcessCompletedFtBay(false);
 			// setStopProcessRequestedFtBay(false);
-			while (!Verification.isStopProcessCompletedVerificBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			while (!Verification.isStopProcessCompletedVerificBay() && !Verification.isStopProcessRequestedVerificBay() && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 				// Process the current state
 				BayResponse bayStatus = processCurrentState();
 
@@ -170,6 +169,10 @@ public class VerificationTestBayBypass extends TimerTask {
 		} else {
 			Verification.logger.debug(
 					"VerificationTestBay : manageVerificationTestBayBypassStates2 : No states found in the planner");
+		}
+
+		if (Verification.isStopProcessRequestedVerificBay()) {
+			Verification.setStopProcessCompletedVerificBay(true);
 		}
 
 		// =================================================================================================

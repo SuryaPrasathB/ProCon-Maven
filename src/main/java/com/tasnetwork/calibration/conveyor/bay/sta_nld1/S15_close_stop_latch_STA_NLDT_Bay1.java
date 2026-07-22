@@ -49,29 +49,32 @@ public class S15_close_stop_latch_STA_NLDT_Bay1 implements STA_NoLoadTestBay1Sta
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
 
         String state = "";
+
         if (portInfo != null) {
             StaNld_Bay1.logger.debug("PortId    : " + portInfo.getPortId());
             StaNld_Bay1.logger.debug("ClusterId : " + portInfo.getClusterId());
             StaNld_Bay1.logger.debug("BayId     : " + portInfo.getBayId());
 
             String outputInactive = Constant_IO_ActionMapping.ON;
-            
-            BayUtils bayUtils = new BayUtils();
-            
-            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
-                                                     portInfo.getBayId(),
-                                                     portInfo.getPortId(),
-                                                     outputInactive);
 
-            StaNld_Bay1.logger.debug("S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : " + state);
+            BayUtils bayUtils = new BayUtils();
+
+            state = bayUtils.setOutputDataToBay(portInfo.getClusterId(),
+                    portInfo.getBayId(),
+                    portInfo.getPortId(),
+                    outputInactive);
+
+            StaNld_Bay1.logger
+                    .debug("S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : state : " + state);
 
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
-            if(StateExecutorController.simulateSCTNLTBay1HappyPath){
-            	status = true; 
+            if (StateExecutorController.simulateSCTNLTBay1HappyPath) {
+                status = true;
             }
-             
-            StaNld_Bay1.logger.debug("S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : " + status);
+
+            StaNld_Bay1.logger
+                    .debug("S15_close_stop_latch_SCT_NLT_Bay1 : close_StopLatch_SCT_NLT_Bay1 : status : " + status);
 
         } else {
             StaNld_Bay1.logger.debug("S15_close_stop_latch_SCT_NLT_Bay1 : Output port not found");
@@ -80,9 +83,9 @@ public class S15_close_stop_latch_STA_NLDT_Bay1 implements STA_NoLoadTestBay1Sta
         responseReturn.put("status", status);
         responseReturn.put("responseData", state);
 
-        StaNld_Bay1.logger.debug("S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : " + status);
+        StaNld_Bay1.logger
+                .debug("S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : status : " + status);
         StaNld_Bay1.logger.debug("S15_close_stop_latch_SCT_NLT_Bay1 : sctNltBay1_StopLatch_Status : Exit");
         return responseReturn;
     }
 }
-

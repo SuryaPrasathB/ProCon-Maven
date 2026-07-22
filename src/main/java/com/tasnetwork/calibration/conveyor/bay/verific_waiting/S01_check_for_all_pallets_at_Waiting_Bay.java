@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
@@ -27,6 +28,9 @@ public class S01_check_for_all_pallets_at_Waiting_Bay implements WaitingBayState
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
 		//======================================================================
+		ConveyorDataManager.getDashboardObject().removePalletFromBay(getMyBayKey());
+		ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+				.updateBayMonitoringAllPalletsExistInBay(getMyBayKey());
 
 		Map<String, Object> responseReturn;
 		boolean isPalletAvailableAt_WaitingBay;
@@ -72,6 +76,8 @@ public class S01_check_for_all_pallets_at_Waiting_Bay implements WaitingBayState
 
 		if (stableDetection) {
 			VerificWaiting.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : All Pallets Available at Waiting Bay");
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
+					.updateBayAllPalletsExistInBay(getMyBayKey(), true);
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 		} else {

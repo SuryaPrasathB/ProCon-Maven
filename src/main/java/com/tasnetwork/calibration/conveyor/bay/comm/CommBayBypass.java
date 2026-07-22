@@ -96,8 +96,7 @@ public class CommBayBypass extends TimerTask {
 					+ getTableStatePlanner_FtBay().size());
 			// setStopProcessCompletedFtBay(false);
 			// setStopProcessRequestedFtBay(false);
-			while (!Comm.isStopProcessCompletedCommBay() &&
-					(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
+			while (!Comm.isStopProcessCompletedCommBay() && !Comm.isStopProcessRequestedCommBay() && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 				// Process the current state
 				BayResponse bayStatus = processCurrentState();
 
@@ -156,6 +155,10 @@ public class CommBayBypass extends TimerTask {
 			}
 		} else {
 			Comm.logger.debug("CommBay : manageCommBayBypassStates2 : No states found in the planner");
+		}
+
+		if (Comm.isStopProcessRequestedCommBay()) {
+			Comm.setStopProcessCompletedCommBay(true);
 		}
 		// =================================================================================================
 		Comm.logger.debug("CommBay : manageCommBayBypassStates2 : Exit");
