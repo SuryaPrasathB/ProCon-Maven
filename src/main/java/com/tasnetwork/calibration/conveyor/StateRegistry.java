@@ -19,26 +19,17 @@ public class StateRegistry {
 
     static {
         BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.FT_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.ft");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.HV_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.hvt");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.HV_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.hv");
         BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.IR_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.ir");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.CALIBRATION_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.calib");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.COMMUNICATION_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.comm");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.LOADING_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.loading");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.STA_NLD1_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.sctnlt1");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.STA_NLD2_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.sctnlt2");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.UNLOADING_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.unloading");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.VERIFICATION_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.verific");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.WAITING_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.waiting");
-        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.REJECTION_BAY_DISPLAY_NAME,
-                "com.tasnetwork.calibration.conveyor.bay.rejection");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.CALIBRATION_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.calib");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.COMMUNICATION_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.comm");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.LOADING_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.loading");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.STA_NLD1_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.sta_nld1");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.STA_NLD2_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.sta_nld2");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.UNLOADING_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.unloading");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.VERIFICATION_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.verific");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.WAITING_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.verific_waiting");
+        BAY_DISPLAY_TO_PACKAGE.put(ConstantConveyor.REJECTION_BAY_DISPLAY_NAME, "com.tasnetwork.calibration.conveyor.bay.rejection");
     }
 
     private static final Map<String, List<String>> CACHED_BAY_STATES = new HashMap<>();

@@ -13,12 +13,14 @@ import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
+import com.tasnetwork.calibration.conveyor.logger.LogUtil;
+
 public class S07_ensure_the_fingerTip_Latch_Opened implements CommTestBayState {
 
     // ===========================================================================================
     @Override
     public BayResponse handleRequest() {
-        Comm.logger.info("S07_ensure_the_fingerTip_Latch_Opened : Entry");
+        LogUtil.logInfo(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "ENTRY", "Starting execution");
         BayResponse bayResponse = new BayResponse();
         bayResponse.setStatus(true);
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
@@ -41,13 +43,13 @@ public class S07_ensure_the_fingerTip_Latch_Opened implements CommTestBayState {
             }
         }
 
-        Comm.logger.info("S07_ensure_the_fingerTip_Latch_Opened : Exit");
+        LogUtil.logInfo(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "EXIT", "Finished execution");
         return bayResponse;
     }
     // ============================================================================================================================================
 
     private Map<String, Object> commBay_FingerTipLatch_Status() {
-        Comm.logger.debug("S07_ensure_the_fingerTip_Latch_Opened : commBay_FingerTipLatch_Status : Entry");
+        LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "ENTRY", "Checking status");
 
         Map<String, Object> responseReturn = new HashMap<String, Object>();
         responseReturn.put("status", false);
@@ -69,12 +71,11 @@ public class S07_ensure_the_fingerTip_Latch_Opened implements CommTestBayState {
                     ConstantConveyor.COMM_EXECUTION_STATUS_INP);
             StateExecutorController.addToTestStatusGui(testInterfaceStatus);
 
-            Comm.logger.debug("PortId    : " + portInfo.getPortId());
-            Comm.logger.debug("ClusterId : " + portInfo.getClusterId());
-            Comm.logger.debug("BayId     : " + portInfo.getBayId());
+            LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "PORT_INFO", "PortId: " + portInfo.getPortId());
+            LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "PORT_INFO", "ClusterId: " + portInfo.getClusterId());
+            LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "PORT_INFO", "BayId: " + portInfo.getBayId());
         } else {
-            Comm.logger.debug(
-                    "S07_ensure_the_fingerTip_Latch_Opened : commBay_FingerTipLatch_Status : Output port not found");
+            LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "ERROR", "Output port not found");
             return responseReturn;
         }
 
@@ -101,11 +102,11 @@ public class S07_ensure_the_fingerTip_Latch_Opened implements CommTestBayState {
             state = Constant_IO_ActionMapping.OPEN;
         }
 
-        Comm.logger.debug("S07_ensure_the_fingerTip_Latch_Opened : commBay_FingerTipLatch_Status : state : " + state);
+        LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "STATUS", "state: " + state);
 
         responseReturn.put("status", state);
 
-        Comm.logger.debug("S07_ensure_the_fingerTip_Latch_Opened : commBay_FingerTipLatch_Status : Exit");
+        LogUtil.logDebug(Comm.logger, ConstantConveyor.COMMUNICATION_BAY_KEY, "S07_fingerTip_Latch", "EXIT", "Returning status");
         return responseReturn;
     }
 }
