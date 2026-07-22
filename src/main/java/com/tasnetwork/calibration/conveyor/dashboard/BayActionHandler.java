@@ -45,9 +45,6 @@ public class BayActionHandler {
 	}
 
 	public void handleActionByBayType(PalletController.BayActionType actionType) {
-		// Wrap the entire action handling in a new thread to prevent UI blocking.
-		// This ensures that any potentially long-running I/O operations or delays
-		// do not freeze the JavaFX Application Thread.
 		new Thread(() -> {
 			switch (bayTypeKey) {
 				case ConstantConveyor.FT_BAY_KEY:
@@ -402,11 +399,6 @@ public class BayActionHandler {
 			case PALLETS_CLEARED:
 				clearAllFlagsForPalletEntryInVerific1Bay();
 				break;
-			/*
-			 * case PALLETS_BLOCK:
-			 * blockPalletsInVerification1();
-			 * break;
-			 */
 			case REFRESH:
 				refreshVerific1Bay();
 				break;
@@ -420,13 +412,6 @@ public class BayActionHandler {
 		Verification.logger.info("BayActionHandler : clearAllFlagsForPalletEntryInVerific1Bay: Pallets Cleared");
 		// ConstantConveyor.VERIFICATION_BAY_PALLETS_CLEARED = true;
 		ConveyorDataManager.setVerific1PalletsAllCleared(true);
-	}
-
-	private void blockPalletsInVerification1() {
-
-		Verification.logger.info("BayActionHandler : blockPalletsInVerification1: Pallets blocked");
-		// ConstantConveyor.VERIFICATION_BAY_PALLETS_CLEARED = false;
-		ConveyorDataManager.setVerific1PalletsAllCleared(false);
 	}
 
 	private void closeVerificationDiverter() {
@@ -520,11 +505,6 @@ public class BayActionHandler {
 			case PALLETS_CLEARED:
 				clearAllFlagsForPalletEntryInVerific1WaitingBay();
 				break;
-			/*
-			 * case PALLETS_BLOCK:
-			 * blockPalletsInVerific1WaitingBay();
-			 * break;
-			 */
 			case REFRESH:
 				refreshWaitingVerific1Bay();
 				break;
@@ -639,32 +619,15 @@ public class BayActionHandler {
 
 		BayUtils.delay(100);
 		ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: delay done :for removal: ");
-		// String bayKey = ConstantConveyor.WAITING_BAY_KEY;
+
 		Map<Integer, String> meterListWithSerialNoMap = new HashMap<Integer, String>();
 		Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
 		List<PalletManage> palletManageList = bayUtils.fetchPalletsByBayState(bayKey);
 		ApplicationLauncher.logger
 				.debug("refreshMultiplePalletInBay: palletManageList size: " + palletManageList.size());
-		// boolean scannedPalletQrIdExist = false;
-		// for(PalletManage eachPalletManage : palletManageList ) {
-		// ApplicationLauncher.logger.debug("refreshMultiplePalletInBay:
-		// fetchPalletsByBayState: getPalletDistinctId: " +
-		// eachPalletManage.getPalletDistinctId());
-		// ApplicationLauncher.logger.debug("refreshDashBoard : fetchPalletsByBayState:
-		// palletQrId: " + palletQrId);
 
-		/*
-		 * if(eachPalletManage.getPalletDistinctId().contains(palletQrId)) {
-		 * scannedPalletQrIdExist = true;
-		 * ApplicationLauncher.logger.
-		 * debug("refreshDashBoard : fetchPalletsByBayState: scannedPalletQrIdExist in fetch list"
-		 * );
-		 * }
-		 */
-		// }
 		String palletName = "";
-		// ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: batch update
-		// ");
+
 		int noOfPalletsAcceptedInBay = 1;
 		if (bayKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)) {
 			noOfPalletsAcceptedInBay = DeviceDataManagerController.getConveyorConfigParsedKey()
@@ -836,24 +799,12 @@ public class BayActionHandler {
 		}
 		ApplicationLauncher.logger.debug(
 				"refreshSinglePalletsInBay: refreshDashBoard: palletManageList size: " + palletManageList.size());
-		boolean scannedPalletQrIdExist = false;
 		List<String> palletDistinctIdList = new ArrayList<String>();
 		for (PalletManage eachPalletManage : palletManageList) {
 			ApplicationLauncher.logger
 					.debug("refreshSinglePalletsInBay: fetchPalletsByBayState: getPalletDistinctId:    "
 							+ eachPalletManage.getPalletDistinctId());
 			palletDistinctIdList.add(eachPalletManage.getPalletDistinctId());
-			// ApplicationLauncher.logger.debug("refreshDashBoard : fetchPalletsByBayState:
-			// palletQrId: " + palletQrId);
-
-			/*
-			 * if(eachPalletManage.getPalletDistinctId().contains(palletQrId)) {
-			 * scannedPalletQrIdExist = true;
-			 * ApplicationLauncher.logger.
-			 * debug("refreshDashBoard : fetchPalletsByBayState: scannedPalletQrIdExist in fetch list"
-			 * );
-			 * }
-			 */
 		}
 		String palletName = "";
 		// ApplicationLauncher.logger.debug("refreshSinglePalletsInBay: batch update ");
@@ -889,10 +840,7 @@ public class BayActionHandler {
 				// ConveyorDeviceDataManagerController.getDashboardObject().removePalletFromBay(selectedBayTypeKey);
 				palletName = eachPalletManage.getPalletQrId();
 				ApplicationLauncher.logger.debug("refreshSinglePalletsInBay: palletName: " + palletName);
-				// ApplicationLauncher.logger.debug("refreshSinglePalletsInBay: batch update :
-				// palletName: " + palletName);
-				// ConveyorDeviceDataManagerController.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName,
-				// meterListWithSerialNoMap);
+
 				ConveyorDataManager.getDashboardObject().addNewPalletViewDashboard(myBayKey, palletName,
 						meterListWithSerialNoMap);
 				ApplicationLauncher.logger

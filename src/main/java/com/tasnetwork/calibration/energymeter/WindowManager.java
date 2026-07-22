@@ -1,37 +1,25 @@
 package com.tasnetwork.calibration.energymeter;
 
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
-import javafx.scene.effect.DropShadow;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
-import javafx.animation.FadeTransition;
-import javafx.application.Platform;
-import javafx.util.Duration;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Optional;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-import javafx.scene.control.ProgressBar;
-import javafx.concurrent.Task;
-import javafx.scene.layout.Priority;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
+import com.tasnetwork.calibration.conveyor.ConveyorPalletTracking;
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigLoader;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
+import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
+import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
+import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
+import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
+import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfigLoader;
+import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.ConveyorConfigLoader;
 import com.tasnetwork.calibration.energymeter.constant.ProCalCustomerConfiguration;
@@ -46,19 +34,29 @@ import com.tasnetwork.calibration.energymeter.testreport.config.ReportConfigLoad
 import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.AppConfig;
-import com.tasnetwork.calibration.conveyor.ConveyorPalletTracking;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigLoader;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
-import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfigLoader;
-import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdRadiant;
-import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
+
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 public class WindowManager {
 
@@ -89,6 +87,17 @@ public class WindowManager {
 		splashStage.centerOnScreen();
 		splashStage.show();
 		splashStage.toFront();
+
+		long splashShownTimeMs = System.currentTimeMillis();
+		long timeToFirstUISplashMs = splashShownTimeMs - ApplicationLauncher.getAppStartTimeMs();
+
+		ApplicationLauncher.logger.info("==================================================");
+		ApplicationLauncher.logger.info(" APPLICATION STARTUP TIME ANALYSIS ");
+		ApplicationLauncher.logger.info("--------------------------------------------------");
+		ApplicationLauncher.logger
+				.info(String.format(" Time to First UI (Splash Screen) : %,d ms", timeToFirstUISplashMs));
+		ApplicationLauncher.logger.info("==================================================");
+
 		FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.0), splashLayout);
 		fadeSplash.setFromValue(0.0);
 		fadeSplash.setToValue(1.0);
@@ -113,7 +122,6 @@ public class WindowManager {
 		});
 		fadeSplash.play();
 	}
-
 
 	public static void start(Stage initStage) throws Exception {
 
@@ -156,29 +164,36 @@ public class WindowManager {
 			@Override
 			protected Integer call() throws Exception {
 				try {
-					AppConfigLoader.LoadConfigProperty();
-					ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_CONFIG_FILE_PATH,
-							ConstantAppConfig.REPORT_CONFIG_FILE_NAME);
-					ReportConfigLoader.init();
-					ApplicationLauncher.logger
-							.info("ApplicationLauncher : CONFIG_FILE_VERSION: " + ConstantVersion.CONFIG_FILE_VERSION);
-					ApplicationLauncher.logger
-							.info("ApplicationLauncher : REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ: "
-									+ ConstantRefStdRadiant.REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ);
+					ExecutorService initExecutor = Executors.newFixedThreadPool(4);
 
-					AssertValidation.assertLicenceVerification();
+					Future<?> springFuture = initExecutor.submit(() -> {
+						ApplicationLauncher.bootSpringContext();
+					});
 
-					GuiUtils.FormatPulseRate("2500000000");
-					GuiUtils.FormatPulseRate("125");
+					springFuture.get();
+
+					Future<?> configFuture = initExecutor.submit(() -> {
+						AppConfigLoader.LoadConfigProperty();
+						ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_CONFIG_FILE_PATH,
+								ConstantAppConfig.REPORT_CONFIG_FILE_NAME);
+						ReportConfigLoader.init();
+						AssertValidation.assertLicenceVerification();
+						GuiUtils.FormatPulseRate("2500000000");
+						GuiUtils.FormatPulseRate("125");
+					});
+
+					configFuture.get();
+
+					initExecutor.shutdown();
+
 					com.tasnetwork.calibration.energymeter.util.SystemUtils
-							.deleteLogFilesOlderThanNdays(ConstantAppConfig.DeleteLogFilesforX_NoOfPreviousDays, "./logs/");
-					
+							.deleteLogFilesOlderThanNdays(ConstantAppConfig.DeleteLogFilesforX_NoOfPreviousDays,
+									"./logs/");
+
 					boolean dbConnected = MySQL_Controller.ValidateDB_Schema_Exist();
 					if (dbConnected) {
 						AppConfigLoader.LoadPropertiesFromDB();
 						assertNoOtherInstanceRunning();
-
-						Thread.sleep(1500); // Give ServerSocket time to bind
 
 						if ((!ApplicationLauncher.allready_running)) {
 							ProCalCustomerConfiguration.Init();
@@ -191,10 +206,12 @@ public class WindowManager {
 							ConstantRefStdConfigLoader.setRefStdConstantConfigFileName(
 									ConstantAppConfig.REFSTD_CONSTANT_CONFIG_FILE_PATH,
 									ConstantAppConfig.REFSTD_CONSTANT_CONFIG_FILE_NAME);
-							ReportProfileOperationConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_PROFILEV2_FILE_PATH,
+							ReportProfileOperationConfigLoader.setConfigFilePathName(
+									ConstantAppConfig.REPORT_PROFILEV2_FILE_PATH,
 									ConstantAppConfig.REPORT_PROFILEV2_FILE_NAME);
 
-							TerminalBayConfigLoader.setConfigFilePathName(ConstantConveyorConfig.TERMINAL_CONFIG_FILE_PATH,
+							TerminalBayConfigLoader.setConfigFilePathName(
+									ConstantConveyorConfig.TERMINAL_CONFIG_FILE_PATH,
 									ConstantConveyorConfig.TERMINAL_CONFIG_FILE_NAME);
 							TerminalBayConfigLoader.init();
 							MySqlServiceManager.springDataInit();
@@ -213,13 +230,6 @@ public class WindowManager {
 							ConveyorConfigLoader.setConveyorConfigFileName(ConstantAppConfig.CONVEYOR_CONFIG_FILE_PATH,
 									ConstantAppConfig.CONVEYOR_CONFIG_FILE_NAME);
 							ConveyorConfigLoader.init();
-							ApplicationLauncher.logger
-									.info("Conveyor: getMaxNoOfDutSupported: "
-											+ DeviceDataManagerController.getConveyorConfigParsedKey().getMaxDutSupported());
-
-							ApplicationLauncher.logger
-									.info("Conveyor: getDutHardwareIdInitialValue: " + DeviceDataManagerController
-											.getConveyorConfigParsedKey().getDutHardwareIdInitialValue());
 
 							if (ProcalFeatureEnable.REPORT_GENERATION_V2_ENABLED) {
 								DeviceDataManagerController.springDataInit();
@@ -228,17 +238,13 @@ public class WindowManager {
 
 							try {
 								if (ConstantAppConfig.REPORT_PROFILE_CONFIG_PATH_LIST.size() > 1) {
-									Custom1ReportConfigLoader.setConfigFilePathName(ConstantAppConfig.REPORT_PROFILE_PATH,
+									Custom1ReportConfigLoader.setConfigFilePathName(
+											ConstantAppConfig.REPORT_PROFILE_PATH,
 											ConstantAppConfig.REPORT_PROFILE_CONFIG_PATH_LIST.get(1));
 									Custom1ReportConfigLoader.init();
-								} else {
-									ApplicationLauncher.logger
-											.info("start: custome report profile not loaded!");
 								}
 							} catch (Exception e) {
 								e.printStackTrace();
-								ApplicationLauncher.logger
-										.error("start: Exception: " + e.getMessage());
 							}
 
 							BayUtils.init();
@@ -249,14 +255,12 @@ public class WindowManager {
 								systemStatus = com.tasnetwork.calibration.energymeter.util.SystemUtils.LoadSystemTime();
 							} catch (Exception e) {
 								e.printStackTrace();
-								ApplicationLauncher.logger
-										.error("start: system status Exception: " + e.getMessage());
 								systemStatusExceptionOccured = true;
 							}
 							if (systemStatus) {
 								return 0; // Success
 							} else {
-								return systemStatusExceptionOccured ? 2 : 1; 
+								return systemStatusExceptionOccured ? 2 : 1;
 							}
 
 						} else {
@@ -423,16 +427,6 @@ public class WindowManager {
 				.getResourceAsStream("/images/" + ConstantVersion.APP_ICON_FILENAME)));
 		alert.setTitle(ConstantVersion.APPLICATION_NAME + " Exit");
 		String s = "Are you sure, you want to exit?";
-		// if(ProjectExecutionController.getExecutionInProgress()){
-		// s = "Test Execution is still in progress. Kindly stop execution or wait until
-		// execution is completed";
-		// alert = new Alert(AlertType.INFORMATION);
-		// stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		// stage.getIcons().add(new
-		// Image(com.tasnetwork.calibration.energymeter.ApplicationLauncher.class.getResourceAsStream("/images/"
-		// + ConstantVersion.APP_ICON_FILENAME)));
-		// alert.setTitle(ConstantVersion.APPLICATION_NAME +" Exit");
-		// }
 		alert.setContentText(s);
 		boolean check_test_run = false;
 		Optional<ButtonType> result = alert.showAndWait();
@@ -452,9 +446,11 @@ public class WindowManager {
 	public static void assertNoOtherInstanceRunning() {
 
 		new Thread(() -> {
-			try {
+			try (ServerSocket serverSocket = new ServerSocket(ConstantAppConfig.APP_INSTANCE_SERVER_PORT)) {
 
-				new ServerSocket(ConstantAppConfig.APP_INSTANCE_SERVER_PORT).accept();
+				try (Socket clientSocket = serverSocket.accept()) {
+					// Closed automatically upon exit
+				}
 
 			} catch (IOException e) {
 
@@ -516,8 +512,6 @@ public class WindowManager {
 		}
 
 	}
-
-	
 
 	public static void LoginPage() {
 

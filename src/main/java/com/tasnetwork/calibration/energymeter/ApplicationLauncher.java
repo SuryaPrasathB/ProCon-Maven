@@ -61,16 +61,33 @@ public class ApplicationLauncher extends Application {
 
 	public static ConfigurableApplicationContext springContext;
 
+	private static long appStartTimeMs;
+	private static long springStartTimeMs;
+	private static long springDurationMs;
+	private static long javafxInitDurationMs;
+
+	private static String[] savedArgs = new String[0];
+
 	/**
-	 * Starts the Spring application context before the JavaFX UI is created.
+	 * Saves parameters before JavaFX UI is created.
 	 *
-	 * @throws Exception when Spring Boot cannot be initialized
+	 * @throws Exception when initialization setup fails
 	 */
 	@Override
 	public void init() throws Exception {
-		String[] args = getParameters().getRaw().toArray(new String[0]);
+		if (getParameters() != null && getParameters().getRaw() != null) {
+			savedArgs = getParameters().getRaw().toArray(new String[0]);
+		}
+	}
 
-		springContext = SpringApplication.run(ApplicationLauncher.class, args);
+	/**
+	 * Boots the Spring Application Context. Called asynchronously during Splash
+	 * Screen background initialization.
+	 */
+	public static void bootSpringContext() {
+		springStartTimeMs = System.currentTimeMillis();
+		springContext = SpringApplication.run(ApplicationLauncher.class, savedArgs);
+		springDurationMs = System.currentTimeMillis() - springStartTimeMs;
 		springContext.getBean(ConfigLoader.class);
 	}
 
@@ -82,7 +99,9 @@ public class ApplicationLauncher extends Application {
 	@Override
 	public void stop() throws Exception {
 		logger.info("Shutting down Spring Boot and JavaFX application...");
-		springContext.close();
+		if (springContext != null) {
+			springContext.close();
+		}
 	}
 
 	/**
@@ -224,12 +243,17 @@ public class ApplicationLauncher extends Application {
 		ApplicationLauncher.primaryStage = pStage;
 	}
 
+	public static long getAppStartTimeMs() {
+		return appStartTimeMs;
+	}
+
 	/**
 	 * Launches the JavaFX application.
 	 *
 	 * @param args command-line arguments passed to the application
 	 */
 	public static void main(String[] args) {
+		appStartTimeMs = System.currentTimeMillis();
 		launch(args);
 	}
 }
