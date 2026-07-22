@@ -434,20 +434,21 @@ public class BayViewController {
 	}
 
 	public void startTimeUpDisplay() {
+		stopTimeUpDisplay();
 
-		timeUpTimeline = new Timeline();
 		timeUpSecondsElapsed = 0;
+		lblTimeUpDisplay.setText("00:00");
+		timeUpTimeline = new Timeline();
 		KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), e -> {
 			timeUpSecondsElapsed++;
 			int minutes = timeUpSecondsElapsed / 60;
 			int seconds = timeUpSecondsElapsed % 60;
-			String formattedTime = String.format("%d:%02d", minutes, seconds);
-			lblTimeUpDisplay.setText(String.valueOf(formattedTime));
+			String formattedTime = String.format("%02d:%02d", minutes, seconds);
+			lblTimeUpDisplay.setText(formattedTime);
 		});
 		timeUpTimeline.setCycleCount(Animation.INDEFINITE);
 		timeUpTimeline.getKeyFrames().add(keyFrame);
 		timeUpTimeline.play();
-
 	}
 
 	public void stopTimeUpDisplay() {
@@ -457,8 +458,10 @@ public class BayViewController {
 			} catch (Exception e1) {
 				ApplicationLauncher.logger.error("stopTimeUpDisplay: Exception: " + e1.getMessage());
 			}
-
+			timeUpTimeline = null;
 		}
+		timeUpSecondsElapsed = 0;
+		lblTimeUpDisplay.setText("00:00");
 	}
 
 	public void setTpCountStatusVisible(boolean isVisible) {

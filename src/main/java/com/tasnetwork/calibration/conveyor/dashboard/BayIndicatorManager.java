@@ -313,7 +313,7 @@ public class BayIndicatorManager {
 
 		}
 
-		ApplicationLauncher.logger.debug("startTimeUpDisplay : internalBayKey: " + internalBayKey);
+		ApplicationLauncher.logger.debug("stopTimeUpDisplay : internalBayKey: " + internalBayKey);
 
 		updateIndicator(internalBayKey, bayController -> bayController.stopTimeUpDisplay());
 	}
