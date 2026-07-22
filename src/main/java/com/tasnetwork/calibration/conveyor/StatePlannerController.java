@@ -1,6 +1,6 @@
 package com.tasnetwork.calibration.conveyor;
 
-import java.awt.Button;
+import javafx.scene.control.Button;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +41,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableRow;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.control.cell.ComboBoxTableCell;
 
 public class StatePlannerController implements Initializable {
@@ -204,7 +208,60 @@ public class StatePlannerController implements Initializable {
 
 		// Set up the table (this includes setting up ComboBox for the State column)
 		setupTable();
+		setupDragAndDrop();
 
+	}
+
+	private void setupDragAndDrop() {
+		tableStatePlanner.setRowFactory(tv -> {
+			TableRow<StateFlow> row = new TableRow<>();
+			
+			row.setOnDragDetected(event -> {
+				if (!row.isEmpty()) {
+					Integer index = row.getIndex();
+					Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+					db.setDragView(row.snapshot(null, null));
+					ClipboardContent cc = new ClipboardContent();
+					cc.putString(String.valueOf(index));
+					db.setContent(cc);
+					event.consume();
+				}
+			});
+
+			row.setOnDragOver(event -> {
+				Dragboard db = event.getDragboard();
+				if (db.hasString()) {
+					if (row.getIndex() != Integer.parseInt(db.getString())) {
+						event.acceptTransferModes(TransferMode.MOVE);
+						event.consume();
+					}
+				}
+			});
+
+			row.setOnDragDropped(event -> {
+				Dragboard db = event.getDragboard();
+				if (db.hasString()) {
+					int draggedIndex = Integer.parseInt(db.getString());
+					int dropIndex = row.isEmpty() ? stateFlowRows.size() : row.getIndex();
+
+					if (draggedIndex != dropIndex) {
+						StateFlow draggedItem = stateFlowRows.remove(draggedIndex);
+						if (dropIndex > stateFlowRows.size()) {
+							dropIndex = stateFlowRows.size();
+						}
+						stateFlowRows.add(dropIndex, draggedItem);
+						updateSequence();
+						tableStatePlanner.getSelectionModel().select(dropIndex);
+						event.setDropCompleted(true);
+					} else {
+						event.setDropCompleted(false);
+					}
+					event.consume();
+				}
+			});
+
+			return row;
+		});
 	}
 
 	public void loadBayStatesFromDatabase() {
@@ -396,50 +453,134 @@ public class StatePlannerController implements Initializable {
 
 	@FXML
 	public void buttonDeleteRowOnClick() {
-		// Get the selected row
-		StateFlow selectedRow = tableStatePlanner.getSelectionModel().getSelectedItem();
-
-		// Check if a row is selected
-		if (selectedRow != null) {
-			// Remove the selected row from the list
-			stateFlowRows.remove(selectedRow);
-
-			// Refresh the table view to reflect the deletion
-			tableStatePlanner.refresh();
+		int selectedIndex = tableStatePlanner.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			stateFlowRows.remove(selectedIndex);
+			updateSequence();
 		}
 	}
 
 	@FXML
 	public void buttonAddRowOnClick() {
-		// Get the selected row index
-		int selectedIndex = tableStatePlanner.getSelectionModel().getSelectedIndex();
-
-		// Add a new row to the stateFlowRows list after the selected row
 		String bayName = ref_cmbBxSelectBayType.getSelectionModel().getSelectedItem();
 		String bayKey = ConstantConveyor.getBayLookup().get(bayName);
 		String executionMode = getExecutionMode();
 
 		StateFlow newRow = new StateFlow(
-				getSerialNoAtomic().getAndIncrement(),
-				"S" + (stateFlowRows.size() + 1),
-				bayKey,
-				executionMode,
-				"Select State",
-				"No State Selected",
-				"Select State",
-				"No State Selected",
-				" ",
-				" ");
+				0, "", bayKey, executionMode, "Select State", "No State Selected", "Select State", "No State Selected", " ", " ");
+		stateFlowRows.add(newRow);
+		updateSequence();
+	}
 
-		if (selectedIndex >= 0 && selectedIndex < stateFlowRows.size()) {
-			// Insert the new row after the selected row
-			stateFlowRows.add(selectedIndex + 1, newRow);
-		} else {
-			// If no row is selected or the selection is invalid, add the row to the end
-			stateFlowRows.add(newRow);
+	@FXML
+	public void menuInsertRowBeforeOnClick() {
+		int selectedIndex = tableStatePlanner.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			stateFlowRows.add(selectedIndex, createNewRow());
+			updateSequence();
+			tableStatePlanner.getSelectionModel().select(selectedIndex);
+		}
+	}
+
+	@FXML
+	public void menuInsertRowAfterOnClick() {
+		int selectedIndex = tableStatePlanner.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			stateFlowRows.add(selectedIndex + 1, createNewRow());
+			updateSequence();
+			tableStatePlanner.getSelectionModel().select(selectedIndex + 1);
+		}
+	}
+
+	@FXML
+	public void menuMoveUpOnClick() {
+		int selectedIndex = tableStatePlanner.getSelectionModel().getSelectedIndex();
+		if (selectedIndex > 0) {
+			StateFlow row = stateFlowRows.remove(selectedIndex);
+			stateFlowRows.add(selectedIndex - 1, row);
+			updateSequence();
+			tableStatePlanner.getSelectionModel().select(selectedIndex - 1);
+		}
+	}
+
+	@FXML
+	public void menuMoveDownOnClick() {
+		int selectedIndex = tableStatePlanner.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0 && selectedIndex < stateFlowRows.size() - 1) {
+			StateFlow row = stateFlowRows.remove(selectedIndex);
+			stateFlowRows.add(selectedIndex + 1, row);
+			updateSequence();
+			tableStatePlanner.getSelectionModel().select(selectedIndex + 1);
+		}
+	}
+
+	@FXML
+	public void buttonAutoSortOnClick() {
+		if (stateFlowRows.isEmpty()) return;
+
+		StateFlow startRow = null;
+		for (StateFlow row : stateFlowRows) {
+			boolean isReferenced = false;
+			for (StateFlow other : stateFlowRows) {
+				if (other != row && (
+					(other.getIfSuccess() != null && other.getIfSuccess().equals(row.getState())) || 
+					(other.getIfFailed() != null && other.getIfFailed().equals(row.getState()))
+				)) {
+					isReferenced = true;
+					break;
+				}
+			}
+			if (!isReferenced) {
+				startRow = row;
+				break;
+			}
 		}
 
-		// Refresh the table view to display the updated list
+		if (startRow == null) {
+			startRow = stateFlowRows.get(0);
+		}
+
+		List<StateFlow> sorted = new ArrayList<>();
+		StateFlow current = startRow;
+
+		while (current != null && !sorted.contains(current)) {
+			sorted.add(current);
+			String nextStateName = current.getIfSuccess();
+			StateFlow nextRow = null;
+			if (nextStateName != null && !nextStateName.trim().isEmpty() && !nextStateName.equals("Select State")) {
+				for (StateFlow row : stateFlowRows) {
+					if (nextStateName.equals(row.getState())) {
+						nextRow = row;
+						break;
+					}
+				}
+			}
+			current = nextRow;
+		}
+
+		for (StateFlow row : stateFlowRows) {
+			if (!sorted.contains(row)) {
+				sorted.add(row);
+			}
+		}
+
+		stateFlowRows.setAll(sorted);
+		updateSequence();
+	}
+
+	private StateFlow createNewRow() {
+		String bayName = ref_cmbBxSelectBayType.getSelectionModel().getSelectedItem();
+		String bayKey = ConstantConveyor.getBayLookup().get(bayName);
+		String executionMode = getExecutionMode();
+		return new StateFlow(0, "", bayKey, executionMode, "Select State", "No State Selected", "Select State", "No State Selected", " ", " ");
+	}
+
+	private void updateSequence() {
+		for (int i = 0; i < stateFlowRows.size(); i++) {
+			StateFlow row = stateFlowRows.get(i);
+			row.setSerialNo(i + 1);
+			row.setPath("S" + (i + 1));
+		}
 		tableStatePlanner.refresh();
 	}
 
