@@ -1,9 +1,7 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -13,7 +11,6 @@ import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 
@@ -129,11 +126,6 @@ public class MotorControlPaneController implements Initializable {
                 }
             });
 
-            // If motor is turned OFF, clear requirements (this can also be done
-            // asynchronously if it's a long operation)
-            if (!turnOn) {
-                setAllMotorsNotRequired();
-            }
         }).start();
     }
 
@@ -190,26 +182,6 @@ public class MotorControlPaneController implements Initializable {
         // to ensure UI updates happen on the JavaFX Application Thread.
         // motorOnButtons.get(motorIndex).setDisable(motorOn);
         // motorOffButtons.get(motorIndex).setDisable(!motorOn);
-    }
-
-    private void setAllMotorsNotRequired() {
-        // This method can also be run on a background thread if it involves blocking
-        // I/O
-        // For now, assuming it's quick or can run concurrently.
-        List<String> bayKeys = Arrays.asList(
-                ConstantConveyor.FT_BAY_KEY,
-                ConstantConveyor.HV_BAY_KEY,
-                ConstantConveyor.IR_BAY_KEY,
-                ConstantConveyor.CALIBRATION_BAY_KEY,
-                ConstantConveyor.COMMUNICATION_BAY_KEY,
-                ConstantConveyor.LOADING_BAY_KEY,
-                ConstantConveyor.REJECTION_BAY_KEY,
-                ConstantConveyor.STA_NLD1_BAY_KEY,
-                ConstantConveyor.STA_NLD2_BAY_KEY,
-                ConstantConveyor.WAITING_BAY_KEY,
-                ConstantConveyor.VERIFICATION_BAY_KEY,
-                ConstantConveyor.UNLOADING_BAY_KEY);
-        bayKeys.forEach(bayUtils::set_motor_not_required);
     }
 
     // Refresh motor status and update buttons
