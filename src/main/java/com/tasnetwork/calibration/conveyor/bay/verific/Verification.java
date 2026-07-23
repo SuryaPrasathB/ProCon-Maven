@@ -79,6 +79,8 @@ public class Verification implements BayStateContext {
 				return S18_idle_condition.class.getSimpleName();
 			case ConvErrorCodeMapping.ERROR_CODE_VERIFIC_031:
 				return S18_idle_condition.class.getSimpleName();
+			case "TEST_ALREADY_COMPLETED":
+				return "S06_open_the_fingerTip_Latch";
 			default:
 				return "S17_error_Handling";
 		}

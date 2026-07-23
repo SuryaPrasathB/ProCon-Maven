@@ -65,7 +65,8 @@ public class Ir implements BayStateContext {
 		switch (errorCode) {
 		case  ConvErrorCodeMapping.ERROR_CODE_IRT_010 :
 			return "S06_open_the_fingerTip_Latch";
-			
+		case "TEST_ALREADY_COMPLETED":
+			return "S06_open_the_fingerTip_Latch";
 		default:
 			return "S10_error_Handling";
 		}

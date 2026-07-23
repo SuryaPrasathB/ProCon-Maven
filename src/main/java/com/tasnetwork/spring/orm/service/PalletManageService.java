@@ -63,6 +63,11 @@ public class PalletManageService {
 	}
 	
 	@Transactional
+	public List<PalletManage> saveAll(Iterable<PalletManage> entities) {
+		return palletManageRepo.saveAll(entities);
+	}
+	
+	@Transactional
 	public List<PalletManage> findAll() {
 		return palletManageRepo.findAll();
 	}

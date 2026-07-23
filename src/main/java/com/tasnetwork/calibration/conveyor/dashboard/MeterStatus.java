@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
-import org.omg.CORBA.portable.IDLEntity;
-
 import javafx.scene.paint.Color;
 
 public enum MeterStatus {

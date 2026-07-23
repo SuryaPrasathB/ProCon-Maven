@@ -97,6 +97,13 @@ public class PalletBayState {
 	@Transient
 	private SimpleStringProperty  bayResultStatusProperty = new SimpleStringProperty ();
 	
+	@Column(columnDefinition = "VARCHAR(3)")
+	@org.hibernate.annotations.Type(type = "yes_no")
+	private Boolean testCompleted = false;
+	
+	@Transient
+	private javafx.beans.property.SimpleBooleanProperty testCompletedProperty = new javafx.beans.property.SimpleBooleanProperty();
+	
     
 	@Column(columnDefinition = "INT(45)")
 	int noOfMeterPresent = 0;
@@ -393,6 +400,27 @@ public class PalletBayState {
 	public SimpleStringProperty getBayResultStatusProperty() {
 		bayResultStatusProperty.set(bayResultStatus);
 		return bayResultStatusProperty;
+	}
+
+	public Boolean isTestCompleted() {
+		return testCompleted;
+	}
+
+	public Boolean getTestCompleted() {
+		return testCompleted;
+	}
+
+	public void setTestCompleted(Boolean testCompleted) {
+		this.testCompleted = testCompleted;
+	}
+
+	public void setTestCompleted(String testCompleted) {
+		this.testCompleted = "Y".equalsIgnoreCase(testCompleted) || "true".equalsIgnoreCase(testCompleted);
+	}
+	
+	public javafx.beans.property.SimpleBooleanProperty getTestCompletedProperty() {
+		testCompletedProperty.set(testCompleted != null ? testCompleted : false);
+		return testCompletedProperty;
 	}
 
 

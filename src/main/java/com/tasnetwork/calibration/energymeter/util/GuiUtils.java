@@ -1,6 +1,5 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-import com.sun.javafx.scene.control.skin.TableViewSkin;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;

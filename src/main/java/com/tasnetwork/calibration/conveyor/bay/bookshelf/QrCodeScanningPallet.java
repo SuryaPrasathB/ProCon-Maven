@@ -26,6 +26,7 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
+import com.tasnetwork.spring.orm.model.PalletBayState;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
@@ -94,6 +95,10 @@ public class QrCodeScanningPallet {
 			// Logic for failure case (status is false)
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
+		} else if (status.equals("ALREADY_COMPLETED")) {
+			eachBaylogger.info("qrCodePalletScanningProcess : Test Already Completed" + " : " + getBayKey());
+			bayResponse.setStatus(false);
+			bayResponse.setErrorCode("TEST_ALREADY_COMPLETED");
 		} else if (status.equals(NewlandQRCodeScanner.NOT_GOOD_READ_EXPECTED_DATA_IN_ASCII)) {
 			eachBaylogger.info("qrCodePalletScanningProcess : QR Code Scan - not Good Read" + " : " + getBayKey());
 			// eachBaylogger.info("qrCodePalletScanningProcess : Issue with Scanner Side");
@@ -157,14 +162,6 @@ public class QrCodeScanningPallet {
 		NewlandQRCodeScanner qrScannerObj = new NewlandQRCodeScanner(terminalBayProfile);
 		String scannedData = qrScannerObj.scan_QR_code(getPalletQrScannerPositionId());
 
-		// scannedData = scannedData.replace("\r\n", "");
-		/*
-		 * if(scannedData == null){ // == null is enough since we do all validation in
-		 * extractScannedData() function
-		 * //status = "NULL";
-		 * }
-		 * else
-		 */
 		eachBaylogger.debug("qrCodePalletScanning : scannedData: " + scannedData);
 		if (scannedData.equals("NO_QR_CODE_AVAILABLE")) {
 			status = "NO_QR_CODE_AVAILABLE";
@@ -184,17 +181,39 @@ public class QrCodeScanningPallet {
 			testIntefaceStatus.setDeviceResponseData(scannedData);
 		} else {
 			eachBaylogger.debug("qrCodePalletScanning : Else Hit1: ");
-			status = "GOOD";
-			scannedData = scannedData.replace("\r", "").replace("\n", "");
-			testIntefaceStatus.setDeviceResponseStatus("Success");
-			testIntefaceStatus.setDeviceResponseData(scannedData);
-			// do the needful";
-
 			PalletTrackerController palletTrackerController = new PalletTrackerController();
 			String selectedBayTypeKey = getBayKey();
-			String palletQrId = scannedData;
+			String palletQrId = scannedData.replace("\r", "").replace("\n", "");
 
 			String palletDistinctId = PalletTrackerController.getActivePalletMap().get(palletQrId);
+
+			// Check if test is already completed
+			boolean isAlreadyCompleted = false;
+			try {
+				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
+						.findFirstByPalletDistinctId(palletDistinctId);
+				if (myPalletManage != null) {
+					PalletBayState presentBayState = myPalletManage.getPalleteBayStateList().stream()
+							.filter(e -> e.getBayStateKey().equals(selectedBayTypeKey))
+							.findFirst()
+							.orElse(null);
+					if (presentBayState != null && Boolean.TRUE.equals(presentBayState.isTestCompleted())) {
+						isAlreadyCompleted = true;
+					}
+				}
+			} catch (Exception e) {
+				eachBaylogger.error("Error checking testCompleted flag: " + e.getMessage());
+			}
+
+			if (isAlreadyCompleted) {
+				status = "ALREADY_COMPLETED";
+				testIntefaceStatus.setDeviceResponseStatus("Success");
+				testIntefaceStatus.setDeviceResponseData("ALREADY_COMPLETED");
+			} else {
+				status = "GOOD";
+				testIntefaceStatus.setDeviceResponseStatus("Success");
+				testIntefaceStatus.setDeviceResponseData(scannedData);
+			}
 
 			eachBaylogger.debug("qrCodePalletScanning: getActivePalletMap palletDistinctId : " + palletDistinctId
 					+ "  selectedBayTypeKey: " + selectedBayTypeKey);
@@ -212,17 +231,12 @@ public class QrCodeScanningPallet {
 		StateExecutorController.updateTestStatusGui(testIntefaceStatus);
 
 		if (status.equals("GOOD")) {
-			// responseReturn.put("status", true);
 			bayResponse.setStatus(true);
 		}
 
 		if (StateExecutorController.simulateFtBayHappyPath) {
-			// responseReturn.put("status", true);
 			bayResponse.setStatus(true);
 		}
-
-		// responseReturn.put("responseData", status);
-		// responseReturn.put("testInterfaceStatus", testIntefaceStatus);
 
 		bayResponse.setResponseData(status);
 		bayResponse.setTestInterfaceStatus(testIntefaceStatus);
@@ -231,7 +245,6 @@ public class QrCodeScanningPallet {
 
 		eachBaylogger.debug("qrCodePalletScanning : Exit" + " : " + getBayKey());
 
-		// return responseReturn;//status;
 		return bayResponse;
 	}
 
@@ -239,10 +252,6 @@ public class QrCodeScanningPallet {
 			String selectedBayTypeKey, String palletDistinctId) {
 
 		Map<Integer, String> meterListWithSerialNoMap = new HashMap<Integer, String>();
-		// String palletDistinctId =
-		// palletTrackerController.addNewPalletManage(selectedBayTypeKey,palletQrId,meterListWithSerialNoMap);
-
-		// String palletDistinctId = "";
 
 		PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
 				.findFirstByPalletDistinctId(palletDistinctId);
@@ -256,9 +265,6 @@ public class QrCodeScanningPallet {
 				meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(), eachPalletMeter.getMeterSerialNo());
 			}
 		}
-
-		// If the scanned pallet is in the verification bay, update all pallets in the
-		// bay
 
 		boolean batchUpdate = false;
 		List<PalletManage> selectedPalletManageList = new ArrayList<PalletManage>();
@@ -293,13 +299,8 @@ public class QrCodeScanningPallet {
 					String userInputData = GuiUtils.textFieldInputDialogDisplay(header, title);
 
 					if (!userInputData.isEmpty()) {
-						// System.out.println(result.get());
-
 						ApplicationLauncher.logger
 								.debug("refreshDashBoard: VERIFICATION_BAY: userInputData: " + userInputData);
-
-						// setPopulateType(ConstantReportV2.POPULATE_DATA_TYPE_ONLY_HEADERS);
-						// ref_tvOperationParamProfile.getItems().clear();
 					}
 				});
 				bayKey = ConstantConveyor.WAITING_BAY_KEY;
@@ -346,13 +347,8 @@ public class QrCodeScanningPallet {
 					String userInputData = GuiUtils.textFieldInputDialogDisplay(header, title);
 
 					if (!userInputData.isEmpty()) {
-						// System.out.println(result.get());
-
 						ApplicationLauncher.logger
 								.debug("refreshDashBoard: STA_NLD1_BAY_KEY: userInputData: " + userInputData);
-
-						// setPopulateType(ConstantReportV2.POPULATE_DATA_TYPE_ONLY_HEADERS);
-						// ref_tvOperationParamProfile.getItems().clear();
 					}
 				});
 				bayKey = ConstantConveyor.VERIFICATION_BAY_KEY;
@@ -396,13 +392,8 @@ public class QrCodeScanningPallet {
 					String userInputData = GuiUtils.textFieldInputDialogDisplay(header, title);
 
 					if (!userInputData.isEmpty()) {
-						// System.out.println(result.get());
-
 						ApplicationLauncher.logger
 								.debug("refreshDashBoard: STA_NLD2_BAY_KEY: userInputData: " + userInputData);
-
-						// setPopulateType(ConstantReportV2.POPULATE_DATA_TYPE_ONLY_HEADERS);
-						// ref_tvOperationParamProfile.getItems().clear();
 					}
 				});
 				bayKey = ConstantConveyor.VERIFICATION_BAY_KEY;
@@ -466,14 +457,6 @@ public class QrCodeScanningPallet {
 			} else {
 				eachBaylogger.debug(
 						"qrCodePalletScanning: No ActivePalletMap-2 :  selectedBayTypeKey : " + selectedBayTypeKey);
-
-				// removed on Procon-maven-s0.9.2.2 version by gopinath on 07-Mar-2026
-				/*
-				 * palletDistinctId =
-				 * palletTrackerController.addNewPalletManage(selectedBayTypeKey,palletQrId,
-				 * meterListWithSerialNoMap);
-				 * updatePalletViewer(selectedBayTypeKey, palletQrId);
-				 */
 			}
 		}
 		if (batchUpdate) {
@@ -492,10 +475,8 @@ public class QrCodeScanningPallet {
 			BayUtils.delay(100);
 			eachBaylogger.debug("qrCodePalletScanning: batch update : delay done :for removal: ");
 			String palletName = "";
-			// eachBaylogger.debug("qrCodePalletScanning: batch update ");
 			for (PalletManage eachPalletManage : selectedPalletManageList) {
 				meterListWithSerialNoMap.clear();
-				// myPalletManage = myPalletManageList.get(0);
 				palletMeterSetList = eachPalletManage.getPalletMeterList();
 				palletMeterSetList.stream()
 						.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
@@ -503,12 +484,9 @@ public class QrCodeScanningPallet {
 					meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
 							eachPalletMeter.getMeterSerialNo());
 				}
-				// ConveyorDeviceDataManagerController.getDashboardObject().removePalletFromBay(selectedBayTypeKey);
 				palletName = eachPalletManage.getPalletQrId();
 				eachBaylogger.debug("qrCodePalletScanning: batch update : palletName: " + palletName);
 
-				// ConveyorDeviceDataManagerController.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName,
-				// meterListWithSerialNoMap);
 				if (bayKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)) {
 					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName,
 							meterListWithSerialNoMap);
@@ -543,14 +521,6 @@ public class QrCodeScanningPallet {
 			statusMap.put(6, MeterStatus.IDLE);
 
 			Map<Integer, String> errorCodeMap = new HashMap<>();
-			/*
-			 * errorCodeMap.put(1, "ERR-000");
-			 * errorCodeMap.put(2, "ERR-000");
-			 * errorCodeMap.put(3, "ERR-000");
-			 * errorCodeMap.put(4, "ERR-000");
-			 * errorCodeMap.put(5, "ERR-000");
-			 * errorCodeMap.put(6, "ERR-000");
-			 */
 
 			errorCodeMap.put(1, "");
 			errorCodeMap.put(2, "");
@@ -563,9 +533,6 @@ public class QrCodeScanningPallet {
 						errorCodeMap);
 			});
 		}
-		// palletTrackerController.refreshPalletManageDataFromDb();
-		// palletTrackerController.refreshPalletManageDataFromDbv2("Qr-Pallet-refreshDashBoard");
-
 	}
 
 	public void updatePalletViewer(String selectedBayTypeKey, String palletQrId) {
@@ -582,10 +549,6 @@ public class QrCodeScanningPallet {
 			case "CALB":
 				ConveyorDebugController.getRef_txtCalibBayPallet().setText(palletQrId);
 				break;
-			/*
-			 * case "WTNGB":
-			 * addPalletToMultiPalletBay("WTNGB", palletQrId);
-			 */
 			default:
 				break;
 		}

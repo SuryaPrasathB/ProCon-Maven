@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sun.corba.se.spi.orbutil.fsm.State;
 import com.tasnetwork.spring.orm.model.StateFlow;
 
 public interface StateFlowRepo extends JpaRepository<StateFlow, Long>{
