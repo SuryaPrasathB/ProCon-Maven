@@ -8,12 +8,11 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S07_ensure_the_fingerTip_Latch_Opened_Bay1 implements STA_NoLoadTestBay1State {
 
@@ -27,7 +26,8 @@ public class S07_ensure_the_fingerTip_Latch_Opened_Bay1 implements STA_NoLoadTes
 
         int try_count = 0;
 
-        while (try_count <= 3 && !StaNld_Bay1.isStopProcessRequestedStaNldBay1() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
+        while (try_count <= 3 && !StaNld_Bay1.isStopProcessRequestedStaNldBay1()
+                && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 
             Map<String, Object> responseReturn = sctNltBay1_FingerTipLatch_Status();
             String sctNltBay1_FingerTipLatch_Status = (String) responseReturn.get("status");

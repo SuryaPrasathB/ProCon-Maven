@@ -8,15 +8,12 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S01_check_for_pallets_at_SCT_NLT_Bay1 implements STA_NoLoadTestBay1State {
 

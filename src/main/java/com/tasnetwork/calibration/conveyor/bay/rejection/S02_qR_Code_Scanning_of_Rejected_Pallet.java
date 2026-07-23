@@ -197,22 +197,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 			sendIdleStatusUpdate();
 		}
 
-		/*
-		 * List<Map<String, Object>> metersData =
-		 * readPalletMetersData(getMyBayKey(),qrData);
-		 * Rejection.logger.debug("S02_qR_Code_Scanning_of_Pallet: metersData: " +
-		 * metersData);
-		 * // If data is available, send it for batch update to the rejection app
-		 * if (metersData != null && !metersData.isEmpty()) {
-		 * batchUpdateRejectionMeters(qrData,metersData); // This will now update
-		 * ConveyorOutputMetrics daily with average hourly output
-		 * } else {
-		 * Rejection.logger.
-		 * debug("handleRequest: No meter data found for batch update for bay: " +
-		 * getMyBayKey());
-		 * }
-		 */
-
 		Rejection.logger.info("S02_qR_Code_Scanning_of_Pallet : Exit");
 		return bayResponse;
 	}
@@ -278,7 +262,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 		try {
 			PalletManage myPalletManage = null;// MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
 
-
 			Optional<PalletManage> myPalletManageOptional = MySqlServiceManager.getPalletManageService()
 					.findByPalletDistinctId(palletDistinctId);
 
@@ -324,7 +307,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 		try {
 
 			PalletManage myPalletManage = null;// MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
-
 
 			Optional<PalletManage> myPalletManageOptional = MySqlServiceManager.getPalletManageService()
 					.findByPalletDistinctId(palletDistinctId);
@@ -381,7 +363,7 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 			}
 		}).start();
 	}
-	
+
 	public void sendRestApiPalletUpdate(String palletQrCode) {
 		Rejection.logger.debug("sendRestApiPalletUpdate: Entry");
 		new Thread(() -> {
@@ -677,9 +659,7 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 		}
 
 		boolean allUpdatesInitiatedSuccessfully = true;
-		// String customerName =
-		// DeviceDataManagerController.getConveyorConfigParsedKey().getCustomerName();//."DevSys";
-		// // Fixed customerName
+
 		String bayType = getMyBayKey(); // Use the bayType from the current instance
 
 		if (bayType == null || bayType.isEmpty()) {
@@ -687,43 +667,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 					"metricsUpdateRejectionMeters: bayType (myBayKey) is null or empty. Cannot update daily metrics.");
 			return false;
 		}
-
-		/*
-		 * for (Map<String, Object> meterData : metersToUpdate) {
-		 * try {
-		 * Integer positionNo = (Integer) meterData.get("rackPositionNo");
-		 * String serialNo = (String) meterData.get("meterSerialNo");
-		 * String status = (String) meterData.get("overallTestResultStatus");
-		 * String reason = (String) meterData.get("errorCode");
-		 * 
-		 * if (positionNo != null) {
-		 * //sendunloadingMeterUpdate(positionNo, serialNo, status, reason);
-		 * if(restApiSendIndividualMeterStatus) {
-		 * sendRestApiPalletUpdate(palletQrCode);
-		 * BayUtils.delay(100);
-		 * sendRestApiMeterStatusUpdate(positionNo, serialNo, status, reason);
-		 * }
-		 * } else {
-		 * Rejection.logger.
-		 * error("metricsUpdateRejectionMeters: Meter ID is null, skipping update for: "
-		 * + serialNo);
-		 * allUpdatesInitiatedSuccessfully = false;
-		 * }
-		 * } catch (Exception e) {
-		 * Rejection.logger.
-		 * error("metricsUpdateRejectionMeters: Error initiating update for meter data: "
-		 * + meterData + ". Exception: " + e.getMessage(), e);
-		 * allUpdatesInitiatedSuccessfully = false;
-		 * }
-		 * }
-		 */
-		/*
-		 * if(!restApiSendIndividualMeterStatus) {
-		 * //String palletQrCodeWithBayName = "Unloading Bay : " + palletQrCode;
-		 * //sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
-		 * sendPalletWithMetersStatusUpdateV2(palletQrCode, palletMeterList);
-		 * }
-		 */
 
 		BayUtils bayUtils = new BayUtils();
 		allUpdatesInitiatedSuccessfully = bayUtils.updateConveyorMetrics(
@@ -733,291 +676,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 				+ allUpdatesInitiatedSuccessfully);
 		return allUpdatesInitiatedSuccessfully;
 	}
-
-	/*
-	 * public boolean batchUpdateRejectionMeters(String
-	 * palletQrCode,List<Map<String, Object>> metersToUpdate) {
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: Entry.");
-	 * if (metersToUpdate == null || metersToUpdate.isEmpty()) {
-	 * Rejection.logger.
-	 * debug("batchUpdateRejectionMeters: No meters to update in batch.");
-	 * return false;
-	 * }
-	 * 
-	 * boolean allUpdatesInitiatedSuccessfully = true;
-	 * String customerName =
-	 * DeviceDataManagerController.getConveyorConfigParsedKey().getCustomerName();//
-	 * "DevSys"; // Fixed customerName
-	 * String bayType = getMyBayKey(); // Use the bayType from the current instance
-	 * 
-	 * // Critical: Ensure bayType is available before proceeding with metrics
-	 * update
-	 * if (bayType == null || bayType.isEmpty()) {
-	 * Rejection.logger.
-	 * error("batchUpdateRejectionMeters: bayType (myBayKey) is null or empty. Cannot update daily metrics."
-	 * );
-	 * return false;
-	 * }
-	 * ConveyorOutputMetrics metrics = new ConveyorOutputMetrics();
-	 * metrics.setCustomerName(customerName);
-	 * metrics.setBayType(bayType); // Set the bayType for the new entry
-	 * // Initialize counts to 0 for the new daily entry
-	 * metrics.setPalletOutput(0);
-	 * //metrics.setPalletOutput(0);
-	 * metrics.setTotalNoOfMeters(0);
-	 * metrics.setPassedMeters(0);
-	 * metrics.setFailedMeters(0);
-	 * metrics.setAverageHourlyOutput(0.0);
-	 * long diffInMillis = 0;
-	 * // Find or create the daily metrics entry for the specific customer and
-	 * bayType
-	 * Optional<ConveyorOutputMetrics> metricsOptional =
-	 * conveyorOutputMetricsService.findByCustomerNameBayTypeAndCurrentDate(
-	 * customerName, bayType);
-	 * .orElseGet(() -> {
-	 * ConveyorOutputMetrics newMetrics = new ConveyorOutputMetrics();
-	 * newMetrics.setCustomerName(customerName);
-	 * newMetrics.setBayType(bayType); // Set the bayType for the new entry
-	 * // Initialize counts to 0 for the new daily entry
-	 * newMetrics.setPalletOutput(0);
-	 * newMetrics.setTotalNoOfMeters(0);
-	 * newMetrics.setPassedMeters(0);
-	 * newMetrics.setFailedMeters(0);
-	 * newMetrics.setAverageHourlyOutput(0.0); // Initialize new field
-	 * // createdAt for the daily record will be set to the start of the day by the
-	 * service
-	 * return newMetrics;
-	 * });
-	 * 
-	 * if(metricsOptional.isPresent()){
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: bayType " + bayType +
-	 * " metrics exist");
-	 * metrics= metricsOptional.get();
-	 * }else{
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: bayType " + bayType +
-	 * " metrics NOT exist");
-	 * }
-	 * //ConveyorOutputMetrics metrics= metricsOptional.get();
-	 * int currentPalletTotalMeters = metersToUpdate.size();
-	 * int currentPalletPassedMeters = 0;
-	 * int currentPalletFailedMeters = 0;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: metersToUpdate.size(): "
-	 * +metersToUpdate.size());
-	 * for (Map<String, Object> meterData : metersToUpdate) {
-	 * try {
-	 * Integer positionNo = (Integer) meterData.get("rackPositionNo");
-	 * String serialNo = (String) meterData.get("meterSerialNo");
-	 * String status = (String) meterData.get("overallTestResultStatus");
-	 * String reason = (String) meterData.get("errorCode");
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo: " +
-	 * positionNo + " ,serialNo: " + serialNo + " , status: <" + status +
-	 * "> , reason: " +reason);
-	 * if (ConstantReport.REPORT_POPULATE_PASS.equalsIgnoreCase(status)) {
-	 * currentPalletPassedMeters++;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo : " +
-	 * positionNo + ": Pass hit1");
-	 * } else if (ConstantReport.REPORT_POPULATE_FAIL.equalsIgnoreCase(status)) {
-	 * currentPalletFailedMeters++;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo : " +
-	 * positionNo + ": Fail hit2");
-	 * }else if (ConstantReport.REPORT_POPULATE_WFR.equalsIgnoreCase(status)) {
-	 * currentPalletPassedMeters++;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo : " +
-	 * positionNo + ": WFR hit3");
-	 * }else{
-	 * currentPalletPassedMeters++;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo : " +
-	 * positionNo + ": Others hit4");
-	 * }
-	 * 
-	 * if (positionNo != null) {
-	 * //sendRejectionMeterUpdate(positionNo, serialNo, status, reason);
-	 * if(restApiSendIndividualMeterStatus) {
-	 * sendRestApiPalletUpdate(palletQrCode);
-	 * BayUtils.delay(100);
-	 * sendRestApiMeterStatusUpdate(positionNo, serialNo, status, reason);
-	 * }
-	 * MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS)
-	 * ? MeterStatus.PASSED : MeterStatus.FAILED;
-	 * if(status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
-	 * meterStatus = MeterStatus.PASSED;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo: "+ positionNo
-	 * +" Pass hit1");
-	 * }else if(status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
-	 * meterStatus = MeterStatus.FAILED;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo: "+ positionNo
-	 * +" Fail hit2");
-	 * }else if(status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo: "+ positionNo
-	 * +" WFR hit3");
-	 * meterStatus = MeterStatus.IDLE;
-	 * }else {
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: positionNo: "+ positionNo
-	 * +" others hit4");
-	 * meterStatus = MeterStatus.IDLE;
-	 * }
-	 * ConveyorDeviceDataManagerController.getDashboardObject().
-	 * updatePalletMeterStatusByBayAndPositionWithSerialNo(
-	 * getMyBayKey(), positionNo, serialNo, meterStatus, reason);
-	 * } else {
-	 * Rejection.logger.
-	 * error("batchUpdateRejectionMeters: Meter ID is null, skipping update for: " +
-	 * serialNo);
-	 * allUpdatesInitiatedSuccessfully = false;
-	 * }
-	 * } catch (Exception e) {
-	 * Rejection.logger.
-	 * error("batchUpdateRejectionMeters: Error initiating update for meter data: "
-	 * + meterData + ". Exception: " + e.getMessage(), e);
-	 * allUpdatesInitiatedSuccessfully = false;
-	 * }
-	 * }
-	 * if(!restApiSendIndividualMeterStatus) {
-	 * //String palletQrCodeWithBayName = "Rejection Bay : " + palletQrCode;
-	 * //sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
-	 * sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
-	 * }
-	 * // After processing all meters for the current pallet, update the daily
-	 * ConveyorOutputMetrics
-	 * metrics.setPalletOutput(metrics.getPalletOutput() + 1); // Increment pallet
-	 * count for the day
-	 * metrics.setTotalNoOfMeters(metrics.getTotalNoOfMeters() +
-	 * currentPalletTotalMeters);
-	 * metrics.setPassedMeters(metrics.getPassedMeters() +
-	 * currentPalletPassedMeters);
-	 * metrics.setFailedMeters(metrics.getFailedMeters() +
-	 * currentPalletFailedMeters);
-	 * // updatedAt will be set by the service automatically before saving
-	 * 
-	 * // Calculate Average Hourly Output
-	 * // The createdAt field in 'metrics' will be the start of the day (00:00:00)
-	 * // The current time 'now' represents the end of the active period for average
-	 * calculation
-	 * Date now = new Date();
-	 * if(metricsOptional.isPresent()){
-	 * diffInMillis = now.getTime() - metrics.getCreatedAt().getTime(); // Time
-	 * elapsed since start of day
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: diffInMillis: " +
-	 * diffInMillis);
-	 * }
-	 * double hoursElapsed = (double) diffInMillis / (1000 * 60 * 60); // Convert
-	 * milliseconds to hours
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: hoursElapsed: " +
-	 * hoursElapsed);
-	 * // To avoid division by zero or inflated "per hour" numbers for very short
-	 * durations
-	 * // If the elapsed time is less than an hour, we'll consider it 1 hour for
-	 * averaging purposes.
-	 * // This gives a more realistic "rate" from the beginning of operation.
-	 * if (hoursElapsed < 1.0) {
-	 * hoursElapsed = 1.0;
-	 * }
-	 * 
-	 * double calculatedAverage = metrics.getTotalNoOfMeters() / hoursElapsed;
-	 * Rejection.logger.debug("batchUpdateRejectionMeters: calculatedAverage: " +
-	 * calculatedAverage);
-	 * metrics.setAverageHourlyOutput(calculatedAverage);
-	 * 
-	 * 
-	 * try {
-	 * conveyorOutputMetricsService.saveToDb(metrics);
-	 * Rejection.logger.
-	 * info("ConveyorOutputMetrics (Daily) updated successfully for customer: " +
-	 * customerName + ", bay: " + bayType + " for today. Avg Hourly Output: " +
-	 * String.format("%.2f", calculatedAverage));
-	 * Platform.runLater(()->{
-	 * ConveyorDeviceDataManagerController.getDashboardObject().refreshMetricsTable(
-	 * );
-	 * });
-	 * 
-	 * } catch (Exception e) {
-	 * Rejection.logger.error("Error saving ConveyorOutputMetrics (Daily): " +
-	 * e.getMessage(), e);
-	 * allUpdatesInitiatedSuccessfully = false;
-	 * }
-	 * 
-	 * // SUMMARY - UPDATE
-	 * try {
-	 * // Try to find existing summary record for today
-	 * Optional<ConveyorOutputMetricsSummary> summaryOptional =
-	 * conveyorOutputMetricsSummaryService.findByCustomerNameBayTypeAndCurrentDate(
-	 * customerName, bayType);
-	 * 
-	 * Date metricsCreatedAt = metrics.getCreatedAt();
-	 * 
-	 * ConveyorOutputMetricsSummary summary = summaryOptional.orElseGet(() -> {
-	 * ConveyorOutputMetricsSummary s = new ConveyorOutputMetricsSummary();
-	 * s.setCustomerName(customerName);
-	 * s.setBayType(bayType);
-	 * s.setCreatedAt(metricsCreatedAt);
-	 * s.setPalletOutput(0);
-	 * s.setTotalNoOfMeters(0);
-	 * s.setPassedMeters(0);
-	 * s.setFailedMeters(0);
-	 * s.setAverageHourlyOutput(0.0);
-	 * return s;
-	 * });
-	 * 
-	 * hoursElapsed = (double) diffInMillis / (1000 * 60 * 60); // Convert
-	 * milliseconds to hours
-	 * Rejection.logger.
-	 * debug("batchUpdateUnloadingMeters : summary : hoursElapsed: " +
-	 * hoursElapsed);
-	 * // To avoid division by zero or inflated "per hour" numbers for very short
-	 * durations
-	 * // If the elapsed time is less than an hour, we'll consider it 1 hour for
-	 * averaging purposes.
-	 * // This gives a more realistic "rate" from the beginning of operation.
-	 * if (hoursElapsed < 1.0) {
-	 * hoursElapsed = 1.0;
-	 * }
-	 * 
-	 * double calculatedSummaryAverage = ( summary.getTotalNoOfMeters() +
-	 * currentPalletTotalMeters ) / hoursElapsed;
-	 * Rejection.logger.
-	 * debug("batchUpdateUnloadingMeters : summary : hoursElapsed: " +
-	 * hoursElapsed);
-	 * Rejection.logger.
-	 * debug("batchUpdateUnloadingMeters : summary : TotalNoOfMeters: " +
-	 * summary.getTotalNoOfMeters());
-	 * Rejection.logger.
-	 * debug("batchUpdateUnloadingMeters : summary : calculatedSummaryAverage: " +
-	 * calculatedSummaryAverage);
-	 * 
-	 * summaryOptional.ifPresent(existing -> summary.setId(existing.getId())); //
-	 * Keep ID if exists
-	 * summary.setUpdatedAt(now);
-	 * summary.setPalletOutput(summary.getPalletOutput() + 1);
-	 * summary.setTotalNoOfMeters(summary.getTotalNoOfMeters() +
-	 * currentPalletTotalMeters);
-	 * summary.setPassedMeters(summary.getPassedMeters() +
-	 * currentPalletPassedMeters);
-	 * summary.setFailedMeters(summary.getFailedMeters() +
-	 * currentPalletFailedMeters);
-	 * summary.setAverageHourlyOutput(calculatedSummaryAverage);
-	 * 
-	 * conveyorOutputMetricsSummaryService.saveToDb(summary);
-	 * 
-	 * Rejection.logger.info("ConveyorOutputMetricsSummary updated for customer: " +
-	 * customerName + ", bay: " + bayType);
-	 * } catch (Exception e) {
-	 * Rejection.logger.error("Error saving ConveyorOutputMetricsSummary: " +
-	 * e.getMessage(), e);
-	 * }
-	 * // --------------------- END SUMMARY LOGIC ---------------------
-	 * 
-	 * 
-	 * BayUtils bayUtils = new BayUtils();
-	 * bayUtils.updateSummaryMetrics(conveyorOutputMetricsSummaryService, metrics,
-	 * customerName, bayType, currentPalletTotalMeters, currentPalletPassedMeters,
-	 * currentPalletFailedMeters);
-	 * 
-	 * Rejection.logger.
-	 * debug("batchUpdateRejectionMeters: Exit. All updates initiated successfully: "
-	 * + allUpdatesInitiatedSuccessfully);
-	 * return allUpdatesInitiatedSuccessfully;
-	 * }
-	 */
 
 	// =============================================================================================================================================================
 

@@ -8,11 +8,10 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S10_ensure_divertor_relay_turned_off_Verific_Bay implements VerificTestBayState {
 
