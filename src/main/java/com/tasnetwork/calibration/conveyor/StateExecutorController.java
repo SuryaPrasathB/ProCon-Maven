@@ -1715,6 +1715,10 @@ public class StateExecutorController implements Initializable {
 		btnWaitingBayStop.setStyle("-fx-background-color: #FF5733;"); // Enabled - Default
 		btnWaitingBayStop.setDisable(true);
 
+		if (activeWaitingEngine != null) {
+			activeWaitingEngine.requestStop();
+		}
+
 		waitingBayStopTaskTimer = new Timer();
 		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
 

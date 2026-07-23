@@ -1171,6 +1171,10 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
+        if (activeWaitingEngine != null) {
+            activeWaitingEngine.requestStop();
+        }
+
         waitingBayStopTaskTimer = new Timer();
         waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
 
