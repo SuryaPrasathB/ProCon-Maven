@@ -2,8 +2,6 @@ package com.tasnetwork.calibration.conveyor.constant;
 
 import java.util.ArrayList;
 
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfigReader;
-
 public class ConstantConveyorConfig {
 
 	public static String SAVE_FILE_LOCATION = "C:\\Reports\\";
@@ -17,11 +15,6 @@ public class ConstantConveyorConfig {
 	public static int REF_STD_NO_OF_SAMPLES = 1;
 	public static long REF_STD_BAUD_RATE = 57600;
 
-	// public static String configFilePathName =
-	// "/resources/"+ConstantVersion.configFileName;//config.json";
-
-	// public static String reportPythonFilePathName =
-	// "/resources/"+ConstantVersion.pythonFileName;
 	public static boolean REPORT_CUSTOM_EXPORT_AS_PDF_ENABLED = false;
 	public static String PYTHON_EXE_LOCATION = "";
 	public static String PYTHON_SCRIPT_LOCATION = "";
@@ -38,7 +31,6 @@ public class ConstantConveyorConfig {
 	public static String POWERSRC = "PowerSrc";
 	public static String MY_TERMINAL_ID = "1";
 	public static String CLUSTER_NAME_01 = "Cluster1";
-	// public static String BAY_NAME_FT = "FT1";
 	public static String REFSTD = "RefStd";
 	public static String LDU = "LDU";
 	public static long No_of_pulses = 0;
@@ -130,7 +122,7 @@ public class ConstantConveyorConfig {
 	public static String CONVEYOR_REJECTION_CMD_LOCATION;
 	public static String CONVEYOR_REJECTION_PYTHON_SCRIPT;
 	public static String CONVEYOR_REJECTION_PYTHON_SCRIPT_SCREEN_NUMBER = "";
-	public static String CONVEYOR_REJECTION_PYTHON_EXECUTABLE_PATH; // Can be null
+	public static String CONVEYOR_REJECTION_PYTHON_EXECUTABLE_PATH;
 	public static String CONVEYOR_REJECTION_MONITOR_DISPLAY_NAME = "";
 	public static String CONVEYOR_REJECTION_BAY_DISPLAY_NAME = "";
 	public static String CONVEYOR_REJECTION_PORT = "5001";
@@ -153,7 +145,7 @@ public class ConstantConveyorConfig {
 	public static String CONVEYOR_UNLOADING_CMD_LOCATION;
 	public static String CONVEYOR_UNLOADING_PYTHON_SCRIPT;
 	public static String CONVEYOR_UNLOADING_PYTHON_SCRIPT_SCREEN_NUMBER = "";
-	public static String CONVEYOR_UNLOADING_PYTHON_EXECUTABLE_PATH; // Can be null
+	public static String CONVEYOR_UNLOADING_PYTHON_EXECUTABLE_PATH;
 	public static int CONVEYOR_UNLOADING_SCREEN_NUMBER;
 	public static String CONVEYOR_UNLOADING_MONITOR_DISPLAY_NAME = "";
 	public static String CONVEYOR_UNLOADING_BAY_DISPLAY_NAME = "";
@@ -162,7 +154,4 @@ public class ConstantConveyorConfig {
 	public static String CONVEYOR_UNLOADING_MONITOR_MANUFACTURER_NAME = "SampleManu-2";
 	public static String CONVEYOR_UNLOADING_MONITOR_PID_NO = "SamplePid-2";
 	public static String CONVEYOR_UNLOADING_MONITOR_SERIAL_NO = "SampleSerial-2";
-
-	// public static String CONFIG_FILE_VERSION = "1";
-
 }

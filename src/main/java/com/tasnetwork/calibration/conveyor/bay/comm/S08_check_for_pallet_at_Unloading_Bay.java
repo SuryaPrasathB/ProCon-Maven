@@ -8,14 +8,12 @@ import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
-import com.tasnetwork.calibration.conveyor.StateExecutorController;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
+import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
 public class S08_check_for_pallet_at_Unloading_Bay implements CommTestBayState {
 
@@ -78,8 +76,6 @@ public class S08_check_for_pallet_at_Unloading_Bay implements CommTestBayState {
                     bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
                 }
             }
-            // bayResponse.setStatus(true);
-            // bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
         } else {
             Comm.logger.info("S08_check_for_pallet_at_Unloading_Bay : Pallet Not Available");
             bayResponse.setStatus(false);
@@ -123,18 +119,6 @@ public class S08_check_for_pallet_at_Unloading_Bay implements CommTestBayState {
         }
 
         BayUtils bayUtils = new BayUtils();
-
-        /*
-         * String state = bayUtils.getInputDataFromBay(portInfo.getClusterId(),
-         * portInfo.getBayId(),
-         * portInfo.getPortId());
-         * if (testInterfaceStatus != null) {
-         * testInterfaceStatus.setDeviceResponseData(state);
-         * testInterfaceStatus.setTestStatus("Success");
-         * StateExecutorController.updateTestStatusGui(testInterfaceStatus);
-         * }
-         * 
-         */
 
         String state = bayUtils.getInputDataFromBayV2(portInfo);
 

@@ -1,28 +1,24 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.application.Platform;
+import java.io.File;
 import java.io.IOException;
-import java.io.File; // Import File class
-import java.util.Arrays; // For printing command array
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
 import com.tasnetwork.calibration.conveyor.bay.unloading.Unloading;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-// Import the constant configuration classes
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfigReader; // Assuming this might be used elsewhere
 import com.tasnetwork.calibration.energymeter.util.InputDialogFX;
-import com.tasnetwork.calibration.energymeter.util.YesNoDialogFX;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 /**
  * Controller for the LauncherPane, responsible for handling button actions
@@ -45,26 +41,24 @@ public class LauncherPaneController {
     private Button btn_verificLaunch;
 
     @FXML
-    private Button btn_unloadingLaunch; // New button for Unloading Screen
+    private Button btn_unloadingLaunch;
 
     @FXML
-    private Button btn_rejectionLaunch; // New button for Rejection Screen
+    private Button btn_rejectionLaunch;
 
     // --- Configuration Variables (fetched from ConstantConveyorConfig) ---
-    private final String verificCmdLocation = ConstantConveyorConfig.CONVEYOR_PROCAL_VERIFIC_CMD_LOCATION;
-    private final String verificJarFile = ConstantConveyorConfig.CONVEYOR_PROCAL_VERIFIC_JAR_FILE;
+    private final String verificCmdLocation;
+    private final String verificJarFile;
 
-    private final String sta1CmdLocation = ConstantConveyorConfig.CONVEYOR_PROCAL_STA1_CMD_LOCATION;
-    private final String sta1JarFile = ConstantConveyorConfig.CONVEYOR_PROCAL_STA1_JAR_FILE;
+    private final String sta1CmdLocation;
+    private final String sta1JarFile;
 
-    private final String sta2CmdLocation = ConstantConveyorConfig.CONVEYOR_PROCAL_STA2_CMD_LOCATION;
-    private final String sta2JarFile = ConstantConveyorConfig.CONVEYOR_PROCAL_STA2_JAR_FILE;
+    private final String sta2CmdLocation;
+    private final String sta2JarFile;
 
-    // Python application configurations (assuming these constants exist in
-    // ConstantConveyorConfig)
     private final String rejectionCmdLocation;
     private String rejectionPythonScript;
-    // private String rejectionPythonScript;
+
     private final String rejectionPythonExecutablePath;
     private final int rejectionScreenNumber;
     private String rejectionMonitorDisplayName = "";
@@ -95,6 +89,16 @@ public class LauncherPaneController {
      * Adding print statements here to verify values.
      */
     public LauncherPaneController() {
+        // Initialize JAR app configuration variables from ConstantConveyorConfig
+        verificCmdLocation = ConstantConveyorConfig.CONVEYOR_PROCAL_VERIFIC_CMD_LOCATION;
+        verificJarFile = ConstantConveyorConfig.CONVEYOR_PROCAL_VERIFIC_JAR_FILE;
+
+        sta1CmdLocation = ConstantConveyorConfig.CONVEYOR_PROCAL_STA1_CMD_LOCATION;
+        sta1JarFile = ConstantConveyorConfig.CONVEYOR_PROCAL_STA1_JAR_FILE;
+
+        sta2CmdLocation = ConstantConveyorConfig.CONVEYOR_PROCAL_STA2_CMD_LOCATION;
+        sta2JarFile = ConstantConveyorConfig.CONVEYOR_PROCAL_STA2_JAR_FILE;
+
         // Initialize Python app configuration variables from ConstantConveyorConfig
         rejectionCmdLocation = ConstantConveyorConfig.CONVEYOR_REJECTION_CMD_LOCATION;
         rejectionPythonScript = ConstantConveyorConfig.CONVEYOR_REJECTION_PYTHON_SCRIPT;
@@ -124,6 +128,12 @@ public class LauncherPaneController {
 
         // --- Debugging output for configuration variables ---
         ApplicationLauncher.logger.info("--- LauncherPaneController Configuration ---");
+        ApplicationLauncher.logger.info("verificCmdLocation: " + verificCmdLocation);
+        ApplicationLauncher.logger.info("verificJarFile: " + verificJarFile);
+        ApplicationLauncher.logger.info("sta1CmdLocation: " + sta1CmdLocation);
+        ApplicationLauncher.logger.info("sta1JarFile: " + sta1JarFile);
+        ApplicationLauncher.logger.info("sta2CmdLocation: " + sta2CmdLocation);
+        ApplicationLauncher.logger.info("sta2JarFile: " + sta2JarFile);
         ApplicationLauncher.logger.info("rejectionCmdLocation: " + rejectionCmdLocation);
         ApplicationLauncher.logger.info("rejectionPythonScript: " + rejectionPythonScript);
         ApplicationLauncher.logger.info("rejectionPythonExecutablePath: " + rejectionPythonExecutablePath);
@@ -208,20 +218,9 @@ public class LauncherPaneController {
      */
     @FXML
     void launchRejectionScreen(ActionEvent event) {
-        // launchPythonApp(rejectionCmdLocation, rejectionPythonScript,
-        // rejectionPythonExecutablePath, (rejectionScreenNumber), btn_rejectionLaunch);
-        // launchPythonAppV2( rejectionCmdLocation, rejectionPythonScript,
-        // rejectionPythonExecutablePath, rejectionMonitorDisplayName,
-        // rejectionBayNameDisplay, rejectionPort ,btn_rejectionLaunch);
-        // launchPythonAppV3( rejectionCmdLocation, rejectionPythonScript,
-        // rejectionPythonExecutablePath, rejectionMonitorManufacturerName,
-        // rejectionMonitorPidNo, rejectionMonitorSerialNo, rejectionBayNameDisplay,
-        // rejectionPort ,btn_rejectionLaunch);
-
         ApplicationLauncher.logger.debug("launchRejectionScreen Invoked:");
         rejectionLaunchTaskTimer = new Timer();
         rejectionLaunchTaskTimer.schedule(new RejectionGetScreenNumberTask(), 50);
-
     }
 
     /**
@@ -234,35 +233,9 @@ public class LauncherPaneController {
      */
     @FXML
     void launchUnloadingScreen(ActionEvent event) {
-        /*
-         * S08_functional_Test.sendRejectionMeterUpdate(1,"01000001", "FAIL",
-         * "ERR_RELAY");
-         * S08_functional_Test.sendRejectionMeterUpdate(2,"01000002", "PASS",
-         * "NO_RELAY");
-         * S08_functional_Test.sendRejectionMeterUpdate(3,"01000003", "PASS",
-         * "NO_RELAY");
-         * S08_functional_Test.sendRejectionMeterUpdate(4,"01000004", "FAIL",
-         * "ERR_COMM");
-         * S08_functional_Test.sendRejectionMeterUpdate(5,"01000005", "FAIL",
-         * "ERR_PULSE");
-         * S08_functional_Test.sendRejectionMeterUpdate(6,"01000006", "FAIL",
-         * "ERR_PhaseCurrent");
-         */
-
         ApplicationLauncher.logger.debug("launchUnloadingScreen Invoked:");
         unloadingLaunchTaskTimer = new Timer();
         unloadingLaunchTaskTimer.schedule(new UnloadingGetScreenNumberTask(), 50);
-
-        // launchPythonApp(unloadingCmdLocation, unloadingPythonScript,
-        // unloadingPythonExecutablePath, (unloadingScreenNumber), btn_unloadingLaunch);
-        // launchPythonAppV2( unloadingCmdLocation, unloadingPythonScript,
-        // unloadingPythonExecutablePath, unloadingMonitorDisplayName,
-        // unloadingBayNameDisplay, unloadingPort ,btn_unloadingLaunch);
-        // launchPythonAppV3( unloadingCmdLocation, unloadingPythonScript,
-        // unloadingPythonExecutablePath, unloadingMonitorManufacturerName,
-        // unloadingMonitorPidNo, unloadingMonitorSerialNo, unloadingBayNameDisplay,
-        // unloadingPort ,btn_unloadingLaunch);
-
     }
 
     class UnloadingGetScreenNumberTask extends TimerTask {
@@ -289,8 +262,6 @@ public class LauncherPaneController {
                     ApplicationLauncher.logger
                             .debug("UnloadingGetScreenNumberTask : launchPythonApp : unloadingPythonScript:"
                                     + unloadingPythonScript);
-                    // launchPythonApp(unloadingCmdLocation, unloadingPythonScript,
-                    // unloadingPythonExecutablePath, (unloadingScreenNumber), btn_unloadingLaunch);
 
                     launchPythonAppV3_1(unloadingCmdLocation, unloadingPythonScript, unloadingPythonExecutablePath,
                             screenNumberIndex, unloadingBayNameDisplay, unloadingPort, btn_unloadingLaunch);
@@ -349,25 +320,6 @@ public class LauncherPaneController {
             String header = "Unloading Bay : Kindly enter the screen number (1 or 2 or 3): ";
             String title = "Unloading Bay";
 
-            /*
-             * YesNoDialogFX dialog = new YesNoDialogFX(title,
-             * header,YesNoDialogFX.MessageType.WARNING);
-             * dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
-             * if (Boolean.TRUE.equals(newVal)) {
-             * ApplicationLauncher.logger.
-             * debug("getUnloadingUserMonitorScreenNumberStable: prompt user hit: YES");
-             * } else {
-             * ApplicationLauncher.logger.
-             * debug("getUnloadingUserMonitorScreenNumber: Stable prompt user hit: NO");
-             * }
-             * ConveyorDeviceDataManagerController.
-             * setUnloadingBayScreenNameUserInputReceived(true);
-             * ApplicationLauncher.logger.
-             * debug("getUnloadingUserMonitorScreenNumber : setUnloadingBayScreenNameUserInputReceived: true"
-             * );
-             * });
-             */
-
             InputDialogFX dialog = new InputDialogFX(title, header, InputDialogFX.MessageType.WARNING);
             dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
                 if (newVal != null && !newVal.isEmpty()) {
@@ -422,25 +374,6 @@ public class LauncherPaneController {
         Platform.runLater(() -> {
             String header = "Rejection Bay : Kindly enter the screen number (1 or 2 or 3): ";
             String title = "Rejection Bay";
-
-            /*
-             * YesNoDialogFX dialog = new YesNoDialogFX(title,
-             * header,YesNoDialogFX.MessageType.WARNING);
-             * dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
-             * if (Boolean.TRUE.equals(newVal)) {
-             * ApplicationLauncher.logger.
-             * debug("getRejectionUserMonitorScreenNumberStable: prompt user hit: YES");
-             * } else {
-             * ApplicationLauncher.logger.
-             * debug("getRejectionUserMonitorScreenNumber: Stable prompt user hit: NO");
-             * }
-             * ConveyorDeviceDataManagerController.
-             * setRejectionBayScreenNameUserInputReceived(true);
-             * ApplicationLauncher.logger.
-             * debug("getRejectionUserMonitorScreenNumber : setRejectionBayScreenNameUserInputReceived: true"
-             * );
-             * });
-             */
 
             InputDialogFX dialog = new InputDialogFX(title, header, InputDialogFX.MessageType.WARNING);
             dialog.resultProperty().addListener((obs, oldVal, newVal) -> {
@@ -526,8 +459,6 @@ public class LauncherPaneController {
                     throw new IOException("Cannot find or execute java.exe at: " + javaExecutablePath);
                 }
 
-                // Build the command using ProcessBuilder, now using the absolute path to
-                // java.exe
                 ProcessBuilder pb = new ProcessBuilder(
                         "cmd.exe",
                         "/c",
@@ -595,17 +526,12 @@ public class LauncherPaneController {
                 // Extract drive letter from cmdLocation (e.g., "D")
                 String driveLetter = cmdLocation.substring(0, 1);
 
-                // Construct the full command string for cmd.exe
-                // This string will be executed by the inner cmd.exe
                 String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
                         (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ? pythonExecutablePath
                                 : "python.exe")
                         +
                         "\" \"" + pythonScript + "\" " + String.valueOf(screenNumber);
 
-                // Build the ProcessBuilder command.
-                // The 'start' command needs its own title argument, then the command to run.
-                // The command to run is 'cmd.exe /k "fullCommand"'.
                 ProcessBuilder pb = new ProcessBuilder(
                         "cmd.exe",
                         "/c", // Use /c to close the *outer* cmd window after 'start' finishes
@@ -615,10 +541,6 @@ public class LauncherPaneController {
                         "/k", // Keep the *inner* cmd window open after the Python script runs
                         fullCommand // The entire sequence of commands to run in the inner cmd window
                 );
-
-                // IMPORTANT: Remove pb.directory() as the 'cd' command in fullCommand handles
-                // directory change
-                // pb.directory(workingDir); // REMOVED
 
                 pb.inheritIO(); // Inherit I/O for debugging (optional)
 
@@ -676,9 +598,6 @@ public class LauncherPaneController {
                 // "\" " + String.valueOf(screenNumber);
                         "\" --screen-name \"" + screenNumber + "\"";
 
-                // Build the ProcessBuilder command.
-                // The 'start' command needs its own title argument, then the command to run.
-                // The command to run is 'cmd.exe /k "fullCommand"'.
                 ProcessBuilder pb = new ProcessBuilder(
                         "cmd.exe",
                         "/c", // Use /c to close the *outer* cmd window after 'start' finishes
@@ -739,21 +658,6 @@ public class LauncherPaneController {
                 // Extract drive letter from cmdLocation (e.g., "D")
                 String driveLetter = cmdLocation.substring(0, 1);
 
-                // Construct the full command string for cmd.exe
-                // This string will be executed by the inner cmd.exe
-                // String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
-                // (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ?
-                // pythonExecutablePath : "python.exe") +
-                // "\" \"" + pythonScript + "\" " + String.valueOf(screenNumber);
-
-                /*
-                 * String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
-                 * (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ?
-                 * pythonExecutablePath : "python.exe") +
-                 * "\" \"" + pythonScript + " --port " + port + " --bay-name \"" +
-                 * bayNameDisplay + "\" --screen-name \"" + monitorDisplayName + "\"";
-                 */
-
                 String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
                         (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ? pythonExecutablePath
                                 : "python.exe")
@@ -762,9 +666,7 @@ public class LauncherPaneController {
                         + "\" --screen-name \"" + monitorDisplayName + "\"";
 
                 ApplicationLauncher.logger.info("launchPythonAppV2: fullCommand: <" + fullCommand + ">");
-                // Build the ProcessBuilder command.
-                // The 'start' command needs its own title argument, then the command to run.
-                // The command to run is 'cmd.exe /k "fullCommand"'.
+
                 ProcessBuilder pb = new ProcessBuilder(
                         "cmd.exe",
                         "/c", // Use /c to close the *outer* cmd window after 'start' finishes
@@ -774,10 +676,6 @@ public class LauncherPaneController {
                         "/k", // Keep the *inner* cmd window open after the Python script runs
                         fullCommand // The entire sequence of commands to run in the inner cmd window
                 );
-
-                // IMPORTANT: Remove pb.directory() as the 'cd' command in fullCommand handles
-                // directory change
-                // pb.directory(workingDir); // REMOVED
 
                 pb.inheritIO(); // Inherit I/O for debugging (optional)
 
@@ -835,21 +733,6 @@ public class LauncherPaneController {
                 // Extract drive letter from cmdLocation (e.g., "D")
                 String driveLetter = cmdLocation.substring(0, 1);
 
-                // Construct the full command string for cmd.exe
-                // This string will be executed by the inner cmd.exe
-                // String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
-                // (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ?
-                // pythonExecutablePath : "python.exe") +
-                // "\" \"" + pythonScript + "\" " + String.valueOf(screenNumber);
-
-                /*
-                 * String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
-                 * (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ?
-                 * pythonExecutablePath : "python.exe") +
-                 * "\" \"" + pythonScript + " --port " + port + " --bay-name \"" +
-                 * bayNameDisplay + "\" --screen-name \"" + monitorDisplayName + "\"";
-                 */
-
                 String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
                         (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ? pythonExecutablePath
                                 : "python.exe")
@@ -861,9 +744,7 @@ public class LauncherPaneController {
                         + "\" --monitor-serial-no \"" + monitorSerialNo + "\"";
 
                 ApplicationLauncher.logger.info("launchPythonAppV3: fullCommand: <" + fullCommand + ">");
-                // Build the ProcessBuilder command.
-                // The 'start' command needs its own title argument, then the command to run.
-                // The command to run is 'cmd.exe /k "fullCommand"'.
+
                 ProcessBuilder pb = new ProcessBuilder(
                         "cmd.exe",
                         "/c", // Use /c to close the *outer* cmd window after 'start' finishes
@@ -873,10 +754,6 @@ public class LauncherPaneController {
                         "/k", // Keep the *inner* cmd window open after the Python script runs
                         fullCommand // The entire sequence of commands to run in the inner cmd window
                 );
-
-                // IMPORTANT: Remove pb.directory() as the 'cd' command in fullCommand handles
-                // directory change
-                // pb.directory(workingDir); // REMOVED
 
                 pb.inheritIO(); // Inherit I/O for debugging (optional)
 

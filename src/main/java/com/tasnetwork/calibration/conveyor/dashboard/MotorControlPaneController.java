@@ -1,24 +1,26 @@
 package com.tasnetwork.calibration.conveyor.dashboard;
 
-import com.sun.org.apache.xpath.internal.functions.Function;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.Timer;
+
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 
-import groovyjarjarantlr4.v4.parse.ANTLRParser.id_return;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.application.Platform; // Import Platform for UI updates
-
-import java.net.URL;
-import java.util.*;
 
 public class MotorControlPaneController implements Initializable {
 
@@ -33,16 +35,25 @@ public class MotorControlPaneController implements Initializable {
     private final Map<Integer, String> motorPortMappings = new HashMap<>();
 
     // Inject all buttons
-    @FXML private Button btn_onMotor1, btn_offMotor1;
-    @FXML private Button btn_onMotor2, btn_offMotor2;
-    @FXML private Button btn_onMotor3, btn_offMotor3;
-    @FXML private Button btn_onMotor4, btn_offMotor4;
-    @FXML private Button btn_onMotor5, btn_offMotor5;
-    @FXML private Button btn_onMotor6, btn_offMotor6;
-    @FXML private Button btn_onMotor7, btn_offMotor7;
-    @FXML private Button btn_onMotor8, btn_offMotor8;
-    @FXML private Button btn_onMotor9, btn_offMotor9;
-    
+    @FXML
+    private Button btn_onMotor1, btn_offMotor1;
+    @FXML
+    private Button btn_onMotor2, btn_offMotor2;
+    @FXML
+    private Button btn_onMotor3, btn_offMotor3;
+    @FXML
+    private Button btn_onMotor4, btn_offMotor4;
+    @FXML
+    private Button btn_onMotor5, btn_offMotor5;
+    @FXML
+    private Button btn_onMotor6, btn_offMotor6;
+    @FXML
+    private Button btn_onMotor7, btn_offMotor7;
+    @FXML
+    private Button btn_onMotor8, btn_offMotor8;
+    @FXML
+    private Button btn_onMotor9, btn_offMotor9;
+
     Timer motorRefreshTimer;
 
     @Override
@@ -62,15 +73,24 @@ public class MotorControlPaneController implements Initializable {
 
     private void setupMotorMappings() {
         // Button mapping
-        motorOnButtons.put(1, btn_onMotor1);    motorOffButtons.put(1, btn_offMotor1);
-        motorOnButtons.put(2, btn_onMotor2);    motorOffButtons.put(2, btn_offMotor2);
-        motorOnButtons.put(3, btn_onMotor3);    motorOffButtons.put(3, btn_offMotor3);
-        motorOnButtons.put(4, btn_onMotor4);    motorOffButtons.put(4, btn_offMotor4);
-        motorOnButtons.put(5, btn_onMotor5);    motorOffButtons.put(5, btn_offMotor5);
-        motorOnButtons.put(6, btn_onMotor6);    motorOffButtons.put(6, btn_offMotor6);
-        motorOnButtons.put(7, btn_onMotor7);    motorOffButtons.put(7, btn_offMotor7);
-        motorOnButtons.put(8, btn_onMotor8);    motorOffButtons.put(8, btn_offMotor8);
-        motorOnButtons.put(9, btn_onMotor9);    motorOffButtons.put(9, btn_offMotor9);
+        motorOnButtons.put(1, btn_onMotor1);
+        motorOffButtons.put(1, btn_offMotor1);
+        motorOnButtons.put(2, btn_onMotor2);
+        motorOffButtons.put(2, btn_offMotor2);
+        motorOnButtons.put(3, btn_onMotor3);
+        motorOffButtons.put(3, btn_offMotor3);
+        motorOnButtons.put(4, btn_onMotor4);
+        motorOffButtons.put(4, btn_offMotor4);
+        motorOnButtons.put(5, btn_onMotor5);
+        motorOffButtons.put(5, btn_offMotor5);
+        motorOnButtons.put(6, btn_onMotor6);
+        motorOffButtons.put(6, btn_offMotor6);
+        motorOnButtons.put(7, btn_onMotor7);
+        motorOffButtons.put(7, btn_offMotor7);
+        motorOnButtons.put(8, btn_onMotor8);
+        motorOffButtons.put(8, btn_offMotor8);
+        motorOnButtons.put(9, btn_onMotor9);
+        motorOffButtons.put(9, btn_offMotor9);
 
         // Port mapping
         motorPortMappings.put(1, ConstantBayPortNameMapping.MOTOR_1_CONTROL);
@@ -87,11 +107,13 @@ public class MotorControlPaneController implements Initializable {
     private void handleMotorToggle(int motorIndex, boolean turnOn) {
         String portName = motorPortMappings.get(motorIndex);
 
-        /*// Disable both buttons immediately to prevent multiple clicks
-        Platform.runLater(() -> {
-            motorOnButtons.get(motorIndex).setDisable(true);
-            motorOffButtons.get(motorIndex).setDisable(true);
-        });*/
+        /*
+         * // Disable both buttons immediately to prevent multiple clicks
+         * Platform.runLater(() -> {
+         * motorOnButtons.get(motorIndex).setDisable(true);
+         * motorOffButtons.get(motorIndex).setDisable(true);
+         * });
+         */
 
         new Thread(() -> {
             boolean success = controlOutput(portName, turnOn);
@@ -107,7 +129,8 @@ public class MotorControlPaneController implements Initializable {
                 }
             });
 
-            // If motor is turned OFF, clear requirements (this can also be done asynchronously if it's a long operation)
+            // If motor is turned OFF, clear requirements (this can also be done
+            // asynchronously if it's a long operation)
             if (!turnOn) {
                 setAllMotorsNotRequired();
             }
@@ -115,19 +138,21 @@ public class MotorControlPaneController implements Initializable {
     }
 
     /**
-     * Controls the output to a specific port. This method is now called from a background thread.
+     * Controls the output to a specific port. This method is now called from a
+     * background thread.
      *
      * @param portNameKey The key for the port name mapping.
-     * @param shouldClose True to turn the motor ON (close the circuit), False to turn it OFF (open the circuit).
+     * @param shouldClose True to turn the motor ON (close the circuit), False to
+     *                    turn it OFF (open the circuit).
      * @return true if the control operation was successful, false otherwise.
      */
     private boolean controlOutput(String portNameKey, boolean shouldClose) {
         IoPortInfo portInfo = BayUtils.getOutputPortDetails(portNameKey);
         if (portInfo != null) {
             Ft.logger.debug("Attempting to control motor on PortId: " + portInfo.getPortId() +
-                                            ", ClusterId: " + portInfo.getClusterId() +
-                                            ", BayId: " + portInfo.getBayId() +
-                                            ", Action: " + (shouldClose ? "ON" : "OFF"));
+                    ", ClusterId: " + portInfo.getClusterId() +
+                    ", BayId: " + portInfo.getBayId() +
+                    ", Action: " + (shouldClose ? "ON" : "OFF"));
 
             String action = shouldClose
                     ? Constant_IO_ActionMapping.ON
@@ -160,81 +185,82 @@ public class MotorControlPaneController implements Initializable {
     }
 
     private void toggleButtons(int motorIndex, boolean motorOn) {
-        // This method is now explicitly called via Platform.runLater() from background thread
+        // This method is now explicitly called via Platform.runLater() from background
+        // thread
         // to ensure UI updates happen on the JavaFX Application Thread.
-//        motorOnButtons.get(motorIndex).setDisable(motorOn);
-//        motorOffButtons.get(motorIndex).setDisable(!motorOn);
+        // motorOnButtons.get(motorIndex).setDisable(motorOn);
+        // motorOffButtons.get(motorIndex).setDisable(!motorOn);
     }
 
     private void setAllMotorsNotRequired() {
-        // This method can also be run on a background thread if it involves blocking I/O
+        // This method can also be run on a background thread if it involves blocking
+        // I/O
         // For now, assuming it's quick or can run concurrently.
         List<String> bayKeys = Arrays.asList(
-            ConstantConveyor.FT_BAY_KEY,
-            ConstantConveyor.HV_BAY_KEY,
-            ConstantConveyor.IR_BAY_KEY,
-            ConstantConveyor.CALIBRATION_BAY_KEY,
-            ConstantConveyor.COMMUNICATION_BAY_KEY,
-            ConstantConveyor.LOADING_BAY_KEY,
-            ConstantConveyor.REJECTION_BAY_KEY,
-            ConstantConveyor.STA_NLD1_BAY_KEY,
-            ConstantConveyor.STA_NLD2_BAY_KEY,
-            ConstantConveyor.WAITING_BAY_KEY,
-            ConstantConveyor.VERIFICATION_BAY_KEY,
-            ConstantConveyor.UNLOADING_BAY_KEY
-        );
+                ConstantConveyor.FT_BAY_KEY,
+                ConstantConveyor.HV_BAY_KEY,
+                ConstantConveyor.IR_BAY_KEY,
+                ConstantConveyor.CALIBRATION_BAY_KEY,
+                ConstantConveyor.COMMUNICATION_BAY_KEY,
+                ConstantConveyor.LOADING_BAY_KEY,
+                ConstantConveyor.REJECTION_BAY_KEY,
+                ConstantConveyor.STA_NLD1_BAY_KEY,
+                ConstantConveyor.STA_NLD2_BAY_KEY,
+                ConstantConveyor.WAITING_BAY_KEY,
+                ConstantConveyor.VERIFICATION_BAY_KEY,
+                ConstantConveyor.UNLOADING_BAY_KEY);
         bayKeys.forEach(bayUtils::set_motor_not_required);
     }
-    
+
     // Refresh motor status and update buttons
     @FXML
     void refreshMotorStatus() {
-    	
-    	new Thread(() -> {
-    		for (int i = 1; i <= 9; i++) {
-    			String portKey = motorPortMappings.get(i);
-    			IoPortInfo ioPortInfo = BayUtils.getOutputPortDetails(portKey);
-    			
-    			if (ioPortInfo == null) {
-					ApplicationLauncher.logger.warn("No input port found for motor " + i);
-					continue;
-				}
-    			
-    			String state;
-    			try {
-					state = bayUtils.getInputDataFromBayV2(ioPortInfo);
-					
-					// Translate the state
-					if (state.equals(Constant_IO_ActionMapping.ON)) {
-						state = Constant_IO_ActionMapping.OPEN;
-					} else {
-						state = Constant_IO_ActionMapping.CLOSE;
-					}
-					
-					boolean isMotorOn = state.equals(Constant_IO_ActionMapping.OPEN);
-					int motorIndex = i;
-					final boolean finalIsMotorOn = isMotorOn;
-					
-					Platform.runLater(() -> toggleButtons(motorIndex, finalIsMotorOn));
-					
-					ApplicationLauncher.logger.debug("Motor" + i + " status = " + (finalIsMotorOn? "ON" : "OFF"));
-				} catch (Exception e) {
-					ApplicationLauncher.logger.debug("Error reading motor " + i + " status.", e);
-				}
-    		}
-    	}).start();   	
+
+        new Thread(() -> {
+            for (int i = 1; i <= 9; i++) {
+                String portKey = motorPortMappings.get(i);
+                IoPortInfo ioPortInfo = BayUtils.getOutputPortDetails(portKey);
+
+                if (ioPortInfo == null) {
+                    ApplicationLauncher.logger.warn("No input port found for motor " + i);
+                    continue;
+                }
+
+                String state;
+                try {
+                    state = bayUtils.getInputDataFromBayV2(ioPortInfo);
+
+                    // Translate the state
+                    if (state.equals(Constant_IO_ActionMapping.ON)) {
+                        state = Constant_IO_ActionMapping.OPEN;
+                    } else {
+                        state = Constant_IO_ActionMapping.CLOSE;
+                    }
+
+                    boolean isMotorOn = state.equals(Constant_IO_ActionMapping.OPEN);
+                    int motorIndex = i;
+                    final boolean finalIsMotorOn = isMotorOn;
+
+                    Platform.runLater(() -> toggleButtons(motorIndex, finalIsMotorOn));
+
+                    ApplicationLauncher.logger.debug("Motor" + i + " status = " + (finalIsMotorOn ? "ON" : "OFF"));
+                } catch (Exception e) {
+                    ApplicationLauncher.logger.debug("Error reading motor " + i + " status.", e);
+                }
+            }
+        }).start();
     }
-    
+
     public void Sleep(int timeInMsec) {
 
-		try {
-			Thread.sleep(timeInMsec);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			ApplicationLauncher.logger.error("Sleep2 :InterruptedException:"+ e.getMessage());
-		}
+        try {
+            Thread.sleep(timeInMsec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            ApplicationLauncher.logger.error("Sleep2 :InterruptedException:" + e.getMessage());
+        }
 
-	}
+    }
 
     public BayUtils getBayUtils() {
         return bayUtils;

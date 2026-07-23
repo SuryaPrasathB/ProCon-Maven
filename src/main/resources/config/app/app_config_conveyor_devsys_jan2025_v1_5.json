@@ -86,10 +86,6 @@
 		"IpPort" : "8085",
 		"targetEndPath" : "verific",
 		"CmdLocation" : "D:\\tasworkspace\\ProCAL\\Binaries\\verification-binary",
-		"JarFile1" 	 : "ProCAL-Maven-S4.2.1.7.0.4-verific-SNAPSHOT.jar"  ,
-		"JarFile2" 	 : "ProCAL-Maven-S4.2.1.8.0.9-verific-SNAPSHOT.jar"  ,
-		"JarFile3" 	 : "ProCAL-Maven-S4.2.1.8.5.8-verific-SNAPSHOT.jar"  ,
-		"JarFile4" 	 : "ProCAL-Maven-S4.2.1.8.6.7-verific-SNAPSHOT.jar"   ,
 		"JarFile" 	 : "ProCAL-Maven-S4.2.1.8.6.9-verific-SNAPSHOT.jar"           
 	},
 	
@@ -98,10 +94,6 @@
 		"IpPort" : "8087",
 		"targetEndPath" : "sta1",
 		"CmdLocation" 	: "D:\\tasworkspace\\ProCAL\\Binaries\\sta1-binary",
-		"JarFile1" 		: "ProCAL-Maven-S4.2.1.7.0.4-sta1-SNAPSHOT.jar"  ,
-		"JarFile2" 	    : "ProCAL-Maven-S4.2.1.8.0.9-sta1-SNAPSHOT.jar"  ,
-		"JarFile3" 	    : "ProCAL-Maven-S4.2.1.8.5.7-sta1-SNAPSHOT.jar",
-		"JarFile4" 	    : "ProCAL-Maven-S4.2.1.8.6.8-sta1-SNAPSHOT.jar",
 		"JarFile" 	    : "ProCAL-Maven-S4.2.1.8.6.9-sta1-SNAPSHOT.jar"
 	},
 	
@@ -110,10 +102,6 @@
 		"IpPort" : "8089",
 		"targetEndPath" : "sta2",
 		"CmdLocation" 	: "D:\\tasworkspace\\ProCAL\\Binaries\\sta2-binary",
-		"JarFile1"		: "ProCAL-Maven-S4.2.1.7.0.4-sta2-SNAPSHOT.jar",
-		"JarFile2" 	    : "ProCAL-Maven-S4.2.1.8.0.9-sta2-SNAPSHOT.jar"  ,
-		"JarFile3" 	    : "ProCAL-Maven-S4.2.1.8.5.7-sta2-SNAPSHOT.jar",
-		"JarFile4" 	    : "ProCAL-Maven-S4.2.1.8.6.8-sta2-SNAPSHOT.jar",
 		"JarFile" 	    : "ProCAL-Maven-S4.2.1.8.6.9-sta2-SNAPSHOT.jar"
 	},
 	
