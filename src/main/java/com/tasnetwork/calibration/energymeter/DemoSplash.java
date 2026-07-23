@@ -18,7 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebView;
+// import javafx.scene.web.WebView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,7 +33,7 @@ public class DemoSplash extends Application {
   private Pane splashLayout;
   //private ProgressBar loadProgress;
   //private Label progressText;
-  private WebView webView;
+  //private WebView webView;
   private Stage mainStage;
   private static final int SPLASH_WIDTH = 480;
   private static final int SPLASH_HEIGHT = 360;
@@ -61,12 +61,9 @@ public class DemoSplash extends Application {
     showSplash(initStage);
     showMainStage();
 
-    webView.getEngine().documentProperty().addListener(new ChangeListener<Document>() {
+    /* webView.getEngine().documentProperty().addListener(new ChangeListener<Document>() {
       @Override public void changed(ObservableValue<? extends Document> observableValue, Document document, Document document1) {
         if (initStage.isShowing()) {
-          /*loadProgress.progressProperty().unbind();
-          loadProgress.setProgress(1);
-          progressText.setText("All hobbits are full.");*/
           mainStage.setIconified(false);
           initStage.toFront();
           FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1.2), splashLayout);
@@ -80,7 +77,7 @@ public class DemoSplash extends Application {
           fadeSplash.play();
         }
       }
-    });
+    }); */
   }
 
   private void showMainStage() {
@@ -89,15 +86,12 @@ public class DemoSplash extends Application {
     mainStage.setIconified(true);
 
     // create a WebView.
-    webView = new WebView();
-    webView.getEngine().load("http://fxexperience.com/");
-    ////loadProgress.progressProperty().bind(webView.getEngine().getLoadWorker().workDoneProperty().divide(100));
+    // webView = new WebView();
+    // webView.getEngine().load("http://fxexperience.com/");
 
     // layout the scene.
-    Scene scene = new Scene(webView, 1000, 600);
-    webView.prefWidthProperty().bind(scene.widthProperty());
-    webView.prefHeightProperty().bind(scene.heightProperty());
-    mainStage.setScene(scene);
+    // Scene scene = new Scene(webView, 1000, 600);
+    // mainStage.setScene(scene);
     mainStage.show();
   }
 

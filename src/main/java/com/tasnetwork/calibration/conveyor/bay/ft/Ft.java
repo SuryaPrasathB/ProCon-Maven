@@ -136,6 +136,8 @@ public class Ft implements BayStateContext {
 				return "S17_turn_off_divertor_relay_FT_Bay";
 			case ConvErrorCodeMapping.ERROR_CODE_FT_001:
 				return "S17_turn_off_divertor_relay_FT_Bay";
+			case "TEST_ALREADY_COMPLETED":
+				return "S09_open_the_fingerTip_Latch"; // Skip further tests and prepare to release
 			default:
 				return "S23_idle_condition"; // S22_error_Handling";
 		}

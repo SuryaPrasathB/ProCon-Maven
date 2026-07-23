@@ -213,6 +213,12 @@ public class PalletManage {
 	@Transient
 	private SimpleIntegerProperty serialNoProperty = new SimpleIntegerProperty();
 	
+	@Transient
+	private String transitionErrorDetails = "";
+	
+	@Transient
+	private SimpleStringProperty transitionErrorDetailsProperty = new SimpleStringProperty();
+	
 	
 	
 /*	public Set<PalletMeterResults> getPalleteResultList() {
@@ -374,7 +380,21 @@ public class PalletManage {
 		this.serialNo = serialNo;
 	}
 
+	public String getTransitionErrorDetails() {
+		return transitionErrorDetails;
+	}
+
+	public SimpleStringProperty getTransitionErrorDetailsProperty() {
+		transitionErrorDetailsProperty.set(transitionErrorDetails);
+		return transitionErrorDetailsProperty;
+	}
+
+	public void setTransitionErrorDetails(String transitionErrorDetails) {
+		this.transitionErrorDetails = transitionErrorDetails;
+	}
+
 	public String getPalletResultStatus() {
+
 		
 		return palletResultStatus;
 	}

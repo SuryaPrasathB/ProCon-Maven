@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="992.0" prefWidth="1818.0" stylesheets="@../../../../ProCon-d0.5.3.2/src/resources/application_W.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tasnetwork.calibration.conveyor.pallet.PalletTrackerController">
    <children>
-      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="14.0" layoutY="280.0" prefHeight="372.0" prefWidth="1792.0" text="Pallett Manage">
+      <TitledPane animated="false" collapsible="false" focusTraversable="false" layoutX="14.0" layoutY="280.0" prefHeight="372.0" prefWidth="1792.0" text="Pallet Manage">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="563.0">
                <children>
@@ -41,10 +41,12 @@
                               <TableColumn fx:id="colPmConvPalletRunTime" prefWidth="137.599853515625" sortable="false" text="P-Run Time(Min)" />
                               <TableColumn fx:id="colPmTestExecutionStatus" prefWidth="122.4000244140625" sortable="false" text="Execution Status" />
                               <TableColumn fx:id="colPmTestResultStatus" prefWidth="100.0" sortable="false" text="P-Result Status" />
+                              <TableColumn fx:id="colPmTransitionError" prefWidth="150.0" sortable="false" text="Bay Inconsistency" />
                           </columns>
                         </TableView>
                         <javafx.scene.layout.HBox alignment="CENTER_RIGHT" layoutX="4.0" layoutY="302.0" prefHeight="30.0" prefWidth="1764.0" spacing="10.0">
                             <children>
+                                <Button fx:id="btnBulkEdit" onAction="#onBulkEditClick" text="Bulk Edit Selected" />
                                 <Button fx:id="btnPrevPage" onAction="#onPrevPageClick" text="Previous" />
                                 <Label fx:id="lblPageInfo" text="Page 1 of 1" />
                                 <Button fx:id="btnNextPage" onAction="#onNextPageClick" text="Next" />

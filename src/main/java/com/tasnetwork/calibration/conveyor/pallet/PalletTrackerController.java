@@ -91,6 +91,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
@@ -227,6 +228,9 @@ public class PalletTrackerController implements Initializable {
 
 	@FXML
 	private TableColumn<PalletManage, String> colPmTestResultStatus;
+
+	@FXML
+	private TableColumn<PalletManage, String> colPmTransitionError;
 
 	@FXML
 	private TableColumn<PalletManage, String> colPmConvPalletRunTime;
@@ -628,6 +632,7 @@ public class PalletTrackerController implements Initializable {
 		// ref_tvPalletManage.getItems().addAll(palletManageList);
 		// reOrderedPalletManageSerialNo();
 		List<PalletManage> palletManageListFinal = palletManageList;
+		palletManageListFinal.forEach(BayTransitionValidator::validate);
 		Platform.runLater(() -> {
 			ref_tvPalletManage.getItems().setAll(palletManageListFinal); // optional: setAll replaces existing items
 			reOrderedPalletManageSerialNo();
@@ -1603,6 +1608,7 @@ public class PalletTrackerController implements Initializable {
 	public void palletManageGuiInit() {
 
 		ref_tvPalletManage.setEditable(true);
+		ref_tvPalletManage.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
 
 		contextMenu.getItems().addAll(reComputeResults, displayResultAtUnloadingBay, displayResultAtRejectionBay);
 		ref_tvPalletManage.setContextMenu(contextMenu);
@@ -1735,6 +1741,10 @@ public class PalletTrackerController implements Initializable {
 		colPmTestExecutionStatus.setCellValueFactory(data -> data.getValue().getPalletExecutionStatusProperty());
 
 		colPmTestResultStatus.setCellValueFactory(data -> data.getValue().getPalletResultStatusProperty());
+		if(colPmTransitionError != null) {
+			colPmTransitionError.setCellValueFactory(data -> data.getValue().getTransitionErrorDetailsProperty());
+			colPmTransitionError.setStyle("-fx-text-fill: red;");
+		}
 		colPmConvPalletRunTime.setCellValueFactory(data -> data.getValue().getPalleteConveyorRunTimeInMinProperty());
 		colPmNoOfMetersPresent.setCellValueFactory(data -> data.getValue().getNoOfMeterPresentProperty().asObject());
 
@@ -1748,22 +1758,10 @@ public class PalletTrackerController implements Initializable {
 				if ((!row.isEmpty())) {
 					if (event.getClickCount() == 2 || (event.getClickCount() == 1)) {
 						PalletManage palletBayTest = row.getItem();// GopiConveyorReport
-						/*
-						 * List<PalletMeter> palletMeterList = palletBayTest.getPalletMeterList();
-						 * ref_lvDbMeterList.getItems().clear();
-						 * for(int i =0 ; i< palletMeterList.size();i++) {
-						 * ref_lvDbMeterList.getItems().add(palletMeterList.get(i).getMeterSerialNo());
-						 * }
-						 */
+
 						Set<PalletMeter> palletMeterList = palletBayTest.getPalletMeterList();
 						// ref_lvDbMeterList.getItems().clear();
 						ref_tvPalletMeter.getItems().clear();
-
-						/*
-						 * palletMeterList.forEach(e->{
-						 * ref_lvDbMeterList.getItems().add(e.getMeterSerialNo());
-						 * });
-						 */
 
 						List<PalletMeter> sortedPalletMeterList = palletMeterList.stream()
 								.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo))
@@ -1774,18 +1772,12 @@ public class PalletTrackerController implements Initializable {
 							ref_tvPalletBayState.getItems().clear();
 							ref_tvPalletMeterResult.getItems().clear();
 							Set<PalletBayState> palletBayStateList = palletBayTest.getPalleteBayStateList();
-							/*
-							 * palletBayStateList.forEach(e->{
-							 * e.getPalletQrId();
-							 * //e.getPresentBayKey();
-							 * e.getPalletBatchMapId();
-							 * });
-							 */
+
 							ref_tvPalletBayState.getItems().addAll(palletBayStateList);
 							reOrderedPalletBayStateSerialNo();
 
 							Set<PalletMeterResults> palletMeterResults = new HashSet<PalletMeterResults>();
-							// for(int i= 0; i< ref_tvPalletManage.getItems().size();i++) {
+
 							palletMeterList = palletBayTest.getPalletMeterList();
 							for (PalletMeter eachPalletMeter : palletMeterList) {
 								ref_tvPalletMeterResult.getItems().addAll(eachPalletMeter.getPalletMeterResultsList());
@@ -1807,30 +1799,90 @@ public class PalletTrackerController implements Initializable {
 	}
 
 	@FXML
+	void onBulkEditClick(ActionEvent event) {
+		ObservableList<PalletManage> selectedPallets = ref_tvPalletManage.getSelectionModel().getSelectedItems();
+		if (selectedPallets == null || selectedPallets.isEmpty()) {
+			WindowManager.InformUser("Bulk Edit", "No pallets selected for bulk edit.", AlertType.INFORMATION);
+			return;
+		}
+		ApplicationLauncher.logger.debug("onBulkEditClick: Selected pallets count = " + selectedPallets.size());
+		
+		javafx.scene.control.Dialog<Boolean> dialog = new javafx.scene.control.Dialog<>();
+		dialog.setTitle("Bulk Edit Pallets");
+		dialog.setHeaderText("Edit fields for " + selectedPallets.size() + " selected pallets.\nLeave blank to keep existing values.");
+
+		javafx.scene.control.ButtonType saveButtonType = new javafx.scene.control.ButtonType("Save", javafx.scene.control.ButtonBar.ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, javafx.scene.control.ButtonType.CANCEL);
+
+		javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+
+		ComboBox<String> activeBox = new ComboBox<>();
+		activeBox.getItems().addAll("No Change", "True", "False");
+		activeBox.getSelectionModel().selectFirst();
+		
+		TextField batchNoField = new TextField();
+		batchNoField.setPromptText("Leave empty for no change");
+
+		TextField execStatusField = new TextField();
+		execStatusField.setPromptText("Leave empty for no change");
+
+		TextField resultStatusField = new TextField();
+		resultStatusField.setPromptText("Leave empty for no change");
+
+		grid.add(new Label("Pallet Active:"), 0, 0);
+		grid.add(activeBox, 1, 0);
+		grid.add(new Label("Batch No:"), 0, 1);
+		grid.add(batchNoField, 1, 1);
+		grid.add(new Label("Execution Status:"), 0, 2);
+		grid.add(execStatusField, 1, 2);
+		grid.add(new Label("Result Status:"), 0, 3);
+		grid.add(resultStatusField, 1, 3);
+
+		dialog.getDialogPane().setContent(grid);
+
+		dialog.setResultConverter(dialogButton -> {
+			if (dialogButton == saveButtonType) {
+				String batchNoStr = batchNoField.getText();
+				String execStr = execStatusField.getText();
+				String resStr = resultStatusField.getText();
+				String activeStr = activeBox.getValue();
+				
+				for (PalletManage p : selectedPallets) {
+					if (!activeStr.equals("No Change")) {
+						p.setPalletActive("True".equals(activeStr));
+					}
+					if (batchNoStr != null && !batchNoStr.trim().isEmpty()) {
+						try { p.setPalletBatchNo(Integer.parseInt(batchNoStr.trim())); } catch (Exception ex) {}
+					}
+					if (execStr != null && !execStr.trim().isEmpty()) {
+						p.setPalletExecutionStatus(execStr.trim());
+					}
+					if (resStr != null && !resStr.trim().isEmpty()) {
+						p.setPalletResultStatus(resStr.trim());
+					}
+				}
+				MySqlServiceManager.getPalletManageService().saveAll(selectedPallets);
+				return true;
+			}
+			return null;
+		});
+		
+		Optional<Boolean> result = dialog.showAndWait();
+		result.ifPresent(updated -> {
+			if(updated) {
+				refreshPalletManageDataFromDbv2("BulkEdit");
+				WindowManager.InformUser("Bulk Edit", "Bulk edit saved successfully.", AlertType.INFORMATION);
+			}
+		});
+	}
+
+	@FXML
 	void addPalletBayState() {
 		ApplicationLauncher.logger.debug("FXML - addPalletBayState: Entry ");
-		/*
-		 * ref_tvPalletManage.getItems().stream().forEach(e1->{
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState: ******************************************************"
-		 * );
-		 * for(PalletBayState e: e1.getPalleteBayStateList()) {
-		 * //PalletBayState e = e1.getPalleteBayStateList().g
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState: ============================================================="
-		 * );
-		 * ApplicationLauncher.logger.debug("addPalletBayState: batch No: "+
-		 * e.getPalletBatchNo() + " -> " + e.getBayStateKey());
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState: getPalletBayEntryTimeEpoch: "+
-		 * e.getPalletBayEntryTimeEpoch());
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState: getPalletBayEntryTimeStampH: "+
-		 * e.getPalletBayEntryTimeStampH());
-		 * ApplicationLauncher.logger.debug("addPalletBayState: getId: "+ e.getId());
-		 * }
-		 * });
-		 */
+
 		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
 		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
 
@@ -1860,38 +1912,8 @@ public class PalletTrackerController implements Initializable {
 		// palletBayTracker.getPalleteBayStateList().add(palletBayState);
 
 		palletBayTracker.addPalleteBayState(palletBayState);
-		/*
-		 * palletBayTracker =
-		 * MySqlServiceManager.getPalletBayTestService().findWithDetails(
-		 * palletBayTracker.getId());
-		 * palletBayTracker.getPalleteBayStateList().add(palletBayState);
-		 */
-		// ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
-		ref_tvPalletManage.refresh();
 
-		/*
-		 * ref_tvPalletManage.getItems().stream().forEach(e1->{
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState2: PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
-		 * );
-		 * for(PalletBayState e: e1.getPalleteBayStateList()) {
-		 * //PalletBayState e = e1.getPalleteBayStateList().g
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState2: ============================================================="
-		 * );
-		 * ApplicationLauncher.logger.debug("addPalletBayState2: batch No: "+
-		 * e.getPalletBatchNo() + " -> " + e.getBayStateKey());
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState2: getPalletBayEntryTimeEpoch: "+
-		 * e.getPalletBayEntryTimeEpoch());
-		 * ApplicationLauncher.logger.
-		 * debug("addPalletBayState2: getPalletBayEntryTimeStampH: "+
-		 * e.getPalletBayEntryTimeStampH());
-		 * ApplicationLauncher.logger.debug("addPalletBayState2: getId: "+ e.getId());
-		 * }
-		 * });
-		 */
-		// MySqlServiceManager.getPalletBayTestService().saveToDb(palletBayTracker);
+		ref_tvPalletManage.refresh();
 
 	}
 
@@ -1904,10 +1926,7 @@ public class PalletTrackerController implements Initializable {
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
 			if (getActivePalletMap().values().contains(myPalletDistinctId)) {
-				// int selectedIndex =
-				// ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-				// PalletManage palletBayTracker =
-				// ref_tvPalletManage.getSelectionModel().getSelectedItem();
+
 				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
 						.findLastByPalletDistinctId(myPalletDistinctId);
 
@@ -1933,20 +1952,10 @@ public class PalletTrackerController implements Initializable {
 				palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
 				palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
-				// ref_tvPalletBayState.getItems().add(palletBayState);
-				// reOrderedPalletBayStateSerialNo();
-				// palletBayTracker.getPalleteBayStateList().add(palletBayState);
 				getPresentPalletAtBayMap().put(selectedBayTypeKey, myPalletManage.getPalletDistinctId());
 				myPalletManage.addPalleteBayState(palletBayState);
 				MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-				/*
-				 * palletBayTracker =
-				 * MySqlServiceManager.getPalletBayTestService().findWithDetails(
-				 * palletBayTracker.getId());
-				 * palletBayTracker.getPalleteBayStateList().add(palletBayState);
-				 */
-				// ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
-				// ref_tvPalletManage.refresh();
+
 				ApplicationLauncher.logger.debug("addPalletBayState: new bay added " + " : selectedBayTypeKey: "
 						+ selectedBayTypeKey + " : myPalletDistinctId : " + myPalletDistinctId);
 
@@ -1974,10 +1983,6 @@ public class PalletTrackerController implements Initializable {
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(nextBayState);
 			if (getActivePalletMap().values().contains(myPalletDistinctId)) {
-				// int selectedIndex =
-				// ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-				// PalletManage palletBayTracker =
-				// ref_tvPalletManage.getSelectionModel().getSelectedItem();
 				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
 						.findFirstByPalletDistinctId(myPalletDistinctId);
 
@@ -2004,20 +2009,10 @@ public class PalletTrackerController implements Initializable {
 				palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
 				palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
-				// ref_tvPalletBayState.getItems().add(palletBayState);
-				// reOrderedPalletBayStateSerialNo();
-				// palletBayTracker.getPalleteBayStateList().add(palletBayState);
 				getPresentPalletAtBayMap().put(nextBayState, myPalletManage.getPalletDistinctId());
 				myPalletManage.addPalleteBayState(palletBayState);
 				MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-				/*
-				 * palletBayTracker =
-				 * MySqlServiceManager.getPalletBayTestService().findWithDetails(
-				 * palletBayTracker.getId());
-				 * palletBayTracker.getPalleteBayStateList().add(palletBayState);
-				 */
-				// ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
-				// ref_tvPalletManage.refresh();
+
 				ApplicationLauncher.logger.debug("addPalletNextBayState: new bay added " + " : nextBayState: "
 						+ nextBayState + " : myPalletDistinctId : " + myPalletDistinctId);
 
@@ -2065,6 +2060,7 @@ public class PalletTrackerController implements Initializable {
 								e1.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
 								e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 								e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_PASS);
+								e1.setTestCompleted("Y");
 							});
 				}
 
@@ -2207,6 +2203,9 @@ public class PalletTrackerController implements Initializable {
 							palletBayState.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
 							palletBayState.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 							palletBayState.setBayResultStatus(resultStatus);// ConstantReport.REPORT_POPULATE_PASS);
+							if(resultStatus != null && resultStatus.startsWith(ConstantReport.REPORT_POPULATE_PASS)) {
+								palletBayState.setTestCompleted("Y");
+							}
 							// });
 
 							MySqlServiceManager.getPalletBayStateService().saveToDb(palletBayState);
@@ -2229,43 +2228,10 @@ public class PalletTrackerController implements Initializable {
 	}
 
 	public void switchPalletToNextBay(String selectedBayTypeKey, String nextBayState) {
-		// int selectedIndex =
-		// ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		// PalletManage palletBayTracker =
-		// ref_tvPalletManage.getSelectionModel().getSelectedItem();
 
 		ApplicationLauncher.logger.debug("switchPalletToNextBay: Entry ");
 
-		// selectedBayTypeKey = "";
-		// nextBayState = "";
-
 		TextField selectedBayField = ConveyorDebugController.getTextFieldByKey(selectedBayTypeKey);
-		// TextField nextBayField =
-		// ConveyorDebugController.getTextFieldByKey(nextBayState);
-
-		/*
-		 * if (selectedBayField != null) {
-		 * String palletQrId = selectedBayField.getText();
-		 * selectedBayField.clear();
-		 * 
-		 * if (nextBayState.equals("WTNGB")) { // Single pallet moves into Waiting Bay
-		 * addPalletToMultiPalletBay("WTNGB", palletQrId);
-		 * } else if (isMultiPalletBay(nextBayState)) { // Handles multi-pallet bays
-		 * dynamically
-		 * addPalletToMultiPalletBay(nextBayState, palletQrId);
-		 * } else {
-		 * TextField nextBayField = getTextFieldByKey(nextBayState);
-		 * if (nextBayField != null) {
-		 * nextBayField.setText(palletQrId);
-		 * } else {
-		 * ApplicationLauncher.logger.debug("Invalid Next Bay Key: " + nextBayState);
-		 * }
-		 * }
-		 * } else {
-		 * ApplicationLauncher.logger.debug("Invalid Selected Bay Key: " +
-		 * selectedBayTypeKey);
-		 * }
-		 */
 
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
@@ -2327,6 +2293,7 @@ public class PalletTrackerController implements Initializable {
 										e1.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
 										e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 										e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_PASS);
+										e1.setTestCompleted("Y");
 									});
 						}
 						String palletDistinctId = myPalletManage.getPalletDistinctId();
@@ -2468,113 +2435,6 @@ public class PalletTrackerController implements Initializable {
 		}
 	}
 
-	/*
-	 * // This moves a batch of 4 pallets from WAITB to VERIFICB
-	 * public void switchBatchToNextBay(String fromBay, String toBay) {
-	 * if (!fromBay.equals("WTNGB") || !toBay.equals("VERIFICB")) {
-	 * ApplicationLauncher.logger.
-	 * debug("Batch transfer is only supported from WAITB to VERIFICB.");
-	 * return;
-	 * }
-	 * 
-	 * List<TextField> fromBayFields = getMultiPalletTextFields(fromBay);
-	 * List<TextField> toBayFields = getMultiPalletTextFields(toBay);
-	 * 
-	 * for (int i = 0; i < fromBayFields.size(); i++) {
-	 * String palletQrId = fromBayFields.get(i).getText();
-	 * fromBayFields.get(i).clear(); // Clear from waiting bay
-	 * toBayFields.get(i).setText(palletQrId); // Move to verific bay
-	 * }
-	 * }
-	 */
-
-	// switchBatchToNextBay to call switchPalletToNextBay
-	/*
-	 * public void switchBatchToNextBay(String fromBay, String toBay) {
-	 * if (!fromBay.equals("WTNGB") || !toBay.equals("VERIFICB")) {
-	 * ApplicationLauncher.logger.
-	 * debug("Batch transfer is only supported from WAITB to VERIFICB.");
-	 * return;
-	 * }
-	 * 
-	 * // Fetch the list of active pallets in the waiting bay
-	 * List<PalletManage> myPalletManageList =
-	 * MySqlServiceManager.getPalletManageService().
-	 * findByPresentBayKeyAndPalletActive(fromBay);
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("switchBatchToNextBay : myPalletManageList : " +
-	 * myPalletManageList.size());
-	 * 
-	 * if (myPalletManageList.size() < 4) {
-	 * ApplicationLauncher.logger.
-	 * debug("Not enough pallets in the waiting bay to transfer.");
-	 * return;
-	 * }
-	 * 
-	 * // Move each pallet using switchPalletToNextBay
-	 * for (int i = 0; i < 4; i++) {
-	 * PalletManage pallet = myPalletManageList.get(i);
-	 * switchPalletToNextBay(pallet.getPresentBayKey(), toBay);
-	 * }
-	 * 
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public void switchBatchToNextBay(String fromBay, String toBay) {
-	 * if (!fromBay.equals("WTNGB") || !toBay.equals("VERIFICB")) {
-	 * ApplicationLauncher.logger.
-	 * debug("Batch transfer is only supported from WAITB to VERIFICB.");
-	 * return;
-	 * }
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("switchBatchToNextBay: Fetching pallets from " + fromBay);
-	 * 
-	 * // Fetch the list of active pallets in the waiting bay
-	 * List<PalletManage> myPalletManageList =
-	 * MySqlServiceManager.getPalletManageService()
-	 * .findByPresentBayKeyAndPalletActive(fromBay);
-	 * 
-	 * if (myPalletManageList.isEmpty()) {
-	 * ApplicationLauncher.logger.debug("No active pallets found in " + fromBay);
-	 * return;
-	 * }
-	 * 
-	 * for (PalletManage myPalletManage : myPalletManageList) {
-	 * String palletDistinctId = myPalletManage.getPalletDistinctId();
-	 * 
-	 * ApplicationLauncher.logger.debug("Moving pallet " + palletDistinctId +
-	 * " from " + fromBay + " to " + toBay);
-	 * 
-	 * // Update the pallet's bay state
-	 * myPalletManage.setPresentBayKey(toBay);
-	 * 
-	 * // Update the present bay map
-	 * getPresentPalletAtBayMap().put(toBay, palletDistinctId);
-	 * getPresentPalletAtBayMap().remove(fromBay);
-	 * 
-	 * // Update pallet details
-	 * myPalletManage.setNoOfMeterPassed(0);
-	 * myPalletManage.setNoOfMeterFailed(0);
-	 * 
-	 * // Save updated data to the database
-	 * MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-	 * }
-	 * 
-	 * // Refresh the UI and data
-	 * refreshPalletManageDataFromDb();
-	 * ref_tvPalletBayState.refresh();
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("switchBatchToNextBay: Batch transfer completed from " + fromBay +
-	 * " to " + toBay);
-	 * }
-	 */
-
-	//
 	public void switchBatchToNextBay(String selectedBayTypeKey, String nextBayState) {
 		ApplicationLauncher.logger.debug("switchBatchToNextBay: Entry");
 
@@ -2616,17 +2476,8 @@ public class PalletTrackerController implements Initializable {
 				ApplicationLauncher.logger.debug("switchBatchToNextBay: STATE_SEQUENCE_LIST.size()  : "
 						+ ConstantConveyor.STATE_SEQUENCE_LIST.size());
 
-				/*
-				 * if(ConstantConveyor.EXIT_BAY_LIST.contains(nextBayState)){
-				 * ApplicationLauncher.logger.
-				 * debug("switchBatchToNextBay: EXIT_BAY_LIST-X : present");
-				 * }
-				 */
-
 				if (ConstantConveyor.STATE_SEQUENCE_LIST.size() > (indexOfPresentState + 1)
 						&& !nextBayState.equals(ConstantConveyor.COMMUNICATION_BAY_KEY) // ){
-						// && !nextBayState.equals(ConstantConveyor.STA_NLD1_BAY_KEY)
-						// && !nextBayState.equals(ConstantConveyor.STA_NLD2_BAY_KEY)) { // REMOVE LATER
 						&& !nextBayState.equals(ConstantConveyor.UNLOADING_BAY_KEY)) {
 					ApplicationLauncher.logger.debug("switchBatchToNextBay: Hit1");
 					updatePalletBayState(myPalletManage, presentBayState);
@@ -2695,6 +2546,7 @@ public class PalletTrackerController implements Initializable {
 								String.valueOf((exitTimeEpoch - Long.parseLong(e1.getPalletBayEntryTimeEpoch())) / 60));
 						e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 						e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_PASS);
+						e1.setTestCompleted("Y");
 					});
 		}
 	}
@@ -2854,84 +2706,6 @@ public class PalletTrackerController implements Initializable {
 				}
 
 				MySqlServiceManager.getPalletMeterService().save(selectedPalletMeter);
-				// status = true;
-
-				/*
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getBayStateKey());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getMeterSerialNo());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getPalletBatchNo());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getPalletDistinctId());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getPalletQrId());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getRackPositionNo());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getResultStatus());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getResultValue());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getSerialNo());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getTestCaseName());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getTestType());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getId());
-				 */
-				/*
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getPalletMeter().);
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getBayStateKey());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getBayStateKey());
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : " +
-				 * palletMeterResults.getBayStateKey());
-				 */
-
-				// palletTracker =
-				// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
-
-				/*
-				 * for(PalletMeter eachMeter : palletTracker.getPalletMeterList()) {
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: addResultOnClick : " +
-				 * eachMeter.getMeterSerialNo() + " -> " + eachMeter.getId());
-				 * if(eachMeter.getRackPositionNo()==positionNo) {
-				 * ApplicationLauncher.logger.debug("addDeviceOnClick: positionNo Hit : ");
-				 * //PalletMeter palletMeter =
-				 * palletMeterL.pall;//MySqlServiceManager.getPalletMeterService().findById(
-				 * palletMeterL.getId());
-				 * //palletMeterResults.setPalletMeter(palletMeterL);
-				 * //eachMeter.getPalletMeterResultsList().add(palletMeterResults);
-				 * eachMeter.addPalletMeterResults(palletMeterResults);
-				 * MySqlServiceManager.getPalletMeterService().save(eachMeter);
-				 * //palletTracker.getPalletMeterList().
-				 * 
-				 * 
-				 * 
-				 * //palletMeterResults.setPalletMeter(palletMeterL);
-				 * //palletMeterL.getPalletMeterResultsList().add(palletMeterResults);
-				 * 
-				 * }
-				 * 
-				 * }
-				 */
-				/*
-				 * palletTracker.getPalletMeterList().stream().filter(e->e.getPositionNo() ==
-				 * positionNo).forEach(e1->{
-				 * 
-				 * PalletMeter palletMeter =
-				 * MySqlServiceManager.getPalletMeterService().findById(e1.getId());
-				 * palletMeter.getPalletMeterResultsList().add(palletMeterResults);
-				 * MySqlServiceManager.getPalletMeterService().save(palletMeter);
-				 * });
-				 */
-
-				// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
 				reOrderedPalletMeterResultsSerialNo();
 
 			}
@@ -2951,19 +2725,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetails: testCaseName: " + testCaseName);
 		ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetails: testType: " + testType);
 
-		// String selectedMeterSerialNo =
-		// lvDbMeterList.getSelectionModel().getSelectedItem();
-		// int positionNo = Integer.parseInt(ref_txtAddResultPositionNo.getText());//2;
-		// String resultStatus = ref_txtAddResultStatus.getText();
-		// String resultValue = ref_txtAddResultValue.getText();
-		// String testCaseName = ref_txtAddResultTestCaseName.getText();
-		// String testType =
-		// ref_cmbBxAddResultSelectBayTestType.getSelectionModel().getSelectedItem();
 		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		// PalletManage myPalletManage =
-		// ref_tvPalletManage.getSelectionModel().getSelectedItem();
-
-		// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
 		if (myPalletManage != null) {
 			String selectedMeterSerialNo = "";// =
 
@@ -2973,9 +2735,6 @@ public class PalletTrackerController implements Initializable {
 			Optional<PalletMeter> palletMeterOpt = myPalletManage.getPalletMeterList().stream()
 					.filter(e -> e.getRackPositionNo() == positionNo)
 					.findFirst();
-
-			// ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetails:
-			// palletMeterOpt :" + palletMeterOpt);
 
 			if (palletMeterOpt.isPresent()) {
 				ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetails: palletMeterOpt: present");
@@ -3072,19 +2831,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2: dutSerialNo: " + dutSerialNo);
 		ApplicationLauncher.logger
 				.debug("addMeterResultSummaryWithPalletDetailsV2: palletDistinctId: " + palletDistinctId);
-		// String selectedMeterSerialNo =
-		// lvDbMeterList.getSelectionModel().getSelectedItem();
-		// int positionNo = Integer.parseInt(ref_txtAddResultPositionNo.getText());//2;
-		// String resultStatus = ref_txtAddResultStatus.getText();
-		// String resultValue = ref_txtAddResultValue.getText();
-		// String testCaseName = ref_txtAddResultTestCaseName.getText();
-		// String testType =
-		// ref_cmbBxAddResultSelectBayTestType.getSelectionModel().getSelectedItem();
 		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		// PalletManage myPalletManage =
-		// ref_tvPalletManage.getSelectionModel().getSelectedItem();
-
-		// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
 
 		Optional<PalletManage> myPalletManageOpt = MySqlServiceManager.getPalletManageService()
 				.findByPalletDistinctId(palletDistinctId);
@@ -3099,21 +2846,13 @@ public class PalletTrackerController implements Initializable {
 
 			});
 
-			// Optional<PalletMeter> palletMeterOpt =
-			// myPalletManage.getPalletMeterList().stream().filter(e->e.getRackPositionNo()==positionNo)
-			// .findFirst();
-
 			Optional<PalletMeter> palletMeterOpt = myPalletManage.getPalletMeterList().stream()
 					.filter(e -> e.getMeterSerialNo().equals(dutSerialNo))
 					.findFirst();
 
-			// ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2:
-			// palletMeterOpt :" + palletMeterOpt);
-
 			if (palletMeterOpt.isPresent()) {
 				ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2: palletMeterOpt: present");
 				PalletMeter selectedPalletMeter = palletMeterOpt.get();
-				// selectedMeterSerialNo = selectedPalletMeter.getMeterSerialNo();
 
 				PalletMeterResults palletMeterResult = new PalletMeterResults();
 				palletMeterResult.setBayStateKey(myPalletManage.getPresentBayKey());
@@ -3168,26 +2907,6 @@ public class PalletTrackerController implements Initializable {
 					int dbRecordId = MySqlServiceManager.getPalletMeterService().save(selectedPalletMeter);
 					ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2: Exist: dbRecordId: "
 							+ dbRecordId + " : Position No: " + positionNo);
-
-					// palletMeterResult.setId(palletMeterResultsOpt.get().getId());
-					// MySqlServiceManager.getPalletMeterResultsService().save(palletMeterResult);
-
-					// MySqlServiceManager.getPalletMeterService()
-					// PalletMeterResults palletMeterResultL = palletMeterResult;
-					/*
-					 * ref_tvPalletMeterResult.getItems().stream().filter(e->e.getBayStateKey().
-					 * equals(myPalletManage.getPresentBayKey()))
-					 * .filter(e->e.getRackPositionNo()==positionNo)
-					 * .filter(e->e.getTestType().equals(testType))
-					 * .filter(e->e.getTestCaseName().equals(testCaseName))
-					 * .forEach(e->{
-					 * ApplicationLauncher.logger.
-					 * debug("addMeterResultSummaryWithPalletDetailsV2: ref_tvPalletMeterResult: palletMeterResultL : Hit1 + SerialNo: "
-					 * + palletMeterResultL.getMeterSerialNo());
-					 * e = palletMeterResultL;
-					 * });
-					 */
-
 				} else {
 					ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2: creating new record "
 							+ " : Position No: " + positionNo + " : serialNo:" + palletMeterResult.getMeterSerialNo());
@@ -3200,15 +2919,12 @@ public class PalletTrackerController implements Initializable {
 							.debug("addMeterResultSummaryWithPalletDetailsV2: palletMeterResult new record id: "
 									+ palletMeterResult.getId() + " : Position No: " + positionNo + " : serialNo:"
 									+ palletMeterResult.getMeterSerialNo());
-					// ref_tvPalletMeterResult.getItems().add(palletMeterResult);
 
 					int dbRecordId = MySqlServiceManager.getPalletMeterService().save(selectedPalletMeter);
 					ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2: dbRecordId: "
 							+ dbRecordId + " : Position No: " + positionNo);
 
 				}
-
-				// reOrderedPalletMeterResultsSerialNo();
 			}
 		} else {
 
@@ -3221,17 +2937,7 @@ public class PalletTrackerController implements Initializable {
 	public void addMeterResultSummary(int positionNo, String resultStatus, String resultValue,
 			String selectedBayTypeKey, String testType, String testCaseName) { // , int palletBayStateSelectedIndex,
 																				// PalletManage myPalletManage) {
-		// String selectedMeterSerialNo =
-		// lvDbMeterList.getSelectionModel().getSelectedItem();
-		// int positionNo = Integer.parseInt(ref_txtAddResultPositionNo.getText());//2;
-		// String resultStatus = ref_txtAddResultStatus.getText();
-		// String resultValue = ref_txtAddResultValue.getText();
-		// String testCaseName = ref_txtAddResultTestCaseName.getText();
-		// String testType =
-		// ref_cmbBxAddResultSelectBayTestType.getSelectionModel().getSelectedItem();
 		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		// PalletManage myPalletManage =
-		// ref_tvPalletManage.getSelectionModel().getSelectedItem();
 
 		ApplicationLauncher.logger
 				.debug("addMeterResultSummary: getPresentPalletAtBayMap " + getPresentPalletAtBayMap());
@@ -3239,7 +2945,6 @@ public class PalletTrackerController implements Initializable {
 		String myPalletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
 		PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
 				.findFirstByPalletDistinctId(myPalletDistinctId);
-		// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
 		if (myPalletManage != null) {
 			String selectedMeterSerialNo = "";// =
 			String selectedHardwareIdNo = "";
@@ -3307,14 +3012,6 @@ public class PalletTrackerController implements Initializable {
 							.forEach(e -> {
 								e = palletMeterResultL;
 							});
-
-					/*
-					 * PalletMeterResults palletMeterResultTemp = palletMeterResultsOpt.get();
-					 * ApplicationLauncher.logger.debug("addMeterResultSummary:  Position No: " +
-					 * positionNo + " : id : " + + palletMeterResultTemp.getId());
-					 * palletMeterResult.setId(palletMeterResultsOpt.get().getId());
-					 */
-
 				} else {
 					ApplicationLauncher.logger
 							.debug("addMeterResultSummary: creating new record " + " : Position No: " + positionNo);
@@ -3826,23 +3523,6 @@ public class PalletTrackerController implements Initializable {
 
 		String presentBayState = palletBayTracker.getPresentBayKey();
 		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
-		/*
-		 * int indexOfPresentState =
-		 * ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(presentBayState);
-		 * if(ConstantConveyor.STATE_SEQUENCE_LIST.size()>(indexOfPresentState+1)) {
-		 * PalletManage palletBayTrackerNewState = new PalletManage();
-		 * 
-		 * BeanUtils.copyProperties(ref_tvPalletBayTest.getSelectionModel().
-		 * getSelectedItem(), palletBayTrackerNewState);
-		 * palletBayTrackerNewState.setPresentBayKey(ConstantConveyor.
-		 * STATE_SEQUENCE_LIST.get(indexOfPresentState+1));
-		 * palletBayTrackerNewState.setId(null);
-		 * palletBayTrackerNewState.setBayTestExecutionStatus(ConstantConveyor.
-		 * EXECUTION_STATUS_INPROGRESS);
-		 * ref_tvPalletBayTest.getItems().add(palletBayTrackerNewState);
-		 * }
-		 */
-
 	}
 
 	private String extractPalletKey(String palletDistinctId) {
@@ -3879,23 +3559,6 @@ public class PalletTrackerController implements Initializable {
 
 		String presentBayState = palletBayTracker.getPresentBayKey();
 		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
-		/*
-		 * int indexOfPresentState =
-		 * ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(presentBayState);
-		 * if(ConstantConveyor.STATE_SEQUENCE_LIST.size()>(indexOfPresentState+1)) {
-		 * PalletManage palletBayTrackerNewState = new PalletManage();
-		 * 
-		 * BeanUtils.copyProperties(ref_tvPalletBayTest.getSelectionModel().
-		 * getSelectedItem(), palletBayTrackerNewState);
-		 * palletBayTrackerNewState.setPresentBayKey(ConstantConveyor.
-		 * STATE_SEQUENCE_LIST.get(indexOfPresentState+1));
-		 * palletBayTrackerNewState.setId(null);
-		 * palletBayTrackerNewState.setBayTestExecutionStatus(ConstantConveyor.
-		 * EXECUTION_STATUS_INPROGRESS);
-		 * ref_tvPalletBayTest.getItems().add(palletBayTrackerNewState);
-		 * }
-		 */
-
 	}
 
 	@FXML
@@ -3911,16 +3574,6 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger
 				.debug("markAsExitAppearedOnClick: getPalletDistinctId " + palletBayTracker.getPalletDistinctId());
 
-		// ApplicationLauncher.logger.debug("markAsCompletedOnClick: getActivePalletMap
-		// " + getActivePalletMap());
-		// getActivePalletMap().remove(palletDistinctId); // (palletQrId,
-		// palletDistinctId);
-		// String palletKey = extractPalletKey(palletDistinctId); // Extract the correct
-		// key
-		// getActivePalletMap().remove(palletKey);
-		// ApplicationLauncher.logger.debug("markAsCompletedOnClick: getActivePalletMap
-		// " + getActivePalletMap());
-
 		String presentBayState = palletBayTracker.getPresentBayKey();
 		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
 
@@ -3930,187 +3583,17 @@ public class PalletTrackerController implements Initializable {
 	void revertExitAppearedOnClick(ActionEvent event) {
 		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
 		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
-		// palletBayTracker.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
-		// palletBayTracker.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
-		// palletBayTracker.setPalletActive(false);
+
 		palletBayTracker.setExitAppeared(false);
 
 		String palletDistinctId = palletBayTracker.getPalletDistinctId();
 		ApplicationLauncher.logger
 				.debug("revertExitAppearedOnClick: getPalletDistinctId " + palletBayTracker.getPalletDistinctId());
 
-		// ApplicationLauncher.logger.debug("markAsCompletedOnClick: getActivePalletMap
-		// " + getActivePalletMap());
-		// getActivePalletMap().remove(palletDistinctId); // (palletQrId,
-		// palletDistinctId);
-		// String palletKey = extractPalletKey(palletDistinctId); // Extract the correct
-		// key
-		// getActivePalletMap().remove(palletKey);
-		// ApplicationLauncher.logger.debug("markAsCompletedOnClick: getActivePalletMap
-		// " + getActivePalletMap());
-
 		String presentBayState = palletBayTracker.getPresentBayKey();
 		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
 
 	}
-
-	/*
-	 * public boolean addMetersToPallet(String selectedBayTypeKey, String
-	 * inpMeterSerialNo, int positionNo){
-	 * ApplicationLauncher.logger.debug("addMetersToPallet: Entry " +
-	 * " : Position No: " + positionNo);
-	 * ApplicationLauncher.logger.debug("addMetersToPallet: inpMeterSerialNo " +
-	 * inpMeterSerialNo);
-	 * boolean status = false;
-	 * try{
-	 * String myPalletDistinctId =
-	 * getPresentPalletAtBayMap().get(selectedBayTypeKey);
-	 * if(getActivePalletMap().values().contains(myPalletDistinctId)){
-	 * PalletManage myPalletManage =
-	 * MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(
-	 * myPalletDistinctId);
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: myPalletManage : getPalletDistinctId " +
-	 * myPalletManage.getPalletDistinctId() + " : Position No: " + positionNo);
-	 * //PalletMeter newPalletMeter = new PalletMeter();
-	 * try {
-	 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-	 * } catch (Exception e) {
-	 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-	 * inpMeterSerialNo + ", setting to ID999999");
-	 * newPalletMeter.setMeterSerialNo("ID999999");
-	 * }
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: myPalletManage : Position No: " + positionNo +
-	 * " inpMeterSerialNo : " + inpMeterSerialNo);
-	 * 
-	 * if (inpMeterSerialNo.equals("��������")) {
-	 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-	 * inpMeterSerialNo + ", setting to ID999999");
-	 * newPalletMeter.setMeterSerialNo("ID999999");
-	 * } else {
-	 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-	 * }
-	 * 
-	 * if (inpMeterSerialNo.equals("��������")) {
-	 * // Generate a random 6-digit number
-	 * int randomNum = new Random().nextInt(900000) + 100000; // Ensures a 6-digit
-	 * number
-	 * String generatedSerialNo = "ID" + randomNum;
-	 * 
-	 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-	 * inpMeterSerialNo + ", setting to " + generatedSerialNo);
-	 * newPalletMeter.setMeterSerialNo(generatedSerialNo);
-	 * } else {
-	 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-	 * }
-	 * 
-	 * newPalletMeter.setPalletDistinctId(myPalletDistinctId);
-	 * newPalletMeter.setRackPositionNo(positionNo);
-	 * newPalletMeter.setOverAllTestResultStatus(ConstantReport.REPORT_POPULATE_WFR)
-	 * ;
-	 * myPalletManage.addPalletMeter(newPalletMeter);
-	 * int totalPresentMeterCount = myPalletManage.getPalletMeterList().size();
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: myPalletManage : getPalletMeterList() : " +
-	 * myPalletManage.getPalletMeterList().size());
-	 * 
-	 * myPalletManage.setNoOfMeterPresent(totalPresentMeterCount);
-	 * 
-	 * myPalletManage.getPalleteBayStateList().stream().filter(e ->
-	 * e.getBayStateKey().equals(selectedBayTypeKey))
-	 * .forEach(e1->{
-	 * e1.setNoOfMeterPresent(totalPresentMeterCount);
-	 * });
-	 * MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: added Meters serial No: " +
-	 * newPalletMeter.getMeterSerialNo() + " : Position No: " + positionNo);
-	 * 
-	 * status = true;
-	 * 
-	 * Optional<PalletMeter> existingMeterOpt =
-	 * myPalletManage.getPalletMeterList().stream()
-	 * .filter(m -> m.getRackPositionNo() == positionNo)
-	 * .findFirst();
-	 * 
-	 * if (existingMeterOpt.isPresent()) {
-	 * // Overwrite the existing meter at this position
-	 * PalletMeter existingMeter = existingMeterOpt.get();
-	 * 
-	 * if (inpMeterSerialNo.equals("��������")) {
-	 * int randomNum = new Random().nextInt(900000) + 100000;
-	 * String generatedSerialNo = "ID" + randomNum;
-	 * 
-	 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-	 * inpMeterSerialNo + ", setting to " + generatedSerialNo);
-	 * existingMeter.setMeterSerialNo(generatedSerialNo);
-	 * } else {
-	 * existingMeter.setMeterSerialNo(inpMeterSerialNo);
-	 * existingMeter.setRackPositionNo(positionNo);
-	 * }
-	 * 
-	 * existingMeter.setPalletDistinctId(myPalletDistinctId);
-	 * existingMeter.setOverAllTestResultStatus(ConstantReport.REPORT_POPULATE_WFR);
-	 * myPalletManage.addPalletMeter(existingMeter);
-	 * } else {
-	 * // Add a new meter
-	 * PalletMeter newPalletMeter = new PalletMeter();
-	 * 
-	 * if (inpMeterSerialNo.equals("��������")) {
-	 * int randomNum = new Random().nextInt(900000) + 100000;
-	 * String generatedSerialNo = "ID" + randomNum;
-	 * 
-	 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-	 * inpMeterSerialNo + ", setting to " + generatedSerialNo);
-	 * newPalletMeter.setMeterSerialNo(generatedSerialNo);
-	 * } else {
-	 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-	 * }
-	 * 
-	 * newPalletMeter.setPalletDistinctId(myPalletDistinctId);
-	 * newPalletMeter.setRackPositionNo(positionNo);
-	 * newPalletMeter.setOverAllTestResultStatus(ConstantReport.REPORT_POPULATE_WFR)
-	 * ;
-	 * myPalletManage.addPalletMeter(newPalletMeter);
-	 * }
-	 * 
-	 * int totalPresentMeterCount = myPalletManage.getPalletMeterList().size();
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: myPalletManage : getPalletMeterList() : " +
-	 * totalPresentMeterCount);
-	 * 
-	 * myPalletManage.setNoOfMeterPresent(totalPresentMeterCount);
-	 * 
-	 * myPalletManage.getPalleteBayStateList().stream()
-	 * .filter(e -> e.getBayStateKey().equals(selectedBayTypeKey))
-	 * .forEach(e1 -> e1.setNoOfMeterPresent(totalPresentMeterCount));
-	 * 
-	 * MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: added/updated Meter serial No: "
-	 * + inpMeterSerialNo + " : Position No: " + positionNo);
-	 * 
-	 * status = true;
-	 * }else{
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: pallet not in active mode " + " : Position No: " +
-	 * positionNo + " : myPalletDistinctId : " + myPalletDistinctId);
-	 * }
-	 * }catch(Exception e){
-	 * ApplicationLauncher.logger.error("addMetersToPallet: Exception: " +
-	 * e.getMessage() );
-	 * }
-	 * ApplicationLauncher.logger.debug("addMetersToPallet: Exit " +
-	 * " : Position No: " + positionNo);
-	 * return status;
-	 * }
-	 */
 
 	public boolean addMetersToPallet(String selectedBayTypeKey, String inpMeterSerialNo, int positionNo) {
 
@@ -4128,70 +3611,9 @@ public class PalletTrackerController implements Initializable {
 						.findFirstByPalletDistinctId(myPalletDistinctId);
 				ApplicationLauncher.logger.debug("addMetersToPallet: myPalletManage : getPalletDistinctId "
 						+ myPalletManage.getPalletDistinctId() + " : Position No: " + positionNo);
-				// PalletMeter newPalletMeter = new PalletMeter();
-				/*
-				 * try {
-				 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-				 * } catch (Exception e) {
-				 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-				 * inpMeterSerialNo + ", setting to ID999999");
-				 * newPalletMeter.setMeterSerialNo("ID999999");
-				 * }
-				 */
 
 				ApplicationLauncher.logger.debug("addMetersToPallet: myPalletManage : Position No: " + positionNo
 						+ " inpMeterSerialNo : " + inpMeterSerialNo);
-
-				/*
-				 * if (inpMeterSerialNo.equals("��������")) {
-				 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-				 * inpMeterSerialNo + ", setting to ID999999");
-				 * newPalletMeter.setMeterSerialNo("ID999999");
-				 * } else {
-				 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-				 * }
-				 */
-
-				/*
-				 * if (inpMeterSerialNo.equals("��������")) {
-				 * // Generate a random 6-digit number
-				 * int randomNum = new Random().nextInt(900000) + 100000; // Ensures a 6-digit
-				 * number
-				 * String generatedSerialNo = "ID" + randomNum;
-				 * 
-				 * ApplicationLauncher.logger.error("Invalid meter serial number: " +
-				 * inpMeterSerialNo + ", setting to " + generatedSerialNo);
-				 * newPalletMeter.setMeterSerialNo(generatedSerialNo);
-				 * } else {
-				 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-				 * }
-				 * 
-				 * newPalletMeter.setPalletDistinctId(myPalletDistinctId);
-				 * newPalletMeter.setRackPositionNo(positionNo);
-				 * newPalletMeter.setOverAllTestResultStatus(ConstantReport.REPORT_POPULATE_WFR)
-				 * ;
-				 * myPalletManage.addPalletMeter(newPalletMeter);
-				 * int totalPresentMeterCount = myPalletManage.getPalletMeterList().size();
-				 * 
-				 * ApplicationLauncher.logger.
-				 * debug("addMetersToPallet: myPalletManage : getPalletMeterList() : " +
-				 * myPalletManage.getPalletMeterList().size());
-				 * 
-				 * myPalletManage.setNoOfMeterPresent(totalPresentMeterCount);
-				 * 
-				 * myPalletManage.getPalleteBayStateList().stream().filter(e ->
-				 * e.getBayStateKey().equals(selectedBayTypeKey))
-				 * .forEach(e1->{
-				 * e1.setNoOfMeterPresent(totalPresentMeterCount);
-				 * });
-				 * MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-				 * 
-				 * ApplicationLauncher.logger.
-				 * debug("addMetersToPallet: added Meters serial No: " +
-				 * newPalletMeter.getMeterSerialNo() + " : Position No: " + positionNo);
-				 * 
-				 * status = true;
-				 */
 
 				Optional<PalletMeter> existingMeterOpt = myPalletManage.getPalletMeterList().stream()
 						.filter(m -> m.getRackPositionNo() == positionNo)
@@ -4362,22 +3784,7 @@ public class PalletTrackerController implements Initializable {
 						ApplicationLauncher.logger.debug("updateMetersToPallet: position: " + positionNo
 								+ " ,getHardwareId " + responsePalletMeter.getHardwareId());
 
-						/*
-						 * myPalletManage.getPalletMeterList().stream()
-						 * .filter(m -> m.getRackPositionNo() == positionNo)
-						 * .findFirst()
-						 * .ifPresent(e->{
-						 * e.setOverAllTestResultStatus(newOverallTestResultStatus);
-						 * e.setErrorCode(newErrorCode);
-						 * });
-						 */
-
-						// No need to remove and re-add if we are just updating properties of an
-						// existing object in the set
-						// The changes to 'existingMeter' object will be reflected when 'myPalletManage'
-						// is saved.
 						MySqlServiceManager.getPalletMeterService().save(responsePalletMeter);
-						// MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
 
 						ApplicationLauncher.logger.debug("updateMetersToPallet: updated Meter serial No: "
 								+ responsePalletMeter.getMeterSerialNo() + " : Position No: " + positionNo
@@ -4387,9 +3794,6 @@ public class PalletTrackerController implements Initializable {
 					} else {
 						ApplicationLauncher.logger.debug("updateMetersToPallet: No meter found at position: "
 								+ positionNo + " for pallet: " + myPalletDistinctId + ". Cannot update.");
-						// Optionally, you could decide to add a new meter here if an update implies
-						// creation if not found.
-						// However, typically an "update" function expects the entity to exist.
 					}
 				} else {
 					ApplicationLauncher.logger.debug("updateMetersToPallet: pallet not in active mode "
@@ -4403,63 +3807,6 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("updateMetersToPallet: Exit " + " : Position No: " + positionNo);
 		return responsePalletMeter;
 	}
-
-	/*
-	 * public boolean addMetersToPallet(String selectedBayTypeKey, String
-	 * inpMeterSerialNo, int positionNo){
-	 * ApplicationLauncher.logger.debug("addMetersToPallet: Entry " +
-	 * " : Position No: " + positionNo);
-	 * boolean status = false;
-	 * try{
-	 * String myPalletDistinctId =
-	 * getPresentPalletAtBayMap().get(selectedBayTypeKey);
-	 * if(getActivePalletMap().values().contains(myPalletDistinctId)){
-	 * PalletManage myPalletManage =
-	 * MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(
-	 * myPalletDistinctId);
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: myPalletManage : getPalletDistinctId " +
-	 * myPalletManage.getPalletDistinctId() + " : Position No: " + positionNo);
-	 * PalletMeter newPalletMeter = new PalletMeter();
-	 * newPalletMeter.setMeterSerialNo(inpMeterSerialNo);
-	 * newPalletMeter.setPalletDistinctId(myPalletDistinctId);
-	 * newPalletMeter.setRackPositionNo(positionNo);
-	 * newPalletMeter.setOverAllTestResultStatus(ConstantReport.REPORT_POPULATE_WFR)
-	 * ;
-	 * //newPalletMeter.setMeterProfileName(meterProfileName);
-	 * //myPalletManage.getPalletMeterList().add(newPalletMeter);
-	 * myPalletManage.addPalletMeter(newPalletMeter);
-	 * int totalPresentMeterCount = myPalletManage.getPalletMeterList().size();
-	 * myPalletManage.setNoOfMeterPresent(totalPresentMeterCount);
-	 * 
-	 * myPalletManage.getPalleteBayStateList().stream().filter(e ->
-	 * e.getBayStateKey().equals(selectedBayTypeKey))
-	 * .forEach(e1->{
-	 * e1.setNoOfMeterPresent(totalPresentMeterCount);
-	 * });
-	 * MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-	 * 
-	 * 
-	 * 
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: added Meters serial No: " + inpMeterSerialNo +
-	 * " : Position No: " + positionNo);
-	 * 
-	 * status = true;
-	 * }else{
-	 * ApplicationLauncher.logger.
-	 * debug("addMetersToPallet: pallet not in active mode " + " : Position No: " +
-	 * positionNo + " : myPalletDistinctId : " + myPalletDistinctId);
-	 * }
-	 * }catch(Exception e){
-	 * ApplicationLauncher.logger.error("addMetersToPallet: Exception: " +
-	 * e.getMessage() );
-	 * }
-	 * ApplicationLauncher.logger.debug("addMetersToPallet: Exit " +
-	 * " : Position No: " + positionNo);
-	 * return status;
-	 * }
-	 */
 
 	public String addNewPalletManage(String selectedBayTypeKey, String palletQrId,
 			Map<Integer, String> meterListWithSerialNoMap) {
@@ -4561,12 +3908,10 @@ public class PalletTrackerController implements Initializable {
 
 		// }
 
-		// ApplicationLauncher.logger.debug("addNewPalletManage: Hit5 " );
 		palletBayTracker.setPalletMeterList(meterSerialNoList); // GopiConveyorReport
 		palletBayTracker.setNoOfMeterPresent(meterSerialNoList.size());
 		MySqlServiceManager.getPalletManageService().saveToDb(palletBayTracker);
 
-		// ApplicationLauncher.logger.debug("addNewPalletManage: Hit6 " );
 		ref_tvPalletManage.getItems().add(palletBayTracker);
 		reOrderedPalletManageSerialNo();
 		getActivePalletMap().put(palletQrId, palletDistinctId);
@@ -4611,12 +3956,7 @@ public class PalletTrackerController implements Initializable {
 		ZoneId zoneId = ZoneId.systemDefault();
 		long startTimeEpoch = startTime.atZone(zoneId).toEpochSecond();
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss");// + "T"
-																					// +DateTimeFormatter.ofPattern("yyyyMMdd
-																					// HHmmss");
 
-		// String palletDistinctId =
-		// palletQrId+"_"+dtf2.format(startTime)+"_"+String.format("%04d",
-		// palletBatchNo);////String.valueOf(startTimeEpoch);
 		String palletDistinctId = dtf2.format(startTime) + "_" + String.format("%04d", palletBatchNo) + "_"
 				+ palletQrId;//// String.valueOf(startTimeEpoch);
 
@@ -4661,43 +4001,6 @@ public class PalletTrackerController implements Initializable {
 		errorCodeMap.put(6, "ERR-006");
 
 		ConveyorDataManager.getDashboardObject().updateDashBoardPalletStatus("Pallet-No-008", statusMap, errorCodeMap);
-
-		/*
-		 * DeviceSetting deviceSetting = new DeviceSetting();
-		 * deviceSetting.setModelName(getDeviceModelName());
-		 * deviceSetting.setBaudRate(getDeviceDefaultBaudRate());
-		 * deviceSetting.setDeviceType(getDeviceType());
-		 * //deviceSetting.setDeviceId(deviceId);
-		 * 
-		 * int deviceTypeKey = 77;
-		 * try {
-		 * OptionalInt maxExistingDeviceTypeKey =
-		 * ref_tvDeviceSetting.getItems().stream()
-		 * .mapToInt(e->Integer.parseInt(e.getDeviceTypeKey().replace(
-		 * getDeviceTypeKeyPrefix(), "")))
-		 * .max();
-		 * if(maxExistingDeviceTypeKey.isPresent()) {
-		 * deviceTypeKey = maxExistingDeviceTypeKey.getAsInt()+1;
-		 * }
-		 * }catch (Exception e) {
-		 * e.printStackTrace();
-		 * ApplicationLauncher.logger.debug("addPalletManageOnClick: Ldu: Exception: " +
-		 * e.getMessage());
-		 * }
-		 * deviceSetting.setDeviceTypeKey(getDeviceTypeKeyPrefix() +
-		 * String.format("%02d", deviceTypeKey));
-		 * 
-		 * ref_tvDeviceSetting.getItems().add(deviceSetting);
-		 * 
-		 * //deviceSetting.setClusterId(getClusterNameIdListMap().get(deviceSetting.
-		 * getClusterName()));
-		 * reOrderedSerialNo();
-		 * Platform.runLater(()->{
-		 * int lastRowIndex = ref_tvDeviceSetting.getItems().size()-1;
-		 * ref_tvDeviceSetting.scrollTo(lastRowIndex);
-		 * tvDeviceSetting.getSelectionModel().select(lastRowIndex);
-		 * });
-		 */
 	}
 
 	@FXML
@@ -4711,31 +4014,6 @@ public class PalletTrackerController implements Initializable {
 
 	@FXML
 	public void removeDeviceOnClick(ActionEvent event) {
-
-		/*
-		 * DeviceSetting deviceSetting =
-		 * ref_tvDeviceSetting.getSelectionModel().getSelectedItem();
-		 * if(deviceSetting==null) {
-		 * ApplicationLauncher.logger.
-		 * debug("removeDeviceOnClick: Dut: Kindly select an item to delete - prompted"
-		 * );
-		 * WindowManager.InformUser("Item not selected"
-		 * ,"Kindly select an item to delete",AlertType.ERROR);
-		 * 
-		 * }else {
-		 * if(deviceSetting.getId()!=null) {
-		 * MySqlServiceManager.getDeviceSettingService().removeById(deviceSetting.getId(
-		 * ));
-		 * ref_tvDeviceSetting.getItems().remove(deviceSetting);
-		 * reOrderedSerialNo();
-		 * ApplicationLauncher.logger.
-		 * debug("removeDeviceOnClick: Dut: Selected item has been successfully deleted - prompted"
-		 * );
-		 * WindowManager.InformUser("Delete Success"
-		 * ,"Selected item has been successfully deleted",AlertType.ERROR);
-		 * }
-		 * }
-		 */
 	}
 
 	@FXML
@@ -4746,42 +4024,6 @@ public class PalletTrackerController implements Initializable {
 
 	@FXML
 	public void saveOnClick(ActionEvent event) {
-
-		/*
-		 * ref_tvPalletManage.getItems().stream().forEach(e1->{
-		 * ApplicationLauncher.logger.
-		 * debug("saveOnClick: ******************************************************");
-		 * for(PalletBayState e: e1.getPalleteBayStateList()) {
-		 * //PalletBayState e = e1.getPalleteBayStateList().g
-		 * ApplicationLauncher.logger.
-		 * debug("saveOnClick: ============================================================="
-		 * );
-		 * ApplicationLauncher.logger.debug("saveOnClick: batch No: "+
-		 * e.getPalletBatchNo() + " -> " + e.getBayStateKey());
-		 * ApplicationLauncher.logger.debug("saveOnClick: getPalletBayEntryTimeEpoch: "+
-		 * e.getPalletBayEntryTimeEpoch());
-		 * ApplicationLauncher.logger.debug("saveOnClick: getPalletBayEntryTimeStampH: "
-		 * + e.getPalletBayEntryTimeStampH());
-		 * ApplicationLauncher.logger.debug("saveOnClick: getId: "+ e.getId());
-		 * }
-		 * });
-		 */
-
-		/*
-		 * for(int i=0;i< ref_tvPalletManage.getItems().size();i++) {
-		 * //addPalletMeterList
-		 * //PalletBayTest palletBayTest = ref_tvPalletBayTest.getItems().get(i);
-		 * //palletBayTest.setPalletMeterList(palletBayTest.getPalletMeterList());
-		 * MySqlServiceManager.getPalletManageService().saveToDb(ref_tvPalletManage.
-		 * getItems().get(i));
-		 * }
-		 * 
-		 * if(ref_tvPalletManage.getItems().size()>0) {
-		 * WindowManager.InformUser("Saved","Pallet bay test saved successfully"
-		 * ,AlertType.INFORMATION);
-		 * 
-		 * }
-		 */
 
 		PalletManage selectedItem = ref_tvPalletManage.getSelectionModel().getSelectedItem();
 		if (selectedItem == null) {
@@ -4797,55 +4039,6 @@ public class PalletTrackerController implements Initializable {
 
 		// refreshPalletManageDataFromDb();
 		refreshPalletManageDataFromDbv2("PalletTracker-saveOnClick");
-
-		/*
-		 * Optional<DeviceSetting> deviceSettingWithEmptyPortOpt =
-		 * ref_tvDeviceSetting.getItems().stream()
-		 * .filter(e->e.getPortName().isEmpty())
-		 * .findFirst();
-		 * if(deviceSettingWithEmptyPortOpt.isPresent()) {
-		 * DeviceSetting deviceSetting = deviceSettingWithEmptyPortOpt.get();
-		 * ApplicationLauncher.logger.
-		 * debug("saveOnClick: Dut: Empty serial comm port name found on serial no :  "
-		 * + deviceSetting.getSerialNo() + " - prompted");
-		 * WindowManager.InformUser("Port not selected"
-		 * ,"Empty serial comm port name found on serial no : " +
-		 * deviceSetting.getSerialNo(), AlertType.ERROR);
-		 * }else {
-		 * String deviceId = "";
-		 * BayUtils bayUtils = new BayUtils();
-		 * for(int i=0; i< ref_tvDeviceSetting.getItems().size();i++) {
-		 * if(ref_tvDeviceSetting.getItems().get(i).getPortName().isEmpty()){
-		 * 
-		 * }
-		 * 
-		 * if(ref_tvDeviceSetting.getItems().get(i).getDeviceId().isEmpty()){
-		 * //BayUtils bayUtils = new BayUtils();
-		 * String clusterName = ref_tvDeviceSetting.getItems().get(i).getClusterName();
-		 * String bayName = ref_tvDeviceSetting.getItems().get(i).getBayName();
-		 * ref_tvDeviceSetting.getItems().get(i).setClusterId(BayUtils.
-		 * getClusterNameIdListMap().get(clusterName));
-		 * ref_tvDeviceSetting.getItems().get(i).setBayId(BayUtils.
-		 * getClusterBayNameIdMap().get(clusterName+"_"+bayName));
-		 * deviceId =
-		 * bayUtils.manipulateDeviceId(ref_tvDeviceSetting.getItems().get(i));
-		 * ref_tvDeviceSetting.getItems().get(i).setDeviceId(deviceId);
-		 * }else {
-		 * deviceId =
-		 * bayUtils.manipulateDeviceId(ref_tvDeviceSetting.getItems().get(i));
-		 * ref_tvDeviceSetting.getItems().get(i).setDeviceId(deviceId);
-		 * }
-		 * 
-		 * MySqlServiceManager.getDeviceSettingService().saveToDb(ref_tvDeviceSetting.
-		 * getItems().get(i));
-		 * }
-		 * if(ref_tvDeviceSetting.getItems().size()>0) {
-		 * WindowManager.InformUser("Saved","Devices saved successfully"
-		 * ,AlertType.INFORMATION);
-		 * 
-		 * }
-		 * }
-		 */
 	}
 
 	public void Sleep(int timeInMsec) {
@@ -4859,73 +4052,6 @@ public class PalletTrackerController implements Initializable {
 		}
 
 	}
-	/*
-	 * public static Map<String, String> getClusterBayNameIdMap() {
-	 * return clusterBayNameIdMap;
-	 * }
-	 * 
-	 * public void setClusterBayNameIdMap(Map<String, String> clusterBayNameIdMap) {
-	 * this.clusterBayNameIdMap = clusterBayNameIdMap;
-	 * }
-	 */
-	/*
-	 * public static Map<String, String> getClusterBayPositionNoCnameMap() {
-	 * return clusterBayPositionNoCnameMap;
-	 * }
-	 * 
-	 * public void setClusterBayPositionNoCnameMap(Map<String, String>
-	 * clusterBayPositionNoCnameMap) {
-	 * this.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
-	 * }
-	 * 
-	 * public static Map<String, ArrayList<String>>
-	 * getClusterBayNamePositionListMap() {
-	 * return clusterBayNamePositionListMap;
-	 * }
-	 * 
-	 * public void setClusterBayNamePositionListMap(Map<String, ArrayList<String>>
-	 * clusterBayNamePositionListMap) {
-	 * this.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
-	 * }
-	 */
-	/*
-	 * public static Map<String, String> getClusterNameIdListMap() {
-	 * return clusterNameIdListMap;
-	 * }
-	 * 
-	 * public void setClusterNameIdListMap(Map<String, String> clusterIdNameListMap)
-	 * {
-	 * this.clusterNameIdListMap = clusterIdNameListMap;
-	 * }
-	 * 
-	 * public static Map<String, ArrayList<String>> getClusterBayNameListMap() {
-	 * return clusterBayNameListMap;
-	 * }
-	 * 
-	 * public void setClusterBayNameListMap(Map<String, ArrayList<String>>
-	 * bayNameListMap) {
-	 * this.clusterBayNameListMap = bayNameListMap;
-	 * }
-	 */
-	/*
-	 * public static TerminalBayConfigModel getBayConfigModel() {
-	 * return bayConfigModel;
-	 * }
-	 * 
-	 * public static void setBayConfigModel(TerminalBayConfigModel bayConfigModel) {
-	 * BayTrackerController.bayConfigModel = bayConfigModel;
-	 * }
-	 */
-	/*
-	 * public Map<String, String> getClusterBayPositionNoDeviceIdMap() {
-	 * return clusterBayPositionNoDeviceIdMap;
-	 * }
-	 * 
-	 * public void setClusterBayPositionNoDeviceIdMap(Map<String, String>
-	 * clusterBayPositionNoDeviceIdMap) {
-	 * this.clusterBayPositionNoDeviceIdMap = clusterBayPositionNoDeviceIdMap;
-	 * }
-	 */
 
 	public String getDeviceTypeKeyPrefix() {
 		return deviceTypeKeyPrefix;

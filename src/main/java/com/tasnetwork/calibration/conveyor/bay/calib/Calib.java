@@ -63,7 +63,8 @@ public class Calib implements BayStateContext {
 	public String getErrorStateInstanceString(String errorCode) {
 
 		switch (errorCode) {
-
+		case "TEST_ALREADY_COMPLETED":
+			return "S06_open_the_fingerTip_Latch";
 		default:
 			return "S10_error_Handling";
 		}

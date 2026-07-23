@@ -70,7 +70,8 @@ public class Hv implements BayStateContext {
 		switch (errorCode) {
 			case ConvErrorCodeMapping.ERROR_CODE_HVT_010:
 				return "S051_stop_HV_source";
-
+			case "TEST_ALREADY_COMPLETED":
+				return "S06_open_the_fingerTip_Latch";
 			default:
 				return "S10_error_Handling";
 		}

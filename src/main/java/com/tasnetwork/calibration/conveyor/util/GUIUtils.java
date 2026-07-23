@@ -1,5 +1,4 @@
 package com.tasnetwork.calibration.conveyor.util;
-import com.sun.javafx.scene.control.skin.TableViewSkin;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantProTamp;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
