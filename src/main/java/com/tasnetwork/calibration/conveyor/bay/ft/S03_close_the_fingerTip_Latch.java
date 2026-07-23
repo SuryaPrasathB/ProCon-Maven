@@ -108,8 +108,7 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 					"Waiting",
 					ConstantConveyor.COMM_EXECUTION_STATUS_INP);
 
-			// Add to GUI (assuming StateExecutorController.addToTestStatusGui handles
-			// Platform.runLater() internally)
+			// Add to GUI
 			StateExecutorController.addToTestStatusGui(testIntefaceStatus);
 
 			String state = "";
@@ -144,8 +143,6 @@ public class S03_close_the_fingerTip_Latch implements FtBayState {
 			Ft.logger.debug(String.format("[%s] : [FINGERTIP_LATCH_COMMAND] : [RAW_STATE] : %s", getMyBayKey(), state));
 
 			// Determine status based on expected response
-			// Assuming OLD_OFF_NEW_ON signifies successful closure based on previous
-			// context.
 			status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
 
 			// Update TestInterfaceStatus based on command status

@@ -931,14 +931,11 @@ public class DashboardController implements Initializable {
 		bayKeyToBayContainer.put(ConstantConveyor.VERIFICATION_PP3_BAY_KEY, bay10Container);
 		bayKeyToBayContainer.put(ConstantConveyor.VERIFICATION_PP2_BAY_KEY, bay11Container);
 		bayKeyToBayContainer.put(ConstantConveyor.VERIFICATION_PP1_BAY_KEY, bay12Container);
-		// bayKeyToContainer.put(ConstantConveyor.STA_NLD1_BAY_KEY, bay13Container);
 
 		bayKeyToBayContainer.put(ConstantConveyor.STA_NLD1_PP4_BAY_KEY, bay13Container);
 		bayKeyToBayContainer.put(ConstantConveyor.STA_NLD1_PP3_BAY_KEY, bay14Container);
 		bayKeyToBayContainer.put(ConstantConveyor.STA_NLD1_PP2_BAY_KEY, bay15Container);
 		bayKeyToBayContainer.put(ConstantConveyor.STA_NLD1_PP1_BAY_KEY, bay16Container);
-
-		// bayKeyToContainer.put(ConstantConveyor.STA_NLD2_BAY_KEY, bay17Container);
 
 		bayKeyToBayContainer.put(ConstantConveyor.STA_NLD2_PP4_BAY_KEY, bay17Container);
 		bayKeyToBayContainer.put(ConstantConveyor.STA_NLD2_PP3_BAY_KEY, bay18Container);
@@ -2889,7 +2886,10 @@ public class DashboardController implements Initializable {
 	@FXML
 	public void refreshMetricsTable() {
 		if (conveyorOutputMetricsSummaryService == null) {
-			throw new IllegalStateException("conveyorOutputMetricsSummaryService not initialized");
+			conveyorOutputMetricsSummaryService = MySqlServiceManager.getConveyorOutputMetricsSummaryService();
+			if (conveyorOutputMetricsSummaryService == null) {
+				throw new IllegalStateException("conveyorOutputMetricsSummaryService not initialized");
+			}
 		}
 
 		String selectedPeriod = periodComboBox.getValue();
@@ -2899,68 +2899,7 @@ public class DashboardController implements Initializable {
 				failedMetersUlPercent, passedMetersUlPercent, throughputUL, totalNoOfMetersUL, selectedPeriod);
 	}
 
-	private void updateMetricsTable() {
-		updateMetricsByPeriod(ConstantConveyor.REJECTION_BAY_KEY, failedMetersRJ, passedMetersRJ,
-				failedMetersRjPercent, passedMetersRjPercent, throughputRJ, totalNoOfMetersRJ);
-		updateMetricsByPeriod(ConstantConveyor.UNLOADING_BAY_KEY, failedMetersUL, passedMetersUL,
-				failedMetersUlPercent, passedMetersUlPercent,
-				throughputUL, totalNoOfMetersUL);
-	}
 
-	private void updateMetricsByPeriod(String bayType, TextField failedField, TextField passedField,
-			TextField failedPercentField, TextField passedPercentField,
-			TextField throughputField, TextField totalField) {
-		LocalDateTime now = LocalDateTime.now();
-
-		List<ConveyorOutputMetricsSummary> summaries = conveyorOutputMetricsSummaryService.findByBayType(bayType);
-		List<ConveyorOutputMetricsSummary> today = filterByDays(summaries, now.minusDays(1));
-		List<ConveyorOutputMetricsSummary> week = filterByDays(summaries, now.minusWeeks(1));
-		List<ConveyorOutputMetricsSummary> month = filterByDays(summaries, now.minusMonths(1));
-		List<ConveyorOutputMetricsSummary> year = filterByDays(summaries, now.minusYears(1));
-		List<ConveyorOutputMetricsSummary> fiveYears = filterByDays(summaries, now.minusYears(5));
-		List<ConveyorOutputMetricsSummary> lifetime = summaries;
-
-		List<ConveyorOutputMetricsSummary> currentPeriod = today; // Replace with actual UI selection if needed
-
-		int failed = currentPeriod.stream().mapToInt(m -> m.getFailedMeters() != null ? m.getFailedMeters() : 0).sum();
-		int passed = currentPeriod.stream().mapToInt(m -> m.getPassedMeters() != null ? m.getPassedMeters() : 0).sum();
-		int total = currentPeriod.stream().mapToInt(m -> m.getTotalNoOfMeters() != null ? m.getTotalNoOfMeters() : 0)
-				.sum();
-		double throughput = currentPeriod.stream()
-				.mapToDouble(m -> m.getAverageHourlyOutput() != null ? m.getAverageHourlyOutput() : 0).average()
-				.orElse(0.0);
-
-		OptionalDouble passedPercentOpt = currentPeriod.stream()
-				.mapToDouble(m -> m.getPassedPercentage() != null ? m.getPassedPercentage() : 0.0)
-				// .filter(value -> value != 0.0)
-				.average();
-		if (passedPercentOpt.isPresent()) {
-			double passedPercent = passedPercentOpt.getAsDouble();
-			// ApplicationLauncher.logger.debug("Dummy pallet added: " + passCount + " PASS,
-			// " + failCount + " FAIL (Total: " + totalMeters + ")");
-
-			passedPercentField.setText(String.format("%.2f", passedPercent) + "%");
-		} else {
-			passedPercentField.setText("");
-		}
-
-		OptionalDouble failedPercentOpt = currentPeriod.stream()
-				.mapToDouble(m -> m.getFailedPercentage() != null ? m.getFailedPercentage() : 0.0)
-				// .filter(value -> value != 0.0)
-				.average();
-		if (failedPercentOpt.isPresent()) {
-			double failedPercent = failedPercentOpt.getAsDouble();
-			failedPercentField.setText(String.format("%.2f", failedPercent) + "%");
-		} else {
-			failedPercentField.setText("");
-		}
-
-		failedField.setText(String.valueOf(failed));
-		passedField.setText(String.valueOf(passed));
-		totalField.setText(String.valueOf(total));
-
-		throughputField.setText(String.format("%.2f", throughput));
-	}
 
 	private void refreshMetricsByPeriod(String bayType, TextField failedField, TextField passedField,
 			TextField failedPercentField, TextField passedPercentField,
@@ -3049,37 +2988,24 @@ public class DashboardController implements Initializable {
 		int passed = currentPeriod.stream().mapToInt(m -> m.getPassedMeters() != null ? m.getPassedMeters() : 0).sum();
 		int total = currentPeriod.stream().mapToInt(m -> m.getTotalNoOfMeters() != null ? m.getTotalNoOfMeters() : 0)
 				.sum();
-		double throughput = currentPeriod.stream()
-				.mapToDouble(m -> m.getAverageHourlyOutput() != null ? m.getAverageHourlyOutput() : 0).average()
-				.orElse(0.0);
+		double weightedThroughputSum = currentPeriod.stream()
+				.mapToDouble(m -> (m.getAverageHourlyOutput() != null ? m.getAverageHourlyOutput() : 0.0) *
+						(m.getTotalNoOfMeters() != null ? m.getTotalNoOfMeters() : 0))
+				.sum();
+		double throughput = total > 0 ? weightedThroughputSum / total : 0.0;
 
 		failedField.setText(String.valueOf(failed));
 		passedField.setText(String.valueOf(passed));
 		totalField.setText(String.valueOf(total));
 		throughputField.setText(String.format("%.2f", throughput));
 
-		OptionalDouble passedPercentOpt = currentPeriod.stream()
-				.mapToDouble(m -> m.getPassedPercentage() != null ? m.getPassedPercentage() : 0.0)
-				// .filter(value -> value != 0.0)
-				.average();
-		if (passedPercentOpt.isPresent()) {
-			double passedPercent = passedPercentOpt.getAsDouble();
-			// ApplicationLauncher.logger.debug("Dummy pallet added: " + passCount + " PASS,
-			// " + failCount + " FAIL (Total: " + totalMeters + ")");
-
+		if (total > 0) {
+			double passedPercent = (passed / (double) total) * 100.0;
+			double failedPercent = (failed / (double) total) * 100.0;
 			passedPercentField.setText(String.format("%.2f", passedPercent) + "%");
-		} else {
-			passedPercentField.setText("");
-		}
-
-		OptionalDouble failedPercentOpt = currentPeriod.stream()
-				.mapToDouble(m -> m.getFailedPercentage() != null ? m.getFailedPercentage() : 0.0)
-				// .filter(value -> value != 0.0)
-				.average();
-		if (failedPercentOpt.isPresent()) {
-			double failedPercent = failedPercentOpt.getAsDouble();
 			failedPercentField.setText(String.format("%.2f", failedPercent) + "%");
 		} else {
+			passedPercentField.setText("");
 			failedPercentField.setText("");
 		}
 
@@ -3103,10 +3029,7 @@ public class DashboardController implements Initializable {
 					 * .toLocalDate();
 					 */
 
-					LocalDate recordDate = new java.util.Date(m.getDateH().getTime())
-							.toInstant()
-							.atZone(ZoneId.systemDefault())
-							.toLocalDate();
+					LocalDate recordDate = new java.sql.Date(m.getDateH().getTime()).toLocalDate();
 
 					// Check if record date is on or after the filter date
 					return !recordDate.isBefore(filterDate);
@@ -3127,10 +3050,7 @@ public class DashboardController implements Initializable {
 					if (m.getDateH() == null)
 						return false;
 
-					LocalDate recordDate = new java.util.Date(m.getDateH().getTime())
-							.toInstant()
-							.atZone(ZoneId.systemDefault())
-							.toLocalDate();
+					LocalDate recordDate = new java.sql.Date(m.getDateH().getTime()).toLocalDate();
 
 					// Check if the record date is within the range (inclusive of from and to)
 					return !recordDate.isBefore(fromDate) && !recordDate.isAfter(toDate);
