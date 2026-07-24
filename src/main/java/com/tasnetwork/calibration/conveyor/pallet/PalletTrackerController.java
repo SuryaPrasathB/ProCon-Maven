@@ -1,17 +1,14 @@
 package com.tasnetwork.calibration.conveyor.pallet;
 
 import java.net.URL;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -26,9 +23,6 @@ import java.util.OptionalInt;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TimeZone;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
@@ -38,41 +32,21 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import org.controlsfx.control.CheckComboBox;
-import org.springframework.beans.BeanUtils;
-
 import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
-import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
-import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
-import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
 import com.tasnetwork.calibration.conveyor.bay.rejection.S02_qR_Code_Scanning_of_Rejected_Pallet;
 import com.tasnetwork.calibration.conveyor.bay.unloading.S02_qR_Code_Scanning_of_Pallet;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantLdu;
-import com.tasnetwork.calibration.conveyor.constant.ConstantMegaOhmPm;
-import com.tasnetwork.calibration.conveyor.dashboard.ErrorCode;
 import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.conveyor.serial.director.DutDirector;
-import com.tasnetwork.calibration.conveyor.serial.director.LduDirector;
-import com.tasnetwork.calibration.conveyor.serial.director.MegaOhmPmDirector;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmLdu;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmMegaOhmPm;
 import com.tasnetwork.calibration.conveyor.util.ChannelQueueRequestProcessor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
-import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 import com.tasnetwork.spring.orm.model.MeterResultSummary;
 import com.tasnetwork.spring.orm.model.PalletBayState;
 import com.tasnetwork.spring.orm.model.PalletManage;
@@ -83,11 +57,9 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
@@ -96,14 +68,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 
 public class PalletTrackerController implements Initializable {
 
@@ -431,7 +398,7 @@ public class PalletTrackerController implements Initializable {
 	private Button btnNextPage;
 	@FXML
 	private javafx.scene.control.Label lblPageInfo;
-	
+
 	private static Button ref_btnPrevPage;
 	private static Button ref_btnNextPage;
 	private static javafx.scene.control.Label ref_lblPageInfo;
@@ -591,27 +558,11 @@ public class PalletTrackerController implements Initializable {
 
 	public void refreshPalletManageDataFromDb() {
 
-		// List<DeviceSetting> deviceSettingList =
-		// MySqlServiceManager.getDeviceSettingService().findByDeviceType(getDeviceType());
-		// deviceSettingList = reOrderedSerialNo(deviceSettingList);
-
-		// getActivePalletMap().clear();
-
-		// Platform.runLater(()->{
-		ref_tvPalletManage.getItems().clear();
-		// ref_lvDbMeterList.getItems().clear();
-		ref_tvPalletBayState.getItems().clear();
-		ref_tvPalletMeterResult.getItems().clear();
-		// ref_tvDeviceSetting.getItems().addAll(FXCollections.observableArrayList(deviceSettingList));
-		// List<PalletManage> palletManageList =
-		// MySqlServiceManager.getPalletManageService().findAll();
-
-		/*
-		 * for (PalletManage pallet : palletManageList) {
-		 * ApplicationLauncher.logger.debug("refreshPalletManageDataFromDb : pallet: " +
-		 * pallet);
-		 * }
-		 */
+		Platform.runLater(() -> {
+			ref_tvPalletManage.getItems().clear();
+			ref_tvPalletBayState.getItems().clear();
+			ref_tvPalletMeterResult.getItems().clear();
+		});
 
 		int days = ConstantConveyorConfig.PALLET_MANAGE_RECENT_NO_OF_DAYS_DISPLAY;
 
@@ -624,11 +575,12 @@ public class PalletTrackerController implements Initializable {
 			Calendar calendar = Calendar.getInstance();
 			calendar.add(Calendar.DAY_OF_YEAR, -days);
 			Date cutoffDate = calendar.getTime();
-			pageResult = MySqlServiceManager.getPalletManageService().findByCreatedAtAfterPaginated(cutoffDate, currentPage, pageSize);
+			pageResult = MySqlServiceManager.getPalletManageService().findByCreatedAtAfterPaginated(cutoffDate,
+					currentPage, pageSize);
 		}
 		palletManageList = pageResult.getContent();
 		int totalPages = pageResult.getTotalPages();
-		
+
 		// ref_tvPalletManage.getItems().addAll(palletManageList);
 		// reOrderedPalletManageSerialNo();
 		List<PalletManage> palletManageListFinal = palletManageList;
@@ -1072,24 +1024,6 @@ public class PalletTrackerController implements Initializable {
 				try {
 
 					presentValue = displayResultStyle(presentValue, this);
-					/*
-					 * if (presentValue.contains(ConstantReport.REPORT_POPULATE_WFR)) {
-					 * setStyle(resultStyleWfr);
-					 * } else if (presentValue.startsWith(ConstantReport.REPORT_POPULATE_PASS)) {
-					 * setStyle(resultStylePass);
-					 * presentValue = presentValue.replace(ConstantReport.REPORT_POPULATE_PASS ,""
-					 * ).trim();
-					 * } else if (presentValue.startsWith(ConstantReport.REPORT_POPULATE_FAIL)) {
-					 * setStyle(resultStyleFail);
-					 * presentValue = presentValue.replace(ConstantReport.REPORT_POPULATE_FAIL ,""
-					 * ).trim();
-					 * } else if (presentValue.startsWith(ConstantReport.RESULT_STATUS_UNDEFINED)) {
-					 * setStyle(resultStyleUndefined);
-					 * presentValue = presentValue.substring(2);
-					 * } else if (presentValue.isEmpty()) {
-					 * setStyle(resultStyleDefault);
-					 * }
-					 */
 
 				} catch (Exception e) {
 					ApplicationLauncher.logger.error("colMsumTestTypeComm: updateItem: Exception: " + e.getMessage(),
@@ -1741,7 +1675,7 @@ public class PalletTrackerController implements Initializable {
 		colPmTestExecutionStatus.setCellValueFactory(data -> data.getValue().getPalletExecutionStatusProperty());
 
 		colPmTestResultStatus.setCellValueFactory(data -> data.getValue().getPalletResultStatusProperty());
-		if(colPmTransitionError != null) {
+		if (colPmTransitionError != null) {
 			colPmTransitionError.setCellValueFactory(data -> data.getValue().getTransitionErrorDetailsProperty());
 			colPmTransitionError.setStyle("-fx-text-fill: red;");
 		}
@@ -1798,6 +1732,54 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("meterSummaryApplyFilterOnClick: Entry ");
 	}
 
+	public static class PreviewRow {
+		private final javafx.beans.property.StringProperty qrId = new javafx.beans.property.SimpleStringProperty();
+		private final javafx.beans.property.StringProperty currentBay = new javafx.beans.property.SimpleStringProperty();
+		private final javafx.beans.property.StringProperty expectedBay = new javafx.beans.property.SimpleStringProperty();
+		private final javafx.beans.property.StringProperty currentStatus = new javafx.beans.property.SimpleStringProperty();
+		private final javafx.beans.property.StringProperty expectedStatus = new javafx.beans.property.SimpleStringProperty();
+		private final javafx.beans.property.StringProperty currentBatch = new javafx.beans.property.SimpleStringProperty();
+		private final javafx.beans.property.StringProperty expectedBatch = new javafx.beans.property.SimpleStringProperty();
+
+		public PreviewRow(String qrId, String currentBay, String currentStatus, String currentBatch) {
+			this.qrId.set(qrId);
+			this.currentBay.set(currentBay);
+			this.expectedBay.set(currentBay);
+			this.currentStatus.set(currentStatus);
+			this.expectedStatus.set(currentStatus);
+			this.currentBatch.set(currentBatch);
+			this.expectedBatch.set(currentBatch);
+		}
+
+		public javafx.beans.property.StringProperty qrIdProperty() {
+			return qrId;
+		}
+
+		public javafx.beans.property.StringProperty currentBayProperty() {
+			return currentBay;
+		}
+
+		public javafx.beans.property.StringProperty expectedBayProperty() {
+			return expectedBay;
+		}
+
+		public javafx.beans.property.StringProperty currentStatusProperty() {
+			return currentStatus;
+		}
+
+		public javafx.beans.property.StringProperty expectedStatusProperty() {
+			return expectedStatus;
+		}
+
+		public javafx.beans.property.StringProperty currentBatchProperty() {
+			return currentBatch;
+		}
+
+		public javafx.beans.property.StringProperty expectedBatchProperty() {
+			return expectedBatch;
+		}
+	}
+
 	@FXML
 	void onBulkEditClick(ActionEvent event) {
 		ObservableList<PalletManage> selectedPallets = ref_tvPalletManage.getSelectionModel().getSelectedItems();
@@ -1806,23 +1788,26 @@ public class PalletTrackerController implements Initializable {
 			return;
 		}
 		ApplicationLauncher.logger.debug("onBulkEditClick: Selected pallets count = " + selectedPallets.size());
-		
+
 		javafx.scene.control.Dialog<Boolean> dialog = new javafx.scene.control.Dialog<>();
 		dialog.setTitle("Bulk Edit Pallets");
-		dialog.setHeaderText("Edit fields for " + selectedPallets.size() + " selected pallets.\nLeave blank to keep existing values.");
+		dialog.setHeaderText("Edit fields for " + selectedPallets.size()
+				+ " selected pallets.\nLeave blank to keep existing values.");
+		dialog.getDialogPane().setPrefWidth(800);
 
-		javafx.scene.control.ButtonType saveButtonType = new javafx.scene.control.ButtonType("Save", javafx.scene.control.ButtonBar.ButtonData.OK_DONE);
+		javafx.scene.control.ButtonType saveButtonType = new javafx.scene.control.ButtonType("Save",
+				javafx.scene.control.ButtonBar.ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, javafx.scene.control.ButtonType.CANCEL);
 
 		javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
 		grid.setHgap(10);
 		grid.setVgap(10);
-		grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+		grid.setPadding(new javafx.geometry.Insets(20, 10, 10, 10));
 
 		ComboBox<String> activeBox = new ComboBox<>();
 		activeBox.getItems().addAll("No Change", "True", "False");
 		activeBox.getSelectionModel().selectFirst();
-		
+
 		TextField batchNoField = new TextField();
 		batchNoField.setPromptText("Leave empty for no change");
 
@@ -1832,6 +1817,11 @@ public class PalletTrackerController implements Initializable {
 		TextField resultStatusField = new TextField();
 		resultStatusField.setPromptText("Leave empty for no change");
 
+		ComboBox<String> actionBox = new ComboBox<>();
+		actionBox.getItems().addAll("No Action", "Switch to Previous Bay", "Switch to Next Bay", "Add Pallet Bay State",
+				"Mark as Completed", "Revert Completed", "Mark as Exit Appeared", "Revert Exit Appeared");
+		actionBox.getSelectionModel().selectFirst();
+
 		grid.add(new Label("Pallet Active:"), 0, 0);
 		grid.add(activeBox, 1, 0);
 		grid.add(new Label("Batch No:"), 0, 1);
@@ -1840,6 +1830,91 @@ public class PalletTrackerController implements Initializable {
 		grid.add(execStatusField, 1, 2);
 		grid.add(new Label("Result Status:"), 0, 3);
 		grid.add(resultStatusField, 1, 3);
+		grid.add(new Label("Bulk Action:"), 0, 4);
+		grid.add(actionBox, 1, 4);
+
+		TableView<PreviewRow> previewTable = new TableView<>();
+		previewTable.setPrefHeight(200);
+
+		javafx.scene.control.TableColumn<PreviewRow, String> colQrId = new javafx.scene.control.TableColumn<>(
+				"Pallet QR");
+		colQrId.setCellValueFactory(data -> data.getValue().qrIdProperty());
+		javafx.scene.control.TableColumn<PreviewRow, String> colCurBay = new javafx.scene.control.TableColumn<>(
+				"Current Bay");
+		colCurBay.setCellValueFactory(data -> data.getValue().currentBayProperty());
+		javafx.scene.control.TableColumn<PreviewRow, String> colExpBay = new javafx.scene.control.TableColumn<>(
+				"Expected Bay");
+		colExpBay.setCellValueFactory(data -> data.getValue().expectedBayProperty());
+		javafx.scene.control.TableColumn<PreviewRow, String> colCurStatus = new javafx.scene.control.TableColumn<>(
+				"Current Status");
+		colCurStatus.setCellValueFactory(data -> data.getValue().currentStatusProperty());
+		javafx.scene.control.TableColumn<PreviewRow, String> colExpStatus = new javafx.scene.control.TableColumn<>(
+				"Expected Status");
+		colExpStatus.setCellValueFactory(data -> data.getValue().expectedStatusProperty());
+		javafx.scene.control.TableColumn<PreviewRow, String> colCurBatch = new javafx.scene.control.TableColumn<>(
+				"Current Batch");
+		colCurBatch.setCellValueFactory(data -> data.getValue().currentBatchProperty());
+		javafx.scene.control.TableColumn<PreviewRow, String> colExpBatch = new javafx.scene.control.TableColumn<>(
+				"Expected Batch");
+		colExpBatch.setCellValueFactory(data -> data.getValue().expectedBatchProperty());
+
+		previewTable.getColumns().addAll(colQrId, colCurBay, colExpBay, colCurStatus, colExpStatus, colCurBatch,
+				colExpBatch);
+
+		ObservableList<PreviewRow> previewData = javafx.collections.FXCollections.observableArrayList();
+		for (PalletManage p : selectedPallets) {
+			previewData.add(new PreviewRow(p.getPalletQrId(), p.getPresentBayKey(), p.getPalletExecutionStatus(),
+					String.valueOf(p.getPalletBatchNo())));
+		}
+		previewTable.setItems(previewData);
+		grid.add(new Label("Live Preview:"), 0, 5, 2, 1);
+		grid.add(previewTable, 0, 6, 2, 1);
+
+		Runnable updatePreview = () -> {
+			String action = actionBox.getValue();
+			String batchStr = batchNoField.getText();
+			String execStr = execStatusField.getText();
+
+			for (int i = 0; i < selectedPallets.size(); i++) {
+				PreviewRow row = previewData.get(i);
+
+				if (batchStr != null && !batchStr.trim().isEmpty()) {
+					row.expectedBatchProperty().set(batchStr.trim());
+				} else {
+					row.expectedBatchProperty().set(row.currentBatchProperty().get());
+				}
+
+				String expStatus = row.currentStatusProperty().get();
+				if (execStr != null && !execStr.trim().isEmpty()) {
+					expStatus = execStr.trim();
+				}
+				String expBay = row.currentBayProperty().get();
+
+				if ("Switch to Previous Bay".equals(action)) {
+					int idx = ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(expBay);
+					if (idx > 0)
+						expBay = ConstantConveyor.STATE_SEQUENCE_LIST.get(idx - 1);
+					expStatus = ConstantConveyor.EXECUTION_STATUS_INPROGRESS;
+				} else if ("Switch to Next Bay".equals(action)) {
+					int idx = ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(expBay);
+					if (idx >= 0 && idx < ConstantConveyor.STATE_SEQUENCE_LIST.size() - 1) {
+						expBay = ConstantConveyor.STATE_SEQUENCE_LIST.get(idx + 1);
+					}
+					expStatus = ConstantConveyor.EXECUTION_STATUS_COMPLETED;
+				} else if ("Mark as Completed".equals(action)) {
+					expStatus = ConstantConveyor.EXECUTION_STATUS_COMPLETED;
+				} else if ("Revert Completed".equals(action)) {
+					expStatus = ConstantConveyor.EXECUTION_STATUS_INPROGRESS;
+				}
+
+				row.expectedBayProperty().set(expBay);
+				row.expectedStatusProperty().set(expStatus);
+			}
+		};
+
+		actionBox.valueProperty().addListener((obs, oldV, newV) -> updatePreview.run());
+		batchNoField.textProperty().addListener((obs, oldV, newV) -> updatePreview.run());
+		execStatusField.textProperty().addListener((obs, oldV, newV) -> updatePreview.run());
 
 		dialog.getDialogPane().setContent(grid);
 
@@ -1849,13 +1924,17 @@ public class PalletTrackerController implements Initializable {
 				String execStr = execStatusField.getText();
 				String resStr = resultStatusField.getText();
 				String activeStr = activeBox.getValue();
-				
+				String actionStr = actionBox.getValue();
+
 				for (PalletManage p : selectedPallets) {
 					if (!activeStr.equals("No Change")) {
 						p.setPalletActive("True".equals(activeStr));
 					}
 					if (batchNoStr != null && !batchNoStr.trim().isEmpty()) {
-						try { p.setPalletBatchNo(Integer.parseInt(batchNoStr.trim())); } catch (Exception ex) {}
+						try {
+							p.setPalletBatchNo(Integer.parseInt(batchNoStr.trim()));
+						} catch (Exception ex) {
+						}
 					}
 					if (execStr != null && !execStr.trim().isEmpty()) {
 						p.setPalletExecutionStatus(execStr.trim());
@@ -1863,28 +1942,40 @@ public class PalletTrackerController implements Initializable {
 					if (resStr != null && !resStr.trim().isEmpty()) {
 						p.setPalletResultStatus(resStr.trim());
 					}
+
+					if ("Switch to Previous Bay".equals(actionStr))
+						switchToPreviousBayForPallet(p);
+					else if ("Switch to Next Bay".equals(actionStr))
+						switchToNextBayForPallet(p);
+					else if ("Add Pallet Bay State".equals(actionStr))
+						addPalletBayStateForPallet(p);
+					else if ("Mark as Completed".equals(actionStr))
+						markAsCompletedForPallet(p);
+					else if ("Revert Completed".equals(actionStr))
+						revertCompletedForPallet(p);
+					else if ("Mark as Exit Appeared".equals(actionStr))
+						markAsExitAppearedForPallet(p);
+					else if ("Revert Exit Appeared".equals(actionStr))
+						revertExitAppearedForPallet(p);
 				}
 				MySqlServiceManager.getPalletManageService().saveAll(selectedPallets);
 				return true;
 			}
 			return null;
 		});
-		
+
 		Optional<Boolean> result = dialog.showAndWait();
 		result.ifPresent(updated -> {
-			if(updated) {
+			if (updated) {
+				ref_tvPalletManage.refresh();
 				refreshPalletManageDataFromDbv2("BulkEdit");
 				WindowManager.InformUser("Bulk Edit", "Bulk edit saved successfully.", AlertType.INFORMATION);
 			}
 		});
 	}
 
-	@FXML
-	void addPalletBayState() {
-		ApplicationLauncher.logger.debug("FXML - addPalletBayState: Entry ");
-
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+	private void addPalletBayStateForPallet(PalletManage palletBayTracker) {
+		ApplicationLauncher.logger.debug("addPalletBayStateForPallet: Entry ");
 
 		PalletBayState palletBayState = new PalletBayState();
 		palletBayState.setSerialNo(getPalletBayStateSerialNoAtomic().getAndIncrement());
@@ -1907,14 +1998,22 @@ public class PalletTrackerController implements Initializable {
 
 		getPresentPalletAtBayMap().put(palletBayTracker.getPresentBayKey(), palletBayTracker.getPalletDistinctId());
 
-		ref_tvPalletBayState.getItems().add(palletBayState);
-		reOrderedPalletBayStateSerialNo();
+		if (palletBayTracker.equals(ref_tvPalletManage.getSelectionModel().getSelectedItem())) {
+			ref_tvPalletBayState.getItems().add(palletBayState);
+			reOrderedPalletBayStateSerialNo();
+		}
 		// palletBayTracker.getPalleteBayStateList().add(palletBayState);
 
 		palletBayTracker.addPalleteBayState(palletBayState);
+	}
 
-		ref_tvPalletManage.refresh();
-
+	@FXML
+	void addPalletBayState() {
+		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			addPalletBayStateForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
+		}
 	}
 
 	public boolean addPalletBayState(String selectedBayTypeKey) {
@@ -2029,10 +2128,7 @@ public class PalletTrackerController implements Initializable {
 		return status;
 	}
 
-	@FXML
-	void switchToNextBayOnClick(ActionEvent event) {
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+	private void switchToNextBayForPallet(PalletManage palletBayTracker) {
 		if (palletBayTracker.isPalletActive()) {
 			String presentBayState = palletBayTracker.getPresentBayKey();
 			String palletBatchMapId = palletBayTracker.getPalletDistinctId();
@@ -2083,10 +2179,8 @@ public class PalletTrackerController implements Initializable {
 				// ConveyorDeviceDataManagerController.getDashboardObject().removePalletByName(palletName,
 				// fromBayName);
 
-				ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
 				ref_tvPalletBayState.refresh();
-
-				addPalletBayState();
+				addPalletBayStateForPallet(palletBayTracker);
 			} else {
 				ApplicationLauncher.logger.debug("switchToNextBayOnClick: reached End of Conveyor ");
 				palletBayTracker.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
@@ -2106,8 +2200,6 @@ public class PalletTrackerController implements Initializable {
 				ApplicationLauncher.logger
 						.debug("switchToNextBayOnClick: conveyorPalleteRuntimeInMin: " + conveyorPalleteRuntimeInMin);
 				palletBayTracker.setPalleteConveyorRunTimeInMin(String.valueOf(conveyorPalleteRuntimeInMin));
-
-				ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
 			}
 		} else {
 			ApplicationLauncher.logger.debug("switchToNextBayOnClick: Pallet is inactive");
@@ -2115,10 +2207,15 @@ public class PalletTrackerController implements Initializable {
 	}
 
 	@FXML
-	void switchToPreviousBayOnClick(ActionEvent event) {
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
+	void switchToNextBayOnClick(ActionEvent event) {
 		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			switchToNextBayForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
+		}
+	}
 
+	private void switchToPreviousBayForPallet(PalletManage palletBayTracker) {
 		if (palletBayTracker.isPalletActive()) {
 			String presentBayState = palletBayTracker.getPresentBayKey();
 			String palletBatchMapId = palletBayTracker.getPalletDistinctId();
@@ -2135,22 +2232,29 @@ public class PalletTrackerController implements Initializable {
 							.filter(e -> e.getPalletDistinctId().equals(palletBatchMapId))
 							.forEach(e1 -> {
 								ApplicationLauncher.logger
-										.debug("switchToPreviousBayOnClick: Rolling back from bay: " + presentBayState);
+										.debug("switchToPreviousBayForPallet: Rolling back from bay: " + presentBayState);
 								e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
 								e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_WFR);
 							});
 				}
 
 				palletBayTracker.setPresentBayKey(previousBayState);
-				ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
 				ref_tvPalletBayState.refresh();
-
-				addPalletBayState();
+				addPalletBayStateForPallet(palletBayTracker);
 			} else {
-				ApplicationLauncher.logger.debug("switchToPreviousBayOnClick: Already at the first bay.");
+				ApplicationLauncher.logger.debug("switchToPreviousBayForPallet: Already at the first bay.");
 			}
 		} else {
-			ApplicationLauncher.logger.debug("switchToPreviousBayOnClick: Pallet is inactive");
+			ApplicationLauncher.logger.debug("switchToPreviswitchToPreviousBayForPalletousBayOnClick: Pallet is inactive");
+		}
+	}
+
+	@FXML
+	void switchToPreviousBayOnClick(ActionEvent event) {
+		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			switchToPreviousBayForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
 		}
 	}
 
@@ -2203,7 +2307,7 @@ public class PalletTrackerController implements Initializable {
 							palletBayState.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
 							palletBayState.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 							palletBayState.setBayResultStatus(resultStatus);// ConstantReport.REPORT_POPULATE_PASS);
-							if(resultStatus != null && resultStatus.startsWith(ConstantReport.REPORT_POPULATE_PASS)) {
+							if (resultStatus != null && resultStatus.startsWith(ConstantReport.REPORT_POPULATE_PASS)) {
 								palletBayState.setTestCompleted("Y");
 							}
 							// });
@@ -3480,10 +3584,7 @@ public class PalletTrackerController implements Initializable {
 		return status;
 	}
 
-	@FXML
-	void markAsCompletedOnClick(ActionEvent event) {
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+	private void markAsCompletedForPallet(PalletManage palletBayTracker) {
 		palletBayTracker.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
 		palletBayTracker.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 		palletBayTracker.setPalletActive(false);
@@ -3522,7 +3623,15 @@ public class PalletTrackerController implements Initializable {
 				.debug("markAsCompletedOnClick: getActivePalletMap after removal: " + getActivePalletMap());
 
 		String presentBayState = palletBayTracker.getPresentBayKey();
-		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
+	}
+
+	@FXML
+	void markAsCompletedOnClick(ActionEvent event) {
+		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			markAsCompletedForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
+		}
 	}
 
 	private String extractPalletKey(String palletDistinctId) {
@@ -3538,10 +3647,7 @@ public class PalletTrackerController implements Initializable {
 		return palletDistinctId;
 	}
 
-	@FXML
-	void revertCompletedOnClick(ActionEvent event) {
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+	private void revertCompletedForPallet(PalletManage palletBayTracker) {
 		// palletBayTracker.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
 		palletBayTracker.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
 		palletBayTracker.setPalletActive(true);
@@ -3558,13 +3664,18 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("revertCompletedOnClick: getActivePalletMap " + getActivePalletMap());
 
 		String presentBayState = palletBayTracker.getPresentBayKey();
-		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
 	}
 
 	@FXML
-	void markAsExitAppearedOnClick(ActionEvent event) {
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
+	void revertCompletedOnClick(ActionEvent event) {
 		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			revertCompletedForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
+		}
+	}
+
+	private void markAsExitAppearedForPallet(PalletManage palletBayTracker) {
 		// palletBayTracker.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
 		// palletBayTracker.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 		// palletBayTracker.setPalletActive(false);
@@ -3575,15 +3686,18 @@ public class PalletTrackerController implements Initializable {
 				.debug("markAsExitAppearedOnClick: getPalletDistinctId " + palletBayTracker.getPalletDistinctId());
 
 		String presentBayState = palletBayTracker.getPresentBayKey();
-		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
-
 	}
 
 	@FXML
-	void revertExitAppearedOnClick(ActionEvent event) {
-		int selectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
+	void markAsExitAppearedOnClick(ActionEvent event) {
 		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			markAsExitAppearedForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
+		}
+	}
 
+	private void revertExitAppearedForPallet(PalletManage palletBayTracker) {
 		palletBayTracker.setExitAppeared(false);
 
 		String palletDistinctId = palletBayTracker.getPalletDistinctId();
@@ -3591,15 +3705,19 @@ public class PalletTrackerController implements Initializable {
 				.debug("revertExitAppearedOnClick: getPalletDistinctId " + palletBayTracker.getPalletDistinctId());
 
 		String presentBayState = palletBayTracker.getPresentBayKey();
-		ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
+	}
 
+	@FXML
+	void revertExitAppearedOnClick(ActionEvent event) {
+		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+		if (palletBayTracker != null) {
+			revertExitAppearedForPallet(palletBayTracker);
+			ref_tvPalletManage.refresh();
+		}
 	}
 
 	public boolean addMetersToPallet(String selectedBayTypeKey, String inpMeterSerialNo, int positionNo) {
 
-		ApplicationLauncher.logger.debug("addMetersToPallet : ======================: " + positionNo);
-		ApplicationLauncher.logger.debug("addMetersToPallet : ======================: " + positionNo);
-		ApplicationLauncher.logger.debug("addMetersToPallet : ======================: " + positionNo);
 		ApplicationLauncher.logger.debug("addMetersToPallet : ======================: " + positionNo);
 		ApplicationLauncher.logger.debug("addMetersToPallet: Entry  : Position No: " + positionNo);
 		ApplicationLauncher.logger.debug("addMetersToPallet: inpMeterSerialNo " + inpMeterSerialNo);

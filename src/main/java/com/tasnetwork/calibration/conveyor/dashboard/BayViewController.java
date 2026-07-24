@@ -69,10 +69,12 @@ public class BayViewController {
 	public void setBayKey(String bayKey) {
 		this.bayKey = bayKey;
 		if (bayKey != null && bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {
-			if (imgPalletsLocked != null) imgPalletsLocked.setVisible(false);
+			if (imgPalletsLocked != null)
+				imgPalletsLocked.setVisible(false);
 		}
 		if (imgByPassMode != null && bayKey != null) {
-			imgByPassMode.setVisible(com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.isBayFullyBypassed(bayKey));
+			imgByPassMode.setVisible(
+					com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.isBayFullyBypassed(bayKey));
 		}
 	}
 
@@ -97,7 +99,8 @@ public class BayViewController {
 		if (imgByPassMode != null) {
 			imgByPassMode.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2 && bayKey != null) {
-					boolean isBypassed = com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.isBayFullyBypassed(bayKey);
+					boolean isBypassed = com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
+							.isBayFullyBypassed(bayKey);
 					PalletController.BayActionType action = isBypassed
 							? PalletController.BayActionType.BYPASS_MODE_INACTIVE
 							: PalletController.BayActionType.BYPASS_MODE_ACTIVE;
@@ -577,4 +580,3 @@ public class BayViewController {
 	}
 
 }
-

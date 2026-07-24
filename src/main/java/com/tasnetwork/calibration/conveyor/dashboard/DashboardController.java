@@ -485,7 +485,7 @@ public class DashboardController implements Initializable {
 									+ bayKey
 									+ " | port: " + fingertipPort + " | state: " + state + " | isOpen: " + isOpen);
 							javafx.application.Platform.runLater(() -> {
-								indicatorManager.setPalletsLockedImageDisplayOn(bayKey, !isOpen);
+								indicatorManager.setPalletsLockedImageDisplayOn(bayKey, isOpen);
 							});
 						} else {
 							ApplicationLauncher.logger
@@ -517,13 +517,17 @@ public class DashboardController implements Initializable {
 					// Fetch Entry Stopper for FT Bay explicitly
 					if (ConstantConveyor.FT_BAY_KEY.equals(bayKey)) {
 						com.tasnetwork.calibration.conveyor.bay.IoPortInfo entryStopperPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
-								.getOutputPortDetails(com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4);
+								.getOutputPortDetails(
+										com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4);
 						if (entryStopperPortInfo != null) {
 							String state = bayUtils.getInputDataFromPlcBayV2(entryStopperPortInfo);
 							boolean isOpen = com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping.OFF
 									.equalsIgnoreCase(state);
-							ApplicationLauncher.logger.info("refreshInitialConveyorStatus [ENTRY STOPPER] - bayKey: " + bayKey
-									+ " | port: " + com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4 + " | state: " + state + " | isOpen: " + isOpen);
+							ApplicationLauncher.logger.info("refreshInitialConveyorStatus [ENTRY STOPPER] - bayKey: "
+									+ bayKey
+									+ " | port: "
+									+ com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4
+									+ " | state: " + state + " | isOpen: " + isOpen);
 							javafx.application.Platform.runLater(() -> {
 								indicatorManager.updateBayEntryStopper(bayKey, !isOpen);
 							});
@@ -2898,8 +2902,6 @@ public class DashboardController implements Initializable {
 		refreshMetricsByPeriod(ConstantConveyor.UNLOADING_BAY_KEY, failedMetersUL, passedMetersUL,
 				failedMetersUlPercent, passedMetersUlPercent, throughputUL, totalNoOfMetersUL, selectedPeriod);
 	}
-
-
 
 	private void refreshMetricsByPeriod(String bayType, TextField failedField, TextField passedField,
 			TextField failedPercentField, TextField passedPercentField,
