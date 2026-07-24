@@ -186,6 +186,7 @@ public class MainControlPaneController implements Initializable {
 
         // F L A G S
         Rejection.setStartProcessRequestedRejectionBay(true);
+        Rejection.setStartProcessCompletedRejectionBay(false);
         Rejection.setStopProcessCompletedRejectionBay(false);
         Rejection.setStopProcessRequestedRejectionBay(false);
         Rejection.setResetProcessCompletedRejectionBay(false);

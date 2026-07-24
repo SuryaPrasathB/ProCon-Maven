@@ -35,6 +35,7 @@ import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
 import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
+import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
@@ -315,10 +316,12 @@ public class DashboardController implements Initializable {
 	Timer sctNlt2StartTaskTimer;
 	Timer waitingBayStartTaskTimer;
 	Timer commStartTaskTimer;
+	Timer rejectionBayStartTaskTimer;
 
 	private BayStateEngine activeStaNld1Engine;
 	private BayStateEngine activeStaNld2Engine;
 	private BayStateEngine activeCommEngine;
+	private BayStateEngine activeRejectionEngine;
 	private BayStateEngine activeWaitingEngine;
 	private BayStateEngine activeFtEngine;
 	private BayStateEngine activeHvEngine;
@@ -1039,7 +1042,9 @@ public class DashboardController implements Initializable {
 
 	@FXML
 	public void btnAllStartOnClick() {
-		ApplicationLauncher.logger.info("btnFtStartOnClick : Invoked:");
+		ApplicationLauncher.logger.info("btnAllStartOnClick : Invoked:");
+
+		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
 
 		btnAllStart.setDisable(true);
 		btnAllStop.setDisable(false);
@@ -1112,7 +1117,15 @@ public class DashboardController implements Initializable {
 			commStartTaskTimer.schedule(activeCommEngine, 100);
 		}
 
-		ApplicationLauncher.logger.info("btnFtStartOnClick : EXIT:");
+		rejectionBayStartTaskTimer = new Timer();
+		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.REJECTION_BAY_KEY)) {
+			// Bypass if applicable
+		} else {
+			activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
+			rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
+		}
+
+		ApplicationLauncher.logger.info("btnAllStartOnClick : EXIT:");
 	}
 
 	@FXML

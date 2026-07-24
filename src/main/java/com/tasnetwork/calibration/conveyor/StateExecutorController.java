@@ -565,12 +565,13 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnRjStartOnClick() {
-		Ft.logger.info("btnRjStartOnClick : Invoked:");
+		Rejection.logger.info("btnRjStartOnClick : Invoked:");
 
 		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
 
 		// F L A G S
 		Rejection.setStartProcessRequestedRejectionBay(true);
+		Rejection.setStartProcessCompletedRejectionBay(false);
 
 		Rejection.setStopProcessCompletedRejectionBay(false);
 		Rejection.setStopProcessRequestedRejectionBay(false);
@@ -615,7 +616,7 @@ public class StateExecutorController implements Initializable {
 		waitForStartCompletion.setDaemon(true);
 		waitForStartCompletion.start();
 
-		Rejection.logger.info("btnFtStartOnClick : Exit:");
+		Rejection.logger.info("btnRjStartOnClick : Exit:");
 	}
 
 	@FXML
@@ -2914,7 +2915,9 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnAllStartOnClick() {
-		ApplicationLauncher.logger.info("btnFtStartOnClick : Invoked:");
+		ApplicationLauncher.logger.info("btnAllStartOnClick : Invoked:");
+
+		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
 
 		btnAllStart.setDisable(true);
 		btnAllStop.setDisable(false);
@@ -2955,7 +2958,11 @@ public class StateExecutorController implements Initializable {
 		activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
 		commStartTaskTimer.schedule(activeCommEngine, 100);
 
-		ApplicationLauncher.logger.info("btnFtStartOnClick : EXIT:");
+		rejectionBayStartTaskTimer = new Timer();
+		activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
+		rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
+
+		ApplicationLauncher.logger.info("btnAllStartOnClick : EXIT:");
 	}
 
 	@FXML
