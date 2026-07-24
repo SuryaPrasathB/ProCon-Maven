@@ -62,8 +62,8 @@ import javafx.util.Duration;
 public class WindowManager {
 
 	private static Parent splashLayout;
-	private static final int SPLASH_WIDTH = 676;
-	private static final int SPLASH_HEIGHT = 227;
+	private static final int SPLASH_WIDTH = 600;
+	private static final int SPLASH_HEIGHT = 350;
 
 	public static void SplashInit() {
 		try {
@@ -77,7 +77,8 @@ public class WindowManager {
 	public static void showSplash(Stage splashStage) {
 		SplashInit();
 		Scene splashScene = new Scene(splashLayout);
-		splashStage.initStyle(StageStyle.UNDECORATED);
+		splashScene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+		splashStage.initStyle(StageStyle.TRANSPARENT);
 		final Rectangle2D bounds = Screen.getPrimary().getBounds();
 		splashStage.setScene(splashScene);
 		splashStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);

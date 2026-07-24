@@ -1,22 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, #1c2833, #34495e); -fx-border-color: #2c3e50; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/procon-splash-v1_0.png" />
-         </image>
-      </ImageView>
-      <ProgressBar prefHeight="18.0" prefWidth="472.0" StackPane.alignment="BOTTOM_CENTER">
-         <StackPane.margin>
-            <Insets bottom="100.0" />
-         </StackPane.margin>
-      </ProgressBar>
+      <!-- Title Section -->
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <Label text="ProCON" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="56.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#00000066" offsetX="0.0" offsetY="4.0" radius="10.0" />
+               </effect>
+            </Label>
+            <Label text="CONVEYOR CONTROL SYSTEM" textFill="#bdc3c7">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/lscs-icon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+      
+      <!-- Progress Section -->
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <children>
+            <ProgressBar prefHeight="6.0" prefWidth="500.0" style="-fx-accent: #3498db; -fx-control-inner-background: #2c3e50; -fx-background-color: transparent;">
+               <effect>
+                  <DropShadow color="#00000080" radius="5.0" />
+               </effect>
+            </ProgressBar>
+            <Label text="Loading system resources..." textFill="#95a5a6">
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      
+      <!-- Logo Section -->
+      <HBox alignment="BOTTOM_RIGHT" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <Label layoutX="149.0" layoutY="320.0" text="©2025 Developerd and Marketed by L S Control Systems" textFill="#bdc3c7">
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </Label>
    </children>
-</StackPane>
+</AnchorPane>
