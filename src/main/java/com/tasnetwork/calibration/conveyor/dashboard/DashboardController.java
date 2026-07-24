@@ -485,7 +485,7 @@ public class DashboardController implements Initializable {
 									+ bayKey
 									+ " | port: " + fingertipPort + " | state: " + state + " | isOpen: " + isOpen);
 							javafx.application.Platform.runLater(() -> {
-								indicatorManager.setPalletsLockedImageDisplayOn(bayKey, isOpen);
+								indicatorManager.setPalletsLockedImageDisplayOn(bayKey, !isOpen);
 							});
 						} else {
 							ApplicationLauncher.logger
