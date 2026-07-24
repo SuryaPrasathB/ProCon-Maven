@@ -435,8 +435,13 @@ public class WindowManager {
 		alert.getButtonTypes().setAll(exitButton, cancelButton);
 		
 		Button btnExit = (Button) alert.getDialogPane().lookupButton(exitButton);
-		btnExit.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+		btnExit.setStyle("-fx-base: red; -fx-text-fill: white;");
+		btnExit.setDefaultButton(false);
 		
+		Button btnCancel = (Button) alert.getDialogPane().lookupButton(cancelButton);
+		btnCancel.setDefaultButton(true);
+		
+
 		boolean check_test_run = false;
 		Optional<ButtonType> result = alert.showAndWait();
 
