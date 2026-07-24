@@ -559,9 +559,15 @@ public class PalletTrackerController implements Initializable {
 	public void refreshPalletManageDataFromDb() {
 
 		Platform.runLater(() -> {
-			ref_tvPalletManage.getItems().clear();
-			ref_tvPalletBayState.getItems().clear();
-			ref_tvPalletMeterResult.getItems().clear();
+			if (ref_tvPalletManage != null && ref_tvPalletManage.getItems() != null) {
+				ref_tvPalletManage.getItems().clear();
+			}
+			if (ref_tvPalletBayState != null && ref_tvPalletBayState.getItems() != null) {
+				ref_tvPalletBayState.getItems().clear();
+			}
+			if (ref_tvPalletMeterResult != null && ref_tvPalletMeterResult.getItems() != null) {
+				ref_tvPalletMeterResult.getItems().clear();
+			}
 		});
 
 		int days = ConstantConveyorConfig.PALLET_MANAGE_RECENT_NO_OF_DAYS_DISPLAY;
@@ -586,8 +592,10 @@ public class PalletTrackerController implements Initializable {
 		List<PalletManage> palletManageListFinal = palletManageList;
 		palletManageListFinal.forEach(BayTransitionValidator::validate);
 		Platform.runLater(() -> {
-			ref_tvPalletManage.getItems().setAll(palletManageListFinal); // optional: setAll replaces existing items
-			reOrderedPalletManageSerialNo();
+			if (ref_tvPalletManage != null && ref_tvPalletManage.getItems() != null) {
+				ref_tvPalletManage.getItems().setAll(palletManageListFinal); // optional: setAll replaces existing items
+				reOrderedPalletManageSerialNo();
+			}
 			if (ref_lblPageInfo != null) {
 				ref_lblPageInfo.setText("Page " + (currentPage + 1) + " of " + (totalPages == 0 ? 1 : totalPages));
 			}
@@ -1998,9 +2006,13 @@ public class PalletTrackerController implements Initializable {
 
 		getPresentPalletAtBayMap().put(palletBayTracker.getPresentBayKey(), palletBayTracker.getPalletDistinctId());
 
-		if (palletBayTracker.equals(ref_tvPalletManage.getSelectionModel().getSelectedItem())) {
-			ref_tvPalletBayState.getItems().add(palletBayState);
-			reOrderedPalletBayStateSerialNo();
+		if (ref_tvPalletManage != null && ref_tvPalletManage.getSelectionModel() != null) {
+			if (palletBayTracker.equals(ref_tvPalletManage.getSelectionModel().getSelectedItem())) {
+				if (ref_tvPalletBayState != null && ref_tvPalletBayState.getItems() != null) {
+					ref_tvPalletBayState.getItems().add(palletBayState);
+					reOrderedPalletBayStateSerialNo();
+				}
+			}
 		}
 		// palletBayTracker.getPalleteBayStateList().add(palletBayState);
 
@@ -2009,10 +2021,12 @@ public class PalletTrackerController implements Initializable {
 
 	@FXML
 	void addPalletBayState() {
-		PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
-		if (palletBayTracker != null) {
-			addPalletBayStateForPallet(palletBayTracker);
-			ref_tvPalletManage.refresh();
+		if (ref_tvPalletManage != null && ref_tvPalletManage.getSelectionModel() != null) {
+			PalletManage palletBayTracker = ref_tvPalletManage.getSelectionModel().getSelectedItem();
+			if (palletBayTracker != null) {
+				addPalletBayStateForPallet(palletBayTracker);
+				ref_tvPalletManage.refresh();
+			}
 		}
 	}
 
@@ -2468,7 +2482,9 @@ public class PalletTrackerController implements Initializable {
 							// });
 						}
 						// ref_tvPalletManage.getItems().set(selectedIndex, myPalletManage);
-						ref_tvPalletBayState.refresh();//
+						if (ref_tvPalletBayState != null) {
+							ref_tvPalletBayState.refresh();
+						}
 
 						ApplicationLauncher.logger.debug("switchPalletToNextBay: getPresentPalletAtBayMap() : remove :"
 								+ getPresentPalletAtBayMap());
