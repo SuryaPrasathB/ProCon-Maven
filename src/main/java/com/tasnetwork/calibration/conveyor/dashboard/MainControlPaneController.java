@@ -51,6 +51,12 @@ import javafx.scene.control.Button;
 
 public class MainControlPaneController implements Initializable {
 
+    private static volatile MainControlPaneController instance;
+
+    public static MainControlPaneController getInstance() {
+        return instance;
+    }
+
     @FXML
     private Button btnCalibReset;
     @FXML
@@ -263,8 +269,10 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        if (activeRejectionEngine != null)
+        if (activeRejectionEngine != null) {
             activeRejectionEngine.requestStop();
+            activeRejectionEngine.join(500);
+        }
         rejectionBayStopTaskTimer = new Timer();
         rejectionBayStopTaskTimer.schedule(new RejectionBayStop(), 100);
 
@@ -441,6 +449,7 @@ public class MainControlPaneController implements Initializable {
         // L O G I C
         if (activeFtEngine != null) {
             activeFtEngine.requestStop();
+            activeFtEngine.join(500);
         }
         funtionalBayStopTaskTimer = new Timer();
         funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
@@ -624,6 +633,7 @@ public class MainControlPaneController implements Initializable {
         // L O G I C
         if (activeHvEngine != null) {
             activeHvEngine.requestStop();
+            activeHvEngine.join(500);
         }
         hvtBayStopTaskTimer = new Timer();
         hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
@@ -807,6 +817,7 @@ public class MainControlPaneController implements Initializable {
         // L O G I C
         if (activeIrEngine != null) {
             activeIrEngine.requestStop();
+            activeIrEngine.join(500);
         }
         insResStopTaskTimer = new Timer();
         insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
@@ -990,6 +1001,7 @@ public class MainControlPaneController implements Initializable {
         // L O G I C
         if (activeCalibEngine != null) {
             activeCalibEngine.requestStop();
+            activeCalibEngine.join(500);
         }
         calibrationStopTaskTimer = new Timer();
         calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
@@ -1174,6 +1186,7 @@ public class MainControlPaneController implements Initializable {
         // L O G I C
         if (activeWaitingEngine != null) {
             activeWaitingEngine.requestStop();
+            activeWaitingEngine.join(500);
         }
 
         waitingBayStopTaskTimer = new Timer();
@@ -1355,6 +1368,7 @@ public class MainControlPaneController implements Initializable {
         // L O G I C
         if (activeVerificEngine != null) {
             activeVerificEngine.requestStop();
+            activeVerificEngine.join(500);
         }
         verificStopTaskTimer = new Timer();
         verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
@@ -2259,7 +2273,7 @@ public class MainControlPaneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        instance = this;
         refInit();
         guiObjectDisable();
     }

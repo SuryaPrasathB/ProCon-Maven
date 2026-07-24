@@ -75,6 +75,12 @@ import javafx.scene.control.TextField;
 
 public class StateExecutorController implements Initializable {
 
+	private static volatile StateExecutorController instance;
+
+	public static StateExecutorController getInstance() {
+		return instance;
+	}
+
 	BayUtils bayUtils = new BayUtils();
 	private final static Semaphore testStatusDisplaySemaphore = new Semaphore(1);
 
@@ -439,6 +445,7 @@ public class StateExecutorController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		instance = this;
 		setupTestStatusTabs();
 
 		refInit();
@@ -650,6 +657,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeRejectionEngine != null) {
 			activeRejectionEngine.requestStop();
+			activeRejectionEngine.join(500);
 		}
 		rejectionBayStopTaskTimer = new Timer();
 		rejectionBayStopTaskTimer.schedule(new RejectionBayStop(), 100);
@@ -866,6 +874,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeFtEngine != null) {
 			activeFtEngine.requestStop();
+			activeFtEngine.join(500);
 		}
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
@@ -1080,6 +1089,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeHvEngine != null) {
 			activeHvEngine.requestStop();
+			activeHvEngine.join(500);
 		}
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
@@ -1293,6 +1303,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeIrEngine != null) {
 			activeIrEngine.requestStop();
+			activeIrEngine.join(500);
 		}
 		insResStopTaskTimer = new Timer();
 		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
@@ -1506,6 +1517,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeCalibEngine != null) {
 			activeCalibEngine.requestStop();
+			activeCalibEngine.join(500);
 		}
 		calibrationStopTaskTimer = new Timer();
 		calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
@@ -1718,6 +1730,7 @@ public class StateExecutorController implements Initializable {
 
 		if (activeWaitingEngine != null) {
 			activeWaitingEngine.requestStop();
+			activeWaitingEngine.join(500);
 		}
 
 		waitingBayStopTaskTimer = new Timer();
@@ -1881,6 +1894,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeVerificEngine != null) {
 			activeVerificEngine.requestStop();
+			activeVerificEngine.join(500);
 		}
 		verificStopTaskTimer = new Timer();
 		verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
@@ -2097,6 +2111,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeStaNld1Engine != null) {
 			activeStaNld1Engine.requestStop();
+			activeStaNld1Engine.join(500);
 		}
 		sctNlt1StopTaskTimer = new Timer();
 		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
@@ -2314,6 +2329,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeStaNld2Engine != null) {
 			activeStaNld2Engine.requestStop();
+			activeStaNld2Engine.join(500);
 		}
 		sctNlt2StopTaskTimer = new Timer();
 		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
@@ -2529,6 +2545,7 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		if (activeCommEngine != null) {
 			activeCommEngine.requestStop();
+			activeCommEngine.join(500);
 		}
 		commStopTaskTimer = new Timer();
 		commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
@@ -3530,4 +3547,259 @@ public class StateExecutorController implements Initializable {
 		this.bayUtils = bayUtils;
 	}
 
+	public void triggerStartByBayKey(String bayKey) {
+		Platform.runLater(() -> {
+			switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtStartOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtStartOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtStartOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibStartOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayStartOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestStartOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1StartOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2StartOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestStartOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRjStartOnClick(); break;
+			}
+
+			// Also trigger MainControlPaneController UI updates if instance is available
+			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = 
+				com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController.getInstance();
+			if (mcpc != null) {
+				switch (bayKey) {
+					case ConstantConveyor.FT_BAY_KEY: mcpc.btnFtStartOnClick(); break;
+					case ConstantConveyor.HV_BAY_KEY: mcpc.btnHvtStartOnClick(); break;
+					case ConstantConveyor.IR_BAY_KEY: mcpc.btnIrtStartOnClick(); break;
+					case ConstantConveyor.CALIBRATION_BAY_KEY: mcpc.btnCalibStartOnClick(); break;
+					case ConstantConveyor.WAITING_BAY_KEY:
+					case ConstantConveyor.WAITING_PP1_BAY_KEY:
+					case ConstantConveyor.WAITING_PP2_BAY_KEY:
+					case ConstantConveyor.WAITING_PP3_BAY_KEY:
+					case ConstantConveyor.WAITING_PP4_BAY_KEY: mcpc.btnWaitingBayStartOnClick(); break;
+					case ConstantConveyor.VERIFICATION_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: mcpc.btnVerificTestStartOnClick(); break;
+					case ConstantConveyor.STA_NLD1_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: mcpc.btnSctNlt1StartOnClick(); break;
+					case ConstantConveyor.STA_NLD2_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: mcpc.btnSctNlt2StartOnClick(); break;
+					case ConstantConveyor.COMMUNICATION_BAY_KEY: mcpc.btnCommTestStartOnClick(); break;
+					case ConstantConveyor.REJECTION_BAY_KEY: mcpc.btnRjStartOnClick(); break;
+				}
+			}
+		});
+	}
+
+	public void triggerStopByBayKey(String bayKey) {
+		Platform.runLater(() -> {
+			switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtStopOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtStopOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtStopOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibStopOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayStopOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestStopOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1StopOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2StopOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestStopOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRjStopOnClick(); break;
+			}
+
+			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = 
+				com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController.getInstance();
+			if (mcpc != null) {
+				switch (bayKey) {
+					case ConstantConveyor.FT_BAY_KEY: mcpc.btnFtStopOnClick(); break;
+					case ConstantConveyor.HV_BAY_KEY: mcpc.btnHvtStopOnClick(); break;
+					case ConstantConveyor.IR_BAY_KEY: mcpc.btnIrtStopOnClick(); break;
+					case ConstantConveyor.CALIBRATION_BAY_KEY: mcpc.btnCalibStopOnClick(); break;
+					case ConstantConveyor.WAITING_BAY_KEY:
+					case ConstantConveyor.WAITING_PP1_BAY_KEY:
+					case ConstantConveyor.WAITING_PP2_BAY_KEY:
+					case ConstantConveyor.WAITING_PP3_BAY_KEY:
+					case ConstantConveyor.WAITING_PP4_BAY_KEY: mcpc.btnWaitingBayStopOnClick(); break;
+					case ConstantConveyor.VERIFICATION_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: mcpc.btnVerificTestStopOnClick(); break;
+					case ConstantConveyor.STA_NLD1_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: mcpc.btnSctNlt1StopOnClick(); break;
+					case ConstantConveyor.STA_NLD2_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: mcpc.btnSctNlt2StopOnClick(); break;
+					case ConstantConveyor.COMMUNICATION_BAY_KEY: mcpc.btnCommTestStopOnClick(); break;
+					case ConstantConveyor.REJECTION_BAY_KEY: mcpc.btnRjStopOnClick(); break;
+				}
+			}
+		});
+	}
+
+	public void triggerResetByBayKey(String bayKey) {
+		Platform.runLater(() -> {
+			switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtResetOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtResetOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtResetOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibResetOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayResetOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestResetOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1ResetOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2ResetOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestResetOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRjResetOnClick(); break;
+			}
+
+			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = 
+				com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController.getInstance();
+			if (mcpc != null) {
+				switch (bayKey) {
+					case ConstantConveyor.FT_BAY_KEY: mcpc.btnFtResetOnClick(); break;
+					case ConstantConveyor.HV_BAY_KEY: mcpc.btnHvtResetOnClick(); break;
+					case ConstantConveyor.IR_BAY_KEY: mcpc.btnIrtResetOnClick(); break;
+					case ConstantConveyor.CALIBRATION_BAY_KEY: mcpc.btnCalibResetOnClick(); break;
+					case ConstantConveyor.WAITING_BAY_KEY:
+					case ConstantConveyor.WAITING_PP1_BAY_KEY:
+					case ConstantConveyor.WAITING_PP2_BAY_KEY:
+					case ConstantConveyor.WAITING_PP3_BAY_KEY:
+					case ConstantConveyor.WAITING_PP4_BAY_KEY: mcpc.btnWaitingBayResetOnClick(); break;
+					case ConstantConveyor.VERIFICATION_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+					case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: mcpc.btnVerificTestResetOnClick(); break;
+					case ConstantConveyor.STA_NLD1_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+					case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: mcpc.btnSctNlt1ResetOnClick(); break;
+					case ConstantConveyor.STA_NLD2_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+					case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: mcpc.btnSctNlt2ResetOnClick(); break;
+					case ConstantConveyor.COMMUNICATION_BAY_KEY: mcpc.btnCommTestResetOnClick(); break;
+					case ConstantConveyor.REJECTION_BAY_KEY: mcpc.btnRjResetOnClick(); break;
+				}
+			}
+		});
+	}
+
+	public void triggerBypassByBayKey(String bayKey) {
+		Platform.runLater(() -> {
+			switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtBayBypassOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtBayBypassOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtBayBypassOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibBayBypassOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayBypassOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestBayBypassOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1BayBypassOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2BayBypassOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestBayBypassOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRejectBayBypassOnClick(); break;
+			}
+		});
+	}
+
+	public static void updateBayPrompt(String bayKey, String promptMessage) {
+		Platform.runLater(() -> {
+			try {
+				if (bayKey == null) return;
+				switch (bayKey) {
+					case ConstantConveyor.FT_BAY_KEY:
+						if (ref_tf_FT_prompt != null) ref_tf_FT_prompt.setText(promptMessage);
+						break;
+					case ConstantConveyor.CALIBRATION_BAY_KEY:
+						if (ref_tf_CALIB_prompt != null) ref_tf_CALIB_prompt.setText(promptMessage);
+						break;
+					case ConstantConveyor.VERIFICATION_BAY_KEY:
+						if (ref_tf_VERIFIC_prompt != null) ref_tf_VERIFIC_prompt.setText(promptMessage);
+						break;
+					default:
+						break;
+				}
+			} catch (Exception e) {
+				ApplicationLauncher.logger.warn("updateBayPrompt exception: " + e.getMessage());
+			}
+		});
+	}
 }
+

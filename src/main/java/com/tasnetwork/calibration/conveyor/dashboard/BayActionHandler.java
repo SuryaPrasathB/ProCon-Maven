@@ -1637,6 +1637,12 @@ public class BayActionHandler {
 		ApplicationLauncher.logger.warn("bypassModeActive: Entry for " + bayTypeKey);
 		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, true);
 		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, true);
+		
+		com.tasnetwork.calibration.conveyor.StateExecutorController sec = 
+			com.tasnetwork.calibration.conveyor.StateExecutorController.getInstance();
+		if (sec != null) {
+			sec.triggerBypassByBayKey(bayTypeKey);
+		}
 	}
 
 	private void bypassModeInActive() {
@@ -1646,6 +1652,22 @@ public class BayActionHandler {
 	}
 
 	private void handleEngineLifecycleActions(PalletController.BayActionType actionType) {
+		com.tasnetwork.calibration.conveyor.StateExecutorController sec = 
+			com.tasnetwork.calibration.conveyor.StateExecutorController.getInstance();
+		
+		if (sec != null) {
+			if (actionType == PalletController.BayActionType.BAY_START) {
+				sec.triggerStartByBayKey(bayTypeKey);
+				return;
+			} else if (actionType == PalletController.BayActionType.BAY_STOP) {
+				sec.triggerStopByBayKey(bayTypeKey);
+				return;
+			} else if (actionType == PalletController.BayActionType.BAY_RESET) {
+				sec.triggerResetByBayKey(bayTypeKey);
+				return;
+			}
+		}
+
 		if (actionType == PalletController.BayActionType.BAY_STOP) {
 			triggerStopFlagsForBay();
 			return;

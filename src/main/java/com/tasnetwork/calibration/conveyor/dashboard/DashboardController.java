@@ -6,7 +6,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.OptionalDouble;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.stream.Collectors;
@@ -26,33 +24,33 @@ import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
 import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
+import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayStop;
 import com.tasnetwork.calibration.conveyor.bay.comm.Comm;
+import com.tasnetwork.calibration.conveyor.bay.comm.CommBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
+import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayStop;
+import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
+import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
 import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
+import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
+import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2;
 import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
+import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
-import com.tasnetwork.calibration.conveyor.bay.comm.CommBayBypass;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -1273,24 +1271,6 @@ public class DashboardController implements Initializable {
 						palletController.setSerialByPosition(position, meterListWithSerialNoMap.getOrDefault(position,
 								NewlandQRCodeScanner.QR_METER_SERIAL_NUMBER_SCAN_FAILED));// "SN:N/A"));nbjh
 					}
-					/*
-					 * palletController.startBlinkingPalletsExistInQueueIndicator();
-					 * palletController.setPalletsExistInQueueIndicator(false);
-					 * Sleep(50);
-					 * palletController.startBlinkingTargetBayAllPalletsFreeIndicator();
-					 * palletController.setTargetBayAllPalletsFreeIndicator(false);
-					 * Sleep(50);
-					 * palletController.startBlinkingEntryStopperOpenIndicator();
-					 * palletController.setEntryStopperOpenIndicator(true);
-					 * Sleep(50);
-					 * palletController.startBlinkingExitStopperOpenIndicator();
-					 * palletController.setExitStopperOpenIndicator(false);
-					 * Sleep(50);
-					 * palletController.startBlinkingAllPalletsExistInBayIndicator();
-					 * palletController.setAllPalletsExistInBayIndicator(true);
-					 * Sleep(50);
-					 */
-					// palletController.setTargetBayAllPalletsFreeIndicatorVisible(false);
 
 					pallet.setUserData(palletController);
 
@@ -2857,31 +2837,9 @@ public class DashboardController implements Initializable {
 		getBayIndicatorManager().setTpCountStatusVisible(ConstantConveyor.REJECTION_BAY_KEY, false);
 		getBayIndicatorManager().setTpCountStatusVisible(ConstantConveyor.UNLOADING_BAY_KEY, false);
 
-		// getBayIndicatorManager().setTpCountStatusVisible(ConstantConveyor.FT_BAY_KEY,true);
-		// getBayIndicatorManager().setProgressBarIndicatorVisible(ConstantConveyor.FT_BAY_KEY,true);
-
-		// getBayIndicatorManager().setTpCountStatusVisible(ConstantConveyor.VERIFICATION_PP1_BAY_KEY,true);
-		// getBayIndicatorManager().updateTpCountStatus(ConstantConveyor.VERIFICATION_PP1_BAY_KEY,2,16);
-		// getBayIndicatorManager().updateTpCountStatus(ConstantConveyor.STA_NLD1_PP1_BAY_KEY,0,2);
-		// getBayIndicatorManager().updateTpCountStatus(ConstantConveyor.STA_NLD2_PP1_BAY_KEY,0,2);
-
 		getBayIndicatorManager().setProgressBarIndicatorVisible(ConstantConveyor.VERIFICATION_PP1_BAY_KEY, true);
 		getBayIndicatorManager().setProgressBarIndicatorVisible(ConstantConveyor.STA_NLD1_PP1_BAY_KEY, true);
 		getBayIndicatorManager().setProgressBarIndicatorVisible(ConstantConveyor.STA_NLD2_PP1_BAY_KEY, true);
-
-		// getBayIndicatorManager().startProgressBarWithTime(ConstantConveyor.STA_NLD1_PP1_BAY_KEY,60);
-		// getBayIndicatorManager().startProgressBarWithTime(ConstantConveyor.STA_NLD2_PP1_BAY_KEY,120);
-		// getBayIndicatorManager().startProgressBarWithTpCount(ConstantConveyor.VERIFICATION_PP1_BAY_KEY);
-
-		// getBayIndicatorManager().startTimeUpDisplay(ConstantConveyor.FT_BAY_KEY);
-		// resetEntryStopperOpenIndicator(ConstantConveyor.FT_BAY_KEY);
-		// resetExitStopperOpenIndicator(ConstantConveyor.FT_BAY_KEY);
-		// updateBayEntryStopper(ConstantConveyor.FT_BAY_KEY, false);
-		// updateBayExitStopper(ConstantConveyor.FT_BAY_KEY, false);
-		// updateBayMonitoringAllPalletsExistInBay(ConstantConveyor.FT_BAY_KEY);
-		// updateBayMonitoringAllPalletsExistInTargetBayIndicator(ConstantConveyor.FT_BAY_KEY);
-		// updateBayMonitoringPalletsExistInQueueIndicator(ConstantConveyor.FT_BAY_KEY);
-
 	}
 
 	public void guiInit() {

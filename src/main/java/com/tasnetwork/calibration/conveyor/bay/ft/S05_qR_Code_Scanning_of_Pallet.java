@@ -31,11 +31,7 @@ public class S05_qR_Code_Scanning_of_Pallet implements FtBayState {
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-
-		// The actual QR code scanning process is delegated to QrCodeScanningPallet.
-		// Ensure that QrCodeScanningPallet also implements robust logging and threading
-		// internally.
-		// ConveyorDeviceDataManagerController.getDashboardObject().removePalletFromBay(getMyBayKey());
+		
 		QrCodeScanningPallet bayPalletService = new QrCodeScanningPallet(
 				Ft.logger, // Passing the Ft.logger for consistent logging source
 				getMyBayKey(),

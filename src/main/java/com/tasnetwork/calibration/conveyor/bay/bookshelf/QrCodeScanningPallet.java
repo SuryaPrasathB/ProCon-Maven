@@ -76,35 +76,39 @@ public class QrCodeScanningPallet {
 			// Logic for success case (status is true)
 			bayResponse.setStatus(true);
 			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601); // Success error code
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Successful");
 		} else if (status.equals("NO_QR_CODE_AVAILABLE")) {
 			eachBaylogger.info("qrCodePalletScanningProcess : QR Code Scan Failed" + " : " + getBayKey());
 			eachBaylogger.info("qrCodePalletScanningProcess : Issue with Pallet Side" + " : " + getBayKey());
 			// Logic for failure case (status is false)
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: NO_QR_CODE_AVAILABLE");
 		} else if (status.equals("SCNR_NW")) {
 			eachBaylogger.info("qrCodePalletScanningProcess : QR Code Scan Failed" + " : " + getBayKey());
 			eachBaylogger.info("qrCodePalletScanningProcess : Issue with Scanner Side" + " : " + getBayKey());
 			// Logic for failure case (status is false)
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: SCNR_NW (Scanner Not Working)");
 		} else if (status.equals(ConstantConveyor.COMM_ACCESS_FAILED)) {
 			eachBaylogger
 					.info("qrCodePalletScanningProcess : QR Code Scan serial port access Failed" + " : " + getBayKey());
-			// eachBaylogger.info("qrCodePalletScanningProcess : Issue with Scanner Side");
 			// Logic for failure case (status is false)
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: COMM_ACCESS_FAILED");
 		} else if (status.equals("ALREADY_COMPLETED")) {
 			eachBaylogger.info("qrCodePalletScanningProcess : Test Already Completed" + " : " + getBayKey());
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode("TEST_ALREADY_COMPLETED");
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet Test Already Completed");
 		} else if (status.equals(NewlandQRCodeScanner.NOT_GOOD_READ_EXPECTED_DATA_IN_ASCII)) {
 			eachBaylogger.info("qrCodePalletScanningProcess : QR Code Scan - not Good Read" + " : " + getBayKey());
-			// eachBaylogger.info("qrCodePalletScanningProcess : Issue with Scanner Side");
 			// Logic for failure case (status is false)
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: NOT_GOOD_READ");
 		}
 
 		eachBaylogger.info("qrCodePalletScanningProcess : Exit : " + getBayKey());
@@ -117,10 +121,6 @@ public class QrCodeScanningPallet {
 		eachBaylogger.debug("qrCodePalletScanning : Entry" + " : " + getBayKey());
 
 		String status = "";
-		/*
-		 * Map<String,Object> responseReturn = new HashMap<String,Object>();
-		 * responseReturn.put("status", false);
-		 */
 
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(false);
@@ -165,6 +165,7 @@ public class QrCodeScanningPallet {
 		eachBaylogger.debug("qrCodePalletScanning : scannedData: " + scannedData);
 		if (scannedData.equals("NO_QR_CODE_AVAILABLE")) {
 			status = "NO_QR_CODE_AVAILABLE";
+			testIntefaceStatus.setDeviceResponseStatus("Failed");
 			testIntefaceStatus.setDeviceResponseData(status);
 		} else if (scannedData.equals("SCNR_NW")) {
 			status = "SCNR_NW";

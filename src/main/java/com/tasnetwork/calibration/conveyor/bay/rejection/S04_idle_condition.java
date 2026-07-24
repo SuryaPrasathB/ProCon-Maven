@@ -20,16 +20,7 @@ public class S04_idle_condition implements RejectionBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
 
-		boolean idleComplete = false;
 
-		while (!idleComplete &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-			for(int i = 0; i < 5; i ++) {
-				Rejection.logger.info("S04_idle_condition : Waiting in Idle Condition");
-				BayUtils.delay(1000);
-			}
-			idleComplete = true;
-		}
 		
 		if (Rejection.isStartProcessRequestedRejectionBay()) {
 			Rejection.logger.debug(String.format("[%s] : [IDLE_CONDITION] : [START_REQUESTED] - Start process requested. Setting stop process completed.", getMyBayKey()));

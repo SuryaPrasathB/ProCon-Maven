@@ -24,6 +24,7 @@ public abstract class CommonContextMenu {
     private void initializeMenuItems() {
         addMenuItem(PalletController.BayActionType.BAY_START);
         addMenuItem(PalletController.BayActionType.BAY_STOP);
+        addMenuItem(PalletController.BayActionType.BAY_RESET);
         addMenuItem(PalletController.BayActionType.RUN_BAY_ONCE);
         addMenuItem(PalletController.BayActionType.RELEASE_METER_FROM_BAY);
         contextMenu.getItems().add(new javafx.scene.control.SeparatorMenuItem());

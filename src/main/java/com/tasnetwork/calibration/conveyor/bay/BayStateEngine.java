@@ -17,6 +17,8 @@ public class BayStateEngine extends TimerTask {
     private final BayStateContext context;
     private volatile boolean stopRequested = false;
     private volatile boolean runOnceRequested = false;
+    private volatile boolean isFinished = false;
+    private volatile Thread runningThread = null;
     private String executionMode = ConstantStateModes.RUN;
 
     public BayStateEngine(String bayKey, BayStateContext context) {
@@ -32,7 +34,7 @@ public class BayStateEngine extends TimerTask {
     }
 
     public void requestStopProcess() {
-        this.stopRequested = true;
+        requestStop();
     }
 
     public void requestRunOnce() {
@@ -41,8 +43,15 @@ public class BayStateEngine extends TimerTask {
 
     @Override
     public void run() {
+        this.runningThread = Thread.currentThread();
+        this.isFinished = false;
         logger.debug("BayStateEngine : Entry for BayKey: " + bayKey);
-        manageBayStates();
+        try {
+            manageBayStates();
+        } finally {
+            this.isFinished = true;
+            this.runningThread = null;
+        }
     }
 
     private void manageBayStates() {
@@ -69,7 +78,7 @@ public class BayStateEngine extends TimerTask {
 
         context.onStartComplete();
 
-        while (!stopRequested && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
+        while (!stopRequested && !ConstantConveyor.ALL_LOOP_BREAK_FLAG && !Thread.currentThread().isInterrupted()) {
             // Process the current state
             BayResponse bayStatus = context.processCurrentState();
 
@@ -128,5 +137,28 @@ public class BayStateEngine extends TimerTask {
 
     public void requestStop() {
         this.stopRequested = true;
+        Thread t = this.runningThread;
+        if (t != null && t.isAlive()) {
+            try {
+                t.interrupt();
+            } catch (Exception e) {
+                logger.warn("Exception while interrupting BayStateEngine thread for " + bayKey, e);
+            }
+        }
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void join(long timeoutMillis) {
+        Thread t = this.runningThread;
+        if (t != null && t.isAlive()) {
+            try {
+                t.join(timeoutMillis);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }

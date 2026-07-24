@@ -11,20 +11,7 @@ public class S14_idle_condition_Bay1 implements STA_NoLoadTestBay1State {
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
-		boolean printLogAlreadyDone = false;
-		boolean idleComplete = false;
 
-		while (!idleComplete &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-			for(int i = 0; i < 5; i ++) {
-				if(!printLogAlreadyDone){
-					StaNld_Bay1.logger.info("S14_idle_condition : Waiting in Idle Condition");
-					printLogAlreadyDone = true;
-				}
-				BayUtils.delay(1000);
-			}
-			idleComplete = true;
-		}
 		
 		if (StaNld_Bay1.isResetProcessRequestedStaNldBay1()) {
 			StaNld_Bay1.setResetProcessCompletedStaNldBay1(true);

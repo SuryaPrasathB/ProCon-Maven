@@ -15,16 +15,7 @@ public class S11_idle_condition implements UnloadingBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
 
-		boolean idleComplete = false;
 
-		while (!idleComplete &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-			for(int i = 0; i < 5; i ++) {
-				Unloading.logger.info("S23_idle_condition : Waiting in Idle Condition");
-				BayUtils.delay(1000);
-			}
-			idleComplete = true;
-		}
 		
 		
 		if (Unloading.isStartProcessRequestedUnloadingBay()) {

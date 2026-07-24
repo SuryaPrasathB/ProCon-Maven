@@ -59,6 +59,10 @@ public class LoginController extends AnchorPane {
 		ref_txt_password = txt_password;
 		ref_lblProfileDisplay = lblProfileDisplay;
 		ref_cmbBxProfileDisplay = cmbBxProfileDisplay;
+
+		ref_txt_username.setText("admin");
+		ref_txt_password.setText("admin");
+
 		updateProfileDisplay();
 		if (!ConstantAppConfig.DEFAULT_LOGIN_ID_POPULATE_ENABLED) {
 			ref_txt_username.setText("");
@@ -76,7 +80,7 @@ public class LoginController extends AnchorPane {
 
 	public void updateProfileDisplay() {
 		ApplicationLauncher.logger.debug("updateProfileDisplay : Entry");
-		// for(int i = 0; i < ConstantConfig.UAC_PROFILE_LIST.size(); i++){
+
 		if (ProcalFeatureEnable.USER_ACCESS_CONTROL_ENABLED) {
 			ref_cmbBxProfileDisplay.getItems().clear();
 			ref_cmbBxProfileDisplay.getItems().addAll(ConstantAppConfig.UAC_PROFILE_LIST);
@@ -85,7 +89,6 @@ public class LoginController extends AnchorPane {
 			ref_lblProfileDisplay.setVisible(false);
 			ref_cmbBxProfileDisplay.setVisible(false);
 		}
-		// }
 
 	}
 
@@ -99,11 +102,6 @@ public class LoginController extends AnchorPane {
 		String password = ref_txt_password.getText();
 		String access_level = checkLoginCredentials(username, password);
 		if (!access_level.equals("")) {
-			/*
-			 * ConstantApp.USER_ACCESS_LEVEL = access_level;
-			 * DeviceDataManagerController.setUserName(username);
-			 * LaunchHomePage();
-			 */
 
 			if (ProcalFeatureEnable.USER_ACCESS_CONTROL_ENABLED) {
 				String selectedUserProfileType = ref_cmbBxProfileDisplay.getSelectionModel().getSelectedItem()
@@ -119,9 +117,6 @@ public class LoginController extends AnchorPane {
 					loadInHouseMode(username);
 					LaunchHomePage();
 				} else {
-					// ref_txt_username.clear();
-					// ref_txt_password.clear();
-					// ref_txt_username.requestFocus();
 					ApplicationLauncher.logger.info(
 							"LoginOnClick : Incorrect Profile Type: Kindly select appropriate profile type or kindly contact admin - prompted");
 					WindowManager.InformUser("Incorrect profile type",
@@ -145,7 +140,7 @@ public class LoginController extends AnchorPane {
 		if (username.equals(ConstantApp.CALIBRATION_MODE_USER_NAME)) {
 			ProCalCustomerConfiguration.IN_HOUSE_CALIBRATION_MODE = true;
 			ProCalCustomerConfiguration.Init();
-			// ProcalFeatureEnable.LSCS_CALIBRATION_MODE_ENABLED = true;
+
 			ApplicationLauncher.logger.info("loadInHouseMode : calibration mode enabled");
 		} else if (username.equals(ConstantApp.MAINTENANCE_MODE_USER_NAME)) {
 			ProcalFeatureEnable.MAINTENANCE_MODE_ENABLED = true;

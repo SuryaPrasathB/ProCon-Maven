@@ -19,19 +19,7 @@ public class S11_idle_condition implements IrtBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
 
-		boolean idleComplete = false;
 
-		
-
-
-		while (!idleComplete &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-			for(int i = 0; i < 2; i ++) {
-				Ir.logger.info("S11_idle_condition : Waiting in Idle Condition" + getMyBayKey());
-				BayUtils.delay(1000);
-			}
-			idleComplete = true;
-		}
 		
 		if (Ir.isStartProcessRequestedIrtBay()) {
 			Ir.setStopProcessCompletedIrtBay(true);

@@ -47,6 +47,7 @@ public class PalletController {
 		BLOCK_BAY_EXIT2("Block Post Exit"),
 		BAY_START("Start"),
 		BAY_STOP("Stop"),
+		BAY_RESET("Reset"),
 		RUN_BAY_ONCE("Run Bay Once"),
 		RELEASE_METER_FROM_BAY("Release Meter(s)"),
 		PALLETS_CLEARED("Pallets Cleared"),

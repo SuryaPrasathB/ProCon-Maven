@@ -19,19 +19,10 @@ public class S11_idle_condition implements HvtBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
 		
-		boolean idleComplete = false;
-
-		
 
 
-		while (!idleComplete &&
-        		(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-			for(int i = 0; i < 2; i ++) {
-				Hv.logger.info("S11_idle_condition : Waiting in Idle Condition" + getMyBayKey());
-				BayUtils.delay(1000);
-			}
-			idleComplete = true;
-		}
+
+
 
 		if (Hv.isStartProcessRequestedHvtBay()) {
 			Hv.setStopProcessCompletedHvtBay(true);

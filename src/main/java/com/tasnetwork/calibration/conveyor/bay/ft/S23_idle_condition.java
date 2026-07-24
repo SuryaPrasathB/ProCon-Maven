@@ -18,23 +18,7 @@ public class S23_idle_condition implements FtBayState {
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
-		boolean idleComplete = false;
 
-        
-
-		Ft.logger.info(String.format("[%s] : [IDLE_CONDITION] : [WAIT_LOOP_ENTRY] - Waiting in Idle Condition. Initial idleComplete: %s", getMyBayKey(), idleComplete));
-
-		while (!idleComplete && (!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
-            Ft.logger.debug(String.format("[%s] : [IDLE_CONDITION] : [LOOP_ITERATION] - Current idleComplete: %s, ALL_LOOP_BREAK_FLAG: %s", getMyBayKey(), idleComplete, ConstantConveyor.ALL_LOOP_BREAK_FLAG));
-
-			for(int i = 0; i < 2; i ++) {
-				Ft.logger.debug(String.format("[%s] : [IDLE_CONDITION] : [DELAY] - Delaying for 1 second (iteration %d/2).", getMyBayKey(), (i + 1)));
-				BayUtils.delay(1000);
-			}
-			idleComplete = true; // Set to true after delay to exit loop
-            Ft.logger.debug(String.format("[%s] : [IDLE_CONDITION] : [IDLE_COMPLETE_SET] - idleComplete set to true.", getMyBayKey()));
-		}
-		Ft.logger.info(String.format("[%s] : [IDLE_CONDITION] : [WAIT_LOOP_EXIT] - Exited Idle Condition waiting loop. Final idleComplete: %s", getMyBayKey(), idleComplete));
 
 		// Check and handle start process request
 		if (Ft.isStartProcessRequestedFtBay()) {
