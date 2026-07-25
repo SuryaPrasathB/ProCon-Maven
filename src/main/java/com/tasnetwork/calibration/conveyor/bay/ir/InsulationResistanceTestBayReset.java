@@ -57,7 +57,7 @@ public class InsulationResistanceTestBayReset extends TimerTask{
 	
 					String nextStateName = presentRow.getIfSuccess();
 	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						IrtBayState nextState = IrtBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -83,7 +83,7 @@ public class InsulationResistanceTestBayReset extends TimerTask{
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S10_error_Handling") || nextStateName.equals("S22_error_Handling")) {
 							IrtBayState nextState = IrtBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState); // Set the next state dynamically

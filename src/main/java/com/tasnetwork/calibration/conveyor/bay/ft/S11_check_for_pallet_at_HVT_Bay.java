@@ -66,6 +66,10 @@ public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 				BayUtils.delay(1000); // Wait for 1 second before re-checking
 			}
 		}   
+		
+		if (Ft.isStopProcessRequestedFtBay() || ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInNextTargetBay(getMyBayKey(), false);
+		}
 
 		// After the loop, check the final state and trigger motor if needed
 		if (!isPalletPresent) { // Loop exited because no pallet is available

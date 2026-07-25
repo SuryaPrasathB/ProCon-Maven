@@ -52,7 +52,7 @@ public class HighVoltageTestBayStop extends TimerTask {
 
 					String nextStateName = presentRow.getIfSuccess();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						HvtBayState nextState = HvtBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -80,7 +80,7 @@ public class HighVoltageTestBayStop extends TimerTask {
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S10_error_Handling")) {
 							HvtBayState nextState = HvtBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState); // Set the next state dynamically

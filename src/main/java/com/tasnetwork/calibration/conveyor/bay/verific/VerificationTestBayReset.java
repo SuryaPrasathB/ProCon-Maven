@@ -60,7 +60,7 @@ public class VerificationTestBayReset extends TimerTask {
 
 					String nextStateName = presentRow.getIfSuccess();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						VerificTestBayState nextState = VerificTestBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -85,7 +85,7 @@ public class VerificationTestBayReset extends TimerTask {
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S17_error_Handling")) {
 							VerificTestBayState nextState2 = VerificTestBayState.createErrorState(nextStateName,
 									errorCode);

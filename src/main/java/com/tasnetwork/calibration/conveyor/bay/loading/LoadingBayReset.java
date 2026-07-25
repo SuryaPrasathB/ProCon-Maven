@@ -55,7 +55,7 @@ public class LoadingBayReset extends TimerTask{
 	
 					String nextStateName = presentRow.getIfSuccess();
 	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						LoadingBayState nextState = LoadingBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -82,7 +82,7 @@ public class LoadingBayReset extends TimerTask{
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S03_error_Handling")) {
 							LoadingBayState nextState2 = LoadingBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically

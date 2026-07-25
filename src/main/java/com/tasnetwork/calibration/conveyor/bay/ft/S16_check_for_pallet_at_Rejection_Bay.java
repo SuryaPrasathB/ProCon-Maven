@@ -62,6 +62,10 @@ public class S16_check_for_pallet_at_Rejection_Bay implements FtBayState {
 			}
 		}
 
+		if (Ft.isStopProcessRequestedFtBay() || ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInNextTargetBay(getMyBayKey(), false);
+		}
+
 		// After the loop, check the final state and trigger motor if needed
 		if (!isPalletPresent) { // Loop exited because no pallet is available (bay is cleared)
 			Ft.logger.info(String.format("[%s] : [PALLET_CHECK_REJECTION_BAY] : [CLEARED] - No pallet available at Rejection Bay. Proceeding with motor control if enabled.", getMyBayKey()));

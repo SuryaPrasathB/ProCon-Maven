@@ -59,7 +59,7 @@ public class CommunicationTestBayReset extends TimerTask {
 
 					String nextStateName = presentRow.getIfSuccess();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						CommTestBayState nextState = CommTestBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -84,7 +84,7 @@ public class CommunicationTestBayReset extends TimerTask {
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S10_error_Handling")) {
 							CommTestBayState nextState2 = CommTestBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically

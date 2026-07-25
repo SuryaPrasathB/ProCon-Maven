@@ -97,7 +97,7 @@ public class FunctionalTestBayStop extends TimerTask {
 					Ft.logger.debug("FunctionalTestBay : manageFunctionalTestBayStopStates2 : nextStateName : "
 							+ nextStateName);
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						FtBayState nextState = FtBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -124,7 +124,7 @@ public class FunctionalTestBayStop extends TimerTask {
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S22_error_Handling")) {
 							FtBayState nextState = FtBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState); // Set the next state dynamically

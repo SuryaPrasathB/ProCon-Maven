@@ -59,7 +59,7 @@ public class STA_NoLoadTestBay1Stop extends TimerTask{
 	
 					String nextStateName = presentRow.getIfSuccess();
 	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						STA_NoLoadTestBay1State nextState = STA_NoLoadTestBay1State.createSctNltBay1StateInstance(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -89,7 +89,7 @@ public class STA_NoLoadTestBay1Stop extends TimerTask{
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 	
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S13_error_Handling")) {
 							STA_NoLoadTestBay1State nextState2 =  STA_NoLoadTestBay1State.createErrorStateInstance(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically

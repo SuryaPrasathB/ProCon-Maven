@@ -719,9 +719,18 @@ public class BayActionHandler {
 				ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: specificBayKey: " + specificBayKey);
 
 				if (specificBayKey != null && !specificBayKey.isEmpty()) {
-					ConveyorDataManager.getDashboardObject().addNewPalletViewDashboard(specificBayKey, palletName, meterListWithSerialNoMap);
+					if (bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName, meterListWithSerialNoMap);
+					} else if (bayKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName, meterListWithSerialNoMap);
+					} else if (bayKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY)) {
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta1Bay(palletName, meterListWithSerialNoMap);
+					} else if (bayKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY)) {
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta2Bay(palletName, meterListWithSerialNoMap);
+					} else {
+						ConveyorDataManager.getDashboardObject().addNewPalletViewDashboard(specificBayKey, palletName, meterListWithSerialNoMap);
+					}
 				}
-				// ApplicationLauncher.logger.info("refreshMultiplePalletInBay: WaitingVerific1
 				// added");
 				if (bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {
 					BayUtils.delay(100);

@@ -57,7 +57,7 @@ public class RejectionBayReset extends TimerTask {
 
 					String nextStateName = presentRow.getIfSuccess();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						// Set the next state based on the success column
 						RejectionBayState nextState = RejectionBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
@@ -83,7 +83,7 @@ public class RejectionBayReset extends TimerTask {
 					// If failed, fetch the next state from the table (columnFailure)
 					nextStateName = presentRow.getIfFailed();
 
-					if (nextStateName != null && !nextStateName.isEmpty()) {
+					if (nextStateName != null && !nextStateName.isEmpty() && !nextStateName.equals("Select State")) {
 						if (nextStateName.equals("S03_error_Handling")) {
 							RejectionBayState nextState2 = RejectionBayState.createErrorState(nextStateName, errorCode);
 							setNextState(nextState2); // Set the next state dynamically
