@@ -133,6 +133,9 @@ public class FunctionalTestBayStop extends TimerTask {
 							FtBayState nextState = FtBayState.createState(nextStateName);
 							setNextState(nextState); // Set the next state dynamically
 						}
+					} else {
+						Ft.setStopProcessCompletedFtBay(true);
+						break;
 					}
 
 					for (StateFlow row : getTableStatePlanner_FtBay()) {

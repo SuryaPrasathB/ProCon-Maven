@@ -56,6 +56,9 @@ public class HighVoltageTestBayStop extends TimerTask {
 						// Set the next state based on the success column
 						HvtBayState nextState = HvtBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						Hv.setStopProcessCompletedHvtBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_HvtBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -86,6 +89,9 @@ public class HighVoltageTestBayStop extends TimerTask {
 							setNextState(nextState); // Set the next state dynamically
 						}
 
+					} else {
+						Hv.setStopProcessCompletedHvtBay(true);
+						break;
 					}
 
 					for (StateFlow row : getTableStatePlanner_HvtBay()) {

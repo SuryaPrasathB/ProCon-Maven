@@ -101,6 +101,9 @@ public class STA_NoLoadTestBay1Stop extends TimerTask{
 							setNextState(nextState2); // Set the next state dynamically
 						}
 	
+					} else {
+						StaNld_Bay1.setStopProcessCompletedStaNldBay1(true);
+						break;
 					}
 	
 	

@@ -62,6 +62,9 @@ public class CommunicationTestBayStop extends TimerTask {
 						// Set the next state based on the success column
 						CommTestBayState nextState = CommTestBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						Comm.setStopProcessCompletedCommBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_CommBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -92,6 +95,9 @@ public class CommunicationTestBayStop extends TimerTask {
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
+					} else {
+						Comm.setStopProcessCompletedCommBay(true);
+						break;
 					}
 
 					for (StateFlow row : getTableStatePlanner_CommBay()) {

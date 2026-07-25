@@ -59,6 +59,9 @@ public class LoadingBayStop extends TimerTask{
 						// Set the next state based on the success column
 						LoadingBayState nextState = LoadingBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						Loading.setStopProcessCompletedLoadingBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_LoadingBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -91,6 +94,9 @@ public class LoadingBayStop extends TimerTask{
 							setNextState(nextState2); // Set the next state dynamically
 						}
 						
+					} else {
+						Loading.setStopProcessCompletedLoadingBay(true);
+						break;
 					}
 	
 	

@@ -97,6 +97,9 @@ public class VerificationTestBayStop extends TimerTask {
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
+					} else {
+						Verification.setStopProcessCompletedVerificBay(true);
+						break;
 					}
 
 					for (StateFlow row : getTableStatePlanner_VerificBay()) {

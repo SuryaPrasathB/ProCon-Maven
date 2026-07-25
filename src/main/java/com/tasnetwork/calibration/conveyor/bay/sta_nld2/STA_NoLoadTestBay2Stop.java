@@ -62,6 +62,9 @@ public class STA_NoLoadTestBay2Stop extends TimerTask {
 						// Set the next state based on the success column
 						STA_NoLoadTestBay2State nextState = STA_NoLoadTestBay2State.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						StaNld_Bay2.setStopProcessCompletedStaNldBay2(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_StaNldTestBay2()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState

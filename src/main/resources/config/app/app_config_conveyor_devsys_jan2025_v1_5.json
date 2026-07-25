@@ -94,7 +94,7 @@
 		"IpPort" : "8087",
 		"targetEndPath" : "sta1",
 		"CmdLocation" 	: "D:\\tasworkspace\\ProCAL\\Binaries\\sta1-binary",
-		"JarFile" 	    : "ProCAL-Maven-S4.2.1.8.6.9-sta1-SNAPSHOT.jar"
+		"JarFile" 	    : "ProCAL-Maven-S4.2.1.8.7.0-sta1-SNAPSHOT.jar"
 	},
 	
 	"conveyor_procal_sta2" : {
@@ -102,7 +102,7 @@
 		"IpPort" : "8089",
 		"targetEndPath" : "sta2",
 		"CmdLocation" 	: "D:\\tasworkspace\\ProCAL\\Binaries\\sta2-binary",
-		"JarFile" 	    : "ProCAL-Maven-S4.2.1.8.6.9-sta2-SNAPSHOT.jar"
+		"JarFile" 	    : "ProCAL-Maven-S4.2.1.8.7.0-sta2-SNAPSHOT.jar"
 	},
 	
 	"conveyor_python_rejection" : {

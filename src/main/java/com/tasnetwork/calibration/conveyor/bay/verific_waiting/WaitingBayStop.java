@@ -61,6 +61,9 @@ public class WaitingBayStop extends TimerTask {
 						// Set the next state based on the success column
 						WaitingBayState nextState = WaitingBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						VerificWaiting.setStopProcessCompletedWaitingBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_WaitingBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -91,6 +94,9 @@ public class WaitingBayStop extends TimerTask {
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
+					} else {
+						VerificWaiting.setStopProcessCompletedWaitingBay(true);
+						break;
 					}
 
 					for (StateFlow row : getTableStatePlanner_WaitingBay()) {

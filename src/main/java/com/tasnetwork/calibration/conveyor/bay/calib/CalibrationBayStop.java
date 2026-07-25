@@ -63,6 +63,9 @@ public class CalibrationBayStop extends TimerTask {
 						// Set the next state based on the success column
 						CalibrationBayState nextState = CalibrationBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						Calib.setStopProcessCompletedCalibBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_CalibBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -94,6 +97,9 @@ public class CalibrationBayStop extends TimerTask {
 							setNextState(nextState2); // Set the next state dynamically
 						}
 
+					} else {
+						Calib.setStopProcessCompletedCalibBay(true);
+						break;
 					}
 
 					for (StateFlow row : getTableStatePlanner_CalibBay()) {

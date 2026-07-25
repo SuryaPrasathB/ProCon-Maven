@@ -2821,19 +2821,27 @@ public class StateExecutorController implements Initializable {
 	}
 
 	public static void updateTestInterfaceStatusOnGui(Map<String, Object> responseReturn, String testStatus) {
-		TestInterfaceStatus test_I_F_Status = (TestInterfaceStatus) responseReturn.get("testInterfaceStatus");
-		test_I_F_Status.setTestStatus(testStatus);
-
-		updateTestStatusGui(test_I_F_Status);
-
+		if (responseReturn != null) {
+			TestInterfaceStatus test_I_F_Status = (TestInterfaceStatus) responseReturn.get("testInterfaceStatus");
+			if (test_I_F_Status != null) {
+				test_I_F_Status.setTestStatus(testStatus);
+				updateTestStatusGui(test_I_F_Status);
+			} else {
+				ApplicationLauncher.logger.warn("updateTestInterfaceStatusOnGui: testInterfaceStatus is null");
+			}
+		}
 	}
 
 	public static void updateTestInterfaceStatusOnGuiV2(BayResponse bayResponse, String testStatus) {
-		TestInterfaceStatus test_I_F_Status = bayResponse.getTestInterfaceStatus();
-		test_I_F_Status.setTestStatus(testStatus);
-
-		updateTestStatusGui(test_I_F_Status);
-
+		if (bayResponse != null) {
+			TestInterfaceStatus test_I_F_Status = bayResponse.getTestInterfaceStatus();
+			if (test_I_F_Status != null) {
+				test_I_F_Status.setTestStatus(testStatus);
+				updateTestStatusGui(test_I_F_Status);
+			} else {
+				ApplicationLauncher.logger.warn("updateTestInterfaceStatusOnGuiV2: testInterfaceStatus is null");
+			}
+		}
 	}
 
 	// ============================================================================================================================================

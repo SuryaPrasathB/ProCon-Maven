@@ -60,6 +60,9 @@ public class InsulationResistanceTestBayStop extends TimerTask{
 						// Set the next state based on the success column
 						IrtBayState nextState = IrtBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						Ir.setStopProcessCompletedIrtBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_IrtBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -91,6 +94,9 @@ public class InsulationResistanceTestBayStop extends TimerTask{
 							setNextState(nextState); // Set the next state dynamically
 						}
 						
+					} else {
+						Ir.setStopProcessCompletedIrtBay(true);
+						break;
 					}
 	
 	

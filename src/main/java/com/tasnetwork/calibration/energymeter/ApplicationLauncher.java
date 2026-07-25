@@ -199,6 +199,11 @@ public class ApplicationLauncher extends Application {
 
 		String log4jConfigFile = "log4j.properties";
 		try {
+			// Set system properties for log4j variables
+			System.setProperty("AppName", ConstantVersion.APPLICATION_NAME);
+			System.setProperty("Version", ConstantVersion.APPLICATION_VERSION);
+			System.setProperty("current.date.time", new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()));
+
 			InputStream inputStream = ApplicationLauncher.class.getClassLoader().getResourceAsStream(log4jConfigFile);
 			if (inputStream != null) {
 				Properties props = new Properties();

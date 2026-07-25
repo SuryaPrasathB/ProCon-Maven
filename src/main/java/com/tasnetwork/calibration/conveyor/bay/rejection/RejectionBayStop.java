@@ -60,6 +60,9 @@ public class RejectionBayStop extends TimerTask{
 						// Set the next state based on the success column
 						RejectionBayState nextState = RejectionBayState.createState(nextStateName);
 						setNextState(nextState); // Set the next state dynamically
+					} else {
+						Rejection.setStopProcessCompletedRejectionBay(true);
+						break;
 					}
 					for (StateFlow row : getTableStatePlanner_RejectionBay()) {
 						if (row.getState().equals(nextStateName)) { // Assuming 'getState()' fetches the columnState
@@ -92,6 +95,9 @@ public class RejectionBayStop extends TimerTask{
 							setNextState(nextState2); // Set the next state dynamically
 						}
 						
+					} else {
+						Rejection.setStopProcessCompletedRejectionBay(true);
+						break;
 					}
 	
 	
