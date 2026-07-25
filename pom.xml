@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tasnetwork</groupId>
-	<artifactId>ProCon-Maven-s0.9.3.4</artifactId>
-	<version>ProCon-s0.9.3.4-SNAPSHOT</version>
+	<artifactId>ProCon-Maven-s0.9.3.5</artifactId>
+	<version>ProCon-s0.9.3.5-SNAPSHOT</version>
 	<name>ProCon-Maven</name>
 	<description>Spring Boot with javafx</description>
 	<properties>

@@ -20,7 +20,7 @@ public class LogUtil {
     public static void logInfo(Logger logger, String bay, String context, String event, String message) {
         logger.info(String.format("[%s] [%s] [%s] - %s", bay, context, event, message));
     }
-    
+
     /**
      * Standardized debug logging.
      * 
@@ -35,7 +35,7 @@ public class LogUtil {
             logger.debug(String.format("[%s] [%s] [%s] - %s", bay, context, event, message));
         }
     }
-    
+
     /**
      * Standardized error logging.
      * 
@@ -48,7 +48,7 @@ public class LogUtil {
     public static void logError(Logger logger, String bay, String context, String event, String message) {
         logger.error(String.format("[%s] [%s] [%s] - %s", bay, context, event, message));
     }
-    
+
     /**
      * Standardized error logging with an Exception stack trace.
      * 
