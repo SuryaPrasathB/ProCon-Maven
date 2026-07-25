@@ -3,6 +3,8 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
@@ -39,6 +41,8 @@ public class S10_error_Handling implements CalibrationBayState {
 
 		Calib.setResetProcessCompletedCalibBay(false);
 		Calib.setResetProcessRequestedCalibBay(false);
+
+		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.CALIBRATION_BAY_KEY, errorCode);
 
 		switch (errorCode) {
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_001:

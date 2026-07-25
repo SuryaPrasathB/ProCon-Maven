@@ -5,6 +5,7 @@ import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 //import com.tasnetwork.calibration.conveyor.bay_verificationtest.VerificationTestBay;
 //import com.tasnetwork.calibration.conveyor.bay_verificationtest.VerificationTestBay2;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 
 public class S05_error_Handling implements WaitingBayState {
 	BayResponse bayResponse = new BayResponse();
@@ -46,5 +47,6 @@ public class S05_error_Handling implements WaitingBayState {
 	}
 
 	public S05_error_Handling(String errorCode) {
+		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.WAITING_BAY_KEY, errorCode);
 	}
 }

@@ -715,27 +715,11 @@ public class BayActionHandler {
 				// ConveyorDeviceDataManagerController.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName,
 				// meterListWithSerialNoMap);
 
-				if (bayKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+				String specificBayKey = eachPalletManage.getPresentBayKey();
+				ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: specificBayKey: " + specificBayKey);
 
-					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: verific: adding");
-					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName,
-							meterListWithSerialNoMap);
-
-				} else if (bayKey.equals(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: sta1: adding");
-					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta1Bay(palletName,
-							meterListWithSerialNoMap);
-
-				} else if (bayKey.equals(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: sta2: adding");
-					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta2Bay(palletName,
-							meterListWithSerialNoMap);
-
-				} else if (bayKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
-					ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: waiting bay: adding");
-					ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName,
-							meterListWithSerialNoMap);
-
+				if (specificBayKey != null && !specificBayKey.isEmpty()) {
+					ConveyorDataManager.getDashboardObject().addNewPalletViewDashboard(specificBayKey, palletName, meterListWithSerialNoMap);
 				}
 				// ApplicationLauncher.logger.info("refreshMultiplePalletInBay: WaitingVerific1
 				// added");

@@ -52,6 +52,7 @@ public class S16_check_for_pallet_at_Rejection_Bay implements FtBayState {
 		while (isPalletPresent && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			responseReturn = isPalletAvailableAt_RejectionBay();	 
 			isPalletPresent = (boolean)responseReturn.getOrDefault("status", true); // 
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInNextTargetBay(getMyBayKey(), isPalletPresent);
             StateExecutorController.updateTestInterfaceStatusOnGui(responseReturn, ConstantConveyor.COMM_EXECUTION_STATUS_INP);
 
 

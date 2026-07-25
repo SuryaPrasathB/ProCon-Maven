@@ -3,6 +3,8 @@ package com.tasnetwork.calibration.conveyor.bay.sta_nld2;
 import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
@@ -26,6 +28,7 @@ public class S13_error_Handling_Bay2 implements STA_NoLoadTestBay2State {
 	}
 
 	public S13_error_Handling_Bay2(String errorCode) {
+		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.STA_NLD2_BAY_KEY, errorCode);
 
 		switch (errorCode) {
 			case ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_001:

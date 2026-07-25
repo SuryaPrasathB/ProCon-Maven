@@ -1,6 +1,8 @@
 package com.tasnetwork.calibration.conveyor.bay.unloading;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
@@ -23,6 +25,7 @@ public class S10_error_Handling  implements UnloadingBayState {
 	}
 
 	public S10_error_Handling(String errorCode) {
+		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.UNLOADING_BAY_KEY, errorCode);
 
 		switch (errorCode) {
 		case ConvErrorCodeMapping.ERROR_CODE_UNLOADING_001:

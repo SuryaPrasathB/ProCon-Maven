@@ -47,8 +47,7 @@ public class S01_check_for_pallet_at_FT_Bay implements FtBayState {
 		bayResponse.setStatus(false);
 		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601); // Default to a general error code
 		ConveyorDataManager.getDashboardObject().removePalletFromBay(getMyBayKey());
-		ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
-				.updateBayMonitoringAllPalletsExistInBay(getMyBayKey());
+		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayMonitoringAllPalletsExistInBay(getMyBayKey());
 		if (Ft.stopper_B4_FT_Bay_Status.equals("STOPPER_B4_FT_BAY_OPENED")) {
 
 			setSequencePathId("p1");

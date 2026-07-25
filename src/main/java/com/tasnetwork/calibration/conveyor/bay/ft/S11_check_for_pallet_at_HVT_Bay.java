@@ -58,6 +58,7 @@ public class S11_check_for_pallet_at_HVT_Bay implements FtBayState {
 		while (isPalletPresent && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 			responseReturn = isPalletAvailableAt_HvtBay();	 
 			isPalletPresent = (boolean)responseReturn.getOrDefault("status", true); // Default to true if status is missing
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInNextTargetBay(getMyBayKey(), isPalletPresent);
 			setPalletAvailableTest_I_F_Status((TestInterfaceStatus)responseReturn.get("testInterfaceStatus"));
 
 			if (isPalletPresent) {

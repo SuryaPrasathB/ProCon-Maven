@@ -68,6 +68,7 @@ public interface PalletManageRepo extends JpaRepository<PalletManage, Long>{
 		    value = "SELECT * FROM pallet_manage p " +
 		            "WHERE p.present_bay_key = :presentBayKey " +
 		            "AND p.pallet_active = false " +
+		            "AND p.exit_appeared = false " +
 		            "AND DATE(p.created_at) = CURRENT_DATE " +
 		            "ORDER BY p.id DESC LIMIT 1",
 		    nativeQuery = true

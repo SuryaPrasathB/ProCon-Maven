@@ -3,6 +3,8 @@ package com.tasnetwork.calibration.conveyor.bay.hv;
 import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 
 public class S10_error_Handling implements HvtBayState {
 
@@ -33,6 +35,7 @@ public class S10_error_Handling implements HvtBayState {
 	public S10_error_Handling(String errorCode) {
 		hvtBayStopTaskTimer = new Timer();
 		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
+		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.HV_BAY_KEY, errorCode);
 	}
 
 	public void Sleep(int timeInMsec) {
