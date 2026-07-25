@@ -2378,6 +2378,13 @@ public class DashboardController implements Initializable {
 	}
 
 	/**
+	 * Clear an inline professional error popup inside the bay's anchor pane container.
+	 */
+	public void clearInlineBayError() {
+
+	}
+
+	/**
 	 * Retrieves a map of global meter positions to their serial numbers.
 	 * This method assumes access to MySqlServiceManager, PalletManage, PalletMeter,
 	 * ConstantConveyor, and VerificationTestBay classes.

@@ -600,9 +600,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		rejectionBayStartTaskTimer = new Timer();
 		activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
-		rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
+		rejectionBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.REJECTION_BAY_KEY, activeRejectionEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -817,9 +816,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		funtionalBayStartTaskTimer = new Timer();
 		activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-		funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
+		funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.FT_BAY_KEY, activeFtEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -1030,9 +1028,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		hvtBayStartTaskTimer = new Timer();
 		activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-		hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
+		hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.HV_BAY_KEY, activeHvEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -1246,9 +1243,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		insResStartTaskTimer = new Timer();
 		activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-		insResStartTaskTimer.schedule(activeIrEngine, 100);
+		insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.IR_BAY_KEY, activeIrEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -1460,9 +1456,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		calibrationStartTaskTimer = new Timer();
 		activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-		calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
+		calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, activeCalibEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -1674,9 +1669,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		waitingBayStartTaskTimer = new Timer();
 		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-		waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
+		waitingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.WAITING_BAY_KEY, activeWaitingEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -1837,9 +1831,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		verificStartTaskTimer = new Timer();
 		activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-		verificStartTaskTimer.schedule(activeVerificEngine, 100);
+		verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, activeVerificEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -2054,9 +2047,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		sctNlt1StartTaskTimer = new Timer();
 		activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-		sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+		sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, activeStaNld1Engine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -2271,9 +2263,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		sctNlt2StartTaskTimer = new Timer();
 		activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-		sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+		sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, activeStaNld2Engine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -2488,9 +2479,8 @@ public class StateExecutorController implements Initializable {
 
 		allData.clear();
 
-		commStartTaskTimer = new Timer();
 		activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-		commStartTaskTimer.schedule(activeCommEngine, 100);
+		commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, activeCommEngine, "START");
 
 		Thread waitForStartCompletion = new Thread(() -> {
 			try {
@@ -2947,45 +2937,35 @@ public class StateExecutorController implements Initializable {
 		btnAllStart.setDisable(true);
 		btnAllStop.setDisable(false);
 
-		funtionalBayStartTaskTimer = new Timer();
 		activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-		funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
+		funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.FT_BAY_KEY, activeFtEngine, "START");
 
-		hvtBayStartTaskTimer = new Timer();
 		activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-		hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
+		hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.HV_BAY_KEY, activeHvEngine, "START");
 
-		insResStartTaskTimer = new Timer();
 		activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-		insResStartTaskTimer.schedule(activeIrEngine, 100);
+		insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.IR_BAY_KEY, activeIrEngine, "START");
 
-		calibrationStartTaskTimer = new Timer();
 		activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-		calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
+		calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, activeCalibEngine, "START");
 
-		waitingBayStartTaskTimer = new Timer();
 		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-		waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
+		waitingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.WAITING_BAY_KEY, activeWaitingEngine, "START");
 
-		verificStartTaskTimer = new Timer();
 		activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-		verificStartTaskTimer.schedule(activeVerificEngine, 100);
+		verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, activeVerificEngine, "START");
 
-		sctNlt1StartTaskTimer = new Timer();
 		activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-		sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+		sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, activeStaNld1Engine, "START");
 
-		sctNlt2StartTaskTimer = new Timer();
 		activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-		sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+		sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, activeStaNld2Engine, "START");
 
-		commStartTaskTimer = new Timer();
 		activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-		commStartTaskTimer.schedule(activeCommEngine, 100);
+		commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, activeCommEngine, "START");
 
-		rejectionBayStartTaskTimer = new Timer();
 		activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
-		rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
+		rejectionBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.REJECTION_BAY_KEY, activeRejectionEngine, "START");
 
 		ApplicationLauncher.logger.info("btnAllStartOnClick : EXIT:");
 	}
@@ -3557,36 +3537,6 @@ public class StateExecutorController implements Initializable {
 
 	public void triggerStartByBayKey(String bayKey) {
 		Platform.runLater(() -> {
-			switch (bayKey) {
-				case ConstantConveyor.FT_BAY_KEY: btnFtStartOnClick(); break;
-				case ConstantConveyor.HV_BAY_KEY: btnHvtStartOnClick(); break;
-				case ConstantConveyor.IR_BAY_KEY: btnIrtStartOnClick(); break;
-				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibStartOnClick(); break;
-				case ConstantConveyor.WAITING_BAY_KEY:
-				case ConstantConveyor.WAITING_PP1_BAY_KEY:
-				case ConstantConveyor.WAITING_PP2_BAY_KEY:
-				case ConstantConveyor.WAITING_PP3_BAY_KEY:
-				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayStartOnClick(); break;
-				case ConstantConveyor.VERIFICATION_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestStartOnClick(); break;
-				case ConstantConveyor.STA_NLD1_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1StartOnClick(); break;
-				case ConstantConveyor.STA_NLD2_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2StartOnClick(); break;
-				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestStartOnClick(); break;
-				case ConstantConveyor.REJECTION_BAY_KEY: btnRjStartOnClick(); break;
-			}
-
-			// Also trigger MainControlPaneController UI updates if instance is available
 			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = 
 				com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController.getInstance();
 			if (mcpc != null) {
@@ -3618,41 +3568,41 @@ public class StateExecutorController implements Initializable {
 					case ConstantConveyor.COMMUNICATION_BAY_KEY: mcpc.btnCommTestStartOnClick(); break;
 					case ConstantConveyor.REJECTION_BAY_KEY: mcpc.btnRjStartOnClick(); break;
 				}
+			} else {
+				switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtStartOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtStartOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtStartOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibStartOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayStartOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestStartOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1StartOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2StartOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestStartOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRjStartOnClick(); break;
+			}
 			}
 		});
 	}
 
 	public void triggerStopByBayKey(String bayKey) {
 		Platform.runLater(() -> {
-			switch (bayKey) {
-				case ConstantConveyor.FT_BAY_KEY: btnFtStopOnClick(); break;
-				case ConstantConveyor.HV_BAY_KEY: btnHvtStopOnClick(); break;
-				case ConstantConveyor.IR_BAY_KEY: btnIrtStopOnClick(); break;
-				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibStopOnClick(); break;
-				case ConstantConveyor.WAITING_BAY_KEY:
-				case ConstantConveyor.WAITING_PP1_BAY_KEY:
-				case ConstantConveyor.WAITING_PP2_BAY_KEY:
-				case ConstantConveyor.WAITING_PP3_BAY_KEY:
-				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayStopOnClick(); break;
-				case ConstantConveyor.VERIFICATION_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestStopOnClick(); break;
-				case ConstantConveyor.STA_NLD1_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1StopOnClick(); break;
-				case ConstantConveyor.STA_NLD2_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2StopOnClick(); break;
-				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestStopOnClick(); break;
-				case ConstantConveyor.REJECTION_BAY_KEY: btnRjStopOnClick(); break;
-			}
-
 			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = 
 				com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController.getInstance();
 			if (mcpc != null) {
@@ -3684,41 +3634,41 @@ public class StateExecutorController implements Initializable {
 					case ConstantConveyor.COMMUNICATION_BAY_KEY: mcpc.btnCommTestStopOnClick(); break;
 					case ConstantConveyor.REJECTION_BAY_KEY: mcpc.btnRjStopOnClick(); break;
 				}
+			} else {
+				switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtStopOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtStopOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtStopOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibStopOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayStopOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestStopOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1StopOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2StopOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestStopOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRjStopOnClick(); break;
+			}
 			}
 		});
 	}
 
 	public void triggerResetByBayKey(String bayKey) {
 		Platform.runLater(() -> {
-			switch (bayKey) {
-				case ConstantConveyor.FT_BAY_KEY: btnFtResetOnClick(); break;
-				case ConstantConveyor.HV_BAY_KEY: btnHvtResetOnClick(); break;
-				case ConstantConveyor.IR_BAY_KEY: btnIrtResetOnClick(); break;
-				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibResetOnClick(); break;
-				case ConstantConveyor.WAITING_BAY_KEY:
-				case ConstantConveyor.WAITING_PP1_BAY_KEY:
-				case ConstantConveyor.WAITING_PP2_BAY_KEY:
-				case ConstantConveyor.WAITING_PP3_BAY_KEY:
-				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayResetOnClick(); break;
-				case ConstantConveyor.VERIFICATION_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
-				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestResetOnClick(); break;
-				case ConstantConveyor.STA_NLD1_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
-				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1ResetOnClick(); break;
-				case ConstantConveyor.STA_NLD2_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
-				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2ResetOnClick(); break;
-				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestResetOnClick(); break;
-				case ConstantConveyor.REJECTION_BAY_KEY: btnRjResetOnClick(); break;
-			}
-
 			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = 
 				com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController.getInstance();
 			if (mcpc != null) {
@@ -3750,6 +3700,35 @@ public class StateExecutorController implements Initializable {
 					case ConstantConveyor.COMMUNICATION_BAY_KEY: mcpc.btnCommTestResetOnClick(); break;
 					case ConstantConveyor.REJECTION_BAY_KEY: mcpc.btnRjResetOnClick(); break;
 				}
+			} else {
+				switch (bayKey) {
+				case ConstantConveyor.FT_BAY_KEY: btnFtResetOnClick(); break;
+				case ConstantConveyor.HV_BAY_KEY: btnHvtResetOnClick(); break;
+				case ConstantConveyor.IR_BAY_KEY: btnIrtResetOnClick(); break;
+				case ConstantConveyor.CALIBRATION_BAY_KEY: btnCalibResetOnClick(); break;
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY: btnWaitingBayResetOnClick(); break;
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY: btnVerificTestResetOnClick(); break;
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_PP4_BAY_KEY: btnSctNlt1ResetOnClick(); break;
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP1_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP3_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_PP4_BAY_KEY: btnSctNlt2ResetOnClick(); break;
+				case ConstantConveyor.COMMUNICATION_BAY_KEY: btnCommTestResetOnClick(); break;
+				case ConstantConveyor.REJECTION_BAY_KEY: btnRjResetOnClick(); break;
+			}
 			}
 		});
 	}

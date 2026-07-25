@@ -208,9 +208,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        rejectionBayStartTaskTimer = new Timer();
         activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
-        rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
+		rejectionBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.REJECTION_BAY_KEY, activeRejectionEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -389,9 +388,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // Functional Test logic (optional)
-        funtionalBayStartTaskTimer = new Timer();
         activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-        funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
+		funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.FT_BAY_KEY, activeFtEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -572,9 +570,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        hvtBayStartTaskTimer = new Timer();
         activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-        hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
+		hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.HV_BAY_KEY, activeHvEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -757,9 +754,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        insResStartTaskTimer = new Timer();
         activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-        insResStartTaskTimer.schedule(activeIrEngine, 100);
+		insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.IR_BAY_KEY, activeIrEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -941,9 +937,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        calibrationStartTaskTimer = new Timer();
         activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-        calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
+		calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, activeCalibEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1123,9 +1118,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        waitingBayStartTaskTimer = new Timer();
         activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-        waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
+		waitingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.WAITING_BAY_KEY, activeWaitingEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1305,9 +1299,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        verificStartTaskTimer = new Timer();
         activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-        verificStartTaskTimer.schedule(activeVerificEngine, 100);
+		verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, activeVerificEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1558,9 +1551,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        sctNlt1StartTaskTimer = new Timer();
         activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-        sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+		sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, activeStaNld1Engine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1745,9 +1737,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        sctNlt2StartTaskTimer = new Timer();
         activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-        sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+		sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, activeStaNld2Engine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -1939,9 +1930,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        commStartTaskTimer = new Timer();
         activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-        commStartTaskTimer.schedule(activeCommEngine, 100);
+		commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, activeCommEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
@@ -2110,9 +2100,8 @@ public class MainControlPaneController implements Initializable {
         });
 
         // L O G I C
-        unloadingBayStartTaskTimer = new Timer();
         activeUnloadingEngine = new BayStateEngine(ConstantConveyor.UNLOADING_BAY_KEY, new Unloading());
-        unloadingBayStartTaskTimer.schedule(activeUnloadingEngine, 100);
+		unloadingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(ConstantConveyor.UNLOADING_BAY_KEY, activeUnloadingEngine, "START");
 
         // Background thread to monitor process completion
         Thread waitForStartCompletion = new Thread(() -> {
