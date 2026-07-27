@@ -1047,80 +1047,148 @@ public class DashboardController implements Initializable {
 		btnAllStart.setDisable(true);
 		btnAllStop.setDisable(false);
 
-		funtionalBayStartTaskTimer = new Timer();
+		// FT Bay
+		Ft.setStartProcessRequestedFtBay(true);
+		Ft.setStopProcessCompletedFtBay(false);
+		Ft.setStopProcessRequestedFtBay(false);
+		Ft.setResetProcessCompletedFtBay(false);
+		Ft.setResetProcessRequestedFtBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.FT_BAY_KEY)) {
-			funtionalBayStartTaskTimer.schedule(new FunctionalTestBayBypass(), 100);
+			funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.FT_BAY_KEY, new FunctionalTestBayBypass(), "START");
 		} else {
 			activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-			funtionalBayStartTaskTimer.schedule(activeFtEngine, 100);
+			funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.FT_BAY_KEY, activeFtEngine, "START");
 		}
 
-		hvtBayStartTaskTimer = new Timer();
+		// HVT Bay
+		Hv.setStartProcessRequestedHvtBay(true);
+		Hv.setStopProcessCompletedHvtBay(false);
+		Hv.setStopProcessRequestedHvtBay(false);
+		Hv.setResetProcessCompletedHvtBay(false);
+		Hv.setResetProcessRequestedHvtBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.HV_BAY_KEY)) {
-			hvtBayStartTaskTimer.schedule(new HighVoltageTestBayBypass(), 100);
+			hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.HV_BAY_KEY, new HighVoltageTestBayBypass(), "START");
 		} else {
 			activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-			hvtBayStartTaskTimer.schedule(activeHvEngine, 100);
+			hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.HV_BAY_KEY, activeHvEngine, "START");
 		}
 
-		insResStartTaskTimer = new Timer();
+		// IR Bay
+		Ir.setStartProcessRequestedIrtBay(true);
+		Ir.setStopProcessCompletedIrtBay(false);
+		Ir.setStopProcessRequestedIrtBay(false);
+		Ir.setResetProcessCompletedIrtBay(false);
+		Ir.setResetProcessRequestedIrtBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.IR_BAY_KEY)) {
-			insResStartTaskTimer.schedule(new InsulationResistanceTestBayBypass(), 100);
+			insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.IR_BAY_KEY, new InsulationResistanceTestBayBypass(), "START");
 		} else {
 			activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-			insResStartTaskTimer.schedule(activeIrEngine, 100);
+			insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.IR_BAY_KEY, activeIrEngine, "START");
 		}
 
-		calibrationStartTaskTimer = new Timer();
+		// Calib Bay
+		Calib.setStartProcessRequestedCalibBay(true);
+		Calib.setStopProcessCompletedCalibBay(false);
+		Calib.setStopProcessRequestedCalibBay(false);
+		Calib.setResetProcessCompletedCalibBay(false);
+		Calib.setResetProcessRequestedCalibBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.CALIBRATION_BAY_KEY)) {
-			calibrationStartTaskTimer.schedule(new CalibrationBayBypass(), 100);
+			calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, new CalibrationBayBypass(), "START");
 		} else {
 			activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-			calibrationStartTaskTimer.schedule(activeCalibEngine, 100);
+			calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, activeCalibEngine, "START");
 		}
 
-		waitingBayStartTaskTimer = new Timer();
+		// Waiting Bay
+		VerificWaiting.setStartProcessRequestedWaitingBay(true);
+		VerificWaiting.setStopProcessCompletedWaitingBay(false);
+		VerificWaiting.setStopProcessRequestedWaitingBay(false);
+		VerificWaiting.setResetProcessCompletedWaitingBay(false);
+		VerificWaiting.setResetProcessRequestedWaitingBay(false);
 		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-		waitingBayStartTaskTimer.schedule(activeWaitingEngine, 100);
+		waitingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+				.scheduleTask(ConstantConveyor.WAITING_BAY_KEY, activeWaitingEngine, "START");
 
-		verificStartTaskTimer = new Timer();
+		// Verific Bay
+		Verification.setStartProcessRequestedVerificBay(true);
+		Verification.setStopProcessCompletedVerificBay(false);
+		Verification.setStopProcessRequestedVerificBay(false);
+		Verification.setResetProcessCompletedVerificBay(false);
+		Verification.setResetProcessRequestedVerificBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			verificStartTaskTimer.schedule(new VerificationTestBayBypass(), 100);
+			verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, new VerificationTestBayBypass(), "START");
 		} else {
 			activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-			verificStartTaskTimer.schedule(activeVerificEngine, 100);
+			verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, activeVerificEngine, "START");
 		}
 
-		sctNlt1StartTaskTimer = new Timer();
+		// STA NLD 1
+		StaNld_Bay1.setStartProcessRequestedStaNldBay1(true);
+		StaNld_Bay1.setStopProcessCompletedStaNldBay1(false);
+		StaNld_Bay1.setStopProcessRequestedStaNldBay1(false);
+		StaNld_Bay1.setResetProcessCompletedStaNldBay1(false);
+		StaNld_Bay1.setResetProcessRequestedStaNldBay1(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			sctNlt1StartTaskTimer.schedule(new STA_NoLoadTestBay1Bypass(), 100);
+			sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, new STA_NoLoadTestBay1Bypass(), "START");
 		} else {
 			activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-			sctNlt1StartTaskTimer.schedule(activeStaNld1Engine, 100);
+			sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, activeStaNld1Engine, "START");
 		}
 
-		sctNlt2StartTaskTimer = new Timer();
+		// STA NLD 2
+		StaNld_Bay2.setStartProcessRequestedStaNldBay2(true);
+		StaNld_Bay2.setStopProcessCompletedStaNldBay2(false);
+		StaNld_Bay2.setStopProcessRequestedStaNldBay2(false);
+		StaNld_Bay2.setResetProcessCompletedStaNldBay2(false);
+		StaNld_Bay2.setResetProcessRequestedStaNldBay2(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			sctNlt2StartTaskTimer.schedule(new STA_NoLoadTestBay2Bypass(), 100);
+			sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, new STA_NoLoadTestBay2Bypass(), "START");
 		} else {
 			activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-			sctNlt2StartTaskTimer.schedule(activeStaNld2Engine, 100);
+			sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, activeStaNld2Engine, "START");
 		}
 
-		commStartTaskTimer = new Timer();
+		// Comm Bay
+		Comm.setStartProcessRequestedCommBay(true);
+		Comm.setStopProcessCompletedCommBay(false);
+		Comm.setStopProcessRequestedCommBay(false);
+		Comm.setResetProcessCompletedCommBay(false);
+		Comm.setResetProcessRequestedCommBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.COMMUNICATION_BAY_KEY)) {
-			commStartTaskTimer.schedule(new CommBayBypass(), 100);
+			commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, new CommBayBypass(), "START");
 		} else {
 			activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-			commStartTaskTimer.schedule(activeCommEngine, 100);
+			commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, activeCommEngine, "START");
 		}
 
-		rejectionBayStartTaskTimer = new Timer();
+		// Rejection Bay
+		Rejection.setStartProcessRequestedRejectionBay(true);
+		Rejection.setStopProcessCompletedRejectionBay(false);
+		Rejection.setStopProcessRequestedRejectionBay(false);
+		Rejection.setResetProcessCompletedRejectionBay(false);
+		Rejection.setResetProcessRequestedRejectionBay(false);
 		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.REJECTION_BAY_KEY)) {
 			// Bypass if applicable
 		} else {
 			activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
-			rejectionBayStartTaskTimer.schedule(activeRejectionEngine, 100);
+			rejectionBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
+					.scheduleTask(ConstantConveyor.REJECTION_BAY_KEY, activeRejectionEngine, "START");
 		}
 
 		ApplicationLauncher.logger.info("btnAllStartOnClick : EXIT:");
@@ -1132,6 +1200,9 @@ public class DashboardController implements Initializable {
 
 		ConstantConveyor.ALL_LOOP_BREAK_FLAG = true;
 		BayUtils.setUserAborted(true);
+
+		btnAllStart.setDisable(false);
+		btnAllStop.setDisable(true);
 
 		Ft.setStopProcessRequestedFtBay(true);
 		Hv.abort_HVT_Bay = true;
@@ -1153,9 +1224,7 @@ public class DashboardController implements Initializable {
 		Comm.setStopProcessRequestedCommBay(true);
 		VerificWaiting.setStopProcessRequestedWaitingBay(true);
 
-		btnAllStart.setDisable(false);
-		btnAllStop.setDisable(true);
-
+		// Stop Timers
 		funtionalBayStopTaskTimer = new Timer();
 		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
 		if (activeFtEngine != null)
@@ -2297,13 +2366,15 @@ public class DashboardController implements Initializable {
 	}
 
 	/**
-	 * Displays an inline professional error popup inside the bay's anchor pane container.
-	 * If the bay has multiple pallet positions (e.g., Verification), it displays on all of them.
+	 * Displays an inline professional error popup inside the bay's anchor pane
+	 * container.
+	 * If the bay has multiple pallet positions (e.g., Verification), it displays on
+	 * all of them.
 	 */
 	public void showInlineBayError(String bayKey, String errorCode) {
 		Platform.runLater(() -> {
 			List<AnchorPane> targetContainers = new java.util.ArrayList<>();
-			
+
 			if (ConstantConveyor.VERIFICATION_BAY_KEY.equals(bayKey)) {
 				targetContainers.add(ref_bay9Container);
 				targetContainers.add(ref_bay10Container);
@@ -2341,14 +2412,16 @@ public class DashboardController implements Initializable {
 			}
 
 			for (AnchorPane container : targetContainers) {
-				if (container == null) continue;
+				if (container == null)
+					continue;
 
 				javafx.scene.layout.VBox overlay = new javafx.scene.layout.VBox();
 				overlay.setAlignment(javafx.geometry.Pos.CENTER);
 				overlay.setSpacing(10);
 				// Semi-transparent dark red background, rounded corners
-				overlay.setStyle("-fx-background-color: rgba(178, 34, 34, 0.9); -fx-padding: 10; -fx-background-radius: 5;");
-				
+				overlay.setStyle(
+						"-fx-background-color: rgba(178, 34, 34, 0.9); -fx-padding: 10; -fx-background-radius: 5;");
+
 				AnchorPane.setTopAnchor(overlay, 0.0);
 				AnchorPane.setBottomAnchor(overlay, 0.0);
 				AnchorPane.setLeftAnchor(overlay, 0.0);
@@ -2361,16 +2434,17 @@ public class DashboardController implements Initializable {
 				errorLabel.setStyle("-fx-text-fill: #ffcccc; -fx-font-weight: normal; -fx-font-size: 12px;");
 
 				javafx.scene.control.Button closeBtn = new javafx.scene.control.Button("OK");
-				closeBtn.setStyle("-fx-background-color: white; -fx-text-fill: #b22222; -fx-font-weight: bold; -fx-cursor: hand;");
+				closeBtn.setStyle(
+						"-fx-background-color: white; -fx-text-fill: #b22222; -fx-font-weight: bold; -fx-cursor: hand;");
 				closeBtn.setOnAction(e -> {
 					container.getChildren().remove(overlay);
 				});
 
 				overlay.getChildren().addAll(titleLabel, errorLabel, closeBtn);
-				
+
 				// Ensure we don't stack multiple overlays
-				container.getChildren().removeIf(node -> node instanceof javafx.scene.layout.VBox && 
-					node.getStyle().contains("rgba(178, 34, 34, 0.9)"));
+				container.getChildren().removeIf(node -> node instanceof javafx.scene.layout.VBox &&
+						node.getStyle().contains("rgba(178, 34, 34, 0.9)"));
 
 				container.getChildren().add(overlay);
 			}
@@ -2378,7 +2452,8 @@ public class DashboardController implements Initializable {
 	}
 
 	/**
-	 * Clear an inline professional error popup inside the bay's anchor pane container.
+	 * Clear an inline professional error popup inside the bay's anchor pane
+	 * container.
 	 */
 	public void clearInlineBayError() {
 

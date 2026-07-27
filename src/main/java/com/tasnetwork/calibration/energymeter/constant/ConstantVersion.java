@@ -2,7 +2,7 @@ package com.tasnetwork.calibration.energymeter.constant;
 
 public class ConstantVersion {
 	public static final String APPLICATION_NAME = "ProCon";
-	public static final String APPLICATION_VERSION = "s0.9.3.6";
+	public static final String APPLICATION_VERSION = "s0.9.3.7";
 	public static final String DB_SCHEMA_VERSION = "V2.5.2";
 	public final static String configFileName = "config.json";
 	public final static String masterConfigFileName = "master_config.json";
