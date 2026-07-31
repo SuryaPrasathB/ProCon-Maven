@@ -2000,7 +2000,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addPalletBayState: Start Time: " + dtf.format(startTime));
 		String palletBayEntryTime = dtf.format(startTime);
 		ZoneId zoneId = ZoneId.systemDefault();
-		long startTimeEpoch = startTime.atZone(zoneId).toEpochSecond();
+		long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
 		palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
 		palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
@@ -2061,7 +2061,7 @@ public class PalletTrackerController implements Initializable {
 				ApplicationLauncher.logger.debug("addPalletBayState: Start Time: " + dtf.format(startTime));
 				String palletBayEntryTime = dtf.format(startTime);
 				ZoneId zoneId = ZoneId.systemDefault();
-				long startTimeEpoch = startTime.atZone(zoneId).toEpochSecond();
+				long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
 				palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
 				palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
@@ -2118,7 +2118,7 @@ public class PalletTrackerController implements Initializable {
 				ApplicationLauncher.logger.debug("addPalletNextBayState: Start Time: " + dtf.format(startTime));
 				String palletBayEntryTime = dtf.format(startTime);
 				ZoneId zoneId = ZoneId.systemDefault();
-				long startTimeEpoch = startTime.atZone(zoneId).toEpochSecond();
+				long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
 				palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
 				palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
@@ -2160,11 +2160,11 @@ public class PalletTrackerController implements Initializable {
 										.debug("switchToNextBayOnClick: End Time: " + dtf.format(endTime));
 								String palletBayExitTime = dtf.format(endTime);
 								ZoneId zoneId = ZoneId.systemDefault();
-								long exitTimeEpoch = endTime.atZone(zoneId).toEpochSecond();
+								long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
 								e1.setPalletBayExitTimeStampH(palletBayExitTime);
 								e1.setPalletBayExitTimeEpoch(String.valueOf(exitTimeEpoch));
 								long palleteBayRuntimeInMin = (exitTimeEpoch
-										- Long.parseLong(e1.getPalletBayEntryTimeEpoch())) / 60;
+										- e1.getNormalizedEntryTimeMilli()) / 60000;
 								ApplicationLauncher.logger.debug(
 										"switchToNextBayOnClick: palleteBayRuntimeInMin: " + palleteBayRuntimeInMin);
 								e1.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
@@ -2205,7 +2205,7 @@ public class PalletTrackerController implements Initializable {
 				ApplicationLauncher.logger.debug("switchToNextBayOnClick: End Time: " + dtf.format(endTime));
 				String conveyorPalletExitTime = dtf.format(endTime);
 				ZoneId zoneId = ZoneId.systemDefault();
-				long exitTimeEpoch = endTime.atZone(zoneId).toEpochSecond();
+				long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
 				palletBayTracker.setPalletConvExitTimeStampH(conveyorPalletExitTime);
 				palletBayTracker.setPalletConvExitTimeEpoch(String.valueOf(exitTimeEpoch));
 				palletBayTracker.setPalletActive(false);
@@ -2309,11 +2309,11 @@ public class PalletTrackerController implements Initializable {
 
 							String palletBayExitTime = dtf.format(endTime);
 							ZoneId zoneId = ZoneId.systemDefault();
-							long exitTimeEpoch = endTime.atZone(zoneId).toEpochSecond();
+							long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
 							palletBayState.setPalletBayExitTimeStampH(palletBayExitTime);
 							palletBayState.setPalletBayExitTimeEpoch(String.valueOf(exitTimeEpoch));
 							long palleteBayRuntimeInMin = (exitTimeEpoch
-									- Long.parseLong(palletBayState.getPalletBayEntryTimeEpoch())) / 60;
+									- palletBayState.getNormalizedEntryTimeMilli()) / 60000;
 
 							ApplicationLauncher.logger
 									.debug("closePresentBay: palleteBayRuntimeInMin: " + palleteBayRuntimeInMin);
@@ -2393,7 +2393,7 @@ public class PalletTrackerController implements Initializable {
 
 										String palletBayExitTime = dtf.format(endTime);
 										ZoneId zoneId = ZoneId.systemDefault();
-										long exitTimeEpoch = endTime.atZone(zoneId).toEpochSecond();
+										long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
 										e1.setPalletBayExitTimeStampH(palletBayExitTime);
 										e1.setPalletBayExitTimeEpoch(String.valueOf(exitTimeEpoch));
 
@@ -2402,7 +2402,7 @@ public class PalletTrackerController implements Initializable {
 										e1.setNoOfMeterFailed(myPalletManage.getNoOfMeterFailed());
 
 										long palleteBayRuntimeInMin = (exitTimeEpoch
-												- Long.parseLong(e1.getPalletBayEntryTimeEpoch())) / 60;
+												- e1.getNormalizedEntryTimeMilli()) / 60000;
 
 										ApplicationLauncher.logger
 												.debug("switchPalletToNextBay: palleteBayRuntimeInMin: "
@@ -2506,7 +2506,7 @@ public class PalletTrackerController implements Initializable {
 						ApplicationLauncher.logger.debug("switchPalletToNextBay: End Time: " + dtf.format(endTime));
 						String conveyorPalletExitTime = dtf.format(endTime);
 						ZoneId zoneId = ZoneId.systemDefault();
-						long exitTimeEpoch = endTime.atZone(zoneId).toEpochSecond();
+						long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
 						String palletDistinctId = myPalletManage.getPalletDistinctId();
 						myPalletManage.setPresentBayKey(nextBayState);
 
@@ -2655,7 +2655,7 @@ public class PalletTrackerController implements Initializable {
 					.forEach(e1 -> {
 						LocalDateTime endTime = LocalDateTime.now();
 						String palletBayExitTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(endTime);
-						long exitTimeEpoch = endTime.atZone(ZoneId.systemDefault()).toEpochSecond();
+						long exitTimeEpoch = endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
 						e1.setPalletBayExitTimeStampH(palletBayExitTime);
 						e1.setPalletBayExitTimeEpoch(String.valueOf(exitTimeEpoch));
@@ -2663,7 +2663,7 @@ public class PalletTrackerController implements Initializable {
 						e1.setNoOfMeterPassed(myPalletManage.getNoOfMeterPassed());
 						e1.setNoOfMeterFailed(myPalletManage.getNoOfMeterFailed());
 						e1.setPalleteBayRunTimeInMin(
-								String.valueOf((exitTimeEpoch - Long.parseLong(e1.getPalletBayEntryTimeEpoch())) / 60));
+								String.valueOf((exitTimeEpoch - e1.getNormalizedEntryTimeMilli()) / 60000));
 						e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 						e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_PASS);
 						e1.setTestCompleted("Y");
@@ -2674,7 +2674,7 @@ public class PalletTrackerController implements Initializable {
 	private void markPalletAsCompleted(PalletManage myPalletManage) {
 		LocalDateTime endTime = LocalDateTime.now();
 		String conveyorPalletExitTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(endTime);
-		long exitTimeEpoch = endTime.atZone(ZoneId.systemDefault()).toEpochSecond();
+		long exitTimeEpoch = endTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
 		myPalletManage.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
 		myPalletManage.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
@@ -4014,7 +4014,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addNewPalletManage : Start Time: " + dtf.format(startTime));
 		String conveyorPalletEntryTime = dtf.format(startTime);
 		ZoneId zoneId = ZoneId.systemDefault();
-		long startTimeEpoch = startTime.atZone(zoneId).toEpochSecond();
+		long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss");// + "T"
 																					// +DateTimeFormatter.ofPattern("yyyyMMdd
 																					// HHmmss");
@@ -4088,7 +4088,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addPalletManageOnClick : Start Time: " + dtf.format(startTime));
 		String conveyorPalletEntryTime = dtf.format(startTime);
 		ZoneId zoneId = ZoneId.systemDefault();
-		long startTimeEpoch = startTime.atZone(zoneId).toEpochSecond();
+		long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss");// + "T"
 
 		String palletDistinctId = dtf2.format(startTime) + "_" + String.format("%04d", palletBatchNo) + "_"
@@ -4313,6 +4313,47 @@ public class PalletTrackerController implements Initializable {
 
 	public void setResultStyleDefault(String resultStyleDefault) {
 		this.resultStyleDefault = resultStyleDefault;
+	}
+
+
+	public void exitBatchFromPresentBay(String currentBay) {
+		try {
+			String myPalletDistinctId = getPresentPalletAtBayMap().get(currentBay);
+			if (myPalletDistinctId != null && getActivePalletMap().values().contains(myPalletDistinctId)) {
+				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
+						.findFirstByPalletDistinctId(myPalletDistinctId);
+				if (myPalletManage.isPalletActive()) {
+					updatePalletBayState(myPalletManage, currentBay);
+					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
+				}
+			}
+		} catch (Exception e) {
+			ApplicationLauncher.logger.error("exitBatchFromPresentBay: Exception: " + e.getMessage());
+		}
+	}
+
+	public void enterBatchToNextBay(String currentBay, String nextBayState) {
+		try {
+			String myPalletDistinctId = getPresentPalletAtBayMap().get(currentBay);
+			if (myPalletDistinctId != null && getActivePalletMap().values().contains(myPalletDistinctId)) {
+				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
+						.findFirstByPalletDistinctId(myPalletDistinctId);
+				if (myPalletManage.isPalletActive()) {
+					myPalletManage.setPresentBayKey(nextBayState);
+					getPresentPalletAtBayMap().put(nextBayState, myPalletDistinctId);
+					myPalletManage.setNoOfMeterPassed(0);
+					myPalletManage.setNoOfMeterFailed(0);
+					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
+					
+					if (!(currentBay.equals(ConstantConveyor.STA_NLD1_BAY_KEY)) &&
+							!(currentBay.equals(ConstantConveyor.STA_NLD2_BAY_KEY))) {
+						addPalletNextBayState(nextBayState);
+					}
+				}
+			}
+		} catch (Exception e) {
+			ApplicationLauncher.logger.error("enterBatchToNextBay: Exception: " + e.getMessage());
+		}
 	}
 
 }

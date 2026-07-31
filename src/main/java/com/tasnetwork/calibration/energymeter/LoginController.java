@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -34,6 +35,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class LoginController extends AnchorPane {
+
+	@FXML
+	Button btn_login;
 
 	@FXML
 	TextField txt_username;
@@ -76,6 +80,7 @@ public class LoginController extends AnchorPane {
 		ref_txt_username.setText("admin");
 		ref_txt_password.setText("admin");
 
+		btn_login.requestFocus();
 	}
 
 	public void updateProfileDisplay() {

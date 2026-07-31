@@ -87,6 +87,20 @@ public class BayIndicatorManager {
 		controller.resetAllPalletsExistInBayIndicator();
 		controller.resetPalletsExistInQueueIndicator();
 		controller.resetAllPalletsExistInTargetBayIndicator();
+		controller.stopProgressBarWithTime();
+		controller.stopProgressBarWithTpCount();
+	}
+
+	public void resetAllIndicatorsForBay(String bayKey) {
+		updateIndicator(bayKey, this::resetAllIndicators);
+	}
+
+	private void stopAllBlinkers(BayViewController controller) {
+		controller.stopAllBlinkers();
+	}
+
+	public void stopAllBlinkersForBay(String bayKey) {
+		updateIndicator(bayKey, this::stopAllBlinkers);
 	}
 
 	private void handleBayViewInitializationError(String bayKey, IOException e) {

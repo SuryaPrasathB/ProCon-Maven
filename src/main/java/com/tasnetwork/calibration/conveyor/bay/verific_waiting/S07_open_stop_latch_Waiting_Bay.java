@@ -80,6 +80,10 @@ public class S07_open_stop_latch_Waiting_Bay implements WaitingBayState {
 
             int palletMoveMentWaitTimeInSec = ConstantConveyorConfig.WAITING_TO_VERIFIC_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC;// 30;
             VerificWaiting.logger.info("S07_open_stop_latch_Waiting_Bay : palletMoveMentWaiting start:");
+            
+            // Log exit from current bay before the wait
+            palletTracker.exitBatchFromPresentBay(myBayKey);
+
             while ((palletMoveMentWaitTimeInSec > 0) && (!BayUtils.isUserAborted())) {
                 VerificWaiting.logger
                         .info("S07_open_stop_latch_Waiting_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: "
@@ -88,7 +92,9 @@ public class S07_open_stop_latch_Waiting_Bay implements WaitingBayState {
                 palletMoveMentWaitTimeInSec--;
             }
             VerificWaiting.logger.info("S07_open_stop_latch_Waiting_Bay : palletMoveMentWaiting stop:");
-            palletTracker.switchBatchToNextBay(myBayKey, ConstantConveyor.VERIFICATION_BAY_KEY);
+            
+            // Log entry to next bay after the wait
+            palletTracker.enterBatchToNextBay(myBayKey, ConstantConveyor.VERIFICATION_BAY_KEY);
 
             BayUtils.delay(1000);
         } else {

@@ -73,7 +73,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
-public class StateExecutorController implements Initializable {
+public class StateExecutorController implements com.tasnetwork.calibration.conveyor.dashboard.IBayUIController, Initializable {
 
 	private static volatile StateExecutorController instance;
 
@@ -388,16 +388,6 @@ public class StateExecutorController implements Initializable {
 	Timer waitingBayStartTaskTimer;
 	Timer rejectionBayStartTaskTimer;
 
-	private BayStateEngine activeStaNld1Engine;
-	private BayStateEngine activeStaNld2Engine;
-	private BayStateEngine activeCommEngine;
-	private BayStateEngine activeFtEngine;
-	private BayStateEngine activeHvEngine;
-	private BayStateEngine activeIrEngine;
-	private BayStateEngine activeCalibEngine;
-	private BayStateEngine activeVerificEngine;
-	private BayStateEngine activeWaitingEngine;
-	private BayStateEngine activeRejectionEngine;
 
 	Timer funtionalBayStopTaskTimer;
 	Timer calibrationStopTaskTimer;
@@ -445,6 +435,7 @@ public class StateExecutorController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().registerController(this);
 		instance = this;
 		setupTestStatusTabs();
 
@@ -565,171 +556,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnRjStartOnClick() {
-		Rejection.logger.info("btnRjStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Rejection.setStartProcessRequestedRejectionBay(true);
-		Rejection.setStartProcessCompletedRejectionBay(false);
-
-		Rejection.setStopProcessCompletedRejectionBay(false);
-		Rejection.setStopProcessRequestedRejectionBay(false);
-
-		Rejection.setResetProcessCompletedRejectionBay(false);
-		Rejection.setResetProcessRequestedRejectionBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnRejectStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnRejectStart.setDisable(true);
-
-		btnRejectStop.setStyle(""); // Enabled - Default
-		btnRejectStop.setDisable(false);
-
-		btnRejectReset.setStyle(""); // Enabled - Default
-		btnRejectReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.REJECTION_BAY_KEY)) {
-			// Bypass if applicable
-		} else {
-			activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
-			rejectionBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.REJECTION_BAY_KEY, activeRejectionEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Rejection.isStartProcessCompletedRejectionBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnRejectStop.setDisable(false);
-					btnRejectStop.setStyle("");
-					btnRejectReset.setDisable(false);
-					btnRejectReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Rejection.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Rejection.logger.info("btnRjStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnRjStopOnClick() {
-		Rejection.logger.info("btnRjStopOnClick : Invoked:");
-
-		// F L A G S
-		Rejection.abort_Rejection_Bay = true;
-
-		Rejection.setStartProcessRequestedRejectionBay(false);
-
-		Rejection.setStopProcessCompletedRejectionBay(false);
-		Rejection.setStopProcessRequestedRejectionBay(true);
-
-		Rejection.setResetProcessCompletedRejectionBay(false);
-		Rejection.setResetProcessRequestedRejectionBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnRejectStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnRejectStop.setDisable(true);
-
-		btnRejectStart.setStyle(""); // Enabled - Default
-		btnRejectStop.setDisable(false);
-
-		btnRejectReset.setStyle(""); // Enabled - Default
-		btnRejectReset.setDisable(false);
-
-		btnRejectBayBypass.setStyle(""); // Enabled - Default
-		btnRejectBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeRejectionEngine != null) {
-			activeRejectionEngine.requestStop();
-			activeRejectionEngine.join(500);
-		}
-		rejectionBayStopTaskTimer = new Timer();
-		rejectionBayStopTaskTimer.schedule(new RejectionBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Rejection.isStopProcessCompletedRejectionBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnRejectStart.setDisable(false);
-					btnRejectStart.setStyle("");
-					btnRejectReset.setDisable(false);
-					btnRejectReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Rejection.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Rejection.logger.info("btnRjStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnRjResetOnClick() {
-		Rejection.logger.info("btnRjResetOnClick : Invoked:");
-
-		// F L A G S
-		Rejection.setStartProcessRequestedRejectionBay(false);
-
-		Rejection.setStopProcessCompletedRejectionBay(false);
-		Rejection.setStopProcessRequestedRejectionBay(false);
-
-		Rejection.setResetProcessCompletedRejectionBay(false);
-		Rejection.setResetProcessRequestedRejectionBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnRejectReset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnRejectReset.setDisable(true);
-
-		btnRejectStart.setStyle(""); // Enabled - Default
-		btnRejectStart.setDisable(false);
-
-		btnRejectStop.setStyle(""); // Enabled - Default
-		btnRejectStop.setDisable(false);
-
-		// L O G I C
-		rejectionBayResetTaskTimer = new Timer();
-		rejectionBayResetTaskTimer.schedule(new RejectionBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Rejection.isResetProcessCompletedRejectionBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnRejectStart.setDisable(false);
-					btnRejectStart.setStyle("");
-					btnRejectStop.setDisable(false);
-					btnRejectStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Rejection.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Rejection.logger.info("btnRjResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnRejectBayBypassOnClick() {
@@ -790,169 +628,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnFtStartOnClick() {
-		Ft.logger.info("btnFtStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Ft.setStartProcessRequestedFtBay(true);
-		Ft.setStopProcessCompletedFtBay(false);
-		Ft.setStopProcessRequestedFtBay(false);
-		Ft.setResetProcessCompletedFtBay(false);
-		Ft.setResetProcessRequestedFtBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnFtStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnFtStart.setDisable(true);
-
-		btnFtStop.setStyle(""); // Enabled - Default
-		btnFtStop.setDisable(false);
-
-		btnFtReset.setStyle(""); // Enabled - Default
-		btnFtReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.FT_BAY_KEY)) {
-			funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.FT_BAY_KEY, new FunctionalTestBayBypass(), "START");
-		} else {
-			activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-			funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.FT_BAY_KEY, activeFtEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Ft.isStartProcessCompletedFtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnFtStop.setDisable(false);
-					btnFtStop.setStyle("");
-					btnFtReset.setDisable(false);
-					btnFtReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Ft.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Ft.logger.info("btnFtStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+    }
 
 	@FXML
 	public void btnFtStopOnClick() {
-		Ft.logger.info("btnFtStopOnClick : Invoked:");
-
-		// F L A G S
-		Ft.abort_FT_Bay = true;
-
-		Ft.setStartProcessRequestedFtBay(false);
-
-		Ft.setStopProcessCompletedFtBay(false);
-		Ft.setStopProcessRequestedFtBay(true);
-
-		Ft.setResetProcessCompletedFtBay(false);
-		Ft.setResetProcessRequestedFtBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnFtStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnFtStop.setDisable(true);
-
-		btnFtStart.setStyle(""); // Enabled - Default
-		btnFtStart.setDisable(false);
-
-		btnFtReset.setStyle(""); // Enabled - Default
-		btnFtReset.setDisable(false);
-
-		btnFtBayBypass.setStyle(""); // Enabled - Default
-		btnFtBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeFtEngine != null) {
-			activeFtEngine.requestStop();
-			activeFtEngine.join(500);
-		}
-		funtionalBayStopTaskTimer = new Timer();
-		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Ft.isStopProcessCompletedFtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnFtStart.setDisable(false);
-					btnFtStart.setStyle("");
-					btnFtReset.setDisable(false);
-					btnFtReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Ft.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Ft.logger.info("btnFtStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+    }
 
 	@FXML
 	public void btnFtResetOnClick() {
-		Ft.logger.info("btnFtResetOnClick : Invoked:");
-
-		// F L A G S
-		Ft.setStartProcessRequestedFtBay(false);
-
-		Ft.setStopProcessCompletedFtBay(false);
-		Ft.setStopProcessRequestedFtBay(false);
-
-		Ft.setResetProcessCompletedFtBay(false);
-		Ft.setResetProcessRequestedFtBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnFtReset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnFtReset.setDisable(true);
-
-		btnFtStart.setStyle(""); // Enabled - Default
-		btnFtStart.setDisable(false);
-
-		btnFtStop.setStyle(""); // Enabled - Default
-		btnFtStop.setDisable(false);
-
-		// L O G I C
-		funtionalBayResetTaskTimer = new Timer();
-		funtionalBayResetTaskTimer.schedule(new FunctionalTestBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Ft.isResetProcessCompletedFtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnFtStart.setDisable(false);
-					btnFtStart.setStyle("");
-					btnFtStop.setDisable(false);
-					btnFtStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Ft.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Ft.logger.info("btnFtResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+    }
 
 	@FXML
 	public void btnFtBayBypassOnClick() {
@@ -1007,173 +694,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnHvtStartOnClick() {
-		Hv.logger.info("btnHvtStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Hv.setStartProcessRequestedHvtBay(true);
-
-		Hv.setStopProcessCompletedHvtBay(false);
-		Hv.setStopProcessRequestedHvtBay(false);
-
-		Hv.setResetProcessCompletedHvtBay(false);
-		Hv.setResetProcessRequestedHvtBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnHvtStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnHvtStart.setDisable(true);
-
-		btnHvtStop.setStyle(""); // Enabled - Default
-		btnHvtStop.setDisable(false);
-
-		btnHvtReset.setStyle(""); // Enabled - Default
-		btnHvtReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.HV_BAY_KEY)) {
-			hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.HV_BAY_KEY, new HighVoltageTestBayBypass(), "START");
-		} else {
-			activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-			hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.HV_BAY_KEY, activeHvEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Hv.isStartProcessCompletedHvtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnHvtStop.setDisable(false);
-					btnHvtStop.setStyle("");
-					btnHvtReset.setDisable(false);
-					btnHvtReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Hv.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Hv.logger.info("btnHvtStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+    }
 
 	@FXML
 	public void btnHvtStopOnClick() {
-		Hv.logger.info("btnHvtStopOnClick : Invoked:");
-
-		// F L A G S
-		Hv.abort_HVT_Bay = true;
-
-		Hv.setStartProcessRequestedHvtBay(false);
-
-		Hv.setStopProcessCompletedHvtBay(false);
-		Hv.setStopProcessRequestedHvtBay(true);
-
-		Hv.logger.info("StopProcessRequestedHvtBay :" + Hv.isStopProcessRequestedHvtBay());
-
-		Hv.setResetProcessCompletedHvtBay(false);
-		Hv.setResetProcessRequestedHvtBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnHvtStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnHvtStop.setDisable(true);
-
-		btnHvtStart.setStyle(""); // Enabled - Default
-		btnHvtStart.setDisable(false);
-
-		btnHvtReset.setStyle(""); // Enabled - Default
-		btnHvtReset.setDisable(false);
-
-		btnHvtBayBypass.setStyle(""); // Enabled - Default
-		btnHvtBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeHvEngine != null) {
-			activeHvEngine.requestStop();
-			activeHvEngine.join(500);
-		}
-		hvtBayStopTaskTimer = new Timer();
-		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Hv.isStopProcessCompletedHvtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnHvtStart.setDisable(false);
-					btnHvtStart.setStyle("");
-					btnHvtReset.setDisable(false);
-					btnHvtReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Hv.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Hv.logger.info("btnHvtStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+    }
 
 	@FXML
 	public void btnHvtResetOnClick() {
-		Hv.logger.info("btnHvtResetOnClick : Invoked:");
-
-		// F L A G S
-		Hv.setStartProcessRequestedHvtBay(false);
-
-		Hv.setStopProcessCompletedHvtBay(false);
-		Hv.setStopProcessRequestedHvtBay(false);
-
-		Hv.setResetProcessCompletedHvtBay(false);
-		Hv.setResetProcessRequestedHvtBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnHvtReset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnHvtReset.setDisable(true);
-
-		btnHvtStart.setStyle(""); // Enabled - Default
-		btnHvtStart.setDisable(false);
-
-		btnHvtStop.setStyle(""); // Enabled - Default
-		btnHvtStop.setDisable(false);
-
-		// L O G I C
-		hvtBayResetTaskTimer = new Timer();
-		hvtBayResetTaskTimer.schedule(new HighVoltageTestBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Hv.isResetProcessCompletedHvtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnHvtStart.setDisable(false);
-					btnHvtStart.setStyle("");
-					btnHvtStop.setDisable(false);
-					btnHvtStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Hv.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Hv.logger.info("btnHvtResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+    }
 
 	@FXML
 	public void btnHvtBayBypassOnClick() {
@@ -1229,171 +761,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnIrtStartOnClick() {
-		Ir.logger.info("btnIrtStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Ir.setStartProcessRequestedIrtBay(true);
-
-		Ir.setStopProcessCompletedIrtBay(false);
-		Ir.setStopProcessRequestedIrtBay(false);
-
-		Ir.setResetProcessCompletedIrtBay(false);
-		Ir.setResetProcessRequestedIrtBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnIrtStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnIrtStart.setDisable(true);
-
-		btnIrtStop.setStyle(""); // Enabled - Default
-		btnIrtStop.setDisable(false);
-
-		btnIrtReset.setStyle(""); // Enabled - Default
-		btnIrtReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.IR_BAY_KEY)) {
-			insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.IR_BAY_KEY, new InsulationResistanceTestBayBypass(), "START");
-		} else {
-			activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-			insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.IR_BAY_KEY, activeIrEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Ir.isStartProcessCompletedIrtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnIrtStop.setDisable(false);
-					btnIrtStop.setStyle("");
-					btnIrtReset.setDisable(false);
-					btnIrtReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Ir.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Ir.logger.info("btnIrtStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+    }
 
 	@FXML
 	public void btnIrtStopOnClick() {
-		Ir.logger.info("btnIrtStopOnClick : Invoked:");
-
-		// F L A G S
-		Ir.abort_IRT_Bay = true;
-
-		Ir.setStartProcessRequestedIrtBay(false);
-
-		Ir.setStopProcessCompletedIrtBay(false);
-		Ir.setStopProcessRequestedIrtBay(true);
-
-		Ir.setResetProcessCompletedIrtBay(false);
-		Ir.setResetProcessRequestedIrtBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnIrtStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnIrtStop.setDisable(true);
-
-		btnIrtStart.setStyle(""); // Enabled - Default
-		btnIrtStart.setDisable(false);
-
-		btnIrtReset.setStyle(""); // Enabled - Default
-		btnIrtReset.setDisable(false);
-
-		btnIrtBayBypass.setStyle(""); // Enabled - Default
-		btnIrtBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeIrEngine != null) {
-			activeIrEngine.requestStop();
-			activeIrEngine.join(500);
-		}
-		insResStopTaskTimer = new Timer();
-		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Ir.isStopProcessCompletedIrtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnIrtStart.setDisable(false);
-					btnIrtStart.setStyle("");
-					btnIrtReset.setDisable(false);
-					btnIrtReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Ir.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Ir.logger.info("btnIrtStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+    }
 
 	@FXML
 	public void btnIrtResetOnClick() {
-		Ir.logger.info("btnIrtResetOnClick : Invoked:");
-
-		// F L A G S
-		Ir.setStartProcessRequestedIrtBay(false);
-
-		Ir.setStopProcessCompletedIrtBay(false);
-		Ir.setStopProcessRequestedIrtBay(false);
-
-		Ir.setResetProcessCompletedIrtBay(false);
-		Ir.setResetProcessRequestedIrtBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnIrtReset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnIrtReset.setDisable(true);
-
-		btnIrtStart.setStyle(""); // Enabled - Default
-		btnIrtStart.setDisable(false);
-
-		btnIrtStop.setStyle(""); // Enabled - Default
-		btnIrtStop.setDisable(false);
-
-		// L O G I C
-		insResResetTaskTimer = new Timer();
-		insResResetTaskTimer.schedule(new InsulationResistanceTestBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Ir.isResetProcessCompletedIrtBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnIrtStart.setDisable(false);
-					btnIrtStart.setStyle("");
-					btnIrtStop.setDisable(false);
-					btnIrtStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Ir.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Ir.logger.info("btnIrtResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+    }
 
 	@FXML
 	public void btnIrtBayBypassOnClick() {
@@ -1449,171 +828,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnCalibStartOnClick() {
-		Ft.logger.info("btnCalibStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Calib.setStartProcessRequestedCalibBay(true);
-
-		Calib.setStopProcessCompletedCalibBay(false);
-		Calib.setStopProcessRequestedCalibBay(false);
-
-		Calib.setResetProcessCompletedCalibBay(false);
-		Calib.setResetProcessRequestedCalibBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnCalibStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnCalibStart.setDisable(true);
-
-		btnCalibStop.setStyle(""); // Enabled - Default
-		btnCalibStop.setDisable(false);
-
-		btnCalibReset.setStyle(""); // Enabled - Default
-		btnCalibReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.CALIBRATION_BAY_KEY)) {
-			calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, new CalibrationBayBypass(), "START");
-		} else {
-			activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-			calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, activeCalibEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Calib.isStartProcessCompletedCalibBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnCalibStop.setDisable(false);
-					btnCalibStop.setStyle("");
-					btnCalibReset.setDisable(false);
-					btnCalibReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Calib.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Calib.logger.info("btnCalibStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnCalibStopOnClick() {
-		Calib.logger.info("btnCalibStopOnClick : Invoked:");
-
-		// F L A G S
-		Calib.abort_Calib_Bay = true;
-
-		Calib.setStartProcessRequestedCalibBay(false);
-
-		Calib.setStopProcessCompletedCalibBay(false);
-		Calib.setStopProcessRequestedCalibBay(true);
-
-		Calib.setResetProcessCompletedCalibBay(false);
-		Calib.setResetProcessRequestedCalibBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnCalibStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnCalibStop.setDisable(true);
-
-		btnCalibStart.setStyle(""); // Enabled - Default
-		btnCalibStart.setDisable(false);
-
-		btnCalibReset.setStyle(""); // Enabled - Default
-		btnCalibReset.setDisable(false);
-
-		btnCalibBayBypass.setStyle(""); // Enabled - Default
-		btnCalibBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeCalibEngine != null) {
-			activeCalibEngine.requestStop();
-			activeCalibEngine.join(500);
-		}
-		calibrationStopTaskTimer = new Timer();
-		calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Calib.isStopProcessCompletedCalibBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnCalibStart.setDisable(false);
-					btnCalibStart.setStyle("");
-					btnCalibReset.setDisable(false);
-					btnCalibReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Calib.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Calib.logger.info("btnCalibStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnCalibResetOnClick() {
-		Calib.logger.info("btnCalibResetOnClick : Invoked:");
-
-		// F L A G S
-		Calib.setStartProcessRequestedCalibBay(false);
-
-		Calib.setStopProcessCompletedCalibBay(false);
-		Calib.setStopProcessRequestedCalibBay(false);
-
-		Calib.setResetProcessCompletedCalibBay(false);
-		Calib.setResetProcessRequestedCalibBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnCalibReset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnCalibReset.setDisable(true);
-
-		btnCalibStart.setStyle(""); // Enabled - Default
-		btnCalibStart.setDisable(false);
-
-		btnCalibStop.setStyle(""); // Enabled - Default
-		btnCalibStop.setDisable(false);
-
-		// L O G I C
-		calibrationResetTaskTimer = new Timer();
-		calibrationResetTaskTimer.schedule(new CalibrationBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Calib.isResetProcessCompletedCalibBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnCalibStart.setDisable(false);
-					btnCalibStart.setStyle("");
-					btnCalibStop.setDisable(false);
-					btnCalibStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Calib.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Calib.logger.info("btnCalibResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnCalibBayBypassOnClick() {
@@ -1668,130 +894,18 @@ public class StateExecutorController implements Initializable {
 	// ====================================================================================
 	@FXML
 	public void btnWaitingBayStartOnClick() {
-		VerificWaiting.logger.info("btnWaitingBayStartOnClick : Invoked:");
-
-		// F L A G S
-		VerificWaiting.setStartProcessRequestedWaitingBay(true);
-
-		VerificWaiting.setStopProcessCompletedWaitingBay(false);
-		VerificWaiting.setStopProcessRequestedWaitingBay(false);
-
-		VerificWaiting.setResetProcessCompletedWaitingBay(false);
-		VerificWaiting.setResetProcessRequestedWaitingBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnWaitingBayBypass.setStyle(""); // Disabled - Red
-		btnWaitingBayBypass.setDisable(false);
-
-		btnWaitingBayReset.setStyle(""); // Enabled - Default
-		btnWaitingBayReset.setDisable(false);
-
-		btnWaitingBayStart.setStyle("-fx-background-color: #FF5733;"); // Enabled - Default
-		btnWaitingBayStart.setDisable(true);
-
-		btnWaitingBayStop.setStyle(""); // Enabled - Default
-		btnWaitingBayStop.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-		waitingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-				.scheduleTask(ConstantConveyor.WAITING_BAY_KEY, activeWaitingEngine, "START");
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!VerificWaiting.isStartProcessCompletedWaitingBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnWaitingBayStop.setDisable(false);
-					btnWaitingBayStop.setStyle("");
-					btnWaitingBayReset.setDisable(false);
-					btnWaitingBayReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				VerificWaiting.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		VerificWaiting.logger.info("btnWaitingBayStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+    }
 
 	@FXML
 	public void btnWaitingBayStopOnClick() {
-		VerificWaiting.logger.info("btnWaitingBayStopOnClick : Invoked:");
-
-		// F L A G S
-		VerificWaiting.abort_Waiting_Bay = true;
-
-		VerificWaiting.setStartProcessRequestedWaitingBay(false);
-
-		VerificWaiting.setStopProcessCompletedWaitingBay(false);
-		VerificWaiting.setStopProcessRequestedWaitingBay(true);
-
-		VerificWaiting.setResetProcessCompletedWaitingBay(false);
-		VerificWaiting.setResetProcessRequestedWaitingBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnWaitingBayBypass.setStyle(""); // Disabled - Red
-		btnWaitingBayBypass.setDisable(false);
-
-		btnWaitingBayReset.setStyle(""); // Enabled - Default
-		btnWaitingBayReset.setDisable(false);
-
-		btnWaitingBayStart.setStyle(""); // Enabled - Default
-		btnWaitingBayStart.setDisable(false);
-
-		btnWaitingBayStop.setStyle("-fx-background-color: #FF5733;"); // Enabled - Default
-		btnWaitingBayStop.setDisable(true);
-
-		if (activeWaitingEngine != null) {
-			activeWaitingEngine.requestStop();
-			activeWaitingEngine.join(500);
-		}
-
-		waitingBayStopTaskTimer = new Timer();
-		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-
-		VerificWaiting.logger.info("btnWaitingBayStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+    }
 
 	@FXML
 	public void btnWaitingBayResetOnClick() {
-		VerificWaiting.logger.info("btnWaitingBayResetOnClick : Invoked:");
-
-		// F L A G S
-		VerificWaiting.setStartProcessRequestedWaitingBay(false);
-
-		VerificWaiting.setStopProcessCompletedWaitingBay(false);
-		VerificWaiting.setStopProcessRequestedWaitingBay(false);
-
-		VerificWaiting.setResetProcessCompletedWaitingBay(false);
-		VerificWaiting.setResetProcessRequestedWaitingBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnWaitingBayBypass.setStyle(""); // Disabled - Red
-		btnWaitingBayBypass.setDisable(false);
-
-		btnWaitingBayReset.setStyle("-fx-background-color: #FF5733;"); // Enabled - Default
-		btnWaitingBayReset.setDisable(true);
-
-		btnWaitingBayStart.setStyle(""); // Enabled - Default
-		btnWaitingBayStart.setDisable(false);
-
-		btnWaitingBayStop.setStyle(""); // Enabled - Default
-		btnWaitingBayStop.setDisable(false);
-
-		waitingBayResetTaskTimer = new Timer();
-		waitingBayResetTaskTimer.schedule(new WaitingBayReset(), 100);
-
-		VerificWaiting.logger.info("btnWaitingBayResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+    }
 
 	@FXML
 	public void btnWaitingBayBypassOnClick() {
@@ -1822,8 +936,8 @@ public class StateExecutorController implements Initializable {
 		// L O G I C
 		waitingBayBypassTaskTimer = new Timer();
 		// Assuming a WaitingBayBypass class exists or will be created
-		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-		waitingBayBypassTaskTimer.schedule(activeWaitingEngine, 100);
+		BayStateEngine engine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
+		waitingBayBypassTaskTimer.schedule(engine, 100);
 
 		VerificWaiting.logger.info("btnWaitingBayBypassOnClick : Exit:");
 	}
@@ -1832,174 +946,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnVerificTestStartOnClick() {
-		Verification.logger.info("btnVerificTestStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Verification.setStartProcessRequestedVerificBay(true);
-
-		Verification.setStopProcessCompletedVerificBay(false);
-		Verification.setStopProcessRequestedVerificBay(false);
-
-		Verification.setResetProcessCompletedVerificBay(false);
-		Verification.setResetProcessRequestedVerificBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnVerificTestStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnVerificTestStart.setDisable(true);
-
-		btnVerificTestStop.setStyle(""); // Enabled - Default
-		btnVerificTestStop.setDisable(false);
-
-		btnVerificTestReset.setStyle(""); // Enabled - Default
-		btnVerificTestReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, new VerificationTestBayBypass(), "START");
-		} else {
-			activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-			verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, activeVerificEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Verification.isStartProcessCompletedVerificBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnVerificTestStop.setDisable(false);
-					btnVerificTestStop.setStyle("");
-					btnVerificTestReset.setDisable(false);
-					btnVerificTestReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Verification.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Verification.logger.info("btnVerificTestStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnVerificTestStopOnClick() {
-		Verification.logger.info("btnVerificTestStopOnClick : Invoked:");
-
-		// F L A G S
-		Verification.abort_VerificTest_Bay = true;
-
-		Verification.setStartProcessRequestedVerificBay(false);
-
-		Verification.setStopProcessCompletedVerificBay(false);
-		Verification.setStopProcessRequestedVerificBay(true);
-
-		Verification.setResetProcessCompletedVerificBay(false);
-		Verification.setResetProcessRequestedVerificBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnVerificTestStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnVerificTestStop.setDisable(true);
-
-		btnVerificTestStart.setStyle(""); // Enabled - Default
-		btnVerificTestStart.setDisable(false);
-
-		btnVerificTestReset.setStyle(""); // Enabled - Default
-		btnVerificTestReset.setDisable(false);
-
-		btnVerificTestBayBypass.setStyle(""); // Enabled - Default
-		btnVerificTestBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeVerificEngine != null) {
-			activeVerificEngine.requestStop();
-			activeVerificEngine.join(500);
-		}
-		verificStopTaskTimer = new Timer();
-		verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Verification.isStopProcessCompletedVerificBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnVerificTestStart.setDisable(false);
-					btnVerificTestStart.setStyle("");
-					btnVerificTestReset.setDisable(false);
-					btnVerificTestReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Verification.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Verification.logger.info("btnVerificTestStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnVerificTestResetOnClick() {
-		Verification.logger.info("btnVerificTestResetOnClick : Invoked:");
-
-		// F L A G S
-		Verification.setStartProcessRequestedVerificBay(false);
-
-		Verification.setStopProcessCompletedVerificBay(false);
-		Verification.setStopProcessRequestedVerificBay(false);
-
-		Verification.setResetProcessCompletedVerificBay(false);
-		Verification.setResetProcessRequestedVerificBay(true);
-
-		// B U T T O N I N T E R L O C K
-		/*
-		 * btnVerificTestReset.setStyle("-fx-background-color: #FF5733;"); // Disabled -
-		 * Red
-		 * btnVerificTestReset.setDisable(false);
-		 */
-
-		btnVerificTestStart.setStyle(""); // Enabled - Default
-		btnVerificTestStart.setDisable(false);
-
-		btnVerificTestStop.setStyle(""); // Enabled - Default
-		btnVerificTestStop.setDisable(false);
-
-		// L O G I C
-		verificResetTaskTimer = new Timer();
-		verificResetTaskTimer.schedule(new VerificationTestBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Verification.isResetProcessCompletedVerificBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnVerificTestStart.setDisable(false);
-					btnVerificTestStart.setStyle("");
-					btnVerificTestStop.setDisable(false);
-					btnVerificTestStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Verification.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Verification.logger.info("btnVerificTestResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnVerificTestBayBypassOnClick() {
@@ -2055,173 +1013,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnSctNlt1StartOnClick() {
-		StaNld_Bay1.logger.info("state: btnSctNlt1StartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		StaNld_Bay1.setStartProcessRequestedStaNldBay1(true);
-
-		StaNld_Bay1.setStopProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setStopProcessRequestedStaNldBay1(false);
-
-		StaNld_Bay1.setResetProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setResetProcessRequestedStaNldBay1(false);
-
-		// B U T T O N I N T E R L O C K
-		btnSctNlt1Start.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnSctNlt1Start.setDisable(true);
-
-		btnSctNlt1Stop.setStyle(""); // Enabled - Default
-		btnSctNlt1Stop.setDisable(false);
-
-		btnSctNlt1Reset.setStyle(""); // Enabled - Default
-		btnSctNlt1Reset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, new STA_NoLoadTestBay1Bypass(), "START");
-		} else {
-			activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-			sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, activeStaNld1Engine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!StaNld_Bay1.isStartProcessCompletedStaNldBay1()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnSctNlt1Stop.setDisable(false);
-					btnSctNlt1Stop.setStyle("");
-					btnSctNlt1Reset.setDisable(false);
-					btnSctNlt1Reset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				StaNld_Bay1.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		StaNld_Bay1.logger.info("btnSctNlt1StartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+    }
 
 	@FXML
 	public void btnSctNlt1StopOnClick() {
-		StaNld_Bay1.logger.info("btnSctNlt1StopOnClick : Invoked:");
-
-		// F L A G S
-		StaNld_Bay1.abort_SCT_NLT_Bay1 = true;
-
-		StaNld_Bay1.setStartProcessRequestedStaNldBay1(false);
-
-		StaNld_Bay1.setStopProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setStopProcessRequestedStaNldBay1(true);
-
-		StaNld_Bay1.setResetProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setResetProcessRequestedStaNldBay1(false);
-
-		// B U T T O N I N T E R L O C K
-		btnSctNlt1Stop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnSctNlt1Stop.setDisable(true);
-
-		btnSctNlt1Start.setStyle(""); // Enabled - Default
-		btnSctNlt1Start.setDisable(false);
-
-		btnSctNlt1Reset.setStyle(""); // Enabled - Default
-		btnSctNlt1Reset.setDisable(false);
-
-		btnSctNlt1BayBypass.setStyle(""); // Enabled - Default
-		btnSctNlt1BayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeStaNld1Engine != null) {
-			activeStaNld1Engine.requestStop();
-			activeStaNld1Engine.join(500);
-		}
-		sctNlt1StopTaskTimer = new Timer();
-		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!StaNld_Bay1.isStopProcessCompletedStaNldBay1()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnSctNlt1Start.setDisable(false);
-					btnSctNlt1Start.setStyle("");
-					btnSctNlt1Reset.setDisable(false);
-					btnSctNlt1Reset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				StaNld_Bay1.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		StaNld_Bay1.logger.info("btnSctNlt1StopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+    }
 
 	@FXML
 	public void btnSctNlt1ResetOnClick() {
-		StaNld_Bay1.logger.info("btnSctNlt1ResetOnClick : Invoked:");
-
-		// F L A G S
-		StaNld_Bay1.setStartProcessRequestedStaNldBay1(false);
-
-		StaNld_Bay1.setStopProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setStopProcessRequestedStaNldBay1(false);
-
-		StaNld_Bay1.setResetProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setResetProcessRequestedStaNldBay1(true);
-
-		// B U T T O N I N T E R L O C K
-		/*
-		 * btnSctNlt1Reset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		 * btnSctNlt1Reset.setDisable(true);
-		 */
-
-		btnSctNlt1Start.setStyle(""); // Enabled - Default
-		btnSctNlt1Start.setDisable(false);
-
-		btnSctNlt1Stop.setStyle(""); // Enabled - Default
-		btnSctNlt1Stop.setDisable(false);
-
-		// L O G I C
-		sctNlt1ResetTaskTimer = new Timer();
-		sctNlt1ResetTaskTimer.schedule(new STA_NoLoadTestBay1Reset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!StaNld_Bay1.isResetProcessCompletedStaNldBay1()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnSctNlt1Start.setDisable(false);
-					btnSctNlt1Start.setStyle("");
-					btnSctNlt1Stop.setDisable(false);
-					btnSctNlt1Stop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				StaNld_Bay1.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		StaNld_Bay1.logger.info("btnSctNlt1ResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+    }
 
 	@FXML
 	public void btnSctNlt1BayBypassOnClick() {
@@ -2277,174 +1080,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnSctNlt2StartOnClick() {
-		StaNld_Bay2.logger.info("btnSctNlt2StartOnClick-Y : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		StaNld_Bay2.setStartProcessRequestedStaNldBay2(true);
-
-		StaNld_Bay2.setStopProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setStopProcessRequestedStaNldBay2(false);
-		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test6  : false");
-
-		StaNld_Bay2.setResetProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setResetProcessRequestedStaNldBay2(false);
-
-		// B U T T O N I N T E R L O C K
-		btnSctNlt2Start.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnSctNlt2Start.setDisable(true);
-
-		btnSctNlt2Stop.setStyle(""); // Enabled - Default
-		btnSctNlt2Stop.setDisable(false);
-
-		btnSctNlt2Reset.setStyle(""); // Enabled - Default
-		btnSctNlt2Reset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, new STA_NoLoadTestBay2Bypass(), "START");
-		} else {
-			activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-			sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, activeStaNld2Engine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!StaNld_Bay2.isStartProcessCompletedStaNldBay2()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnSctNlt2Stop.setDisable(false);
-					btnSctNlt2Stop.setStyle("");
-					btnSctNlt2Reset.setDisable(false);
-					btnSctNlt2Reset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				StaNld_Bay2.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		StaNld_Bay2.logger.info("btnSctNlt2StartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+    }
 
 	@FXML
 	public void btnSctNlt2StopOnClick() {
-		StaNld_Bay2.logger.info("btnSctNlt2StopOnClick : Invoked:");
-
-		// F L A G S
-		StaNld_Bay2.abort_SCT_NLT_Bay2 = true;
-
-		StaNld_Bay2.setStartProcessRequestedStaNldBay2(false);
-
-		StaNld_Bay2.setStopProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setStopProcessRequestedStaNldBay2(true);
-		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test7  : true");
-
-		StaNld_Bay2.setResetProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setResetProcessRequestedStaNldBay2(false);
-
-		// B U T T O N I N T E R L O C K
-		btnSctNlt2Stop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnSctNlt2Stop.setDisable(true);
-
-		btnSctNlt2Start.setStyle(""); // Enabled - Default
-		btnSctNlt2Start.setDisable(false);
-
-		btnSctNlt2Reset.setStyle(""); // Enabled - Default
-		btnSctNlt2Reset.setDisable(false);
-
-		btnSctNlt2BayBypass.setStyle(""); // Enabled - Default
-		btnSctNlt2BayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeStaNld2Engine != null) {
-			activeStaNld2Engine.requestStop();
-			activeStaNld2Engine.join(500);
-		}
-		sctNlt2StopTaskTimer = new Timer();
-		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!StaNld_Bay2.isStopProcessCompletedStaNldBay2()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnSctNlt2Start.setDisable(false);
-					btnSctNlt2Start.setStyle("");
-					btnSctNlt2Reset.setDisable(false);
-					btnSctNlt2Reset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				StaNld_Bay2.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		StaNld_Bay2.logger.info("btnSctNlt2StopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+    }
 
 	@FXML
 	public void btnSctNlt2ResetOnClick() {
-		StaNld_Bay2.logger.info("btnSctNlt2ResetOnClick : Invoked:");
-
-		// F L A G S
-		StaNld_Bay2.setStartProcessRequestedStaNldBay2(false);
-
-		StaNld_Bay2.setStopProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setStopProcessRequestedStaNldBay2(false);
-		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test8  : false");
-
-		StaNld_Bay2.setResetProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setResetProcessRequestedStaNldBay2(true);
-
-		// B U T T O N I N T E R L O C K
-		btnSctNlt2Reset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnSctNlt2Reset.setDisable(true);
-
-		btnSctNlt2Start.setStyle(""); // Enabled - Default
-		btnSctNlt2Start.setDisable(false);
-
-		btnSctNlt2Stop.setStyle(""); // Enabled - Default
-		btnSctNlt2Stop.setDisable(false);
-
-		// L O G I C
-		sctNlt2ResetTaskTimer = new Timer();
-		sctNlt2ResetTaskTimer.schedule(new STA_NoLoadTestBay2Reset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!StaNld_Bay2.isResetProcessCompletedStaNldBay2()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnSctNlt2Start.setDisable(false);
-					btnSctNlt2Start.setStyle("");
-					btnSctNlt2Stop.setDisable(false);
-					btnSctNlt2Stop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				StaNld_Bay2.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		StaNld_Bay2.logger.info("btnSctNlt2ResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+    }
 
 	@FXML
 	public void btnSctNlt2BayBypassOnClick() {
@@ -2501,171 +1148,18 @@ public class StateExecutorController implements Initializable {
 
 	@FXML
 	public void btnCommTestStartOnClick() {
-		Comm.logger.info("btnCommTestStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		// F L A G S
-		Comm.setStartProcessRequestedCommBay(true);
-
-		Comm.setStopProcessCompletedCommBay(false);
-		Comm.setStopProcessRequestedCommBay(false);
-
-		Comm.setResetProcessCompletedCommBay(false);
-		Comm.setResetProcessRequestedCommBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnCommTestStart.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnCommTestStart.setDisable(true);
-
-		btnCommTestStop.setStyle(""); // Enabled - Default
-		btnCommTestStop.setDisable(false);
-
-		btnCommTestReset.setStyle(""); // Enabled - Default
-		btnCommTestReset.setDisable(false);
-
-		// L O G I C
-
-		allData.clear();
-
-		if (com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags
-				.isBayFullyBypassed(ConstantConveyor.COMMUNICATION_BAY_KEY)) {
-			commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, new CommBayBypass(), "START");
-		} else {
-			activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-			commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, activeCommEngine, "START");
-		}
-
-		Thread waitForStartCompletion = new Thread(() -> {
-			try {
-				while (!Comm.isStartProcessCompletedCommBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnCommTestStop.setDisable(false);
-					btnCommTestStop.setStyle("");
-					btnCommTestReset.setDisable(false);
-					btnCommTestReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Comm.logger.warn("Start-process wait thread interrupted", e);
-			}
-		});
-		waitForStartCompletion.setDaemon(true);
-		waitForStartCompletion.start();
-
-		Comm.logger.info("btnCommTestStartOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnCommTestStopOnClick() {
-		Comm.logger.info("btnCommTestStopOnClick : Invoked:");
-
-		// F L A G S
-		Comm.abort_CommTest_Bay = true;
-
-		Comm.setStartProcessRequestedCommBay(false);
-
-		Comm.setStopProcessCompletedCommBay(false);
-		Comm.setStopProcessRequestedCommBay(true);
-
-		Comm.setResetProcessCompletedCommBay(false);
-		Comm.setResetProcessRequestedCommBay(false);
-
-		// B U T T O N I N T E R L O C K
-		btnCommTestStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnCommTestStop.setDisable(true);
-
-		btnCommTestStart.setStyle(""); // Enabled - Default
-		btnCommTestStart.setDisable(false);
-
-		btnCommTestReset.setStyle(""); // Enabled - Default
-		btnCommTestReset.setDisable(false);
-
-		btnCommTestBayBypass.setStyle(""); // Enabled - Default
-		btnCommTestBayBypass.setDisable(false);
-
-		// L O G I C
-		if (activeCommEngine != null) {
-			activeCommEngine.requestStop();
-			activeCommEngine.join(500);
-		}
-		commStopTaskTimer = new Timer();
-		commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-
-		Thread waitForStopCompletion = new Thread(() -> {
-			try {
-				while (!Comm.isStopProcessCompletedCommBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnCommTestStart.setDisable(false);
-					btnCommTestStart.setStyle("");
-					btnCommTestReset.setDisable(false);
-					btnCommTestReset.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Comm.logger.warn("Stop-process wait thread interrupted", e);
-			}
-		});
-		waitForStopCompletion.setDaemon(true);
-		waitForStopCompletion.start();
-
-		Comm.logger.info("btnCommTestStopOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnCommTestResetOnClick() {
-		Comm.logger.info("btnCommTestResetOnClick : Invoked:");
-
-		// F L A G S
-		Comm.setStartProcessRequestedCommBay(false);
-
-		Comm.setStopProcessCompletedCommBay(false);
-		Comm.setStopProcessRequestedCommBay(false);
-
-		Comm.setResetProcessCompletedCommBay(false);
-		Comm.setResetProcessRequestedCommBay(true);
-
-		// B U T T O N I N T E R L O C K
-		btnCommTestReset.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
-		btnCommTestReset.setDisable(true);
-
-		btnCommTestStart.setStyle(""); // Enabled - Default
-		btnCommTestStart.setDisable(false);
-
-		btnCommTestStop.setStyle(""); // Enabled - Default
-		btnCommTestStop.setDisable(false);
-
-		// L O G I C
-		commResetTaskTimer = new Timer();
-		commResetTaskTimer.schedule(new CommunicationTestBayReset(), 100);
-
-		Thread waitForResetCompletion = new Thread(() -> {
-			try {
-				while (!Comm.isResetProcessCompletedCommBay()) {
-					Thread.sleep(200);
-				}
-				Platform.runLater(() -> {
-					btnCommTestStart.setDisable(false);
-					btnCommTestStart.setStyle("");
-					btnCommTestStop.setDisable(false);
-					btnCommTestStop.setStyle("");
-				});
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				Comm.logger.warn("Reset-process wait thread interrupted", e);
-			}
-		});
-		waitForResetCompletion.setDaemon(true);
-		waitForResetCompletion.start();
-
-		Comm.logger.info("btnCommTestResetOnClick : Exit:");
-	}
+        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+    }
 
 	@FXML
 	public void btnCommTestBayBypassOnClick() {
@@ -3763,4 +2257,160 @@ public class StateExecutorController implements Initializable {
 			}
 		});
 	}
+
+    @Override
+    public void updateBayUI(String bayKey, boolean isRunning) {
+        javafx.application.Platform.runLater(() -> {
+            switch (bayKey) {
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY:
+                    if (btnFtStart != null) {
+                        if (isRunning) {
+                            btnFtStart.setStyle("-fx-background-color: #FF5733;"); btnFtStart.setDisable(true);
+                            if (btnFtStop != null) { btnFtStop.setStyle(""); btnFtStop.setDisable(false); }
+                            if (btnFtReset != null) { btnFtReset.setStyle("-fx-background-color: #FF5733;"); btnFtReset.setDisable(true); }
+                            if (btnFtBayBypass != null) { btnFtBayBypass.setStyle("-fx-background-color: #FF5733;"); btnFtBayBypass.setDisable(true); }
+                        } else {
+                            btnFtStart.setStyle(""); btnFtStart.setDisable(false);
+                            if (btnFtStop != null) { btnFtStop.setStyle("-fx-background-color: #FF5733;"); btnFtStop.setDisable(true); }
+                            if (btnFtReset != null) { btnFtReset.setStyle(""); btnFtReset.setDisable(false); }
+                            if (btnFtBayBypass != null) { btnFtBayBypass.setStyle(""); btnFtBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY:
+                    if (btnHvtStart != null) {
+                        if (isRunning) {
+                            btnHvtStart.setStyle("-fx-background-color: #FF5733;"); btnHvtStart.setDisable(true);
+                            if (btnHvtStop != null) { btnHvtStop.setStyle(""); btnHvtStop.setDisable(false); }
+                            if (btnHvtReset != null) { btnHvtReset.setStyle("-fx-background-color: #FF5733;"); btnHvtReset.setDisable(true); }
+                            if (btnHvtBayBypass != null) { btnHvtBayBypass.setStyle("-fx-background-color: #FF5733;"); btnHvtBayBypass.setDisable(true); }
+                        } else {
+                            btnHvtStart.setStyle(""); btnHvtStart.setDisable(false);
+                            if (btnHvtStop != null) { btnHvtStop.setStyle("-fx-background-color: #FF5733;"); btnHvtStop.setDisable(true); }
+                            if (btnHvtReset != null) { btnHvtReset.setStyle(""); btnHvtReset.setDisable(false); }
+                            if (btnHvtBayBypass != null) { btnHvtBayBypass.setStyle(""); btnHvtBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY:
+                    if (btnIrtStart != null) {
+                        if (isRunning) {
+                            btnIrtStart.setStyle("-fx-background-color: #FF5733;"); btnIrtStart.setDisable(true);
+                            if (btnIrtStop != null) { btnIrtStop.setStyle(""); btnIrtStop.setDisable(false); }
+                            if (btnIrtReset != null) { btnIrtReset.setStyle("-fx-background-color: #FF5733;"); btnIrtReset.setDisable(true); }
+                            if (btnIrtBayBypass != null) { btnIrtBayBypass.setStyle("-fx-background-color: #FF5733;"); btnIrtBayBypass.setDisable(true); }
+                        } else {
+                            btnIrtStart.setStyle(""); btnIrtStart.setDisable(false);
+                            if (btnIrtStop != null) { btnIrtStop.setStyle("-fx-background-color: #FF5733;"); btnIrtStop.setDisable(true); }
+                            if (btnIrtReset != null) { btnIrtReset.setStyle(""); btnIrtReset.setDisable(false); }
+                            if (btnIrtBayBypass != null) { btnIrtBayBypass.setStyle(""); btnIrtBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY:
+                    if (btnCalibStart != null) {
+                        if (isRunning) {
+                            btnCalibStart.setStyle("-fx-background-color: #FF5733;"); btnCalibStart.setDisable(true);
+                            if (btnCalibStop != null) { btnCalibStop.setStyle(""); btnCalibStop.setDisable(false); }
+                            if (btnCalibReset != null) { btnCalibReset.setStyle("-fx-background-color: #FF5733;"); btnCalibReset.setDisable(true); }
+                            if (btnCalibBayBypass != null) { btnCalibBayBypass.setStyle("-fx-background-color: #FF5733;"); btnCalibBayBypass.setDisable(true); }
+                        } else {
+                            btnCalibStart.setStyle(""); btnCalibStart.setDisable(false);
+                            if (btnCalibStop != null) { btnCalibStop.setStyle("-fx-background-color: #FF5733;"); btnCalibStop.setDisable(true); }
+                            if (btnCalibReset != null) { btnCalibReset.setStyle(""); btnCalibReset.setDisable(false); }
+                            if (btnCalibBayBypass != null) { btnCalibBayBypass.setStyle(""); btnCalibBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY:
+                    if (btnWaitingBayStart != null) {
+                        if (isRunning) {
+                            btnWaitingBayStart.setStyle("-fx-background-color: #FF5733;"); btnWaitingBayStart.setDisable(true);
+                            if (btnWaitingBayStop != null) { btnWaitingBayStop.setStyle(""); btnWaitingBayStop.setDisable(false); }
+                            if (btnWaitingBayReset != null) { btnWaitingBayReset.setStyle("-fx-background-color: #FF5733;"); btnWaitingBayReset.setDisable(true); }
+                        } else {
+                            btnWaitingBayStart.setStyle(""); btnWaitingBayStart.setDisable(false);
+                            if (btnWaitingBayStop != null) { btnWaitingBayStop.setStyle("-fx-background-color: #FF5733;"); btnWaitingBayStop.setDisable(true); }
+                            if (btnWaitingBayReset != null) { btnWaitingBayReset.setStyle(""); btnWaitingBayReset.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY:
+                    if (btnVerificTestStart != null) {
+                        if (isRunning) {
+                            btnVerificTestStart.setStyle("-fx-background-color: #FF5733;"); btnVerificTestStart.setDisable(true);
+                            if (btnVerificTestStop != null) { btnVerificTestStop.setStyle(""); btnVerificTestStop.setDisable(false); }
+                            if (btnVerificTestReset != null) { btnVerificTestReset.setStyle("-fx-background-color: #FF5733;"); btnVerificTestReset.setDisable(true); }
+                            if (btnVerificTestBayBypass != null) { btnVerificTestBayBypass.setStyle("-fx-background-color: #FF5733;"); btnVerificTestBayBypass.setDisable(true); }
+                        } else {
+                            btnVerificTestStart.setStyle(""); btnVerificTestStart.setDisable(false);
+                            if (btnVerificTestStop != null) { btnVerificTestStop.setStyle("-fx-background-color: #FF5733;"); btnVerificTestStop.setDisable(true); }
+                            if (btnVerificTestReset != null) { btnVerificTestReset.setStyle(""); btnVerificTestReset.setDisable(false); }
+                            if (btnVerificTestBayBypass != null) { btnVerificTestBayBypass.setStyle(""); btnVerificTestBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY:
+                    if (btnSctNlt1Start != null) {
+                        if (isRunning) {
+                            btnSctNlt1Start.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1Start.setDisable(true);
+                            if (btnSctNlt1Stop != null) { btnSctNlt1Stop.setStyle(""); btnSctNlt1Stop.setDisable(false); }
+                            if (btnSctNlt1Reset != null) { btnSctNlt1Reset.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1Reset.setDisable(true); }
+                            if (btnSctNlt1BayBypass != null) { btnSctNlt1BayBypass.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1BayBypass.setDisable(true); }
+                        } else {
+                            btnSctNlt1Start.setStyle(""); btnSctNlt1Start.setDisable(false);
+                            if (btnSctNlt1Stop != null) { btnSctNlt1Stop.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1Stop.setDisable(true); }
+                            if (btnSctNlt1Reset != null) { btnSctNlt1Reset.setStyle(""); btnSctNlt1Reset.setDisable(false); }
+                            if (btnSctNlt1BayBypass != null) { btnSctNlt1BayBypass.setStyle(""); btnSctNlt1BayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY:
+                    if (btnSctNlt2Start != null) {
+                        if (isRunning) {
+                            btnSctNlt2Start.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2Start.setDisable(true);
+                            if (btnSctNlt2Stop != null) { btnSctNlt2Stop.setStyle(""); btnSctNlt2Stop.setDisable(false); }
+                            if (btnSctNlt2Reset != null) { btnSctNlt2Reset.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2Reset.setDisable(true); }
+                            if (btnSctNlt2BayBypass != null) { btnSctNlt2BayBypass.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2BayBypass.setDisable(true); }
+                        } else {
+                            btnSctNlt2Start.setStyle(""); btnSctNlt2Start.setDisable(false);
+                            if (btnSctNlt2Stop != null) { btnSctNlt2Stop.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2Stop.setDisable(true); }
+                            if (btnSctNlt2Reset != null) { btnSctNlt2Reset.setStyle(""); btnSctNlt2Reset.setDisable(false); }
+                            if (btnSctNlt2BayBypass != null) { btnSctNlt2BayBypass.setStyle(""); btnSctNlt2BayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY:
+                    if (btnCommTestStart != null) {
+                        if (isRunning) {
+                            btnCommTestStart.setStyle("-fx-background-color: #FF5733;"); btnCommTestStart.setDisable(true);
+                            if (btnCommTestStop != null) { btnCommTestStop.setStyle(""); btnCommTestStop.setDisable(false); }
+                            if (btnCommTestReset != null) { btnCommTestReset.setStyle("-fx-background-color: #FF5733;"); btnCommTestReset.setDisable(true); }
+                            if (btnCommTestBayBypass != null) { btnCommTestBayBypass.setStyle("-fx-background-color: #FF5733;"); btnCommTestBayBypass.setDisable(true); }
+                        } else {
+                            btnCommTestStart.setStyle(""); btnCommTestStart.setDisable(false);
+                            if (btnCommTestStop != null) { btnCommTestStop.setStyle("-fx-background-color: #FF5733;"); btnCommTestStop.setDisable(true); }
+                            if (btnCommTestReset != null) { btnCommTestReset.setStyle(""); btnCommTestReset.setDisable(false); }
+                            if (btnCommTestBayBypass != null) { btnCommTestBayBypass.setStyle(""); btnCommTestBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY:
+                    if (btnRejectStart != null) {
+                        if (isRunning) {
+                            btnRejectStart.setStyle("-fx-background-color: #FF5733;"); btnRejectStart.setDisable(true);
+                            if (btnRejectStop != null) { btnRejectStop.setStyle(""); btnRejectStop.setDisable(false); }
+                            if (btnRejectReset != null) { btnRejectReset.setStyle("-fx-background-color: #FF5733;"); btnRejectReset.setDisable(true); }
+                            if (btnRejectBayBypass != null) { btnRejectBayBypass.setStyle("-fx-background-color: #FF5733;"); btnRejectBayBypass.setDisable(true); }
+                        } else {
+                            btnRejectStart.setStyle(""); btnRejectStart.setDisable(false);
+                            if (btnRejectStop != null) { btnRejectStop.setStyle("-fx-background-color: #FF5733;"); btnRejectStop.setDisable(true); }
+                            if (btnRejectReset != null) { btnRejectReset.setStyle(""); btnRejectReset.setDisable(false); }
+                            if (btnRejectBayBypass != null) { btnRejectBayBypass.setStyle(""); btnRejectBayBypass.setDisable(false); }
+                        }
+                    }
+                    break;
+            }
+        });
+    }
 }

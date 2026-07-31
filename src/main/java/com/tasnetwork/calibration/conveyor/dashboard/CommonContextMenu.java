@@ -144,7 +144,17 @@ public abstract class CommonContextMenu {
 
     private void addMenuItem(PalletController.BayActionType actionType) {
         MenuItem menuItem = new MenuItem(actionType.toString());
-        menuItem.setOnAction(e -> handleAction(actionType));
+        menuItem.setOnAction(e -> {
+            if (actionType == PalletController.BayActionType.BAY_START) {
+                BayControlsManager.getInstance().handleStart(bayTypeKey);
+            } else if (actionType == PalletController.BayActionType.BAY_STOP) {
+                BayControlsManager.getInstance().handleStop(bayTypeKey);
+            } else if (actionType == PalletController.BayActionType.BAY_RESET) {
+                BayControlsManager.getInstance().handleReset(bayTypeKey);
+            } else {
+                handleAction(actionType);
+            }
+        });
         contextMenu.getItems().add(menuItem);
     }
 

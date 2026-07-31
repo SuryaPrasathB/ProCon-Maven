@@ -20,43 +20,16 @@ import java.util.stream.Collectors;
 
 import org.json.JSONException;
 
-import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
+import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
-import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayStop;
-import com.tasnetwork.calibration.conveyor.bay.comm.Comm;
-import com.tasnetwork.calibration.conveyor.bay.comm.CommBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
-import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2;
-import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayStop;
-import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
-import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
@@ -108,7 +81,7 @@ import javafx.util.Duration;
  * Error code history functionality merged to retain table management and daily
  * reset, using Java 8-compatible Runnable.
  */
-public class DashboardController implements Initializable {
+public class DashboardController implements IBayUIController, Initializable {
 
 	private String palletViewFxmlFileName = "DashboardPalletView_v1_7";
 	private String bayViewFxmlFileName = "DashboardBayView_v1_3";
@@ -316,17 +289,6 @@ public class DashboardController implements Initializable {
 	Timer commStartTaskTimer;
 	Timer rejectionBayStartTaskTimer;
 
-	private BayStateEngine activeStaNld1Engine;
-	private BayStateEngine activeStaNld2Engine;
-	private BayStateEngine activeCommEngine;
-	private BayStateEngine activeRejectionEngine;
-	private BayStateEngine activeWaitingEngine;
-	private BayStateEngine activeFtEngine;
-	private BayStateEngine activeHvEngine;
-	private BayStateEngine activeIrEngine;
-	private BayStateEngine activeCalibEngine;
-	private BayStateEngine activeVerificEngine;
-
 	Timer funtionalBayStopTaskTimer;
 	Timer calibrationStopTaskTimer;
 	Timer insResStopTaskTimer;
@@ -380,6 +342,7 @@ public class DashboardController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		BayControlsManager.getInstance().registerController(this);
 		ref_eventLog = eventLog;
 		initializeBayKeyMap();
 		bayIndicatorManager = new BayIndicatorManager(bayKeyToBayContainer, bayViewFxmlFileName);
@@ -421,7 +384,7 @@ public class DashboardController implements Initializable {
 				// Wait slightly for UI to be ready
 				Thread.sleep(1000);
 
-				com.tasnetwork.calibration.conveyor.bay.BayUtils bayUtils = new com.tasnetwork.calibration.conveyor.bay.BayUtils();
+				BayUtils bayUtils = new BayUtils();
 				BayActionHandler bayActionHandler = new BayActionHandler("");
 				BayIndicatorManager indicatorManager = ConveyorDataManager.getDashboardObject()
 						.getBayIndicatorManager();
@@ -429,46 +392,46 @@ public class DashboardController implements Initializable {
 				// Mapping for Fingertip latches
 				java.util.Map<String, String> fingertipPorts = new java.util.HashMap<>();
 				fingertipPorts.put(ConstantConveyor.FT_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.FT_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.HV_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.HV_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.HV_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.IR_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.IR_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.IR_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.CALIBRATION_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.CALIB_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.CALIB_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.VERIFICATION_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.VERIFIC_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.VERIFIC_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.STA_NLD1_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.STA_NLD2_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.COMMUNICATION_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.COMM_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.COMM_PORT_NAME_FINGER_TIP);
 				fingertipPorts.put(ConstantConveyor.UNLOADING_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.UNLOADING_PORT_NAME_FINGER_TIP);
+						ConstantBayPortNameMapping.UNLOADING_PORT_NAME_FINGER_TIP);
 
 				// Mapping for Stoppers
 				java.util.Map<String, String> stopperPorts = new java.util.HashMap<>();
 				stopperPorts.put(ConstantConveyor.FT_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_AT);
+						ConstantBayPortNameMapping.FT_PORT_NAME_STPR_AT);
 				stopperPorts.put(ConstantConveyor.HV_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.HV_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.HV_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.IR_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.IR_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.IR_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.CALIBRATION_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.CALIB_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.CALIB_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.VERIFICATION_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.VERIFIC_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.WAITING_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.WAITING_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.WAITING_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.STA_NLD1_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.SCT_NLT1_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.STA_NLD2_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.SCT_NLT2_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.COMMUNICATION_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.COMM_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.COMM_PORT_NAME_STPR);
 				stopperPorts.put(ConstantConveyor.UNLOADING_BAY_KEY,
-						com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.UNLOADING_PORT_NAME_STPR);
+						ConstantBayPortNameMapping.UNLOADING_PORT_NAME_STPR);
 
 				for (String bayKey : stopperPorts.keySet()) {
 					ApplicationLauncher.logger.info("refreshInitialConveyorStatus: Processing bayKey: " + bayKey);
@@ -476,7 +439,7 @@ public class DashboardController implements Initializable {
 					// 1. Fetch Latch (FINGER_TIP) State from OUTPUT
 					String fingertipPort = fingertipPorts.get(bayKey);
 					if (fingertipPort != null) {
-						com.tasnetwork.calibration.conveyor.bay.IoPortInfo fingertipPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
+						IoPortInfo fingertipPortInfo = BayUtils
 								.getOutputPortDetails(fingertipPort);
 						if (fingertipPortInfo != null) {
 							String state = bayUtils.getInputDataFromPlcBayV2(fingertipPortInfo);
@@ -498,7 +461,7 @@ public class DashboardController implements Initializable {
 					// 2. Fetch Stopper State from OUTPUT
 					String stopperPort = stopperPorts.get(bayKey);
 					if (stopperPort != null) {
-						com.tasnetwork.calibration.conveyor.bay.IoPortInfo stopperPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
+						com.tasnetwork.calibration.conveyor.bay.IoPortInfo stopperPortInfo = BayUtils
 								.getOutputPortDetails(stopperPort);
 						if (stopperPortInfo != null) {
 							String state = bayUtils.getInputDataFromPlcBayV2(stopperPortInfo);
@@ -517,9 +480,9 @@ public class DashboardController implements Initializable {
 
 					// Fetch Entry Stopper for FT Bay explicitly
 					if (ConstantConveyor.FT_BAY_KEY.equals(bayKey)) {
-						com.tasnetwork.calibration.conveyor.bay.IoPortInfo entryStopperPortInfo = com.tasnetwork.calibration.conveyor.bay.BayUtils
+						com.tasnetwork.calibration.conveyor.bay.IoPortInfo entryStopperPortInfo = BayUtils
 								.getOutputPortDetails(
-										com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4);
+										ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4);
 						if (entryStopperPortInfo != null) {
 							String state = bayUtils.getInputDataFromPlcBayV2(entryStopperPortInfo);
 							boolean isOpen = com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping.OFF
@@ -527,7 +490,7 @@ public class DashboardController implements Initializable {
 							ApplicationLauncher.logger.info("refreshInitialConveyorStatus [ENTRY STOPPER] - bayKey: "
 									+ bayKey
 									+ " | port: "
-									+ com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4
+									+ ConstantBayPortNameMapping.FT_PORT_NAME_STPR_B4
 									+ " | state: " + state + " | isOpen: " + isOpen);
 							javafx.application.Platform.runLater(() -> {
 								indicatorManager.updateBayEntryStopper(bayKey, !isOpen);
@@ -839,7 +802,8 @@ public class DashboardController implements Initializable {
 
 		// ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: Entry ");
 		for (Map.Entry<String, AnchorPane> entry : bayKeyToPalletContainer.entrySet()) {
-			// ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: entry.getValue(): " + entry.getValue());
+			// ApplicationLauncher.logger.debug("getBayKeyForPalletContainer:
+			// entry.getValue(): " + entry.getValue());
 			if (entry.getValue() == container) {
 				return entry.getKey();
 			}
@@ -848,21 +812,6 @@ public class DashboardController implements Initializable {
 	}
 
 	private void handleContainerAction(AnchorPane container, PalletController.BayActionType actionType) {
-		// Find the pallet in this container if any
-		/*
-		 * Node pallet = container.getChildren().stream()
-		 * .filter(n -> n.getUserData() instanceof PalletController)
-		 * .findFirst()
-		 * .orElse(null);
-		 * 
-		 * if (pallet != null && pallet.getUserData() instanceof PalletController) {
-		 * PalletController palletController = (PalletController) pallet.getUserData();
-		 * palletController.handleActionByBayType(actionType);
-		 * } else {
-		 * ApplicationLauncher.logger.
-		 * warn("No pallet found in container to perform action: " + actionType);
-		 * }
-		 */
 
 		String bayKey = getBayKeyForPalletContainer(container);
 		if (bayKey == null)
@@ -1040,236 +989,37 @@ public class DashboardController implements Initializable {
 	@FXML
 	public void btnAllStartOnClick() {
 		ApplicationLauncher.logger.info("btnAllStartOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = false;
-
-		btnAllStart.setDisable(true);
-		btnAllStop.setDisable(false);
-
-		// FT Bay
-		Ft.setStartProcessRequestedFtBay(true);
-		Ft.setStopProcessCompletedFtBay(false);
-		Ft.setStopProcessRequestedFtBay(false);
-		Ft.setResetProcessCompletedFtBay(false);
-		Ft.setResetProcessRequestedFtBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.FT_BAY_KEY)) {
-			funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.FT_BAY_KEY, new FunctionalTestBayBypass(), "START");
-		} else {
-			activeFtEngine = new BayStateEngine(ConstantConveyor.FT_BAY_KEY, new Ft());
-			funtionalBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.FT_BAY_KEY, activeFtEngine, "START");
-		}
-
-		// HVT Bay
-		Hv.setStartProcessRequestedHvtBay(true);
-		Hv.setStopProcessCompletedHvtBay(false);
-		Hv.setStopProcessRequestedHvtBay(false);
-		Hv.setResetProcessCompletedHvtBay(false);
-		Hv.setResetProcessRequestedHvtBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.HV_BAY_KEY)) {
-			hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.HV_BAY_KEY, new HighVoltageTestBayBypass(), "START");
-		} else {
-			activeHvEngine = new BayStateEngine(ConstantConveyor.HV_BAY_KEY, new Hv());
-			hvtBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.HV_BAY_KEY, activeHvEngine, "START");
-		}
-
-		// IR Bay
-		Ir.setStartProcessRequestedIrtBay(true);
-		Ir.setStopProcessCompletedIrtBay(false);
-		Ir.setStopProcessRequestedIrtBay(false);
-		Ir.setResetProcessCompletedIrtBay(false);
-		Ir.setResetProcessRequestedIrtBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.IR_BAY_KEY)) {
-			insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.IR_BAY_KEY, new InsulationResistanceTestBayBypass(), "START");
-		} else {
-			activeIrEngine = new BayStateEngine(ConstantConveyor.IR_BAY_KEY, new Ir());
-			insResStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.IR_BAY_KEY, activeIrEngine, "START");
-		}
-
-		// Calib Bay
-		Calib.setStartProcessRequestedCalibBay(true);
-		Calib.setStopProcessCompletedCalibBay(false);
-		Calib.setStopProcessRequestedCalibBay(false);
-		Calib.setResetProcessCompletedCalibBay(false);
-		Calib.setResetProcessRequestedCalibBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.CALIBRATION_BAY_KEY)) {
-			calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, new CalibrationBayBypass(), "START");
-		} else {
-			activeCalibEngine = new BayStateEngine(ConstantConveyor.CALIBRATION_BAY_KEY, new Calib());
-			calibrationStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.CALIBRATION_BAY_KEY, activeCalibEngine, "START");
-		}
-
-		// Waiting Bay
-		VerificWaiting.setStartProcessRequestedWaitingBay(true);
-		VerificWaiting.setStopProcessCompletedWaitingBay(false);
-		VerificWaiting.setStopProcessRequestedWaitingBay(false);
-		VerificWaiting.setResetProcessCompletedWaitingBay(false);
-		VerificWaiting.setResetProcessRequestedWaitingBay(false);
-		activeWaitingEngine = new BayStateEngine(ConstantConveyor.WAITING_BAY_KEY, new VerificWaiting());
-		waitingBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-				.scheduleTask(ConstantConveyor.WAITING_BAY_KEY, activeWaitingEngine, "START");
-
-		// Verific Bay
-		Verification.setStartProcessRequestedVerificBay(true);
-		Verification.setStopProcessCompletedVerificBay(false);
-		Verification.setStopProcessRequestedVerificBay(false);
-		Verification.setResetProcessCompletedVerificBay(false);
-		Verification.setResetProcessRequestedVerificBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, new VerificationTestBayBypass(), "START");
-		} else {
-			activeVerificEngine = new BayStateEngine(ConstantConveyor.VERIFICATION_BAY_KEY, new Verification());
-			verificStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.VERIFICATION_BAY_KEY, activeVerificEngine, "START");
-		}
-
-		// STA NLD 1
-		StaNld_Bay1.setStartProcessRequestedStaNldBay1(true);
-		StaNld_Bay1.setStopProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setStopProcessRequestedStaNldBay1(false);
-		StaNld_Bay1.setResetProcessCompletedStaNldBay1(false);
-		StaNld_Bay1.setResetProcessRequestedStaNldBay1(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, new STA_NoLoadTestBay1Bypass(), "START");
-		} else {
-			activeStaNld1Engine = new BayStateEngine(ConstantConveyor.STA_NLD1_BAY_KEY, new StaNld_Bay1());
-			sctNlt1StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD1_BAY_KEY, activeStaNld1Engine, "START");
-		}
-
-		// STA NLD 2
-		StaNld_Bay2.setStartProcessRequestedStaNldBay2(true);
-		StaNld_Bay2.setStopProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setStopProcessRequestedStaNldBay2(false);
-		StaNld_Bay2.setResetProcessCompletedStaNldBay2(false);
-		StaNld_Bay2.setResetProcessRequestedStaNldBay2(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, new STA_NoLoadTestBay2Bypass(), "START");
-		} else {
-			activeStaNld2Engine = new BayStateEngine(ConstantConveyor.STA_NLD2_BAY_KEY, new StaNld_Bay2());
-			sctNlt2StartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.STA_NLD2_BAY_KEY, activeStaNld2Engine, "START");
-		}
-
-		// Comm Bay
-		Comm.setStartProcessRequestedCommBay(true);
-		Comm.setStopProcessCompletedCommBay(false);
-		Comm.setStopProcessRequestedCommBay(false);
-		Comm.setResetProcessCompletedCommBay(false);
-		Comm.setResetProcessRequestedCommBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.COMMUNICATION_BAY_KEY)) {
-			commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, new CommBayBypass(), "START");
-		} else {
-			activeCommEngine = new BayStateEngine(ConstantConveyor.COMMUNICATION_BAY_KEY, new Comm());
-			commStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.COMMUNICATION_BAY_KEY, activeCommEngine, "START");
-		}
-
-		// Rejection Bay
-		Rejection.setStartProcessRequestedRejectionBay(true);
-		Rejection.setStopProcessCompletedRejectionBay(false);
-		Rejection.setStopProcessRequestedRejectionBay(false);
-		Rejection.setResetProcessCompletedRejectionBay(false);
-		Rejection.setResetProcessRequestedRejectionBay(false);
-		if (ConstantBypassFlags.isBayFullyBypassed(ConstantConveyor.REJECTION_BAY_KEY)) {
-			// Bypass if applicable
-		} else {
-			activeRejectionEngine = new BayStateEngine(ConstantConveyor.REJECTION_BAY_KEY, new Rejection());
-			rejectionBayStartTaskTimer = com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager
-					.scheduleTask(ConstantConveyor.REJECTION_BAY_KEY, activeRejectionEngine, "START");
-		}
-
+		BayControlsManager mgr = BayControlsManager
+				.getInstance();
+		mgr.handleStart(ConstantConveyor.FT_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.HV_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.IR_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.CALIBRATION_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.WAITING_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.VERIFICATION_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.STA_NLD1_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.STA_NLD2_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.COMMUNICATION_BAY_KEY);
+		mgr.handleStart(ConstantConveyor.REJECTION_BAY_KEY);
 		ApplicationLauncher.logger.info("btnAllStartOnClick : EXIT:");
 	}
 
 	@FXML
 	public void btnAllStopOnClick() {
 		ApplicationLauncher.logger.info("btnAllStopOnClick : Invoked:");
-
-		ConstantConveyor.ALL_LOOP_BREAK_FLAG = true;
-		BayUtils.setUserAborted(true);
-
-		btnAllStart.setDisable(false);
-		btnAllStop.setDisable(true);
-
-		Ft.setStopProcessRequestedFtBay(true);
-		Hv.abort_HVT_Bay = true;
-		Ir.abort_IRT_Bay = true;
-		Calib.abort_Calib_Bay = true;
-		Verification.abort_VerificTest_Bay = true;
-		StaNld_Bay1.abort_SCT_NLT_Bay1 = true;
-		StaNld_Bay2.abort_SCT_NLT_Bay2 = true;
-		Comm.abort_CommTest_Bay = true;
-
-		Ft.setStopProcessRequestedFtBay(true);
-		Hv.setStopProcessRequestedHvtBay(true);
-		Ir.setStopProcessRequestedIrtBay(true);
-		Calib.setStopProcessRequestedCalibBay(true);
-		Verification.setStopProcessRequestedVerificBay(true);
-		StaNld_Bay1.setStopProcessRequestedStaNldBay1(true);
-		StaNld_Bay2.setStopProcessRequestedStaNldBay2(true);
-		StaNld_Bay2.logger.info("setStopProcessRequestedStaNldBay2 -Test2  : true");
-		Comm.setStopProcessRequestedCommBay(true);
-		VerificWaiting.setStopProcessRequestedWaitingBay(true);
-
-		// Stop Timers
-		funtionalBayStopTaskTimer = new Timer();
-		funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
-		if (activeFtEngine != null)
-			activeFtEngine.requestStop();
-
-		hvtBayStopTaskTimer = new Timer();
-		hvtBayStopTaskTimer.schedule(new HighVoltageTestBayStop(), 100);
-		if (activeHvEngine != null)
-			activeHvEngine.requestStop();
-
-		insResStopTaskTimer = new Timer();
-		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
-		if (activeIrEngine != null)
-			activeIrEngine.requestStop();
-
-		calibrationStopTaskTimer = new Timer();
-		calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
-		if (activeCalibEngine != null)
-			activeCalibEngine.requestStop();
-
-		if (activeWaitingEngine != null)
-			activeWaitingEngine.requestStop();
-		waitingBayStopTaskTimer = new Timer();
-		waitingBayStopTaskTimer.schedule(new WaitingBayStop(), 100);
-
-		verificStopTaskTimer = new Timer();
-		verificStopTaskTimer.schedule(new VerificationTestBayStop(), 100);
-		if (activeVerificEngine != null)
-			activeVerificEngine.requestStop();
-
-		if (activeStaNld1Engine != null)
-			activeStaNld1Engine.requestStop();
-		sctNlt1StopTaskTimer = new Timer();
-		sctNlt1StopTaskTimer.schedule(new STA_NoLoadTestBay1Stop(), 100);
-
-		if (activeStaNld2Engine != null)
-			activeStaNld2Engine.requestStop();
-		sctNlt2StopTaskTimer = new Timer();
-		sctNlt2StopTaskTimer.schedule(new STA_NoLoadTestBay2Stop(), 100);
-
-		if (activeCommEngine != null)
-			activeCommEngine.requestStop();
-		commStopTaskTimer = new Timer();
-		commStopTaskTimer.schedule(new CommunicationTestBayStop(), 100);
-
-		ApplicationLauncher.logger.info("btnAllStopOnClick : Exit:");
+		BayControlsManager mgr = BayControlsManager
+				.getInstance();
+		mgr.handleStop(ConstantConveyor.FT_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.HV_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.IR_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.WAITING_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.VERIFICATION_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.STA_NLD1_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.STA_NLD2_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.COMMUNICATION_BAY_KEY);
+		mgr.handleStop(ConstantConveyor.REJECTION_BAY_KEY);
+		ApplicationLauncher.logger.info("btnAllStopOnClick : EXIT:");
 	}
 
 	public void Sleep(int timeInMsec) {
@@ -2370,7 +2120,27 @@ public class DashboardController implements Initializable {
 	 * If the bay has multiple pallet positions (e.g., Verification), it displays on
 	 * all of them.
 	 */
+	private boolean isBayStopped(String bayKey) {
+		switch (bayKey) {
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.ft.Ft.stopProcessRequestedFtBay;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.hv.Hv.stopProcessRequestedHvtBay;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.ir.Ir.stopProcessRequestedIrtBay;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.calib.Calib.stopProcessRequestedCalibBay;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting.stopProcessRequestedWaitingBay;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.verific.Verification.stopProcessRequestedVerificBay;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1.stopProcessRequestedStaNldBay1;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2.stopProcessRequestedStaNldBay2;
+			case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY: return com.tasnetwork.calibration.conveyor.bay.comm.Comm.stopProcessRequestedCommBay;
+		}
+		return false;
+	}
+
 	public void showInlineBayError(String bayKey, String errorCode) {
+		if (isBayStopped(bayKey)) {
+			ApplicationLauncher.logger.info("showInlineBayError : Suppressing error popup because bay is stopped: " + bayKey);
+			return;
+		}
+
 		Platform.runLater(() -> {
 			List<AnchorPane> targetContainers = new java.util.ArrayList<>();
 
@@ -2415,6 +2185,7 @@ public class DashboardController implements Initializable {
 					continue;
 
 				javafx.scene.layout.VBox overlay = new javafx.scene.layout.VBox();
+				overlay.setId("bay-error-overlay");
 				overlay.setAlignment(javafx.geometry.Pos.CENTER);
 				overlay.setSpacing(10);
 				// Semi-transparent dark red background, rounded corners
@@ -2442,8 +2213,7 @@ public class DashboardController implements Initializable {
 				overlay.getChildren().addAll(titleLabel, errorLabel, closeBtn);
 
 				// Ensure we don't stack multiple overlays
-				container.getChildren().removeIf(node -> node instanceof javafx.scene.layout.VBox &&
-						node.getStyle().contains("rgba(178, 34, 34, 0.9)"));
+				container.getChildren().removeIf(node -> "bay-error-overlay".equals(node.getId()));
 
 				container.getChildren().add(overlay);
 			}
@@ -3202,5 +2972,22 @@ public class DashboardController implements Initializable {
 
 	public BayIndicatorManager getBayIndicatorManager() {
 		return bayIndicatorManager;
+	}
+
+	@Override
+	public void updateBayUI(String bayKey, boolean isRunning) {
+		javafx.application.Platform.runLater(() -> {
+			AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
+			if (targetBay != null) {
+				if (isRunning) {
+					highlightGreenBay(targetBay);
+				} else {
+					resetBayHighlight(targetBay);
+					if (bayIndicatorManager != null) {
+						bayIndicatorManager.stopAllBlinkersForBay(bayKey);
+					}
+				}
+			}
+		});
 	}
 }

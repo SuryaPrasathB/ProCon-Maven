@@ -69,4 +69,13 @@ public class BayThreadManager {
             oldEngine.requestStop();
         }
     }
+
+    /**
+     * Gets the currently active BayStateEngine for the specified bay.
+     * @param bayKey The unique identifier for the bay
+     * @return the active engine, or null if none is running
+     */
+    public static synchronized BayStateEngine getEngine(String bayKey) {
+        return activeEngines.get(bayKey);
+    }
 }

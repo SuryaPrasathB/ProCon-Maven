@@ -9,13 +9,24 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
+import com.tasnetwork.calibration.conveyor.bay.BayStateEngine;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
+import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
+import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
+import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
+import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
 import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
+import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
+import com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2;
+import com.tasnetwork.calibration.conveyor.bay.comm.Comm;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.constant.ConstantStateModes;
 import com.tasnetwork.calibration.conveyor.dashboard.PalletController.BayActionType;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
@@ -47,9 +58,9 @@ public class BayActionHandler {
 	public void handleActionByBayType(PalletController.BayActionType actionType) {
 		new Thread(() -> {
 			if (actionType == PalletController.BayActionType.BAY_START ||
-				actionType == PalletController.BayActionType.BAY_STOP ||
-				actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
-				actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+					actionType == PalletController.BayActionType.BAY_STOP ||
+					actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
+					actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
 				handleEngineLifecycleActions(actionType);
 				return;
 			}
@@ -152,21 +163,6 @@ public class BayActionHandler {
 
 	private void handleRejectionBayAction(BayActionType actionType) {
 		switch (actionType) {
-			/*
-			 * case FINGERTIP_ENGAGE:
-			 * engageSTANLD2Fingertip();
-			 * break;
-			 * case FINGERTIP_DISENGAGE:
-			 * disengageSTANLD2Fingertip();
-			 * break;
-			 * case BLOCK_BAY_EXIT:
-			 * closeSTANLD2BayStopper1();
-			 * break;
-			 * case RELEASE_METER_FROM_BAY:
-			 * openSTANLD2BayStopper1();
-			 * break;
-			 */
-
 			case NO_ENTRY_ACTIVE:
 				noEntryActiveRejection();
 				break;
@@ -183,20 +179,6 @@ public class BayActionHandler {
 
 	private void handleUnloadingBayAction(BayActionType actionType) {
 		switch (actionType) {
-			/*
-			 * case FINGERTIP_ENGAGE:
-			 * engageSTANLD2Fingertip();
-			 * break;
-			 * case FINGERTIP_DISENGAGE:
-			 * disengageSTANLD2Fingertip();
-			 * break;
-			 * case BLOCK_BAY_EXIT:
-			 * closeSTANLD2BayStopper1();
-			 * break;
-			 * case RELEASE_METER_FROM_BAY:
-			 * openSTANLD2BayStopper1();
-			 * break;
-			 */
 			case NO_ENTRY_ACTIVE:
 				noEntryActiveUnloading();
 				break;
@@ -663,17 +645,6 @@ public class BayActionHandler {
 					.debug("refreshMultiplePalletInBay: fetchPalletsByBayState: getPalletDistinctId:    "
 							+ eachPalletManage.getPalletDistinctId());
 			palletDistinctIdList.add(eachPalletManage.getPalletDistinctId());
-			// ApplicationLauncher.logger.debug("refreshDashBoard : fetchPalletsByBayState:
-			// palletQrId: " + palletQrId);
-
-			/*
-			 * if(eachPalletManage.getPalletDistinctId().contains(palletQrId)) {
-			 * scannedPalletQrIdExist = true;
-			 * ApplicationLauncher.logger.
-			 * debug("refreshDashBoard : fetchPalletsByBayState: scannedPalletQrIdExist in fetch list"
-			 * );
-			 * }
-			 */
 		}
 
 		if (palletManageList.size() > noOfPalletsAcceptedInBay) {
@@ -706,29 +677,29 @@ public class BayActionHandler {
 					meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
 							eachPalletMeter.getMeterSerialNo());
 				}
-				// ConveyorDeviceDataManagerController.getDashboardObject().removePalletFromBay(selectedBayTypeKey);
+
 				palletName = eachPalletManage.getPalletQrId();
 				ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: palletName: " + palletName);
-
-				// ConveyorDeviceDataManagerController.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName,
-				// meterListWithSerialNoMap);
-				// ConveyorDeviceDataManagerController.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName,
-				// meterListWithSerialNoMap);
 
 				String specificBayKey = eachPalletManage.getPresentBayKey();
 				ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: specificBayKey: " + specificBayKey);
 
 				if (specificBayKey != null && !specificBayKey.isEmpty()) {
 					if (bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) {
-						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName, meterListWithSerialNoMap);
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName,
+								meterListWithSerialNoMap);
 					} else if (bayKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName, meterListWithSerialNoMap);
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableVerificationBay(palletName,
+								meterListWithSerialNoMap);
 					} else if (bayKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta1Bay(palletName, meterListWithSerialNoMap);
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta1Bay(palletName,
+								meterListWithSerialNoMap);
 					} else if (bayKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta2Bay(palletName, meterListWithSerialNoMap);
+						ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableSta2Bay(palletName,
+								meterListWithSerialNoMap);
 					} else {
-						ConveyorDataManager.getDashboardObject().addNewPalletViewDashboard(specificBayKey, palletName, meterListWithSerialNoMap);
+						ConveyorDataManager.getDashboardObject().addNewPalletViewDashboard(specificBayKey, palletName,
+								meterListWithSerialNoMap);
 					}
 				}
 				// added");
@@ -832,8 +803,8 @@ public class BayActionHandler {
 				meterListWithSerialNoMap.clear();
 				// myPalletManage = myPalletManageList.get(0);
 				palletMeterSetList = eachPalletManage.getPalletMeterList();
-				List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
-						.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
+				palletMeterSetList.stream().sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo))
+						.collect(Collectors.toList());
 				for (PalletMeter eachPalletMeter : palletMeterSetList) {
 					meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(),
 							eachPalletMeter.getMeterSerialNo());
@@ -1630,9 +1601,9 @@ public class BayActionHandler {
 		ApplicationLauncher.logger.warn("bypassModeActive: Entry for " + bayTypeKey);
 		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, true);
 		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, true);
-		
-		com.tasnetwork.calibration.conveyor.StateExecutorController sec = 
-			com.tasnetwork.calibration.conveyor.StateExecutorController.getInstance();
+
+		com.tasnetwork.calibration.conveyor.StateExecutorController sec = com.tasnetwork.calibration.conveyor.StateExecutorController
+				.getInstance();
 		if (sec != null) {
 			sec.triggerBypassByBayKey(bayTypeKey);
 		}
@@ -1640,107 +1611,155 @@ public class BayActionHandler {
 
 	private void bypassModeInActive() {
 		ApplicationLauncher.logger.warn("bypassModeInActive: Entry for " + bayTypeKey);
-		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, false);
+		ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, false);
 		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, false);
 	}
 
 	private void handleEngineLifecycleActions(PalletController.BayActionType actionType) {
-		com.tasnetwork.calibration.conveyor.StateExecutorController sec = 
-			com.tasnetwork.calibration.conveyor.StateExecutorController.getInstance();
-		
-		if (sec != null) {
-			if (actionType == PalletController.BayActionType.BAY_START) {
-				sec.triggerStartByBayKey(bayTypeKey);
-				return;
-			} else if (actionType == PalletController.BayActionType.BAY_STOP) {
-				sec.triggerStopByBayKey(bayTypeKey);
-				return;
-			} else if (actionType == PalletController.BayActionType.BAY_RESET) {
-				sec.triggerResetByBayKey(bayTypeKey);
-				return;
-			}
-		}
-
+		// Redirection to StateExecutorController removed, BayControlsManager handles UI
+		// updates.
 		if (actionType == PalletController.BayActionType.BAY_STOP) {
 			triggerStopFlagsForBay();
+			stopUIBlinkers();
+			BayThreadManager.cancelTask(getBaseBayKey());
 			return;
 		}
 
-		if (actionType == PalletController.BayActionType.BAY_START || 
-			actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
-			actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+		if (actionType == PalletController.BayActionType.BAY_START ||
+				actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
+				actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
 
-			String mode = com.tasnetwork.calibration.conveyor.constant.ConstantStateModes.RUN;
+			String mode = ConstantStateModes.RUN;
 			if (actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
-				mode = com.tasnetwork.calibration.conveyor.constant.ConstantStateModes.RELEASE_METERS;
+				mode = ConstantStateModes.RELEASE_METERS;
 			}
-			
+
 			// Stop current running process first
 			triggerStopFlagsForBay();
-			try { Thread.sleep(200); } catch (Exception e) {} // Give time for loop to break
-			
-			com.tasnetwork.calibration.conveyor.bay.BayStateContext context = getContextForBay();
+			try {
+				Thread.sleep(200);
+			} catch (Exception e) {
+			} // Give time for loop to break
+
+			BayStateContext context = getContextForBay();
 			if (context != null) {
 				// Clear stop flags
 				clearStopFlagsForBay();
-				com.tasnetwork.calibration.conveyor.bay.BayStateEngine engine = 
-					new com.tasnetwork.calibration.conveyor.bay.BayStateEngine(getBaseBayKey(), context, mode);
+				BayStateEngine engine = new BayStateEngine(getBaseBayKey(), context, mode);
 				if (actionType == PalletController.BayActionType.RUN_BAY_ONCE) {
 					engine.requestRunOnce();
 				}
-				new java.util.Timer().schedule(engine, 100);
+				BayThreadManager.scheduleTask(getBaseBayKey(), engine, actionType.name());
 			}
 		}
 	}
-	
+
+	private void stopUIBlinkers() {
+		BayViewController bayViewController = new BayViewController();
+		bayViewController.stopBlinkingAllPalletsExistInBayIndicator();
+		bayViewController.stopBlinkingAllPalletsExistInTargetBayIndicator();
+		bayViewController.stopBlinkingEntryStopperOpenIndicator();
+		bayViewController.stopBlinkingExitStopperOpenIndicator();
+		bayViewController.stopBlinkingPalletsExistInQueueIndicator();
+	}
+
 	private String getBaseBayKey() {
-		if (bayTypeKey.startsWith(ConstantConveyor.WAITING_BAY_KEY)) return ConstantConveyor.WAITING_BAY_KEY;
-		if (bayTypeKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY)) return ConstantConveyor.VERIFICATION_BAY_KEY;
-		if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY)) return ConstantConveyor.STA_NLD1_BAY_KEY;
-		if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY)) return ConstantConveyor.STA_NLD2_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.WAITING_BAY_KEY))
+			return ConstantConveyor.WAITING_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY))
+			return ConstantConveyor.VERIFICATION_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY))
+			return ConstantConveyor.STA_NLD1_BAY_KEY;
+		if (bayTypeKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY))
+			return ConstantConveyor.STA_NLD2_BAY_KEY;
 		return bayTypeKey;
 	}
 
-	private com.tasnetwork.calibration.conveyor.bay.BayStateContext getContextForBay() {
+	private BayStateContext getContextForBay() {
 		switch (getBaseBayKey()) {
-			case ConstantConveyor.FT_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.ft.Ft();
-			case ConstantConveyor.HV_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.hv.Hv();
-			case ConstantConveyor.IR_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.ir.Ir();
-			case ConstantConveyor.CALIBRATION_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.calib.Calib();
-			case ConstantConveyor.WAITING_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting();
-			case ConstantConveyor.VERIFICATION_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.verific.Verification();
-			case ConstantConveyor.STA_NLD1_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1();
-			case ConstantConveyor.STA_NLD2_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2();
-			case ConstantConveyor.COMMUNICATION_BAY_KEY: return new com.tasnetwork.calibration.conveyor.bay.comm.Comm();
+			case ConstantConveyor.FT_BAY_KEY:
+				return new Ft();
+			case ConstantConveyor.HV_BAY_KEY:
+				return new Hv();
+			case ConstantConveyor.IR_BAY_KEY:
+				return new Ir();
+			case ConstantConveyor.CALIBRATION_BAY_KEY:
+				return new Calib();
+			case ConstantConveyor.WAITING_BAY_KEY:
+				return new VerificWaiting();
+			case ConstantConveyor.VERIFICATION_BAY_KEY:
+				return new Verification();
+			case ConstantConveyor.STA_NLD1_BAY_KEY:
+				return new StaNld_Bay1();
+			case ConstantConveyor.STA_NLD2_BAY_KEY:
+				return new StaNld_Bay2();
+			case ConstantConveyor.COMMUNICATION_BAY_KEY:
+				return new Comm();
 		}
 		return null;
 	}
 
 	private void triggerStopFlagsForBay() {
 		switch (getBaseBayKey()) {
-			case ConstantConveyor.FT_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ft.Ft.stopProcessRequestedFtBay = true; break;
-			case ConstantConveyor.HV_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.hv.Hv.stopProcessRequestedHvtBay = true; break;
-			case ConstantConveyor.IR_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ir.Ir.stopProcessRequestedIrtBay = true; break;
-			case ConstantConveyor.CALIBRATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.calib.Calib.stopProcessRequestedCalibBay = true; break;
-			case ConstantConveyor.WAITING_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting.stopProcessRequestedWaitingBay = true; break;
-			case ConstantConveyor.VERIFICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific.Verification.stopProcessRequestedVerificBay = true; break;
-			case ConstantConveyor.STA_NLD1_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1.stopProcessRequestedStaNldBay1 = true; break;
-			case ConstantConveyor.STA_NLD2_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2.stopProcessRequestedStaNldBay2 = true; break;
-			case ConstantConveyor.COMMUNICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.comm.Comm.stopProcessRequestedCommBay = true; break;
+			case ConstantConveyor.FT_BAY_KEY:
+				Ft.stopProcessRequestedFtBay = true;
+				break;
+			case ConstantConveyor.HV_BAY_KEY:
+				Hv.stopProcessRequestedHvtBay = true;
+				break;
+			case ConstantConveyor.IR_BAY_KEY:
+				Ir.stopProcessRequestedIrtBay = true;
+				break;
+			case ConstantConveyor.CALIBRATION_BAY_KEY:
+				Calib.stopProcessRequestedCalibBay = true;
+				break;
+			case ConstantConveyor.WAITING_BAY_KEY:
+				VerificWaiting.stopProcessRequestedWaitingBay = true;
+				break;
+			case ConstantConveyor.VERIFICATION_BAY_KEY:
+				Verification.stopProcessRequestedVerificBay = true;
+				break;
+			case ConstantConveyor.STA_NLD1_BAY_KEY:
+				StaNld_Bay1.stopProcessRequestedStaNldBay1 = true;
+				break;
+			case ConstantConveyor.STA_NLD2_BAY_KEY:
+				StaNld_Bay2.stopProcessRequestedStaNldBay2 = true;
+				break;
+			case ConstantConveyor.COMMUNICATION_BAY_KEY:
+				Comm.stopProcessRequestedCommBay = true;
+				break;
 		}
 	}
 
 	private void clearStopFlagsForBay() {
 		switch (getBaseBayKey()) {
-			case ConstantConveyor.FT_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ft.Ft.stopProcessRequestedFtBay = false; break;
-			case ConstantConveyor.HV_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.hv.Hv.stopProcessRequestedHvtBay = false; break;
-			case ConstantConveyor.IR_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.ir.Ir.stopProcessRequestedIrtBay = false; break;
-			case ConstantConveyor.CALIBRATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.calib.Calib.stopProcessRequestedCalibBay = false; break;
-			case ConstantConveyor.WAITING_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting.stopProcessRequestedWaitingBay = false; break;
-			case ConstantConveyor.VERIFICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.verific.Verification.stopProcessRequestedVerificBay = false; break;
-			case ConstantConveyor.STA_NLD1_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1.stopProcessRequestedStaNldBay1 = false; break;
-			case ConstantConveyor.STA_NLD2_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2.stopProcessRequestedStaNldBay2 = false; break;
-			case ConstantConveyor.COMMUNICATION_BAY_KEY: com.tasnetwork.calibration.conveyor.bay.comm.Comm.stopProcessRequestedCommBay = false; break;
+			case ConstantConveyor.FT_BAY_KEY:
+				Ft.stopProcessRequestedFtBay = false;
+				break;
+			case ConstantConveyor.HV_BAY_KEY:
+				Hv.stopProcessRequestedHvtBay = false;
+				break;
+			case ConstantConveyor.IR_BAY_KEY:
+				Ir.stopProcessRequestedIrtBay = false;
+				break;
+			case ConstantConveyor.CALIBRATION_BAY_KEY:
+				Calib.stopProcessRequestedCalibBay = false;
+				break;
+			case ConstantConveyor.WAITING_BAY_KEY:
+				VerificWaiting.stopProcessRequestedWaitingBay = false;
+				break;
+			case ConstantConveyor.VERIFICATION_BAY_KEY:
+				Verification.stopProcessRequestedVerificBay = false;
+				break;
+			case ConstantConveyor.STA_NLD1_BAY_KEY:
+				StaNld_Bay1.stopProcessRequestedStaNldBay1 = false;
+				break;
+			case ConstantConveyor.STA_NLD2_BAY_KEY:
+				StaNld_Bay2.stopProcessRequestedStaNldBay2 = false;
+				break;
+			case ConstantConveyor.COMMUNICATION_BAY_KEY:
+				Comm.stopProcessRequestedCommBay = false;
+				break;
 		}
 	}
 }

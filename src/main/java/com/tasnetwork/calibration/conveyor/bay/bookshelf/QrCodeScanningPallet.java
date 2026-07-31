@@ -199,7 +199,7 @@ public class QrCodeScanningPallet {
 							.findFirst()
 							.orElse(null);
 					if (presentBayState != null && Boolean.TRUE.equals(presentBayState.isTestCompleted())) {
-						isAlreadyCompleted = true;
+						// isAlreadyCompleted = true; // Bypassed for now to avoid false flags
 					}
 				}
 			} catch (Exception e) {

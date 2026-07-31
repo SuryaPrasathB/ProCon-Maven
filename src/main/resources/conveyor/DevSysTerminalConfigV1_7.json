@@ -15,9 +15,9 @@
 			    "TotalNoOfBays": "6",
 			    "ClusterDetails": [	
                   
-			    				{ "clusterId":"1", "Name": "Cluster1", "ClusterIpAddress": "192.168.1.123",   "ClusterPortId": "502" , "bay": [{"bayId":"1", "bayName":"FT_Bay" }, {"bayId":"2", "bayName":"HVT_Bay" }, {"bayId":"3", "bayName":"IRT_Bay" } ] } ,
-							    { "clusterId":"2", "Name": "Cluster2", "ClusterIpAddress": "192.168.1.124",   "ClusterPortId": "502" , "bay": [{"bayId":"4", "bayName":"CalibTest_Bay" }, {"bayId":"5", "bayName":"Waiting_Bay" }, {"bayId":"6", "bayName":"Verific_Bay" }, {"bayId":"7", "bayName":"SCT_NLT_Bay1" } ]} ,
-							    { "clusterId":"3", "Name": "Cluster3", "ClusterIpAddress": "192.168.1.125",   "ClusterPortId": "502" , "bay": [{"bayId":"8", "bayName":"SCT_NLT_Bay2" }, {"bayId":"9", "bayName":"CommTest_Bay" }, {"bayId":"10", "bayName":"Unloading_Bay" },{"bayId":"11", "bayName":"Loading_Bay" },{"bayId":"12", "bayName":"Reject_Bay" }  ]} ,
+			    				{ "clusterId":"1", "Name": "Cluster1", "ClusterIpAddress": "127.0.0.1",   "ClusterPortId": "502" , "bay": [{"bayId":"1", "bayName":"FT_Bay" }, {"bayId":"2", "bayName":"HVT_Bay" }, {"bayId":"3", "bayName":"IRT_Bay" } ] } ,
+							    { "clusterId":"2", "Name": "Cluster2", "ClusterIpAddress": "127.0.0.1",   "ClusterPortId": "502" , "bay": [{"bayId":"4", "bayName":"CalibTest_Bay" }, {"bayId":"5", "bayName":"Waiting_Bay" }, {"bayId":"6", "bayName":"Verific_Bay" }, {"bayId":"7", "bayName":"SCT_NLT_Bay1" } ]} ,
+							    { "clusterId":"3", "Name": "Cluster3", "ClusterIpAddress": "127.0.0.1",   "ClusterPortId": "502" , "bay": [{"bayId":"8", "bayName":"SCT_NLT_Bay2" }, {"bayId":"9", "bayName":"CommTest_Bay" }, {"bayId":"10", "bayName":"Unloading_Bay" },{"bayId":"11", "bayName":"Loading_Bay" },{"bayId":"12", "bayName":"Reject_Bay" }  ]} ,
 			    			  	{ "clusterId":"4", "Name": "Cluster4", "ClusterIpAddress": "127.0.0.1",       "ClusterPortId": "5001" , "bay": [{"bayId":"13", "bayName":"RejectDisplay" }  ]} ,
 			    			 	{ "clusterId":"5", "Name": "Cluster5", "ClusterIpAddress": "127.0.0.1",       "ClusterPortId": "5002" , "bay": [{"bayId":"14", "bayName":"UnloadingDisplay" }  ]} 
 			    			 

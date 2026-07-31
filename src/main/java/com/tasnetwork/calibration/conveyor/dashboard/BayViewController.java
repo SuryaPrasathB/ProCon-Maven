@@ -210,6 +210,10 @@ public class BayViewController {
 		if (rectPalletsExistInQueue == null)
 			return;
 
+		if (blinkTimelinePalletsExistInQueue != null) {
+			blinkTimelinePalletsExistInQueue.stop();
+		}
+
 		blinkTimelinePalletsExistInQueue = new Timeline(
 				new KeyFrame(Duration.seconds(0.5), e -> rectPalletsExistInQueue.setFill(Color.YELLOW)),
 				new KeyFrame(Duration.seconds(1.0), e -> rectPalletsExistInQueue.setFill(Color.TRANSPARENT)));
@@ -220,13 +224,17 @@ public class BayViewController {
 	public void stopBlinkingPalletsExistInQueueIndicator() {
 		if (blinkTimelinePalletsExistInQueue != null) {
 			blinkTimelinePalletsExistInQueue.stop();
-			rectPalletsExistInQueue.setFill(Color.TRANSPARENT);
+			rectPalletsExistInQueue.setFill(rectPalletsExistInQueue.getFill() == Color.YELLOW ? Color.LIMEGREEN : rectPalletsExistInQueue.getFill());
 		}
 	}
 
 	public void startBlinkingEntryStopperOpenIndicator() {
 		if (rectEntryStopperOpen == null)
 			return;
+
+		if (blinkTimelineEntryStopperOpen != null) {
+			blinkTimelineEntryStopperOpen.stop();
+		}
 
 		blinkTimelineEntryStopperOpen = new Timeline(
 				new KeyFrame(Duration.seconds(0.5), e -> rectEntryStopperOpen.setFill(Color.YELLOW)),
@@ -238,13 +246,17 @@ public class BayViewController {
 	public void stopBlinkingEntryStopperOpenIndicator() {
 		if (blinkTimelineEntryStopperOpen != null) {
 			blinkTimelineEntryStopperOpen.stop();
-			rectEntryStopperOpen.setFill(Color.TRANSPARENT);
+			rectEntryStopperOpen.setFill(!isEntryClosed ? Color.LIMEGREEN : Color.RED);
 		}
 	}
 
 	public void startBlinkingExitStopperOpenIndicator() {
 		if (rectExitStopperOpen == null)
 			return;
+
+		if (blinkTimelineExitStopperOpen != null) {
+			blinkTimelineExitStopperOpen.stop();
+		}
 
 		blinkTimelineExitStopperOpen = new Timeline(
 				new KeyFrame(Duration.seconds(0.5), e -> rectExitStopperOpen.setFill(Color.YELLOW)),
@@ -256,13 +268,17 @@ public class BayViewController {
 	public void stopBlinkingExitStopperOpenIndicator() {
 		if (blinkTimelineExitStopperOpen != null) {
 			blinkTimelineExitStopperOpen.stop();
-			rectExitStopperOpen.setFill(Color.TRANSPARENT);
+			rectExitStopperOpen.setFill(!isExitClosed ? Color.LIMEGREEN : Color.RED);
 		}
 	}
 
 	public void startBlinkingAllPalletsExistInBayIndicator() {
 		if (rectAllPalletsExistInBay == null)
 			return;
+
+		if (blinkTimelineAllPalletsExistInBay != null) {
+			blinkTimelineAllPalletsExistInBay.stop();
+		}
 
 		blinkTimelineAllPalletsExistInBay = new Timeline(
 				new KeyFrame(Duration.seconds(0.5), e -> rectAllPalletsExistInBay.setFill(Color.YELLOW)),
@@ -274,13 +290,17 @@ public class BayViewController {
 	public void stopBlinkingAllPalletsExistInBayIndicator() {
 		if (blinkTimelineAllPalletsExistInBay != null) {
 			blinkTimelineAllPalletsExistInBay.stop();
-			rectAllPalletsExistInBay.setFill(Color.TRANSPARENT);
+			rectAllPalletsExistInBay.setFill(rectAllPalletsExistInBay.getFill() == Color.YELLOW ? Color.LIMEGREEN : rectAllPalletsExistInBay.getFill());
 		}
 	}
 
 	public void startBlinkingAllPalletsExistInTargetBayIndicator() {
 		if (rectAllPalletsExistInTargetBay == null)
 			return;
+
+		if (blinkTimelineAllPalletsExistInTargetBay != null) {
+			blinkTimelineAllPalletsExistInTargetBay.stop();
+		}
 
 		blinkTimelineAllPalletsExistInTargetBay = new Timeline(
 				new KeyFrame(Duration.seconds(0.5), e -> rectAllPalletsExistInTargetBay.setFill(Color.YELLOW)),
@@ -292,7 +312,7 @@ public class BayViewController {
 	public void stopBlinkingAllPalletsExistInTargetBayIndicator() {
 		if (blinkTimelineAllPalletsExistInTargetBay != null) {
 			blinkTimelineAllPalletsExistInTargetBay.stop();
-			rectAllPalletsExistInTargetBay.setFill(Color.TRANSPARENT);
+			rectAllPalletsExistInTargetBay.setFill(rectAllPalletsExistInTargetBay.getFill() == Color.YELLOW ? Color.LIMEGREEN : rectAllPalletsExistInTargetBay.getFill());
 		}
 	}
 
@@ -357,6 +377,14 @@ public class BayViewController {
 	public void resetAllPalletsExistInBayIndicator() {
 		stopBlinkingAllPalletsExistInBayIndicator();
 		rectAllPalletsExistInBay.setFill(Color.TRANSPARENT);
+	}
+
+	public void stopAllBlinkers() {
+		stopBlinkingEntryStopperOpenIndicator();
+		stopBlinkingExitStopperOpenIndicator();
+		stopBlinkingAllPalletsExistInBayIndicator();
+		stopBlinkingPalletsExistInQueueIndicator();
+		stopBlinkingAllPalletsExistInTargetBayIndicator();
 	}
 
 	public void resetPalletsExistInQueueIndicator() {
@@ -528,9 +556,10 @@ public class BayViewController {
 		presentProgressBarTimeInSec = 0;
 
 		try {
-			timeProgressBarTimeline.stop();
-			// pBarExecution.setProgress(-1.0);
-			ApplicationLauncher.logger.info("stopProgressBarWithTime :Stopped");
+			if (timeProgressBarTimeline != null) {
+				timeProgressBarTimeline.stop();
+				ApplicationLauncher.logger.info("stopProgressBarWithTime :Stopped");
+			}
 		} catch (Exception e1) {
 			ApplicationLauncher.logger.error("stopProgressBarWithTime: Exception: " + e1.getMessage());
 		}
@@ -570,9 +599,10 @@ public class BayViewController {
 		testPointCompleted = 0;
 
 		try {
-			tpCountProgressBarTimeline.stop();
-			// pBarExecution.setProgress(-1.0);
-			ApplicationLauncher.logger.info("stopProgressBarWithTpCount :Stopped");
+			if (tpCountProgressBarTimeline != null) {
+				tpCountProgressBarTimeline.stop();
+				ApplicationLauncher.logger.info("stopProgressBarWithTpCount :Stopped");
+			}
 		} catch (Exception e1) {
 			ApplicationLauncher.logger.error("stopProgressBarWithTpCount: Exception: " + e1.getMessage());
 		}

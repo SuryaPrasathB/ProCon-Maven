@@ -17,13 +17,7 @@ public class BayTransitionValidator {
 
         List<PalletBayState> sortedStates = palletManage.getPalleteBayStateList().stream()
                 .filter(state -> state.getPalletBayEntryTimeEpoch() != null && !state.getPalletBayEntryTimeEpoch().isEmpty())
-                .sorted(Comparator.comparingLong(state -> {
-                    try {
-                        return Long.parseLong(state.getPalletBayEntryTimeEpoch());
-                    } catch (NumberFormatException e) {
-                        return 0L;
-                    }
-                }))
+                .sorted(Comparator.comparingLong(PalletBayState::getNormalizedEntryTimeMilli))
                 .collect(Collectors.toList());
 
         StringBuilder errorDetails = new StringBuilder();
@@ -38,8 +32,8 @@ public class BayTransitionValidator {
             }
 
             try {
-                long currentExit = Long.parseLong(currentState.getPalletBayExitTimeEpoch());
-                long nextEntry = Long.parseLong(nextState.getPalletBayEntryTimeEpoch());
+                long currentExit = currentState.getNormalizedExitTimeMilli();
+                long nextEntry = nextState.getNormalizedEntryTimeMilli();
 
                 if (nextEntry < currentExit) {
                     errorDetails.append(String.format("Overlap: Entered %s before exiting %s. ", 

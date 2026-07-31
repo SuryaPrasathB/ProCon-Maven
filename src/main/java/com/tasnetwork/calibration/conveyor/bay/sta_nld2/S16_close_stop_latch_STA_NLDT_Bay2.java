@@ -74,7 +74,8 @@ public class S16_close_stop_latch_STA_NLDT_Bay2 implements STA_NoLoadTestBay2Sta
 
             status = state.equals(Constant_IO_ActionMapping.ON) ? true : false;
             PalletTrackerController palletTracker = new PalletTrackerController();
-            palletTracker.switchBatchToNextBay(myBayKey, ConstantConveyor.UNLOADING_BAY_KEY);
+            // Log entry to next bay after the wait (decoupled from exit)
+            palletTracker.enterBatchToNextBay(myBayKey, ConstantConveyor.UNLOADING_BAY_KEY);
             if (StateExecutorController.simulateSCTNLTBay2HappyPath) {
                 status = true;
             }

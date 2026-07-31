@@ -58,6 +58,9 @@ public class S221_close_stop_latch2_Verific_Bay implements VerificTestBayState {
             // BayUtils.delay(15000); // Delay for Pallets to reach destination Bay
             int palletMoveMentWaitTimeInSec = ConstantConveyorConfig.VERIFIC_TO_STA2_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC;// 30;
             Verification.logger.info("S221_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta2 : start:");
+
+            // Log exit from current bay before the wait
+            palletTracker.exitBatchFromPresentBay(myBayKey);
             while ((palletMoveMentWaitTimeInSec > 0) && (!BayUtils.isUserAborted())) {
                 Verification.logger.info(
                         "S221_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta2 : palletMoveMentWaitTimeInSec: "
@@ -85,7 +88,8 @@ public class S221_close_stop_latch2_Verific_Bay implements VerificTestBayState {
                 }
             }
 
-            palletTracker.switchBatchToNextBay(myBayKey, ConstantConveyor.STA_NLD2_BAY_KEY);
+            // Log entry to next bay after the wait
+            palletTracker.enterBatchToNextBay(myBayKey, ConstantConveyor.STA_NLD2_BAY_KEY);
             Verification.logger.info("S22_close_stop_latch2_Verific_Bay : Pallets Cleared");
             // ConstantConveyor.VERIFICATION_BAY_PALLETS_CLEARED = true;
             ConveyorDataManager.setVerific1PalletsAllCleared(true);

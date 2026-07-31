@@ -99,12 +99,18 @@ public class BayStateEngine extends TimerTask {
                     context.setNextState(nextStateName, "");
                 }
 
-                // Re-fetch the current row for the next iteration
+                boolean foundNextState = false;
                 for (StateFlow row : statePlanner) {
                     if (row.getState().equals(nextStateName)) {
                         nextRow = row;
+                        foundNextState = true;
                         break;
                     }
+                }
+                
+                if (!foundNextState) {
+                    logger.warn("BayStateEngine : Next state '" + nextStateName + "' not found in planner for BayKey: " + bayKey + ". Stopping engine.");
+                    break; // Break out of the execution loop if the next state isn't in the database
                 }
             } else {
                 // FAILURE
@@ -119,11 +125,18 @@ public class BayStateEngine extends TimerTask {
                     context.setNextState(nextStateName, errorCode);
                 }
 
+                boolean foundNextState = false;
                 for (StateFlow row : statePlanner) {
                     if (row.getState().equals(nextStateName)) {
                         nextRow = row;
+                        foundNextState = true;
                         break;
                     }
+                }
+                
+                if (!foundNextState) {
+                    logger.warn("BayStateEngine : Next state '" + nextStateName + "' not found in planner for BayKey: " + bayKey + ". Stopping engine.");
+                    break; // Break out of the execution loop if the next state isn't in the database
                 }
             }
         }
@@ -145,6 +158,10 @@ public class BayStateEngine extends TimerTask {
                 logger.warn("Exception while interrupting BayStateEngine thread for " + bayKey, e);
             }
         }
+    }
+
+    public boolean isStopRequested() {
+        return this.stopRequested;
     }
 
     public boolean isFinished() {

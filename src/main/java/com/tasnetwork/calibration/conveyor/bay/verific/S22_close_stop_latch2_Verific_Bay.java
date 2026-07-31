@@ -58,16 +58,21 @@ public class S22_close_stop_latch2_Verific_Bay implements VerificTestBayState {
              * ConstantConveyor.STA_NLD1_BAY_KEY);
              */
             int palletMoveMentWaitTimeInSec = ConstantConveyorConfig.VERIFIC_TO_STA1_BAY_PALLET_MOVEMENT_WAIT_TIME_IN_SEC;// 30;
-            Verification.logger.info("S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : start:");
+            Verification.logger.info("S22_close_stop_latch2_Verific_Bay : palletMoveMentWaiting start:");
+
+            // Log exit from current bay before the wait
+            palletTracker.exitBatchFromPresentBay(myBayKey);
+
             while ((palletMoveMentWaitTimeInSec > 0) && (!BayUtils.isUserAborted())) {
-                Verification.logger.info(
-                        "S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaitTimeInSec: "
-                                + palletMoveMentWaitTimeInSec);
+                Verification.logger.info("S22_close_stop_latch2_Verific_Bay : Stop Latch Opened : palletMoveMentWaitTimeInSec: "
+                        + palletMoveMentWaitTimeInSec);
                 BayUtils.delay(1000);
                 palletMoveMentWaitTimeInSec--;
             }
-            Verification.logger.info(
-                    "S22_close_stop_latch2_Verific_Bay : palletMoveMentverificToSta1 : palletMoveMentWaiting stop:");
+            Verification.logger.info("S22_close_stop_latch2_Verific_Bay : palletMoveMentWaiting stop:");
+
+            // Log entry to next bay after the wait
+            palletTracker.enterBatchToNextBay(myBayKey, ConstantConveyor.STA_NLD1_BAY_KEY);
 
             // BayUtils.delay(10000); // Delay for Pallets to reach destination Bay
 
