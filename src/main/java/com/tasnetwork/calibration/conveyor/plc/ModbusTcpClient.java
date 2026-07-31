@@ -145,7 +145,7 @@ public class ModbusTcpClient {
 	}
 
 	public boolean modbusConnect(String address, int port) throws java.net.UnknownHostException, java.io.IOException {
-		ModbusTcpClient.logger.debug("modbusConnect2 : Entry");
+		ModbusTcpClient.logger.debug("modbusConnect : Entry");
 		boolean status = false;
 		// ModbusClient modbusClient = new ModbusClient(address,port);
 		try {
@@ -156,9 +156,9 @@ public class ModbusTcpClient {
 			ModbusClient modbus = new ModbusClient(address, port);
 
 			modbusClient = modbus;
-			// modbusClient.setConnectionTimeout(5);
+
 			modbusClient.Connect();
-			ModbusTcpClient.logger.debug("modbusConnect : address2: " + modbusClient.getipAddress());
+			ModbusTcpClient.logger.debug("modbusConnect : address: " + modbusClient.getipAddress());
 			status = true;
 			setPlcCommSuccess(true);
 		} catch (Exception e) {

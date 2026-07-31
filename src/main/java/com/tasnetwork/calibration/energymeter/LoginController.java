@@ -60,9 +60,6 @@ public class LoginController extends AnchorPane {
 		ref_lblProfileDisplay = lblProfileDisplay;
 		ref_cmbBxProfileDisplay = cmbBxProfileDisplay;
 
-		ref_txt_username.setText("admin");
-		ref_txt_password.setText("admin");
-
 		updateProfileDisplay();
 		if (!ConstantAppConfig.DEFAULT_LOGIN_ID_POPULATE_ENABLED) {
 			ref_txt_username.setText("");
@@ -75,6 +72,9 @@ public class LoginController extends AnchorPane {
 				}
 			});
 		}
+
+		ref_txt_username.setText("admin");
+		ref_txt_password.setText("admin");
 
 	}
 

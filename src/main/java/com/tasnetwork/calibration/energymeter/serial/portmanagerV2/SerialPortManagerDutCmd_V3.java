@@ -67,7 +67,8 @@ public class SerialPortManagerDutCmd_V3 {
 	}
 
 	private void createObjects() {
-		ApplicationLauncher.logger.debug("SerialPortManagerDut_V2: createObjects :Entry");
+		// ApplicationLauncher.logger.debug("SerialPortManagerDut_V2: createObjects
+		// :Entry");
 		// commPowerSrc = new Communicator(ConstantApp.SERIAL_PORT_POWER_SOURCE);
 		// commRefStandard = new Communicator(ConstantApp.SERIAL_PORT_REF_STD);
 		/*
@@ -85,7 +86,8 @@ public class SerialPortManagerDutCmd_V3 {
 		rxMsgQ_Dut = new SerialRxMessageQ_V2(commDut);
 		rxPhysical_Dut = new SerialRxPhysical_V2(commDut, rxMsgQ_Dut, false, "DutV3", ConstantDut.ER_TERMINATOR, "");
 
-		ApplicationLauncher.logger.debug("SerialPortManagerDut_V2: createObjects :Exit");
+		// ApplicationLauncher.logger.debug("SerialPortManagerDut_V2: createObjects
+		// :Exit");
 		// commVICI = new Communicator(ConstantPrimaryVICI_Meter.SERIAL_PORT_VICI);
 	}
 

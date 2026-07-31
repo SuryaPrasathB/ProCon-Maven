@@ -65,21 +65,21 @@ public class CommunicatorV2 {
 			 */
 
 			for (SerialPort S : portsAvailable) {
-				ApplicationLauncher.logger
-						.debug("Port Number                                -> .getSystemPortName()     -> "
-								+ S.getSystemPortName()); // Gives the number of com port,Eg COM9
-				ApplicationLauncher.logger
-						.debug("Port Physical Location (OS)                -> .getSystemPortPath()     -> "
-								+ S.getSystemPortPath());
-				ApplicationLauncher.logger
-						.debug("Port Physical Location (USB hub)           -> .getSystemPortLocation() -> "
-								+ S.getPortLocation());
-				ApplicationLauncher.logger
-						.debug("Port Description as reported by the device -> .getDescriptivePortName()-> "
-								+ S.getDescriptivePortName());
-				ApplicationLauncher.logger
-						.debug("Port Description  .toString()              ->  .toString()             -> "
-								+ S.toString() + "\n");
+				// ApplicationLauncher.logger
+				// 		.debug("Port Number                                -> .getSystemPortName()     -> "
+				// 				+ S.getSystemPortName()); // Gives the number of com port,Eg COM9
+				// ApplicationLauncher.logger
+				// 		.debug("Port Physical Location (OS)                -> .getSystemPortPath()     -> "
+				// 				+ S.getSystemPortPath());
+				// ApplicationLauncher.logger
+				// 		.debug("Port Physical Location (USB hub)           -> .getSystemPortLocation() -> "
+				// 				+ S.getPortLocation());
+				// ApplicationLauncher.logger
+				// 		.debug("Port Description as reported by the device -> .getDescriptivePortName()-> "
+				// 				+ S.getDescriptivePortName());
+				// ApplicationLauncher.logger
+				// 		.debug("Port Description  .toString()              ->  .toString()             -> "
+				// 				+ S.toString() + "\n");
 				portMap.put(S.getSystemPortName(), S.getSystemPortPath());
 			}
 		} catch (Exception e) {

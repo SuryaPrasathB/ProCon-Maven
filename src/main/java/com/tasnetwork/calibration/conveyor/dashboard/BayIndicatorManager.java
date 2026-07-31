@@ -422,30 +422,21 @@ public class BayIndicatorManager {
 	}
 
 	public void setHaltImageDisplayOn(String bayKey, boolean isDisplayOn) {
-		// updateIndicator(bayKey, bayController ->
-		// bayController.haltImageDisplayOn(isDisplayOn));
-		ApplicationLauncher.logger.debug("setHaltImageDisplayOn : input bayKey: " + bayKey);
-		ArrayList<String> eachBayGroupList = new ArrayList<String>();
-		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			ApplicationLauncher.logger.debug("setHaltImageDisplayOn : Hit1");
-			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 
+		ArrayList<String> eachBayGroupList = new ArrayList<String>();
+
+		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD1_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setHaltImageDisplayOn : Hit2");
 			eachBayGroupList = ConstantConveyor.STA_NLD1_BAY_KEY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setHaltImageDisplayOn : Hit3");
 			eachBayGroupList = ConstantConveyor.STA_NLD2_BAY_KEY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.WAITING_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setHaltImageDisplayOn : Hit4");
 			eachBayGroupList = ConstantConveyor.WAITING_BAY_GROUP_LIST;
 		}
+
 		if (eachBayGroupList.size() > 0) {
 			for (String eachSubBay : eachBayGroupList) {
-				ApplicationLauncher.logger.debug("setHaltImageDisplayOn : eachSubBay: " + eachSubBay);
 				updateIndicator(eachSubBay, bayController -> bayController.haltImageDisplayOn(isDisplayOn));
 			}
 		} else {
@@ -455,42 +446,24 @@ public class BayIndicatorManager {
 
 	}
 
-	/*
-	 * public void setNoEntryImageDisplayOn(String bayKey, boolean isDisplayOn) {
-	 * updateIndicator(bayKey, bayController ->
-	 * bayController.noEntryImageDisplayOn(isDisplayOn));
-	 * 
-	 * }
-	 */
-
 	public void setNoEntryImageDisplayOn(String bayKey, boolean isDisplayOn) {
 
-		ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : input bayKey: " + bayKey);
 		ArrayList<String> eachBayGroupList = new ArrayList<String>();
-		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : Hit1");
-			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 
+		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD1_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : Hit2");
 			eachBayGroupList = ConstantConveyor.STA_NLD1_BAY_KEY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : Hit3");
 			eachBayGroupList = ConstantConveyor.STA_NLD2_BAY_KEY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.WAITING_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : Hit4");
 			eachBayGroupList = ConstantConveyor.WAITING_BAY_GROUP_LIST;
 		}
 		if (eachBayGroupList.size() > 0) {
 			for (String eachSubBay : eachBayGroupList) {
-				ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : eachSubBay: " + eachSubBay);
 				updateIndicator(eachSubBay, bayController -> bayController.noEntryImageDisplayOn(isDisplayOn));
 			}
 		} else {
-			ApplicationLauncher.logger.debug("setNoEntryImageDisplayOn : bayKey: " + bayKey);
 			updateIndicator(bayKey, bayController -> bayController.noEntryImageDisplayOn(isDisplayOn));
 		}
 	}
@@ -500,78 +473,38 @@ public class BayIndicatorManager {
 	}
 
 	public void setPalletsLockedImageDisplayOn(String bayKey, boolean isDisplayOn) {
-		/*
-		 * //String internalBayKey = bayKey;
-		 * //Verification.logger.debug("setPalletsLockedImageDisplayOn : input bayKey: "
-		 * +bayKey);
-		 * 
-		 * if(internalBayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY )){
-		 * internalBayKey = ConstantConveyor.VERIFICATION_PP1_BAY_KEY;
-		 * Verification.logger.debug("setPalletsLockedImageDisplayOn : Hit1");
-		 * }else if(internalBayKey.contains(ConstantConveyor.STA_NLD1_BAY_KEY )){
-		 * internalBayKey = ConstantConveyor.STA_NLD1_PP1_BAY_KEY;
-		 * Verification.logger.debug("setPalletsLockedImageDisplayOn : Hit2");
-		 * }else if(internalBayKey.contains(ConstantConveyor.STA_NLD2_BAY_KEY )){
-		 * internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-		 * Verification.logger.debug("setPalletsLockedImageDisplayOn : Hit3");
-		 * }
-		 */
-		// ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : bayKey: "
-		// +bayKey);
-		// updateIndicator(bayKey, bayController ->
-		// bayController.palletsLockedImageDisplayOn(isDisplayOn));
-
-		ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : input bayKey: " + bayKey);
 		ArrayList<String> eachBayGroupList = new ArrayList<String>();
-		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : Hit1");
-			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 
+		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD1_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : Hit2");
 			eachBayGroupList = ConstantConveyor.STA_NLD1_BAY_KEY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : Hit3");
 			eachBayGroupList = ConstantConveyor.STA_NLD2_BAY_KEY_GROUP_LIST;
 		}
 		if (eachBayGroupList.size() > 0) {
 			for (String eachSubBay : eachBayGroupList) {
-				ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : eachSubBay: " + eachSubBay);
 				updateIndicator(eachSubBay, bayController -> bayController.palletsLockedImageDisplayOn(isDisplayOn));
 			}
 		} else {
-			ApplicationLauncher.logger.debug("setPalletsLockedImageDisplayOn : bayKey: " + bayKey);
 			updateIndicator(bayKey, bayController -> bayController.palletsLockedImageDisplayOn(isDisplayOn));
 		}
 	}
 
 	public void setGroupedPalletsLockedImageDisplayOn(String bayKey, boolean isDisplayOn) {
-		// String internalBayKey = bayKey;
-		ApplicationLauncher.logger.debug("setGroupedPalletsLockedImageDisplayOn : input bayKey: " + bayKey);
-		ArrayList<String> eachBayGroupList = new ArrayList<String>();
-		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
-			ApplicationLauncher.logger.debug("setGroupedPalletsLockedImageDisplayOn : Hit1");
-			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 
+		ArrayList<String> eachBayGroupList = new ArrayList<String>();
+
+		if (bayKey.contains(ConstantConveyor.VERIFICATION_BAY_KEY)) {
+			eachBayGroupList = ConstantConveyor.VERIFIC_BAY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD1_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD1_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setGroupedPalletsLockedImageDisplayOn : Hit2");
 			eachBayGroupList = ConstantConveyor.STA_NLD1_BAY_KEY_GROUP_LIST;
 		} else if (bayKey.contains(ConstantConveyor.STA_NLD2_BAY_KEY)) {
-			// internalBayKey = ConstantConveyor.STA_NLD2_PP1_BAY_KEY;
-			ApplicationLauncher.logger.debug("setGroupedPalletsLockedImageDisplayOn : Hit3");
 			eachBayGroupList = ConstantConveyor.STA_NLD2_BAY_KEY_GROUP_LIST;
 		}
 		for (String eachSubBay : eachBayGroupList) {
-			ApplicationLauncher.logger.debug("setGroupedPalletsLockedImageDisplayOn : eachSubBay: " + eachSubBay);
 			updateIndicator(eachSubBay, bayController -> bayController.palletsLockedImageDisplayOn(isDisplayOn));
 		}
-		// ApplicationLauncher.logger.debug("setGroupedPalletsLockedImageDisplayOn :
-		// internalBayKey: " +internalBayKey);
-		// updateIndicator(internalBayKey, bayController ->
-		// bayController.palletsLockedImageDisplayOn(isDisplayOn));
 	}
 
 	public void byPassModeImageDisplayOn(String bayKey, boolean isDisplayOn) {

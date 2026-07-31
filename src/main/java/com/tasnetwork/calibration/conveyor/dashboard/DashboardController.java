@@ -837,11 +837,10 @@ public class DashboardController implements Initializable {
 
 	private String getBayKeyForPalletContainer(AnchorPane container) {
 
-		ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: Entry ");
+		// ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: Entry ");
 		for (Map.Entry<String, AnchorPane> entry : bayKeyToPalletContainer.entrySet()) {
-			ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: entry.getValue(): " + entry.getValue());
+			// ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: entry.getValue(): " + entry.getValue());
 			if (entry.getValue() == container) {
-				ApplicationLauncher.logger.debug("getBayKeyForPalletContainer: Hit1 ");
 				return entry.getKey();
 			}
 		}
