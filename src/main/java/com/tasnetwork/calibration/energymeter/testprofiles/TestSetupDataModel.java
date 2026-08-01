@@ -11,7 +11,6 @@ public class TestSetupDataModel {
 	private final BooleanProperty isSelected;
 	private final BooleanProperty isSelected1;
 
-    private transient TestDataTypeEnum testDataTypeEnum1;
     private transient TestDataTypeEnum testDataTypeEnum;
     
 	public TestSetupDataModel(String testData, Boolean isSelected, TestDataTypeEnum dataTypeEnum, Boolean isSelected1, TestDataTypeEnum dataTypeEnum1) {
@@ -20,7 +19,6 @@ public class TestSetupDataModel {
 		this.isSelected = new SimpleBooleanProperty(isSelected);
 		this.testDataTypeEnum = dataTypeEnum;
 		this.isSelected1 = new SimpleBooleanProperty(isSelected1);
-		this.testDataTypeEnum1 = dataTypeEnum1;
 	}
 	
 	public StringProperty testDataProperty() {
@@ -80,7 +78,6 @@ public class TestSetupDataModel {
 	}	
 	
 	public void setTestDataTypeEnum1(TestDataTypeEnum enumValue1) {
-		this.testDataTypeEnum1 = enumValue1;
 	}
 	
 	public boolean equals(Object obj) {

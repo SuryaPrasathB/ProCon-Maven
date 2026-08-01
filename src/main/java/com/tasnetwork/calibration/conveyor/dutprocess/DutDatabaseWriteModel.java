@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.conveyor.dutprocess;
 
-import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
-
 public class DutDatabaseWriteModel {
 	
 	String currentProjectName = "";

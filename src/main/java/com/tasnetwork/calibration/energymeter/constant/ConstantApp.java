@@ -1,20 +1,7 @@
 package com.tasnetwork.calibration.energymeter.constant;
 
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.TimerTask;
-
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
 
 public class ConstantApp {
 	

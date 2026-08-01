@@ -1,12 +1,11 @@
 package com.tasnetwork.calibration.energymeter.serial.portmanagerV2;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantPowerSourceBofa;
 import com.tasnetwork.calibration.energymeter.constant.ConstantPowerSourceLscs;
 import com.tasnetwork.calibration.energymeter.constant.DeleteMeConstant;

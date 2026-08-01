@@ -504,7 +504,7 @@ public class DutPortSetupV2Controller implements Initializable {
 	}
 
 	public void setClusterBayPositionNoCnameMap(Map<String, String> clusterBayPositionNoCnameMap) {
-		this.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
+		DutPortSetupV2Controller.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
 	}
 
 	public static Map<String, ArrayList<String>> getClusterBayNamePositionListMap() {
@@ -512,7 +512,7 @@ public class DutPortSetupV2Controller implements Initializable {
 	}
 
 	public void setClusterBayNamePositionListMap(Map<String, ArrayList<String>> clusterBayNamePositionListMap) {
-		this.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
+		DutPortSetupV2Controller.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
 	}
 
 	public static TerminalBayConfigModel getBayConfigModel() {

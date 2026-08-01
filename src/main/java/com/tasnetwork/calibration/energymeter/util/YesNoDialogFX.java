@@ -2,7 +2,6 @@ package com.tasnetwork.calibration.energymeter.util;
 
 
 
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -13,7 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;

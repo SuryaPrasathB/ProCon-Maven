@@ -1,7 +1,6 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,12 +12,11 @@ import com.tasnetwork.calibration.energymeter.WindowManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 
 public class LogViewController implements Initializable {
 
@@ -110,31 +108,8 @@ public class LogViewController implements Initializable {
 				ref_cmbBxListOfLogFiles.setDisable(false);
 			}
 		});
-
-		/*
-		 * System.out.println("Entering activity updatefilesinlogview");
-		 * 
-		 * ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainContext,
-		 * android.R.layout.simple_spinner_dropdown_item,
-		 * logfiles);//Collections.singletonList(value1)
-		 * spinnerListOfFilesinLogFolder.setAdapter(adapter);
-		 * // System.out.println("finishing activity updatefilesinlogview");
-		 * if(logfiles.length!=0){
-		 * UpdateLogs_viewlogsButton(true);//Button(true);
-		 * }
-		 */
-
 	}
 
-	/*
-	 * public static void UpdateLogs_viewlogsButton(boolean status){
-	 * btn_view_logs.setEnabled(status);
-	 * }
-	 * 
-	 * public static void UpdateLogs_scanlogfilesButton(boolean status){
-	 * btn_scan_logfiles.setEnabled(status);
-	 * }
-	 */
 
 	public static void updateViewLogContentSuccess(String logview_content) {
 		final String logContent = logview_content.replace("|", "\n");

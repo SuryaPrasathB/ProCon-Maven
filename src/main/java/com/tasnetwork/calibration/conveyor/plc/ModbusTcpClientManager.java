@@ -6,12 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
-
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 public class ModbusTcpClientManager {
 	
@@ -22,14 +19,10 @@ public class ModbusTcpClientManager {
     private static boolean isScheduled = false;
 	
 	 public ModbusTcpClientManager() {
-        //startKeepAliveTask();
     	
-    	//scheduler.scheduleAtFixedRate(this::modbusKeepAliveTask, 1, 1, TimeUnit.MINUTES); // Keep-alive every 1 min
-    	//scheduler.scheduleAtFixedRate(this::modbusKeepAliveTask, 10, 10, TimeUnit.MINUTES); // Keep-alive every 1 min
     	if (!isScheduled) {
             synchronized (this) {
                 if (!isScheduled) {  // Double-check locking
-                	//scheduler.scheduleAtFixedRate(this::modbusKeepAliveTask, 10, 30, TimeUnit.MINUTES);//10 initial delay, 30 minutes periodic keep alive
                     
                     scheduler.scheduleAtFixedRate(this::modbusKeepAliveTask, 1, 30, TimeUnit.MINUTES);//1 initial delay, 30 minutes periodic keep alive
                     isScheduled = true; 

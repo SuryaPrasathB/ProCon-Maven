@@ -1,8 +1,5 @@
 package com.tasnetwork.calibration.conveyor.dut_executors;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -19,8 +16,6 @@ import java.util.function.Consumer;
 
 import org.apache.log4j.Logger;
 
-import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorCluster;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
@@ -609,25 +604,6 @@ public class DutCmdIndividualDeviceExecutor {
                 getTvExecutor().refresh();
             }
         });
-    }
-
-    private void cleanupAfterExecution() {// DutCmdManager dutCmdManager,List<String> dutPositionList) {
-        try {
-
-            /*
-             * for(String dutPositionNo : dutPositionList) {
-             * dutCmdManager.dutCmdDisconnectPort_V2(Integer.parseInt(dutPositionNo));
-             * eachBaylogger.debug("diconnecting port up after execution for position: " +
-             * dutPositionNo);
-             * 
-             * }
-             */
-
-            // Sleep(2000);
-            // ProjectExecutionController.setExecuteTimeCounter(0);
-        } catch (Exception e) {
-            eachBaylogger.error("CleanupAfterExecution: Exception:" + e);
-        }
     }
 
     public void shutdown() {

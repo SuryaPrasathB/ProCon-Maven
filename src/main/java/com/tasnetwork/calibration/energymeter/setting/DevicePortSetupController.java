@@ -2,14 +2,13 @@ package com.tasnetwork.calibration.energymeter.setting;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
@@ -27,15 +26,14 @@ import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
 
 import gnu.io.CommPortIdentifier;
 import javafx.application.Platform;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class DevicePortSetupController implements Initializable {
 
@@ -128,8 +126,6 @@ public class DevicePortSetupController implements Initializable {
 	Timer RefStdValidateTimer;
 	Timer LDU_ValidateTimer;
 	Timer ictValidateTimer;
-
-	private static HashMap FXML_PortMap = new HashMap();
 
 	private static boolean PortValidationTurnedON = false;
 
@@ -970,31 +966,6 @@ public class DevicePortSetupController implements Initializable {
 	private String getCurrentRefStdComPortID() {
 
 		return cmbBxRefStdPortSelection.getSelectionModel().getSelectedItem();
-	}
-
-	private String getCurrentLDU_ComBaudRate() {
-
-		return cmbBxLDU_BaudRate.getSelectionModel().getSelectedItem().toString();
-	}
-
-	private String getCurrentICT_ComBaudRate() {
-
-		return ref_cmbBxICT_BaudRate.getSelectionModel().getSelectedItem().toString();
-	}
-
-	private String getCurrentLDU_ComPortID() {
-
-		return cmbBxLDU_PortSelection.getSelectionModel().getSelectedItem();
-	}
-
-	private String getCurrentICT_ComPortID() {
-
-		return ref_cmbBxICT_PortSelection.getSelectionModel().getSelectedItem();
-	}
-
-	private String getCurrentHarmonics_ComPortID() {
-
-		return ref_cmbBxHarmonics_PortSelection.getSelectionModel().getSelectedItem();
 	}
 
 	public void PwrSrcValidateSerialCmdTrigger() {

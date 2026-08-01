@@ -1,38 +1,25 @@
 package com.tasnetwork.calibration.energymeter;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.ft.S074_Set_HardwareId_On_Meters;
-import com.tasnetwork.calibration.conveyor.bay.unloading.Unloading;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.dut_executors.DutCmdTestPointExecutor;
 //import com.tasnetwork.calibration.conveyor.bay_functionaltest.S08_functional_Test;
 //import com.tasnetwork.calibration.energymeter.calib.CalibPoints;
@@ -41,31 +28,16 @@ import com.tasnetwork.calibration.conveyor.dut_executors.DutCmdTestPointExecutor
 //import com.tasnetwork.calibration.energymeter.calib.VoltageCalibration;
 //import com.tasnetwork.calibration.energymeter.calib.VoltageTap;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ConstantPowerSourceMte;
-import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdRadiant;
 import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfig;
+import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdRadiant;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
-import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.deployment.DutResponse;
-import com.tasnetwork.calibration.energymeter.device.Communicator;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.director.DutCmdDirectorV3;
-//import com.tasnetwork.calibration.energymeter.director.DutCmdTestPointExecutor;
-import com.tasnetwork.calibration.energymeter.serial.portmanagerV2.DutCmdManager;
-import com.tasnetwork.calibration.energymeter.serial.portmanagerV2.SerialPortManagerDutCmd_V3;
-import com.tasnetwork.calibration.energymeter.testreport.ReportUtils;
-import com.tasnetwork.calibration.energymeter.testreport.ReportUtils;
-import com.tasnetwork.calibration.energymeter.testreport.TestReportController;
-import com.tasnetwork.calibration.energymeter.testreport.TestReportConveyorController;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.calibration.energymeter.util.IEEE754_Format;
 import com.tasnetwork.calibration.energymeter.util.TMS_FloatConversion;
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetrics;
-import com.tasnetwork.spring.orm.model.ConveyorOutputMetricsSummary;
-import com.tasnetwork.spring.orm.model.PalletManage;
 
 public class AssertValidation {
 
@@ -95,129 +67,9 @@ public class AssertValidation {
 		// deviceIdList2.add("010101QR02");
 		DutCmdTestPointExecutor commandExecutor = new DutCmdTestPointExecutor();
 		DutCmdTestPointExecutor commandExecutor2 = new DutCmdTestPointExecutor();
-		// commandExecutor.dutExecuteCommandTrigger();
-		// commandExecutor.dutExecuteCommandWithDeviceIdListTrigger(deviceIdList);
-		// commandExecutor2.dutExecuteCommandWithDeviceIdListTrigger(deviceIdList2);
-		/*
-		 * int dutPositionNo =1;
-		 * //
-		 * DutCmdManager dutCmdManager = new
-		 * DutCmdManager();//DeviceDataManagerController.getDutCmdManagerV3();
-		 * DutResponse dutResponse = new DutResponse();
-		 * if(!dutCmdManager.isComSerialStatusConnected(dutPositionNo)) {
-		 * String deviceId = "010101QR01";//"010204EM01";
-		 * dutResponse =
-		 * dutCmdManager.dutCmdSerialPortAccessible(deviceId,dutPositionNo);
-		 * 
-		 * }
-		 * if(dutResponse.isStatus()) {
-		 * SerialPortManagerDutCmd_V3 dutSpm = dutCmdManager.getDutSpm(dutPositionNo);
-		 * DutCmdDirectorV3 dutCmdDirectorV3 = new DutCmdDirectorV3(dutSpm);
-		 * dutResponse = dutCmdDirectorV3.dutMsngrSendCommandProcess();
-		 * ApplicationLauncher.logger.debug("dutCommandTesting: getStatus: " +
-		 * dutResponse.getStatus());
-		 * 
-		 * ApplicationLauncher.logger.debug("dutCommandTesting: getResponseData: " +
-		 * dutResponse.getResponseData());
-		 * String dutResponseDataInHex =
-		 * GuiUtils.asciiToHex(dutResponse.getResponseData());
-		 * ApplicationLauncher.logger.debug("dutCommandTesting: dutResponseDataInHex: "
-		 * + dutResponseDataInHex);
-		 * dutCmdManager.dutCmdDisconnectPort_V2(dutPositionNo);
-		 * }else {
-		 * ApplicationLauncher.logger.
-		 * debug("dutCommandTesting: Access failed : getStatus: " +
-		 * dutResponse.getStatus());
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("dutCommandTesting: Access failed : getResponseData: " +
-		 * dutResponse.getResponseData());
-		 * 
-		 * }
-		 */
 	}
 
 	public static void fetchPalletsByBayState() {
-
-		// BayUtils bayUtils = new BayUtils();
-		/*
-		 * String bayKey = ConstantConveyor.VERIFICATION_BAY_KEY;
-		 * List<PalletManage> palletManageList =
-		 * bayUtils.fetchPalletsByBayState(bayKey);
-		 * for(PalletManage eachPalletManage : palletManageList ) {
-		 * ApplicationLauncher.logger.
-		 * debug("fetchPalletsByBayState: getPalletDistinctId:    " +
-		 * eachPalletManage.getPalletDistinctId());
-		 * }
-		 */
-
-		// String palletDistinctId =
-		// "20250720T160639_0079_LSCSM06P023";//"20250719T210233_0122_LSCSM06P020";
-		// bayUtils.computeMeterOverAllStatus(palletDistinctId);
-		// bayUtils.clearExistingResultInDb("VERIFICB1", palletDistinctId);
-
-		/*
-		 * String palletQrData = "LSCSM06P012";
-		 * boolean exitAppeared = false;
-		 * 
-		 * String palletDistinctId = "20250724T204612_0148_LSCSM06P012";
-		 * palletDistinctId = "20250727T134739_0022_LSCSM06P021";
-		 * palletDistinctId = "20250726T124001_0028_LSCSM06P003";
-		 * ReportUtilsV2 reportUtils = new ReportUtilsV2();
-		 */
-		// ReportUtils reportUtils = new ReportUtils();
-		// reportUtils.processPalletMeterIndividualResult(palletDistinctId);
-		// Optional<PalletManage> myPalletManageOptional =
-		// MySqlServiceManager.getPalletManageService().findTopByTodayDateAndPresentBayKeyAndPalletQrIdAndExitAppeared(
-		// ConstantConveyor.UNLOADING_BAY_KEY, palletQrData,exitAppeared);
-
-		/*
-		 * String inpDistinctId = "20250721T213454_0130_LSCSM06P023";
-		 * Optional<PalletManage> myPalletManageOptional =
-		 * MySqlServiceManager.getPalletManageService().findByPalletDistinctId(
-		 * inpDistinctId);
-		 * 
-		 * if(myPalletManageOptional.isPresent()){
-		 * TestReportConveyorController testReportConveyorController = new
-		 * TestReportConveyorController();
-		 * try {
-		 * testReportConveyorController.exportPalletMeterResult(myPalletManageOptional.
-		 * get());
-		 * } catch (IOException e) {
-		 * 
-		 * e.printStackTrace();
-		 * }
-		 * }
-		 */
-		/*
-		 * if(myPalletManageOptional.isPresent()){
-		 * PalletManage myPalletManage = myPalletManageOptional.get();
-		 * Unloading.logger.
-		 * info("S05_qR_Code_Scanning_of_Pallet : found result myPalletManage : " +
-		 * myPalletManage.getPalletDistinctId());
-		 * //BayUtils bayUtils = new BayUtils();
-		 * bayUtils.computeMeterOverAllStatus(myPalletManage.getPalletDistinctId());
-		 * //List<Map<String, Object>> metersData =
-		 * readPalletMetersData(getMyBayKey(),qrData);
-		 * 
-		 * if (metersData != null && !metersData.isEmpty()) {
-		 * //batchUpdateUnloadingMeters(qrData,metersData); // This will now update
-		 * ConveyorOutputMetrics daily with average hourly output
-		 * } else {
-		 * Unloading.logger.
-		 * debug("S05_qR_Code_Scanning_of_Pallet: No meter data found for batch update for bay: "
-		 * );//+ getMyBayKey());
-		 * }
-		 * }else {
-		 * Unloading.logger.
-		 * info("S05_qR_Code_Scanning_of_Pallet : result not found for Pallet : " +
-		 * palletQrData);
-		 * }
-		 */
-
-		// ConveyorOutputMetricsSummary metrics = new ConveyorOutputMetricsSummary();
-		// metrics.setCustomerName("Test1-Gopi");;
-		// MySqlServiceManager.getConveyorOutputMetricsSummaryService().saveToDb(metrics);
 	}
 
 	public static void bofaCommandPrint() {
@@ -275,172 +127,8 @@ public class AssertValidation {
 		// BofaManager.testBofaCommands();
 	}
 
-	/*
-	 * public static String hexToFloat(String hexString) {
-	 * //ApplicationLauncher.logger.debug("hexToFloat : input Hex String : "+
-	 * hexString);
-	 * Long i = 0L;
-	 * Float f = 0.0f;
-	 * String Data ="";
-	 * try{
-	 * 
-	 * //i = Integer.parseInt(hexString, 16);
-	 * // f = Float.intBitsToFloat(i);
-	 * i = Long.parseLong(hexString, 16);
-	 * f = Float.intBitsToFloat(i.intValue());
-	 * // ApplicationLauncher.logger.debug("hexToFloat : converted float value : "+
-	 * f);
-	 * 
-	 * try{
-	 * Data =String.format("%.4f",f);
-	 * if(Data.equals("-0.0000")){
-	 * Data = "0.0000";
-	 * }
-	 * } catch (Exception e){
-	 * 
-	 * e.printStackTrace();
-	 * ApplicationLauncher.logger.error("hextofloat: Exception2:" +e.getMessage());
-	 * 
-	 * }
-	 * } catch (Exception e) {
-	 * 
-	 * e.printStackTrace();
-	 * ApplicationLauncher.logger.error("hexToFloat: Exception: "+e.getMessage());
-	 * 
-	 * 
-	 * }
-	 * 
-	 * return Data;
-	 * }
-	 */
-
-	// 1676381566
-
 	public static void assertLicenceVerification() {
 		ApplicationLauncher.logger.debug("assertLicenceVerification: Entry");
-
-		/*
-		 * Data_LduBofa.resetNthOfErrors();
-		 * Data_LduBofa.resetErrorValue();
-		 * Data_LduBofa.resetDialTestPulseCount();
-		 * Data_LduBofa.resetStaCreepTestPulseCount();
-		 * 
-		 * String response = "0149323217";
-		 * int address = 8;
-		 * Data_LduBofa.parseStartingCurrentTestPulseResponse(response, address);
-		 * 
-		 * 
-		 * response = "014A323217";
-		 * address = 9;
-		 * Data_LduBofa.parseStartingCurrentTestPulseResponse(response, address);
-		 * 
-		 * response = "014B323217";
-		 * address = 10;
-		 * Data_LduBofa.parseStartingCurrentTestPulseResponse(response, address);
-		 */
-
-		/*
-		 * String response = "0148332B30303035323032B717";
-		 * int address = 7;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 * 
-		 * response = "0149322B30303038303036BB17";
-		 * address = 8;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 * 
-		 * response = "0150312B30303035363033BA17";
-		 * address = 15;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 * 
-		 * 
-		 * 
-		 * 
-		 * response = "014A332B30303036363034BE17";
-		 * address = 9;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 * 
-		 * response = "014E312D30303035393936CB17";
-		 * address = 13;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 * 
-		 * response = "014F312B30303130363131B517";
-		 * address = 14;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 * 
-		 * response = "0150312B30303035363033BA17";
-		 * address = 15;
-		 * Data_LduBofa.parseErrorsResponse( response, address);
-		 */
-
-		/*
-		 * String current_i1 = "0.076";
-		 * float outputTargetImaxCurrent = Float.parseFloat(current_i1);;//0.0f;
-		 * 
-		 * int setScaleCurrentAfterDecimal = 3;
-		 * BigDecimal bigValue = new BigDecimal(outputTargetImaxCurrent);
-		 * bigValue = bigValue.setScale(setScaleCurrentAfterDecimal,
-		 * RoundingMode.CEILING);
-		 * outputTargetImaxCurrent= bigValue.floatValue();
-		 * 
-		 * double outputTargetImaxCurrent = Double.parseDouble(current_i1);;//0.0f;
-		 * 
-		 * int setScaleCurrentAfterDecimal = 3;
-		 * BigDecimal bigValue = new BigDecimal(outputTargetImaxCurrent);
-		 * bigValue = bigValue.setScale(setScaleCurrentAfterDecimal,
-		 * RoundingMode.CEILING);
-		 * outputTargetImaxCurrent = bigValue.doubleValue();
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("assertLicenceVerification: outputTargetImaxCurrent: " +
-		 * outputTargetImaxCurrent);
-		 * 
-		 * 
-		 * current_i1 = "0.074";
-		 * outputTargetImaxCurrent = Float.parseFloat(current_i1);;//0.0f;
-		 * 
-		 * setScaleCurrentAfterDecimal = 3;
-		 * bigValue = new BigDecimal(outputTargetImaxCurrent);
-		 * bigValue = bigValue.setScale(setScaleCurrentAfterDecimal,
-		 * RoundingMode.FLOOR);
-		 * outputTargetImaxCurrent= bigValue.floatValue();
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("assertLicenceVerification: outputTargetImaxCurrent2: " +
-		 * outputTargetImaxCurrent);
-		 * 
-		 * current_i1 = "0.075";
-		 * outputTargetImaxCurrent = Float.parseFloat(current_i1);;//0.0f;
-		 * 
-		 * setScaleCurrentAfterDecimal = 3;
-		 * bigValue = new BigDecimal(outputTargetImaxCurrent);
-		 * bigValue = bigValue.setScale(setScaleCurrentAfterDecimal,
-		 * RoundingMode.FLOOR);
-		 * outputTargetImaxCurrent= bigValue.floatValue();
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("assertLicenceVerification: outputTargetImaxCurrent3: " +
-		 * outputTargetImaxCurrent);
-		 * 
-		 * current_i1 = "0.079";
-		 * outputTargetImaxCurrent = Float.parseFloat(current_i1);;//0.0f;
-		 * 
-		 * setScaleCurrentAfterDecimal = 3;
-		 * bigValue = new BigDecimal(outputTargetImaxCurrent);
-		 * bigValue = bigValue.setScale(setScaleCurrentAfterDecimal,
-		 * RoundingMode.FLOOR);
-		 * outputTargetImaxCurrent= bigValue.floatValue();
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("assertLicenceVerification: outputTargetImaxCurrent4: " +
-		 * outputTargetImaxCurrent);
-		 * 
-		 * 
-		 * current_i1 = "0.08";
-		 * outputTargetImaxCurrent = Float.parseFloat(current_i1);;//0.0f;
-		 * ApplicationLauncher.logger.
-		 * debug("assertLicenceVerification: outputTargetImaxCurrent5: " +
-		 * outputTargetImaxCurrent);
-		 */
 
 		long epochTimeInSec = 1677133782;// 1676381566;
 		String userInputSaltedKey = "-- -- ";
@@ -490,31 +178,6 @@ public class AssertValidation {
 		ApplicationLauncher.logger.debug("isLicenceVerificationMatching: Entry");
 		ApplicationLauncher.logger.debug("isLicenceVerificationMatching: epochTimeInSec: " + epochTimeInSec);
 		ApplicationLauncher.logger.debug("isLicenceVerificationMatching: userInputSaltedKey : " + userInputSaltedKey);
-
-		/*
-		 * int year =
-		 * Instant.ofEpochSecond(epochTimeInSec).atZone(ZoneId.systemDefault()).getYear(
-		 * );
-		 * int month =
-		 * Instant.ofEpochSecond(epochTimeInSec).atZone(ZoneId.systemDefault()).getYear(
-		 * );
-		 * //int date =
-		 * Instant.ofEpochSecond(epochTimeInSec).atZone(ZoneId.systemDefault()).getYear(
-		 * );
-		 * 
-		 * int hour =
-		 * Instant.ofEpochSecond(epochTimeInSec).atZone(ZoneId.systemDefault()).getHour(
-		 * );
-		 * int minutes =
-		 * Instant.ofEpochSecond(epochTimeInSec).atZone(ZoneId.systemDefault()).
-		 * getMinute();
-		 * int seconds =
-		 * Instant.ofEpochSecond(epochTimeInSec).atZone(ZoneId.systemDefault()).
-		 * getSecond();
-		 * 
-		 * ApplicationLauncher.logger.debug("isLicenceVerificationMatching: Time : " +
-		 * year );
-		 */
 
 		userInputSaltedKey = userInputSaltedKey.replaceAll("[^0-9]", "");
 		ApplicationLauncher.logger
@@ -1431,67 +1094,7 @@ public class AssertValidation {
 	}
 
 	public static void assertCalculateDegreeWithPf() {
-
-		/*
-		 * String selectedPhase = "R";
-		 * String inpCurrentValue = "0.050";
-		 * 
-		 * String outputCurrentValue = "";
-		 * String outputRelayId = "";
-		 * outputCurrentValue = DisplayDataObj.getTargetCurrentRms(selectedPhase,
-		 * inpCurrentValue);
-		 * outputRelayId = getTargetCurrentRelayId(selectedPhase, inpCurrentValue);
-		 * ApplicationLauncher.logger.
-		 * info("assertCalculateDegreeWithPf : outputCurrentValue1: "+
-		 * outputCurrentValue);
-		 * ApplicationLauncher.logger.
-		 * info("assertCalculateDegreeWithPf : outputRelayId1: "+ outputRelayId);
-		 * inpCurrentValue = "0.051";
-		 * 
-		 * outputCurrentValue = DisplayDataObj.getTargetCurrentRms(selectedPhase,
-		 * inpCurrentValue);
-		 * outputRelayId = getTargetCurrentRelayId(selectedPhase, inpCurrentValue);
-		 * ApplicationLauncher.logger.
-		 * info("assertCalculateDegreeWithPf : outputCurrentValue2: "+
-		 * outputCurrentValue);
-		 * ApplicationLauncher.logger.
-		 * info("assertCalculateDegreeWithPf : outputRelayId2: "+ outputRelayId);
-		 * 
-		 * inpCurrentValue = "0.0509";
-		 * 
-		 * outputCurrentValue = DisplayDataObj.getTargetCurrentRms(selectedPhase,
-		 * inpCurrentValue);
-		 */
-		// outputRelayId = getTargetCurrentRelayId(selectedPhase, inpCurrentValue);
-		// ApplicationLauncher.logger.info("assertCalculateDegreeWithPf :
-		// outputCurrentValue3: "+ outputCurrentValue);
-		// ApplicationLauncher.logger.info("assertCalculateDegreeWithPf :
-		// outputRelayId3: "+ outputRelayId);
-		// DeviceDataManagerController.CalculateLagLeadAngle
-		// String phasedegree = "-1L";
-		// GUIUtils.Validate_PhaseLagLead(phasedegree);
-		// CalculateLagLeadAngle(phasedegree);
 		String displayFormat = ConstantApp.DISPLAY_PHASE_ANGLE_DEGREE_RESOLUTION;
-		/*
-		 * String pfValue = "0.0000";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "0.5";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "0.866";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "0.8";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "1";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "-1";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "-0.5";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "-0.8";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 * pfValue = "-0.866";
-		 * GUIUtils.calculateDegreeWithPf(pfValue,displayFormat);
-		 */
 
 		displayFormat = ConstantApp.DISPLAY_PHASE_ANGLE_PF_RESOLUTION;
 
@@ -1533,15 +1136,6 @@ public class AssertValidation {
 			ThirdPhaseDisplayName = ConstantApp.THIRD_PHASE_DISPLAY_NAME;
 		}
 
-		/*
-		 * int ReactiveImportExportSignAngle = 1;
-		 * 
-		 * if(getEnergyFlowMode().equals( ConstantPowerSource.IMPORT_MODE)){
-		 * ReactiveImportExportSignAngle = 1;
-		 * }else if(getEnergyFlowMode().equals(ConstantPowerSource.EXPORT_MODE)){
-		 * ReactiveImportExportSignAngle = -1;
-		 * }
-		 */
 		ArrayList<String> All_phases = new ArrayList<String>();
 		if (lag_lead.equals(ConstantApp.PF_LAG)) {
 			try {
@@ -3502,15 +3096,6 @@ public class AssertValidation {
 			}
 		}
 
-		// int ReactiveImportExportAngle = 0;
-
-		/*
-		 * if(EnergyFlowMode.equals( ConstantPowerSource.IMPORT_MODE)){
-		 * ReactiveImportExportAngle = 0;//Gopi- to be added on prod
-		 * }else if(EnergyFlowMode.equals(ConstantPowerSource.EXPORT_MODE)){
-		 * ReactiveImportExportAngle = -180;//Gopi- to be added on prod
-		 * }
-		 */
 		ArrayList<String> All_phases = new ArrayList<String>();
 		if (lag_lead.equals(ConstantApp.PF_LAG)) {
 			try {

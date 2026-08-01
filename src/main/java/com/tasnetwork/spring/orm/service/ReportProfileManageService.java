@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.spring.orm.model.ReportProfileManage;
-import com.tasnetwork.spring.orm.model.ReportProfileMeterMetaDataFilter;
 import com.tasnetwork.spring.orm.repository.ReportProfileManageRepo;
 
 @Component
@@ -17,8 +15,6 @@ public class ReportProfileManageService {
 	@Autowired
 	private ReportProfileManageRepo reportProfileManageRepo;
 	
-	//static private ReportProfileMeterMetaDataFilterService reportProfileMeterMetaDataFilterService = DeviceDataManagerController.getReportProfileMeterMetaDataFilterService();
-
 	@Transactional
 	public int saveToDb(ReportProfileManage data) {
 		ReportProfileManage reportProfileManage = reportProfileManageRepo.save(data);
@@ -33,9 +29,7 @@ public class ReportProfileManageService {
 	@Transactional
 	public List<ReportProfileManage> findByActiveProfile() {
 		return reportProfileManageRepo.findByActiveProfile(true);
-	}
-	
-	
+	}	
 	
 	@Transactional
 	public List<ReportProfileManage> findByReportGroupIdList(List<String> reportGroupId) {
@@ -78,29 +72,10 @@ public class ReportProfileManageService {
 	public List<ReportProfileManage> findByActiveProfileAndCustomerIdAndReportGroupNameAndReportProfileNameAndBaseTemplateName (boolean activeProfile,String customerId,String reportGroupName, String reportProfileName, String baseTemplateName){
 		return reportProfileManageRepo.findByActiveProfileAndCustomerIdAndReportGroupNameAndReportProfileNameAndBaseTemplateName(activeProfile,customerId,reportGroupName, reportProfileName, baseTemplateName);
 	}
-	
-/*	@Transactional
-	public ReportProfileManage findById(int id) {
-		
-		ReportProfileManage reportProfileManage  = reportProfileManageRepo.findById(id);
-		List<ReportProfileMeterMetaDataFilter> metaDataList =  getReportProfileMeterMetaDataFilterService().findByReportProfileManageId(reportProfileManage.getId());// getReportProfileManageModel().getDutMetaDataList();
-		reportProfileManage.setDutMetaDataList(metaDataList);
-		return reportProfileManage;
-		//return  reportProfileManageRepo.findById(id);
-	}*/
-	
+
 	@Transactional
 	public ReportProfileManage findById(int id) {
 		
 		return  reportProfileManageRepo.findById(id);
 	}
-
-/*	public static ReportProfileMeterMetaDataFilterService getReportProfileMeterMetaDataFilterService() {
-		return reportProfileMeterMetaDataFilterService;
-	}
-
-	public static void setReportProfileMeterMetaDataFilterService(
-			ReportProfileMeterMetaDataFilterService reportProfileMeterMetaDataFilterService) {
-		ReportProfileManageService.reportProfileMeterMetaDataFilterService = reportProfileMeterMetaDataFilterService;
-	}*/
 }

@@ -1,10 +1,7 @@
 package com.tasnetwork.calibration.energymeter.testreport.config;
 
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -12,13 +9,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
-import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigLoader;
-import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
-import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
-import com.tasnetwork.calibration.energymeter.custom1report.Custom1ReportConfigLoader;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
 import javafx.scene.control.Alert.AlertType;
@@ -101,122 +94,11 @@ public class ReportConfigLoader {
 		}
 	}
 	
-
-	
-
-	
-	
-
-	
-	
-/*	private static void readJsonConfig() {
-		JSONParser parser = new JSONParser();
-		
-		try {
-			Object obj = parser.parse(new InputStreamReader(CalibConfigLoader.class.getClass().getResourceAsStream(CONFIG_FILE)));
-			ApplicationLauncher.logger.debug("ReportConfigLoader :Loaded config json obj:"+obj.toString());
-			properties = (JSONObject) obj;
-			//properties2= (CalibrationParser)obj.toString();// new properties2(CalibrationLoader.getAttribute(ConfigFileVersion),);
-			
-			//ConstantApp.calibrationParsedData = new CalibrationParser(CalibrationLoader.getAttribute("ConfigFileVersion").toString());
-			ApplicationLauncher.logger.debug("ReportConfigLoader : Loaded config json property:"+properties);
-
-		} catch (Exception e) {
-			//System.err.println("Error while reading from " + CONFIG_FILE);
-			e.printStackTrace();
-			ApplicationLauncher.logger.error("ReportConfigLoader : readJsonConfig:Exception:  " + e.getMessage());
-			ApplicationLauncher.logger.error("ReportConfigLoader : Error while reading from " + CONFIG_FILE);
-		}
-	}*/
-	
-	/*private static void readJsonConfigV2() {
-		JSONParser parser = new JSONParser();
-		Object obj = null;
-		try {
-			
-			ApplicationLauncher.logger.debug("ReportConfigLoader : Loaded config json CONFIG_FILE:"+ CONFIG_FILE);
-			
-			//filePathName = filePathName.replace("\\", "/");
-			//ApplicationLauncher.logger.debug("Loaded config json filePathName2:"+ filePathName);
-			
-			obj = parser.parse(new InputStreamReader(ReportConfigLoader.class.getClass().getResourceAsStream(CONFIG_FILE)));
-			ApplicationLauncher.logger.debug("ReportConfigLoader : Loaded config json obj:"+obj.toString());
-			
-		
-			
-			//properties = (JSONObject) obj;
-			//properties2= (CalibrationParser)obj.toString();// new properties2(CalibrationLoader.getAttribute(ConfigFileVersion),);
-			
-			//ConstantApp.calibrationParsedData = new CalibrationParser(CalibrationLoader.getAttribute("ConfigFileVersion").toString());
-			Gson gson = new Gson();
-			String yourJson = obj.toString();
-			DeviceDataManagerController.setReportConfigParsedData(gson.fromJson(yourJson, ReportConfigModel.class));
-			
-			ApplicationLauncher.logger.debug("ReportConfigLoader : Loaded config json getConfigFileVersion : "+DeviceDataManagerController.getReportConfigParsedData().getConfigFileVersion());
-			ApplicationLauncher.logger.debug("ReportConfigLoader : Loaded config json getDisplayFrequency : "+DeviceDataManagerController.getReportConfigParsedData().getMeterProfileReportDisplay().getDisplayFrequency());
-			//ApplicationLauncher.logger.debug("ReportConfigLoader : Loaded config json getActualErrorValueStartCell : "+DeviceDataManagerController.reportConfigParsedData.getCalibAccuracyReport().getActualErrorValueStartCell());
-/*				for(int i = 0; i < DeviceDataManagerController.reportConfigParsedData.getMainMenuList().size(); i++){
-					try{
-						ApplicationLauncher.logger.debug("ReportConfigLoader: Loaded config json Main List : Index :" + i + ": " +DeviceDataManagerController.reportConfigParsedData.getMainMenuList().get(i).getMenuName());
-						if(DeviceDataManagerController.reportConfigParsedData.getMainMenuList().get(i).getMenuName().toString().equals(null)){
-							ApplicationLauncher.logger.debug("Loaded config json Main List : Index :" + i + ": Null" );
-						}
-						for(int j = 0; j < DeviceDataManagerController.reportConfigParsedData.getMainMenuList().get(i).getSubMenuList().size(); j++){
-							ApplicationLauncher.logger.debug("ReportConfigLoader: Loaded config json Sub List : Index :" + j + ": " +DeviceDataManagerController.reportConfigParsedData.getMainMenuList().get(i).getSubMenuList().get(j).getMenuName());
-							
-						}
-						
-					} catch (Exception e) {
-						//System.err.println("Error while reading from " + CONFIG_FILE);
-						//e.printStackTrace();
-						ApplicationLauncher.logger.error("ReportConfigLoader: readJsonConfigV2: Exception1:  " + e.getMessage());
-						ApplicationLauncher.logger.error("ReportConfigLoader: Parsing Error while reading from " + CONFIG_FILE);
-					}
-					//}
-				}
-		
-		} catch (Exception e) {
-			//System.err.println("Error while reading from " + CONFIG_FILE);
-			e.printStackTrace();
-			ApplicationLauncher.logger.error("ReportConfigLoader : readJsonConfigV2: Exception2:  " + e.getMessage());
-			ApplicationLauncher.logger.error("ReportConfigLoader : Error while reading from " + CONFIG_FILE);
-			
-/*			try{
-			
-				String filePathName =CONFIG_FILE;
-				//filePathName = filePathName.replace("\\\\", "\\");
-				ApplicationLauncher.logger.debug("ReportConfigLoader: Loaded config json filePathName1:"+ filePathName);
-			
-			FileReader reader = new FileReader(filePathName);
-			obj = parser.parse(reader);
-			ApplicationLauncher.logger.debug("ReportConfigLoader: Loaded config json obj2:"+obj.toString());
-			
-			
-			Gson gson = new Gson();
-
-		}
-	}*/
-	
-	
 	private static void readJsonConfigV2() {
 	    JSONParser parser = new JSONParser();
 	    Object obj = null;
 	    try {
-/*	        InputStream is = ReportConfigLoader.class.getResourceAsStream(CONFIG_FILE);
 
-	        if (is == null) {
-	            // fallback if running outside JAR (e.g., Eclipse and resources not in classpath)
-	            File file = new File("src/main/resources" + CONFIG_FILE);
-	            if (file.exists()) {
-	                is = new FileInputStream(file);
-	            } else {
-	                throw new FileNotFoundException("ReportConfigLoader: Config file not found in classpath or fallback path.");
-	            }
-	        }
-
-	        Object obj = parser.parse(new InputStreamReader(is));
-	        properties = (JSONObject) obj;
-	        */
 	    	
 			InputStream inputStream = Thread.currentThread().getContextClassLoader()
 				    .getResourceAsStream(getConfigFilePathName());//"config/app/app_config_elmeasure_jan2025_v1_5.json");

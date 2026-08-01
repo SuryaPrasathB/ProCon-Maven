@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-import java.io.IOException;
-
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 public class IEEE754_Format {

@@ -313,7 +313,6 @@ public static final String CONFIG_FILE = ConstantMasterConfig.masterConfigFilePa
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getMap(String section) {
 		try{
 			Map<String, Object> retValue = (Map<String, Object>) properties.get(section);

@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.energymeter.constant;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.tasnetwork.calibration.energymeter.device.Communicator;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 
 public class ConstantDut {

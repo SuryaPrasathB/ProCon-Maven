@@ -264,7 +264,7 @@ public class MainControlPaneController
 
         // B U T T O N I N T E R L O C K
         Platform.runLater(() -> {
-            ref_btnVerificTestStop.setStyle("-fx-background-color: #FF5733;"); // Disabled - Red
+            ref_btnVerificTestStop.setStyle(""); // Disabled - Red
             ref_btnVerificTestStop.setDisable(true);
             ref_btnVerificTestStart.setDisable(true);
             ref_btnVerificTestReset.setDisable(true);
@@ -427,21 +427,21 @@ public class MainControlPaneController
                 case ConstantConveyor.FT_BAY_KEY:
                     if (btnFtStart != null) {
                         if (isRunning) {
-                            btnFtStart.setStyle("-fx-background-color: #FF5733;");
+                            btnFtStart.setStyle("");
                             btnFtStart.setDisable(true);
                             if (btnFtStop != null) {
                                 btnFtStop.setStyle("");
                                 btnFtStop.setDisable(false);
                             }
                             if (btnFtReset != null) {
-                                btnFtReset.setStyle("-fx-background-color: #FF5733;");
+                                btnFtReset.setStyle("");
                                 btnFtReset.setDisable(true);
                             }
                         } else {
                             btnFtStart.setStyle("");
                             btnFtStart.setDisable(false);
                             if (btnFtStop != null) {
-                                btnFtStop.setStyle("-fx-background-color: #FF5733;");
+                                btnFtStop.setStyle("");
                                 btnFtStop.setDisable(true);
                             }
                             if (btnFtReset != null) {
@@ -454,21 +454,21 @@ public class MainControlPaneController
                 case ConstantConveyor.HV_BAY_KEY:
                     if (btnHvtStart != null) {
                         if (isRunning) {
-                            btnHvtStart.setStyle("-fx-background-color: #FF5733;");
+                            btnHvtStart.setStyle("");
                             btnHvtStart.setDisable(true);
                             if (btnHvtStop != null) {
                                 btnHvtStop.setStyle("");
                                 btnHvtStop.setDisable(false);
                             }
                             if (btnHvtReset != null) {
-                                btnHvtReset.setStyle("-fx-background-color: #FF5733;");
+                                btnHvtReset.setStyle("");
                                 btnHvtReset.setDisable(true);
                             }
                         } else {
                             btnHvtStart.setStyle("");
                             btnHvtStart.setDisable(false);
                             if (btnHvtStop != null) {
-                                btnHvtStop.setStyle("-fx-background-color: #FF5733;");
+                                btnHvtStop.setStyle("");
                                 btnHvtStop.setDisable(true);
                             }
                             if (btnHvtReset != null) {
@@ -481,21 +481,21 @@ public class MainControlPaneController
                 case ConstantConveyor.IR_BAY_KEY:
                     if (btnIrtStart != null) {
                         if (isRunning) {
-                            btnIrtStart.setStyle("-fx-background-color: #FF5733;");
+                            btnIrtStart.setStyle("");
                             btnIrtStart.setDisable(true);
                             if (btnIrtStop != null) {
                                 btnIrtStop.setStyle("");
                                 btnIrtStop.setDisable(false);
                             }
                             if (btnIrtReset != null) {
-                                btnIrtReset.setStyle("-fx-background-color: #FF5733;");
+                                btnIrtReset.setStyle("");
                                 btnIrtReset.setDisable(true);
                             }
                         } else {
                             btnIrtStart.setStyle("");
                             btnIrtStart.setDisable(false);
                             if (btnIrtStop != null) {
-                                btnIrtStop.setStyle("-fx-background-color: #FF5733;");
+                                btnIrtStop.setStyle("");
                                 btnIrtStop.setDisable(true);
                             }
                             if (btnIrtReset != null) {
@@ -508,21 +508,21 @@ public class MainControlPaneController
                 case ConstantConveyor.CALIBRATION_BAY_KEY:
                     if (btnCalibStart != null) {
                         if (isRunning) {
-                            btnCalibStart.setStyle("-fx-background-color: #FF5733;");
+                            btnCalibStart.setStyle("");
                             btnCalibStart.setDisable(true);
                             if (btnCalibStop != null) {
                                 btnCalibStop.setStyle("");
                                 btnCalibStop.setDisable(false);
                             }
                             if (btnCalibReset != null) {
-                                btnCalibReset.setStyle("-fx-background-color: #FF5733;");
+                                btnCalibReset.setStyle("");
                                 btnCalibReset.setDisable(true);
                             }
                         } else {
                             btnCalibStart.setStyle("");
                             btnCalibStart.setDisable(false);
                             if (btnCalibStop != null) {
-                                btnCalibStop.setStyle("-fx-background-color: #FF5733;");
+                                btnCalibStop.setStyle("");
                                 btnCalibStop.setDisable(true);
                             }
                             if (btnCalibReset != null) {
@@ -535,21 +535,21 @@ public class MainControlPaneController
                 case ConstantConveyor.WAITING_BAY_KEY:
                     if (btnWaitingBayStart != null) {
                         if (isRunning) {
-                            btnWaitingBayStart.setStyle("-fx-background-color: #FF5733;");
+                            btnWaitingBayStart.setStyle("");
                             btnWaitingBayStart.setDisable(true);
                             if (btnWaitingBayStop != null) {
                                 btnWaitingBayStop.setStyle("");
                                 btnWaitingBayStop.setDisable(false);
                             }
                             if (btnWaitingBayReset != null) {
-                                btnWaitingBayReset.setStyle("-fx-background-color: #FF5733;");
+                                btnWaitingBayReset.setStyle("");
                                 btnWaitingBayReset.setDisable(true);
                             }
                         } else {
                             btnWaitingBayStart.setStyle("");
                             btnWaitingBayStart.setDisable(false);
                             if (btnWaitingBayStop != null) {
-                                btnWaitingBayStop.setStyle("-fx-background-color: #FF5733;");
+                                btnWaitingBayStop.setStyle("");
                                 btnWaitingBayStop.setDisable(true);
                             }
                             if (btnWaitingBayReset != null) {
@@ -562,21 +562,21 @@ public class MainControlPaneController
                 case ConstantConveyor.VERIFICATION_BAY_KEY:
                     if (btnVerificTestStart != null) {
                         if (isRunning) {
-                            btnVerificTestStart.setStyle("-fx-background-color: #FF5733;");
+                            btnVerificTestStart.setStyle("");
                             btnVerificTestStart.setDisable(true);
                             if (btnVerificTestStop != null) {
                                 btnVerificTestStop.setStyle("");
                                 btnVerificTestStop.setDisable(false);
                             }
                             if (btnVerificTestReset != null) {
-                                btnVerificTestReset.setStyle("-fx-background-color: #FF5733;");
+                                btnVerificTestReset.setStyle("");
                                 btnVerificTestReset.setDisable(true);
                             }
                         } else {
                             btnVerificTestStart.setStyle("");
                             btnVerificTestStart.setDisable(false);
                             if (btnVerificTestStop != null) {
-                                btnVerificTestStop.setStyle("-fx-background-color: #FF5733;");
+                                btnVerificTestStop.setStyle("");
                                 btnVerificTestStop.setDisable(true);
                             }
                             if (btnVerificTestReset != null) {
@@ -589,21 +589,21 @@ public class MainControlPaneController
                 case ConstantConveyor.STA_NLD1_BAY_KEY:
                     if (btnSctNlt1Start != null) {
                         if (isRunning) {
-                            btnSctNlt1Start.setStyle("-fx-background-color: #FF5733;");
+                            btnSctNlt1Start.setStyle("");
                             btnSctNlt1Start.setDisable(true);
                             if (btnSctNlt1Stop != null) {
                                 btnSctNlt1Stop.setStyle("");
                                 btnSctNlt1Stop.setDisable(false);
                             }
                             if (btnSctNlt1Reset != null) {
-                                btnSctNlt1Reset.setStyle("-fx-background-color: #FF5733;");
+                                btnSctNlt1Reset.setStyle("");
                                 btnSctNlt1Reset.setDisable(true);
                             }
                         } else {
                             btnSctNlt1Start.setStyle("");
                             btnSctNlt1Start.setDisable(false);
                             if (btnSctNlt1Stop != null) {
-                                btnSctNlt1Stop.setStyle("-fx-background-color: #FF5733;");
+                                btnSctNlt1Stop.setStyle("");
                                 btnSctNlt1Stop.setDisable(true);
                             }
                             if (btnSctNlt1Reset != null) {
@@ -616,21 +616,21 @@ public class MainControlPaneController
                 case ConstantConveyor.STA_NLD2_BAY_KEY:
                     if (btnSctNlt2Start != null) {
                         if (isRunning) {
-                            btnSctNlt2Start.setStyle("-fx-background-color: #FF5733;");
+                            btnSctNlt2Start.setStyle("");
                             btnSctNlt2Start.setDisable(true);
                             if (btnSctNlt2Stop != null) {
                                 btnSctNlt2Stop.setStyle("");
                                 btnSctNlt2Stop.setDisable(false);
                             }
                             if (btnSctNlt2Reset != null) {
-                                btnSctNlt2Reset.setStyle("-fx-background-color: #FF5733;");
+                                btnSctNlt2Reset.setStyle("");
                                 btnSctNlt2Reset.setDisable(true);
                             }
                         } else {
                             btnSctNlt2Start.setStyle("");
                             btnSctNlt2Start.setDisable(false);
                             if (btnSctNlt2Stop != null) {
-                                btnSctNlt2Stop.setStyle("-fx-background-color: #FF5733;");
+                                btnSctNlt2Stop.setStyle("");
                                 btnSctNlt2Stop.setDisable(true);
                             }
                             if (btnSctNlt2Reset != null) {
@@ -643,21 +643,21 @@ public class MainControlPaneController
                 case ConstantConveyor.COMMUNICATION_BAY_KEY:
                     if (btnCommTestStart != null) {
                         if (isRunning) {
-                            btnCommTestStart.setStyle("-fx-background-color: #FF5733;");
+                            btnCommTestStart.setStyle("");
                             btnCommTestStart.setDisable(true);
                             if (btnCommTestStop != null) {
                                 btnCommTestStop.setStyle("");
                                 btnCommTestStop.setDisable(false);
                             }
                             if (btnCommTestReset != null) {
-                                btnCommTestReset.setStyle("-fx-background-color: #FF5733;");
+                                btnCommTestReset.setStyle("");
                                 btnCommTestReset.setDisable(true);
                             }
                         } else {
                             btnCommTestStart.setStyle("");
                             btnCommTestStart.setDisable(false);
                             if (btnCommTestStop != null) {
-                                btnCommTestStop.setStyle("-fx-background-color: #FF5733;");
+                                btnCommTestStop.setStyle("");
                                 btnCommTestStop.setDisable(true);
                             }
                             if (btnCommTestReset != null) {
@@ -670,21 +670,21 @@ public class MainControlPaneController
                 case ConstantConveyor.REJECTION_BAY_KEY:
                     if (btnRejectStart != null) {
                         if (isRunning) {
-                            btnRejectStart.setStyle("-fx-background-color: #FF5733;");
+                            btnRejectStart.setStyle("");
                             btnRejectStart.setDisable(true);
                             if (btnRejectStop != null) {
                                 btnRejectStop.setStyle("");
                                 btnRejectStop.setDisable(false);
                             }
                             if (btnRejectReset != null) {
-                                btnRejectReset.setStyle("-fx-background-color: #FF5733;");
+                                btnRejectReset.setStyle("");
                                 btnRejectReset.setDisable(true);
                             }
                         } else {
                             btnRejectStart.setStyle("");
                             btnRejectStart.setDisable(false);
                             if (btnRejectStop != null) {
-                                btnRejectStop.setStyle("-fx-background-color: #FF5733;");
+                                btnRejectStop.setStyle("");
                                 btnRejectStop.setDisable(true);
                             }
                             if (btnRejectReset != null) {
@@ -697,21 +697,21 @@ public class MainControlPaneController
                 case ConstantConveyor.UNLOADING_BAY_KEY:
                     if (btnUnloadingStart != null) {
                         if (isRunning) {
-                            btnUnloadingStart.setStyle("-fx-background-color: #FF5733;");
+                            btnUnloadingStart.setStyle("");
                             btnUnloadingStart.setDisable(true);
                             if (btnUnloadingStop != null) {
                                 btnUnloadingStop.setStyle("");
                                 btnUnloadingStop.setDisable(false);
                             }
                             if (btnUnloadingReset != null) {
-                                btnUnloadingReset.setStyle("-fx-background-color: #FF5733;");
+                                btnUnloadingReset.setStyle("");
                                 btnUnloadingReset.setDisable(true);
                             }
                         } else {
                             btnUnloadingStart.setStyle("");
                             btnUnloadingStart.setDisable(false);
                             if (btnUnloadingStop != null) {
-                                btnUnloadingStop.setStyle("-fx-background-color: #FF5733;");
+                                btnUnloadingStop.setStyle("");
                                 btnUnloadingStop.setDisable(true);
                             }
                             if (btnUnloadingReset != null) {

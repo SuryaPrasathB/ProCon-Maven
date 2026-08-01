@@ -1,8 +1,7 @@
 package com.tasnetwork.calibration.conveyor.remote;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 //Main class
 public class TestPointStatus {
 	    @JsonProperty("presentTestPointId")

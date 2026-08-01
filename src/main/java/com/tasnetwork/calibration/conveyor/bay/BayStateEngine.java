@@ -141,7 +141,7 @@ public class BayStateEngine extends TimerTask {
             }
         }
         
-        if (stopRequested) {
+        if (stopRequested || ConstantStateModes.STOP.equals(executionMode)) {
             context.onStopComplete();
         }
         

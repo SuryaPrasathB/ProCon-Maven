@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,21 +22,42 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.persistence.Transient;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IgnoredErrorType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -59,14 +79,11 @@ import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 //import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.reportprofile.ReportGeneration;
-import com.tasnetwork.calibration.energymeter.reportprofile.ReportProfileConfigController;
 import com.tasnetwork.calibration.energymeter.setting.BusyLoadingController;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestCaseSelectionCheckBoxFactory;
 import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import com.tasnetwork.spring.orm.model.ReportProfileManage;
-import com.tasnetwork.spring.orm.model.ReportProfileMeterMetaDataFilter;
 import com.tasnetwork.spring.orm.model.ReportProfileTestDataFilter;
 import com.tasnetwork.spring.orm.model.RpPrintPosition;
 import com.tasnetwork.spring.orm.service.ReportProfileManageService;
@@ -76,14 +93,16 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.Alert;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+//import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -94,58 +113,17 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TitledPane;
-import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-//import javafx.scene.Cursor;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.InputEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.StringConverter;
-
-import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
-import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellRange;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IgnoredErrorType;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.model.StylesTable;
-import org.apache.poi.xssf.streaming.SXSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class TestReportController implements Initializable {
 
@@ -316,11 +294,9 @@ public class TestReportController implements Initializable {
 	// @FXML
 	// private ColumnConstraints gridPaneGenReportCol1;
 
-	private int max_devices = ProcalFeatureEnable.TOTAL_NO_OF_SUPPORTED_RACK;// 12;
 	public JSONArray ProjectRunData = new JSONArray();
 
 	private JSONArray MeterNames = new JSONArray();
-	private boolean CursorWaitFlag = false;
 
 	private JSONObject LastDisplayedResultData = new JSONObject();
 	Timer GetResultDataTimer;
@@ -466,80 +442,6 @@ public class TestReportController implements Initializable {
 		datepicker_todate.setValue(today);
 		spinner_fromtime.getValueFactory().setValue(fromTime);
 		spinner_totime.getValueFactory().setValue(toTime);
-	}
-
-	/**
-	 * Adds listeners to both datepickers to automatically adjust based on manual
-	 * changes.
-	 */
-	private void addDatePickersListeners() {
-		datepicker_fromdate.valueProperty().addListener((obs, oldVal, newVal) -> {
-			if (newVal != null) {
-				adjustDatesOnManualChange("fromdate", newVal);
-			}
-		});
-
-		datepicker_todate.valueProperty().addListener((obs, oldVal, newVal) -> {
-			if (newVal != null) {
-				adjustDatesOnManualChange("todate", newVal);
-			}
-		});
-	}
-
-	/**
-	 * Adjusts datepickers dynamically if one is changed manually by the user.
-	 */
-	private void adjustDatesOnManualChange(String changedField, LocalDate newDate) {
-		String selectedRange = cmbBoxRangeSelect.getSelectionModel().getSelectedItem();
-		if (selectedRange == null)
-			return;
-
-		LocalDate fromDate = datepicker_fromdate.getValue();
-		LocalDate toDate = datepicker_todate.getValue();
-
-		switch (selectedRange) {
-			case "End of Day":
-				if (changedField.equals("fromdate")) {
-					datepicker_todate.setValue(newDate);
-				} else {
-					datepicker_fromdate.setValue(newDate);
-				}
-				spinner_fromtime.getValueFactory().setValue(LocalTime.of(0, 0));
-				spinner_totime.getValueFactory().setValue(LocalTime.of(23, 59));
-				break;
-
-			case "Weekly":
-				if (changedField.equals("fromdate")) {
-					datepicker_todate.setValue(newDate.plusDays(7));
-				} else {
-					datepicker_fromdate.setValue(newDate.minusDays(7));
-				}
-				break;
-
-			case "Monthly":
-				if (changedField.equals("fromdate")) {
-					datepicker_todate.setValue(newDate.plusMonths(1));
-				} else {
-					datepicker_fromdate.setValue(newDate.minusMonths(1));
-				}
-				break;
-
-			case "Quarterly":
-				if (changedField.equals("fromdate")) {
-					datepicker_todate.setValue(newDate.plusMonths(3));
-				} else {
-					datepicker_fromdate.setValue(newDate.minusMonths(3));
-				}
-				break;
-
-			case "Yearly":
-				if (changedField.equals("fromdate")) {
-					datepicker_todate.setValue(newDate.plusYears(1));
-				} else {
-					datepicker_fromdate.setValue(newDate.minusYears(1));
-				}
-				break;
-		}
 	}
 
 	private void adjustDateForSelectedRange() {
@@ -2000,7 +1902,7 @@ public class TestReportController implements Initializable {
 	}
 
 	public void setResultFilterMctNctMode(String filterMctNctMode) {
-		this.resultFilterMctNctMode = filterMctNctMode;
+		TestReportController.resultFilterMctNctMode = filterMctNctMode;
 	}
 
 	public String getRealDeviceIDForExportMode(String device_name) {
@@ -3997,42 +3899,43 @@ public class TestReportController implements Initializable {
 		if (project_name != null) {
 			ApplicationHomeController.update_left_status("Exporting...", ConstantApp.LEFT_STATUS_DEBUG);
 
-			Workbook workbook = new HSSFWorkbook();
-			Sheet spreadsheet = workbook.createSheet("Sheet1");
+			try (Workbook workbook = new HSSFWorkbook()) {
+				Sheet spreadsheet = workbook.createSheet("Sheet1");
 
-			Row row = spreadsheet.createRow(0);
+				Row row = spreadsheet.createRow(0);
 
-			for (int j = 0; j < result_table_view.getColumns().size(); j++) {
-				row.createCell(j).setCellValue(result_table_view.getColumns().get(j).getText());
-			}
-
-			for (int i = 0; i < result_table_view.getItems().size(); i++) {
-				row = spreadsheet.createRow(i + 1);
 				for (int j = 0; j < result_table_view.getColumns().size(); j++) {
-					if (result_table_view.getColumns().get(j).getCellData(i) != null) {
-						row.createCell(j).setCellValue(result_table_view.getColumns().get(j).getCellData(i).toString());
-					} else {
-						row.createCell(j).setCellValue("");
+					row.createCell(j).setCellValue(result_table_view.getColumns().get(j).getText());
+				}
+
+				for (int i = 0; i < result_table_view.getItems().size(); i++) {
+					row = spreadsheet.createRow(i + 1);
+					for (int j = 0; j < result_table_view.getColumns().size(); j++) {
+						if (result_table_view.getColumns().get(j).getCellData(i) != null) {
+							row.createCell(j).setCellValue(result_table_view.getColumns().get(j).getCellData(i).toString());
+						} else {
+							row.createCell(j).setCellValue("");
+						}
 					}
 				}
+
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+
+				String fileName = ConstantReport.ALL_PROJECT_REPORT_FILENAME;
+				ApplicationLauncher.logger.info("exportAllResultToExcel : fileName:" + fileName);
+
+				String file_path = getSaveFilePath(ConstantReport.SAVE_FILE_LOCATION);
+
+				FileOutputStream fileOut = new FileOutputStream(file_path + fileName);
+				workbook.write(fileOut);
+				fileOut.close();
+				ApplicationHomeController.update_left_status(fileName + " Exported", ConstantApp.LEFT_STATUS_DEBUG);
+
+				ApplicationLauncher.logger.info(
+						"exportAllResultToExcel: Export Successful- " + fileName + " generated successfully- Prompted");
+
+				WindowManager.InformUser("Export Success", fileName + " exported successfully", AlertType.INFORMATION);
 			}
-
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
-
-			String fileName = ConstantReport.ALL_PROJECT_REPORT_FILENAME;
-			ApplicationLauncher.logger.info("exportAllResultToExcel : fileName:" + fileName);
-
-			String file_path = getSaveFilePath(ConstantReport.SAVE_FILE_LOCATION);
-
-			FileOutputStream fileOut = new FileOutputStream(file_path + fileName);
-			workbook.write(fileOut);
-			fileOut.close();
-			ApplicationHomeController.update_left_status(fileName + " Exported", ConstantApp.LEFT_STATUS_DEBUG);
-
-			ApplicationLauncher.logger.info(
-					"exportAllResultToExcel: Export Successful- " + fileName + " generated successfully- Prompted");
-
-			WindowManager.InformUser("Export Success", fileName + " exported successfully", AlertType.INFORMATION);
 		} else {
 			ApplicationLauncher.logger
 					.info("exportAllResultToExcel: No project selected- No Project is selected - Prompted");
@@ -5714,7 +5617,7 @@ public class TestReportController implements Initializable {
 					if (ConstantAppConfig.GENERATE_INDIVIDUAL_METER_REPORT_ENABLED) {
 						if (isIndividualMeterReportSelected()) {
 
-							if (!displayDataObj.IsAllMeterConstSame()) {
+							if (!DeviceDataManagerController.IsAllMeterConstSame()) {
 								JSONObject result = displayDataObj.getDeployedDevicesJson();// MySQL_Controller.sp_getdeploy_devices(project_name);
 								JSONArray deployed_devices = result.getJSONArray("Devices");
 								JSONObject jobj = new JSONObject();
@@ -8225,7 +8128,6 @@ public class TestReportController implements Initializable {
 	 * }
 	 */
 
-	@SuppressWarnings("deprecation")
 	public void FillErrorValueXSSF(XSSFSheet sheet1, JSONArray filter_result, int row_pos,
 			int column_pos, int meter_col) {
 		// ApplicationLauncher.logger.debug("FillErrorValueXSSF: filter_result: " +

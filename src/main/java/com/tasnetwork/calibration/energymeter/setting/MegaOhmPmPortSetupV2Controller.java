@@ -12,50 +12,36 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import org.controlsfx.control.CheckComboBox;
 
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
-import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantMegaOhmPm;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.conveyor.serial.director.DutDirector;
 import com.tasnetwork.calibration.conveyor.serial.director.MegaOhmPmDirector;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmMegaOhmPm;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 
 public class MegaOhmPmPortSetupV2Controller implements Initializable {
@@ -370,57 +356,7 @@ public class MegaOhmPmPortSetupV2Controller implements Initializable {
 				}
 			};
 		});
-		// colDsReadData.setCellFactory(TextFieldTableCell.forTableColumn());
-		// colDsReadData.setOnEditCommit(new EventHandler<CellEditEvent<DeviceSetting,
-		// String>>() {
-		// public void handle(CellEditEvent<DeviceSetting, String> t) {
-		// ApplicationLauncher.logger.info("loadSerialNo: setSerialno: Entry");
-		// DeviceSetting rowData = ((DeviceSetting)
-		// t.getTableView().getItems().get(t.getTablePosition().getRow()));
 
-		// rowData.setSerialno(t.getNewValue());
-
-		/*
-		 * String serial_no = t.getNewValue();
-		 * if(!ProcalFeatureEnable.EXPORT_MODE_ENABLED){
-		 * rowData.setSerialno(t.getNewValue());
-		 * }else if(ProcalFeatureEnable.EXPORT_MODE_ENABLED){
-		 * 
-		 * 
-		 * if((!serial_no.toUpperCase().contains(ConstantApp.EXPORT_MODE_ALIAS_NAME)) &&
-		 * (!serial_no.toUpperCase().contains(ConstantApp.EXPORT_MODE_ALIAS_NAME.trim())
-		 * ) ){
-		 * rowData.setSerialno(t.getNewValue());
-		 * }else{
-		 * ApplicationLauncher.logger.
-		 * info("DeploymentManagerController : loadSerialNo: handle: serial_no:"
-		 * +serial_no+". Modified data input not accepted prompt-ErrorCode - U001");
-		 * WindowManager.InformUser("ErrorCode - U001",
-		 * "Modified data input contains unaccepted value <"+ConstantApp.
-		 * EXPORT_MODE_ALIAS_NAME+">  , kindly rephrase!!",AlertType.ERROR);
-		 * 
-		 * devicesDataTable.refresh();
-		 * }
-		 * }
-		 */
-
-		// }
-		// });
-		// colDsValidate.setCellValueFactory(new DeviceSettingValidateButtonFactory());
-		/*
-		 * colDsValidate.setCellFactory(DeviceSettingValidateButtonFactory.<
-		 * DeviceSetting>forTableColumn("Validate", (DeviceSetting e) -> {
-		 * //ref_tvDeviceSetting.getItems().remove(p);
-		 * 
-		 * //validateSerialCmdTrigger(e);
-		 * ApplicationLauncher.logger.info("validateSerialCmdTrigger: Invoked:");
-		 * Timer validateTimer1 = new Timer();
-		 * validateTimer1.schedule(new ValidateTimerTask(e),10);
-		 * Sleep(20);
-		 * validateTimer1.cancel();
-		 * return e;
-		 * }));
-		 */
 
 		colDsValidate.setCellValueFactory(new PropertyValueFactory<>("ValidateButton"));
 
@@ -466,220 +402,6 @@ public class MegaOhmPmPortSetupV2Controller implements Initializable {
 		colDsValidate.setCellFactory(cellFactory);
 
 	}
-
-	/*
-	 * void refreshTable() {
-	 * final List<DeviceSetting> items = ref_tvDeviceSetting.getItems();
-	 * if( items == null || items.size() == 0) return;
-	 * 
-	 * final DeviceSetting item = ref_tvDeviceSetting.getItems().get(0);
-	 * items.remove(0);
-	 * Platform.runLater(new Runnable(){
-	 * 
-	 * @Override
-	 * public void run() {
-	 * items.add(0, item);
-	 * }
-	 * });
-	 * }
-	 */
-
-	/*
-	 * public void validateSerialCmdTrigger(DeviceSetting deviceSetting){
-	 * ApplicationLauncher.logger.info("validateSerialCmdTrigger: Invoked:");
-	 * validateTimer = new Timer();
-	 * //validateTimer.schedule(new ValidateTimerTask(myButton,deviceSetting),200);
-	 * //LDU3_ValidateTimer.schedule(new Qr3_ValidateTimerTask(),100);// 1000);
-	 * }
-	 */
-
-	/*
-	 * class ValidateTimerTask extends TimerTask {
-	 * DeviceSetting deviceSetting;
-	 * Button myButton;
-	 * int rowIndex =0;
-	 * //DeviceSettingValidateButtonFactory deviceSettingValidateButtonFactory;
-	 * public ValidateTimerTask(Button button,DeviceSetting deviceSetting,int
-	 * rowIndex){
-	 * this.deviceSetting = deviceSetting;
-	 * this.myButton = button;
-	 * this.rowIndex = rowIndex;
-	 * 
-	 * }
-	 * public void run() {
-	 * 
-	 * WindowManager.setCursor(Cursor.WAIT);
-	 * 
-	 * 
-	 * String commPortID= "";
-	 * String commBaudRate = "";
-	 * deviceSetting.setSerialStatus("InProgress");
-	 * deviceSetting.setSerialResponseData("test1");
-	 * 
-	 * 
-	 * try{
-	 * ref_tvDeviceSetting.getItems().set(rowIndex, deviceSetting);
-	 * //serialDM_Obj.commLDU1.searchForPorts();
-	 * commPortID = deviceSetting.getPortName();
-	 * commBaudRate = deviceSetting.getBaudRate();
-	 * String portCname = deviceSetting.getcName();
-	 * SpmQrScanner serialPortManagerQrScanner = new SpmQrScanner(portCname);
-	 * boolean status =
-	 * serialPortManagerQrScanner.powerSourceComInitV2(commPortID,commBaudRate);
-	 * if (!status){
-	 * 
-	 * deviceSetting.setSerialStatus(ConstantApp.SERIAL_PORT_ACCESS_FAILED);
-	 * 
-	 * 
-	 * } else {
-	 * 
-	 * Platform.runLater(()->{
-	 * myButton.setDisable(true);
-	 * });
-	 * serialPortManagerQrScanner.startSerialRxPhysical_PwrSrc();
-	 * serialPortManagerQrScanner.enableSerialRxPhysical_QrScannerMonitor();
-	 * QrScannerDirector pwrSrcDirector = new
-	 * QrScannerDirector(serialPortManagerQrScanner);
-	 * Map<String,Object> responseMap = pwrSrcDirector.scanQrCode();
-	 * 
-	 * status = (boolean)responseMap.get("status");
-	 * String qrData = "";
-	 * try{
-	 * if(status) {
-	 * qrData = (String)responseMap.get("responseData");
-	 * ApplicationLauncher.logger.debug("qr3_ValidateSerialCmd: qrData1: "+qrData);
-	 * qrData = NewlandQRCodeScanner.extractScannedData((String)responseMap.get(
-	 * "responseData"));
-	 * ApplicationLauncher.logger.debug("qr3_ValidateSerialCmd: qrData2: "+qrData);
-	 * }else {
-	 * ApplicationLauncher.logger.debug("qr3_ValidateSerialCmd: No response ");
-	 * }
-	 * }catch(Exception ex){
-	 * ex.printStackTrace();
-	 * ApplicationLauncher.logger.error("qr3_ValidateSerialCmd: Exception"+ex.
-	 * getMessage());
-	 * }
-	 * if (!status){
-	 * deviceSetting.setSerialStatus(ConstantApp.SERIAL_PORT_COMMAND_FAILED);
-	 * }else{
-	 * deviceSetting.setSerialStatus(ConstantApp.SERIAL_PORT_COMMAND_Success);
-	 * deviceSetting.setSerialResponseData(qrData);
-	 * }
-	 * 
-	 * deviceSetting.setSerialResponseData("test2");
-	 * ref_tvDeviceSetting.getItems().set(rowIndex, deviceSetting);
-	 * myButton.setDisable(false);
-	 * 
-	 * 
-	 * serialPortManagerQrScanner.disconnectQrScanner();
-	 * 
-	 * }
-	 * }catch(Exception ex1){
-	 * ex1.printStackTrace();
-	 * ApplicationLauncher.logger.error("qr3_ValidateSerialCmd: Exception"+ex1.
-	 * getMessage());
-	 * }
-	 * //deviceSetting.setSerialResponseData("Test1");
-	 * //deviceSetting.setSerialStatus("StatusTest2");
-	 * WindowManager.setCursor(Cursor.DEFAULT);
-	 * 
-	 * 
-	 * ref_tvDeviceSetting.getItems().set(rowIndex, deviceSetting);
-	 * myButton.setDisable(false);
-	 * 
-	 * 
-	 * }
-	 * }
-	 */
-
-	/*
-	 * class ValidateTimerTask extends TimerTask {
-	 * DeviceSetting deviceSetting;
-	 * Button myButton;
-	 * int rowIndex = 0;
-	 * 
-	 * public ValidateTimerTask(Button button, DeviceSetting deviceSetting, int
-	 * rowIndex) {
-	 * this.deviceSetting = deviceSetting;
-	 * this.myButton = button;
-	 * this.rowIndex = rowIndex;
-	 * }
-	 * 
-	 * public void run() {
-	 * // Set the cursor to WAIT when the task starts
-	 * WindowManager.setCursor(Cursor.WAIT);
-	 * 
-	 * String commPortID = "";
-	 * String commBaudRate = "";
-	 * deviceSetting.setSerialStatus("InProgress");
-	 * deviceSetting.setSerialResponseData("test1");
-	 * 
-	 * try {
-	 * // Update table item at the specified row index
-	 * ref_tvDeviceSetting.getItems().set(rowIndex, deviceSetting);
-	 * 
-	 * commPortID = deviceSetting.getPortName();
-	 * commBaudRate = deviceSetting.getBaudRate();
-	 * String portCname = deviceSetting.getcName();
-	 * SpmQrScanner serialPortManagerQrScanner = new SpmQrScanner(portCname);
-	 * boolean status = serialPortManagerQrScanner.powerSourceComInitV2(commPortID,
-	 * commBaudRate);
-	 * 
-	 * if (!status) {
-	 * deviceSetting.setSerialStatus(ConstantApp.SERIAL_PORT_ACCESS_FAILED);
-	 * } else {
-	 * // Disable the button immediately
-	 * Platform.runLater(() -> myButton.setDisable(true));
-	 * 
-	 * serialPortManagerQrScanner.startSerialRxPhysical_PwrSrc();
-	 * serialPortManagerQrScanner.enableSerialRxPhysical_QrScannerMonitor();
-	 * QrScannerDirector pwrSrcDirector = new
-	 * QrScannerDirector(serialPortManagerQrScanner);
-	 * Map<String, Object> responseMap = pwrSrcDirector.scanQrCode();
-	 * 
-	 * status = (boolean) responseMap.get("status");
-	 * String qrData = "";
-	 * try {
-	 * if (status) {
-	 * qrData = (String) responseMap.get("responseData");
-	 * qrData = NewlandQRCodeScanner.extractScannedData(qrData);
-	 * } else {
-	 * ApplicationLauncher.logger.debug("qr3_ValidateSerialCmd: No response ");
-	 * }
-	 * } catch (Exception ex) {
-	 * ex.printStackTrace();
-	 * ApplicationLauncher.logger.error("qr3_ValidateSerialCmd: Exception" +
-	 * ex.getMessage());
-	 * }
-	 * 
-	 * if (!status) {
-	 * deviceSetting.setSerialStatus(ConstantApp.SERIAL_PORT_COMMAND_FAILED);
-	 * } else {
-	 * deviceSetting.setSerialStatus(ConstantApp.SERIAL_PORT_COMMAND_Success);
-	 * deviceSetting.setSerialResponseData(qrData);
-	 * }
-	 * }
-	 * 
-	 * // Update the table item and re-enable the button after the task
-	 * Platform.runLater(() -> {
-	 * ref_tvDeviceSetting.getItems().set(rowIndex, deviceSetting);
-	 * myButton.setDisable(false); // Re-enable the button
-	 * });
-	 * 
-	 * // Disconnect the QR Scanner after completion
-	 * serialPortManagerQrScanner.disconnectQrScanner();
-	 * 
-	 * } catch (Exception ex1) {
-	 * ex1.printStackTrace();
-	 * ApplicationLauncher.logger.error("qr3_ValidateSerialCmd: Exception" +
-	 * ex1.getMessage());
-	 * }
-	 * 
-	 * // Reset cursor after task completion
-	 * WindowManager.setCursor(Cursor.DEFAULT);
-	 * }
-	 * }
-	 */
 
 	class ValidateTimerTask extends TimerTask {
 		DeviceSetting deviceSetting;
@@ -900,7 +622,7 @@ public class MegaOhmPmPortSetupV2Controller implements Initializable {
 	}
 
 	public void setClusterBayPositionNoCnameMap(Map<String, String> clusterBayPositionNoCnameMap) {
-		this.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
+		MegaOhmPmPortSetupV2Controller.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
 	}
 
 	public static Map<String, ArrayList<String>> getClusterBayNamePositionListMap() {
@@ -908,7 +630,7 @@ public class MegaOhmPmPortSetupV2Controller implements Initializable {
 	}
 
 	public void setClusterBayNamePositionListMap(Map<String, ArrayList<String>> clusterBayNamePositionListMap) {
-		this.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
+		MegaOhmPmPortSetupV2Controller.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
 	}
 
 	/*

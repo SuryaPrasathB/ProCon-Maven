@@ -1,24 +1,13 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.TimerTask;
 
 import javax.xml.bind.DatatypeConverter;
 
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 

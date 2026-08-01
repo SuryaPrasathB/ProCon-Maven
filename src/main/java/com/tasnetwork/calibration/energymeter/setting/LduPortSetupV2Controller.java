@@ -12,54 +12,36 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 import org.controlsfx.control.CheckComboBox;
 
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
 import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
-import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantLdu;
-import com.tasnetwork.calibration.conveyor.constant.ConstantMegaOhmPm;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-import com.tasnetwork.calibration.conveyor.serial.director.DutDirector;
 import com.tasnetwork.calibration.conveyor.serial.director.LduDirector;
-import com.tasnetwork.calibration.conveyor.serial.director.MegaOhmPmDirector;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmLdu;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmMegaOhmPm;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 
 public class LduPortSetupV2Controller implements Initializable {
@@ -523,21 +505,12 @@ public class LduPortSetupV2Controller implements Initializable {
 
 	}
 
-	/*
-	 * public static Map<String, String> getClusterBayNameIdMap() {
-	 * return clusterBayNameIdMap;
-	 * }
-	 * 
-	 * public void setClusterBayNameIdMap(Map<String, String> clusterBayNameIdMap) {
-	 * this.clusterBayNameIdMap = clusterBayNameIdMap;
-	 * }
-	 */
 	public static Map<String, String> getClusterBayPositionNoCnameMap() {
 		return clusterBayPositionNoCnameMap;
 	}
 
 	public void setClusterBayPositionNoCnameMap(Map<String, String> clusterBayPositionNoCnameMap) {
-		this.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
+		LduPortSetupV2Controller.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
 	}
 
 	public static Map<String, ArrayList<String>> getClusterBayNamePositionListMap() {
@@ -545,28 +518,9 @@ public class LduPortSetupV2Controller implements Initializable {
 	}
 
 	public void setClusterBayNamePositionListMap(Map<String, ArrayList<String>> clusterBayNamePositionListMap) {
-		this.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
+		LduPortSetupV2Controller.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
 	}
 
-	/*
-	 * public static Map<String, String> getClusterNameIdListMap() {
-	 * return clusterNameIdListMap;
-	 * }
-	 * 
-	 * public void setClusterNameIdListMap(Map<String, String> clusterIdNameListMap)
-	 * {
-	 * this.clusterNameIdListMap = clusterIdNameListMap;
-	 * }
-	 * 
-	 * public static Map<String, ArrayList<String>> getClusterBayNameListMap() {
-	 * return clusterBayNameListMap;
-	 * }
-	 * 
-	 * public void setClusterBayNameListMap(Map<String, ArrayList<String>>
-	 * bayNameListMap) {
-	 * this.clusterBayNameListMap = bayNameListMap;
-	 * }
-	 */
 	public static TerminalBayConfigModel getBayConfigModel() {
 		return bayConfigModel;
 	}
@@ -574,16 +528,6 @@ public class LduPortSetupV2Controller implements Initializable {
 	public static void setBayConfigModel(TerminalBayConfigModel bayConfigModel) {
 		LduPortSetupV2Controller.bayConfigModel = bayConfigModel;
 	}
-	/*
-	 * public Map<String, String> getClusterBayPositionNoDeviceIdMap() {
-	 * return clusterBayPositionNoDeviceIdMap;
-	 * }
-	 * 
-	 * public void setClusterBayPositionNoDeviceIdMap(Map<String, String>
-	 * clusterBayPositionNoDeviceIdMap) {
-	 * this.clusterBayPositionNoDeviceIdMap = clusterBayPositionNoDeviceIdMap;
-	 * }
-	 */
 
 	public String getDeviceTypeKeyPrefix() {
 		return deviceTypeKeyPrefix;

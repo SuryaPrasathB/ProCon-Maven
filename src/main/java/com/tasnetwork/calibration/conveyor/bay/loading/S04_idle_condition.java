@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.loading;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 public class S04_idle_condition implements LoadingBayState {
 	/**
@@ -17,8 +15,6 @@ public class S04_idle_condition implements LoadingBayState {
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
 		
-		boolean idleComplete = false;
-
 		if (Loading.isResetProcessRequestedLoadingBay()) {
 			Loading.setResetProcessCompletedLoadingBay(true);
 			Loading.setResetProcessRequestedLoadingBay(false);

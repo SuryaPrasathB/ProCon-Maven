@@ -1,35 +1,27 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import java.util.stream.Collectors;
 
-import org.json.simple.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
 import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
 import com.tasnetwork.calibration.conveyor.bay.configloader.DutDevice;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantDutDevSys;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
@@ -44,7 +36,6 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import gnu.io.CommPortIdentifier;
-import javafx.application.Application;
 import javafx.application.Platform;
 //import SerialPort.Communicator;
 //import application.Communicator;
@@ -54,11 +45,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class DutPortSetupController implements Initializable {
 
@@ -102,7 +92,6 @@ public class DutPortSetupController implements Initializable {
 
 	@FXML
 	private Button btn_Save;
-	private static Button ref_btn_Save;
 
 	// @FXML
 	// private Button btnValidatePwrSrcCmd;
@@ -225,25 +214,6 @@ public class DutPortSetupController implements Initializable {
 	private ComboBox<String> cmbBxQrScannerName15;
 	@FXML
 	private ComboBox<String> cmbBxQrScannerName16;
-
-	// private static ComboBox<String> ref_cmbBxDutCname1;
-
-	// private static ComboBox<String> ref_cmbBxDutCname2;
-
-	private static ComboBox<String> ref_cmbBxQrScannerName3;
-	private static ComboBox<String> ref_cmbBxQrScannerName4;
-	private static ComboBox<String> ref_cmbBxQrScannerName5;
-	private static ComboBox<String> ref_cmbBxQrScannerName6;
-	private static ComboBox<String> ref_cmbBxQrScannerName7;
-	private static ComboBox<String> ref_cmbBxQrScannerName8;
-	private static ComboBox<String> ref_cmbBxQrScannerName9;
-	private static ComboBox<String> ref_cmbBxQrScannerName10;
-	private static ComboBox<String> ref_cmbBxQrScannerName11;
-	private static ComboBox<String> ref_cmbBxQrScannerName12;
-	private static ComboBox<String> ref_cmbBxQrScannerName13;
-	private static ComboBox<String> ref_cmbBxQrScannerName14;
-	private static ComboBox<String> ref_cmbBxQrScannerName15;
-	private static ComboBox<String> ref_cmbBxQrScannerName16;
 
 	@FXML
 	private ComboBox<Integer> cmbBxDut1_BaudRate;
@@ -860,48 +830,6 @@ public class DutPortSetupController implements Initializable {
 	private static Button ref_btnValidateDut4_Cmd;
 	private static Button ref_btnValidateDut5_Cmd;
 	private static Button ref_btnValidateDut6_Cmd;
-	private static Button ref_btnValidateLDU_Cmd7;
-	private static Button ref_btnValidateLDU_Cmd8;
-	private static Button ref_btnValidateLDU_Cmd9;
-	private static Button ref_btnValidateLDU_Cmd10;
-	private static Button ref_btnValidateLDU_Cmd11;
-	private static Button ref_btnValidateLDU_Cmd12;
-	private static Button ref_btnValidateLDU_Cmd13;
-	private static Button ref_btnValidateLDU_Cmd14;
-	private static Button ref_btnValidateLDU_Cmd15;
-	private static Button ref_btnValidateLDU_Cmd16;
-	private static Button ref_btnValidateLDU_Cmd17;
-	private static Button ref_btnValidateLDU_Cmd18;
-	private static Button ref_btnValidateLDU_Cmd19;
-	private static Button ref_btnValidateLDU_Cmd20;
-	private static Button ref_btnValidateLDU_Cmd21;
-	private static Button ref_btnValidateLDU_Cmd22;
-	private static Button ref_btnValidateLDU_Cmd23;
-	private static Button ref_btnValidateLDU_Cmd24;
-	private static Button ref_btnValidateLDU_Cmd25;
-	private static Button ref_btnValidateLDU_Cmd26;
-	private static Button ref_btnValidateLDU_Cmd27;
-	private static Button ref_btnValidateLDU_Cmd28;
-	private static Button ref_btnValidateLDU_Cmd29;
-	private static Button ref_btnValidateLDU_Cmd30;
-	private static Button ref_btnValidateLDU_Cmd31;
-	private static Button ref_btnValidateLDU_Cmd32;
-	private static Button ref_btnValidateLDU_Cmd33;
-	private static Button ref_btnValidateLDU_Cmd34;
-	private static Button ref_btnValidateLDU_Cmd35;
-	private static Button ref_btnValidateLDU_Cmd36;
-	private static Button ref_btnValidateLDU_Cmd37;
-	private static Button ref_btnValidateLDU_Cmd38;
-	private static Button ref_btnValidateLDU_Cmd39;
-	private static Button ref_btnValidateLDU_Cmd40;
-	private static Button ref_btnValidateLDU_Cmd41;
-	private static Button ref_btnValidateLDU_Cmd42;
-	private static Button ref_btnValidateLDU_Cmd43;
-	private static Button ref_btnValidateLDU_Cmd44;
-	private static Button ref_btnValidateLDU_Cmd45;
-	private static Button ref_btnValidateLDU_Cmd46;
-	private static Button ref_btnValidateLDU_Cmd47;
-	private static Button ref_btnValidateLDU_Cmd48;
 
 	Timer PwrSrcValidateTimer;
 	Timer RefStdValidateTimer;
@@ -958,8 +886,6 @@ public class DutPortSetupController implements Initializable {
 	Timer LDU47_ValidateTimer;
 	Timer LDU48_ValidateTimer;
 
-	private static HashMap FXML_PortMap = new HashMap();
-
 	private static boolean PortValidationTurnedON = false;
 
 	Timer UI_DisplayTimer = new Timer();
@@ -995,240 +921,9 @@ public class DutPortSetupController implements Initializable {
 	private static void applyUacSettings() {
 
 		ApplicationLauncher.logger.info("DutPortSetupController : applyUacSettings :  Entry");
-		/*
-		 * ArrayList<UacDataModel> uacSelectProfileScreenList =
-		 * DeviceDataManagerController.getUacSelectProfileScreenList();
-		 * String screenName = "";
-		 * for (int i = 0; i < uacSelectProfileScreenList.size(); i++){
-		 * 
-		 * screenName = uacSelectProfileScreenList.get(i).getScreenName();
-		 * switch (screenName) {
-		 * case ConstantApp.UAC_DEVICE_SETTINGS_SCREEN:
-		 * 
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getExecutePossible()){
-		 * //ref_btn_deploy.setDisable(true);
-		 * //ref_btnValidatePwrSrcCmd.setDisable(true);
-		 * //ref_btnValidateRefStdCmd.setDisable(true);
-		 * ref_btnValidateLDU_Cmd1.setDisable(true);
-		 * ref_btnValidateLDU_Cmd2.setDisable(true);
-		 * ref_btnValidateLDU_Cmd3.setDisable(true);
-		 * ref_btnValidateLDU_Cmd4.setDisable(true);
-		 * ref_btnValidateLDU_Cmd5.setDisable(true);
-		 * ref_btnValidateLDU_Cmd6.setDisable(true);
-		 * ref_btnValidateLDU_Cmd7.setDisable(true);
-		 * ref_btnValidateLDU_Cmd8.setDisable(true);
-		 * ref_btnValidateLDU_Cmd9.setDisable(true);
-		 * ref_btnValidateLDU_Cmd10.setDisable(true);
-		 * ref_btnValidateLDU_Cmd11.setDisable(true);
-		 * ref_btnValidateLDU_Cmd12.setDisable(true);
-		 * ref_btnValidateLDU_Cmd13.setDisable(true);
-		 * ref_btnValidateLDU_Cmd14.setDisable(true);
-		 * ref_btnValidateLDU_Cmd15.setDisable(true);
-		 * ref_btnValidateLDU_Cmd16.setDisable(true);
-		 * ref_btnValidateLDU_Cmd17.setDisable(true);
-		 * ref_btnValidateLDU_Cmd18.setDisable(true);
-		 * ref_btnValidateLDU_Cmd19.setDisable(true);
-		 * ref_btnValidateLDU_Cmd20.setDisable(true);
-		 * ref_btnValidateLDU_Cmd21.setDisable(true);
-		 * ref_btnValidateLDU_Cmd22.setDisable(true);
-		 * ref_btnValidateLDU_Cmd23.setDisable(true);
-		 * ref_btnValidateLDU_Cmd24.setDisable(true);
-		 * ref_btnValidateLDU_Cmd25.setDisable(true);
-		 * ref_btnValidateLDU_Cmd26.setDisable(true);
-		 * ref_btnValidateLDU_Cmd27.setDisable(true);
-		 * ref_btnValidateLDU_Cmd28.setDisable(true);
-		 * ref_btnValidateLDU_Cmd29.setDisable(true);
-		 * ref_btnValidateLDU_Cmd30.setDisable(true);
-		 * ref_btnValidateLDU_Cmd31.setDisable(true);
-		 * ref_btnValidateLDU_Cmd32.setDisable(true);
-		 * ref_btnValidateLDU_Cmd33.setDisable(true);
-		 * ref_btnValidateLDU_Cmd34.setDisable(true);
-		 * ref_btnValidateLDU_Cmd35.setDisable(true);
-		 * ref_btnValidateLDU_Cmd36.setDisable(true);
-		 * ref_btnValidateLDU_Cmd37.setDisable(true);
-		 * ref_btnValidateLDU_Cmd38.setDisable(true);
-		 * ref_btnValidateLDU_Cmd39.setDisable(true);
-		 * ref_btnValidateLDU_Cmd40.setDisable(true);
-		 * ref_btnValidateLDU_Cmd41.setDisable(true);
-		 * ref_btnValidateLDU_Cmd42.setDisable(true);
-		 * ref_btnValidateLDU_Cmd43.setDisable(true);
-		 * ref_btnValidateLDU_Cmd44.setDisable(true);
-		 * ref_btnValidateLDU_Cmd45.setDisable(true);
-		 * ref_btnValidateLDU_Cmd46.setDisable(true);
-		 * ref_btnValidateLDU_Cmd47.setDisable(true);
-		 * ref_btnValidateLDU_Cmd48.setDisable(true);
-		 * 
-		 * }
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getAddPossible()){
-		 * //ref_btn_Create.setDisable(true);
-		 * 
-		 * }
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getUpdatePossible()){
-		 * //ref_vbox_testscript.setDisable(true);sdvsc
-		 * //setChildPropertySaveEnabled(false);
-		 * ref_btn_Save.setDisable(true);
-		 * 
-		 * 
-		 * }
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getDeletePossible()){
-		 * //ref_btn_Delete.setDisable(true);
-		 * 
-		 * }
-		 * break;
-		 * 
-		 * 
-		 * 
-		 * default:
-		 * break;
-		 * }
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
 	}
 
 	public void disableGuiObjects() {
-
-		/*
-		 * for(int i = (ConstantConfig.TOTAL_NO_OF_SUPPORTED_RACK +1); i <=
-		 * ProcalFeatureEnable.TOTAL_NO_OF_SUPPORTED_RACK_MAX_POSITION; i++){
-		 * switch (i){
-		 * 
-		 * case 1:
-		 * ref_btnValidateLDU_Cmd1.setDisable(true);
-		 * break;
-		 * case 2:
-		 * ref_btnValidateLDU_Cmd2.setDisable(true);
-		 * break;
-		 * case 3:
-		 * ref_btnValidateLDU_Cmd3.setDisable(true);
-		 * break;
-		 * case 4:
-		 * ref_btnValidateLDU_Cmd4.setDisable(true);
-		 * break;
-		 * case 5:
-		 * ref_btnValidateLDU_Cmd5.setDisable(true);
-		 * break;
-		 * case 6:
-		 * ref_btnValidateLDU_Cmd6.setDisable(true);
-		 * break;
-		 * case 7:
-		 * ref_btnValidateLDU_Cmd7.setDisable(true);
-		 * break;
-		 * case 8:
-		 * ref_btnValidateLDU_Cmd8.setDisable(true);
-		 * break;
-		 * case 9:
-		 * ref_btnValidateLDU_Cmd9.setDisable(true);
-		 * break;
-		 * case 10:
-		 * ref_btnValidateLDU_Cmd10.setDisable(true);
-		 * break;
-		 * 
-		 * case 11:
-		 * ref_btnValidateLDU_Cmd11.setDisable(true);
-		 * break;
-		 * case 12:
-		 * ref_btnValidateLDU_Cmd12.setDisable(true);
-		 * break;
-		 * case 13:
-		 * ref_btnValidateLDU_Cmd13.setDisable(true);
-		 * break;
-		 * case 14:
-		 * ref_btnValidateLDU_Cmd14.setDisable(true);
-		 * break;
-		 * case 15:
-		 * ref_btnValidateLDU_Cmd15.setDisable(true);
-		 * break;
-		 * case 16:
-		 * ref_btnValidateLDU_Cmd16.setDisable(true);
-		 * break;
-		 * case 17:
-		 * ref_btnValidateLDU_Cmd17.setDisable(true);
-		 * break;
-		 * case 18:
-		 * ref_btnValidateLDU_Cmd18.setDisable(true);
-		 * break;
-		 * case 19:
-		 * ref_btnValidateLDU_Cmd19.setDisable(true);
-		 * break;
-		 * case 20:
-		 * ref_btnValidateLDU_Cmd20.setDisable(true);
-		 * break;
-		 * 
-		 * case 21:
-		 * ref_btnValidateLDU_Cmd21.setDisable(true);
-		 * break;
-		 * case 22:
-		 * ref_btnValidateLDU_Cmd22.setDisable(true);
-		 * break;
-		 * case 23:
-		 * ref_btnValidateLDU_Cmd23.setDisable(true);
-		 * break;
-		 * case 24:
-		 * ref_btnValidateLDU_Cmd24.setDisable(true);
-		 * break;
-		 * case 25:
-		 * ref_btnValidateLDU_Cmd25.setDisable(true);
-		 * break;
-		 * case 26:
-		 * ref_btnValidateLDU_Cmd26.setDisable(true);
-		 * break;
-		 * case 27:
-		 * ref_btnValidateLDU_Cmd27.setDisable(true);
-		 * break;
-		 * case 28:
-		 * ref_btnValidateLDU_Cmd28.setDisable(true);
-		 * break;
-		 * case 29:
-		 * ref_btnValidateLDU_Cmd29.setDisable(true);
-		 * break;
-		 * case 30:
-		 * ref_btnValidateLDU_Cmd30.setDisable(true);
-		 * break;
-		 * 
-		 * case 31:
-		 * ref_btnValidateLDU_Cmd31.setDisable(true);
-		 * break;
-		 * case 32:
-		 * ref_btnValidateLDU_Cmd32.setDisable(true);
-		 * break;
-		 * case 33:
-		 * ref_btnValidateLDU_Cmd33.setDisable(true);
-		 * break;
-		 * case 34:
-		 * ref_btnValidateLDU_Cmd34.setDisable(true);
-		 * break;
-		 * case 35:
-		 * ref_btnValidateLDU_Cmd35.setDisable(true);
-		 * break;
-		 * case 36:
-		 * ref_btnValidateLDU_Cmd36.setDisable(true);
-		 * break;
-		 * case 37:
-		 * ref_btnValidateLDU_Cmd37.setDisable(true);
-		 * break;
-		 * case 38:
-		 * ref_btnValidateLDU_Cmd38.setDisable(true);
-		 * break;
-		 * case 39:
-		 * ref_btnValidateLDU_Cmd39.setDisable(true);
-		 * break;
-		 * case 40:
-		 * ref_btnValidateLDU_Cmd40.setDisable(true);
-		 * break;
-		 * 
-		 * default:
-		 * break;
-		 * }
-		 * 
-		 * }
-		 */
 
 	}
 
@@ -1275,53 +970,6 @@ public class DutPortSetupController implements Initializable {
 		ref_btnValidateDut4_Cmd = btnValidateDut4_Cmd;
 		ref_btnValidateDut5_Cmd = btnValidateDut5_Cmd;
 		ref_btnValidateDut6_Cmd = btnValidateDut6_Cmd;
-		/*
-		 * ref_btnValidateLDU_Cmd7 = btnValidateLDU_Cmd7;
-		 * ref_btnValidateLDU_Cmd8 = btnValidateLDU_Cmd8;
-		 * ref_btnValidateLDU_Cmd9 = btnValidateLDU_Cmd9;
-		 * ref_btnValidateLDU_Cmd10 = btnValidateLDU_Cmd10;
-		 * ref_btnValidateLDU_Cmd11 = btnValidateLDU_Cmd11;
-		 * ref_btnValidateLDU_Cmd12 = btnValidateLDU_Cmd12;
-		 * ref_btnValidateLDU_Cmd13 = btnValidateLDU_Cmd13;
-		 * ref_btnValidateLDU_Cmd14 = btnValidateLDU_Cmd14;
-		 * ref_btnValidateLDU_Cmd15 = btnValidateLDU_Cmd15;
-		 * ref_btnValidateLDU_Cmd16 = btnValidateLDU_Cmd16;
-		 * ref_btnValidateLDU_Cmd17 = btnValidateLDU_Cmd17;
-		 * ref_btnValidateLDU_Cmd18 = btnValidateLDU_Cmd18;
-		 * ref_btnValidateLDU_Cmd19 = btnValidateLDU_Cmd19;
-		 * ref_btnValidateLDU_Cmd20 = btnValidateLDU_Cmd20;
-		 * ref_btnValidateLDU_Cmd21 = btnValidateLDU_Cmd21;
-		 * ref_btnValidateLDU_Cmd22 = btnValidateLDU_Cmd22;
-		 * ref_btnValidateLDU_Cmd23 = btnValidateLDU_Cmd23;
-		 * ref_btnValidateLDU_Cmd24 = btnValidateLDU_Cmd24;
-		 * ref_btnValidateLDU_Cmd25 = btnValidateLDU_Cmd25;
-		 * ref_btnValidateLDU_Cmd26 = btnValidateLDU_Cmd26;
-		 * ref_btnValidateLDU_Cmd27 = btnValidateLDU_Cmd27;
-		 * ref_btnValidateLDU_Cmd28 = btnValidateLDU_Cmd28;
-		 * ref_btnValidateLDU_Cmd29 = btnValidateLDU_Cmd29;
-		 * ref_btnValidateLDU_Cmd30 = btnValidateLDU_Cmd30;
-		 * ref_btnValidateLDU_Cmd31 = btnValidateLDU_Cmd31;
-		 * ref_btnValidateLDU_Cmd32 = btnValidateLDU_Cmd32;
-		 * ref_btnValidateLDU_Cmd33 = btnValidateLDU_Cmd33;
-		 * ref_btnValidateLDU_Cmd34 = btnValidateLDU_Cmd34;
-		 * ref_btnValidateLDU_Cmd35 = btnValidateLDU_Cmd35;
-		 * ref_btnValidateLDU_Cmd36 = btnValidateLDU_Cmd36;
-		 * ref_btnValidateLDU_Cmd37 = btnValidateLDU_Cmd37;
-		 * ref_btnValidateLDU_Cmd38 = btnValidateLDU_Cmd38;
-		 * ref_btnValidateLDU_Cmd39 = btnValidateLDU_Cmd39;
-		 * ref_btnValidateLDU_Cmd40 = btnValidateLDU_Cmd40;
-		 * 
-		 * ref_btnValidateLDU_Cmd41 = btnValidateLDU_Cmd41;
-		 * ref_btnValidateLDU_Cmd42 = btnValidateLDU_Cmd42;
-		 * ref_btnValidateLDU_Cmd43 = btnValidateLDU_Cmd43;
-		 * ref_btnValidateLDU_Cmd44 = btnValidateLDU_Cmd44;
-		 * ref_btnValidateLDU_Cmd45 = btnValidateLDU_Cmd45;
-		 * ref_btnValidateLDU_Cmd46 = btnValidateLDU_Cmd46;
-		 * ref_btnValidateLDU_Cmd47 = btnValidateLDU_Cmd47;
-		 * ref_btnValidateLDU_Cmd48 = btnValidateLDU_Cmd48;
-		 */
-		ref_btn_Save = btn_Save;
-
 		ref_cmbBxDut1ClusterId = cmbBxDut1ClusterId;
 		ref_cmbBxDut2ClusterId = cmbBxDut2ClusterId;
 		ref_cmbBxDut3ClusterId = cmbBxDut3ClusterId;
@@ -1350,21 +998,6 @@ public class DutPortSetupController implements Initializable {
 		ref_txtDut4Cname = txtDut4Cname;
 		ref_txtDut5Cname = txtDut5Cname;
 		ref_txtDut6Cname = txtDut6Cname;
-		// ref_cmbBxDutCname2 = cmbBxDutCname2;
-		ref_cmbBxQrScannerName3 = cmbBxQrScannerName3;
-		ref_cmbBxQrScannerName4 = cmbBxQrScannerName4;
-		ref_cmbBxQrScannerName5 = cmbBxQrScannerName5;
-		ref_cmbBxQrScannerName6 = cmbBxQrScannerName6;
-		ref_cmbBxQrScannerName7 = cmbBxQrScannerName7;
-		ref_cmbBxQrScannerName8 = cmbBxQrScannerName8;
-		ref_cmbBxQrScannerName9 = cmbBxQrScannerName9;
-		ref_cmbBxQrScannerName10 = cmbBxQrScannerName10;
-		ref_cmbBxQrScannerName11 = cmbBxQrScannerName11;
-		ref_cmbBxQrScannerName12 = cmbBxQrScannerName12;
-		ref_cmbBxQrScannerName13 = cmbBxQrScannerName13;
-		ref_cmbBxQrScannerName14 = cmbBxQrScannerName14;
-		ref_cmbBxQrScannerName15 = cmbBxQrScannerName15;
-		ref_cmbBxQrScannerName16 = cmbBxQrScannerName16;
 
 		// ref_btnValidatePwrSrcCmd = btnValidatePwrSrcCmd;
 		// ref_btnValidateRefStdCmd = btnValidateRefStdCmd;

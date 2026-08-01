@@ -1,15 +1,9 @@
 package com.tasnetwork.calibration.conveyor.serial.messenger;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.bay.DevSysEnergyMeter;
-import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
 import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
-import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
-import com.tasnetwork.calibration.conveyor.bay.ir.IR_ReadResult;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmQrScanner;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmVoltPm;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -86,9 +80,6 @@ public class VoltPmMessenger {
 	// ==========================================================================================================================
 	public Map<String, Object> sendReadCommandVoltPm(String slaveId) {
 		ApplicationLauncher.logger.info("sendReadCommandElmeasureMultiMeter: Entry");
-		boolean status = false;
-		// boolean isResponseExpected = true;
-
 		int slaveIdValue = Integer.parseInt(slaveId, 16); // Convert hex string to integer
 
 		String slaveIdHex = String.format("%02X", slaveIdValue); // Format as 2-character hex string
@@ -133,7 +124,6 @@ public class VoltPmMessenger {
 			responseData = getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
 			responseData = GUIUtils.asciiToHex(responseData);
 
-			status = true;
 			responseReturn.put("status", true);
 			responseReturn.put("responseData", responseData);
 			// status = processResponse(readTheConstantOfLiveReferenceMeterCmdFrame,
@@ -143,7 +133,6 @@ public class VoltPmMessenger {
 				if (responseStatus.equals(DeleteMeConstant.NO_RESPONSE)) {
 					ApplicationLauncher.logger
 							.info("sendReadCommandElmeasureMultiMeter : no response expected success");
-					status = true;
 				}
 			}
 		}
@@ -357,7 +346,7 @@ public class VoltPmMessenger {
 		}
 
 		boolean status = false;
-		String rxMessageTerminator = GUIUtils.hexToAscii("0D0A");// ConstantPowerSourceBofa.END_BYTE);
+		GUIUtils.hexToAscii("0D0A");
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 		if (getPwrSrcSpmObj().isDeviceSerialStatusConnected()) {

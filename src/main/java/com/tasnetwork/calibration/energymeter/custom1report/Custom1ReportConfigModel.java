@@ -1,13 +1,8 @@
 package com.tasnetwork.calibration.energymeter.custom1report;
 
-
-
-
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import javafx.beans.property.SimpleBooleanProperty;
 
 @Generated("jsonschema2pojo")
 public class Custom1ReportConfigModel {

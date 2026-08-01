@@ -1,16 +1,15 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
-
 //package com.tasnetwork.gui.dialog;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;

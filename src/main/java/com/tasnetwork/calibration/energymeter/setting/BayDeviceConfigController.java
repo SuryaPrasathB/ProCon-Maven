@@ -9,23 +9,22 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
-import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 public class BayDeviceConfigController implements Initializable {
 

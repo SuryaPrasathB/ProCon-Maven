@@ -328,7 +328,7 @@ public class ConstantReportV2 {
 	}
 
 	public void setResultDataTypeHashMap(HashMap<String, String> resultDataTypeHashMap) {
-		this.resultDataTypeHashMap = resultDataTypeHashMap;
+		ConstantReportV2.resultDataTypeHashMap = resultDataTypeHashMap;
 	}
 	
 	public static void init(){

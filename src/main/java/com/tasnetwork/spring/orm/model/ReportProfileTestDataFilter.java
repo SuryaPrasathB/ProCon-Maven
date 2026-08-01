@@ -21,10 +21,6 @@ import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.testreport.ExcelCellValueModel;
-
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
 
 @Entity
 @Table(name = "RpTestDataFilter")

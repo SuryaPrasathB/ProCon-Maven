@@ -1,16 +1,11 @@
 package com.tasnetwork.calibration.conveyor.serial.messenger;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.tasnetwork.calibration.conveyor.bay.DevSysEnergyMeter;
-import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
-import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
-import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
-import com.tasnetwork.calibration.conveyor.bay.ir.IR_ReadResult;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmDut;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
@@ -21,7 +16,7 @@ public class DutMessenger {
 
 	// DeviceDataManagerController displayDataObj = new
 	// DeviceDataManagerController();
-	SpmDut pwrSrcSpmObj = new ConveyorDataManager().getSerialPortManagerPwrSrc_V2();
+	SpmDut pwrSrcSpmObj = ConveyorDataManager.getSerialPortManagerPwrSrc_V2();
 
 	public DutMessenger(SpmDut qrScannerSerialPort) {
 		this.pwrSrcSpmObj = qrScannerSerialPort;
@@ -36,7 +31,6 @@ public class DutMessenger {
 
 	public Map<String, Object> sendReadSerialNumberCommandToDut() {
 		ApplicationLauncher.logger.info("sendReadSerialNumberCommandToDut: Entry");
-		boolean status = false;
 		// boolean isResponseExpected = true;
 
 		String payLoadInHex = DevSysEnergyMeter.DEVGSR; // ANALOG_TRIGGER_SETTING;//startTestEndFrame ;xcvxc
@@ -53,47 +47,11 @@ public class DutMessenger {
 
 		String expectedDataInHex = DevSysEnergyMeter.ER_DATA_IN_HEX;
 		Map<String, Object> responseReturn = sendCommandToDut(payLoadInHex, expectedDataInHex);
-		/*
-		 * int timeDelayInMilliSec = 0;
-		 * //String expectedDataInHex =
-		 * "06";//ConstantPowerSourceBofa.ER_LDU_STARTS_WITH + addressStr;
-		 * String responseData = "";
-		 * boolean isResponseExpected = true;
-		 * Map<String,Object> responseReturn = new HashMap<String,Object>();
-		 * //SerialDM_Obj.WriteToSerialCommPwrSrc(ANALOG_TRIGGER_SETTING,
-		 * ER_ANALOG_TRIGGER_SETTING);
-		 * String responseStatus =
-		 * dutMsngrSendCommandProcess(payLoadInHex,timeDelayInMilliSec,expectedDataInHex
-		 * ,isResponseExpected,"test-T1");
-		 * 
-		 * if (responseStatus.equals(DeleteMeConstant.SUCCESS_RESPONSE)) {
-		 * //if(ProcalFeatureEnable.PWRSRC_PORT_MANAGER_V2_ENABLED) {
-		 * responseData = getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
-		 * responseData = GUIUtils.asciiToHex(responseData);
-		 * 
-		 * status = true;
-		 * responseReturn.put("status", true);
-		 * responseReturn.put("responseData", responseData);
-		 * //status = processResponse(readTheConstantOfLiveReferenceMeterCmdFrame,
-		 * CurrentReadData);
-		 * }else {
-		 * if(!isResponseExpected){
-		 * if(responseStatus.equals(DeleteMeConstant.NO_RESPONSE)){
-		 * ApplicationLauncher.logger.
-		 * info("sendReadSerialNumberCommandToDut : no response expected success");
-		 * status = true;
-		 * }
-		 * }
-		 * }
-		 */
 		return responseReturn;
 	}
 
 	public Map<String, Object> sendCommandToDut(String payLoadInHex, String expectedDataInHex) {
 		ApplicationLauncher.logger.info("sendCommandToDut: Entry");
-		boolean status = false;
-		// boolean isResponseExpected = true;
-
 		// String payLoadInHex = DevSysEnergyMeter.DEVGSR ;
 		// //ANALOG_TRIGGER_SETTING;//startTestEndFrame ;xcvxc
 		ApplicationLauncher.logger.info("sendCommandToDut: payLoadInHex: " + payLoadInHex);
@@ -128,7 +86,6 @@ public class DutMessenger {
 			responseData = getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
 			responseData = GUIUtils.asciiToHex(responseData);
 
-			status = true;
 			responseReturn.put("status", true);
 			responseReturn.put("responseData", responseData);
 			// status = processResponse(readTheConstantOfLiveReferenceMeterCmdFrame,
@@ -137,7 +94,6 @@ public class DutMessenger {
 			if (!isResponseExpected) {
 				if (responseStatus.equals(DeleteMeConstant.NO_RESPONSE)) {
 					ApplicationLauncher.logger.info("sendCommandToDut : no response expected success");
-					status = true;
 					responseReturn.put("status", true);
 					// responseReturn.put("responseData", responseData);
 				}
@@ -164,25 +120,7 @@ public class DutMessenger {
 		ApplicationLauncher.logger.debug("bofaSetPowerSourceMctNctMode :Entry");
 		ApplicationLauncher.logger.info("bofaSetPowerSourceMctNctMode : mctNctMode: " + mctNctMode);
 		boolean status = false;
-		String circuit = "";
-		/*
-		 * int address = ConstantPowerSourceBofa.ADDRESS_SLAVE_01;
-		 * 
-		 * if(mctNctMode.equals(ConstantReport.RESULT_EXECUTION_MODE_MAIN_CT)) {
-		 * circuit = ConstantPowerSourceLscs.CMD_PWR_SRC_MAIN_CT_MODE_HDR;
-		 * } else if(mctNctMode.equals(ConstantReport.RESULT_EXECUTION_MODE_NEUTRAL_CT))
-		 * {
-		 * circuit = ConstantPowerSourceLscs.CMD_PWR_SRC_NEUTRAL_CT_MODE_HDR;
-		 * }else if(mctNctMode.equals(ConstantReport.RESULT_EXECUTION_MODE_MCT_NCT_OFF))
-		 * {
-		 * circuit = ConstantPowerSourceLscs.CMD_PWR_SRC_ALL_CT_MODE_OFF_HDR;
-		 * }else {
-		 * ApplicationLauncher.logger.
-		 * info("bofaSetPowerSourceMctNctMode :invalid mode data: mctNctMode: "
-		 * +mctNctMode);
-		 * return status;
-		 * }
-		 */
+
 		int retryCount = 3;
 		status = false;
 		while ((retryCount > 0) && (!status)) {
@@ -235,20 +173,6 @@ public class DutMessenger {
 		ApplicationLauncher.logger.debug("dutMsngrSendCommandProcess :sourceThread:" + sourceThread);
 		String responseStatus = DeleteMeConstant.NO_RESPONSE;
 		int retryCount = 1;// #Version0.5.1.4//5;//10//ConstantHV_Src.HV_READ_RESPONSE_RETRY_COUNT+10;//1;
-
-		// String ExpectedError1Data =
-		// "";//ConstantPrimaryVICI_Meter.VI_CMD_ERROR_RESPONSE_HDR;//+ConstantPrimaryVICI_Meter.VI_ER_TERMINATOR;
-
-		// String ExpectedError2Data="";
-
-		/*
-		 * powerSourceSetExpectedData(expectedDataInHex);
-		 * powerSourceSetExpectedError1Data(ExpectedError1Data);
-		 * powerSourceSetExpectedError2Data(ExpectedError2Data);
-		 * powerSourceSetRxMessageTerminator(terminatorInHex);
-		 * 
-		 * powerSourceResetResponseFlag();
-		 */
 
 		getPwrSrcSpmObj().getRxMsgQ_PwrSrc().clearLastReadMessage();
 		// powerSourceSendCommand(payLoadInHex,timeDelayInMilliSec);
@@ -417,7 +341,7 @@ public class DutMessenger {
 		}
 
 		boolean status = false;
-		String rxMessageTerminator = GUIUtils.hexToAscii("0D0A");// ConstantPowerSourceBofa.END_BYTE);
+		GUIUtils.hexToAscii("0D0A");
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 		if (getPwrSrcSpmObj().isDeviceSerialStatusConnected()) {
@@ -501,25 +425,6 @@ public class DutMessenger {
 					ApplicationLauncher.logger
 							.debug("dutMsngrSendCommandProcessWithLength : <" + sourceThread + ">test1: ");
 
-					/*
-					 * if ( (
-					 * !payLoadInHex.equals(ConstantPowerSourceBofa.CMD_STOP_VOLT_CURRENT_IN_HEX))
-					 * &&
-					 * ( !payLoadInHex.equals(ConstantPowerSourceBofa.CMD_STOP_CURRENT_IN_HEX)) ){
-					 * if(BayUtils.isUserAborted()){
-					 * retryCount = 0;
-					 * responseStatus = DeleteMeConstant.ERROR_RESPONSE;
-					 * ApplicationLauncher.logger.info("dutMsngrSendCommandProcessWithLength V2 <"
-					 * +sourceThread +">: user aborted - detected");
-					 * }
-					 * }else if(!getPwrSrcSpmObj().isPwrSrcSerialStatusConnected()){
-					 * retryCount = 0;
-					 * responseStatus = DeleteMeConstant.ERROR_RESPONSE;
-					 * ApplicationLauncher.logger.debug("dutMsngrSendCommandProcessWithLength V2 <"
-					 * +sourceThread +">: serial port - disconnected");
-					 * 
-					 * }
-					 */
 				}
 			} else {
 				responseStatus = DeleteMeConstant.NO_RESPONSE;

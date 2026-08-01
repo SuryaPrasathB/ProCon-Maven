@@ -1,18 +1,14 @@
 package com.tasnetwork.calibration.energymeter.serial.portmanagerV2;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdKre;
 import com.tasnetwork.calibration.energymeter.constant.DeleteMeConstant;
-import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 
 public class SerialPortManagerRefStd_V2 {
@@ -103,7 +99,7 @@ public class SerialPortManagerRefStd_V2 {
 			ApplicationLauncher.logger
 					.debug("disconnectRefStd :refStdSerialStatusConnected:" + refStdSerialStatusConnected);
 			disableSerialRxPhysical_RefStdMonitor();
-			DisplayDataObj.setRefStdReadDataFlag(false);
+			DeviceDataManagerController.setRefStdReadDataFlag(false);
 			// Sleep(10);
 			// Sleep(1500);jjjj
 			disconnectRefStdSerialComm();
@@ -125,7 +121,7 @@ public class SerialPortManagerRefStd_V2 {
 			if (commRefStandard.isDeviceConnected()) {
 				ApplicationLauncher.logger.debug("disconnectRefStdSerialCommIfConnected :Entry2:");
 				disableSerialRxPhysical_RefStdMonitor();
-				DisplayDataObj.setRefStdReadDataFlag(false);
+				DeviceDataManagerController.setRefStdReadDataFlag(false);
 				Sleep(10);
 				disconnectRefStdSerialComm();
 				refStdSerialStatusConnected = false;
@@ -219,15 +215,7 @@ public class SerialPortManagerRefStd_V2 {
 
 	public void refStdSendCommand(String payLoadInHex, int timeDelayInMilliSec) {
 		ApplicationLauncher.logger.debug("refStdSendCommand V2: Entry");
-		// `ApplicationLauncher.logger.debug("refStdSendCommand V2: payLoadInHex: " +
-		// payLoadInHex);
-		// String Data =
-		// GUIUtils.StringToHex(ConstantPrimaryVICI_Meter.VI_CMD_START)+GUIUtils.StringToHex(SelectedPhase)+CommandVI_PayLoad+GUIUtils.StringToHex(ConstantPrimaryVICI_Meter.VI_CMD_TERMINATOR);
-		// String Data =
-		// ConstantPrimaryVICI_Meter.VI_CMD_START+GUIUtils.StringToHex(SelectedPhase)+CommandVI_PayLoad+ConstantPrimaryVICI_Meter.VI_CMD_TERMINATOR;
-		// String Data =
-		// "";//SerialMessageHV_Src.getCmd_HV_Start(CommandVI_PayLoad,SelectedPhase);
-		// WriteToSerialCommLDU(Data);
+
 		writeStringToRefStd(payLoadInHex, timeDelayInMilliSec);
 
 	}
@@ -235,40 +223,10 @@ public class SerialPortManagerRefStd_V2 {
 	public void writeStringToRefStd(String Data, int timeDelayInMilliSec) {
 		// ApplicationLauncher.logger.debug("writeStringToRefStd V2 :DataHex:"+Data);
 		try {
-			/*
-			 * if(ProcalFeatureEnable.MAINTENANCE_MODE_ENABLED) {
-			 * if(MaintenanceModeExecController.isSerialDisplayProcess()) {
-			 * MaintenanceModeExecController.serialDataDisplayUpdate("hvc-Tx-Hex:<"+Data+">"
-			 * );
-			 * MaintenanceModeExecController.serialDataDisplayUpdate("hvc-Tx-Str:<"+GuiUtils
-			 * .HexToString(Data)+">");
-			 * }
-			 * }
-			 */
+
 
 			if (timeDelayInMilliSec != 0) {
-				/*
-				 * String eachDataInHex = "";
-				 * for(int i = 0; i < (Data.length()-1); i+=2){
-				 * //ApplicationLauncher.logger.debug("lscsLDU_SendCeigSettingMethod : index :"
-				 * + i +": " + String.valueOf(Data.charAt(i)));
-				 * //SerialPortObj.writeStringMsgToPort(String.valueOf(Data.charAt(i)));
-				 * eachDataInHex = Data.substring(i,i+2);
-				 * //ApplicationLauncher.logger.
-				 * debug("writeHexToSerialPowerSource :eachDataInHex:"+eachDataInHex);
-				 * commRefStandard.writeStringMsgToPortInHex(eachDataInHex);
-				 * Sleep(timeDelayInMilliSec);
-				 * //Sleep(10);
-				 * //Sleep(50);
-				 * //Sleep(80);
-				 * //Sleep(1000);//worked good for 10mA and 25mA calibration
-				 * 
-				 * //Sleep(80);
-				 * 
-				 * 
-				 * 
-				 * }
-				 */
+
 			} else {
 				// commRefStandard.writeStringMsgToPortInHex(Data);
 				// ApplicationLauncher.logger.debug("writeStringToRefStd : Data: " + Data);
@@ -289,18 +247,6 @@ public class SerialPortManagerRefStd_V2 {
 
 		SerialPortObj.setExpectedLength(ExpectedResponse.length());
 		SerialPortObj.setExpectedResult(ExpectedResponse);
-		// SerialPortObj.setExpectedError1Result(ExpectedError1Data);
-		// SerialPortObj.setExpectedError2Result(ExpectedError2Data);
-		// ApplicationLauncher.logger.debug("refStdSetExpectedData:
-		// setExpectedResult:"+SerialPortObj.getExpectedResult());
-		// ApplicationLauncher.logger.debug("refStdSetExpectedData:
-		// setExpectedLength:"+SerialPortObj.getExpectedLength());
-
-		// SerialDataMsgHV_Manager serialDataMsgManager = new
-		// SerialDataMsgHV_Manager(SerialPortObj);
-		// serialDataManager.SerialResponseTimerStart(30);
-		// SerialPortObj = null;//garbagecollector
-		// return serialDataMsgManager;
 	}
 
 	public void refStdSetExpectedError1Data(String ExpectedError1Response) {
@@ -309,18 +255,7 @@ public class SerialPortManagerRefStd_V2 {
 
 		// SerialPortObj.setExpectedLength(ExpectedError1Response.length());
 		SerialPortObj.setExpectedError1Result(ExpectedError1Response);
-		// SerialPortObj.setExpectedError1Result(ExpectedError1Data);
-		// SerialPortObj.setExpectedError2Result(ExpectedError2Data);
-		// ApplicationLauncher.logger.debug("refStdSetExpectedError1Data:
-		// getExpectedError1Result:"+SerialPortObj.getExpectedError1Result());
-		// ApplicationLauncher.logger.debug("HVCI_SetExpectedError1Data:
-		// setExpectedLength:"+SerialPortObj.getExpectedLength());
 
-		// SerialDataMsgHV_Manager serialDataMsgManager = new
-		// SerialDataMsgHV_Manager(SerialPortObj);
-		// serialDataManager.SerialResponseTimerStart(30);
-		// SerialPortObj = null;//garbagecollector
-		// return serialDataMsgManager;
 	}
 
 	public void refStdSetExpectedError2Data(String ExpectedError2Response) {
@@ -329,18 +264,7 @@ public class SerialPortManagerRefStd_V2 {
 
 		// SerialPortObj.setExpectedLength(ExpectedError1Response.length());
 		SerialPortObj.setExpectedError2Result(ExpectedError2Response);
-		// SerialPortObj.setExpectedError1Result(ExpectedError1Data);
-		// SerialPortObj.setExpectedError2Result(ExpectedError2Data);
-		// ApplicationLauncher.logger.debug("refStdSetExpectedError2Data:
-		// getExpectedError2Result:"+SerialPortObj.getExpectedError2Result());
-		// ApplicationLauncher.logger.debug("HVCI_SetExpectedError1Data:
-		// setExpectedLength:"+SerialPortObj.getExpectedLength());
 
-		// SerialDataMsgHV_Manager serialDataMsgManager = new
-		// SerialDataMsgHV_Manager(SerialPortObj);
-		// serialDataManager.SerialResponseTimerStart(30);
-		// SerialPortObj = null;//garbagecollector
-		// return serialDataMsgManager;
 	}
 
 	public void refStdResetResponseFlag() {

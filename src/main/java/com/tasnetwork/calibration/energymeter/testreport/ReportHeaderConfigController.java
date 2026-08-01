@@ -24,13 +24,13 @@ import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
-import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -40,7 +40,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
 
 public class ReportHeaderConfigController implements Initializable {
 	@FXML
@@ -493,7 +492,7 @@ public class ReportHeaderConfigController implements Initializable {
 
 	public void UPF_listener() {
 		txt_value.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (cmbBox_parameter.equals(ConstantReport.PARAMETER_TYPE_PF)) {
+			if (ConstantReport.PARAMETER_TYPE_PF.equals(cmbBox_parameter.getValue())) {
 				if (!txt_value.getText().isEmpty()) {
 					float value = Float.parseFloat(txt_value.getText());
 					if (value == 1) {

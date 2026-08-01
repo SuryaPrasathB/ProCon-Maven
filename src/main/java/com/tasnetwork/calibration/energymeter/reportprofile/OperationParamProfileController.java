@@ -5,17 +5,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Matcher;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
@@ -24,31 +19,22 @@ import org.apache.commons.lang3.StringUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
-import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdConfigLoader;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.testreport.ExcelCellValueModel;
-import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
-import com.tasnetwork.calibration.energymeter.util.TextAreaInputDialog;
-import com.tasnetwork.calibration.energymeter.util.TextFieldInputDialog;
 import com.tasnetwork.spring.orm.model.OperationParam;
-import com.tasnetwork.spring.orm.model.ReportProfileTestDataFilter;
-import com.tasnetwork.spring.orm.model.RpPrintPosition;
 import com.tasnetwork.spring.orm.service.OperationParamService;
-import com.tasnetwork.spring.orm.service.OperationProcessService;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -139,22 +125,6 @@ public class OperationParamProfileController implements Initializable {
 		ref_columnParamPopulateType.setCellValueFactory(new OperationParamPopulateTypeListComboBoxValueFactory());
 		ref_columnParamType.setCellValueFactory(new OperationParamTypeListComboBoxValueFactory());
 
-		/*
-		 * ref_columnParamKeyName.setCellValueFactory(new
-		 * PropertyValueFactory<OperationParam, String>("keyParam"));
-		 * ref_columnParamKeyName.setCellFactory(TextFieldTableCell.forTableColumn());
-		 * ref_columnParamKeyName.setOnEditCommit(new
-		 * EventHandler<CellEditEvent<OperationParam, String>>() {
-		 * public void handle(CellEditEvent<OperationParam, String> t) {
-		 * OperationParam rowData = ((OperationParam)
-		 * t.getTableView().getItems().get(t.getTablePosition().getRow()));
-		 * if(t.getNewValue() != null){
-		 * rowData.setKeyParam(t.getNewValue());
-		 * }
-		 * 
-		 * }
-		 * });
-		 */
 
 		ref_columnParamKeyName.setCellValueFactory(cellData -> cellData.getValue().getKeyParamProperty());
 		ref_columnParamKeyName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -210,30 +180,6 @@ public class OperationParamProfileController implements Initializable {
 		ApplicationLauncher.logger.debug("btnAddParamProfileOnClick: Entry ");
 		Platform.runLater(() -> {
 
-			// TextAreaInputDialog dialog = new TextAreaInputDialog();
-			// TextFieldInputDialog dialog = new TextFieldInputDialog();
-
-			/*
-			 * dialog.setHeaderText("Enter ParamProfile Name");
-			 * dialog.setTitle("ParamProfile");
-			 * dialog.setGraphic(null);
-			 * // dialog.eee
-			 * // Show the dialog and capture the result.
-			 * Optional result = dialog.showAndWait();
-			 * 
-			 * // If the "Okay" button was clicked, the result will contain our String in
-			 * the get() method
-			 * if (result.isPresent()) {
-			 * //System.out.println(result.get());
-			 * 
-			 * ApplicationLauncher.logger.debug("btnAddOnClick: result.get(): " +
-			 * result.get());
-			 * ref_cmbBxOperationParamProfileName.getItems().add(result.get());
-			 * ref_cmbBxOperationParamProfileName.getSelectionModel().select(result.get());
-			 * ref_tvOperationParamProfile.getItems().clear();
-			 * getSerialNo().set(1);
-			 * }
-			 */
 
 			String header = "ParamProfile Name";
 			String title = "Enter ParamProfile";

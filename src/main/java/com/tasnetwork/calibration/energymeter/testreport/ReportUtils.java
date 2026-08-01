@@ -16,6 +16,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,11 +29,9 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -764,8 +763,6 @@ public class ReportUtils {
 
 			if (hssf_Format) {
 				out = new FileOutputStream(new File(file_path + file_name));
-				HSSFFormulaEvaluator.evaluateAllFormulaCells(HSSFworkbook);
-				HSSFworkbook.write(out);
 			} else {
 				out = new FileOutputStream(new File(file_path + file_name.replace(".xls", ".xlsx")));
 				XSSFFormulaEvaluator.evaluateAllFormulaCells(XSSFworkbook);
@@ -774,21 +771,6 @@ public class ReportUtils {
 			out.close();
 
 			if (overAllStatus) {
-				// Sleep(1000);
-				/*
-				 * ApplicationHomeController.update_left_status("Report generation Success"
-				 * ,ConstantApp.LEFT_STATUS_DEBUG);
-				 * 
-				 * ApplicationLauncher.logger.
-				 * info("exportIndividualMeterDetailedReport: Export Successful- Report generated successfully- Prompted"
-				 * );
-				 * 
-				 * WindowManager.InformUser("Export Successful",
-				 * "Report generated successfully", AlertType.INFORMATION);
-				 */
-
-				// ApplicationHomeController.update_left_status("Report generation
-				// Success",ConstantApp.LEFT_STATUS_DEBUG);
 
 				ApplicationLauncher.logger.info(
 						"exportIndividualMeterDetailedReport: Export Successful- Report generated successfully- Prompted");
@@ -2646,40 +2628,13 @@ public class ReportUtils {
 
 		ApplicationLauncher.logger.info("saveExcelAsPDFWithPathAndFileName: Entry");
 		boolean status = false;
-		// Sleep(1000);
+
 		String PYTHON_ABSOLUTE_PATH = ConstantAppConfig.PYTHON_EXE_LOCATION;
 		String script_path = ConstantAppConfig.PYTHON_SCRIPT_LOCATION;
 		ApplicationLauncher.logger.info("saveExcelAsPDFWithPathAndFileName: script_path1: " + script_path);
-		/*
-		 * File file = new File(ConstantConfig.reportPythonFilePathName);
-		 * script_path = file.getAbsolutePath();
-		 */
-		// script_path = ConstantConfig.reportPythonFilePathName;
-
-		/*
-		 * try {
-		 * URL resource =
-		 * TestReportController.class.getResource(ConstantVersion.pythonFileName);
-		 * File file = Paths.get(resource.toURI()).toFile();
-		 * script_path = file.getAbsolutePath();
-		 * } catch (URISyntaxException e1) {
-		 * 
-		 * e1.printStackTrace();
-		 * ApplicationLauncher.logger.
-		 * error("saveExcelAsPDFWithPathAndFileName: ExceptionA:"+e1.getMessage());
-		 * 
-		 * }
-		 */
-
-		/*
-		 * ClassLoader classLoader = getClass().getClassLoader();
-		 * script_path =
-		 * classLoader.getResource(ConstantVersion.pythonFileName).getPath();
-		 */
 
 		URL resource = TestReportController.class.getResource(ConstantAppConfig.reportPythonFilePathName);
 		try {
-			// File file = Paths.get(resource.toURI()).toFile();
 			script_path = Paths.get(resource.toURI()).toFile().getAbsolutePath();
 		} catch (URISyntaxException e1) {
 
@@ -2737,15 +2692,6 @@ public class ReportUtils {
 				ApplicationLauncher.logger.debug("saveExcelAsPDFWithPathAndFileName: Command: " + Command);
 				ApplicationLauncher.logger.debug("saveExcelAsPDFWithPathAndFileName: args: " + Arrays.asList(args));
 				try {
-					// Process p = Runtime.getRuntime().exec(Command);
-					/*
-					 * Process p = Runtime.getRuntime().exec(args);
-					 * BufferedReader in = new BufferedReader(new
-					 * InputStreamReader(p.getInputStream()));
-					 * String pythonOutput = "";
-					 * //while ((pythonOutput = in.readLine()) != null) {
-					 * pythonOutput = in.readLine();
-					 */
 
 					Process p = Runtime.getRuntime().exec(args);
 					BufferedReader errorReader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -2755,13 +2701,8 @@ public class ReportUtils {
 								.debug("saveExcelAsPDFWithPathAndFileName: Python Error: " + pythonOutput);
 					}
 
-					ApplicationLauncher.logger.info("saveExcelAsPDFWithPathAndFileName: pythonOutput: " + pythonOutput);
-					if (pythonOutput == null) {
-
-						ApplicationLauncher.logger
-								.info("saveExcelAsPDFWithPathAndFileName: pythonOutput: null:  " + pythonOutput);
-						return false;
-					}
+					ApplicationLauncher.logger.info("saveExcelAsPDFWithPathAndFileName: Python process completed");
+					status = true;
 
 				} catch (IOException e) {
 
@@ -2787,7 +2728,6 @@ public class ReportUtils {
 		}
 
 		return status;
-
 	}
 
 	public Boolean populateMeterIndividualReportHighVoltageData(XSSFSheet sheet1,

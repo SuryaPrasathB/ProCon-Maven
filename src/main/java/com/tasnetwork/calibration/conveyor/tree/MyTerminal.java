@@ -1,21 +1,14 @@
 package com.tasnetwork.calibration.conveyor.tree;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MyTerminal {
     
-	private String terminalId="";
-	private String terminalName="";
-    private List<Cluster> clusters;  // List of clusters associated with this terminal
+	private List<Cluster> clusters;  // List of clusters associated with this terminal
 
     // Constructor to initialize the Terminal object using the provided JSON data
     
@@ -23,8 +16,8 @@ public class MyTerminal {
     	
     }
     public MyTerminal(JSONObject terminalJson) throws JSONException {
-    	this.terminalId = terminalJson.getString("TerminalId");
-        this.terminalName = terminalJson.getString("TerminalName");
+    	terminalJson.getString("TerminalId");
+        terminalJson.getString("TerminalName");
         
         // Initialize the clusters list
         this.clusters = new ArrayList<>();

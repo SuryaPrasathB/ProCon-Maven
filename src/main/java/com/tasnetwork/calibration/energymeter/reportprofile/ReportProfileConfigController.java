@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.energymeter.reportprofile;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,28 +12,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
@@ -44,7 +32,6 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
 import com.tasnetwork.calibration.energymeter.testreport.ExcelCellValueModel;
@@ -59,14 +46,10 @@ import com.tasnetwork.spring.orm.model.ReportProfileMeterMetaDataFilter;
 import com.tasnetwork.spring.orm.model.ReportProfileTestDataFilter;
 import com.tasnetwork.spring.orm.model.RpPrintPosition;
 import com.tasnetwork.spring.orm.service.OperationParamService;
-import com.tasnetwork.spring.orm.service.OperationProcessService;
 import com.tasnetwork.spring.orm.service.ReportProfileManageService;
 import com.tasnetwork.spring.orm.service.ReportProfileMeterMetaDataFilterService;
-import com.tasnetwork.spring.orm.service.ReportProfileTestDataFilterService;
 
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -75,12 +58,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -88,12 +69,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -117,13 +97,8 @@ public class ReportProfileConfigController implements Initializable {
 			.getRpOperationParamService();
 	static private ReportProfileMeterMetaDataFilterService reportProfileMeterMetaDataFilterService = DeviceDataManagerController
 			.getReportProfileMeterMetaDataFilterService();
-	static private ReportProfileTestDataFilterService reportProfileTestDataFilterService = DeviceDataManagerController
-			.getReportProfileTestDataFilterService();
 	static private ReportProfileManageService reportProfileManageService = DeviceDataManagerController
 			.getReportProfileManageService();
-	static private OperationProcessService reportOperationProcessService = DeviceDataManagerController
-			.getReportOperationProcessService();
-
 	private OperationProcessJsonReadModel operationProcessDataModel = DeviceDataManagerController
 			.getReportProfileConfigParsedKey();
 	private ArrayList<OperationParam> operationParameterProfileDataList = new ArrayList<OperationParam>();
@@ -153,10 +128,6 @@ public class ReportProfileConfigController implements Initializable {
 
 	Pattern excelRowColUserEntryPattern = Pattern.compile("[a-zA-Z]+\\d+");
 
-	private int OPERATION_INPUT_DATA_MAX_COUNT = 20;
-	private int OPERATION_LOCAL_OUTPUT_DATA_MAX_COUNT = 10;
-	private int OPERATION_LOCAL_OUTPUT_STATUS_MAX_COUNT = 10;
-
 	private int OPERATION_MASTER_OUTPUT_STATUS_MAX_COUNT = 10;
 
 	private String DUT_KEY = ConstantAppConfig.DUT_DISPLAY_KEY;// ConstantReport.DUT_KEY;
@@ -165,26 +136,6 @@ public class ReportProfileConfigController implements Initializable {
 	private String BASE_TEMPLATE2 = "Base Template2";
 	private String BASE_TEMPLATE3 = "Base Template3";
 
-	/*
-	 * String RESULT_DATA_TYPE_DISPLAY_ERROR_VALUE =
-	 * DUT_KEY+" Error Result";//resultDataTypeDisplayErrorValue
-	 * String RESULT_DATA_TYPE_DISPLAY_DUT_PULSE_COUNT = DUT_KEY+" Pulse Count";
-	 * String RESULT_DATA_TYPE_DISPLAY_DUT_INITIAL_REGISTER =
-	 * DUT_KEY+" Initial Register";
-	 * String RESULT_DATA_TYPE_DISPLAY_DUT_FINAL_REGISTER =
-	 * DUT_KEY+" Final Register";
-	 * String RESULT_DATA_TYPE_DISPLAY_REFSTD_INITIAL_REGISTER =
-	 * "RSM Initial Register";
-	 * String RESULT_DATA_TYPE_DISPLAY_REFSTD_FINAL_REGISTER = "RSM Final Register";
-	 * String RESULT_DATA_TYPE_DISPLAY_OPERATION = "Operation";
-	 */
-
-	/*
-	 * private ArrayList<String> EXECUTION_RESULT_TYPE_HEADER_ONLY_LIST = new
-	 * ArrayList<String>(Arrays.asList(ConstantReportV2.
-	 * RESULT_DATA_TYPE_DISPLAY_REFSTD_INITIAL_REGISTER,
-	 * ConstantReportV2.RESULT_DATA_TYPE_DISPLAY_REFSTD_FINAL_REGISTER));
-	 */
 
 	String ERROR_RESULT_STATUS_NOT_ALLOWED_TAIL_END = "Register";
 
@@ -196,10 +147,7 @@ public class ReportProfileConfigController implements Initializable {
 	// private ArrayList<ExcelCellValueModel> testfilterCellPositionDataList = new
 	// ArrayList<ExcelCellValueModel>();
 	private HashMap<String, String> testFilterDataCellPositionHashMap = new LinkedHashMap<String, String>();
-	// private MultiValuedMap<String, ReportProfileTestFilterDataModel>
-	// reportProfileTestFilterDataHashMap = new ArrayListValuedHashMap<String,
-	// ReportProfileTestFilterDataModel>();
-
+// 
 	private HashMap<String, String> lastSavedMeterMetaDataCellPosition = new LinkedHashMap<String, String>();
 	private HashMap<String, String> lastSavedTestFilterDataCellPositionHashMap = new LinkedHashMap<String, String>();
 
@@ -210,22 +158,6 @@ public class ReportProfileConfigController implements Initializable {
 
 	ArrayList<String> REPORT_METER_DATA_TYPE_KEY_LIST = ConstantReportV2.REPORT_META_DATATYPE_LIST;
 
-	/*
-	 * new ArrayList<String>(Arrays.asList(
-	 * ConstantReportV2.REPORT_META_DATATYPE_SERIAL_NO,ConstantReportV2.
-	 * REPORT_META_DATATYPE_DUT_SERIAL_NO ,
-	 * "Rack position No","Meter Type","Meter Make","Capacity", "Batch No",
-	 * "Meter Constant",
-	 * "PT ratio", "CT ratio", DUT_KEY+" OverAll Status", "Meter Class",
-	 * "Meter Basic Current",
-	 * "Meter Max Current", "Meter Rated Volt","Meter Frequency", "CT Type",
-	 * "Customer Name","Lora Id",
-	 * "Execution Time Stamp", "Execution Date", "Execution Time",
-	 * "Report Gen Time Stamp", "Report Gen Date", "Report Gen Time",
-	 * "Approved Time Stamp", "Approved Date", "Approved Time",
-	 * "Tested by","Witnessed by","Approved by",
-	 * "Page No","Max No Of Pages"));//
-	 */ // "Reactive Meter Constant","Wiring Type"));
 	private ArrayList<String> BASE_TEMPLATE_LIST = new ArrayList<String>(
 			Arrays.asList(BASE_TEMPLATE1, BASE_TEMPLATE2, BASE_TEMPLATE3));
 
@@ -255,12 +187,9 @@ public class ReportProfileConfigController implements Initializable {
 	// "MasterOutputStatus";
 
 	private String OPERATION_INPUT_DATA_HEADER_KEY_PREFIX = "OperLocalInData";
-	private String OPERATION_INPUT_DATA_HEADER_DISPLAY_PREFIX = "LocalInputSetData";
-
 	private String OPERATION_LOCAL_OUTPUT_DATA_HEADER_KEY_PREFIX = "OperLocalOutData";
 	private String OPERATION_LOCAL_OUTPUT_DATA_HEADER_DISPLAY_PREFIX = "LocalOutputSetData";
 
-	private String OPERATION_LOCAL_OUTPUT_STATUS_HEADER_KEY_PREFIX = "OperLocalOutStatus";
 	private String OPERATION_LOCAL_OUTPUT_STATUS_HEADER_DISPLAY_PREFIX = "LocalOutputSetStatus";
 
 	private String OPERATION_MASTER_OUTPUT_DATA_HEADER_KEY_PREFIX = "OperMasterOutputData";
@@ -268,61 +197,6 @@ public class ReportProfileConfigController implements Initializable {
 
 	private String OPERATION_MASTER_OUTPUT_STATUS_HEADER_KEY_PREFIX = "OperMasterOutputStatus";
 	private String OPERATION_MASTER_OUTPUT_STATUS_HEADER_DISPLAY_PREFIX = "MasterOutputSetStatus";
-	// private String OPERATION_MASTER_OUTPUT_HEADER_STATUS_KEY_PREFIX =
-	// "OperMasterOutStatus";
-
-	// private String OPERATION_POPULATE_MASTER_OUTPUT_DATA_KEY =
-	// "MasterOutputDataSet";
-	// private String OPERATION_POPULATE_MASTER_OUTPUT_STATUS_KEY =
-	// "MasterOutputStatusSet";
-	/*
-	 * private String OPERATION_POPULATE_MASTER_UPPER_LIMIT_KEY =
-	 * "MasterAllowedUpperLimit";
-	 * private String OPERATION_POPULATE_MASTER_LOWER_LIMIT_KEY =
-	 * "MasterAllowedLowerLimit";
-	 * private String OPERATION_POPULATE_MASTER_MERGED_LIMIT_KEY =
-	 * "MasterMergedLimit";
-	 */
-
-	// private String OPERATION_POPULATE_LOCAL_OUTPUT_DATA_KEY =
-	// "LocalOutputDataSet";
-	// private String OPERATION_POPULATE_LOCAL_OUTPUT_STATUS_KEY =
-	// "LocalOutputStatusSet";
-	/*
-	 * private String OPERATION_POPULATE_LOCAL_UPPER_LIMIT_KEY =
-	 * "LocalAllowedUpperLimit";
-	 * private String OPERATION_POPULATE_LOCAL_LOWER_LIMIT_KEY =
-	 * "LocalAllowedLowerLimit";
-	 * private String OPERATION_POPULATE_LOCAL_MERGED_LIMIT_KEY =
-	 * "LocalMergedLimit";
-	 */
-
-	private int MAXIMUM_HEADERS_DISPLAY_SUPPORTED = 3;
-
-	/*
-	 * private String POPULATE_HEADER1_KEY = "Header1";
-	 * private String POPULATE_HEADER2_KEY = "Header2";
-	 * private String POPULATE_HEADER3_KEY = "Header3";
-	 */
-
-	/*
-	 * ArrayList<String> cellStartPositionHeader = new
-	 * ArrayList<String>(Arrays.asList("Result Value","Result Status"));
-	 * ArrayList<String> cellStartPositionCell = new
-	 * ArrayList<String>(Arrays.asList("A1","B22"));
-	 */
-
-	/*
-	 * String CELL_START_POSITION_HEADER_RESULT_DATA_KEY = "Result Value";
-	 * String CELL_START_POSITION_HEADER_RESULT_STATUS_KEY = "Result Status";
-	 * 
-	 * String CELL_HEADER_POSITION_HEADER_RESULT_RSM_INITIAL = "Rsm Initial";
-	 * String CELL_HEADER_POSITION_HEADER_RESULT_RSM_FINAL = "Rsm Final";
-	 */
-
-	// String CELL_OPERATION_HEADER_ALLOWED_UPPER_LIMIT_KEY = "AllowedUpperLimit";
-	// String CELL_OPERATION_HEADER_ALLOWED_LOWER_LIMIT_KEY = "AllowedLowerLimit";
-	// String CELL_START_POSITION_HEADER_RESULT_STATUS_KEY = "Result Status";
 
 	String REPLICATE_RESULT_KEY_PREFIX = "Replicate Result Value";
 
@@ -1164,7 +1038,6 @@ public class ReportProfileConfigController implements Initializable {
 
 	private BidiMap<String, String> operationInputDataHashBiMap = new DualHashBidiMap<String, String>();
 	private BidiMap<String, String> operationLocalOutputDataHashBiMap = new DualHashBidiMap<String, String>();
-	private BidiMap<String, String> operationLocalOutputStatusHashBiMap = new DualHashBidiMap<String, String>();
 	private BidiMap<String, String> operationMasterOutputDataHashBiMap = new DualHashBidiMap<String, String>();
 	private BidiMap<String, String> operationMasterOutputStatusHashBiMap = new DualHashBidiMap<String, String>();
 	// private HashMap<String,String> operationInputHashBiMap = new
@@ -1208,8 +1081,6 @@ public class ReportProfileConfigController implements Initializable {
 
 	@FXML
 	private Button btnSave;
-
-	private static Button ref_btnSave;
 
 	private static ReportProfileManage reportProfileManageModel = new ReportProfileManage();
 
@@ -2717,57 +2588,6 @@ public class ReportProfileConfigController implements Initializable {
 				.setCellValueFactory(new ReportTestFilterListFilterActiveCheckBoxValueFactory());
 		ref_colTestFilterListFilterActive.setStyle("-fx-alignment: CENTER;");
 
-		/*
-		 * ref_colTestFilterListSerialNo.setCellValueFactory(cellData ->
-		 * cellData.getValue().getSerialNoProperty());
-		 * ref_colTestFilterListPageNo.setCellValueFactory(cellData ->
-		 * cellData.getValue().getPageNumberProperty());
-		 * ref_colTestFilterListFilterName.setCellValueFactory(cellData ->
-		 * cellData.getValue().getTestFilterNameProperty());
-		 * ref_colTestFilterListTestType.setCellValueFactory(cellData ->
-		 * cellData.getValue().getTestTypeSelectedProperty());
-		 * //ref_colTestFilterListFilter.setCellValueFactory(cellData ->
-		 * cellData.getValue().getTestFilterProperty());
-		 * //ref_colTestFilterListFilterUnit.setCellValueFactory(cellData ->
-		 * cellData.getValue().getSerialNoProperty());
-		 * ref_colTestFilterListIterationId.setCellValueFactory(cellData ->
-		 * cellData.getValue().getIterationReadingIdUserEntryProperty());
-		 * ref_colTestFilterListOperationMode.setCellValueFactory(cellData ->
-		 * cellData.getValue().getOperationModeProperty());
-		 * ref_colTestFilterListExecutionResultType.setCellValueFactory(cellData ->
-		 * cellData.getValue().getTestExecutionResultTypeSelectedProperty());
-		 * //ref_colTestFilterListRsmDataType.setCellValueFactory(cellData ->
-		 * cellData.getValue().getSerialNoProperty());
-		 * ref_colTestFilterListResultDataType.setCellValueFactory(cellData ->
-		 * cellData.getValue().getResultDataTypeCellPositionProperty());
-		 * ref_colTestFilterListResultValueCellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getResultValueCellPositionProperty());
-		 * ref_colTestFilterListResultStatusCellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getResultStatusCellPositionProperty());
-		 * ref_colTestFilterListHeader1CellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getHeader1_CellPositionProperty());
-		 * ref_colTestFilterListHeader2CellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getHeader2_CellPositionProperty());
-		 * ref_colTestFilterListHeader3CellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getHeader3_CellPositionProperty());
-		 * ref_colTestFilterListTestTypeAlias.setCellValueFactory(cellData ->
-		 * cellData.getValue().getTestTypeAliasProperty());
-		 * ref_colTestFilterListUpperLimitCellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getResultUpperLimitCellPositionProperty());
-		 * ref_colTestFilterListLowerLimitCellPosition.setCellValueFactory(cellData ->
-		 * cellData.getValue().getResultLowerLimitCellPositionProperty());
-		 * 
-		 * ref_colTestFilterListNonDisplayedDataSet.setCellValueFactory(cellData ->
-		 * cellData.getValue().getNonDisplayedDataSetProperty());
-		 * ref_colTestFilterListOperationMethod.setCellValueFactory(cellData ->
-		 * cellData.getValue().getOperationProcessMethodProperty());
-		 * //ref_colTestFilterListInputProcessDataList.setCellValueFactory(cellData ->
-		 * cellData.getValue().getResultLowerLimitCellPositionProperty());
-		 * 
-		 * ref_colTestFilterListFilterPreview.setCellValueFactory(cellData ->
-		 * cellData.getValue().getFilterPreviewProperty());
-		 */
-
 		ref_colTestFilterListMergeUpperLowerLimits
 				.setCellValueFactory(new ReportTestFilterListMergedLimitsCheckBoxValueFactory());
 		ref_colTestFilterListMergeUpperLowerLimits.setStyle("-fx-alignment: CENTER;");
@@ -2861,7 +2681,6 @@ public class ReportProfileConfigController implements Initializable {
 	private void refAssignment() {
 
 		ref_cmbBxReportProfile = cmbBxReportProfile;
-		ref_btnSave = btnSave;
 		// ref_rdBtnPopulateVertical = rdBtnPopulateVertical;
 		// ref_rdBtnPopulateHorizontal = rdBtnPopulateHorizontal;
 		ref_chkBxEnableFilter = chkBxEnableFilter;
@@ -3634,212 +3453,18 @@ public class ReportProfileConfigController implements Initializable {
 	}
 
 	public void LoadReferenceValue() {
-		/*
-		 * int TestTypeDisplayIndex =
-		 * cmbBox_testtype.getSelectionModel().getSelectedIndex();
-		 * String test_type =
-		 * ConstantReport.REPORT_TEST_TYPES.get(TestTypeDisplayIndex);
-		 * txt_reference_extension.setEditable(false);
-		 * txt_reference_extension.clear();
-		 * txt_reference_value.clear();
-		 * switch(test_type){
-		 * //case "InfluenceFreq":
-		 * case ConstantApp.TEST_PROFILE_INFLUENCE_FREQ:
-		 * lbl_reference_value.setText("Reference Frequency");
-		 * txt_reference_extension.setText("");
-		 * txt_reference_value.setEditable(true);
-		 * txt_reference_extension.setVisible(true);
-		 * txt_reference_value.setVisible(true);
-		 * break;
-		 * 
-		 * //case "InfluenceVolt":
-		 * //case "VoltageUnbalance":
-		 * case ConstantApp.TEST_PROFILE_INFLUENCE_VOLT:
-		 * case ConstantApp.TEST_PROFILE_VOLTAGE_UNBALANCE:
-		 * lbl_reference_value.setText("    Reference Voltage");
-		 * txt_reference_extension.setText("U");
-		 * txt_reference_value.setEditable(true);
-		 * txt_reference_extension.setVisible(true);
-		 * txt_reference_value.setVisible(true);
-		 * break;
-		 * 
-		 * //case "Repeatability":
-		 * //case "SelfHeating":
-		 * case ConstantApp.TEST_PROFILE_REPEATABILITY:
-		 * case ConstantApp.TEST_PROFILE_SELF_HEATING:
-		 * lbl_reference_value.setText("       No of Readings");
-		 * txt_reference_extension.setText("");
-		 * txt_reference_value.setEditable(true);
-		 * txt_reference_extension.setVisible(true);
-		 * txt_reference_value.setVisible(true);
-		 * break;
-		 * 
-		 * 
-		 * //case "PhaseReversal":
-		 * //case "InfluenceHarmonic":
-		 * //case "NoLoad":
-		 * //case "STA":
-		 * //case "UnbalancedLoad":
-		 * //case "Accuracy":
-		 * case ConstantApp.TEST_PROFILE_STA:
-		 * case ConstantApp.TEST_PROFILE_NOLOAD:
-		 * case ConstantApp.TEST_PROFILE_ACCURACY:
-		 * case ConstantApp.TEST_PROFILE_INFLUENCE_HARMONIC:
-		 * case ConstantApp.TEST_PROFILE_PHASE_REVERSAL:
-		 * case ConstantApp.TEST_PROFILE_UNBALANCED_LOAD:
-		 * lbl_reference_value.setText("");
-		 * txt_reference_extension.setText("");
-		 * txt_reference_value.setEditable(false);
-		 * txt_reference_extension.setVisible(false);
-		 * txt_reference_value.setVisible(false);
-		 * break;
-		 * 
-		 * //case "ConstantTest":
-		 * case ConstantApp.TEST_PROFILE_CONSTANT_TEST:
-		 * lbl_reference_value.setText("     Reference Energy");
-		 * txt_reference_extension.setText("kWh");
-		 * txt_reference_value.setEditable(true);
-		 * txt_reference_extension.setVisible(true);
-		 * txt_reference_value.setVisible(true);
-		 * break;
-		 * 
-		 * default:
-		 * break;
-		 * }
-		 */
 
 	}
 
-	/*
-	 * public void extension_on_click(){
-	 * ApplicationLauncher.logger.info("extension_on_click : Entry ");
-	 * 
-	 * if(!cmbBox_extension.getSelectionModel().isEmpty()){
-	 * if(cmbBox_extension.getSelectionModel().getSelectedItem().equals(
-	 * ConstantReport.EXTENSION_TYPE_PHASE_UPF)){
-	 * txt_value.setEditable(true);
-	 * txt_value.setText("1.0");
-	 * txt_value.setEditable(false);
-	 * }
-	 * else{
-	 * txt_value.setEditable(true);
-	 * }
-	 * }
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public void UPF_listener(){
-	 * txt_value.textProperty().addListener((observable, oldValue, newValue) -> {
-	 * if(cmBxPageNumber.equals(ConstantReport.PARAMETER_TYPE_PF)){
-	 * if(!txt_value.getText().isEmpty()){
-	 * float value = Float.parseFloat(txt_value.getText());
-	 * if(value == 1){
-	 * cmbBox_extension.setValue(ConstantReport.EXTENSION_TYPE_PHASE_UPF);
-	 * }
-	 * }
-	 * }
-	 * });
-	 * }
-	 */
-
 	public void LoadSavedData(String test_type) {
 		ApplicationLauncher.logger.info("LoadSavedData : test_type: " + test_type);
-		/*
-		 * JSONObject report_header_config =
-		 * MySQL_Controller.sp_getreport_header_config(getSelectedReportProfile(),
-		 * test_type);
-		 * try{
-		 * JSONArray report_header_arr =
-		 * report_header_config.getJSONArray("Report_Headers");
-		 * ApplicationLauncher.logger.info("LoadSavedData : report_header_arr: " +
-		 * report_header_arr);
-		 * for(int i=0; i<report_header_arr.length();i++){
-		 * JSONObject jobj = report_header_arr.getJSONObject(i);
-		 * String header_type = jobj.getString("header_type");
-		 * String header_value = jobj.getString("header_value");
-		 * LoadValuesToList(header_type, header_value);
-		 * }
-		 * }
-		 * catch(JSONException e){
-		 * e.printStackTrace();
-		 * ApplicationLauncher.logger.error("LoadSavedData: JSONException : " +
-		 * e.getMessage());
-		 * }
-		 */
 	}
 
 	public void LoadValuesToList(String header_type, String header_value) {
 		ApplicationLauncher.logger.info("LoadValuesToList : " + header_type + "-" + header_value);
-		/*
-		 * if(header_type.equals(ConstantReport.HEADER_TYPE_VOLTAGE)){
-		 * listview_voltage.getItems().add(header_value);
-		 * }
-		 * else if(header_type.equals(ConstantReport.HEADER_TYPE_CURRENT)){
-		 * listview_current.getItems().add(header_value);
-		 * }
-		 * else if(header_type.equals(ConstantReport.HEADER_TYPE_PF)){
-		 * listview_phase.getItems().add(header_value);
-		 * }
-		 * else if(header_type.equals(ConstantReport.HEADER_TYPE_FREQUENCY)){
-		 * listview_frequency.getItems().add(header_value);
-		 * }
-		 * else if(header_type.equals(ConstantReport.HEADER_TYPE_HARMONICS)){
-		 * listview_frequency.getItems().add(header_value);
-		 * }
-		 * else if(header_type.equals(ConstantReport.HEADER_TYPE_REFERENCE_VALUE)){
-		 * String str_row = header_value.replaceAll("[^0-9,.]", "");
-		 * txt_reference_value.setText(str_row);
-		 * }
-		 */
 	}
 
-	/*
-	 * @FXML
-	 * public void AddParameter(){
-	 * ApplicationLauncher.logger.debug("AddParameter: Entry");
-	 * String parameter = cmBxPageNumber.getSelectionModel().getSelectedItem();
-	 * ApplicationLauncher.logger.debug("AddParameter: parameter: " + parameter);
-	 * if(parameter.equals(ConstantReport.PARAMETER_TYPE_VOLTAGE)){
-	 * ApplicationLauncher.logger.debug("AddParameter: listview_voltage: " +
-	 * listview_voltage);
-	 * AddValue(listview_voltage);
-	 * }
-	 * else if(parameter.equals(ConstantReport.PARAMETER_TYPE_CURRENT)){
-	 * AddValue(listview_current);
-	 * }
-	 * else if(parameter.equals(ConstantReport.PARAMETER_TYPE_PF)){
-	 * AddValue(listview_phase);
-	 * }
-	 * else{
-	 * AddValue(listview_frequency);
-	 * }
-	 * }
-	 */
-
 	public void AddValue(ListView<String> listview) {
-		/*
-		 * ApplicationLauncher.logger.debug("AddValue: Entry: ");
-		 * //
-		 * ObservableList<String> values = listview.getItems();
-		 * ApplicationLauncher.logger.debug("AddValue: values: " + values);
-		 * if(values.size()<Max_Size){
-		 * String value = "";
-		 * if(cmbBox_extension.getSelectionModel().getSelectedItem().equals(
-		 * ConstantReport.EXTENSION_TYPE_PHASE_UPF)){
-		 * value = txt_value.getText();
-		 * }
-		 * else{
-		 * value = txt_value.getText() +
-		 * cmbBox_extension.getSelectionModel().getSelectedItem();
-		 * }
-		 * if((!checkdataexists(value, listview)) && (!txt_value.getText().isEmpty())){
-		 * listview.getItems().add(value);
-		 * txt_value.clear();
-		 * }
-		 * }
-		 */
 	}
 
 	public boolean checkdataexists(String value, ListView<String> listview) {
@@ -3861,24 +3486,6 @@ public class ReportProfileConfigController implements Initializable {
 		return dataexists;
 	}
 
-	/*
-	 * public void DeleteParameter(){
-	 * String parameter = cmBxPageNumber.getSelectionModel().getSelectedItem();
-	 * if(parameter.equals(ConstantReport.PARAMETER_TYPE_VOLTAGE)){
-	 * DeleteValue(listview_voltage);
-	 * }
-	 * else if(parameter.equals(ConstantReport.PARAMETER_TYPE_CURRENT)){
-	 * DeleteValue(listview_current);
-	 * }
-	 * else if(parameter.equals(ConstantReport.PARAMETER_TYPE_PF)){
-	 * DeleteValue(listview_phase);
-	 * }
-	 * else{
-	 * DeleteValue(listview_frequency);
-	 * }
-	 * }
-	 */
-
 	public void DeleteValue(ListView<String> listview) {
 		ObservableList<String> values = listview.getItems();
 		String del_value = listview.getSelectionModel().getSelectedItem();
@@ -3892,26 +3499,6 @@ public class ReportProfileConfigController implements Initializable {
 		return values;
 	}
 
-	/*
-	 * public ObservableList<String> getReference_value(){
-	 * String ref_value = "";
-	 * int TestTypeDisplayIndex =
-	 * ref_cmbBxTestType.getSelectionModel().getSelectedIndex();
-	 * String test_type =
-	 * ConstantReport.REPORT_TEST_TYPES.get(TestTypeDisplayIndex);
-	 * if(!txt_reference_extension.getText().isEmpty() &&
-	 * (!test_type.equals(TestProfileType.ConstantTest.toString()))){
-	 * ref_value = txt_reference_value.getText() +
-	 * txt_reference_extension.getText();
-	 * }
-	 * else{
-	 * ref_value = txt_reference_value.getText();
-	 * }
-	 * ObservableList<String> values = FXCollections.observableArrayList();
-	 * values.add(ref_value);
-	 * return values;
-	 * }
-	 */
 
 	@FXML
 	public void reportHeaderSaveOnClick() {
@@ -4149,63 +3736,6 @@ public class ReportProfileConfigController implements Initializable {
 		ApplicationLauncher.logger.debug("saveTestDataListToDataBase : Exit");
 	}
 
-	private void readMeterDataFromDataBase() {
-
-		ApplicationLauncher.logger.debug("readMeterDataFromDataBase : Entry");
-
-		// List<ReportProfileMeterMetaDataFilter> meterMetaDataDatabaseList =
-		// dataManagerObj.getReportProfileMeterMetaDataFilterService().findAll();
-		List<ReportProfileMeterMetaDataFilter> meterMetaDataDatabaseList = getReportProfileMeterMetaDataFilterService()
-				.findAllByOrderByTableSerialNoAsc();// findAllOrderByTableSerialNoAsc();
-		// List<ReportProfileMeterMetaDataFilter> meterMetaDataDatabaseList =
-		// getReportProfileMeterMetaDataFilterService().findAllByOrderByPageNumberAsc();
-		// if(meterMetaDataDatabaseList.size()>0){
-		// dataManagerObj.getReportProfileMeterMetaDataFilterService().saveToDb(product);
-		// }
-
-		meterMetaDataDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : getFilterName: " + e.getFilterName());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : getBaseTemplateMetaDataPopulateType: "
-							+ e.getBaseTemplateMetaDataPopulateType());
-			/*
-			 * ApplicationLauncher.logger.
-			 * debug("readMeterDataFromDataBase : Reading from DB : getBaseTemplateName: " +
-			 * e.getBaseTemplateName() );
-			 * ApplicationLauncher.logger.
-			 * debug("readMeterDataFromDataBase : Reading from DB : getReportGroupId: " +
-			 * e.getReportGroupId() );
-			 * ApplicationLauncher.logger.
-			 * debug("readMeterDataFromDataBase : Reading from DB : getReportGroupName: " +
-			 * e.getReportGroupName() );
-			 * ApplicationLauncher.logger.
-			 * debug("readMeterDataFromDataBase : Reading from DB : getReportProfileId: " +
-			 * e.getReportProfileId() );
-			 * ApplicationLauncher.logger.
-			 * debug("readMeterDataFromDataBase : Reading from DB : getReportProfileName: "
-			 * + e.getReportProfileName() );
-			 */
-
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : getPageNumber: " + e.getPageNumber());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : isAppendDutSerialAndRackPosition: "
-							+ e.isDiscardRackPositionInDutSerialNumber());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : isFilterActive: " + e.isFilterActive());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : getMeterDataType: " + e.getMeterDataType());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : getCellPosition: " + e.getCellPosition());
-
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : ############################ ");
-		});
-		ApplicationLauncher.logger.debug("readMeterDataFromDataBase : Exit");
-	}
-
 	private void readActiveReportProfileManageFromDataBase() {
 
 		ApplicationLauncher.logger.debug("readActiveReportProfileManageFromDataBase : Entry");
@@ -4257,177 +3787,6 @@ public class ReportProfileConfigController implements Initializable {
 		ApplicationLauncher.logger.debug("readActiveReportProfileManageFromDataBase : Exit");
 	}
 
-	private void readReportProfileManageFromDataBase() {
-
-		ApplicationLauncher.logger.debug("readReportProfileManageFromDataBase : Entry");
-
-		// List<ReportProfileMeterMetaDataFilter> meterMetaDataDatabaseList =
-		// dataManagerObj.getReportProfileMeterMetaDataFilterService().findAll();
-		List<ReportProfileManage> reportProfileActiveDatabaseList = getReportProfileManageService().findAll();// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase : Reading from DB : getReportGroupName: " + e.getReportGroupName());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase : Reading from DB : getReportProfileName: " + e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findAll: Reading from DB : ############################ ");
-		});
-
-		reportProfileActiveDatabaseList = getReportProfileManageService().findByActiveProfile();// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findByActiveProfile: Reading from DB : ^^^^^^^^^^^^^^^^^^^^^^^ ");
-		});
-
-		List<String> reportProfileGroupIdFilterList = new ArrayList<String>(Arrays.asList("22", "23"));
-		List<String> reportProfileGroupNameFilterList = ConstantAppConfig.REPORT_PROFILE_DEFAULT_ACTIVE_GROUP_NAME_LIST;
-
-		reportProfileActiveDatabaseList = getReportProfileManageService()
-				.findByReportGroupIdList(reportProfileGroupIdFilterList);// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findByReportGroupIdList: Reading from DB : &&&&&&&&&&&&&&&&&& ");
-		});
-
-		reportProfileActiveDatabaseList = getReportProfileManageService()
-				.findByReportGroupNameList(reportProfileGroupNameFilterList);// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findByReportGroupNameList: Reading from DB : %%%%%%%%%%%%%%%%%%%%%% ");
-		});
-
-		reportProfileActiveDatabaseList = getReportProfileManageService()
-				.findActiveProfileByReportGroupIdList(reportProfileGroupIdFilterList);// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findActiveProfileByReportGroupIdList: Reading from DB : +++++++++++++++++ ");
-		});
-
-		reportProfileActiveDatabaseList = getReportProfileManageService()
-				.findActiveProfileByReportGroupNameList(reportProfileGroupNameFilterList);// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findActiveProfileByReportGroupNameList: Reading from DB : ---------------------- ");
-		});
-
-		String reportProfileDefaultActiveCustomerId = ConstantAppConfig.REPORT_PROFILE_DEFAULT_ACTIVE_CUSTOMER_ID;
-
-		reportProfileActiveDatabaseList = getReportProfileManageService().findActiveCustomerByReportGroupIdList(
-				reportProfileDefaultActiveCustomerId, reportProfileGroupIdFilterList);// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findActiveCustomerByReportGroupIdList: Reading from DB : @@@@@@@@@@@@@@@@@@@@@@@ ");
-		});
-
-		reportProfileActiveDatabaseList = getReportProfileManageService().findActiveCustomerByReportGroupNameList(
-				reportProfileDefaultActiveCustomerId, reportProfileGroupNameFilterList);// findAllOrderByTableSerialNoAsc();
-
-		reportProfileActiveDatabaseList.stream().forEach(e -> {
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getId: " + e.getId());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : isProfileActive: " + e.isProfileActive());
-			ApplicationLauncher.logger.debug(
-					"readMeterDataFromDataBase Active : Reading from DB : getReportGroupId: " + e.getReportGroupId());
-			ApplicationLauncher.logger.debug("readMeterDataFromDataBase Active : Reading from DB : getReportGroupName: "
-					+ e.getReportGroupName());
-			ApplicationLauncher.logger
-					.debug("readMeterDataFromDataBase Active : Reading from DB : getReportProfileName: "
-							+ e.getReportProfileName());
-
-			ApplicationLauncher.logger.debug(
-					"readReportProfileManageFromDataBase : findActiveCustomerByReportGroupNameList: Reading from DB : 000000000000000000000000 ");
-		});
-
-		setActiveReportProfileDatabaseList(reportProfileActiveDatabaseList);
-		ApplicationLauncher.logger.debug("readReportProfileManageFromDataBase : Exit");
-	}
-
 	private ArrayList<ReportProfileMeterMetaDataFilter> convertMeterProfileDataDisplayModelToDatabaseModel() {
 
 		ApplicationLauncher.logger.debug("convertMeterProfileDataDisplayModelToDatabaseModel : Entry");
@@ -4476,47 +3835,6 @@ public class ReportProfileConfigController implements Initializable {
 		}
 
 		return meterMetaDataDatabaseList;
-	}
-
-	private ArrayList<ReportProfileTestDataFilter> convertTestFilterDisplayModelToDatabaseModel() {
-
-		ApplicationLauncher.logger.debug("convertTestFilterDisplayModelToDatabaseModel : Entry");
-		// ObservableList<ReportMeterMetaDataTypeSubModel> meterMetaDataDisplayList =
-		// ref_tvMeterMetaDataList.getItems();
-		ArrayList<ReportProfileTestDataFilter> testFilterDatabaseList = new ArrayList<ReportProfileTestDataFilter>();
-		ReportProfileTestDataFilter testFilterDatabase = new ReportProfileTestDataFilter();
-		/*
-		 * String baseTemplateMetaDataPopulateType =
-		 * ref_cmbBxMeterMetaDataPopulateType.getSelectionModel().getSelectedItem().
-		 * toString();
-		 * String baseTemplateName =
-		 * ref_cmbBxBaseTemplate.getSelectionModel().getSelectedItem().toString();
-		 * String reportGroupId = "";
-		 * String reportGroupName =
-		 * ref_cmbBxReportProfileGroup.getSelectionModel().getSelectedItem().toString();
-		 * String reportProfileId = "";
-		 * String reportProfileName =
-		 * ref_cmbBxReportProfile.getSelectionModel().getSelectedItem().toString();
-		 * String filterName = ref_txtMeterMetaDataPageName.getText();//"";
-		 */
-		// boolean appendDutSerialAndRackPosition =
-		// ref_chkBxDiscardRackPositionInDutSerialNumber.isSelected();//true;
-		// boolean filterActive =
-		// ref_chkBxMeterProfileMetaDataPageActive.isSelected();//true;
-		// for(ReportMeterMetaDataTypeSubModel eachMeterMetaData :
-		// getMeterMetaDataList()){//.stream().forEach(e -> {
-
-		List<ReportProfileTestDataFilter> populatedTestFilterDataList = ref_tvTestFilterDataList.getItems();
-		for (ReportProfileTestDataFilter eachTestFilterData : populatedTestFilterDataList) {
-			testFilterDatabase = new ReportProfileTestDataFilter();
-
-			ApplicationLauncher.logger.debug("convertTestFilterDisplayModelToDatabaseModel : getTestFilterName(): "
-					+ eachTestFilterData.getTestFilterName());
-
-			testFilterDatabaseList.add(testFilterDatabase);
-		}
-
-		return testFilterDatabaseList;
 	}
 
 	@FXML
@@ -6629,81 +5947,6 @@ public class ReportProfileConfigController implements Initializable {
 					ApplicationLauncher.logger.debug("btnOperationNextOnClick: Success1");
 					ref_titledPaneCellPosition.setExpanded(true);
 				}
-				/*
-				 * String selectedOutputData =
-				 * ref_cmbBxOperationCriteriaLocalOutputData.getSelectionModel().getSelectedItem
-				 * ().toString();
-				 * String selectedComparedResultStatus=
-				 * ref_cmbBxOperationComparedResultStatusOutput.getSelectionModel().
-				 * getSelectedItem().toString();
-				 * if(selectedOutputData.equals(selectedComparedResultStatus)){
-				 * ApplicationLauncher.logger.info("btnOperationNextOnClick: " +
-				 * "Same Output selected: <Output Data> and <Compared Result status> selection output are same. Kindly ensure different outputs are selected\n\nSelected output: "
-				 * + selectedComparedResultStatus+" - Prompted");
-				 * WindowManager.InformUser("Same Output selected"
-				 * ,"<Output Data> and <Compared Result status> selection output are same. Kindly ensure different outputs are selected\n\nSelected output: "
-				 * + selectedComparedResultStatus,AlertType.ERROR);
-				 * 
-				 * }else{
-				 * if(!ref_txtAllowedUpperLimit.getText().isEmpty()){
-				 * 
-				 * if(!ref_txtAllowedLowerLimit.getText().isEmpty()){
-				 * float allowedUpperLimit = Float.parseFloat(txtAllowedUpperLimit.getText());
-				 * float allowedLowerLimit = Float.parseFloat(txtAllowedLowerLimit.getText());
-				 * if(allowedUpperLimit != allowedLowerLimit){
-				 * if(selectedOperation.equals(NONE_DISPLAYED)){
-				 * 
-				 * }else {// if((!selectedOperation.equals(NONE_DISPLAYED))){
-				 * if( (inputProcessDataList.size()>1) ){
-				 * //ref_titledPaneCellPosition.setExpanded(true);
-				 * 
-				 * ApplicationLauncher.logger.
-				 * debug("btnOperationNextOnClick: ValidateCheckBox test1");
-				 * status = validateUserSelectedAtLeastOnePopulateInOperation ();
-				 * if(status){
-				 * ref_titledPaneCellPosition.setExpanded(true);
-				 * }
-				 * }else{
-				 * ApplicationLauncher.logger.info("btnOperationNextOnClick: " +
-				 * "Input Process list: Input Process list table is empty or insufficient data to process operation.\n\nKindly add the input process list and try again! - Prompted"
-				 * );
-				 * WindowManager.InformUser("Input Process list"
-				 * ,"Input Process list table is empty or insufficient data to process operation.\n\nKindly add the input process list and try again!"
-				 * ,AlertType.ERROR);
-				 * 
-				 * }
-				 * }
-				 * }else{
-				 * ApplicationLauncher.logger.info("btnOperationNextOnClick: " +
-				 * "Same value on Limits: Same value entered on <Allowed Upper Limit> and <Allowed Lower Limit> field.\n\nKindly enter different value and try again! - Prompted"
-				 * );
-				 * WindowManager.InformUser("Same value on Limits"
-				 * ,"Same value entered on <Allowed Upper Limit> and <Allowed Lower Limit> field.\n\nKindly enter different value and try again!"
-				 * ,AlertType.ERROR);
-				 * 
-				 * }
-				 * }else{
-				 * ApplicationLauncher.logger.info("btnOperationNextOnClick: " +
-				 * "Allowed Lower Limit empty: <Allowed Lower Limit> field is empty.\n\nKindly enter valid value and try again! - Prompted"
-				 * );
-				 * WindowManager.InformUser("Allowed Lower Limit empty"
-				 * ,"<Allowed Lower Limit> field is empty.\n\nKindly enter valid value and try again!"
-				 * ,AlertType.ERROR);
-				 * 
-				 * }
-				 * 
-				 * }else{
-				 * ApplicationLauncher.logger.info("btnOperationNextOnClick: " +
-				 * "Allowed Upper Limit empty: <Allowed Upper Limit> field is empty.\n\nKindly enter valid value and try again! - Prompted"
-				 * );
-				 * WindowManager.InformUser("Allowed Upper Limit empty"
-				 * ,"<Allowed Upper Limit> field is empty.\n\nKindly enter valid value and try again!"
-				 * ,AlertType.ERROR);
-				 * 
-				 * }
-				 * 
-				 * }
-				 */
 			} else {
 				// ref_titledPaneCellPosition.setExpanded(true);
 				// if(selectedOperation.equals(NONE_DISPLAYED)){
@@ -9886,7 +9129,7 @@ public class ReportProfileConfigController implements Initializable {
 	}
 
 	public void setReportProfileManageModel(ReportProfileManage reportProfileManageModel) {
-		this.reportProfileManageModel = reportProfileManageModel;
+		ReportProfileConfigController.reportProfileManageModel = reportProfileManageModel;
 	}
 
 	public List<ReportProfileManage> getActiveReportProfileDatabaseList() {

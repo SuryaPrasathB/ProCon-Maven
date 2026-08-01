@@ -32,7 +32,7 @@ public class CountUpTimer {
 	        
 	        // Schedule updates every 1 second
 	        timerFuture = scheduler.scheduleAtFixedRate(() -> {
-	            int currentTime = elapsedTimeSec.incrementAndGet();
+	            elapsedTimeSec.incrementAndGet();
 	            updateDisplay();
 	        }, 1, 1, TimeUnit.SECONDS);
 	    }
@@ -43,7 +43,7 @@ public class CountUpTimer {
 	            
 	            // Schedule updates every 1 second from current time
 	            timerFuture = scheduler.scheduleAtFixedRate(() -> {
-	                int currentTime = elapsedTimeSec.incrementAndGet();
+	                elapsedTimeSec.incrementAndGet();
 	                updateDisplay();
 	            }, 1, 1, TimeUnit.SECONDS);
 	        }

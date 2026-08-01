@@ -1,12 +1,5 @@
 package com.tasnetwork.calibration.energymeter.testreport;
 
-import com.tasnetwork.calibration.energymeter.testprofiles.TestDataTypeEnum;
-
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class ResultDataModel {
 	private final String testCaseName;
 	private final String aliasID;

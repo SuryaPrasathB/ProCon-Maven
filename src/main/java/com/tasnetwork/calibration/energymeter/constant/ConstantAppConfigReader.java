@@ -16,10 +16,8 @@ import org.json.simple.parser.JSONParser;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
-import com.tasnetwork.calibration.energymeter.custom1report.Custom1ReportConfigLoader;
 import com.tasnetwork.calibration.marked_for_delete.PrintStyleModel;
 
-import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
 
 public class ConstantAppConfigReader {
@@ -388,7 +386,6 @@ public class ConstantAppConfigReader {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static Map<String, Object> getMap(String section) {
 		try{
 			Map<String, Object> retValue = (Map<String, Object>) properties.get(section);

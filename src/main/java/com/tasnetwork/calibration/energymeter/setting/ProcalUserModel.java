@@ -2,8 +2,6 @@ package com.tasnetwork.calibration.energymeter.setting;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 public class ProcalUserModel {
 	

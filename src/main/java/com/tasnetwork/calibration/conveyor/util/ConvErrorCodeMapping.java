@@ -1,24 +1,12 @@
 package com.tasnetwork.calibration.conveyor.util;
 
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.TimerTask;
 
-import org.apache.commons.codec.DecoderException;
-import org.apache.commons.codec.binary.Hex;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 
-import com.tasnetwork.calibration.conveyor.bay.verific.S16_check_for_pallets_at_both_bays_in_loop;
-import com.tasnetwork.calibration.conveyor.bay.ft.S12_turn_on_divertor_relay_FT_Bay;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 import javafx.fxml.Initializable;

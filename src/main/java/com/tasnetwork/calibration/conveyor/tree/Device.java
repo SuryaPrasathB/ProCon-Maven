@@ -2,8 +2,6 @@ package com.tasnetwork.calibration.conveyor.tree;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-
 public class Device {
     
     private String id;  // Device ID

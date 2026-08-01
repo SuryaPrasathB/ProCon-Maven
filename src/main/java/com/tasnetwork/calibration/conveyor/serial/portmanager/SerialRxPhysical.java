@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.conveyor.serial.portmanager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.DeleteMeConstant;
 

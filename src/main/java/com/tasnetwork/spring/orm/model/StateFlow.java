@@ -1,8 +1,5 @@
 package com.tasnetwork.spring.orm.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -74,7 +69,7 @@ public class StateFlow {
 	@Transient
 	private SimpleStringProperty ifFailedErrorCodeProperty = new SimpleStringProperty();
 
-	private static final Map<String, String> stateCodeMap = new HashMap<>();
+	
 
 	// F U N C T I O N  D E C L A R A T I O N ===========================================================================
 

@@ -1,10 +1,14 @@
 package com.tasnetwork.calibration.conveyor.dutprocess;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
-import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
@@ -14,8 +18,6 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 
 import javafx.scene.control.Alert.AlertType;
-
-import java.util.*;
 
 public class ParallelTaskManager {
 
@@ -490,7 +492,6 @@ public class ParallelTaskManager {
 	public void monitorDutControlProcessTask() {
 
 		ApplicationLauncher.logger.debug("monitorDutControlProcessTask :Entry");
-		boolean validationCompleted = false;
 		int noOfDutProcessCompleted = 0;
 
 		if (!BayUtils.isUserAborted()) {
@@ -506,17 +507,6 @@ public class ParallelTaskManager {
 			ApplicationLauncher.logger
 					.debug("monitorDutControlProcessTask : noOfDutProcessCompleted : " + noOfDutProcessCompleted);
 			if (noOfDutProcessCompleted == getDutControlProcessList().size()) {
-
-				/*
-				 * DeviceDataManagerController.setRefStdLogResultsEnabled(false);
-				 * updateResultsToDatabase();
-				 * 
-				 * if(ProjectExecutionController.getCurrentTestPointName().contains(
-				 * ConstantCalibration.CALIB_READ_METER_ID)){
-				 * validateMeterIdProcess();
-				 * }
-				 * validateDutSummaryResult();
-				 */
 				setDutAllControlProcessCompleted(true);
 				// Sleep(20000);
 				ApplicationLauncher.logger.debug("monitorDutControlProcessTask : DutAllControlProcessCompleted");
@@ -603,7 +593,7 @@ public class ParallelTaskManager {
 			ApplicationLauncher.logger.debug("validateDutSummaryResult : dutAddress: " + dutAddress);
 			ApplicationLauncher.logger.debug("validateDutSummaryResult : resultStatus: " + resultStatus);
 			if (resultStatus.equals(ConstantReport.RESULT_STATUS_FAIL.trim())) {
-				DisplayDataObj.setDutResultSummary(resultStatus, dutAddress);
+				ConveyorDataManager.setDutResultSummary(resultStatus, dutAddress);
 				ApplicationLauncher.logger.debug("validateDutSummaryResult : failed status updated");
 			}
 		}
@@ -658,46 +648,11 @@ public class ParallelTaskManager {
 	public boolean isMeterIdExistInBlackList(String readMeterId) {
 		boolean status = false;
 		ApplicationLauncher.logger.debug("isMeterIdExistInBlackList: Entry");
-		/*
-		 * if(ConstantConfig.METER_ID_BLACKLIST_VALIDATION){
-		 * if (ConstantConfig.METER_ID_BLACKLISTED_LIST.size()>0){
-		 * 
-		 * 
-		 * for(int i=0; i< ConstantConfig.TOTAL_METER_ID_BLACKLISTED ; i++){
-		 * if(ConstantConfig.METER_ID_BLACKLISTED_LIST.get(i).equals((readMeterId))){
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("isMeterIdExistInBlackList: meter id found in black list: " +
-		 * readMeterId );
-		 * status = true;
-		 * return status;
-		 * 
-		 * }
-		 * }
-		 * }
-		 * }
-		 */
-
 		return status;
 	}
 
 	public boolean isMeterIdExistInAlreadyCalibratedList(String readMeterId) {
 		boolean status = false;
-		/*
-		 * ApplicationLauncher.logger.
-		 * debug("isMeterIdExistInAlreadyCalibratedList: Entry" );
-		 * if(ConstantConfig.METER_ID_VALIDATE_ALREADY_CALIBRATED){
-		 * status = MySQL_Controller.sp_ValidateDutAlreadyCalibrated(
-		 * ProjectExecutionController.getSelectedDeployment_ID(), readMeterId,
-		 * ConstantReport.RESULT_DATA_TYPE_ERROR_VALUE);
-		 * if (status){
-		 * ApplicationLauncher.logger.
-		 * debug("isMeterIdExistInAlreadyCalibratedList: meter id found in calibrated list: "
-		 * + readMeterId );
-		 * return status;
-		 * }
-		 * }
-		 */
 
 		return status;
 	}
@@ -708,35 +663,9 @@ public class ParallelTaskManager {
 			DutDatabaseWriteModel dbWriteData = getDatabaseWriteQueue().poll();
 			if (dbWriteData.isResultForTestTypeWithCurrentParameter()) {
 				ApplicationLauncher.logger.debug("updateResultsToDatabase : result with current parameter");
-				/*
-				 * MySQL_Controller.sp_add_calibration_resultV2(dbWriteData.
-				 * getCurrentProjectName(),
-				 * dbWriteData.getCurrentTestPointName(), dbWriteData.getCurrentTestAliasID(),
-				 * dbWriteData.getErrorCount(),dbWriteData.getResultData(),
-				 * dbWriteData.getFailureReason(),dbWriteData.getDataType(),
-				 * dbWriteData.getExecutionMctNctMode(),dbWriteData.getEnergyFlowMode(),
-				 * dbWriteData.getSelectedDeployment_ID(),dbWriteData.getSequenceNumber(),
-				 * dbWriteData.getValidationType(),dbWriteData.getValidationType2(),
-				 * dbWriteData.getValidationType2ResultStatus(),dbWriteData.
-				 * getValidationType2ResultData(),
-				 * dbWriteData.getOverAllResultStatus(),dbWriteData.getErrorMin2(),
-				 * dbWriteData.getErrorMax2(),dbWriteData.getAverageType(),dbWriteData.
-				 * getAverageCount());
-				 */
 			} else {
 
 				ApplicationLauncher.logger.debug("updateResultsToDatabase : result with out current parameter");
-				/*
-				 * MySQL_Controller.sp_add_resultV2(dbWriteData.getCurrentProjectName(),
-				 * dbWriteData.getCurrentTestPointName(), dbWriteData.getCurrentTestAliasID(),
-				 * dbWriteData.getRackId(),dbWriteData.getResultStatus(),dbWriteData.
-				 * getErrorCount(),
-				 * dbWriteData.getErrorValue(),dbWriteData.getFailureReason(),dbWriteData.
-				 * getDataType(),
-				 * dbWriteData.getExecutionMctNctMode(),dbWriteData.getEnergyFlowMode(),
-				 * dbWriteData.getSelectedDeployment_ID(),dbWriteData.getSequenceNumber(),
-				 * dbWriteData.getAverageType(),dbWriteData.getAverageCount() );
-				 */
 
 			}
 
@@ -749,58 +678,13 @@ public class ParallelTaskManager {
 
 	public static void enableRefStdLogResults() {
 		ApplicationLauncher.logger.debug("enableRefStdLogResults :Entry");
-		/*
-		 * if(!isRefStdLogResultsEnabled()){
-		 * 
-		 * //DeviceDataManagerController.setRefStdLogResultsEnabled(true);
-		 * setRefStdLogResultsEnabled(true);
-		 * ApplicationLauncher.logger.debug("enableRefStdLogResults :enabled");
-		 * }
-		 */
-
 	}
 
 	public static void disableRefStdLogResults(int dutAddress) {
 		ApplicationLauncher.logger.debug("disableRefStdLogResults :Entry");
 		ApplicationLauncher.logger.debug("disableRefStdLogResults : dutAddress: " + dutAddress);
-		int noOfRefStdLogsResultsStopRequested = 0;
-		/*
-		 * if(isRefStdLogResultsEnabled()){
-		 * for(int i = 0; i < getDutControlProcessList().size() ; i++){
-		 * if(getDutControlProcessList().get(i).isRefStdLogResultsStopRequested()){
-		 * ApplicationLauncher.logger.debug("updateRefStdResult : Index : " + i);
-		 * noOfRefStdLogsResultsStopRequested++;
-		 * }
-		 * }
-		 * if(noOfRefStdLogsResultsStopRequested == getDutControlProcessList().size()){
-		 * //DeviceDataManagerController.setRefStdLogResultsEnabled(false);
-		 * setRefStdLogResultsEnabled(false);
-		 * ApplicationLauncher.logger.debug("disableRefStdLogResults :disabled");
-		 * updateRefStdResult();
-		 * 
-		 * }
-		 * 
-		 * 
-		 * }
-		 */
 
 	}
-
-	/*
-	 * public static void updateRefStdResult(){
-	 * ApplicationLauncher.logger.debug("updateRefStdResult :Entry");
-	 * 
-	 * for(int i = 0; i < getDutControlProcessList().size() ; i++){
-	 * if(getDutControlProcessList().get(i).isDutProcessExecutionCompleted()){
-	 * ApplicationLauncher.logger.debug("updateRefStdResult : Index : " + i);
-	 * //getDutControlProcessList().get(i).setRefStdResult(DisplayDataObj.
-	 * getRefStdResult());
-	 * }
-	 * }
-	 * 
-	 * 
-	 * }
-	 */
 
 	public void Sleep(int timeInMsec) {
 
@@ -898,16 +782,6 @@ public class ParallelTaskManager {
 	public void setDutAllControlProcessCompleted(boolean allControlProcessCompleted) {
 		dutAllControlProcessCompleted = allControlProcessCompleted;
 	}
-
-	/*
-	 * public static boolean isRefStdLogResultsEnabled() {
-	 * return refStdLogResultsEnabled;
-	 * }
-	 * 
-	 * public static void setRefStdLogResultsEnabled(boolean logResultsEnabled) {
-	 * refStdLogResultsEnabled = logResultsEnabled;
-	 * }
-	 */
 
 	public ArrayList<String> getBlackListedMeterIdFoundList() {
 		return blackListedMeterIdFoundList;

@@ -2,7 +2,6 @@ package com.tasnetwork.calibration.energymeter.setting;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.json.JSONArray;
@@ -15,7 +14,6 @@ import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestCaseData;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 
@@ -25,10 +23,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;

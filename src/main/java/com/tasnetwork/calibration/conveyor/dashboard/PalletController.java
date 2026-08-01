@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
@@ -76,8 +75,6 @@ public class PalletController {
 	private CommonContextMenu commonContextMenu;
 
 	BayUtils bayUtils = new BayUtils();
-
-	private Consumer<PalletController> onMoveToNextBayHandler;
 
 	@FXML
 	private HBox hBoxTop;
@@ -200,10 +197,6 @@ public class PalletController {
 	// W A I T I N G B A Y
 	// ======================================================================================
 
-	private void handleWaitingAction(BayActionType actionType) {
-		ApplicationLauncher.logger.info("Waiting bay: action " + actionType + " ignored.");
-	}
-
 	public void setSerialByPosition(int position, String serial) {
 		if (position >= 1 && position <= serialSetters.size()) {
 			serialSetters.get(position - 1).accept(serial);
@@ -238,7 +231,6 @@ public class PalletController {
 	}
 
 	public void setOnMoveToNextBayHandler(Consumer<PalletController> handler) {
-		this.onMoveToNextBayHandler = handler;
 	}
 
 	public AnchorPane getPalletRoot() {

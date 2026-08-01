@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.conveyor.remote;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Result {
 
 	private String alias_id = "";

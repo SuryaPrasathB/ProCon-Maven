@@ -1,20 +1,18 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-
-
-
-import com.sun.javafx.scene.control.skin.resources.ControlResources;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 
 import javafx.application.Platform;
 import javafx.beans.NamedArg;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -29,7 +27,7 @@ public class TextFieldInputDialog extends Dialog<String> {
      **************************************************************************/
 
     private final GridPane grid;
-    //private final TextArea textArea;
+    // private final TextArea textArea;
     private final TextField textField;
     private final String defaultValue;
 
@@ -69,28 +67,29 @@ public class TextFieldInputDialog extends Dialog<String> {
 
         dialogPane.contentTextProperty().addListener(o -> updateGrid());
 
-        //setTitle(ControlResources.getString("Dialog.confirm.title"));
-        setTitle(ControlResources.getString("Dialog.confirm.title"));
-        dialogPane.setHeaderText(ControlResources.getString("Dialog.confirm.header"));
+        // setTitle(ControlResources.getString("Dialog.confirm.title"));
+        setTitle("Confirmation");
+        dialogPane.setHeaderText("Confirmation");
         dialogPane.getStyleClass().add("text-input-dialog");
         dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-       // dialogPane.
-       // SaveAsStage.getIcons().add(new Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
+        // dialogPane.
+        // SaveAsStage.getIcons().add(new
+        // Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
         Stage stage = (Stage) dialogPane.getScene().getWindow();
-        //Stage primaryStage = ApplicationLauncher.getPrimaryStage();
-       // stage.getIcons().add(new Image(this.getClass().getResource("file:images/"+ConstantVersion.APP_ICON_FILENAME).toString()));
-        stage.getIcons().add(new Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
-        //Stage stage = (Stage) dialogPane.getScene().getWindow();
+        // Stage primaryStage = ApplicationLauncher.getPrimaryStage();
+        // stage.getIcons().add(new
+        // Image(this.getClass().getResource("file:images/"+ConstantVersion.APP_ICON_FILENAME).toString()));
+        stage.getIcons().add(new Image("file:images/" + ConstantVersion.APP_ICON_FILENAME));
+        // Stage stage = (Stage) dialogPane.getScene().getWindow();
 
-        //Stage primaryStage = ApplicationLauncher.getPrimaryStage();
-        //stage.initOwner(primaryStage);
-        //stage.getIcons().add(new Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
-        
+        // Stage primaryStage = ApplicationLauncher.getPrimaryStage();
+        // stage.initOwner(primaryStage);
+        // stage.getIcons().add(new
+        // Image("file:images/"+ConstantVersion.APP_ICON_FILENAME));
 
-        //SaveAsStage.initModality(Modality.APPLICATION_MODAL);
-        //stage.initOwner(primaryStage);
-        
-        
+        // SaveAsStage.initModality(Modality.APPLICATION_MODAL);
+        // stage.initOwner(primaryStage);
+
         updateGrid();
 
         setResultConverter((dialogButton) -> {
@@ -134,4 +133,3 @@ public class TextFieldInputDialog extends Dialog<String> {
         Platform.runLater(() -> textField.requestFocus());
     }
 }
-

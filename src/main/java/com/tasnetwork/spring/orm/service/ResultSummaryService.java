@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tasnetwork.spring.orm.model.ReportProfileManage;
 import com.tasnetwork.spring.orm.model.ResultSummary;
 import com.tasnetwork.spring.orm.repository.ResultSummaryRepo;
 

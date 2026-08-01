@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tasnetwork.spring.orm.model.OperationParam;
-import com.tasnetwork.spring.orm.model.ReportProfileManage;
 import com.tasnetwork.spring.orm.repository.OperationParamRepo;
-import com.tasnetwork.spring.orm.repository.OperationProcessRepo;
 
 @Component
 public class OperationParamService {

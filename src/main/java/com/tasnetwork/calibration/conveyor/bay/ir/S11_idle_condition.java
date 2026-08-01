@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.ir;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 
 

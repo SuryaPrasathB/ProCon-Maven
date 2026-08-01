@@ -1,13 +1,10 @@
 package com.tasnetwork.calibration.conveyor.tree;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.List;
 
 // Represents a Cluster which contains multiple Bays
 class Cluster {

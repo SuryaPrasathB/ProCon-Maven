@@ -1,14 +1,10 @@
 package com.tasnetwork.calibration.energymeter.reportprofile;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 import com.tasnetwork.calibration.energymeter.testreport.ReportMeterMetaDataTypeSubModel;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;

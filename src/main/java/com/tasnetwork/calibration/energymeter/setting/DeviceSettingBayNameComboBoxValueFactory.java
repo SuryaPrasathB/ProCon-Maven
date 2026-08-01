@@ -1,19 +1,10 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
-import java.util.List;
-
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;

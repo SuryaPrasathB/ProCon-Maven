@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.energymeter.setting;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -18,23 +17,12 @@ import org.json.JSONObject;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ConstantRefStdRadiant;
-import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestCaseData;
-import com.tasnetwork.calibration.energymeter.uac.UacAddPossibleCheckBoxValueFactory;
-import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
-import com.tasnetwork.calibration.energymeter.uac.UacDeletePossibleCheckBoxValueFactory;
-import com.tasnetwork.calibration.energymeter.uac.UacExecutePossibleCheckBoxValueFactory;
-import com.tasnetwork.calibration.energymeter.uac.UacUpdatePossibleCheckBoxValueFactory;
-import com.tasnetwork.calibration.energymeter.uac.UacVisibleEnabledCheckBoxValueFactory;
-import com.tasnetwork.calibration.energymeter.util.EditCell;
 import com.tasnetwork.calibration.energymeter.util.EditCellRefStdPulseConstVoltageAndCurrent;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
-import com.tasnetwork.calibration.energymeter.util.MyFloatStringConverter;
 import com.tasnetwork.calibration.energymeter.util.MyIntegerStringConverter;
 
 import javafx.application.Platform;
@@ -44,6 +32,8 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -53,18 +43,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Callback;
-import javafx.util.converter.DefaultStringConverter;
-import javafx.scene.control.Button;
 
 public class RefStdConstController implements Initializable {
 
@@ -267,15 +253,7 @@ public class RefStdConstController implements Initializable {
 	private static ListView<String> ref_listViewCurrentTap;
 	private static ListView<String> ref_listViewVoltageTap;
 
-	private static Button ref_btnModelSectionNext;
-	// private static Button ref_btnCurrentTapLookupSave;
-	private static Button ref_btnCurrentAndVoltageTapLookupSave;
-
-	private static Label ref_labelMeterType;
 	private static ComboBox ref_cmbBoxMetertype;
-
-	// private static Tab ref_tabCurrentMapping;
-	private static Tab ref_tabVoltageAndCurrentMapping;
 
 	// private static TableView ref_tableViewCurrentMapping;
 	// private static TableView ref_tableViewVoltageAndCurrentMapping;
@@ -318,7 +296,6 @@ public class RefStdConstController implements Initializable {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void editFocusedCellOnTableViewVoltageAndCurrentMapping() {
 		ApplicationLauncher.logger.debug("editFocusedCellOnTableViewVoltageAndCurrentMapping: Entry");
 		final TablePosition<RefStdPulseConstantModel, ?> focusedCell = ref_tableViewVoltageAndCurrentMapping
@@ -337,7 +314,6 @@ public class RefStdConstController implements Initializable {
 		return ref_tableViewVoltageAndCurrentMapping.getVisibleLeafColumn(newColumnIndex);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void selectPreviousOnTableViewVoltageAndCurrentMapping() {
 		ApplicationLauncher.logger.debug("selectPreviousOnTableViewVoltageAndCurrentMapping: Entry");
 		if (ref_tableViewVoltageAndCurrentMapping.getSelectionModel().isCellSelectionEnabled()) {
@@ -376,7 +352,6 @@ public class RefStdConstController implements Initializable {
 		ref_tableViewVoltageAndCurrentMapping.getSelectionModel().getTableView().getSelectionModel().selectBelowCell();
 	}
 
-	@SuppressWarnings("unchecked")
 	private void setupCurrentAndVoltageLookupTableView() {
 
 		ref_tableViewVoltageAndCurrentMapping.setEditable(true);
@@ -653,40 +628,6 @@ public class RefStdConstController implements Initializable {
 
 	}
 
-	private void testDummyDataOnCurrentTable() {
-		try {
-
-			RefStdPulseConstantModel dataModel = new RefStdPulseConstantModel();
-			dataModel.setSerialNo("1");
-			dataModel.setCurrentTapValue("TapValue");
-			dataModel.setOperation(ConstantApp.REF_STD_OPERATION_CURRENT_ABOVE_OR_EQUAL);
-			// dataModel.setConstantInV1_Wh("V1-Hr");
-			dataModel.setConstantInV1_Wh(1);
-			ref_tableViewCurrentMappingOnly.getItems().add(dataModel);
-			RefStdPulseConstantModel dataModel2 = new RefStdPulseConstantModel();
-			dataModel2.setSerialNo("1");
-			dataModel2.setCurrentTapValue("TapValue");
-			/*
-			 * dataModel2.setConstantInV1_Wh("V1-Hr");
-			 * dataModel2.setConstantInV2_Wh("V2-Hr");
-			 * dataModel2.setConstantInV3_Wh("V3-Hr");
-			 * dataModel2.setConstantInV4_Wh("V4-Hr");
-			 * dataModel2.setConstantInV5_Wh("V5-Hr");
-			 */
-			dataModel2.setConstantInV1_Wh(1);
-			dataModel2.setConstantInV2_Wh(2);
-			dataModel2.setConstantInV3_Wh(3);
-			dataModel2.setConstantInV4_Wh(4);
-			dataModel2.setConstantInV5_Wh(5);
-			dataModel2.setOperation(ConstantApp.REF_STD_OPERATION_VOLTAGE_ABOVE_OR_EQUAL);
-			ref_tableViewVoltageAndCurrentMapping.getItems().add(dataModel2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			ApplicationLauncher.logger.error("testDummyDataOnCurrentTable: Exception: " + e.getMessage());
-		}
-	}
-
-	@SuppressWarnings("unchecked")
 	public static void editFocusedCellOnTableViewCurrentMapping() {
 		ApplicationLauncher.logger.debug("editFocusedCellOnTableViewCurrentMapping: Entry");
 		final TablePosition<RefStdPulseConstantModel, ?> focusedCell = ref_tableViewCurrentMappingOnly
@@ -696,149 +637,6 @@ public class RefStdConstController implements Initializable {
 			ref_tableViewCurrentMappingOnly.edit(focusedCell.getRow(), focusedCell.getTableColumn());
 		}
 	}
-
-	private TableColumn<RefStdPulseConstantModel, ?> getTableColumnOnTableViewCurrentMapping(
-			final TableColumn<RefStdPulseConstantModel, ?> column, int offset) {
-		ApplicationLauncher.logger.debug("getTableColumnOnTableViewCurrentMapping: Entry");
-		int columnIndex = ref_tableViewCurrentMappingOnly.getVisibleLeafIndex(column);
-		int newColumnIndex = columnIndex + offset;
-		return ref_tableViewCurrentMappingOnly.getVisibleLeafColumn(newColumnIndex);
-	}
-
-	@SuppressWarnings("unchecked")
-	private void selectPreviousOnTableViewCurrentMapping() {
-		ApplicationLauncher.logger.debug("selectPreviousOnTableViewCurrentMapping: Entry");
-		if (ref_tableViewCurrentMappingOnly.getSelectionModel().isCellSelectionEnabled()) {
-			// in cell selection mode, we have to wrap around, going from
-			// right-to-left, and then wrapping to the end of the previous line
-			TablePosition<RefStdPulseConstantModel, ?> pos = ref_tableViewCurrentMappingOnly.getFocusModel()
-					.getFocusedCell();
-			if (pos.getColumn() - 1 >= 0) {
-				// go to previous row
-				ref_tableViewCurrentMappingOnly.getSelectionModel().select(pos.getRow(),
-						getTableColumnOnTableViewCurrentMapping(pos.getTableColumn(), -1));
-			} else if (pos.getRow() < ref_tableViewCurrentMappingOnly.getItems().size()) {
-				// wrap to end of previous row
-				ref_tableViewCurrentMappingOnly.getSelectionModel().select(pos.getRow() - 1,
-						ref_tableViewCurrentMappingOnly.getVisibleLeafColumn(
-								ref_tableViewCurrentMappingOnly.getVisibleLeafColumns().size() - 1));
-			}
-		} else {
-			int focusIndex = ref_tableViewCurrentMappingOnly.getFocusModel().getFocusedIndex();
-			if (focusIndex == -1) {
-				ref_tableViewCurrentMappingOnly.getSelectionModel()
-						.select(ref_tableViewCurrentMappingOnly.getItems().size() - 1);
-			} else if (focusIndex > 0) {
-				ref_tableViewCurrentMappingOnly.getSelectionModel().select(focusIndex - 1);
-			}
-		}
-	}
-
-	private void selectAboveCellOnTableViewCurrentMapping() {
-		ApplicationLauncher.logger.debug("selectAboveCellOnTableViewCurrentMapping: Entry");
-		ref_tableViewCurrentMappingOnly.getSelectionModel().getTableView().getSelectionModel().selectAboveCell();
-	}
-
-	private void selectBelowCellOnTableViewCurrentMapping() {
-		ApplicationLauncher.logger.debug("selectBelowCellOnTableViewCurrentMapping: Entry");
-		ref_tableViewCurrentMappingOnly.getSelectionModel().getTableView().getSelectionModel().selectBelowCell();
-	}
-
-	/*
-	 * public void setupCurrentLookupTableView(){
-	 * //ref_tableViewUac.setEditable(true);
-	 * 
-	 * ref_tableViewCurrentMappingOnly.setEditable(true);
-	 * ref_tableViewCurrentMappingOnly.getSelectionModel().
-	 * cellSelectionEnabledProperty().set(true);
-	 * 
-	 * ref_tableViewCurrentMappingOnly.setOnKeyPressed(event -> {
-	 * if (event.getCode().isLetterKey() || event.getCode().isDigitKey()) {
-	 * ApplicationLauncher.logger.
-	 * debug("setupCurrentLookupTableView: editFocusedCell");
-	 * editFocusedCellOnTableViewCurrentMapping();
-	 * } else if (event.getCode() == KeyCode.RIGHT
-	 * || ((event.getCode() == KeyCode.TAB) && (!event.isShiftDown()) )) {
-	 * ApplicationLauncher.logger.debug("setupCurrentLookupTableView: Tab");
-	 * ref_tableViewCurrentMappingOnly.getSelectionModel().selectNext();
-	 * editFocusedCellOnTableViewCurrentMapping();
-	 * event.consume();
-	 * //} else if ( (event.getCode() == KeyCode.LEFT ) || ( (event.getCode() == (
-	 * KeyCode.SHIFT )) || (event.getCode() == KeyCode.TAB) ) ) {
-	 * } else if ( (event.getCode() == KeyCode.LEFT ) || ( event.getCode() ==
-	 * KeyCode.TAB && (event.isShiftDown()) ) ) {
-	 * // work around due to
-	 * // TableView.getSelectionModel().selectPrevious() due to a bug
-	 * // stopping it from working on
-	 * // the first column in the last row of the table
-	 * ApplicationLauncher.logger.debug("setupCurrentLookupTableView: Left");
-	 * selectPreviousOnTableViewCurrentMapping();
-	 * editFocusedCellOnTableViewCurrentMapping();
-	 * event.consume();
-	 * } else if (event.getCode() == KeyCode.UP) {
-	 * ApplicationLauncher.logger.debug("setupCurrentLookupTableView: UP");
-	 * selectAboveCellOnTableViewCurrentMapping();
-	 * //ref_tableViewVoltageAndCurrentMapping.getSelectionModel().getTableView().
-	 * getSelectionModel().selectAboveCell();
-	 * editFocusedCellOnTableViewCurrentMapping();
-	 * event.consume();
-	 * } else if (event.getCode() == KeyCode.DOWN) {
-	 * ApplicationLauncher.logger.debug("setupCurrentLookupTableView: Down");
-	 * selectBelowCellOnTableViewCurrentMapping();
-	 * //ref_tableViewVoltageAndCurrentMapping.getSelectionModel().getTableView().
-	 * getSelectionModel().selectBelowCell();
-	 * editFocusedCellOnTableViewCurrentMapping();
-	 * event.consume();
-	 * }
-	 * });
-	 * 
-	 * tableColCurrentTapSerialNo.setCellValueFactory(cellData ->
-	 * cellData.getValue().getSerialNoProperty());
-	 * tableColCurrentTapValue.setCellValueFactory(cellData ->
-	 * cellData.getValue().getCurrentTapValueProperty());
-	 * //tableColCurrentTapOperation.setCellValueFactory(new
-	 * RefStdOperationCurrentComboBoxValueFactory());
-	 * 
-	 * if(validateTableViewEditWithComboBoxType){
-	 * tableColCurrentTapOperation.setCellValueFactory(new
-	 * RefStdOperationCurrentComboBoxValueFactory());
-	 * }else{
-	 * tableColCurrentTapOperation.setCellValueFactory(cellData ->
-	 * cellData.getValue().getOperationProperty());
-	 * //}
-	 * tableColCurrentTapConstantV1_InWh.setCellValueFactory(new
-	 * PropertyValueFactory<RefStdPulseConstantModel, Integer>("constantInV1_Wh"));
-	 * tableColCurrentTapConstantV1_InWh.setCellFactory(
-	 * EditCellRefStdPulseConstCurrentOnly.<RefStdPulseConstantModel,
-	 * Integer>forTableColumn(new MyIntegerStringConverter()));
-	 * tableColCurrentTapConstantV1_InWh.setOnEditCommit(new
-	 * EventHandler<CellEditEvent<RefStdPulseConstantModel, Integer>>() {
-	 * public void handle(CellEditEvent<RefStdPulseConstantModel, Integer> t) {
-	 * 
-	 * ApplicationLauncher.logger.info("setupCurrentLookupTableView : Onchange");
-	 * RefStdPulseConstantModel rowData = ((RefStdPulseConstantModel)
-	 * t.getTableView().getItems().get(t.getTablePosition().getRow()));
-	 * try{
-	 * rowData.setConstantInV1_Wh(t.getNewValue());
-	 * } catch (Exception e) {
-	 * 
-	 * e.printStackTrace();
-	 * ApplicationLauncher.logger.
-	 * error("setupCurrentLookupTableView: Pulse constant: Exception: " +
-	 * e.getMessage());
-	 * WindowManager.InformUser("Incorrect decimal Value",
-	 * "Kindly enter valid input decimal pulse constant" ,AlertType.ERROR);
-	 * rowData.setConstantInV1_Wh(t.getOldValue());
-	 * ref_tableViewCurrentMappingOnly.refresh();
-	 * }
-	 * }
-	 * });
-	 * 
-	 * 
-	 * //refreshData();
-	 * 
-	 * }
-	 */
 
 	private void hideGuiObjects() {
 
@@ -930,15 +728,7 @@ public class RefStdConstController implements Initializable {
 		ref_listViewCurrentTap = listViewCurrentTap;
 		ref_listViewVoltageTap = listViewVoltageTap;
 
-		ref_btnModelSectionNext = btnModelSectionNext;
-		ref_btnCurrentAndVoltageTapLookupSave = btnCurrentAndVoltageTapLookupSave;
-		// ref_btnCurrentTapLookupSave = btnCurrentTapLookupSave;
-
-		ref_labelMeterType = labelMeterType;
 		ref_cmbBoxMetertype = cmbBoxMetertype;
-
-		// ref_tabCurrentMapping = tabCurrentMapping;
-		ref_tabVoltageAndCurrentMapping = tabVoltageAndCurrentMapping;
 
 		// ref_tableViewCurrentMapping = tableViewCurrentMapping;
 		ref_tableViewCurrentMappingOnly = tableViewCurrentMappingOnly;

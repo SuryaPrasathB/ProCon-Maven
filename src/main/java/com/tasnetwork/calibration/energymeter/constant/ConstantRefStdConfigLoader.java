@@ -6,17 +6,12 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.google.gson.Gson;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
-import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
 import javafx.scene.control.Alert.AlertType;
 

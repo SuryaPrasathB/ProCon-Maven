@@ -1,14 +1,11 @@
 package com.tasnetwork.spring.orm.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.tasnetwork.spring.orm.model.PalletManage;
-import com.tasnetwork.spring.orm.model.PalletMeter;
 import com.tasnetwork.spring.orm.model.PalletMeterResults;
 
 @Repository

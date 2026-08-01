@@ -8,11 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 @Entity
 @Table(name = "TestIntefaceStatus")

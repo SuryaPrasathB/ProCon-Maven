@@ -1,23 +1,13 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstEULA;
-import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 public class TermsConditionController implements Initializable {
 	@FXML

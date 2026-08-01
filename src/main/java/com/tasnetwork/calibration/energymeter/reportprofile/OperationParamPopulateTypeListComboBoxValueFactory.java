@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 import com.tasnetwork.spring.orm.model.OperationParam;
-import com.tasnetwork.spring.orm.model.ReportProfileTestDataFilter;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;

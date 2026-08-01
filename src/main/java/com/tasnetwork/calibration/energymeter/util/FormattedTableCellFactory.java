@@ -31,7 +31,6 @@ public class FormattedTableCellFactory<S, T> implements Callback<TableColumn<S, 
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public TableCell<S, T> call(TableColumn<S, T> p) {
         TableCell<S, T> cell = new TableCell<S, T>() {
 

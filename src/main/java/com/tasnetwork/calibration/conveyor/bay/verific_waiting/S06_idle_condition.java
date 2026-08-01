@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.verific_waiting;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 public class S06_idle_condition implements WaitingBayState {
 	@Override
@@ -11,8 +9,6 @@ public class S06_idle_condition implements WaitingBayState {
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");
-
-		boolean idleComplete = false;
 
 		if (VerificWaiting.isResetProcessRequestedWaitingBay()) {
 			VerificWaiting.setResetProcessCompletedWaitingBay(true);

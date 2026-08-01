@@ -2,7 +2,6 @@ package com.tasnetwork.calibration.energymeter.testprofiles;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

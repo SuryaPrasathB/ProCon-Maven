@@ -1,59 +1,31 @@
 package com.tasnetwork.calibration.energymeter.database;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Properties;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.sql.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONString;
-//import org.mindrot.jbcrypt.BCrypt;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfigReader;
-import com.tasnetwork.calibration.energymeter.constant.ConstantLscsHarmonicsSourceSlave;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.Constant_Mysql;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
-import com.tasnetwork.calibration.energymeter.testreport.ResultDataModel;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
 
 public class MySQL_Interface {
 
-	/*
-	 * private static final String mSQL_URL =
-	 * "jdbc:mysql://localhost:3306/ltcalibration";
-	 * private static final String mSQL_User = "root";
-	 * private static final String mSQL_Password = "swam@WL13";
-	 */
-	// private static final String mSQL_URL =
-	// ConstantApp.DB_URL+ConstantAppConfig.DB_NAME;
-	private static final String mSQL_URL = ConstantAppConfig.DB_URL + ConstantAppConfig.DB_NAME
-			+ ConstantAppConfig.DB_URL_TAIL_OPTION;
-	private static final String mSQL_User = ConstantAppConfig.DB_USERNAME;
-	private static final String mSQL_Password = ConstantAppConfig.DB_PASSWORD;
 	private static Connection ConnectManager;
 	public static boolean bDB_SchemaExist = true;
 	public static boolean bDB_Connected = true;
@@ -68,7 +40,6 @@ public class MySQL_Interface {
 				ApplicationLauncher.logger.info("isDbConnected : DB Currently not connected");
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
 			ApplicationLauncher.logger.error("isDbConnected: Exception:" + e.getMessage());
 			return false;
 		}
@@ -85,24 +56,13 @@ public class MySQL_Interface {
 			} else {
 
 				ApplicationLauncher.logger.info("Loading jdbc library..");
-				/*
-				 * try {
-				 * 
-				 * Thread.sleep(2000);
-				 * 
-				 * } catch (InterruptedException e) {
-				 * 
-				 * e.printStackTrace();
-				 * }
-				 */
+				
 				Class.forName("com.mysql.jdbc.Driver");
-				// Class.forName("com.mysql.jdbc.driver");
 				ApplicationLauncher.logger.info("Connecting to jdbc...");
 				String mSQL_URL = ConstantAppConfig.DB_URL + ConstantAppConfig.DB_NAME
 						+ ConstantAppConfig.DB_URL_TAIL_OPTION;
 				ApplicationLauncher.logger.info("ConnectMySQL: mSQL_URL: " + mSQL_URL);
 				String url1 = mSQL_URL;// +"?useSSL=false&allowPublicKeyRetrieval=true";
-				// ApplicationLauncher.logger.info("ConnectMySQL: url1: " + url1);
 				String user = ConstantAppConfig.DB_USERNAME;
 				String password = ConstantAppConfig.DB_PASSWORD;
 				try {
@@ -117,7 +77,6 @@ public class MySQL_Interface {
 					ApplicationLauncher.logger
 							.error("ConnectMySQL: Database connectivity failed due to below reason!!");
 					ApplicationLauncher.logger.error("ConnectMySQL: Exception:" + e.getMessage());
-					// ApplicationLauncher.logger.error("ConnectMySQL: System.err: " + );
 
 					if (e.getMessage().toLowerCase().contains("unknown")
 							&& e.getMessage().toLowerCase().contains("database")) {
@@ -159,9 +118,6 @@ public class MySQL_Interface {
 
 			statement.setString(1, mctNctMode);
 			statement.setString(2, filterDataType1);
-			// statement.setString(1, filterDataType1);
-			// statement.setString(2, filterDataType2);
-			// statement.setString(3, filterDataType3);
 			statement.setString(3, deploymentID);
 
 			boolean hadResults = statement.execute();
@@ -171,8 +127,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -192,9 +146,6 @@ public class MySQL_Interface {
 						} else {
 							jobj.put("sequence_no", "");
 						}
-
-						// ApplicationLauncher.logger.error ("sp_getresult_data
-						// :"+jobj.getString("ratio_error"));
 						result_arr.put(jobj);
 						count++;
 					}
@@ -211,8 +162,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_get_completed_result_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetresult_data :Error 201: Source EM
-				// Model Reading: Failure");
 
 				return result_json;
 			}
@@ -221,8 +170,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_get_completed_result_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetresult_data :Error 202: Source EM
-			// Model Reading: Failure");
 
 			return result_json;
 		}
@@ -248,15 +195,10 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
-						// jobj.put("project_name", resultSet.getString("project_name"));
-						// jobj.put("start_time", resultSet.getString("start_time"));
 						jobj.put("end_time", resultSet.getString("execution_completed_time_h"));
-						// jobj.put("epoch_start_time", resultSet.getString("epoch_start_time"));
 						jobj.put("epoch_end_time", resultSet.getString("execution_completed_time_epoch"));
 						jobj.put("deployment_id", resultSet.getString("deployment_id"));
 						jobj.put("project_name", resultSet.getString("project_name"));
@@ -264,7 +206,6 @@ public class MySQL_Interface {
 						jobj.put("equipment_serial_no", resultSet.getString("equipment_serial_no"));
 						jobj.put("mct_mode_completed", resultSet.getString("mct_mode_completed"));
 						jobj.put("nct_mode_completed", resultSet.getString("nct_mode_completed"));
-						// jobj.put("tested_by", resultSet.getString("tested_by"));bjhbjh
 
 						if (resultSet.getString("tested_by") != null) {
 							jobj.put("tested_by", resultSet.getString("tested_by"));
@@ -326,7 +267,7 @@ public class MySQL_Interface {
 			statement.setString(7, DeviceActive);
 			statement.setString(8, UpdatedBy);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -355,135 +296,13 @@ public class MySQL_Interface {
 		}
 	}
 
-	/*
-	 * public JSONObject sp_getresult_data(long fromtime, long totime, String
-	 * project_name,String data_type,String deploymentID) {
-	 * 
-	 * 
-	 * JSONObject result_json = new JSONObject();
-	 * JSONArray result_arr =new JSONArray();
-	 * ApplicationLauncher.logger.debug ("sp_getresult_data: fromtime :"+ fromtime);
-	 * ApplicationLauncher.logger.debug ("sp_getresult_data: totime :"+ totime);
-	 * ApplicationLauncher.logger.debug ("sp_getresult_data: project_name :"+
-	 * project_name);
-	 * ApplicationLauncher.logger.debug ("sp_getresult_data: deploymentID :"+
-	 * deploymentID);
-	 * 
-	 * try {
-	 * 
-	 * 
-	 * CallableStatement statement =
-	 * ConnectManager.prepareCall("{call sp_getresult_data(?,?,?,?,?)}");
-	 * statement.setLong(1, fromtime);
-	 * statement.setLong(2, totime);
-	 * statement.setString(3, project_name);
-	 * statement.setString(4, data_type);
-	 * statement.setString(5, deploymentID);
-	 * 
-	 * dbfxdf
-	 * boolean hadResults = statement.execute();
-	 * int count =0;
-	 * try {
-	 * 
-	 * while (hadResults) {
-	 * ResultSet resultSet = statement.getResultSet();
-	 * 
-	 * // process result set
-	 * while (resultSet.next()) {
-	 * 
-	 * 
-	 * JSONObject jobj = new JSONObject();
-	 * jobj.put("test_case_name", resultSet.getString("test_case_name"));
-	 * jobj.put("execution_status", resultSet.getString("execution_status"));
-	 * jobj.put("burden_type", resultSet.getString("burden_type"));
-	 * jobj.put("load_type", resultSet.getString("load_type"));
-	 * if( resultSet.getString("ratio_error")!=null) {
-	 * jobj.put("ratio_error", resultSet.getString("ratio_error"));
-	 * }else {
-	 * jobj.put("ratio_error","");
-	 * }
-	 * jobj.put("ratio_error_limit", resultSet.getString("ratio_error_limit"));
-	 * if( resultSet.getString("phase_error")!=null) {
-	 * jobj.put("phase_error", resultSet.getString("phase_error"));
-	 * }else {
-	 * jobj.put("phase_error", "");
-	 * }
-	 * jobj.put("phase_error_limit", resultSet.getString("phase_error_limit"));
-	 * jobj.put("remarks", resultSet.getString("remarks"));
-	 * jobj.put("phase_type", resultSet.getString("phase_type"));
-	 * jobj.put("ratio_error_status", resultSet.getString("ratio_error_status"));
-	 * jobj.put("phase_error_status", resultSet.getString("phase_error_status"));
-	 * 
-	 * jobj.put("actual_sec_burden", resultSet.getString("actual_sec_burden"));
-	 * jobj.put("actual_sec_pf", resultSet.getString("actual_sec_pf"));
-	 * jobj.put("actual_pri_value", resultSet.getString("actual_pri_value"));
-	 * jobj.put("test_result", resultSet.getString("test_result"));
-	 * if( resultSet.getString("actual_load_percent")!=null) {
-	 * jobj.put("actual_load_percent", resultSet.getString("actual_load_percent"));
-	 * }else{
-	 * jobj.put("actual_load_percent", "");
-	 * }
-	 * if( resultSet.getString("seq_no")!=null) {
-	 * jobj.put("sequence_no", resultSet.getString("seq_no"));
-	 * }else{
-	 * jobj.put("sequence_no", "");
-	 * }
-	 * //ApplicationLauncher.logger.error
-	 * ("sp_getresult_data :"+jobj.getString("ratio_error"));
-	 * result_arr.put(jobj);
-	 * count++;
-	 * }
-	 * 
-	 * 
-	 * hadResults = statement.getMoreResults();
-	 * 
-	 * result_json.put("No_of_results", count);
-	 * result_json.put("Results", result_arr);
-	 * 
-	 * }
-	 * statement.close();
-	 * 
-	 * 
-	 * } catch (Exception ex) {
-	 * ex.printStackTrace();
-	 * ApplicationLauncher.logger.error ("sp_getresult_data : Exception1 :"+
-	 * ex.getMessage());
-	 * statement.close();
-	 * //ApplicationLauncher.logger.error
-	 * ("sp_ltgetresult_data :Error 201: Source EM Model Reading: Failure");
-	 * 
-	 * return result_json;
-	 * }
-	 * 
-	 * } catch (Exception ex) {
-	 * 
-	 * ex.printStackTrace();
-	 * ApplicationLauncher.logger.error("sp_getresult_data : Exception2 :"+
-	 * ex.getMessage());
-	 * //ApplicationLauncher.logger.error
-	 * ("sp_ltgetresult_data :Error 202: Source EM Model Reading: Failure");
-	 * 
-	 * return result_json;
-	 * }
-	 * 
-	 * return result_json;
-	 * }
-	 */
+	
 
 	public JSONObject sp_procal_getdeploy_manage_active(long deployedTimeMaxSearchLimit) {
 
 		JSONObject resultjson = new JSONObject();
 		JSONArray JsonList = new JSONArray();
-		// DeploymentDataModel deployManageModel = new
-		// DeploymentDataModel("","","","","","","");
-		/*
-		 * ApplicationLauncher.logger.
-		 * info("sp_progen_getdeploy_manage_active: customer name:"+deployManageModel.
-		 * customer_nameProperty().getClass().getFields().getClass().getName());
-		 * ApplicationLauncher.logger.
-		 * info("sp_progen_getdeploy_manage_active: equipment_serial_no name:"
-		 * +deployManageModel.getEquipment_serial_no().getClass().getSimpleName());
-		 */
+		
 
 		try {
 
@@ -498,8 +317,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					int No_of_deployment = 0;
 					while (resultSet.next()) {
 
@@ -518,10 +335,7 @@ public class MySQL_Interface {
 						if (resultSet.getString("energy_flow_mode") != null) {
 							jobj.put("energy_flow_mode", resultSet.getString("energy_flow_mode"));
 						} else {
-							// ex.printStackTrace();
 							jobj.put("energy_flow_mode", ConstantApp.DEPLOYMENT_IMPORT_MODE);
-							// ApplicationLauncher.logger.error ("sp_procal_getdeploy_manage_active :
-							// Exception on energy_flow_mode :"+ ex.getMessage());
 
 						}
 						try {
@@ -538,7 +352,6 @@ public class MySQL_Interface {
 						}
 						JsonList.put(jobj);
 						No_of_deployment++;
-						// deploymentDataList.add(arg0)
 					}
 					hadResults = statement.getMoreResults();
 
@@ -552,8 +365,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_procal_getdeploy_manage_active : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetdeploy_devices :Error 201: Source
-				// EM Model Reading: Failure");
 
 				return resultjson;
 			}
@@ -562,8 +373,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_procal_getdeploy_manage_active : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetdeploy_devices :Error 202: Source
-			// EM Model Reading: Failure");
 			return resultjson;
 		}
 		return resultjson;
@@ -582,7 +391,7 @@ public class MySQL_Interface {
 			statement.setString(4, mctModeCompletedStatus);
 			statement.setString(5, nctModeCompletedStatus);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -672,14 +481,7 @@ public class MySQL_Interface {
 			String cus_i3, String cus_ph1, String cus_ph2, String cus_ph3,
 			String cus_freq, String inf_average) {
 
-		/*
-		 * ApplicationLauncher.logger.info("inf_emin" + inf_emin);
-		 * ApplicationLauncher.logger.info("inf_emax" + inf_emax);
-		 * ApplicationLauncher.logger.info("inf_pulses" + inf_pulses);
-		 * ApplicationLauncher.logger.info("skip_reading_count" + skip_reading_count);
-		 * ApplicationLauncher.logger.info("inf_deviation" + inf_deviation);
-		 * ApplicationLauncher.logger.info("testruntype" + testruntype);
-		 */
+		
 
 		try {
 
@@ -721,19 +523,14 @@ public class MySQL_Interface {
 			statement.setString(34, cus_freq);
 			statement.setString(35, inf_average);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
 
 			try {
 
-				// ApplicationLauncher.logger.info("sp_ltadd_project_components: count: " +
-				// count);
-
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_ltadd_project_components: DB Success");
 					return true;
 				} else {
 
@@ -766,18 +563,14 @@ public class MySQL_Interface {
 			statement.setString(3, test_alias_id);
 			statement.setString(4, test_position_id);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
 
 			try {
 
-				// ApplicationLauncher.logger.info("sp_ltadd_project: count: "+ count);
-
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_ltadd_project: DB Success: ");
 					return true;
 				} else {
 
@@ -839,8 +632,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetproject: Exception1:" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.info ("sp_lt_getmodel_list:Error 201: Source EM
-				// Model Reading: Failure");
 				return project_data;
 			}
 
@@ -848,8 +639,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetproject: Exception2:" + ex.getMessage());
-			// ApplicationLauncher.logger.info ("sp_lt_getmodel_list:Error 202: Source EM
-			// Model Reading: Failure");
 			return project_data;
 		}
 
@@ -864,7 +653,7 @@ public class MySQL_Interface {
 			statement.setString(1, CurrentProjectName);
 			statement.setString(2, ToBeSavedProjectName);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -901,7 +690,7 @@ public class MySQL_Interface {
 			statement.setString(1, CurrentProjectName);
 			statement.setString(2, ToBeSavedProjectName);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -938,7 +727,7 @@ public class MySQL_Interface {
 			statement.setString(1, CurrentProjectName);
 			statement.setString(2, ToBeSavedProjectName);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -977,7 +766,7 @@ public class MySQL_Interface {
 			statement.setString(2, ToBeSavedProjectName);
 			statement.setInt(3, EM_Model_ID);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1014,7 +803,7 @@ public class MySQL_Interface {
 			statement.setString(1, CurrentProjectName);
 			statement.setString(2, ToBeSavedProjectName);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1068,8 +857,6 @@ public class MySQL_Interface {
 						ApplicationLauncher.logger.info("sp_ltgetproject_components: TestCaseType: " + TestCaseType);
 						JSONObject jobj = new JSONObject();
 						switch (TestCaseType) {
-
-							// case "STA":
 							case ConstantApp.TEST_PROFILE_STA:
 								jobj.put("sta_ib", resultSet.getString("sta_ib"));
 								jobj.put("time_duration", resultSet.getString("time_duration"));
@@ -1079,8 +866,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "Warmup":
 							case ConstantApp.TEST_PROFILE_WARMUP:
 								jobj.put("time_duration", resultSet.getString("time_duration"));
 								jobj.put("voltage", resultSet.getString("inf_voltage"));
@@ -1092,8 +877,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "NoLoad":
 							case ConstantApp.TEST_PROFILE_NOLOAD:
 								jobj.put("creep_un", resultSet.getString("creep_un"));
 								jobj.put("time_duration", resultSet.getString("time_duration"));
@@ -1103,12 +886,7 @@ public class MySQL_Interface {
 								count++;
 								break;
 
-							/*
-							 * case "Accuracy":
-							 * case "InfluenceHarmonic":
-							 * case "CuttingNuetral":
-							 * case "PhaseReversal":
-							 */
+							
 							case ConstantApp.TEST_PROFILE_ACCURACY:
 							case ConstantApp.TEST_PROFILE_INFLUENCE_HARMONIC:
 							case ConstantApp.TEST_PROFILE_CUT_NUETRAL:
@@ -1129,8 +907,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "InfluenceVolt":
 							case ConstantApp.TEST_PROFILE_INFLUENCE_VOLT:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("inf_emin", resultSet.getString("inf_emin"));
@@ -1148,8 +924,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "ConstantTest":
 							case ConstantApp.TEST_PROFILE_CONSTANT_TEST:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("inf_emin", resultSet.getString("inf_emin"));
@@ -1167,8 +941,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "InfluenceFreq":
 							case ConstantApp.TEST_PROFILE_INFLUENCE_FREQ:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("inf_emin", resultSet.getString("inf_emin"));
@@ -1184,8 +956,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "VoltageUnbalance":
 							case ConstantApp.TEST_PROFILE_VOLTAGE_UNBALANCE:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("inf_emin", resultSet.getString("inf_emin"));
@@ -1203,8 +973,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "CustomTest":
 							case ConstantApp.TEST_PROFILE_CUSTOM_TEST:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("cus_voltage_u1", resultSet.getString("cus_voltage_u1"));
@@ -1227,8 +995,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "Repeatability":
 							case ConstantApp.TEST_PROFILE_REPEATABILITY:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("inf_emin", resultSet.getString("inf_emin"));
@@ -1247,8 +1013,6 @@ public class MySQL_Interface {
 								json_list.put(jobj);
 								count++;
 								break;
-
-							// case "SelfHeating":
 							case ConstantApp.TEST_PROFILE_SELF_HEATING:
 								jobj.put("test_case_name", resultSet.getString("test_case_name"));
 								jobj.put("inf_emin", resultSet.getString("inf_emin"));
@@ -1285,8 +1049,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetproject_components : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.info ("sp_ltgetproject_components:Error 201:
-				// Source EM Model Reading: Failure");
 				return test_details_json;
 			}
 
@@ -1294,8 +1056,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetproject_components : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.info ("sp_ltgetproject_components:Error 202:
-			// Source EM Model Reading: Failure");
 			return test_details_json;
 		}
 
@@ -1317,8 +1077,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						project_list.put(resultSet.getString("project_name"));
@@ -1336,8 +1094,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetproject_list : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.info ("sp_ltgetproject_list:Error 201: Source EM
-				// Model Reading: Failure");
 				return project_json;
 			}
 
@@ -1345,8 +1101,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetproject_list : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.info ("sp_ltgetproject_list:Error 202: Source EM
-			// Model Reading: Failure");
 			return project_json;
 		}
 
@@ -1361,7 +1115,7 @@ public class MySQL_Interface {
 			statement.setString(1, project_name);
 			statement.setString(2, value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1408,8 +1162,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 						test_setup_data_arr.add(resultSet.getString("selected_values"));
 					}
@@ -1427,8 +1179,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgettest_point_setup : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgettest_point_setup_1 :Error 201:
-				// Source EM Model Reading: Failure");
 				return test_setup_data;
 			}
 
@@ -1436,8 +1186,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgettest_point_setup : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgettest_point_setup_1 : Error 202:
-			// Source EM Model Reading: Failure");
 			return test_setup_data;
 		}
 
@@ -1464,7 +1212,7 @@ public class MySQL_Interface {
 			statement.setString(11, ptr_ratio);
 			statement.setString(12, ct_type);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1510,8 +1258,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject model = new JSONObject();
@@ -1544,8 +1290,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetem_model_list : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetem_model_list:Error 201: Source EM
-				// Model Reading: Failure");
 				return em_model_data;
 			}
 
@@ -1553,8 +1297,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetem_model_list : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetem_model_list:Error 202: Source EM
-			// Model Reading: Failure");
 			return em_model_data;
 		}
 
@@ -1569,7 +1311,7 @@ public class MySQL_Interface {
 			statement.setString(1, customer_name);
 			statement.setString(2, model_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1585,8 +1327,6 @@ public class MySQL_Interface {
 					ApplicationLauncher.logger.info("sp_ltdelete_em_model: DB failed: ");
 					return false;
 				}
-
-				// statement.close();
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -1614,7 +1354,7 @@ public class MySQL_Interface {
 			statement.setString(4, port_name);
 			statement.setString(5, baud_rate);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1661,8 +1401,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						device_setting.put("model_name", resultSet.getString("model_name"));
@@ -1679,8 +1417,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetdevice_setting : Exception1:" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetdevice_setting:Error 201: Source
-				// EM Model Reading: Failure");
 				return device_setting;
 			}
 
@@ -1688,8 +1424,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetdevice_setting : Exception2 ::" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetdevice_setting:Error 202: Source
-			// EM Model Reading: Failure");
 			return device_setting;
 		}
 
@@ -1716,7 +1450,6 @@ public class MySQL_Interface {
 			statement.setString(1, project_name);
 			statement.setString(2, test_case_name);
 			statement.setString(3, alias_id);
-			// statement.setInt(4, Integer.parseInt(rack_id));
 			statement.setInt(4, rack_id);
 			statement.setLong(5, time_stamp);
 			statement.setString(6, test_result);
@@ -1729,7 +1462,7 @@ public class MySQL_Interface {
 			statement.setString(13, deploymentId);
 			statement.setInt(14, seqNumber);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -1737,8 +1470,6 @@ public class MySQL_Interface {
 			try {
 
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_ltadd_result: DB Success: ");
 					return true;
 				} else {
 
@@ -1782,8 +1513,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -1810,8 +1539,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetresult_testpoint_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetresult_testpoint_data :Error 2001:
-				// sp_ltgetresult_testpoint_data: Failure");
 
 				return result_json;
 			}
@@ -1820,8 +1547,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetresult_testpoint_data: Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetresult_testpoint_data :Error 2002:
-			// sp_ltgetresult_testpoint_data: Failure");
 
 			return result_json;
 		}
@@ -1886,38 +1611,15 @@ public class MySQL_Interface {
 					.info("sp_procal_add_deploy_manage_v1_1: autoDeployEnabled : " + autoDeployEnabled);
 
 			boolean hadResults = statement.execute();
-			// statement.executeUpdate(Statement.RETURN_GENERATED_KEYS);
 
 			int count = statement.getUpdateCount();
 			ApplicationLauncher.logger.info("sp_ltadd_deploy_devices : count: " + count);
-			// statement.close();
 
 			try {
 
 				if (count == 1) {
 					ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :DB Success: ");
-					/*
-					 * try {
-					 * 
-					 * while (hadResults) {
-					 * ResultSet resultSet = statement.getResultSet();
-					 * 
-					 * // process result set
-					 * //int No_of_deployment = 0;
-					 * while (resultSet.next()) {
-					 * ApplicationLauncher.logger.
-					 * info("sp_ltadd_deploy_devices : last inserted deployment_id:"+resultSet.
-					 * getString(Constant_Mysql.DEPLOYMENT_LAST_INSERTED_ID_COLUMN_NAME));
-					 * }
-					 * hadResults = statement.getMoreResults();
-					 * }
-					 * 
-					 * }catch(Exception e) {
-					 * e.printStackTrace();
-					 * ApplicationLauncher.logger.error
-					 * ("sp_procal_add_deploy_manage_v1_1 : Exception3 :"+ e.getMessage());
-					 * }
-					 */
+					
 					statement.close();
 					status = true;
 				} else {
@@ -1926,9 +1628,6 @@ public class MySQL_Interface {
 
 						while (hadResults) {
 							ResultSet resultSet = statement.getResultSet();
-
-							// process result set
-							// int No_of_deployment = 0;
 							while (resultSet.next()) {
 								deploymentID = resultSet
 										.getString(Constant_Mysql.DEPLOYMENT_LAST_INSERTED_ID_COLUMN_NAME);
@@ -1944,29 +1643,6 @@ public class MySQL_Interface {
 						}
 						ApplicationLauncher.logger.info("sp_procal_add_deploy_manage_v1_1: DB Success2: ");
 						status = true;
-						// while (hadResults) {
-						// int resultSet = statement;
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+resultSet);
-						// ResultSet resultSet = statement.getResultSet();
-						// ResultSet resultSet = statement.getResultSet();
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+resultSet.getInt(1));
-						// resultSet = statement.getInt(1);
-						// ResultSet resultSet = statement.getResultSet();
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+resultSet);
-						// int autoGeneratedKey = 0;
-
-						// while (resultSet.next()) {
-						// autoGeneratedKey = resultSet.getString("result");
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// result:"+resultSet.getString("result"));
-						// autoGeneratedKey = resultSet.getInt(1);
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+autoGeneratedKey);
-						// }
-						// }
 					} catch (Exception e) {
 						e.printStackTrace();
 						ApplicationLauncher.logger.info("sp_procal_add_deploy_manage_v1_1: DB failed: ");
@@ -1975,13 +1651,11 @@ public class MySQL_Interface {
 					}
 
 					statement.close();
-					// return status;
 				}
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_procal_add_deploy_manage_v1_1 : Exception1 :" + ex.getMessage());
-				// statement.close();
 				status = false;
 
 			}
@@ -2029,7 +1703,6 @@ public class MySQL_Interface {
 			statement.setLong(13, executionCompletedTime);
 			statement.setString(14, testerName);
 			statement.setString(15, energyFlowModeSelected);
-			// statement.setString(16, autoDeployEnabled);
 
 			ApplicationLauncher.logger.info("sp_procal_add_deploy_manage: project_name : " + project_name);
 			ApplicationLauncher.logger.info("sp_procal_add_deploy_manage: customer_name : " + customer_name);
@@ -2052,42 +1725,17 @@ public class MySQL_Interface {
 					.info("sp_procal_add_deploy_manage: executionCompletedTime : " + executionCompletedTime);
 			ApplicationLauncher.logger
 					.info("sp_procal_add_deploy_manage: energyFlowModeSelected : " + energyFlowModeSelected);
-			// ApplicationLauncher.logger.info("sp_procal_add_deploy_manage:
-			// autoDeployEnabled : "+autoDeployEnabled);
 
 			boolean hadResults = statement.execute();
-			// statement.executeUpdate(Statement.RETURN_GENERATED_KEYS);
 
 			int count = statement.getUpdateCount();
 			ApplicationLauncher.logger.info("sp_ltadd_deploy_devices : count: " + count);
-			// statement.close();
 
 			try {
 
 				if (count == 1) {
 					ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :DB Success: ");
-					/*
-					 * try {
-					 * 
-					 * while (hadResults) {
-					 * ResultSet resultSet = statement.getResultSet();
-					 * 
-					 * // process result set
-					 * //int No_of_deployment = 0;
-					 * while (resultSet.next()) {
-					 * ApplicationLauncher.logger.
-					 * info("sp_ltadd_deploy_devices : last inserted deployment_id:"+resultSet.
-					 * getString(Constant_Mysql.DEPLOYMENT_LAST_INSERTED_ID_COLUMN_NAME));
-					 * }
-					 * hadResults = statement.getMoreResults();
-					 * }
-					 * 
-					 * }catch(Exception e) {
-					 * e.printStackTrace();
-					 * ApplicationLauncher.logger.error
-					 * ("sp_procal_add_deploy_manage : Exception3 :"+ e.getMessage());
-					 * }
-					 */
+					
 					statement.close();
 					status = true;
 				} else {
@@ -2096,9 +1744,6 @@ public class MySQL_Interface {
 
 						while (hadResults) {
 							ResultSet resultSet = statement.getResultSet();
-
-							// process result set
-							// int No_of_deployment = 0;
 							while (resultSet.next()) {
 								deploymentID = resultSet
 										.getString(Constant_Mysql.DEPLOYMENT_LAST_INSERTED_ID_COLUMN_NAME);
@@ -2114,29 +1759,6 @@ public class MySQL_Interface {
 						}
 						ApplicationLauncher.logger.info("sp_procal_add_deploy_manage: DB Success2: ");
 						status = true;
-						// while (hadResults) {
-						// int resultSet = statement;
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+resultSet);
-						// ResultSet resultSet = statement.getResultSet();
-						// ResultSet resultSet = statement.getResultSet();
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+resultSet.getInt(1));
-						// resultSet = statement.getInt(1);
-						// ResultSet resultSet = statement.getResultSet();
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+resultSet);
-						// int autoGeneratedKey = 0;
-
-						// while (resultSet.next()) {
-						// autoGeneratedKey = resultSet.getString("result");
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// result:"+resultSet.getString("result"));
-						// autoGeneratedKey = resultSet.getInt(1);
-						// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :
-						// deployment_id:"+autoGeneratedKey);
-						// }
-						// }
 					} catch (Exception e) {
 						e.printStackTrace();
 						ApplicationLauncher.logger.info("sp_procal_add_deploy_manage: DB failed: ");
@@ -2144,13 +1766,11 @@ public class MySQL_Interface {
 					}
 
 					statement.close();
-					// return status;
 				}
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_procal_add_deploy_manage : Exception1 :" + ex.getMessage());
-				// statement.close();
 				status = false;
 
 			}
@@ -2175,9 +1795,8 @@ public class MySQL_Interface {
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_delete_deploy_test_cases(?,?)}");
 			statement.setString(1, project_name);
 			statement.setString(2, deploymentID);
-			// statement.setString(3, testType);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -2227,8 +1846,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -2255,8 +1872,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetresult_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetresult_data :Error 201: Source EM
-				// Model Reading: Failure");
 
 				return result_json;
 			}
@@ -2265,8 +1880,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetresult_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetresult_data :Error 202: Source EM
-			// Model Reading: Failure");
 
 			return result_json;
 		}
@@ -2298,8 +1911,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -2326,8 +1937,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetresult_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetresult_data :Error 201: Source EM
-				// Model Reading: Failure");
 
 				return result_json;
 			}
@@ -2336,8 +1945,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetresult_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetresult_data :Error 202: Source EM
-			// Model Reading: Failure");
 
 			return result_json;
 		}
@@ -2363,8 +1970,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						project_list.put(resultSet.getString("project_name"));
@@ -2382,8 +1987,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetresult_project_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetresult_project_data :Error 201:
-				// Source EM Model Reading: Failure");
 				return project_json;
 			}
 
@@ -2391,8 +1994,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetresult_project_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetresult_project_data :Error 202:
-			// Source EM Model Reading: Failure");
 			return project_json;
 		}
 		return project_json;
@@ -2406,7 +2007,7 @@ public class MySQL_Interface {
 			statement.setString(1, project_name);
 			statement.setInt(2, model_id);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -2414,9 +2015,6 @@ public class MySQL_Interface {
 			try {
 
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_ltadd_project_model_mapping: DB Success:
-					// ");
 					return true;
 				} else {
 
@@ -2453,13 +2051,9 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						model_data.put("customer_name", resultSet.getString("customer_name"));
-						// ApplicationLauncher.logger.info("sp_ltgetem_model_data:
-						// model_name:"+resultSet.getString("model_name"));
 						model_data.put("model_name", resultSet.getString("model_name"));
 						model_data.put("model_type", resultSet.getString("model_type"));
 						model_data.put("ct_type", resultSet.getString("ct_type"));
@@ -2482,8 +2076,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetem_model_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetem_model_data:Error 201: Source EM
-				// Model Reading: Failure");
 				return model_data;
 			}
 
@@ -2491,8 +2083,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetem_model_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetem_model_data :Error 202: Source
-			// EM Model Reading: Failure");
 			return model_data;
 		}
 		return model_data;
@@ -2513,8 +2103,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						model_ID = resultSet.getInt("model_id");
@@ -2530,8 +2118,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetProjectModel_ID : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetProjectModel_ID :Error 201: Source
-				// EM Model Reading: Failure");
 				return model_ID;
 			}
 
@@ -2539,8 +2125,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetProjectModel_ID : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetProjectModel_ID :Error 202: Source
-			// EM Model Reading: Failure");
 			return model_ID;
 		}
 		return model_ID;
@@ -2561,8 +2145,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						model_ID = resultSet.getInt("model_id");
@@ -2578,8 +2160,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetmodel_id : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetmodel_id :Error 201: Source EM
-				// Model Reading: Failure");
 				return model_ID;
 			}
 
@@ -2587,8 +2167,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetmodel_id : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetmodel_id :Error 202: Source EM
-			// Model Reading: Failure");
 			return model_ID;
 		}
 		return model_ID;
@@ -2606,7 +2184,7 @@ public class MySQL_Interface {
 			statement.setString(3, sche_time);
 			statement.setLong(4, time_stamp);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -2655,8 +2233,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -2710,8 +2286,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -2735,8 +2309,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetsummary_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetsummary_data :Error 201: Source EM
-				// Model Reading: Failure");
 				return summary_data;
 			}
 
@@ -2744,8 +2316,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetsummary_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetsummary_data :Error 202: Source EM
-			// Model Reading: Failure");
 			return summary_data;
 		}
 		return summary_data;
@@ -2765,14 +2335,13 @@ public class MySQL_Interface {
 			statement.setString(6, sequence_no);
 			statement.setString(7, is_deployed);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
 
 			try {
 				if (count == 1) {
-					// ApplicationLauncher.logger.info("sp_ltadd_deploy_test_cases: DB Success: ");
 					return true;
 				} else {
 					ApplicationLauncher.logger.info("sp_ltadd_deploy_test_cases: DB failed: ");
@@ -2790,84 +2359,6 @@ public class MySQL_Interface {
 			return false;
 		}
 	}
-
-	// public boolean sp_ltadd_deploy_test_cases_V2 (String lastUpdatedDeploymentID,
-	// String project_name,String sequence_no,
-	// String is_deployed, DeploymentTestCaseDataModel deployModel) {
-	//
-	//
-	// try {
-	// int position = 1;
-	// CallableStatement statement = ConnectManager.prepareCall("{call
-	// sp_add_deploy_test_cases_v2(?,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?,?,?,?,?
-	// ,?,?,?,? ,?,?,?,?)}");
-	// statement.setString(position++, lastUpdatedDeploymentID);
-	// statement.setString(position++, project_name);
-	// statement.setString(position++, sequence_no);
-	// statement.setString(position++, is_deployed);
-	// statement.setString(position++, deployModel.getTestCase());
-	// statement.setString(position++, deployModel.getTesttype());
-	// statement.setString(position++, deployModel.getTestSubType());
-	// statement.setString(position++, deployModel.getAliasid());
-	//
-	// statement.setString(position++, deployModel.getTargetFreq());
-	// statement.setString(position++, deployModel.getTargetEnergy());
-	// statement.setString(position++, deployModel.getTarget_RYB_Voltage());
-	// statement.setString(position++, deployModel.getTarget_RYB_Current());
-	// statement.setString(position++, deployModel.getTarget_RYB_Pf());
-	// statement.setString(position++, deployModel.getTarget_R_Voltage());
-	// statement.setString(position++, deployModel.getTarget_R_Current());
-	// statement.setString(position++, deployModel.getTarget_R_Pf());
-	// statement.setString(position++, deployModel.getTarget_Y_Voltage());
-	// statement.setString(position++, deployModel.getTarget_Y_Current());
-	// statement.setString(position++, deployModel.getTarget_Y_Pf());
-	// statement.setString(position++, deployModel.getTarget_B_Voltage());
-	// statement.setString(position++, deployModel.getTarget_B_Current());
-	// statement.setString(position++, deployModel.getTarget_B_Pf());
-	//
-	//
-	//
-	// statement.setInt(position++, deployModel.getTestPeriodInSec());
-	// statement.setInt(position++, deployModel.getWarmupPeriodInSec());
-	// statement.setInt(position++, deployModel.getTargetNoOfPulses());
-	// statement.setString(position++, deployModel.getRunType());
-	// statement.setString(position++, deployModel.getMaxErrorAllowed());
-	// statement.setString(position++, deployModel.getMinErrorAllowed());
-	// statement.setInt(position++, deployModel.getReadingId());
-	// statement.setInt(position++, deployModel.getTargetAverageCount());
-	//
-	//
-	//
-	// boolean hadResults = statement.execute();
-	//
-	// int count = statement.getUpdateCount();
-	// statement.close();
-	//
-	// try {
-	// if (count==1){
-	// //ApplicationLauncher.logger.info("sp_ltadd_deploy_test_cases: DB Success:
-	// ");
-	// return true;
-	// } else {
-	// ApplicationLauncher.logger.info("sp_ltadd_deploy_test_cases_V2: DB failed:
-	// ");
-	// return false;
-	// }
-	// } catch (Exception ex) {
-	// ex.printStackTrace();
-	// ApplicationLauncher.logger.error("sp_ltadd_deploy_test_cases_V2 : Exception1
-	// :"+ ex.getMessage());
-	// return false;
-	//
-	// }
-	// } catch (Exception ex) {
-	// ex.printStackTrace();
-	// ApplicationLauncher.logger.error("sp_ltadd_deploy_test_cases_V2 : Exception2
-	// :"+ ex.getMessage());
-	// return false;
-	// }
-	// }
-	//
 
 	public JSONObject sp_ltgetdeploy_test_cases(String project_name, String deploymentID) {
 
@@ -2887,8 +2378,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						try {
@@ -3018,17 +2507,12 @@ public class MySQL_Interface {
 										.error("sp_ltgetdeploy_test_cases : Exception4 :" + e.getMessage());
 
 							}
-							// jobj.put("inf_average", resultSet.getString("inf_average"));
 							testlist.put(jobj);
 							count++;
 						} catch (Exception ex1) {
 							ex1.printStackTrace();
 							ApplicationLauncher.logger
 									.error("sp_ltgetdeploy_test_cases : Exception3 :" + ex1.getMessage());
-							// statement.close();
-							// ApplicationLauncher.logger.error ("sp_ltgetdeploy_test_cases: Error 201:
-							// Source EM Model Reading: Failure");
-							// return testcases;
 						}
 					}
 					hadResults = statement.getMoreResults();
@@ -3042,8 +2526,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetdeploy_test_cases : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetdeploy_test_cases: Error 201:
-				// Source EM Model Reading: Failure");
 				return testcases;
 			}
 
@@ -3051,8 +2533,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetdeploy_test_cases : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetdeploy_test_cases: Error 202:
-			// Source EM Model Reading: Failure");
 			return testcases;
 		}
 		return testcases;
@@ -3067,34 +2547,21 @@ public class MySQL_Interface {
 		ApplicationLauncher.logger.debug("sp_ltadd_deploy_devices : ctr_ratio2 :" + String.valueOf(ctr_ratio));
 		ApplicationLauncher.logger.debug("sp_ltadd_deploy_devices : ptr_ratio :" + ptr_ratio);
 		ApplicationLauncher.logger.debug("sp_ltadd_deploy_devices : ptr_ratio2 :" + String.valueOf(ptr_ratio));
-		// String ctRatioStr = String.valueOf(ctr_ratio);
-		// String ptRatioStr = String.valueOf(ptr_ratio);
-		// ApplicationLauncher.logger.debug ("sp_ltadd_deploy_devices : ctRatioStr :" +
-		// ctRatioStr);
-		// ApplicationLauncher.logger.debug ("sp_ltadd_deploy_devices : ptRatioStr :" +
-		// ptRatioStr);
 		try {
-
-			// CallableStatement statement = ConnectManager.prepareCall("{call
-			// sp_add_deploy_devices(?,?,?,?,?,?,?,?,?,?)}");
 			CallableStatement statement = ConnectManager
 					.prepareCall("{call sp_add_deploy_devicesV1_1(?,?,?,?,?,?,?,?,?,?)}");
 			statement.setString(1, lastUpdatedDeploymentID);
 			statement.setString(2, project_name);
 			statement.setString(3, device);
 			statement.setInt(4, rack_id);
-			// statement.setInt(5,ctr_ratio);
-			// statement.setInt(6,ptr_ratio);
 			statement.setString(5, String.valueOf(ctr_ratio));
 			statement.setString(6, String.valueOf(ptr_ratio));
-			// statement.setString(5,ctRatioStr);
-			// statement.setString(6,ptRatioStr);
 			statement.setInt(7, meter_const);
 			statement.setString(8, is_deployed);
 			statement.setString(9, meterMake);
 			statement.setString(10, meterModelNo);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3102,8 +2569,6 @@ public class MySQL_Interface {
 			try {
 
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :DB Success: ");
 					return true;
 				} else {
 
@@ -3142,8 +2607,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					int No_of_devices = 0;
 					while (resultSet.next()) {
 
@@ -3181,8 +2644,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetdeploy_devices : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetdeploy_devices :Error 201: Source
-				// EM Model Reading: Failure");
 
 				return resultjson;
 			}
@@ -3191,8 +2652,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetdeploy_devices : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetdeploy_devices :Error 202: Source
-			// EM Model Reading: Failure");
 			return resultjson;
 		}
 		return resultjson;
@@ -3215,8 +2674,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -3239,8 +2696,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetrunning_status : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetrunning_status: Error 201: Source
-				// EM Model Reading: Failure");
 				return running_status_data;
 			}
 
@@ -3248,8 +2703,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetrunning_status : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetrunning_status: Error 202: Source
-			// EM Model Reading: Failure");
 			return running_status_data;
 		}
 		return running_status_data;
@@ -3259,9 +2712,6 @@ public class MySQL_Interface {
 			String testype, String aliasid, int sequenceno) {
 
 		try {
-
-			// ApplicationLauncher.logger.info("sp_ltadd_summary_data: sequenceno: " +
-			// sequenceno);
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_add_summary_data(?,?,?,?,?)}");
 			statement.setString(1, project_name);
 			statement.setString(2, testcasename);
@@ -3269,7 +2719,7 @@ public class MySQL_Interface {
 			statement.setString(4, aliasid);
 			statement.setInt(5, sequenceno);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3277,8 +2727,6 @@ public class MySQL_Interface {
 			try {
 
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_ltadd_summary_data: DB Success");
 					return true;
 				} else {
 
@@ -3318,7 +2766,7 @@ public class MySQL_Interface {
 			statement.setString(8, harmoniccurrent);
 			statement.setString(9, harmonicphase);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3349,95 +2797,6 @@ public class MySQL_Interface {
 		}
 	}
 
-	// public boolean sp_ltadd_harmonic_dataV2 (String project_name, String
-	// testcasename,
-	// String testype,String aliasid,String harmonicsFrequency, HarmonicsDataModel
-	// harmonicsData) {
-	//
-	// try {
-	// ApplicationLauncher.logger.info("sp_ltadd_harmonic_dataV2: Entry " );
-	//
-	// CallableStatement statement = ConnectManager.prepareCall("{call
-	// sp_add_harmonic_dataV2(?,?,?,?,?,?,?,?,?,?,?)}");
-	// statement.setString(1, project_name);
-	// statement.setString(2, testcasename);
-	// statement.setString(3, testype);
-	// statement.setString(4, aliasid);
-	// /* statement.setInt(5, harmonicno);
-	// statement.setInt(6, harmonictimes);
-	// statement.setString(7, harmonicvolt);
-	// statement.setString(8, harmoniccurrent);
-	// statement.setString(9, harmonicphase); */
-	//
-	// //statement.setString(5,null);
-	// //statement.setString(6,null);
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsData.getPhaseSelected() : "+ harmonicsData.getPhaseSelected());
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsData.getHarmonicsOrder(): " + harmonicsData.getHarmonicsOrder());
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsData.getAmplitude_V() : " + harmonicsData.getAmplitude_V());
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsData.getAmplitude_I() : " + harmonicsData.getAmplitude_I());
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsData.getPhaseShift_V() : " + harmonicsData.getPhaseShift_V());
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsData.getPhaseShift_I() : " + harmonicsData.getPhaseShift_I());
-	// ApplicationLauncher.logger.debug("sp_ltadd_harmonic_dataV2 :
-	// harmonicsFrequency : " + harmonicsFrequency);
-	//
-	// statement.setString(5,String.valueOf(harmonicsData.getHarmonicsOrder()));
-	// statement.setString(6,harmonicsData.getAmplitude_V());
-	// statement.setString(7,harmonicsData.getAmplitude_I());
-	// //statement.setString(7,null);
-	// statement.setString(8,harmonicsData.getPhaseShift_V());
-	// statement.setString(9,harmonicsData.getPhaseShift_I());
-	// statement.setString(10,harmonicsData.getPhaseSelected());
-	// statement.setString(11,harmonicsFrequency);
-	//
-	// boolean hadResults = statement.execute();
-	//
-	// int count = statement.getUpdateCount();
-	// statement.close();
-	//
-	// try {
-	//
-	//
-	//
-	// if (count==1){
-	//
-	//
-	// ApplicationLauncher.logger.info("sp_ltadd_harmonic_dataV2: DB Success: ");
-	// return true;
-	// } else {
-	//
-	//
-	//
-	// ApplicationLauncher.logger.info("sp_ltadd_harmonic_dataV2: DB failed: ");
-	// return false;
-	// }
-	//
-	//
-	//
-	//
-	// } catch (Exception ex) {
-	// ex.printStackTrace();
-	// ApplicationLauncher.logger.error ("sp_ltadd_harmonic_dataV2: Exception1 :"+
-	// ex.getMessage());
-	// return false;
-	//
-	// }
-	//
-	//
-	//
-	// } catch (Exception ex) {
-	// ex.printStackTrace();
-	// ApplicationLauncher.logger.error ("sp_ltadd_harmonic_dataV2 : Exception2 :"+
-	// ex.getMessage());
-	// return false;
-	// }
-	// }
-
 	public JSONObject sp_ltgetharmonic_data(String projectname, String testcase, String aliasid) {
 
 		JSONObject harmonic_data = new JSONObject();
@@ -3457,8 +2816,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -3519,8 +2876,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetharmonic_data : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetharmonic_data :Error 201: Source
-				// EM Model Reading: Failure");
 				return harmonic_data;
 			}
 
@@ -3528,8 +2883,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetharmonic_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetharmonic_data :Error 202: Source
-			// EM Model Reading: Failure");
 			return harmonic_data;
 		}
 		return harmonic_data;
@@ -3552,8 +2905,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -3575,8 +2926,6 @@ public class MySQL_Interface {
 				ApplicationLauncher.logger
 						.error("sp_ltgettp_setup_i_user_data_mapping : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgettp_setup_i_user_data_mapping
-				// :Error 201: Source EM Model Reading: Failure");
 				return tp_i_mapping;
 			}
 
@@ -3584,8 +2933,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgettp_setup_i_user_data_mapping : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgettp_setup_i_user_data_mapping
-			// :Error 202: Source EM Model Reading: Failure");
 			return tp_i_mapping;
 		}
 		return tp_i_mapping;
@@ -3630,8 +2977,6 @@ public class MySQL_Interface {
 				ApplicationLauncher.logger
 						.error("sp_ltgettp_setup_pf_user_data_mapping : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgettp_setup_pf_user_data_mapping
-				// :Error 201: Source EM Model Reading: Failure");
 				return tp_pf_mapping;
 			}
 
@@ -3639,8 +2984,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgettp_setup_pf_user_data_mapping : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgettp_setup_pf_user_data_mapping
-			// :Error 202: Source EM Model Reading: Failure");
 			return tp_pf_mapping;
 		}
 		return tp_pf_mapping;
@@ -3657,7 +3000,7 @@ public class MySQL_Interface {
 			statement.setInt(2, i_serial_no);
 			statement.setString(3, mapping_value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3700,7 +3043,7 @@ public class MySQL_Interface {
 			statement.setInt(2, pf_serial_no);
 			statement.setString(3, mapping_value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3741,7 +3084,7 @@ public class MySQL_Interface {
 			statement.setString(2, test_type);
 			statement.setString(3, alais_id);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3779,7 +3122,7 @@ public class MySQL_Interface {
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_delete_project(?)}");
 			statement.setString(1, project_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3813,19 +3156,12 @@ public class MySQL_Interface {
 	public boolean sp_ltdelete_project_components(String project_name, String test_type, String alais_id) {
 
 		try {
-
-			// ApplicationLauncher.logger.info("sp_ltdelete_project_components :
-			// project_name :"+ project_name);
-			// ApplicationLauncher.logger.info("sp_ltdelete_project_components : test_type
-			// :"+ test_type);
-			// ApplicationLauncher.logger.info("sp_ltdelete_project_components : alais_id
-			// :"+ alais_id);
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_delete_project_components(?,?,?)}");
 			statement.setString(1, project_name);
 			statement.setString(2, test_type);
 			statement.setString(3, alais_id);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3863,7 +3199,7 @@ public class MySQL_Interface {
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_delete_summary_data_project(?)}");
 			statement.setString(1, project_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3903,7 +3239,7 @@ public class MySQL_Interface {
 			statement.setString(2, test_type);
 			statement.setString(3, alais_id);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3943,7 +3279,7 @@ public class MySQL_Interface {
 			statement.setString(2, test_type);
 			statement.setString(3, alais_id);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -3984,7 +3320,7 @@ public class MySQL_Interface {
 			statement.setString(2, tap_name);
 			statement.setString(3, cosnt_value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4032,8 +3368,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4054,8 +3388,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetref_std_const : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgettp_setup_i_user_data_mapping
-				// :Error 201: Source EM Model Reading: Failure");
 				return ref_std_const;
 			}
 
@@ -4063,8 +3395,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetref_std_const : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgettp_setup_i_user_data_mapping
-			// :Error 202: Source EM Model Reading: Failure");
 			return ref_std_const;
 		}
 		return ref_std_const;
@@ -4078,7 +3408,7 @@ public class MySQL_Interface {
 			statement.setString(1, property_name);
 			statement.setString(2, value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4125,8 +3455,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4147,8 +3475,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetsystem_config : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetsystem_config :Error 201: Property
-				// Read: Failure");
 				return properties;
 			}
 
@@ -4156,8 +3482,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetsystem_config : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetsystem_config :Error 202: Property
-			// Read: Failure");
 			return properties;
 		}
 		return properties;
@@ -4170,7 +3494,7 @@ public class MySQL_Interface {
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_delete_deploy_test_cases(?)}");
 			statement.setString(1, project_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4213,7 +3537,7 @@ public class MySQL_Interface {
 			statement.setString(4, created_by);
 			statement.setString(5, date_created);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4260,8 +3584,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4283,8 +3605,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetprocal_users : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetsystem_config :Error 201: Users
-				// Read: Failure");
 				return properties;
 			}
 
@@ -4292,8 +3612,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetprocal_users : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetsystem_config :Error 202: Users
-			// Read: Failure");
 			return properties;
 		}
 		return properties;
@@ -4317,8 +3635,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4338,8 +3654,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetprocal_user_access_level : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetsystem_config :Error 201: Property
-				// Read: Failure");
 				return properties;
 			}
 
@@ -4347,8 +3661,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetprocal_user_access_level : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetsystem_config :Error 202: Property
-			// Read: Failure");
 			return properties;
 		}
 		return properties;
@@ -4361,7 +3673,7 @@ public class MySQL_Interface {
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_delete_procal_users(?)}");
 			statement.setString(1, user_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4400,7 +3712,7 @@ public class MySQL_Interface {
 					.prepareCall("{call sp_delete_tp_setup_i_user_data_mapping(?)}");
 			statement.setString(1, project_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4441,7 +3753,7 @@ public class MySQL_Interface {
 					.prepareCall("{call sp_delete_tp_setup_pf_user_data_mapping(?)}");
 			statement.setString(1, project_name);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4482,7 +3794,7 @@ public class MySQL_Interface {
 			statement.setLong(1, intital_time);
 			statement.setLong(2, final_time);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4524,7 +3836,7 @@ public class MySQL_Interface {
 			statement.setString(3, header_type);
 			statement.setString(4, header_value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4573,8 +3885,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4595,8 +3905,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetreport_header_config : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgettp_setup_i_user_data_mapping
-				// :Error 201: Source EM Model Reading: Failure");
 				return report_header_config;
 			}
 
@@ -4604,8 +3912,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetreport_header_config : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgettp_setup_i_user_data_mapping
-			// :Error 202: Source EM Model Reading: Failure");
 			return report_header_config;
 		}
 		return report_header_config;
@@ -4619,7 +3925,7 @@ public class MySQL_Interface {
 			statement.setString(1, selectedReportProfile);
 			statement.setString(2, test_type);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4661,7 +3967,7 @@ public class MySQL_Interface {
 			statement.setString(3, cell_type);
 			statement.setString(4, cell_value);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4709,8 +4015,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4731,8 +4035,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_ltgetreport_excel_config : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgettp_excel_setup_i_user_data_mapping
-				// :Error 201: Source EM Model Reading: Failure");
 				return report_excel_config;
 			}
 
@@ -4740,8 +4042,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetreport_excel_config : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgettp_excel_setup_i_user_data_mapping
-			// :Error 202: Source EM Model Reading: Failure");
 			return report_excel_config;
 		}
 		return report_excel_config;
@@ -4755,7 +4055,7 @@ public class MySQL_Interface {
 			statement.setString(1, selectedReportProfile);
 			statement.setString(2, test_type);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4794,7 +4094,7 @@ public class MySQL_Interface {
 			statement.setString(1, project_name);
 			statement.setLong(2, start_epoch_time);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4802,8 +4102,6 @@ public class MySQL_Interface {
 			try {
 
 				if (count == 1) {
-
-					// ApplicationLauncher.logger.info("sp_lt_add_project_run: DB Success: ");
 					return true;
 				} else {
 
@@ -4835,7 +4133,7 @@ public class MySQL_Interface {
 			statement.setLong(2, start_epoch_time);
 			statement.setLong(3, end_epoch_time);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4874,7 +4172,7 @@ public class MySQL_Interface {
 			statement.setString(1, systemConfigKey);
 			statement.setString(2, systemConfigValue);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -4923,8 +4221,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
@@ -4971,7 +4267,7 @@ public class MySQL_Interface {
 			statement.setString(3, templ_file_loc);
 			statement.setString(4, save_file_loc);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -5013,13 +4309,10 @@ public class MySQL_Interface {
 			statement.setString(2, test_type);
 			boolean hadResults = statement.execute();
 
-			int count = 0;
 			try {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						file_location.put("test_type", resultSet.getString("test_type"));
@@ -5124,7 +4417,7 @@ public class MySQL_Interface {
 			statement.setString(1, backup_file_loc);
 			statement.setString(2, sql_file_loc);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
@@ -5165,13 +4458,10 @@ public class MySQL_Interface {
 
 			boolean hadResults = statement.execute();
 
-			int count = 0;
 			try {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						file_location.put("backup_folder_location", resultSet.getString("backup_folder_location"));
@@ -5206,7 +4496,6 @@ public class MySQL_Interface {
 		try {
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_get_uac_data_by_profile(?)}");
 			statement.setString(1, profileName);
-			// statement.setString(2, subSection);
 
 			boolean hadResults = statement.execute();
 			int count = 0;
@@ -5214,7 +4503,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-					// process result set
 					while (resultSet.next()) {
 						JSONObject jobj = new JSONObject();
 						jobj.put("screen_name", resultSet.getString("screen_name"));
@@ -5242,8 +4530,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_get_uac_data_by_screen : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetsummary_data :Error 201: Source EM
-				// Model Reading: Failure");
 				return summary_data;
 			}
 
@@ -5251,8 +4537,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetsummary_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetsummary_data :Error 202: Source EM
-			// Model Reading: Failure");
 			return summary_data;
 		}
 		return summary_data;
@@ -5274,7 +4558,6 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-					// process result set
 					while (resultSet.next()) {
 						JSONObject jobj = new JSONObject();
 						jobj.put("screen_name", resultSet.getString("screen_name"));
@@ -5302,8 +4585,6 @@ public class MySQL_Interface {
 				ex.printStackTrace();
 				ApplicationLauncher.logger.error("sp_get_uac_data_by_screen : Exception1 :" + ex.getMessage());
 				statement.close();
-				// ApplicationLauncher.logger.error ("sp_ltgetsummary_data :Error 201: Source EM
-				// Model Reading: Failure");
 				return summary_data;
 			}
 
@@ -5311,8 +4592,6 @@ public class MySQL_Interface {
 
 			ex.printStackTrace();
 			ApplicationLauncher.logger.error("sp_ltgetsummary_data : Exception2 :" + ex.getMessage());
-			// ApplicationLauncher.logger.error ("sp_ltgetsummary_data :Error 202: Source EM
-			// Model Reading: Failure");
 			return summary_data;
 		}
 		return summary_data;
@@ -5365,14 +4644,13 @@ public class MySQL_Interface {
 			statement.setString(9, deletePossible);
 			statement.setString(10, ConstantApp.USER_NAME);
 
-			boolean hadResults = statement.execute();
+			statement.execute();
 
 			int count = statement.getUpdateCount();
 			statement.close();
 
 			try {
 				if (count == 1) {
-					// ApplicationLauncher.logger.info("sp_ltadd_deploy_devices :DB Success: ");
 					return true;
 				} else {
 					ApplicationLauncher.logger.info("sp_add_uac_profile: DB failed: ");
@@ -5393,9 +4671,6 @@ public class MySQL_Interface {
 	}
 
 	public boolean sp_validate_dut_already_tested(String dutMeterSerialNo, String dataType) {
-
-		// ApplicationLauncher.logger.info ("sp_validate_dut_already_calibrated :
-		// deploymentId : " + deploymentId);
 		ApplicationLauncher.logger.info("sp_validate_dut_already_calibrated : dutMeterSerialNo : " + dutMeterSerialNo);
 		ApplicationLauncher.logger.info("sp_validate_dut_already_calibrated : dataType : " + dataType);
 		JSONObject recordSummary = new JSONObject();
@@ -5404,7 +4679,6 @@ public class MySQL_Interface {
 		try {
 
 			CallableStatement statement = ConnectManager.prepareCall("{call sp_validate_dut_already_tested(?,?)}");
-			// statement.setString(1, deploymentId);
 			statement.setString(1, dutMeterSerialNo);
 			statement.setString(2, dataType);
 			boolean hadResults = statement.execute();
@@ -5414,25 +4688,10 @@ public class MySQL_Interface {
 
 				while (hadResults) {
 					ResultSet resultSet = statement.getResultSet();
-
-					// process result set
 					while (resultSet.next()) {
 
 						JSONObject jobj = new JSONObject();
-						// jobj.put("project_name", resultSet.getString("project_name"));
-						// jobj.put("start_time", resultSet.getString("start_time"));
-						// jobj.put("end_time", resultSet.getString("execution_completed_time_h"));
-						// jobj.put("epoch_start_time", resultSet.getString("epoch_start_time"));
-						/*
-						 * jobj.put("epoch_end_time",
-						 * resultSet.getString("execution_completed_time_epoch"));
-						 * jobj.put("deployment_id", resultSet.getString("deployment_id"));
-						 * jobj.put("project_name", resultSet.getString("project_name"));
-						 * jobj.put("customer_name", resultSet.getString("customer_name"));
-						 * jobj.put("equipment_serial_no", resultSet.getString("equipment_serial_no"));
-						 * jobj.put("mct_mode_completed", resultSet.getString("mct_mode_completed"));
-						 * jobj.put("nct_mode_completed", resultSet.getString("nct_mode_completed"));
-						 */
+						
 						recordDetailsArray.put(jobj);
 						count++;
 					}

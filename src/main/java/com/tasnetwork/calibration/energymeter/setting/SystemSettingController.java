@@ -3,7 +3,6 @@ package com.tasnetwork.calibration.energymeter.setting;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;

@@ -1,6 +1,5 @@
 package com.tasnetwork.calibration.energymeter.reportprofile;
 
-import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 import com.tasnetwork.calibration.energymeter.testreport.ReportMeterMetaDataTypeSubModel;
 
 import javafx.beans.property.SimpleObjectProperty;

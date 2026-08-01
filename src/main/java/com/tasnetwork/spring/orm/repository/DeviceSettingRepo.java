@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.tasnetwork.spring.orm.model.DeviceSetting;
-import com.tasnetwork.spring.orm.model.OperationParam;
-import com.tasnetwork.spring.orm.model.ReportProfileManage;
 
 @Repository
 public interface DeviceSettingRepo extends JpaRepository<DeviceSetting, Long>{

@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.spring.orm.model.PalletMeter;
-import com.tasnetwork.spring.orm.model.PalletMeterResults;
 import com.tasnetwork.spring.orm.repository.PalletMeterRepo;
 
 @Component

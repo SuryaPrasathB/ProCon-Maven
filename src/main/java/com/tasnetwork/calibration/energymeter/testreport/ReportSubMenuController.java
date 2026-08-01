@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;

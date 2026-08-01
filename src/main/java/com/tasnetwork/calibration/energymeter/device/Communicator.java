@@ -5,10 +5,6 @@
 
 package com.tasnetwork.calibration.energymeter.device;
 
-import gnu.io.*;
-import javafx.scene.control.Alert.AlertType;
-
-import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,8 +13,15 @@ import java.util.HashMap;
 import java.util.TooManyListenersException;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantPowerSourceMte;
+
+import gnu.io.CommPort;
+import gnu.io.CommPortIdentifier;
+import gnu.io.PortInUseException;
+import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+import gnu.io.UnsupportedCommOperationException;
 
 public class Communicator implements SerialPortEventListener {
     // passed from main GUI
@@ -31,16 +34,7 @@ public class Communicator implements SerialPortEventListener {
 
     // this is the object that contains the opened port
     private CommPortIdentifier selectedPortIdentifier = null;
-    private SerialPort serialPortPowerSource = null;
-    private SerialPort serialRefStandard = null;
     private SerialPort serialPort = null;
-
-    // input and output streams for sending and receiving data
-    private InputStream powerSourceInput = null;
-    private OutputStream powerSourceOutput = null;
-
-    private InputStream refStandardInput = null;
-    private OutputStream refStandardOutput = null;
 
     private InputStream input = null;
     private OutputStream output = null;
@@ -50,7 +44,6 @@ public class Communicator implements SerialPortEventListener {
     // is connected to a serial port or not
     private boolean bPowerSourceDeviceConnected = false;
     private boolean bRefStandardDeviceConnected = false;
-    private boolean bLDU_DeviceConnected = false;
     private boolean bDeviceConnected = false;
     private boolean ReadFormatInHex = false;
 
@@ -61,8 +54,6 @@ public class Communicator implements SerialPortEventListener {
     final static int SPACE_ASCII = 32;
     final static int DASH_ASCII = 45;
     final static int NEW_LINE_ASCII = 10;
-
-    private String PortDeviceMapping = "";
 
     // a string for recording what goes on in the program
     // this string is written to the GUI

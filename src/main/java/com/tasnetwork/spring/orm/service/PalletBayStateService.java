@@ -5,9 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tasnetwork.spring.orm.model.PalletBayState;
-import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.repository.PalletBayStateRepo;
-import com.tasnetwork.spring.orm.repository.PalletManageRepo;
 
 @Component
 public class PalletBayStateService {

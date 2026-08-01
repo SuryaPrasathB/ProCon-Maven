@@ -1,52 +1,40 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import java.util.stream.Collectors;
 
-import org.json.simple.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
-import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
 import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Ldu;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantLdu;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.serial.director.LduDirector;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmLdu;
-import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import gnu.io.CommPortIdentifier;
-import javafx.application.Application;
 import javafx.application.Platform;
 //import SerialPort.Communicator;
 //import application.Communicator;
@@ -54,13 +42,10 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class LduPortSetupController implements Initializable {
 
@@ -83,8 +68,6 @@ public class LduPortSetupController implements Initializable {
 
 	@FXML
 	private Button btn_Save;
-	private static Button ref_btn_Save;
-
 	@FXML
 	private ComboBox<String> cmbBxLdu1ClusterId;
 	// @FXML private ComboBox<String> cmbBxLdu2ClusterId;
@@ -154,13 +137,7 @@ public class LduPortSetupController implements Initializable {
 
 	@FXML
 	private Button btnValidateLdu1_Cmd;
-	// @FXML private Button btnValidateLdu_Cmd2;
-	private static Button ref_btnValidateLdu1_Cmd;
-	// private static Button ref_btnValidateLDU_Cmd2;
-
 	Timer ldu1_ValidateTimer;
-
-	private static HashMap FXML_PortMap = new HashMap();
 
 	private static boolean PortValidationTurnedON = false;
 
@@ -199,10 +176,6 @@ public class LduPortSetupController implements Initializable {
 	}
 
 	public void ref_assignment() {
-		ref_btnValidateLdu1_Cmd = btnValidateLdu1_Cmd;
-		// ref_btnValidateLDU_Cmd2 = btnValidateLdu_Cmd2;
-		ref_btn_Save = btn_Save;
-
 		ref_cmbBxLdu1ClusterId = cmbBxLdu1ClusterId;
 		// ref_cmbBxLdu2ClusterId = cmbBxLdu2ClusterId;
 

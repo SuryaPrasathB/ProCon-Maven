@@ -1,4 +1,12 @@
 package com.tasnetwork.calibration.conveyor.util;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantProTamp;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -7,24 +15,9 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.util.TMS_FloatConversion;
 import com.tasnetwork.calibration.energymeter.util.TextAreaInputDialog;
 
-import javafx.collections.ListChangeListener;
-import javafx.scene.control.Skin;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
-
-import org.apache.commons.lang3.StringUtils;
 
 
 public class GUIUtils {
@@ -32,32 +25,6 @@ public class GUIUtils {
 	private static String OS = null;
 	
 	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
-	
-	
-/*    public static  ArrayList<String> extractDeviceIdAddressList(String deviceId,String parseDataAfter) {
-        int omIndex = deviceId.indexOf(parseDataAfter);
-        ArrayList<String> addressList = new  ArrayList<String>();
-        if (omIndex == -1) {
-        	ApplicationLauncher.logger.debug("extractDeviceIdAddressList : Invalid deviceId: " + deviceId);
-            return addressList;
-        }
-
-        // Get data after "OM"
-        String afterOM = deviceId.substring(omIndex + 2);
-
-        // Split into chunks of 2
-       // System.out.print("Device ID: " + deviceId + " -> Parts: ");
-        for (int i = 0; i < afterOM.length(); i += 2) {
-            if (i + 2 <= afterOM.length()) {
-            	ApplicationLauncher.logger.debug(afterOM.substring(i, i + 2));
-            	addressList.add(afterOM.substring(i, i + 2));
- 
-            }
-        }
-        ApplicationLauncher.logger.debug("extractDeviceIdAddressList : addressList: " + addressList);
-        return addressList;
-    }*/
-    
 	
 	public static String asciiToHex(String asciiString) {
 		//ApplicationLauncher.logger.debug("asciiToHex: Entry: " );
@@ -467,47 +434,6 @@ public class GUIUtils {
 
 	}
 
-/*	public static boolean Validate_current(String current){
-		boolean valid_status = false;
-		if(!current.isEmpty()){
-			try{
-				float i_current = Float.parseFloat(current);
-				String EM_CT_Type= ProjectController.getProjectEM_CT_Type();
-				if(EM_CT_Type.equals(ConstantApp.METER_CT_TYPE_LTCT)){
-					if((i_current >= ConstantConfig.LTCT_CURRENT_MIN) && 
-							(i_current <= ConstantConfig.LTCT_CURRENT_MAX)){
-						valid_status = true;
-					}else {
-						ApplicationLauncher.logger.info("Validate_current: LTCT current is not with in acceptable limit. Kindly check the config file : input current:" +current + ": ConfigProperty.CURRENT_MIN:" + ConstantConfig.LTCT_CURRENT_MIN + " : ConfigProperty.CURRENT_MAX:"+ConstantConfig.LTCT_CURRENT_MAX);
-	
-					}
-				}else if(EM_CT_Type.equals(ConstantApp.METER_CT_TYPE_HTCT)){
-					if((i_current >= ConstantConfig.HTCT_CURRENT_MIN) && 
-							(i_current <= ConstantConfig.HTCT_CURRENT_MAX)){
-						valid_status = true;
-					}else {
-						ApplicationLauncher.logger.info("Validate_current: HTCT current is not with in acceptable limit. Kindly check the config file : input current:" +current + ": ConfigProperty.CURRENT_MIN:" + ConstantConfig.LTCT_CURRENT_MIN + " : ConfigProperty.CURRENT_MAX:"+ConstantConfig.LTCT_CURRENT_MAX);
-	
-					}
-				
-				}
-			
-			}
-			catch(Exception e){
-				valid_status = false;
-				e.printStackTrace();
-				ApplicationLauncher.logger.error("Validate_current: Exception:" +e.getMessage());
-				ApplicationLauncher.logger.info("Validate_current: current is not a valid float value : input current:" +current);
-
-			}
-		}else {
-			ApplicationLauncher.logger.info("Validate_current: current is empty");
-
-		}
-		return valid_status;
-
-	}*/
-	
 	public static boolean Validate_current(String current){
 		boolean valid_status = false;
 		if(!current.isEmpty()){
@@ -540,15 +466,6 @@ public class GUIUtils {
 		boolean valid_status = false;
 		if(!degree.isEmpty()){
 			try{
-				int phasedegree = Integer.parseInt(degree);
-/*				if((phasedegree >= ConstantConfig.DEGREE_MIN) && 
-						(phasedegree <= ConstantConfig.DEGREE_MAX)){
-					valid_status = true;
-				}else {
-					ApplicationLauncher.logger.info("Validate_phasedegree: phasedegree is not with in acceptable limit. Kindly check the config file : input phasedegree:" +degree + ": ConfigProperty.DEGREE_MIN:" + ConstantConfig.DEGREE_MIN + " : ConfigProperty.DEGREE_MAX:"+ConstantConfig.DEGREE_MAX);
-
-
-				}*/
 			}
 			catch(Exception e){
 				valid_status = false;
@@ -606,7 +523,7 @@ public class GUIUtils {
 		boolean valid_status = false;
 		if(!freq.isEmpty()){
 			try{
-				float frequency = Float.parseFloat(freq);
+				Float.parseFloat(freq);
 				valid_status = true;
 /*				if((frequency >= ConstantConfig.FREQUENCY_MIN) && 
 						(frequency <= ConstantConfig.FREQUENCY_MAX)){
@@ -635,7 +552,7 @@ public class GUIUtils {
 		boolean valid_status = false;
 		if(!error.isEmpty()){
 			try{
-				float error_value = Float.parseFloat(error);
+				Float.parseFloat(error);
 				valid_status = true;
 /*				if((error_value >= ConstantConfig.ERROR_MIN) && 
 						(error_value <= ConstantConfig.ERROR_MAX)){
@@ -702,7 +619,7 @@ public class GUIUtils {
 		boolean valid_status = false;
 		if(!value.isEmpty()){
 			try{
-				long parsed_value = Long.parseLong(value);
+				Long.parseLong(value);
 				valid_status = true;
 			}
 			catch(Exception e){
@@ -726,14 +643,7 @@ public class GUIUtils {
 		boolean valid_time_duration_status = false;
 		if(!time_duration.isEmpty()){
 			try{
-				int time=Integer.parseInt(time_duration);
-/*				if((time >= ConstantConfig.TIME_MIN) && 
-						(time <= ConstantConfig.TIME_MAX)){
-					valid_time_duration_status = true;
-				}else {
-					ApplicationLauncher.logger.info("Validate_time_duration: time_duration is not with in acceptable limit. Kindly check the config file : input time:" +time_duration + ": ConfigProperty.TIME_MIN:" + ConstantConfig.TIME_MIN + " : ConfigProperty.TIME_MAX:"+ConstantConfig.TIME_MAX);
-
-				}*/
+				Integer.parseInt(time_duration);
 			}
 			catch(Exception e){
 				valid_time_duration_status = false;

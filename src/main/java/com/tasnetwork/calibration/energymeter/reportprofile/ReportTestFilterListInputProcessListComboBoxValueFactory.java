@@ -3,10 +3,7 @@ package com.tasnetwork.calibration.energymeter.reportprofile;
 import java.util.ArrayList;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
-import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestCaseData;
 import com.tasnetwork.spring.orm.model.ReportProfileTestDataFilter;
 
 import javafx.beans.property.SimpleObjectProperty;

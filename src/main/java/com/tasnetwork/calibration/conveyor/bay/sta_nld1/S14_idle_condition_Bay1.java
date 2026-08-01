@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.sta_nld1;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 public class S14_idle_condition_Bay1 implements STA_NoLoadTestBay1State {
 	@Override

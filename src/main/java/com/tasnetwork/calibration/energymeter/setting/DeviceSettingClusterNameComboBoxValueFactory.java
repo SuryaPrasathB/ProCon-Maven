@@ -3,11 +3,6 @@ package com.tasnetwork.calibration.energymeter.setting;
 import java.util.stream.Collectors;
 
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
-import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -25,23 +20,8 @@ public class DeviceSettingClusterNameComboBoxValueFactory implements Callback<Ta
         clusterComboBox.setPrefWidth(120);
         clusterComboBox.setMaxWidth(120);
         clusterComboBox.setMinWidth(120);
-
-        /*for (Terminal eachTerminal : QrScannerPortSetupV2Controller.getBayConfigModel().getTerminal()) {
-            if (eachTerminal.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID)) {
-                for (ClusterDetail eachClusterDetail : eachTerminal.getClusterDetails()) {
-                    clusterComboBox.getItems().add(eachClusterDetail.getName());
-                }
-            }
-        }*/
         
         clusterComboBox.getItems().addAll(BayUtils.getClusterNameIdListMap().keySet().stream().collect(Collectors.toList()));
-
-/*        clusterComboBox.setValue(rowData.getClusterName());
-        clusterComboBox.setOnAction(e -> {
-            String newClusterName = clusterComboBox.getSelectionModel().getSelectedItem();
-            rowData.setClusterName(newClusterName); // Notify listeners
-            rowData.setBayName(""); // Reset bay name on cluster change
-        });*/
         
         if (rowData.getClusterName() != null) {
             clusterComboBox.getSelectionModel().select(rowData.getClusterName());

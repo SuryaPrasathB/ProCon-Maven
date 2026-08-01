@@ -8,7 +8,6 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -19,42 +18,23 @@ import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.calib.Calib;
 import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayReset;
-import com.tasnetwork.calibration.conveyor.bay.calib.CalibrationBayStop;
 import com.tasnetwork.calibration.conveyor.bay.comm.Comm;
 import com.tasnetwork.calibration.conveyor.bay.comm.CommBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.comm.CommunicationTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.hv.HighVoltageTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.hv.Hv;
 import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.ir.InsulationResistanceTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.ir.Ir;
 import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
-import com.tasnetwork.calibration.conveyor.bay.rejection.RejectionBayReset;
-import com.tasnetwork.calibration.conveyor.bay.rejection.RejectionBayStop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Bypass;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Reset;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld1.STA_NoLoadTestBay1Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Bypass;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Reset;
-import com.tasnetwork.calibration.conveyor.bay.sta_nld2.STA_NoLoadTestBay2Stop;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2;
 import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayReset;
-import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayStop;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
-import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayReset;
-import com.tasnetwork.calibration.conveyor.bay.verific_waiting.WaitingBayStop;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -70,10 +50,10 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
-public class StateExecutorController implements com.tasnetwork.calibration.conveyor.dashboard.IBayUIController, Initializable {
+public class StateExecutorController
+		implements com.tasnetwork.calibration.conveyor.dashboard.IBayUIController, Initializable {
 
 	private static volatile StateExecutorController instance;
 
@@ -82,8 +62,6 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 	}
 
 	BayUtils bayUtils = new BayUtils();
-	private final static Semaphore testStatusDisplaySemaphore = new Semaphore(1);
-
 	public static final Boolean ON = true;
 	public static final Boolean OFF = false;
 
@@ -355,24 +333,6 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 	private ComboBox cmbBxFilterPosition;
 	private static ComboBox ref_cmbBxFilterPosition;
 
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsSerialNo;
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsBayName;
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsStateName;
-
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsDeviceType;
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsPathNo;
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsPositionNo;
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsCname;
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsPortName;
-
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsSerialStatus;
-
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsQrResponse;
-
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsQrData;
-
-	private static TableColumn<TestInterfaceStatus, String> ref_colTsStatus;
-
 	public static ArrayList<TestInterfaceStatus> allData = new ArrayList<TestInterfaceStatus>();
 
 	static AtomicInteger serialNoTestStatusAtomic = new AtomicInteger(1);
@@ -387,7 +347,6 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 	Timer sctNlt2StartTaskTimer;
 	Timer waitingBayStartTaskTimer;
 	Timer rejectionBayStartTaskTimer;
-
 
 	Timer funtionalBayStopTaskTimer;
 	Timer calibrationStopTaskTimer;
@@ -435,7 +394,7 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().registerController(this);
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().registerController(this);
 		instance = this;
 		setupTestStatusTabs();
 
@@ -556,18 +515,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnRjStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnRjStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnRjResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnRejectBayBypassOnClick() {
@@ -628,18 +590,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnFtStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+	}
 
 	@FXML
 	public void btnFtStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+	}
 
 	@FXML
 	public void btnFtResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+	}
 
 	@FXML
 	public void btnFtBayBypassOnClick() {
@@ -694,18 +659,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnHvtStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+	}
 
 	@FXML
 	public void btnHvtStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+	}
 
 	@FXML
 	public void btnHvtResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+	}
 
 	@FXML
 	public void btnHvtBayBypassOnClick() {
@@ -761,18 +729,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnIrtStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+	}
 
 	@FXML
 	public void btnIrtStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+	}
 
 	@FXML
 	public void btnIrtResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+	}
 
 	@FXML
 	public void btnIrtBayBypassOnClick() {
@@ -828,18 +799,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnCalibStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnCalibStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnCalibResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnCalibBayBypassOnClick() {
@@ -894,18 +868,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 	// ====================================================================================
 	@FXML
 	public void btnWaitingBayStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+	}
 
 	@FXML
 	public void btnWaitingBayStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+	}
 
 	@FXML
 	public void btnWaitingBayResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+	}
 
 	@FXML
 	public void btnWaitingBayBypassOnClick() {
@@ -946,18 +923,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnVerificTestStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnVerificTestStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnVerificTestResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnVerificTestBayBypassOnClick() {
@@ -1013,18 +993,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnSctNlt1StartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+	}
 
 	@FXML
 	public void btnSctNlt1StopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+	}
 
 	@FXML
 	public void btnSctNlt1ResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+	}
 
 	@FXML
 	public void btnSctNlt1BayBypassOnClick() {
@@ -1080,18 +1063,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnSctNlt2StartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+	}
 
 	@FXML
 	public void btnSctNlt2StopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+	}
 
 	@FXML
 	public void btnSctNlt2ResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+	}
 
 	@FXML
 	public void btnSctNlt2BayBypassOnClick() {
@@ -1148,18 +1134,21 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 
 	@FXML
 	public void btnCommTestStartOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnCommTestStopOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnCommTestResetOnClick() {
-        com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
-    }
+		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
+				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+	}
 
 	@FXML
 	public void btnCommTestBayBypassOnClick() {
@@ -1777,7 +1766,7 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 	}
 
 	public void setSerialNoTestStatusAtomic(AtomicInteger serialNoTestStatusAtomic) {
-		this.serialNoTestStatusAtomic = serialNoTestStatusAtomic;
+		StateExecutorController.serialNoTestStatusAtomic = serialNoTestStatusAtomic;
 	}
 
 	public static TextField getRef_tf_CALIB_prompt() {
@@ -2258,159 +2247,353 @@ public class StateExecutorController implements com.tasnetwork.calibration.conve
 		});
 	}
 
-    @Override
-    public void updateBayUI(String bayKey, boolean isRunning) {
-        javafx.application.Platform.runLater(() -> {
-            switch (bayKey) {
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY:
-                    if (btnFtStart != null) {
-                        if (isRunning) {
-                            btnFtStart.setStyle("-fx-background-color: #FF5733;"); btnFtStart.setDisable(true);
-                            if (btnFtStop != null) { btnFtStop.setStyle(""); btnFtStop.setDisable(false); }
-                            if (btnFtReset != null) { btnFtReset.setStyle("-fx-background-color: #FF5733;"); btnFtReset.setDisable(true); }
-                            if (btnFtBayBypass != null) { btnFtBayBypass.setStyle("-fx-background-color: #FF5733;"); btnFtBayBypass.setDisable(true); }
-                        } else {
-                            btnFtStart.setStyle(""); btnFtStart.setDisable(false);
-                            if (btnFtStop != null) { btnFtStop.setStyle("-fx-background-color: #FF5733;"); btnFtStop.setDisable(true); }
-                            if (btnFtReset != null) { btnFtReset.setStyle(""); btnFtReset.setDisable(false); }
-                            if (btnFtBayBypass != null) { btnFtBayBypass.setStyle(""); btnFtBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY:
-                    if (btnHvtStart != null) {
-                        if (isRunning) {
-                            btnHvtStart.setStyle("-fx-background-color: #FF5733;"); btnHvtStart.setDisable(true);
-                            if (btnHvtStop != null) { btnHvtStop.setStyle(""); btnHvtStop.setDisable(false); }
-                            if (btnHvtReset != null) { btnHvtReset.setStyle("-fx-background-color: #FF5733;"); btnHvtReset.setDisable(true); }
-                            if (btnHvtBayBypass != null) { btnHvtBayBypass.setStyle("-fx-background-color: #FF5733;"); btnHvtBayBypass.setDisable(true); }
-                        } else {
-                            btnHvtStart.setStyle(""); btnHvtStart.setDisable(false);
-                            if (btnHvtStop != null) { btnHvtStop.setStyle("-fx-background-color: #FF5733;"); btnHvtStop.setDisable(true); }
-                            if (btnHvtReset != null) { btnHvtReset.setStyle(""); btnHvtReset.setDisable(false); }
-                            if (btnHvtBayBypass != null) { btnHvtBayBypass.setStyle(""); btnHvtBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY:
-                    if (btnIrtStart != null) {
-                        if (isRunning) {
-                            btnIrtStart.setStyle("-fx-background-color: #FF5733;"); btnIrtStart.setDisable(true);
-                            if (btnIrtStop != null) { btnIrtStop.setStyle(""); btnIrtStop.setDisable(false); }
-                            if (btnIrtReset != null) { btnIrtReset.setStyle("-fx-background-color: #FF5733;"); btnIrtReset.setDisable(true); }
-                            if (btnIrtBayBypass != null) { btnIrtBayBypass.setStyle("-fx-background-color: #FF5733;"); btnIrtBayBypass.setDisable(true); }
-                        } else {
-                            btnIrtStart.setStyle(""); btnIrtStart.setDisable(false);
-                            if (btnIrtStop != null) { btnIrtStop.setStyle("-fx-background-color: #FF5733;"); btnIrtStop.setDisable(true); }
-                            if (btnIrtReset != null) { btnIrtReset.setStyle(""); btnIrtReset.setDisable(false); }
-                            if (btnIrtBayBypass != null) { btnIrtBayBypass.setStyle(""); btnIrtBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY:
-                    if (btnCalibStart != null) {
-                        if (isRunning) {
-                            btnCalibStart.setStyle("-fx-background-color: #FF5733;"); btnCalibStart.setDisable(true);
-                            if (btnCalibStop != null) { btnCalibStop.setStyle(""); btnCalibStop.setDisable(false); }
-                            if (btnCalibReset != null) { btnCalibReset.setStyle("-fx-background-color: #FF5733;"); btnCalibReset.setDisable(true); }
-                            if (btnCalibBayBypass != null) { btnCalibBayBypass.setStyle("-fx-background-color: #FF5733;"); btnCalibBayBypass.setDisable(true); }
-                        } else {
-                            btnCalibStart.setStyle(""); btnCalibStart.setDisable(false);
-                            if (btnCalibStop != null) { btnCalibStop.setStyle("-fx-background-color: #FF5733;"); btnCalibStop.setDisable(true); }
-                            if (btnCalibReset != null) { btnCalibReset.setStyle(""); btnCalibReset.setDisable(false); }
-                            if (btnCalibBayBypass != null) { btnCalibBayBypass.setStyle(""); btnCalibBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY:
-                    if (btnWaitingBayStart != null) {
-                        if (isRunning) {
-                            btnWaitingBayStart.setStyle("-fx-background-color: #FF5733;"); btnWaitingBayStart.setDisable(true);
-                            if (btnWaitingBayStop != null) { btnWaitingBayStop.setStyle(""); btnWaitingBayStop.setDisable(false); }
-                            if (btnWaitingBayReset != null) { btnWaitingBayReset.setStyle("-fx-background-color: #FF5733;"); btnWaitingBayReset.setDisable(true); }
-                        } else {
-                            btnWaitingBayStart.setStyle(""); btnWaitingBayStart.setDisable(false);
-                            if (btnWaitingBayStop != null) { btnWaitingBayStop.setStyle("-fx-background-color: #FF5733;"); btnWaitingBayStop.setDisable(true); }
-                            if (btnWaitingBayReset != null) { btnWaitingBayReset.setStyle(""); btnWaitingBayReset.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY:
-                    if (btnVerificTestStart != null) {
-                        if (isRunning) {
-                            btnVerificTestStart.setStyle("-fx-background-color: #FF5733;"); btnVerificTestStart.setDisable(true);
-                            if (btnVerificTestStop != null) { btnVerificTestStop.setStyle(""); btnVerificTestStop.setDisable(false); }
-                            if (btnVerificTestReset != null) { btnVerificTestReset.setStyle("-fx-background-color: #FF5733;"); btnVerificTestReset.setDisable(true); }
-                            if (btnVerificTestBayBypass != null) { btnVerificTestBayBypass.setStyle("-fx-background-color: #FF5733;"); btnVerificTestBayBypass.setDisable(true); }
-                        } else {
-                            btnVerificTestStart.setStyle(""); btnVerificTestStart.setDisable(false);
-                            if (btnVerificTestStop != null) { btnVerificTestStop.setStyle("-fx-background-color: #FF5733;"); btnVerificTestStop.setDisable(true); }
-                            if (btnVerificTestReset != null) { btnVerificTestReset.setStyle(""); btnVerificTestReset.setDisable(false); }
-                            if (btnVerificTestBayBypass != null) { btnVerificTestBayBypass.setStyle(""); btnVerificTestBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY:
-                    if (btnSctNlt1Start != null) {
-                        if (isRunning) {
-                            btnSctNlt1Start.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1Start.setDisable(true);
-                            if (btnSctNlt1Stop != null) { btnSctNlt1Stop.setStyle(""); btnSctNlt1Stop.setDisable(false); }
-                            if (btnSctNlt1Reset != null) { btnSctNlt1Reset.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1Reset.setDisable(true); }
-                            if (btnSctNlt1BayBypass != null) { btnSctNlt1BayBypass.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1BayBypass.setDisable(true); }
-                        } else {
-                            btnSctNlt1Start.setStyle(""); btnSctNlt1Start.setDisable(false);
-                            if (btnSctNlt1Stop != null) { btnSctNlt1Stop.setStyle("-fx-background-color: #FF5733;"); btnSctNlt1Stop.setDisable(true); }
-                            if (btnSctNlt1Reset != null) { btnSctNlt1Reset.setStyle(""); btnSctNlt1Reset.setDisable(false); }
-                            if (btnSctNlt1BayBypass != null) { btnSctNlt1BayBypass.setStyle(""); btnSctNlt1BayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY:
-                    if (btnSctNlt2Start != null) {
-                        if (isRunning) {
-                            btnSctNlt2Start.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2Start.setDisable(true);
-                            if (btnSctNlt2Stop != null) { btnSctNlt2Stop.setStyle(""); btnSctNlt2Stop.setDisable(false); }
-                            if (btnSctNlt2Reset != null) { btnSctNlt2Reset.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2Reset.setDisable(true); }
-                            if (btnSctNlt2BayBypass != null) { btnSctNlt2BayBypass.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2BayBypass.setDisable(true); }
-                        } else {
-                            btnSctNlt2Start.setStyle(""); btnSctNlt2Start.setDisable(false);
-                            if (btnSctNlt2Stop != null) { btnSctNlt2Stop.setStyle("-fx-background-color: #FF5733;"); btnSctNlt2Stop.setDisable(true); }
-                            if (btnSctNlt2Reset != null) { btnSctNlt2Reset.setStyle(""); btnSctNlt2Reset.setDisable(false); }
-                            if (btnSctNlt2BayBypass != null) { btnSctNlt2BayBypass.setStyle(""); btnSctNlt2BayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY:
-                    if (btnCommTestStart != null) {
-                        if (isRunning) {
-                            btnCommTestStart.setStyle("-fx-background-color: #FF5733;"); btnCommTestStart.setDisable(true);
-                            if (btnCommTestStop != null) { btnCommTestStop.setStyle(""); btnCommTestStop.setDisable(false); }
-                            if (btnCommTestReset != null) { btnCommTestReset.setStyle("-fx-background-color: #FF5733;"); btnCommTestReset.setDisable(true); }
-                            if (btnCommTestBayBypass != null) { btnCommTestBayBypass.setStyle("-fx-background-color: #FF5733;"); btnCommTestBayBypass.setDisable(true); }
-                        } else {
-                            btnCommTestStart.setStyle(""); btnCommTestStart.setDisable(false);
-                            if (btnCommTestStop != null) { btnCommTestStop.setStyle("-fx-background-color: #FF5733;"); btnCommTestStop.setDisable(true); }
-                            if (btnCommTestReset != null) { btnCommTestReset.setStyle(""); btnCommTestReset.setDisable(false); }
-                            if (btnCommTestBayBypass != null) { btnCommTestBayBypass.setStyle(""); btnCommTestBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-                case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY:
-                    if (btnRejectStart != null) {
-                        if (isRunning) {
-                            btnRejectStart.setStyle("-fx-background-color: #FF5733;"); btnRejectStart.setDisable(true);
-                            if (btnRejectStop != null) { btnRejectStop.setStyle(""); btnRejectStop.setDisable(false); }
-                            if (btnRejectReset != null) { btnRejectReset.setStyle("-fx-background-color: #FF5733;"); btnRejectReset.setDisable(true); }
-                            if (btnRejectBayBypass != null) { btnRejectBayBypass.setStyle("-fx-background-color: #FF5733;"); btnRejectBayBypass.setDisable(true); }
-                        } else {
-                            btnRejectStart.setStyle(""); btnRejectStart.setDisable(false);
-                            if (btnRejectStop != null) { btnRejectStop.setStyle("-fx-background-color: #FF5733;"); btnRejectStop.setDisable(true); }
-                            if (btnRejectReset != null) { btnRejectReset.setStyle(""); btnRejectReset.setDisable(false); }
-                            if (btnRejectBayBypass != null) { btnRejectBayBypass.setStyle(""); btnRejectBayBypass.setDisable(false); }
-                        }
-                    }
-                    break;
-            }
-        });
-    }
+	@Override
+	public void updateBayUI(String bayKey, boolean isRunning) {
+		javafx.application.Platform.runLater(() -> {
+			switch (bayKey) {
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY:
+					if (btnFtStart != null) {
+						if (isRunning) {
+							btnFtStart.setStyle("-fx-background-color: #FF5733;");
+							btnFtStart.setDisable(true);
+							if (btnFtStop != null) {
+								btnFtStop.setStyle("");
+								btnFtStop.setDisable(false);
+							}
+							if (btnFtReset != null) {
+								btnFtReset.setStyle("-fx-background-color: #FF5733;");
+								btnFtReset.setDisable(true);
+							}
+							if (btnFtBayBypass != null) {
+								btnFtBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnFtBayBypass.setDisable(true);
+							}
+						} else {
+							btnFtStart.setStyle("");
+							btnFtStart.setDisable(false);
+							if (btnFtStop != null) {
+								btnFtStop.setStyle("-fx-background-color: #FF5733;");
+								btnFtStop.setDisable(true);
+							}
+							if (btnFtReset != null) {
+								btnFtReset.setStyle("");
+								btnFtReset.setDisable(false);
+							}
+							if (btnFtBayBypass != null) {
+								btnFtBayBypass.setStyle("");
+								btnFtBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY:
+					if (btnHvtStart != null) {
+						if (isRunning) {
+							btnHvtStart.setStyle("-fx-background-color: #FF5733;");
+							btnHvtStart.setDisable(true);
+							if (btnHvtStop != null) {
+								btnHvtStop.setStyle("");
+								btnHvtStop.setDisable(false);
+							}
+							if (btnHvtReset != null) {
+								btnHvtReset.setStyle("-fx-background-color: #FF5733;");
+								btnHvtReset.setDisable(true);
+							}
+							if (btnHvtBayBypass != null) {
+								btnHvtBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnHvtBayBypass.setDisable(true);
+							}
+						} else {
+							btnHvtStart.setStyle("");
+							btnHvtStart.setDisable(false);
+							if (btnHvtStop != null) {
+								btnHvtStop.setStyle("-fx-background-color: #FF5733;");
+								btnHvtStop.setDisable(true);
+							}
+							if (btnHvtReset != null) {
+								btnHvtReset.setStyle("");
+								btnHvtReset.setDisable(false);
+							}
+							if (btnHvtBayBypass != null) {
+								btnHvtBayBypass.setStyle("");
+								btnHvtBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY:
+					if (btnIrtStart != null) {
+						if (isRunning) {
+							btnIrtStart.setStyle("-fx-background-color: #FF5733;");
+							btnIrtStart.setDisable(true);
+							if (btnIrtStop != null) {
+								btnIrtStop.setStyle("");
+								btnIrtStop.setDisable(false);
+							}
+							if (btnIrtReset != null) {
+								btnIrtReset.setStyle("-fx-background-color: #FF5733;");
+								btnIrtReset.setDisable(true);
+							}
+							if (btnIrtBayBypass != null) {
+								btnIrtBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnIrtBayBypass.setDisable(true);
+							}
+						} else {
+							btnIrtStart.setStyle("");
+							btnIrtStart.setDisable(false);
+							if (btnIrtStop != null) {
+								btnIrtStop.setStyle("-fx-background-color: #FF5733;");
+								btnIrtStop.setDisable(true);
+							}
+							if (btnIrtReset != null) {
+								btnIrtReset.setStyle("");
+								btnIrtReset.setDisable(false);
+							}
+							if (btnIrtBayBypass != null) {
+								btnIrtBayBypass.setStyle("");
+								btnIrtBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY:
+					if (btnCalibStart != null) {
+						if (isRunning) {
+							btnCalibStart.setStyle("-fx-background-color: #FF5733;");
+							btnCalibStart.setDisable(true);
+							if (btnCalibStop != null) {
+								btnCalibStop.setStyle("");
+								btnCalibStop.setDisable(false);
+							}
+							if (btnCalibReset != null) {
+								btnCalibReset.setStyle("-fx-background-color: #FF5733;");
+								btnCalibReset.setDisable(true);
+							}
+							if (btnCalibBayBypass != null) {
+								btnCalibBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnCalibBayBypass.setDisable(true);
+							}
+						} else {
+							btnCalibStart.setStyle("");
+							btnCalibStart.setDisable(false);
+							if (btnCalibStop != null) {
+								btnCalibStop.setStyle("-fx-background-color: #FF5733;");
+								btnCalibStop.setDisable(true);
+							}
+							if (btnCalibReset != null) {
+								btnCalibReset.setStyle("");
+								btnCalibReset.setDisable(false);
+							}
+							if (btnCalibBayBypass != null) {
+								btnCalibBayBypass.setStyle("");
+								btnCalibBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY:
+					if (btnWaitingBayStart != null) {
+						if (isRunning) {
+							btnWaitingBayStart.setStyle("-fx-background-color: #FF5733;");
+							btnWaitingBayStart.setDisable(true);
+							if (btnWaitingBayStop != null) {
+								btnWaitingBayStop.setStyle("");
+								btnWaitingBayStop.setDisable(false);
+							}
+							if (btnWaitingBayReset != null) {
+								btnWaitingBayReset.setStyle("-fx-background-color: #FF5733;");
+								btnWaitingBayReset.setDisable(true);
+							}
+						} else {
+							btnWaitingBayStart.setStyle("");
+							btnWaitingBayStart.setDisable(false);
+							if (btnWaitingBayStop != null) {
+								btnWaitingBayStop.setStyle("-fx-background-color: #FF5733;");
+								btnWaitingBayStop.setDisable(true);
+							}
+							if (btnWaitingBayReset != null) {
+								btnWaitingBayReset.setStyle("");
+								btnWaitingBayReset.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY:
+					if (btnVerificTestStart != null) {
+						if (isRunning) {
+							btnVerificTestStart.setStyle("-fx-background-color: #FF5733;");
+							btnVerificTestStart.setDisable(true);
+							if (btnVerificTestStop != null) {
+								btnVerificTestStop.setStyle("");
+								btnVerificTestStop.setDisable(false);
+							}
+							if (btnVerificTestReset != null) {
+								btnVerificTestReset.setStyle("-fx-background-color: #FF5733;");
+								btnVerificTestReset.setDisable(true);
+							}
+							if (btnVerificTestBayBypass != null) {
+								btnVerificTestBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnVerificTestBayBypass.setDisable(true);
+							}
+						} else {
+							btnVerificTestStart.setStyle("");
+							btnVerificTestStart.setDisable(false);
+							if (btnVerificTestStop != null) {
+								btnVerificTestStop.setStyle("-fx-background-color: #FF5733;");
+								btnVerificTestStop.setDisable(true);
+							}
+							if (btnVerificTestReset != null) {
+								btnVerificTestReset.setStyle("");
+								btnVerificTestReset.setDisable(false);
+							}
+							if (btnVerificTestBayBypass != null) {
+								btnVerificTestBayBypass.setStyle("");
+								btnVerificTestBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY:
+					if (btnSctNlt1Start != null) {
+						if (isRunning) {
+							btnSctNlt1Start.setStyle("-fx-background-color: #FF5733;");
+							btnSctNlt1Start.setDisable(true);
+							if (btnSctNlt1Stop != null) {
+								btnSctNlt1Stop.setStyle("");
+								btnSctNlt1Stop.setDisable(false);
+							}
+							if (btnSctNlt1Reset != null) {
+								btnSctNlt1Reset.setStyle("-fx-background-color: #FF5733;");
+								btnSctNlt1Reset.setDisable(true);
+							}
+							if (btnSctNlt1BayBypass != null) {
+								btnSctNlt1BayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnSctNlt1BayBypass.setDisable(true);
+							}
+						} else {
+							btnSctNlt1Start.setStyle("");
+							btnSctNlt1Start.setDisable(false);
+							if (btnSctNlt1Stop != null) {
+								btnSctNlt1Stop.setStyle("-fx-background-color: #FF5733;");
+								btnSctNlt1Stop.setDisable(true);
+							}
+							if (btnSctNlt1Reset != null) {
+								btnSctNlt1Reset.setStyle("");
+								btnSctNlt1Reset.setDisable(false);
+							}
+							if (btnSctNlt1BayBypass != null) {
+								btnSctNlt1BayBypass.setStyle("");
+								btnSctNlt1BayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY:
+					if (btnSctNlt2Start != null) {
+						if (isRunning) {
+							btnSctNlt2Start.setStyle("-fx-background-color: #FF5733;");
+							btnSctNlt2Start.setDisable(true);
+							if (btnSctNlt2Stop != null) {
+								btnSctNlt2Stop.setStyle("");
+								btnSctNlt2Stop.setDisable(false);
+							}
+							if (btnSctNlt2Reset != null) {
+								btnSctNlt2Reset.setStyle("-fx-background-color: #FF5733;");
+								btnSctNlt2Reset.setDisable(true);
+							}
+							if (btnSctNlt2BayBypass != null) {
+								btnSctNlt2BayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnSctNlt2BayBypass.setDisable(true);
+							}
+						} else {
+							btnSctNlt2Start.setStyle("");
+							btnSctNlt2Start.setDisable(false);
+							if (btnSctNlt2Stop != null) {
+								btnSctNlt2Stop.setStyle("-fx-background-color: #FF5733;");
+								btnSctNlt2Stop.setDisable(true);
+							}
+							if (btnSctNlt2Reset != null) {
+								btnSctNlt2Reset.setStyle("");
+								btnSctNlt2Reset.setDisable(false);
+							}
+							if (btnSctNlt2BayBypass != null) {
+								btnSctNlt2BayBypass.setStyle("");
+								btnSctNlt2BayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY:
+					if (btnCommTestStart != null) {
+						if (isRunning) {
+							btnCommTestStart.setStyle("-fx-background-color: #FF5733;");
+							btnCommTestStart.setDisable(true);
+							if (btnCommTestStop != null) {
+								btnCommTestStop.setStyle("");
+								btnCommTestStop.setDisable(false);
+							}
+							if (btnCommTestReset != null) {
+								btnCommTestReset.setStyle("-fx-background-color: #FF5733;");
+								btnCommTestReset.setDisable(true);
+							}
+							if (btnCommTestBayBypass != null) {
+								btnCommTestBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnCommTestBayBypass.setDisable(true);
+							}
+						} else {
+							btnCommTestStart.setStyle("");
+							btnCommTestStart.setDisable(false);
+							if (btnCommTestStop != null) {
+								btnCommTestStop.setStyle("-fx-background-color: #FF5733;");
+								btnCommTestStop.setDisable(true);
+							}
+							if (btnCommTestReset != null) {
+								btnCommTestReset.setStyle("");
+								btnCommTestReset.setDisable(false);
+							}
+							if (btnCommTestBayBypass != null) {
+								btnCommTestBayBypass.setStyle("");
+								btnCommTestBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY:
+					if (btnRejectStart != null) {
+						if (isRunning) {
+							btnRejectStart.setStyle("-fx-background-color: #FF5733;");
+							btnRejectStart.setDisable(true);
+							if (btnRejectStop != null) {
+								btnRejectStop.setStyle("");
+								btnRejectStop.setDisable(false);
+							}
+							if (btnRejectReset != null) {
+								btnRejectReset.setStyle("-fx-background-color: #FF5733;");
+								btnRejectReset.setDisable(true);
+							}
+							if (btnRejectBayBypass != null) {
+								btnRejectBayBypass.setStyle("-fx-background-color: #FF5733;");
+								btnRejectBayBypass.setDisable(true);
+							}
+						} else {
+							btnRejectStart.setStyle("");
+							btnRejectStart.setDisable(false);
+							if (btnRejectStop != null) {
+								btnRejectStop.setStyle("-fx-background-color: #FF5733;");
+								btnRejectStop.setDisable(true);
+							}
+							if (btnRejectReset != null) {
+								btnRejectReset.setStyle("");
+								btnRejectReset.setDisable(false);
+							}
+							if (btnRejectBayBypass != null) {
+								btnRejectBayBypass.setStyle("");
+								btnRejectBayBypass.setDisable(false);
+							}
+						}
+					}
+					break;
+			}
+		});
+	}
 }

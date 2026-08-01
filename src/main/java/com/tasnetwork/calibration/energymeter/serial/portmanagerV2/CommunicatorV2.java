@@ -1,19 +1,12 @@
 package com.tasnetwork.calibration.energymeter.serial.portmanagerV2;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.TooManyListenersException;
 
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
-
-import gnu.io.UnsupportedCommOperationException;
 
 public class CommunicatorV2 {
 
@@ -22,8 +15,6 @@ public class CommunicatorV2 {
 	// private static SerialPort [] portsAvailable;
 	SerialPort[] portsAvailable;
 	private boolean deviceConnected = false;
-
-	private boolean devicePortExist = false;
 
 	HashMap portMap = new HashMap();
 	private String expectedResult = "";
@@ -46,40 +37,9 @@ public class CommunicatorV2 {
 		try {
 			// ports = CommPortIdentifier.getPortIdentifiers();
 			portsAvailable = SerialPort.getCommPorts();
-			/*
-			 * while (portsAvailable.hasMoreElements())
-			 * {
-			 * CommPortIdentifier curPort = (CommPortIdentifier)ports.nextElement();
-			 * 
-			 * 
-			 * //get only serial ports
-			 * if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL)
-			 * {
-			 * //window.cboxPorts.addItem(curPort.getName());
-			 * portMap.put(curPort.getName(), curPort);
-			 * ApplicationLauncher.logger.info("Existing ComPort ID:"+curPort.getName());
-			 * }
-			 * 
-			 * 
-			 * }
-			 */
 
 			for (SerialPort S : portsAvailable) {
-				// ApplicationLauncher.logger
-				// 		.debug("Port Number                                -> .getSystemPortName()     -> "
-				// 				+ S.getSystemPortName()); // Gives the number of com port,Eg COM9
-				// ApplicationLauncher.logger
-				// 		.debug("Port Physical Location (OS)                -> .getSystemPortPath()     -> "
-				// 				+ S.getSystemPortPath());
-				// ApplicationLauncher.logger
-				// 		.debug("Port Physical Location (USB hub)           -> .getSystemPortLocation() -> "
-				// 				+ S.getPortLocation());
-				// ApplicationLauncher.logger
-				// 		.debug("Port Description as reported by the device -> .getDescriptivePortName()-> "
-				// 				+ S.getDescriptivePortName());
-				// ApplicationLauncher.logger
-				// 		.debug("Port Description  .toString()              ->  .toString()             -> "
-				// 				+ S.toString() + "\n");
+
 				portMap.put(S.getSystemPortName(), S.getSystemPortPath());
 			}
 		} catch (Exception e) {
@@ -94,19 +54,6 @@ public class CommunicatorV2 {
 	}
 
 	public void assignSerialPort(String comPortId) {
-
-		// portsAvailable = SerialPort.getCommPorts();
-
-		// use the for loop to print the available serial ports
-		// System.out.println("assignSerialPort: ");
-		// for (int i = 0; i<serialAvailablePorts.length ; i++)
-		// {
-		// System.out.println(i + " - " + serialAvailablePorts[i].getSystemPortName() +
-		// " -> " + serialAvailablePorts[i].getDescriptivePortName());
-		// }
-
-		// Open the first Available port
-		// selectedSerialPort = serialAvailablePorts[0];
 		selectedSerialPort = SerialPort.getCommPort(comPortId);
 
 	}
@@ -153,18 +100,7 @@ public class CommunicatorV2 {
 			// enables the controls on the GUI if a successful connection is made
 			// window.keybindingController.toggleControls();
 		}
-		/*
-		 * catch (PortInUseException e)
-		 * {
-		 * e.printStackTrace();
-		 * String logText = selectedSerialPort.getSystemPortName() + " is in use. (" +
-		 * e.toString() + ")";
-		 * ApplicationLauncher.logger.
-		 * error("Communicator: connect: PortInUseException: " + e.getMessage());
-		 * ApplicationLauncher.logger.info("SerialCom:"+logText);
-		 * 
-		 * }
-		 */
+
 		catch (Exception e) {
 			String logText = "Failed to open " + selectedSerialPort.getSystemPortName() + "(" + e.toString() + ")";
 			ApplicationLauncher.logger.error("Communicator: connect: Exception: " + e.getMessage());
@@ -501,7 +437,6 @@ public class CommunicatorV2 {
 	}
 
 	public void setDevicePortExist(boolean devicePortExist) {
-		this.devicePortExist = devicePortExist;
 	}
 
 	public SerialPort[] getPortsAvailable() {

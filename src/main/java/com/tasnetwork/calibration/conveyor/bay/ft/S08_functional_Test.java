@@ -253,7 +253,6 @@ public class S08_functional_Test implements FtBayState {
             
             for (int position = 1; position <= 6; position++) {
                 responseReturn = functionalTestProcess(position);
-                @SuppressWarnings("unused")
 				boolean functionalTestProcessStatus = (boolean) responseReturn.get("status");
             }
         }

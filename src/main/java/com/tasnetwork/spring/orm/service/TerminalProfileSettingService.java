@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tasnetwork.spring.orm.model.StateFlow;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.repository.TerminalProfileSettingRepo;
 

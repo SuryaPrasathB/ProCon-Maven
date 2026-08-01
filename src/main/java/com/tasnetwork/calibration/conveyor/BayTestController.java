@@ -287,9 +287,6 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 			// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 			ApplicationLauncher.logger.debug("loadDataFromConfig : clusterId :" + clusterId);
-			String clusterIpAddress = "";
-			String clusterPortNo = "";
-
 			Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
 					.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 					.flatMap(terminal -> terminal.getClusterDetails().stream())
@@ -403,12 +400,7 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 				ref_btnSendDataToBay.setDisable(true);
 			});
 
-			ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance();
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.clear();
-			 * });
-			 */
+			ConveyorClientManager.getInstance();
 
 			/*
 			 * if(ref_chkBxWriteGreenLed.isSelected()) {
@@ -420,7 +412,6 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 
 			String deviceId = "1";
 			String bayId = "1";
-			boolean deviceResponded = false;
 			if (ref_tbViewOutputPortData.getItems().size() > 0) {
 				String ipAddress = ref_txtClusterIpAddress.getText();
 				String ipPort = ref_txtClusterPortNo.getText();
@@ -434,7 +425,7 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 							outputActive = "On";
 						}
 						ApplicationLauncher.logger.info("SendDataToBayTask:  Entry-failed-debug");
-						deviceResponded = setOutputDataToBay(clusterServer, deviceId, bayId, outputPortId,
+						setOutputDataToBay(clusterServer, deviceId, bayId, outputPortId,
 								outputActive);
 					}
 				}
@@ -489,7 +480,6 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 
 		ApplicationLauncher.logger.info("getInputDataFromBay: baytestController Entry-failed-debug");
 		String clusterId = clusterServer.getClusterId();
-		boolean status = false;
 		ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance(clusterId);
 		// cluster1ClientManager.getBayData(clusterServer,deviceId, bayId, inputPortId);
 		String dummyOutputValue = "";
@@ -539,20 +529,6 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 			// String responseData =
 			// cluster1ClientManager.getAsyncConvClient().getResponseData();
 
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * });
-			 */
-			/*
-			 * if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * }else {
-			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
-			 * responseData);
-			 * }
-			 */
-			status = true;
 
 			// ApplicationHomeController.EnableScanDeviceButton();
 		} else {
@@ -692,7 +668,7 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 		public void run() {
 			Platform.runLater(() -> {
 
-				String selectedClusterName = (String) ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
+				ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
 				if (getClusterBayNameListMap().size() > 0) {
 					ref_tbViewOutputPortData.getItems().clear();
 					ref_tbViewInputPortData.getItems().clear();
@@ -734,9 +710,6 @@ public class BayTestController implements Initializable, InputPortTableViewRefre
 				// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 				ApplicationLauncher.logger.debug("LoadOnClickTask : clusterId :" + clusterId);
-
-				String clusterIpAddress = "";
-				String clusterPortNo = "";
 
 				Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
 						.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))

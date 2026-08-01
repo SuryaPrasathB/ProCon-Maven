@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -20,31 +19,23 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
-//import com.tasnetwork.calibration.energymeter.deployment.DeploymentDataModel;
-//import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog;
+
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestCaseData;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
-import com.tasnetwork.calibration.energymeter.util.EditCell;
-import com.tasnetwork.calibration.energymeter.util.MyFloatStringConverter;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -208,28 +199,6 @@ public class ReportExcelConfigController implements Initializable {
 		}
 
 	}
-
-	/*
-	 * public void LoadMaxPageData(){
-	 * 
-	 * for (int i = 0; i <ConstantReport.ACC_MAX_NO_OF_PAGES_IN_REPORT; i++){
-	 * cmbBoxMaxPages.getItems().add(i+1);
-	 * }
-	 * //cmbBoxMaxPages.getSelectionModel().select(ConstantReport.
-	 * ACC_NO_OF_PAGES_IN_REPORT);;
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public void maxPageOnChange(){
-	 * 
-	 * No_Of_PagesInReport =
-	 * Integer.parseInt(cmbBoxMaxPages.getSelectionModel().getSelectedItem().
-	 * toString());
-	 * LoadExcelConfig();
-	 * }
-	 */
 
 	public void LoadTestType() {
 		cmbBox_testtype.getItems().clear();
@@ -503,10 +472,4 @@ public class ReportExcelConfigController implements Initializable {
 		}
 		ReportConfigManager.LoadReportExcelConfigProperty();
 	}
-	/*
-	 * public void InformUser(String title, String info,AlertType Alert_type){
-	 * TextBoxDialog TextBoxDialogobj = new TextBoxDialog();
-	 * TextBoxDialogobj.TriggerUserInfoPlatFormLater(title, info, Alert_type);
-	 * }
-	 */
 }

@@ -5,11 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import org.apache.commons.collections4.MultiValuedMap;
-import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
 
@@ -117,50 +112,7 @@ public class ConstantReport {
 	
 	//public static  MultiValuedMap<String,String> TEST_TYPE_ALIAS_HASH_MAP = new ArrayListValuedHashMap<String,String>();
 	public static  HashMap<String,String> TEST_TYPE_ALIAS_HASH_MAP = new LinkedHashMap<String,String>();
-	
-/*	public static final ArrayList<String> REPORT_TEST_TYPES = new ArrayList<>(Arrays.asList(
-			TestProfileType.NoLoad.toString(),
-			TestProfileType.STA.toString(),
-			TestProfileType.ConstantTest.toString(),
-			TestProfileType.Accuracy.toString(),
-			TestProfileType.InfluenceVolt.toString(),
-			TestProfileType.InfluenceFreq.toString(),
-			TestProfileType.InfluenceHarmonic.toString(),
-			TestProfileType.VoltageUnbalance.toString(),
-			TestProfileType.PhaseReversal.toString(),
-			TestProfileType.Repeatability.toString(),
-			TestProfileType.SelfHeating.toString(),
-			"UnbalancedLoad"));*/
-	
-/*	public static final ArrayList<String> REPORT_TEST_TYPES = new ArrayList<>(Arrays.asList(
-			TestProfileType.NoLoad.toString(),
-			TestProfileType.STA.toString(),
-			TestProfileType.ConstantTest.toString(),
-			TestProfileType.Accuracy.toString(),
-			TestProfileType.InfluenceVolt.toString(),
-			TestProfileType.InfluenceFreq.toString(),
-			TestProfileType.InfluenceHarmonic.toString(),
-			TestProfileType.VoltageUnbalance.toString(),
-			TestProfileType.PhaseReversal.toString(),
-			TestProfileType.Repeatability.toString(),
-			TestProfileType.SelfHeating.toString(),
-			ConstantApp.TEST_PROFILE_UNBALANCED_LOAD));
-	
-	//REPORT_TEST_TYPES_DISPLAY_MAPPING
-	public static final ArrayList<String> REPORT_TEST_TYPES_DISPLAY = new ArrayList<>(Arrays.asList(
-			ConstantApp.DISPLAY_TC_TITLE_NOLOADTEST,// DragIconType.NoLoad.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_STARTING_CURRENT,//DragIconType.STA.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_CONST_TEST,// DragIconType.ConstantTest.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_ACCURACY, // DragIconType.Accuracy.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_INF_VOLTAGE, // DragIconType.InfluenceVolt.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_INF_FREQUENCY, // DragIconType.InfluenceFreq.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_INF_HARMONICS, // DragIconType.InfluenceHarmonic.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_INF_VOLT_UNBALANCE, // DragIconType.VoltageUnbalance.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_PHASE_REVERSAL, // DragIconType.PhaseReversal.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_REPEATABLITY, // DragIconType.Repeatability.toString(),
-			ConstantApp.DISPLAY_TC_TITLE_SELF_HEATING, // DragIconType.SelfHeating.toString(),
-			"Unbalanced Load"));*/
-	
+
 	public static ArrayList<String> REPORT_TEST_TYPES = new ArrayList<>();
 	public static ArrayList<String> REPORT_TEST_TYPES_DISPLAY = new ArrayList<>();
 	public static String REPORT_TEST_TYPES_NONE = "None";

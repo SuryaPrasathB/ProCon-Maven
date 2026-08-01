@@ -7,13 +7,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,22 +20,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
-import org.jboss.netty.util.internal.StringUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigLoader;
-import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-import com.tasnetwork.calibration.conveyor.pallet.PalletBayTestPalletActive_CheckBoxValueFactory;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
@@ -46,10 +39,8 @@ import com.tasnetwork.calibration.energymeter.serial.portmanagerV2.DutCmdManager
 import com.tasnetwork.calibration.energymeter.setting.BusyLoadingController;
 import com.tasnetwork.spring.orm.model.DutCommand;
 import com.tasnetwork.spring.orm.model.DutExecutionResult;
-import com.tasnetwork.spring.orm.model.MeterResultSummary;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 
-import antlr.StringUtils;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -85,7 +76,7 @@ public class DutExecutorFtController implements Initializable {
 	public Map<String, DutCmdManager> deviceTypeDutCmdManagerMap = new HashMap<String, DutCmdManager>();
 
 	@FXML
-	private ComboBox cmbxProjectName;// cmbBoxSelectProject;
+	private ComboBox cmbxProjectName;
 	public static ComboBox ref_cmbxProjectName;
 
 	@FXML
@@ -160,122 +151,8 @@ public class DutExecutorFtController implements Initializable {
 	}
 
 	private void dataInit() {
-
-		/*
-		 * DutExecutionResult ftExecutionResult1 = new DutExecutionResult();
-		 * ftExecutionResult1.setSerialNo(1);
-		 * ftExecutionResult1.setTestPointName("Tp1");
-		 * ftExecutionResult1.setStatus("TBD");
-		 * ftExecutionResult1.setResultPosition1("r1 P");
-		 * ftExecutionResult1.setResultPosition2("r2 P");
-		 * ftExecutionResult1.setResultPosition3("r3 P");
-		 * ftExecutionResult1.setResultPosition4("r4 P");
-		 * ftExecutionResult1.setResultPosition5("r5 P");
-		 * ftExecutionResult1.setResultPosition6("r6 P");
-		 * ftExecutionResult1.setPalletDistinctId("Pallet1_01");
-		 * ref_tvFtExecutor.getItems().add(ftExecutionResult1);
-		 */
-
-		// getManageDeployData();
 		updateProjectListinGUI();
 	}
-
-	/*
-	 * public List<String> getManageDeployData() {
-	 * 
-	 * ApplicationLauncher.logger.debug("getManageDeployData : Entry");
-	 * JSONObject resultjson = new JSONObject();
-	 * ArrayList<List<String>> result = new ArrayList<List<String>>();
-	 * List<String> col = new ArrayList<String>();
-	 * // ApplicationLauncher.logger.debug("getColNamesForErrorDisplay:
-	 * // ERROR_DISPLAY_COLUMN_LIST:"+ConstantProGEN_App.ERROR_DISPLAY_COLUMN_LIST);
-	 * // col = ConstantProGEN_App.ERROR_DISPLAY_COLUMN_LIST;
-	 * 
-	 * // resultjson = DisplayDataObj.getDeployedDevicesJson();//
-	 * // MySQL_Controller.sp_getdeploy_devices(project_name);
-	 * String timeStamp = new
-	 * SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime
-	 * ());;
-	 * long currentTime = calcEpoch(timeStamp);
-	 * long deployedTimeMaxSearchLimit = currentTime-
-	 * (ConstantApp.NUMBER_OF_SECONDS_IN_A_DAY*ConstantAppConfig.
-	 * DEPLOYMENT_DB_SEARCH_MAX_TIME_LIMIT_IN_DAYS);
-	 * resultjson =
-	 * MySQL_Controller.sp_getdeploy_manage_active(deployedTimeMaxSearchLimit);
-	 * ApplicationLauncher.logger.debug("getManageDeployData : resultjson: " +
-	 * resultjson);
-	 * try {
-	 * int no_of_devices = resultjson.getInt("No_of_deployment");
-	 * 
-	 * JSONArray arr = resultjson.getJSONArray("Deployment");
-	 * //String equipmentSerialNumber = "";
-	 * String deploymentID = "";
-	 * String project_name = "";
-	 * String mct_mode = "N";
-	 * String nct_mode = "N";
-	 * String energyFlowMode = "";
-	 * String autoDeplyEnabled = "";
-	 * //String deploy_mode = "";
-	 * 
-	 * List<String> project_NameList = new ArrayList<String>();
-	 * List<String> deployment_IdList = new ArrayList<String>();
-	 * List<String> localEnergyFlowModeList = new ArrayList<String>();
-	 * List<Boolean> localAutoDeployEnabledList = new ArrayList<Boolean>();
-	 * //List<String> equipment_SerialNoList = new ArrayList<String>();
-	 * //List<String> deployModeList = new ArrayList<String>();
-	 * //clearEnergyFlowModeList();
-	 * for (int i = 0; i < arr.length(); i++) {
-	 * 
-	 * deploymentID = arr.getJSONObject(i).getString("deployment_id");
-	 * //equipmentSerialNumber =
-	 * arr.getJSONObject(i).getString("equipment_serial_no");
-	 * mct_mode = arr.getJSONObject(i).getString("main_ct_mode");
-	 * nct_mode = arr.getJSONObject(i).getString("neutral_ct_mode");
-	 * project_name = arr.getJSONObject(i).getString("project_name");
-	 * ApplicationLauncher.logger.debug("getManageDeployData : project_name: " +
-	 * project_name);
-	 * energyFlowMode = arr.getJSONObject(i).getString("energy_flow_mode");
-	 * autoDeplyEnabled = arr.getJSONObject(i).getString("auto_deploy_enabled");
-	 * if ((ct_mode.equals("Y")) && (pt_mode.equals("Y"))) {
-	 * deploy_mode = ConstantApp.DEPLOYMENT_PT_AND_CT_MODE;
-	 * } else if ((ct_mode.equals("N")) && (pt_mode.equals("Y"))) {
-	 * deploy_mode = ConstantApp.DEPLOYMENT_PT_MODE;
-	 * } else if ((ct_mode.equals("Y")) && (pt_mode.equals("N"))) {
-	 * deploy_mode = ConstantApp.DEPLOYMENT_CT_MODE;
-	 * }
-	 * 
-	 * deployment_IdList.add(deploymentID);
-	 * //equipment_SerialNoList.add(equipmentSerialNumber);
-	 * project_NameList.add(project_name);
-	 * localEnergyFlowModeList.add(energyFlowMode);
-	 * if(autoDeplyEnabled.equals("Y")) {
-	 * localAutoDeployEnabledList.add(true);
-	 * }else {
-	 * localAutoDeployEnabledList.add(false);
-	 * }
-	 * //deployModeList.add(deploy_mode);
-	 * 
-	 * }
-	 * 
-	 * setProjectNameList(project_NameList);
-	 * setDeploymentIdList(deployment_IdList);
-	 * setEnergyFlowModeList(localEnergyFlowModeList);
-	 * setAutoDeployEnabledList(localAutoDeployEnabledList);
-	 * //setEquipmentSerialNoList(equipment_SerialNoList);
-	 * //setDeployModeList(deployModeList);
-	 * 
-	 * } catch (JSONException e) {
-	 * 
-	 * e.printStackTrace();
-	 * ApplicationLauncher.logger.error("getManageDeployData: JSONException: " +
-	 * e.getMessage());
-	 * }
-	 * ApplicationLauncher.logger.debug("getManageDeployData: col:" + col);
-	 * ApplicationLauncher.logger.debug("getManageDeployData: getProjectNameList: "
-	 * + getProjectNameList());
-	 * return col;
-	 * }
-	 */
 
 	public static long calcEpoch(String Date_time) {
 
@@ -1018,29 +895,6 @@ public class DutExecutorFtController implements Initializable {
 		// Add other controls that should be disabled during execution
 	}
 
-	private void clearPositionResult(DutExecutionResult row, int positionNo) {
-		switch (positionNo) {
-			case 1:
-				row.setResultPosition1("");
-				break;
-			case 2:
-				row.setResultPosition2("");
-				break;
-			case 3:
-				row.setResultPosition3("");
-				break;
-			case 4:
-				row.setResultPosition4("");
-				break;
-			case 5:
-				row.setResultPosition5("");
-				break;
-			case 6:
-				row.setResultPosition6("");
-				break;
-		}
-	}
-
 	private void startDutTestPointExecutionAsync() {
 		ApplicationLauncher.logger.debug("startDutTestPointExecutionAsync : Entry");
 		clearDeviceTypeDutCmdManagerMap();
@@ -1319,8 +1173,9 @@ public class DutExecutorFtController implements Initializable {
 
 			DutCommand dutCommand = ref_tvFtExecutor.getItems().get(i).getDutCommand();
 			String targetDeviceType = dutCommand.getTargetDeviceType();
-			String deviceIdPrefix = terminalBayProfile.getTerminalId() + terminalBayProfile.getClusterId() +
-					terminalBayProfile.getBayId() + targetDeviceType;
+			terminalBayProfile.getTerminalId();
+			terminalBayProfile.getClusterId();
+			terminalBayProfile.getBayId();
 
 			/*
 			 * List<String> deviceIdList = new ArrayList<>();
@@ -1391,40 +1246,6 @@ public class DutExecutorFtController implements Initializable {
 
 	}
 
-	/*
-	 * private String formatExecutionTime(int totalSeconds) {
-	 * if (totalSeconds < 0) {
-	 * return "00:00";
-	 * }
-	 * 
-	 * int minutes = totalSeconds / 60;
-	 * int seconds = totalSeconds % 60;
-	 * 
-	 * return String.format("%02d:%02d", minutes, seconds);
-	 * }
-	 */
-
-	/*
-	 * class startOnClickTask extends TimerTask {
-	 * 
-	 * @Override
-	 * public void run() {
-	 * ApplicationLauncher.logger.debug("startOnClickTask : Entry");
-	 * Platform.runLater(() -> {
-	 * 
-	 * startDutTestExecution();
-	 * 
-	 * });
-	 * 
-	 * startOnClickTimer.cancel();
-	 * }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
-
 	public void startDutTestExecution() {
 
 		ApplicationLauncher.logger.debug("startDutTestExecution : Entry");
@@ -1435,57 +1256,20 @@ public class DutExecutorFtController implements Initializable {
 
 		TerminalProfileSetting terminalBayProfile = MySqlServiceManager.getTerminalProfileSettingService()
 				.findByBayKey(myBayKey);
-		// ArrayList<String>
-		/*
-		 * getDeviceMountedMap().clear();
-		 * String positionIdAsList = terminalBayProfile.getPositionIdAsList();
-		 * List<Integer> positionIdList = Arrays.stream(positionIdAsList.split(","))
-		 * .map(String::trim)
-		 * .map(e->Integer.parseInt(e))
-		 * .collect(Collectors.toList());
-		 * String positionIdToBeSkippedAsList =
-		 * terminalBayProfile.getPositionTobeSkippedAsList();
-		 * List<Integer> positionIdToBeSkippedList =
-		 * Arrays.stream(positionIdToBeSkippedAsList.split(","))
-		 * .map(String::trim)
-		 * .map(e->Integer.parseInt(e))
-		 * .collect(Collectors.toList());
-		 * 
-		 * for(int i=0; i<positionIdList.size();i++) {
-		 * if(!positionIdToBeSkippedList.contains(positionIdList.get(i))) {
-		 * getDeviceMountedMap().put(String.format("%02d", positionIdList.get(i)),
-		 * true);
-		 * }
-		 * }
-		 */
-
-		/*
-		 * for(int i=0; i<positionIdToBeSkippedList.size();i++) {
-		 * 
-		 * getDeviceMountedMap().put(positionIdToBeSkippedList.get(i), false);
-		 * 
-		 * }
-		 */
 
 		for (Map.Entry<String, Boolean> entry : getDeviceMountedMap().entrySet()) {
 			ApplicationLauncher.logger
 					.debug("startDutTestExecution: Device: " + entry.getKey() + ", Mounted: " + entry.getValue());
 		}
-		// getDeviceMountedMap().entrySet().stream().forEachOrdered((k,v)->{
-		// ApplicationLauncher.logger.debug("startDutTestExecution : Entry");
-		// });
 
 		for (int i = 0; i < ref_tvFtExecutor.getItems().size(); i++) {
-			// Platform.runLater(() -> {
-			// ref_tvFtExecutor.getSelectionModel().select(i);
-			// });
+
 			DutCommand dutCommand = ref_tvFtExecutor.getItems().get(i).getDutCommand();
 			String targetDeviceType = dutCommand.getTargetDeviceType();
 			String deviceIdPrefix = terminalBayProfile.getTerminalId() + terminalBayProfile.getClusterId() +
 					terminalBayProfile.getBayId() +
 					targetDeviceType;
-			// ConstantConveyor.DEVICE_TYPE_QR_SCANNER;
-			// String.format("%02d", getPalletQrScannerPositionId());
+
 			ApplicationLauncher.logger.debug("startDutTestExecution : deviceIdPrefix: " + deviceIdPrefix);
 			ApplicationLauncher.logger
 					.debug("startDutTestExecution : getDeviceMountedMap().keySet: " + getDeviceMountedMap().keySet());
@@ -1496,27 +1280,18 @@ public class DutExecutorFtController implements Initializable {
 				ApplicationLauncher.logger.debug("startDutTestExecution : deviceId: " + deviceId);
 				deviceIdList.add(deviceId);
 			});
-			// ApplicationLauncher.logger.debug("dutCommandExecuteStart : deviceId-2: " +
-			// deviceIdPrefix);
 
 			if (!getDeviceTypeDutCmdManagerMap().containsKey(targetDeviceType)) {
 				addDeviceTypeDutCmdManagerMap(targetDeviceType, new DutCmdManager());
 			}
 
-			// deviceIdList.add("010101QR01");
-			// deviceIdList.add("010101QR02");
-
 			DutCmdTestPointExecutor commandExecutor = new DutCmdTestPointExecutor();
 			DutCmdManager dutCmdManager = getDeviceTypeDutCmdManagerMap().get(targetDeviceType);
 			dutCmdManager.setDutCommand(dutCommand);
 			commandExecutor.setTvExecutor(tvFtExecutor);
-			// commandExecutor.dutExecuteCommandWithDeviceIdListTrigger(deviceIdList,dutCmdManager);
 
 			try {
 				commandExecutor.waitForCompletion(dutCommand.getTotalDutExecutionTimeInSec() + 5, TimeUnit.SECONDS); // Adjust
-																														// timeout
-																														// as
-																														// needed
 			} catch (InterruptedException e) {
 				ApplicationLauncher.logger
 						.error("startDutTestExecution: Interrupted while waiting for command execution to complete", e);
@@ -1529,8 +1304,6 @@ public class DutExecutorFtController implements Initializable {
 				ApplicationLauncher.logger.debug(
 						"startDutTestExecution: Command execution may not have completed fully for iteration: " + i);
 			}
-			break;
-			// Sleep(5000);
 		}
 
 		closeAllComPort();

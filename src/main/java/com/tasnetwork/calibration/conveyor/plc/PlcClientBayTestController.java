@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.plc;
 
-import java.io.IOException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +36,6 @@ import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigMod
 import com.tasnetwork.calibration.conveyor.bay.ft.FunctionalTestBaySingleStateTestRun;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
-
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
@@ -49,14 +46,14 @@ import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.Cursor;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PlcClientBayTestController
@@ -372,15 +369,8 @@ public class PlcClientBayTestController
 			String bayName = (ref_cmbBxBaySelection.getSelectionModel().getSelectedItem().toString());
 
 			String clusterId = getClusterNameIdListMap().get(clusterName);
-			// ApplicationLauncher.logger.debug("loadDataFromConfig :
-			// getClusterBayNameIdMap().get(clusterName)-2 :"+
-			// getClusterBayNameIdMap().get(clusterName));
-			// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 			ApplicationLauncher.logger.debug("loadDataFromConfig : clusterId :" + clusterId);
-			String clusterIpAddress = "";
-			String clusterPortNo = "";
-
 			Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
 					.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 					.flatMap(terminal -> terminal.getClusterDetails().stream())
@@ -496,7 +486,7 @@ public class PlcClientBayTestController
 				ref_txtComStatus.setText("Sending...");
 			});
 
-			ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance();
+			ConveyorClientManager.getInstance();
 			String ipAddress = ref_txtClusterIpAddress.getText();
 			String ipPort = ref_txtClusterPortNo.getText();
 			ClusterServer clusterServer = new ClusterServer(ipAddress, ipPort, getPresentClusterId());
@@ -651,78 +641,15 @@ public class PlcClientBayTestController
 				ref_txtWriteStatusSample.setText("");
 			});
 
-			ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance();
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.clear();
-			 * });
-			 */
+			ConveyorClientManager.getInstance();
 
-			/*
-			 * if(ref_chkBxWriteGreenLed.isSelected()) {
-			 * String greenLedStatus = "Off";
-			 * if(ref_chkBxGreenLedData.isSelected()) {
-			 * greenLedStatus = "On";
-			 * }
-			 */
-
-			String deviceId = "1";
-			String bayId = "1";
 			boolean overAllStatus = true;
-			boolean deviceResponded = false;
-			// int plcCoilAddress = -1;
+
 			String ipAddress = ref_txtClusterIpAddress.getText();
 			String ipPort = ref_txtClusterPortNo.getText();
 			ClusterServer clusterServer = new ClusterServer(ipAddress, ipPort, getPresentClusterId());
 			String serverKey = clusterServer.getIpAddress() + ":" + clusterServer.getPort();
 			if (ref_tbViewOutputPortData.getItems().size() > 0) {
-				// String ipAddress = ref_txtClusterIpAddress.getText();
-				// String ipPort = ref_txtClusterPortNo.getText();
-				// ClusterServer clusterServer = new ClusterServer(ipAddress,ipPort
-				// ,getPresentClusterId());
-				/*
-				 * BayResponse bayResponse = new BayResponse();
-				 * for(int i =0; i< ref_tbViewOutputPortData.getItems().size(); i++) {
-				 * plcCoilAddress = -1;
-				 * bayResponse = new BayResponse();
-				 * OutputPort outputPortDetails = ref_tbViewOutputPortData.getItems().get(i);
-				 * if(outputPortDetails.isUpdateBay()) {
-				 * String outputPortId = outputPortDetails.getPortId();
-				 * String outputActive = "Off";
-				 * if(outputPortDetails.isOutputActive()) {
-				 * outputActive = "On";
-				 * }
-				 * //outputPortId = outputPortId.replace("ipt", "").replace("ip",
-				 * "").replace("op", "");
-				 * outputPortId = outputPortId.replaceAll("[^0-9.]", "");
-				 * ApplicationLauncher.logger.info("SendDataToBayTask: outputPortId: "
-				 * +outputPortId);
-				 * //deviceResponded = setOutputDataToBay(clusterServer,
-				 * deviceId,bayId,outputPortId, outputActive) ;
-				 * if(GuiUtils.isNumber(outputPortId)) {
-				 * plcCoilAddress = Integer.parseInt(outputPortId);
-				 * 
-				 * 
-				 * bayResponse =
-				 * BayUtils.getModbusTcpClientManager().modbusWriteCoil(clusterServer,
-				 * plcCoilAddress, outputPortDetails.isOutputActive());
-				 * if(!bayResponse.getStatus()) {
-				 * ApplicationLauncher.logger.
-				 * info("SendDataToBayTask: outputPortId: device not responded ");
-				 * overAllStatus = false;
-				 * }
-				 * }else {
-				 * ApplicationLauncher.logger.info("SendDataToBayTask: invalid outputPortId: "
-				 * +outputPortDetails.getPortId());
-				 * overAllStatus = false;
-				 * 
-				 * WindowManager.InformUser("Error-1010","Kindly check key : "+outputPortDetails
-				 * .getPortId()
-				 * +" on conveyor config file on <outputPort> section",AlertType.ERROR);
-				 * }
-				 * }
-				 * }
-				 */
 
 				List<OutputPort> outputPorts = ref_tbViewOutputPortData.getItems().stream()
 						.filter(OutputPort::isUpdateBay) // Filter only ports that need updating
@@ -763,8 +690,6 @@ public class PlcClientBayTestController
 
 			}
 
-			// BayResponse bayResponse = new BayResponse();
-			int baseAddress = 0;
 			if (ref_tbViewInputPortData.getItems().size() > 0) {
 
 				ref_tbViewInputPortData.getItems().parallelStream()
@@ -821,68 +746,6 @@ public class PlcClientBayTestController
 								});
 							}
 						});
-				// String ipAddress = ref_txtClusterIpAddress.getText();
-				// String ipPort = ref_txtClusterPortNo.getText();
-				/*
-				 * String stateDesc = "";
-				 * //ClusterServer clusterServer = new ClusterServer(ipAddress,ipPort
-				 * ,getPresentClusterId());
-				 * for(int i =0; i< ref_tbViewInputPortData.getItems().size(); i++) {
-				 * stateDesc = "";
-				 * bayResponse = new BayResponse();
-				 * plcCoilAddress = -1;
-				 * InputPort inputPortDetails = ref_tbViewInputPortData.getItems().get(i);
-				 * if(inputPortDetails.isReadBay()) {
-				 * String inputPortId = inputPortDetails.getPortId();
-				 * 
-				 * inputPortId = inputPortId.replaceAll("[^0-9.]", "");
-				 * ApplicationLauncher.logger.info("SendDataToBayTask: inputPortId: "
-				 * +inputPortId);
-				 * 
-				 * if(GuiUtils.isNumber(inputPortId)) {
-				 * plcCoilAddress = Integer.parseInt(inputPortId);
-				 * 
-				 * bayResponse =
-				 * BayUtils.getModbusTcpClientManager().modbusReadCoil(clusterServer,
-				 * plcCoilAddress);
-				 * 
-				 * if(!bayResponse.getStatus()) {
-				 * ApplicationLauncher.logger.
-				 * info("SendDataToBayTask: inputPortId: device not responded ");
-				 * ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
-				 * stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-				 * overAllStatus = false;
-				 * }else {
-				 * //stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-				 * ref_tbViewInputPortData.getItems().get(i).setInputActive(bayResponse.
-				 * isResponseBooleanData());
-				 * ApplicationLauncher.logger.info("SendDataToBayTask: inputPortId:  " +
-				 * inputPortDetails.getPortId() + " : value : " +
-				 * bayResponse.isResponseBooleanData());
-				 * if(bayResponse.isResponseBooleanData()) {
-				 * stateDesc = ref_tbViewInputPortData.getItems().get(i).getOnStateDesc();
-				 * }else {
-				 * stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-				 * }
-				 * }
-				 * }else {
-				 * ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
-				 * stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-				 * ApplicationLauncher.logger.info("SendDataToBayTask: invalid inputPortId: "
-				 * +inputPortDetails.getPortId());
-				 * overAllStatus = false;
-				 * 
-				 * WindowManager.InformUser("Error-2010","Kindly check key : "+inputPortDetails.
-				 * getPortId()
-				 * +" on conveyor config file on <inputPort> section",AlertType.ERROR);
-				 * }
-				 * 
-				 * 
-				 * ref_tbViewInputPortData.getItems().get(i).setStateDescription(stateDesc);
-				 * ref_tbViewInputPortData.refresh();
-				 * }
-				 * }
-				 */
 			}
 
 			boolean overAllStatus1 = overAllStatus;
@@ -957,7 +820,6 @@ public class PlcClientBayTestController
 			String inputPortId) {
 		ApplicationLauncher.logger.info("getInputDataFromBay -plc-client: Entry-failed-debug");
 		String clusterId = clusterServer.getClusterId();
-		boolean status = false;
 		ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance(clusterId);
 		// cluster1ClientManager.getBayData(clusterServer,deviceId, bayId, inputPortId);
 		String dummyOutputValue = "";
@@ -967,9 +829,7 @@ public class PlcClientBayTestController
 		ApplicationHomeController.update_left_status("Awaiting Device Response", ConstantApp.LEFT_STATUS_DEBUG);
 		// Sleep(8000);
 		RestApiJsonBodyResponse clusterResponseData = new RestApiJsonBodyResponse();
-		// clusterResponseData.setStatuscode(statuscode);
-		// HashMap<Boolean,RestApiClusterResponse> returnData = new
-		// HashMap<Boolean,RestApiClusterResponse>();
+
 		boolean isResponseReceived = false;
 		if (ProcalFeatureEnable.CONVEYOR_REST_CLIENT_ENABLED) {
 			// cluster1ClientManager.getRestConvClient().WaitForServerResponse(8);
@@ -990,51 +850,8 @@ public class PlcClientBayTestController
 			ApplicationLauncher.logger.info("getInputDataFromBay: " + inputPortId + " : getDevice Data: "
 					+ clusterResponseData.getJsonBodyResponse().get(inputPortId));
 
-			/*
-			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
-			 * +inputPortId+" : getDevice Data: "+ clusterResponseData.getDevice());
-			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
-			 * +inputPortId+" : getStatus Data: "+ clusterResponseData.getStatus());
-			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
-			 * +inputPortId+" : getStatus getOpGreen: "+ clusterResponseData.getOpGreen());
-			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
-			 * +inputPortId+" : getStatus getOpYellow: "+
-			 * clusterResponseData.getOpYellow());
-			 * ApplicationLauncher.logger.info("getInputDataFromBay: "
-			 * +inputPortId+" : getStatus getOpRed: "+ clusterResponseData.getOpRed());
-			 */
-
-			// String responseData =
-			// cluster1ClientManager.getAsyncConvClient().getResponseData();
-
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * });
-			 */
-			/*
-			 * if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * }else {
-			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
-			 * responseData);
-			 * }
-			 */
-			status = true;
-
-			// ApplicationHomeController.EnableScanDeviceButton();
 		} else {
 
-			// ScanDeviceController.ScanDeviceCompletedPostProcess();
-			// ApplicationHomeController.EnableScanDeviceButton();
-			// ApplicationHomeController.DisableTestRunButton();
-			// ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
-			 * inputPortId+"-no response");
-			 * });
-			 */
 			ApplicationHomeController.update_left_status("Device Connection Failed " + inputPortId + " :",
 					ConstantApp.LEFT_STATUS_DEBUG);
 		}
@@ -1082,36 +899,11 @@ public class PlcClientBayTestController
 			ApplicationLauncher.logger.info(
 					"AsyncConveyorClient: " + outputPortId + " : getStatus Data: " + clusterResponseData.getStatus());
 
-			// String responseData =
-			// cluster1ClientManager.getAsyncConvClient().getResponseData();
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * });
-			 */
-			/*
-			 * if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * }else {
-			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
-			 * responseData);
-			 * }
-			 */
 			status = true;
 
 			// ApplicationHomeController.EnableScanDeviceButton();
 		} else {
 
-			// ScanDeviceController.ScanDeviceCompletedPostProcess();
-			// ApplicationHomeController.EnableScanDeviceButton();
-			// ApplicationHomeController.DisableTestRunButton();
-			// ApplicationHomeController.EnableLeftMenuButtonsForTestRun();
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
-			 * outputPortId+"-no response");
-			 * });
-			 */
 			ApplicationHomeController.update_left_status("Device Connection Failed " + outputPortId + " :",
 					ConstantApp.LEFT_STATUS_DEBUG);
 			// status = null;
@@ -1161,17 +953,10 @@ public class PlcClientBayTestController
 		public void run() {
 			Platform.runLater(() -> {
 
-				String selectedClusterName = (String) ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
+				ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
 				if (getClusterBayNameListMap().size() > 0) {
 					ref_tbViewOutputPortData.getItems().clear();
 					ref_tbViewInputPortData.getItems().clear();
-					// ref_txtClusterIpAddress.setText("");
-					// ref_txtClusterPortNo.setText("");
-					// if(getClusterBayNameListMap().containsKey(selectedClusterName)){
-					// ref_cmbBxBaySelection.getItems().addAll(getClusterBayNameListMap().get(selectedClusterName));
-					// }
-					// ref_cmbBxBaySelection.getSelectionModel().select(0);
-
 				}
 			});
 			baySelectionOnChangeTimer.cancel();
@@ -1198,10 +983,6 @@ public class PlcClientBayTestController
 				String bayName = (ref_cmbBxBaySelection.getSelectionModel().getSelectedItem().toString());
 
 				String clusterId = getClusterNameIdListMap().get(clusterName);
-				// ApplicationLauncher.logger.debug("loadDataFromConfig :
-				// getClusterBayNameIdMap().get(clusterName)-2 :"+
-				// getClusterBayNameIdMap().get(clusterName));
-				// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 				ApplicationLauncher.logger.debug("LoadOnClickTask : clusterId :" + clusterId);
 
@@ -1220,45 +1001,7 @@ public class PlcClientBayTestController
 							+ clusterDetail.getClusterIpAddress());
 					ApplicationLauncher.logger.info("LoadOnClickTask : clusterDetail().getClusterPortId(): "
 							+ clusterDetail.getClusterPortId());
-					// ApplicationLauncher.logger.info("LoadOnClickTask : already connected status:
-					// " +
-					// BayUtils.getModbusTcpClientManager().getModbusTcpServerConnectedMap().get(clusterDetail.getClusterIpAddress()));
-
-					// ref_txtClusterIpAddress.setText(clusterDetail.getClusterIpAddress());
-					// ref_txtClusterPortNo.setText(clusterDetail.getClusterPortId());
-
-					/*
-					 * if(BayUtils.getModbusTcpClientManager().getModbusTcpServerConnectedMap().
-					 * containsKey(clusterDetail.getClusterIpAddress())){
-					 * ApplicationLauncher.logger.
-					 * info("LoadOnClickTask : clusterDetail().getClusterIpAddress(): " +
-					 * clusterDetail.getClusterIpAddress());
-					 * ApplicationLauncher.logger.
-					 * info("LoadOnClickTask : already connected status: " +
-					 * BayUtils.getModbusTcpClientManager().getModbusTcpServerConnectedMap().get(
-					 * clusterDetail.getClusterIpAddress()));
-					 * 
-					 * if(BayUtils.getModbusTcpClientManager().getModbusTcpServerConnectedMap().get(
-					 * clusterDetail.getClusterIpAddress())) {
-					 * ref_txtComStatus.setText("Connected");
-					 * }else {
-					 * ref_txtComStatus.setText("Disconnected");
-					 * }
-					 * }else {
-					 * ref_txtComStatus.setText("");
-					 * }
-					 */
-
-					// String ipAddress = clusterDetail.getClusterIpAddress();
-					// String portNo = clusterDetail.getClusterPortId();
 					String serverKey = clusterDetail.getClusterIpAddress() + ":" + clusterDetail.getClusterPortId(); // Unique
-																														// identifier
-																														// for
-																														// IP
-																														// +
-																														// Port
-					// String clusterIpAddress = clusterDetail.getClusterIpAddress();
-					// int clusterPortNo = Integer.parseInt(clusterDetail.getClusterPortId());
 
 					Platform.runLater(() -> ref_txtClusterIpAddress.setText(clusterDetail.getClusterIpAddress()));
 					Platform.runLater(() -> ref_txtClusterPortNo.setText(clusterDetail.getClusterPortId()));
@@ -1437,7 +1180,7 @@ public class PlcClientBayTestController
 				ref_txtComStatus.setText("");
 
 				String clusterName = ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem().toString();
-				String bayName = ref_cmbBxBaySelection.getSelectionModel().getSelectedItem().toString();
+				ref_cmbBxBaySelection.getSelectionModel().getSelectedItem().toString();
 				String clusterId = getClusterNameIdListMap().get(clusterName);
 
 				ApplicationLauncher.logger.debug("LoadOnClickTask : clusterId :" + clusterId);

@@ -16,7 +16,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.deployment.DutResponse;
-import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.director.DutCmdDirectorV3;
 import com.tasnetwork.calibration.energymeter.serial.portmanagerV2.DutCmdManager;
 import com.tasnetwork.calibration.energymeter.serial.portmanagerV2.SerialPortManagerDutCmd_V3;
@@ -66,86 +65,6 @@ public class DutCmdTestPointExecutor {
 
         ApplicationLauncher.logger.debug("dutExecuteCommandTrigger : Exit");
     }
-
-    /*
-     * public void dutExecuteCommandWithDeviceIdListTrigger(List<String>
-     * deviceIdList,DutCmdManager dutCmdManager) {//DutCommand dutCommand) {
-     * ApplicationLauncher.logger.
-     * debug("dutExecuteCommandWithDeviceIdListTrigger : Entry");
-     * //String lduPosition = "1";
-     * //ProjectExecutionController.getDeviceMountedMap().keySet().forEach(
-     * lduPosition -> {
-     * deviceIdList.stream().forEachOrdered(eachDeviceId -> {
-     * // Cancel previous task for same position if still running
-     * String lastTwoChars = eachDeviceId.substring(eachDeviceId.length() - 2);
-     * String lduPosition = String.valueOf(Integer.parseInt(lastTwoChars));
-     * String uniqueDeviceTaskId = eachDeviceId + "_" + lduPosition;
-     * cancelExistingTask(uniqueDeviceTaskId);
-     * //DutCommand dutCommand = DeviceDataManagerController.getDutCommandData();
-     * ScheduledFuture<?> future = scheduler.schedule(() -> {
-     * executeDutCommandForPosition(eachDeviceId,lduPosition,dutCmdManager);
-     * cleanupAfterExecution(lduPosition);
-     * }, 100, TimeUnit.MILLISECONDS);
-     * 
-     * activeTasks.put(uniqueDeviceTaskId, future);
-     * Sleep(200);
-     * });
-     * 
-     * ApplicationLauncher.logger.
-     * debug("dutExecuteCommandWithDeviceIdListTrigger : Exit");
-     * }
-     */
-
-    /*
-     * public void dutExecuteCommandWithDeviceIdListTrigger(List<String>
-     * deviceIdList, DutCmdManager dutCmdManager) {
-     * ApplicationLauncher.logger.
-     * debug("dutExecuteCommandWithDeviceIdListTrigger : Entry");
-     * //ApplicationLauncher.logger.
-     * debug("dutExecuteCommandWithDeviceIdListTrigger : Position1: ->rxLabel: "+
-     * dutCmdManager.getDutSpm(1).rxPhysical_Dut.rxLabel);
-     * //ApplicationLauncher.logger.
-     * debug("dutExecuteCommandWithDeviceIdListTrigger : Position2: ->rxLabel: "+
-     * dutCmdManager.getDutSpm(2).rxPhysical_Dut.rxLabel);
-     * 
-     * final CountDownLatch latch = new CountDownLatch(deviceIdList.size());
-     * final AtomicBoolean cleanupScheduled = new AtomicBoolean(false);
-     * final List<String> dutPositionList = Collections.synchronizedList(new
-     * ArrayList<>());
-     * 
-     * deviceIdList.stream().forEachOrdered(eachDeviceId -> {
-     * String lastTwoChars = eachDeviceId.substring(eachDeviceId.length() - 2);
-     * String dutPosition = String.valueOf(Integer.parseInt(lastTwoChars));
-     * String uniqueDeviceTaskId = eachDeviceId + "_" + dutPosition;
-     * 
-     * // Store the LDU position
-     * dutPositionList.add(dutPosition);
-     * 
-     * cancelExistingTask(uniqueDeviceTaskId);
-     * 
-     * ScheduledFuture<?> future = scheduler.schedule(() -> {
-     * try {
-     * executeDutCommandForPosition(eachDeviceId, dutPosition, dutCmdManager);
-     * } finally {
-     * latch.countDown();
-     * 
-     * // Schedule cleanup only once when all tasks are done
-     * if (latch.getCount() == 0 && cleanupScheduled.compareAndSet(false, true)) {
-     * scheduler.schedule(() -> {
-     * cleanupAfterExecution();//dutCmdManager, dutPositionList);
-     * }, 2000, TimeUnit.MILLISECONDS);
-     * }
-     * }
-     * }, 100, TimeUnit.MILLISECONDS);
-     * 
-     * activeTasks.put(uniqueDeviceTaskId, future);
-     * Sleep(200);
-     * });
-     * 
-     * ApplicationLauncher.logger.
-     * debug("dutExecuteCommandWithDeviceIdListTrigger : Exit");
-     * }
-     */
 
     public void dutCmdExecuteWithTestPointTrigger(int testPointIndex, List<String> deviceIdList,
             DutCmdManager dutCmdManager) {
@@ -214,15 +133,9 @@ public class DutCmdTestPointExecutor {
                     .debug("executeDutCommandForPosition: Position: " + lduPosition + " -> deviceId: " + deviceId);
             DutCommand dutCommand = dutCmdManager.getDutCommand();
             int dutPositionNo = Integer.parseInt(lduPosition);
-            // DutCmdManager dutCmdManager = new DutCmdManager();
-            DutResponse dutResponse = new DutResponse();
-            // ApplicationLauncher.logger.debug("executeDutCommandForPosition : Position0:
-            // ->rxLabel: "+ dutCmdManager.getDutSpm(0).rxPhysical_Dut.rxLabel);
 
-            // ApplicationLauncher.logger.debug("executeDutCommandForPosition : Position1:
-            // ->rxLabel: "+ dutCmdManager.getDutSpm(1).rxPhysical_Dut.rxLabel);
-            // ApplicationLauncher.logger.debug("executeDutCommandForPosition : Position2:
-            // ->rxLabel: "+ dutCmdManager.getDutSpm(2).rxPhysical_Dut.rxLabel);
+            DutResponse dutResponse = new DutResponse();
+
             if (!dutCmdManager.isComSerialStatusConnected(dutPositionNo)) {
                 // String deviceId = "010101QR01";
                 // ApplicationLauncher.logger.debug("executeDutCommandForPosition: Hit1: ");
@@ -245,12 +158,7 @@ public class DutCmdTestPointExecutor {
             // ApplicationLauncher.logger.debug("executeDutCommandForPosition: Hit2: ");
             if (dutResponse.isStatus()) {
                 SerialPortManagerDutCmd_V3 dutSpm = dutCmdManager.getDutSpm(dutPositionNo);
-                // ApplicationLauncher.logger.debug("executeDutCommandForPosition : Position: "
-                // + lduPosition + " ->rxLabel: "+ dutSpm.rxPhysical_Dut.rxLabel);
 
-                // ApplicationLauncher.logger.debug("executeDutCommandForPosition : Position: "
-                // + lduPosition + " ->isDutSerialStatusConnected: "+
-                // dutSpm.isDutSerialStatusConnected());
 
                 DutCmdDirectorV3 dutCmdDirectorV3 = new DutCmdDirectorV3(dutSpm);
                 // dutResponse = dutCmdDirectorV3.dutMsngrSendCommandProcess();
@@ -428,16 +336,4 @@ public class DutCmdTestPointExecutor {
     public void setTvExecutor(TableView<DutExecutionResult> tvExecutor) {
         this.tvExecutor = tvExecutor;
     }
-
-    /*
-     * public List<String> getDeviceIdList() {
-     * return deviceIdList;
-     * }
-     * 
-     * 
-     * 
-     * public void setDeviceIdList(List<String> deviceIdList) {
-     * this.deviceIdList = deviceIdList;
-     * }
-     */
 }

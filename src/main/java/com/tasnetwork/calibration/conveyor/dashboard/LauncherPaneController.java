@@ -476,7 +476,7 @@ public class LauncherPaneController {
                 ApplicationLauncher.logger.info("Launching JAR: " + Arrays.toString(pb.command().toArray()));
                 ApplicationLauncher.logger.info("Working Directory for JAR: " + pb.directory().getAbsolutePath());
 
-                Process process = pb.start();
+                pb.start();
 
                 Platform.runLater(() -> {
                     updateButtonOnSuccess(button);
@@ -484,81 +484,6 @@ public class LauncherPaneController {
 
             } catch (IOException e) {
                 ApplicationLauncher.logger.error("Error launching JAR file: " + jarFile + " from " + cmdLocation);
-                e.printStackTrace();
-                Platform.runLater(() -> {
-                    updateButtonOnError(button);
-                });
-            }
-        }).start();
-    }
-
-    /**
-     * Launches a Python application from a specified command prompt location in a
-     * new CMD window
-     * and updates the button's state.
-     *
-     * @param cmdLocation          The directory where the Python script is located
-     *                             and the new command prompt should start.
-     * @param pythonScript         The name of the Python script file to launch.
-     * @param pythonExecutablePath The explicit path to the Python executable (e.g.,
-     *                             "C:\\Python\\Python39\\python.exe").
-     *                             If null or empty, "python.exe" is assumed to be
-     *                             in the system's PATH.
-     * @param screenNumber         The screen index (e.g., 0 for primary, 1 for
-     *                             secondary) on which to open the Python app.
-     * @param button               The button associated with the launch action.
-     */
-    private void launchPythonApp(String cmdLocation, String pythonScript, String pythonExecutablePath, int screenNumber,
-            Button button) {
-        // Basic validation for cmdLocation and pythonScript
-        if (cmdLocation == null || cmdLocation.trim().isEmpty() || pythonScript == null
-                || pythonScript.trim().isEmpty()) {
-            ApplicationLauncher.logger.error("Cannot launch Python app: cmdLocation or pythonScript is null/empty.");
-            Platform.runLater(() -> updateButtonOnError(button));
-            return;
-        }
-
-        button.setDisable(true);
-        button.setText("LAUNCHING...");
-
-        new Thread(() -> {
-            try {
-                // Extract drive letter from cmdLocation (e.g., "D")
-                String driveLetter = cmdLocation.substring(0, 1);
-
-                String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
-                        (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ? pythonExecutablePath
-                                : "python.exe")
-                        +
-                        "\" \"" + pythonScript + "\" " + String.valueOf(screenNumber);
-
-                ProcessBuilder pb = new ProcessBuilder(
-                        "cmd.exe",
-                        "/c", // Use /c to close the *outer* cmd window after 'start' finishes
-                        "start",
-                        "\"\"", // Empty window title for the new window opened by 'start'
-                        "cmd.exe",
-                        "/k", // Keep the *inner* cmd window open after the Python script runs
-                        fullCommand // The entire sequence of commands to run in the inner cmd window
-                );
-
-                pb.inheritIO(); // Inherit I/O for debugging (optional)
-
-                // --- Debugging output ---
-                ApplicationLauncher.logger
-                        .info("Launching Python app command array: " + Arrays.toString(pb.command().toArray()));
-                ApplicationLauncher.logger.info("Full command string passed to inner cmd.exe: " + fullCommand);
-                // --- End Debugging output ---
-
-                Process process = pb.start();
-
-                Platform.runLater(() -> {
-                    updateButtonOnSuccess(button);
-                });
-
-            } catch (IOException e) {
-                ApplicationLauncher.logger
-                        .error("Error launching Python app: " + pythonScript + " from " + cmdLocation);
                 e.printStackTrace();
                 Platform.runLater(() -> {
                     updateButtonOnError(button);
@@ -621,7 +546,7 @@ public class LauncherPaneController {
                         .info("launchPythonAppV3_1: Full command string passed to inner cmd.exe: " + fullCommand);
                 // --- End Debugging output ---
 
-                Process process = pb.start();
+                pb.start();
 
                 Platform.runLater(() -> {
                     updateButtonOnSuccess(button);
@@ -630,71 +555,6 @@ public class LauncherPaneController {
             } catch (IOException e) {
                 ApplicationLauncher.logger.error(
                         "launchPythonAppV3_1: Error launching Python app: " + pythonScript + " from " + cmdLocation);
-                e.printStackTrace();
-                Platform.runLater(() -> {
-                    updateButtonOnError(button);
-                });
-            }
-        }).start();
-    }
-
-    private void launchPythonAppV2(String cmdLocation, String pythonScript, String pythonExecutablePath,
-            String monitorDisplayName, String bayNameDisplay, String port, Button button) {
-        // Basic validation for cmdLocation and pythonScript
-        ApplicationLauncher.logger.info("launchPythonAppV2: Entry");
-        if (cmdLocation == null || cmdLocation.trim().isEmpty() || pythonScript == null
-                || pythonScript.trim().isEmpty()) {
-            ApplicationLauncher.logger
-                    .error("launchPythonAppV2: Cannot launch Python app: cmdLocation or pythonScript is null/empty.");
-            Platform.runLater(() -> updateButtonOnError(button));
-            return;
-        }
-
-        button.setDisable(true);
-        button.setText("LAUNCHING...");
-
-        new Thread(() -> {
-            try {
-                // Extract drive letter from cmdLocation (e.g., "D")
-                String driveLetter = cmdLocation.substring(0, 1);
-
-                String fullCommand = driveLetter + ": && cd \"" + cmdLocation + "\" && \"" +
-                        (pythonExecutablePath != null && !pythonExecutablePath.trim().isEmpty() ? pythonExecutablePath
-                                : "python.exe")
-                        +
-                        "\" \"" + pythonScript + "\" --port " + port + " --bay-name \"" + bayNameDisplay
-                        + "\" --screen-name \"" + monitorDisplayName + "\"";
-
-                ApplicationLauncher.logger.info("launchPythonAppV2: fullCommand: <" + fullCommand + ">");
-
-                ProcessBuilder pb = new ProcessBuilder(
-                        "cmd.exe",
-                        "/c", // Use /c to close the *outer* cmd window after 'start' finishes
-                        "start",
-                        "\"\"", // Empty window title for the new window opened by 'start'
-                        "cmd.exe",
-                        "/k", // Keep the *inner* cmd window open after the Python script runs
-                        fullCommand // The entire sequence of commands to run in the inner cmd window
-                );
-
-                pb.inheritIO(); // Inherit I/O for debugging (optional)
-
-                // --- Debugging output ---
-                ApplicationLauncher.logger.info("launchPythonAppV2: Launching Python app command array: "
-                        + Arrays.toString(pb.command().toArray()));
-                ApplicationLauncher.logger
-                        .info("launchPythonAppV2: Full command string passed to inner cmd.exe: " + fullCommand);
-                // --- End Debugging output ---
-
-                Process process = pb.start();
-
-                Platform.runLater(() -> {
-                    updateButtonOnSuccess(button);
-                });
-
-            } catch (IOException e) {
-                ApplicationLauncher.logger.error(
-                        "launchPythonAppV2: Error launching Python app: " + pythonScript + " from " + cmdLocation);
                 e.printStackTrace();
                 Platform.runLater(() -> {
                     updateButtonOnError(button);
@@ -764,7 +624,7 @@ public class LauncherPaneController {
                         .info("launchPythonAppV3: Full command string passed to inner cmd.exe: " + fullCommand);
                 // --- End Debugging output ---
 
-                Process process = pb.start();
+                pb.start();
 
                 Platform.runLater(() -> {
                     updateButtonOnSuccess(button);

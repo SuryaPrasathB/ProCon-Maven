@@ -22,19 +22,7 @@ public class QrScannerDirector {
 
 	public Map<String, Object> scanQrCode() {
 
-		boolean status = false;
 		Map<String, Object> responseMap = new HashMap<String, Object>();
-		// Sleep(30000);
-		/*
-		 * if(ProcalFeatureEnable.LSCS_POWER_SOURCE_CONNECTED){
-		 * 
-		 * 
-		 * }else if(ProcalFeatureEnable.BOFA_POWER_SOURCE_CONNECTED){
-		 */
-		// BofaManager.setBofaPowerSourceOff();
-		// PowerSourceBofaMessenger pwrSrcBofaMessenger = new
-		// PowerSourceBofaMessenger();
-		// status = pwrSrcBofaMessenger.sendVoltageCurrentStopOutputCommand();
 
 		if (ProconFeatureEnable.NEWLAND_QR_SCANNER_CONNECTED) {
 			QrScannerMessenger pwrSrcBofaMessenger = new QrScannerMessenger(getSerialPortManager());

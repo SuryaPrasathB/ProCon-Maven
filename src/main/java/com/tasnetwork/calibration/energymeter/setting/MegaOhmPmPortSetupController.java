@@ -1,38 +1,28 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import java.util.stream.Collectors;
 
-import org.json.simple.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
-import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
 import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
 import com.tasnetwork.calibration.conveyor.bay.configloader.MegaOhmMeter;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
-import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.constant.ConstantDutDevSys;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantMegaOhmPm;
 import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
@@ -40,7 +30,6 @@ import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.serial.director.MegaOhmPmDirector;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmMegaOhmPm;
-import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationHomeController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
@@ -48,7 +37,6 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import gnu.io.CommPortIdentifier;
-import javafx.application.Application;
 import javafx.application.Platform;
 //import SerialPort.Communicator;
 //import application.Communicator;
@@ -58,11 +46,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class MegaOhmPmPortSetupController implements Initializable {
 
@@ -93,7 +80,7 @@ public class MegaOhmPmPortSetupController implements Initializable {
 
 	@FXML
 	private Button btn_Save;
-	private static Button ref_btn_Save;
+	
 
 	// @FXML
 	// private Button btnValidatePwrSrcCmd;
@@ -169,8 +156,6 @@ public class MegaOhmPmPortSetupController implements Initializable {
 
 	Timer megaOhmPm1_ValidateTimer;
 
-	private static HashMap FXML_PortMap = new HashMap();
-
 	private static boolean PortValidationTurnedON = false;
 
 	/*
@@ -208,248 +193,14 @@ public class MegaOhmPmPortSetupController implements Initializable {
 	private static void applyUacSettings() {
 
 		ApplicationLauncher.logger.info("MegaOhmPmPortSetupController : applyUacSettings :  Entry");
-		/*
-		 * ArrayList<UacDataModel> uacSelectProfileScreenList =
-		 * DeviceDataManagerController.getUacSelectProfileScreenList();
-		 * String screenName = "";
-		 * for (int i = 0; i < uacSelectProfileScreenList.size(); i++){
-		 * 
-		 * screenName = uacSelectProfileScreenList.get(i).getScreenName();
-		 * switch (screenName) {
-		 * case ConstantApp.UAC_DEVICE_SETTINGS_SCREEN:
-		 * 
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getExecutePossible()){
-		 * //ref_btn_deploy.setDisable(true);
-		 * //ref_btnValidatePwrSrcCmd.setDisable(true);
-		 * //ref_btnValidateRefStdCmd.setDisable(true);
-		 * ref_btnValidateLDU_Cmd1.setDisable(true);
-		 * ref_btnValidateLDU_Cmd2.setDisable(true);
-		 * ref_btnValidateLDU_Cmd3.setDisable(true);
-		 * ref_btnValidateLDU_Cmd4.setDisable(true);
-		 * ref_btnValidateLDU_Cmd5.setDisable(true);
-		 * ref_btnValidateLDU_Cmd6.setDisable(true);
-		 * ref_btnValidateLDU_Cmd7.setDisable(true);
-		 * ref_btnValidateLDU_Cmd8.setDisable(true);
-		 * ref_btnValidateLDU_Cmd9.setDisable(true);
-		 * ref_btnValidateLDU_Cmd10.setDisable(true);
-		 * ref_btnValidateLDU_Cmd11.setDisable(true);
-		 * ref_btnValidateLDU_Cmd12.setDisable(true);
-		 * ref_btnValidateLDU_Cmd13.setDisable(true);
-		 * ref_btnValidateLDU_Cmd14.setDisable(true);
-		 * ref_btnValidateLDU_Cmd15.setDisable(true);
-		 * ref_btnValidateLDU_Cmd16.setDisable(true);
-		 * ref_btnValidateLDU_Cmd17.setDisable(true);
-		 * ref_btnValidateLDU_Cmd18.setDisable(true);
-		 * ref_btnValidateLDU_Cmd19.setDisable(true);
-		 * ref_btnValidateLDU_Cmd20.setDisable(true);
-		 * ref_btnValidateLDU_Cmd21.setDisable(true);
-		 * ref_btnValidateLDU_Cmd22.setDisable(true);
-		 * ref_btnValidateLDU_Cmd23.setDisable(true);
-		 * ref_btnValidateLDU_Cmd24.setDisable(true);
-		 * ref_btnValidateLDU_Cmd25.setDisable(true);
-		 * ref_btnValidateLDU_Cmd26.setDisable(true);
-		 * ref_btnValidateLDU_Cmd27.setDisable(true);
-		 * ref_btnValidateLDU_Cmd28.setDisable(true);
-		 * ref_btnValidateLDU_Cmd29.setDisable(true);
-		 * ref_btnValidateLDU_Cmd30.setDisable(true);
-		 * ref_btnValidateLDU_Cmd31.setDisable(true);
-		 * ref_btnValidateLDU_Cmd32.setDisable(true);
-		 * ref_btnValidateLDU_Cmd33.setDisable(true);
-		 * ref_btnValidateLDU_Cmd34.setDisable(true);
-		 * ref_btnValidateLDU_Cmd35.setDisable(true);
-		 * ref_btnValidateLDU_Cmd36.setDisable(true);
-		 * ref_btnValidateLDU_Cmd37.setDisable(true);
-		 * ref_btnValidateLDU_Cmd38.setDisable(true);
-		 * ref_btnValidateLDU_Cmd39.setDisable(true);
-		 * ref_btnValidateLDU_Cmd40.setDisable(true);
-		 * ref_btnValidateLDU_Cmd41.setDisable(true);
-		 * ref_btnValidateLDU_Cmd42.setDisable(true);
-		 * ref_btnValidateLDU_Cmd43.setDisable(true);
-		 * ref_btnValidateLDU_Cmd44.setDisable(true);
-		 * ref_btnValidateLDU_Cmd45.setDisable(true);
-		 * ref_btnValidateLDU_Cmd46.setDisable(true);
-		 * ref_btnValidateLDU_Cmd47.setDisable(true);
-		 * ref_btnValidateLDU_Cmd48.setDisable(true);
-		 * 
-		 * }
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getAddPossible()){
-		 * //ref_btn_Create.setDisable(true);
-		 * 
-		 * }
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getUpdatePossible()){
-		 * //ref_vbox_testscript.setDisable(true);sdvsc
-		 * //setChildPropertySaveEnabled(false);
-		 * ref_btn_Save.setDisable(true);
-		 * 
-		 * 
-		 * }
-		 * 
-		 * if(!uacSelectProfileScreenList.get(i).getDeletePossible()){
-		 * //ref_btn_Delete.setDisable(true);
-		 * 
-		 * }
-		 * break;
-		 * 
-		 * 
-		 * 
-		 * default:
-		 * break;
-		 * }
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
 	}
 
 	public void disableGuiObjects() {
-
-		/*
-		 * for(int i = (ConstantConfig.TOTAL_NO_OF_SUPPORTED_RACK +1); i <=
-		 * ProcalFeatureEnable.TOTAL_NO_OF_SUPPORTED_RACK_MAX_POSITION; i++){
-		 * switch (i){
-		 * 
-		 * case 1:
-		 * ref_btnValidateLDU_Cmd1.setDisable(true);
-		 * break;
-		 * case 2:
-		 * ref_btnValidateLDU_Cmd2.setDisable(true);
-		 * break;
-		 * case 3:
-		 * ref_btnValidateLDU_Cmd3.setDisable(true);
-		 * break;
-		 * case 4:
-		 * ref_btnValidateLDU_Cmd4.setDisable(true);
-		 * break;
-		 * case 5:
-		 * ref_btnValidateLDU_Cmd5.setDisable(true);
-		 * break;
-		 * case 6:
-		 * ref_btnValidateLDU_Cmd6.setDisable(true);
-		 * break;
-		 * case 7:
-		 * ref_btnValidateLDU_Cmd7.setDisable(true);
-		 * break;
-		 * case 8:
-		 * ref_btnValidateLDU_Cmd8.setDisable(true);
-		 * break;
-		 * case 9:
-		 * ref_btnValidateLDU_Cmd9.setDisable(true);
-		 * break;
-		 * case 10:
-		 * ref_btnValidateLDU_Cmd10.setDisable(true);
-		 * break;
-		 * 
-		 * case 11:
-		 * ref_btnValidateLDU_Cmd11.setDisable(true);
-		 * break;
-		 * case 12:
-		 * ref_btnValidateLDU_Cmd12.setDisable(true);
-		 * break;
-		 * case 13:
-		 * ref_btnValidateLDU_Cmd13.setDisable(true);
-		 * break;
-		 * case 14:
-		 * ref_btnValidateLDU_Cmd14.setDisable(true);
-		 * break;
-		 * case 15:
-		 * ref_btnValidateLDU_Cmd15.setDisable(true);
-		 * break;
-		 * case 16:
-		 * ref_btnValidateLDU_Cmd16.setDisable(true);
-		 * break;
-		 * case 17:
-		 * ref_btnValidateLDU_Cmd17.setDisable(true);
-		 * break;
-		 * case 18:
-		 * ref_btnValidateLDU_Cmd18.setDisable(true);
-		 * break;
-		 * case 19:
-		 * ref_btnValidateLDU_Cmd19.setDisable(true);
-		 * break;
-		 * case 20:
-		 * ref_btnValidateLDU_Cmd20.setDisable(true);
-		 * break;
-		 * 
-		 * case 21:
-		 * ref_btnValidateLDU_Cmd21.setDisable(true);
-		 * break;
-		 * case 22:
-		 * ref_btnValidateLDU_Cmd22.setDisable(true);
-		 * break;
-		 * case 23:
-		 * ref_btnValidateLDU_Cmd23.setDisable(true);
-		 * break;
-		 * case 24:
-		 * ref_btnValidateLDU_Cmd24.setDisable(true);
-		 * break;
-		 * case 25:
-		 * ref_btnValidateLDU_Cmd25.setDisable(true);
-		 * break;
-		 * case 26:
-		 * ref_btnValidateLDU_Cmd26.setDisable(true);
-		 * break;
-		 * case 27:
-		 * ref_btnValidateLDU_Cmd27.setDisable(true);
-		 * break;
-		 * case 28:
-		 * ref_btnValidateLDU_Cmd28.setDisable(true);
-		 * break;
-		 * case 29:
-		 * ref_btnValidateLDU_Cmd29.setDisable(true);
-		 * break;
-		 * case 30:
-		 * ref_btnValidateLDU_Cmd30.setDisable(true);
-		 * break;
-		 * 
-		 * case 31:
-		 * ref_btnValidateLDU_Cmd31.setDisable(true);
-		 * break;
-		 * case 32:
-		 * ref_btnValidateLDU_Cmd32.setDisable(true);
-		 * break;
-		 * case 33:
-		 * ref_btnValidateLDU_Cmd33.setDisable(true);
-		 * break;
-		 * case 34:
-		 * ref_btnValidateLDU_Cmd34.setDisable(true);
-		 * break;
-		 * case 35:
-		 * ref_btnValidateLDU_Cmd35.setDisable(true);
-		 * break;
-		 * case 36:
-		 * ref_btnValidateLDU_Cmd36.setDisable(true);
-		 * break;
-		 * case 37:
-		 * ref_btnValidateLDU_Cmd37.setDisable(true);
-		 * break;
-		 * case 38:
-		 * ref_btnValidateLDU_Cmd38.setDisable(true);
-		 * break;
-		 * case 39:
-		 * ref_btnValidateLDU_Cmd39.setDisable(true);
-		 * break;
-		 * case 40:
-		 * ref_btnValidateLDU_Cmd40.setDisable(true);
-		 * break;
-		 * 
-		 * default:
-		 * break;
-		 * }
-		 * 
-		 * }
-		 */
 
 	}
 
 	public void ref_assignment() {
 		ref_btnValidateMegaOhmPm1_Cmd = btnValidateMegaOhmPm1_Cmd;
-		// ref_btnValidateLDU_Cmd2 = btnValidateMegaOhmPm_Cmd2;
-		ref_btn_Save = btn_Save;
-
 		ref_cmbBxMegaOhmPm1ClusterId = cmbBxMegaOhmPm1ClusterId;
 		// ref_cmbBxMegaOhmPm2ClusterId = cmbBxMegaOhmPm2ClusterId;
 

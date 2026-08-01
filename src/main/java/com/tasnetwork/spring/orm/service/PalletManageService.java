@@ -1,6 +1,5 @@
 package com.tasnetwork.spring.orm.service;
 
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,17 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.spring.orm.model.BayDeviceConfig;
-import com.tasnetwork.spring.orm.model.PalletBayState;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.PalletMeter;
-import com.tasnetwork.spring.orm.model.StateFlow;
-import com.tasnetwork.spring.orm.repository.OperationProcessRepo;
 import com.tasnetwork.spring.orm.repository.PalletManageRepo;
 
 @Component
@@ -31,27 +25,6 @@ public class PalletManageService {
 	
 	@Transactional
 	public PalletManage saveToDb(PalletManage data) {
-		// if there is issue in saving the PalletMeterList or PalleteBayStateList
-		// when adding to list use the function addPalletMeter or addPalleteBayState respectively
-/*		for (PalletMeter palletMeter: data.getPalletMeterList()) {
-			palletMeter.setPalletManage(data);
-	    }*/
-		
-//		for (PalletBayState palletBayState: data.getPalleteBayStateList()) {
-			//palletBayState.stream().forEach(e1->{
-/*				ApplicationLauncher.logger.debug("saveToDb: ******************************************************");
-				//for(PalletBayState e: e1.getPalleteBayStateList()) {
-					//PalletBayState e =  e1.getPalleteBayStateList().g
-				ApplicationLauncher.logger.debug("saveToDb: =============================================================");
-				
-				ApplicationLauncher.logger.debug("saveToDb: batch No: "+ palletBayState.getPalletBatchNo() +  " -> " + palletBayState.getBayStateKey());
-				ApplicationLauncher.logger.debug("saveToDb: getPalletBayEntryTimeEpoch: "+ palletBayState.getPalletBayEntryTimeEpoch());
-				ApplicationLauncher.logger.debug("saveToDb: getPalletBayEntryTimeStampH: "+ palletBayState.getPalletBayEntryTimeStampH());
-				ApplicationLauncher.logger.debug("saveToDb: getId: "+ palletBayState.getId());*/
-				//}
-			//});
-//			palletBayState.setPalletManage(data);
-//	    }
 		
 		for (PalletMeter meter : data.getPalletMeterList()) {
 			ApplicationLauncher.logger.debug("PalletManageService: PalletMeter.getId(): " + meter.getId() + ", Position : "+meter.getRackPositionNo()+

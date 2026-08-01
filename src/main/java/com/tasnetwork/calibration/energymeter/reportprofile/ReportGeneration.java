@@ -6,15 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,11 +19,8 @@ import java.util.Optional;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
-import org.apache.commons.lang3.Range;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -55,8 +45,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
@@ -65,10 +53,6 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfigReader;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.custom1report.Custom1ReportConfigModel;
-import com.tasnetwork.calibration.energymeter.custom1report.ExcelReportMeterDataCellPositionPage;
-import com.tasnetwork.calibration.energymeter.custom1report.ExcelReportMeterDataDisplayPage;
-import com.tasnetwork.calibration.energymeter.custom1report.TestTypeFilter;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 import com.tasnetwork.calibration.energymeter.testreport.TestReportController;
@@ -85,10 +69,6 @@ import javafx.scene.control.Alert.AlertType;
 public class ReportGeneration {
 
 	private HashMap<String, String> meterDeviceOverAllStatus = new HashMap<String, String>();
-
-	private ArrayList<String> EXCEL_DEFAULT_LIST = new ArrayList<String>(
-			Arrays.asList(ConstantReportV2.NONE_DISPLAYED.toUpperCase(),
-					"DEFAULT"));
 
 	private HashMap<String, Map<String, String>> meterDevicePageStatus = new HashMap<String, Map<String, String>>();
 
@@ -1249,43 +1229,6 @@ public class ReportGeneration {
 							// manipulateComplyStatus();
 						}
 						manipulateComplyStatus();
-						/*
-						 * populateResult = meterDataDisplayPage.isPopulateDutPageStatus();
-						 * ApplicationLauncher.logger.
-						 * debug("populateReportGenerationResultsXSSF: getPopulateDutPageStatus: populateResult: "
-						 * + populateResult);
-						 * if(populateResult){
-						 * //ApplicationLauncher.logger.
-						 * debug("populateReportGenerationResultsXSSF: meterDataCellPositionPage: Hit4"
-						 * );
-						 * //dataStartingCellPosition =
-						 * custom1ReportCfg.getExcelReportMeterDataCellPosition().
-						 * getCellStartPositionDutOverAllStatus();
-						 * String userSelectedPrintStyleName =
-						 * getUserSelectedPrintStyleResultName();//"ResultStyle";
-						 * manipulatePrintStyle(userSelectedPrintStyleName);
-						 * dataStartingCellPosition =
-						 * meterDataDisplayPage.getCellPosition();;//meterDataCellPositionPage.
-						 * getCellStartPositionDutOverAllStatus();
-						 * ApplicationLauncher.logger.
-						 * debug("populateReportGenerationResultsXSSF: getPopulateDutPageStatus: dataStartingCellPosition: "
-						 * + dataStartingCellPosition);
-						 * ApplicationLauncher.logger.
-						 * debug("populateReportGenerationResultsXSSF: getPopulateDutPageStatus: pageNumberIteration: "
-						 * + pageNumberIteration);
-						 * ApplicationLauncher.logger.
-						 * debug("populateReportGenerationResultsXSSF: getPopulateDutPageStatus: getMeterDevicePageStatus().containsKey(pageNumberIteration): "
-						 * + getMeterDevicePageStatus().containsKey(pageNumberIteration));
-						 * if(getMeterDevicePageStatus().containsKey(String.valueOf(pageNumberIteration)
-						 * )){
-						 * ApplicationLauncher.logger.
-						 * debug("populateReportGenerationResultsXSSF: getPopulateDutPageStatus: populateResult: Test1"
-						 * );
-						 * fillMeterPageStatusColumnXSSF( sheet1, dataStartingCellPosition,
-						 * meter_col,pageNumberIteration);
-						 * }
-						 * }
-						 */
 					}
 				}
 
@@ -2112,43 +2055,6 @@ public class ReportGeneration {
 		// }
 
 		// }
-
-	}
-
-	private void processExternalOutputData(ReportProfileTestDataFilter filterTestTypeData) {
-
-		ApplicationLauncher.logger.debug("processExternalOutputData: Entry");
-
-		Optional<OperationProcess> externalOutputDataKeyOptional = filterTestTypeData.getOperationProcessDataList()
-				.stream()
-				.filter(e -> e.getOperationProcessDataType()
-						.equals(ConstantReportV2.OPERATION_PROCESS_DATA_TYPE_MASTER_OUTPUT))
-				// .filter(e->
-				// (!e.getOperationProcessKey().equals(ConstantReportV2.NONE_DISPLAYED)))
-				.findFirst();
-
-		String externalOutputDataKey = ConstantReportV2.NONE_DISPLAYED;
-		if (externalOutputDataKeyOptional.isPresent()) {
-			OperationProcess operationProcessData = externalOutputDataKeyOptional.get();
-			ApplicationLauncher.logger.debug("processExternalOutputData: getOperationProcessKey: "
-					+ operationProcessData.getOperationProcessKey());
-			if (operationProcessData.getOperationProcessKey().equals(ConstantReportV2.NONE_DISPLAYED)) {
-
-			} else {
-				externalOutputDataKey = operationProcessData.getOperationProcessKey();
-				ApplicationLauncher.logger
-						.debug("processExternalOutputData: externalOutputDataKey: " + externalOutputDataKey);
-				Optional<OperationProcessDataJsonRead> operationProcessDataOptional = getOperationProcessData(
-						externalOutputDataKey,
-						ConstantReportV2.OPERATION_PROCESS_DATA_TYPE_MASTER_OUTPUT);
-				if (operationProcessDataOptional.isPresent()) {
-					OperationProcessDataJsonRead operationProcessMasterData = operationProcessDataOptional.get();
-					// operationProcessMasterData.setResultValueHashMap(resultValueHashMap);
-					// operationProcessMasterData.setResultStatusHashMap(resultStatusHashMap);
-					setTargetOperationProcessExternalOutputData(operationProcessMasterData);
-				}
-			}
-		}
 
 	}
 
@@ -8209,7 +8115,6 @@ public class ReportGeneration {
 		return FilteredData;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void FillErrorValueXSSF(XSSFSheet sheet1, JSONArray filter_result, int row_pos,
 			int column_pos, int meter_col) {
 		// ApplicationLauncher.logger.debug("FillErrorValueXSSF: filter_result: " +

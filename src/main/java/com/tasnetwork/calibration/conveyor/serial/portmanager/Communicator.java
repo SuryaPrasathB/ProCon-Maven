@@ -1,11 +1,6 @@
 package com.tasnetwork.calibration.conveyor.serial.portmanager;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.TooManyListenersException;
 
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
@@ -13,16 +8,12 @@ import com.fazecast.jSerialComm.SerialPortEvent;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
-import gnu.io.UnsupportedCommOperationException;
-
 public class Communicator {
 
 	// private Enumeration ports = null;
 
 	SerialPort[] portsAvailable;
 	private boolean deviceConnected = false;
-
-	private boolean devicePortExist = false;
 
 	HashMap portMap = new HashMap();
 	private String expectedResult = "";
@@ -210,9 +201,7 @@ public class Communicator {
 
 			if (selectedSerialPort.isOpen()) {
 
-				int bytesTxed = 0;
-				// String send = "HelloWorld/!";//+ (byte)0x0B+ (byte)0x65;
-				// byte[] iso88591Data = send.getBytes("ISO-8859-1");
+				
 
 				// bytesTxed = selectedSerialPort.writeBytes(send.getBytes(),
 				// send.getBytes().length);
@@ -224,7 +213,7 @@ public class Communicator {
 				// send.getBytes().length);
 
 				byte[] iso88591Data = send.getBytes("ISO-8859-1");
-				bytesTxed = selectedSerialPort.writeBytes(iso88591Data, iso88591Data.length);
+				selectedSerialPort.writeBytes(iso88591Data, iso88591Data.length);
 
 				// ApplicationLauncher.logger.info(" Bytes Transmitted -> " + bytesTxed );
 			} else {
@@ -254,10 +243,7 @@ public class Communicator {
 
 			if (selectedSerialPort.isOpen()) {
 
-				int bytesTxed = 0;
-
-				bytesTxed = selectedSerialPort.writeBytes(send, send.length);
-				// ApplicationLauncher.logger.info(" Bytes Transmitted -> " + bytesTxed );
+				selectedSerialPort.writeBytes(send, send.length);
 			} else {
 				ApplicationLauncher.logger
 						.info(" writeStringMsgToPort: " + selectedSerialPort.getSystemPortName() + " not open");
@@ -317,14 +303,7 @@ public class Communicator {
 					SerialPort comPort = event.getSerialPort();
 					// System.out.println("Available: " + comPort.bytesAvailable() + " bytes.");
 					byte[] newData = new byte[comPort.bytesAvailable()];
-					int numRead = comPort.readBytes(newData, newData.length);
-					// String HexData = String.format("%02X",newData);
-					// ApplicationLauncher.logger.debug("initListener: Received the following
-					// message HexData: " + HexData);
-					// String str1 = new String(newData);
-					// str1 = new String(HexData);
-					// serialData= serialData+str1;
-					// String str1 = GuiUtils.hexToAsciiV2(bytesToHex(newData));
+					comPort.readBytes(newData, newData.length);
 
 					// String str1 = GuiUtils.hexToAsciiV2(new BigInteger(1, newData).toString(16));
 					/*
@@ -469,24 +448,6 @@ public class Communicator {
 	public boolean isDevicePortExist(String inputPortId) {
 
 		for (SerialPort S : portsAvailable) {
-			/*
-			 * System.out.
-			 * println("Port Number                                -> .getSystemPortName()     -> "
-			 * + S.getSystemPortName()); //Gives the number of com port,Eg COM9
-			 * System.out.
-			 * println("Port Physical Location (OS)                -> .getSystemPortPath()     -> "
-			 * + S.getSystemPortPath());
-			 * System.out.
-			 * println("Port Physical Location (USB hub)           -> .getSystemPortLocation() -> "
-			 * + S.getPortLocation());
-			 * System.out.
-			 * println("Port Description as reported by the device -> .getDescriptivePortName()-> "
-			 * + S.getDescriptivePortName());
-			 * System.out.
-			 * println("Port Description  .toString()              ->  .toString()             -> "
-			 * + S.toString() + "\n");
-			 * portMap.put(S.getSystemPortName(), S.getSystemPortPath());
-			 */
 
 			if (S.getSystemPortName().equals(inputPortId)) {
 				ApplicationLauncher.logger.debug("isDevicePortExist: Serial port device found success: " + inputPortId);
@@ -499,6 +460,5 @@ public class Communicator {
 	}
 
 	public void setDevicePortExist(boolean devicePortExist) {
-		this.devicePortExist = devicePortExist;
 	}
 }

@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.pallet;
 
 
-import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
-import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 import com.tasnetwork.spring.orm.model.PalletManage;
 
 import javafx.beans.property.SimpleObjectProperty;

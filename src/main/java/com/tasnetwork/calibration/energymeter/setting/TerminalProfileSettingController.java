@@ -7,15 +7,14 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
-import com.tasnetwork.calibration.energymeter.util.CheckComboBoxTableCell;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
+import com.tasnetwork.calibration.energymeter.util.CheckComboBoxTableCell;
 import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 
 import javafx.collections.FXCollections;
@@ -23,13 +22,12 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 public class TerminalProfileSettingController implements Initializable {

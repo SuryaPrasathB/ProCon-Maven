@@ -1,18 +1,9 @@
 package com.tasnetwork.calibration.energymeter.constant;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 /*
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;*/
-
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.testprofiles.TestProfileType;
-
-import javafx.fxml.Initializable;
 
 public class ProcalFeatureEnable {
 
@@ -174,66 +165,4 @@ public class ProcalFeatureEnable {
 	public static boolean DUT_CMD_EXECUTE_MODE_V3 = true;
 
 	public static boolean HARDWARE_ID_FEATURE_ENABLED = true;
-	// public static boolean PROPOWER_SRC_ONLY = false;
-
-	// public static boolean LSC_LDU_INVALID_DATA_READING_WORK_AROUND =
-	// false;//true;
-
-	// public static int HYBRID_TOTAL_3PHASE_SUPPORTED_RACK_END_POSITION = 20;
-
-	// public static final int LDU_AVERAGE_READING = 3;
-
-	/*
-	 * public static void Init() {
-	 * 
-	 * 
-	 * try {
-	 * 
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.Warmup.toString(),true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.NoLoad.toString(),true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.STA.toString(),true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.ConstantTest.toString(),true)
-	 * ;
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.Accuracy.toString(),true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.InfluenceVolt.toString(),true
-	 * );
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.InfluenceFreq.toString(),true
-	 * );
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.InfluenceHarmonic.toString(),
-	 * true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.CuttingNuetral.toString(),
-	 * false);// disabled missing nuetral feature
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.VoltageUnbalance.toString(),
-	 * true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.PhaseReversal.toString(),true
-	 * );
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.CustomTest.toString(),true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.Repeatability.toString(),true
-	 * );
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.SelfHeating.toString(),true);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.DefaultType.toString(),false)
-	 * ; // disabled default type
-	 * if(!POWER_SOURCE_3PHASE_ENABLED){
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.VoltageUnbalance.toString(),
-	 * false);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.PhaseReversal.toString(),
-	 * false);
-	 * TEST_PROFILE_ENABLE_FEATURE.put(TestProfileType.InfluenceHarmonic.toString(),
-	 * false);
-	 * }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * } catch (JSONException e) {
-	 * 
-	 * e.printStackTrace();
-	 * ApplicationLauncher.logger.
-	 * error("ConstantFeatureEnable: JSONException: Init:"+e.getMessage());
-	 * }
-	 * 
-	 * 
-	 * }
-	 */
-
 }

@@ -14,8 +14,6 @@ import org.hibernate.annotations.Type;
 
 import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
 
-import javafx.beans.property.SimpleStringProperty;
-
 @Entity
 @Table(name = "RpPrintPosition")
 public class RpPrintPosition {

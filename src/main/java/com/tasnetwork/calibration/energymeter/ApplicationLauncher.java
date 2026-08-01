@@ -63,9 +63,6 @@ public class ApplicationLauncher extends Application {
 
 	private static long appStartTimeMs;
 	private static long springStartTimeMs;
-	private static long springDurationMs;
-	private static long javafxInitDurationMs;
-
 	private static String[] savedArgs = new String[0];
 
 	/**
@@ -87,7 +84,7 @@ public class ApplicationLauncher extends Application {
 	public static void bootSpringContext() {
 		springStartTimeMs = System.currentTimeMillis();
 		springContext = SpringApplication.run(ApplicationLauncher.class, savedArgs);
-		springDurationMs = System.currentTimeMillis() - springStartTimeMs;
+		long springDurationMs = System.currentTimeMillis() - springStartTimeMs;
 		springContext.getBean(ConfigLoader.class);
 	}
 

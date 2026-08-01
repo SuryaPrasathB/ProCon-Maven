@@ -1,32 +1,26 @@
 package com.tasnetwork.calibration.energymeter;
 
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.json.JSONException;
-
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
-import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;

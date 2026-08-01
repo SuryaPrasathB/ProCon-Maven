@@ -2,20 +2,13 @@ package com.tasnetwork.calibration.energymeter.deployment;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-
-
-import org.json.JSONException;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.deployment.TextBoxDialog.UserInfoPlatFormRunnable;
 import com.tasnetwork.calibration.energymeter.device.DeviceDataManagerController;
 
 import javafx.application.Platform;
@@ -23,11 +16,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

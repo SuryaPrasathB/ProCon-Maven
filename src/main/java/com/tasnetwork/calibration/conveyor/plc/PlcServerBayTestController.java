@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.plc;
 
-import java.io.IOException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +14,6 @@ import java.util.stream.Collectors;
 import com.tasnetwork.calibration.conveyor.BayTestController;
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.InputPortActiveCheckBoxValueFactory;
-import com.tasnetwork.calibration.conveyor.InputPortReadBayCheckBoxValueFactory;
 import com.tasnetwork.calibration.conveyor.InputPortTableViewRefresher;
 import com.tasnetwork.calibration.conveyor.OutputPortActiveCheckBoxValueFactory;
 import com.tasnetwork.calibration.conveyor.OutputPortTableViewRefresher;
@@ -41,21 +38,17 @@ import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 
-import de.re.easymodbus.server.ICoilsChangedDelegator;
-import de.re.easymodbus.server.IHoldingRegistersChangedDelegator;
-import de.re.easymodbus.server.ModbusServer;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PlcServerBayTestController
@@ -380,9 +373,6 @@ public class PlcServerBayTestController
 			// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 			ApplicationLauncher.logger.debug("loadDataFromConfig : clusterId :" + clusterId);
-			String clusterIpAddress = "";
-			String clusterPortNo = "";
-
 			Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
 					.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 					.flatMap(terminal -> terminal.getClusterDetails().stream())
@@ -499,12 +489,7 @@ public class PlcServerBayTestController
 				ref_txtWriteStatusSample.setText("");
 			});
 
-			ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance();
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.clear();
-			 * });
-			 */
+			ConveyorClientManager.getInstance();
 
 			/*
 			 * if(ref_chkBxWriteGreenLed.isSelected()) {
@@ -514,24 +499,18 @@ public class PlcServerBayTestController
 			 * }
 			 */
 
-			String deviceId = "1";
-			String bayId = "1";
 			boolean overAllStatus = true;
 			boolean deviceResponded = false;
-			int plcCoilAddress = -1;
 			if (ref_tbViewOutputPortData.getItems().size() > 0) {
 				String ipAddress = ref_txtClusterIpAddress.getText();
 				String ipPort = ref_txtClusterPortNo.getText();
-				ClusterServer clusterServer = new ClusterServer(ipAddress, ipPort, getPresentClusterId());
+				new ClusterServer(ipAddress, ipPort, getPresentClusterId());
 
 				for (int i = 0; i < ref_tbViewOutputPortData.getItems().size(); i++) {
-					plcCoilAddress = -1;
 					OutputPort outputPortDetails = ref_tbViewOutputPortData.getItems().get(i);
 					if (outputPortDetails.isUpdateBay()) {
 						String outputPortId = outputPortDetails.getPortId();
-						String outputActive = "Off";
 						if (outputPortDetails.isOutputActive()) {
-							outputActive = "On";
 						}
 						// outputPortId = outputPortId.replace("ipt", "").replace("ip",
 						// "").replace("op", "");
@@ -540,7 +519,7 @@ public class PlcServerBayTestController
 						// deviceResponded = setOutputDataToBay(clusterServer,
 						// deviceId,bayId,outputPortId, outputActive) ;
 						if (GuiUtils.isNumber(outputPortId)) {
-							plcCoilAddress = Integer.parseInt(outputPortId);
+							Integer.parseInt(outputPortId);
 
 							// deviceResponded =
 							// ModbusTcpClient.modbusTcpSendWriteCoilCmd(plcCoilAddress,outputPortDetails.isOutputActive());
@@ -566,11 +545,10 @@ public class PlcServerBayTestController
 				String ipAddress = ref_txtClusterIpAddress.getText();
 				String ipPort = ref_txtClusterPortNo.getText();
 				String stateDesc = "";
-				ClusterServer clusterServer = new ClusterServer(ipAddress, ipPort, getPresentClusterId());
+				new ClusterServer(ipAddress, ipPort, getPresentClusterId());
 				for (int i = 0; i < ref_tbViewInputPortData.getItems().size(); i++) {
 					stateDesc = "";
 					bayResponse = new BayResponse();
-					plcCoilAddress = -1;
 					InputPort inputPortDetails = ref_tbViewInputPortData.getItems().get(i);
 					if (inputPortDetails.isReadBay()) {
 						String inputPortId = inputPortDetails.getPortId();
@@ -579,7 +557,7 @@ public class PlcServerBayTestController
 						ApplicationLauncher.logger.info("SendDataToBayTask: inputPortId: " + inputPortId);
 
 						if (GuiUtils.isNumber(inputPortId)) {
-							plcCoilAddress = Integer.parseInt(inputPortId);
+							Integer.parseInt(inputPortId);
 
 							// bayResponse = ModbusTcpClient.modbusTcpSendReadCoilCmd(plcCoilAddress);
 							if (!bayResponse.getStatus()) {
@@ -646,31 +624,7 @@ public class PlcServerBayTestController
 
 			});
 
-			// if(ref_chkBxReadEnabledSample.isSelected()) {
-			int holdingReadAddress = Integer.parseInt(ref_txtReadAddressSample.getText());
-			/*
-			 * BayResponse bayResponse2 =
-			 * ModbusTcpClient.modbusTcpSendReadHoldingRegistersCmd(holdingReadAddress);
-			 * 
-			 * if(!bayResponse2.getStatus()) {
-			 * ApplicationLauncher.logger.
-			 * info("SendDataToBayTask: ReadHoldingRegister: device not responded ");
-			 * //ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
-			 * //overAllStatus = false;
-			 * Platform.runLater(()->{
-			 * ref_txtReadStatusSample.setText("Failed");
-			 * });
-			 * }else {
-			 * //stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-			 * //ref_tbViewInputPortData.getItems().get(i).setInputActive(bayResponse.
-			 * isResponseBooleanData());
-			 * Platform.runLater(()->{
-			 * ref_txtReadStatusSample.setText("Success");
-			 * ref_txtReadValueSample.setText(bayResponse2.getResponseData());
-			 * });
-			 * }
-			 */
-			// }
+			Integer.parseInt(ref_txtReadAddressSample.getText());
 
 			/*
 			 * if(ref_chkBxWriteEnabledSample.isSelected()) {
@@ -708,7 +662,6 @@ public class PlcServerBayTestController
 			String inputPortId) {
 		ApplicationLauncher.logger.info("getInputDataFromBay-plc-server: Entry-failed-debug");
 		String clusterId = clusterServer.getClusterId();
-		boolean status = false;
 		ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance(clusterId);
 		// cluster1ClientManager.getBayData(clusterServer,deviceId, bayId, inputPortId);
 		String dummyOutputValue = "";
@@ -758,20 +711,6 @@ public class PlcServerBayTestController
 			// String responseData =
 			// cluster1ClientManager.getAsyncConvClient().getResponseData();
 
-			/*
-			 * Platform.runLater(()->{
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * });
-			 */
-			/*
-			 * if(ref_txtAreaResponseDisplay.getText().isEmpty()) {
-			 * ref_txtAreaResponseDisplay.setText(responseData);
-			 * }else {
-			 * ref_txtAreaResponseDisplay.setText(ref_txtAreaResponseDisplay.getText()+"\n"+
-			 * responseData);
-			 * }
-			 */
-			status = true;
 
 			// ApplicationHomeController.EnableScanDeviceButton();
 		} else {
@@ -911,7 +850,7 @@ public class PlcServerBayTestController
 		public void run() {
 			Platform.runLater(() -> {
 
-				String selectedClusterName = (String) ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
+				ref_cmbBxClusterSelection.getSelectionModel().getSelectedItem();
 				if (getClusterBayNameListMap().size() > 0) {
 					ref_tbViewOutputPortData.getItems().clear();
 					ref_tbViewInputPortData.getItems().clear();
@@ -953,9 +892,6 @@ public class PlcServerBayTestController
 				// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 				ApplicationLauncher.logger.debug("LoadOnClickTask : clusterId :" + clusterId);
-
-				String clusterIpAddress = "";
-				String clusterPortNo = "";
 
 				Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
 						.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
@@ -1099,19 +1035,6 @@ public class PlcServerBayTestController
 		BayTestController.presentClusterId = presentClusterId;
 	}
 
-	// âœ… Update GUI for Holding Registers
-	/*
-	 * private void updateHoldingRegisters(int[] holdingRegisters) {
-	 * Platform.runLater(() -> {
-	 * int address = 301; // Example register to display
-	 * txtReadAddressSample.setText(String.valueOf(address));
-	 * txtReadValueSample.setText(String.valueOf(holdingRegisters[address]));
-	 * System.out.println("ðŸ“¡ GUI Updated: Holding Register[" + address + "] = " +
-	 * holdingRegisters[address]);
-	 * });
-	 * }
-	 */
-
 	private void updateHoldingRegisters(int[] holdingRegisters) {
 		Platform.runLater(() -> {
 			// int address = 301; // Example register to display
@@ -1180,194 +1103,8 @@ public class PlcServerBayTestController
 				ref_txtComStatus.setText("Failed");
 			}
 
-			/*
-			 * modbusServer = new ModbusServer();
-			 * modbusServer.setPort(502);
-			 * 
-			 * modbusServer.holdingRegisters = new int[1000];
-			 * modbusServer.holdingRegisters[0] = 123;
-			 * modbusServer.holdingRegisters[9] = 456;
-			 * modbusServer.holdingRegisters[12] = 789;
-			 * modbusServer.holdingRegisters[201] = 20000;
-			 * modbusServer.holdingRegisters[301] = 30000;
-			 * 
-			 * // Initialize Coils (100 coils)
-			 * modbusServer.coils = new boolean[100];
-			 * modbusServer.coils[0] = true;
-			 * modbusServer.coils[5] = false;
-			 * modbusServer.coils[10] = true;
-			 * 
-			 * ref_txtComStatus.setText("Active");
-			 * 
-			 * ObservableList<InputPort> inputPortList =
-			 * FXCollections.observableArrayList();
-			 * for (int i = 1; i <= 32; i++) {
-			 * InputPort inputPort = new InputPort();
-			 * inputPort.setPortId(String.valueOf(i)); // Set Port ID as coil index
-			 * inputPort.setPortName("Coil " + i);
-			 * inputPort.setStateDescription(modbusServer.coils[i] ? "On" : "Off");
-			 * inputPort.setInputActive(modbusServer.coils[i]);
-			 * inputPort.setSerialNo(String.valueOf(i));
-			 * inputPortList.add(inputPort);
-			 * }
-			 * 
-			 * // âœ… Ensure Coils 1-32 are always displayed in TableView
-			 * Platform.runLater(() -> {
-			 * ref_tbViewInputPortData.setItems(inputPortList);
-			 * ref_tbViewInputPortData.refresh();
-			 * });
-			 * 
-			 * 
-			 * btnWriteHoldingRegister.setOnAction(event -> {
-			 * try {
-			 * int address = Integer.parseInt(txtWriteAddressSample.getText().trim());
-			 * int value = Integer.parseInt(txtWriteValueSample.getText().trim());
-			 * 
-			 * if (address >= 0 && address < modbusServer.holdingRegisters.length) {
-			 * modbusServer.holdingRegisters[address] = value;
-			 * ApplicationLauncher.logger.debug("âœ… Holding Register[" + address +
-			 * "] updated to " + value);
-			 * } else {
-			 * ApplicationLauncher.logger.debug("â�Œ Invalid register address: " + address);
-			 * }
-			 * } catch (NumberFormatException e) {
-			 * ApplicationLauncher.logger.debug("â�Œ Invalid input in write fields.");
-			 * }
-			 * });
-			 * 
-			 * // âœ… Detect changes in Holding Registers
-			 * modbusServer.setNotifyHoldingRegistersChanged(new
-			 * IHoldingRegistersChangedDelegator() {
-			 * private int[] previousValues = modbusServer.holdingRegisters.clone(); //
-			 * Store old values
-			 * 
-			 * @Override
-			 * public void holdingRegistersChangedEvent() {
-			 * ApplicationLauncher.logger.debug("ðŸ”„ Holding Registers Changed!");
-			 * ArrayList<Integer> serverInputHoldingRegisterAddressList = new
-			 * ArrayList<>(Arrays.asList(301));
-			 * Platform.runLater(() -> {
-			 * for (int i = 0; i < modbusServer.holdingRegisters.length; i++) {
-			 * if (modbusServer.holdingRegisters[i] != previousValues[i]) {
-			 * ApplicationLauncher.logger.debug("Register[" + i + "] changed from " +
-			 * previousValues[i] +
-			 * " to " + modbusServer.holdingRegisters[i]);
-			 * 
-			 * previousValues[i] = modbusServer.holdingRegisters[i]; // Update old value
-			 * 
-			 * // âœ… Update the TextFields
-			 * if(serverInputHoldingRegisterAddressList.contains(i)) {
-			 * ref_txtReadAddressSample.setText(String.valueOf(i));
-			 * ref_txtReadValueSample.setText(String.valueOf(modbusServer.holdingRegisters[i
-			 * ]));
-			 * }
-			 * }
-			 * }
-			 * });
-			 * }
-			 * });
-			 * 
-			 * // âœ… Detect changes in Coils and update existing entries
-			 * modbusServer.setNotifyCoilsChanged(new ICoilsChangedDelegator() {
-			 * private boolean[] previousCoils = modbusServer.coils.clone(); // Store old
-			 * coil states
-			 * 
-			 * @Override
-			 * public void coilsChangedEvent() {
-			 * ApplicationLauncher.logger.debug("ðŸ”„ Coils Changed!");
-			 * 
-			 * Platform.runLater(() -> {
-			 * ObservableList<InputPort> inputPorts = ref_tbViewInputPortData.getItems();
-			 * for (int i = 1; i <= 32; i++) {
-			 * if (modbusServer.coils[i] != previousCoils[i]) {
-			 * ApplicationLauncher.logger.debug("Coil[" + i + "] changed from " +
-			 * previousCoils[i] +
-			 * " to " + modbusServer.coils[i]);
-			 * 
-			 * previousCoils[i] = modbusServer.coils[i]; // Update old value
-			 * 
-			 * // Update UI
-			 * InputPort inputPort = inputPorts.get(i - 1); // Get existing entry
-			 * inputPort.setStateDescription(modbusServer.coils[i] ? "On" : "Off");
-			 * inputPort.setInputActive(modbusServer.coils[i]);
-			 * }
-			 * }
-			 * ref_tbViewInputPortData.refresh();
-			 * });
-			 * }
-			 * });
-			 * 
-			 * try {
-			 * ApplicationLauncher.logger.
-			 * debug("ðŸš€ Starting Modbus TCP Server on port 502...");
-			 * modbusServer.Listen();
-			 * ApplicationLauncher.logger.debug("âœ… Modbus TCP Server is running...");
-			 * 
-			 * // ðŸ”„ Simulate changes for testing
-			 * Thread.sleep(3000);
-			 * modbusServer.coils[2] = true;
-			 * modbusServer.coils[5] = true;
-			 * modbusServer.coils[10] = false;
-			 * modbusServer.coils[25] = true;
-			 * 
-			 * while (true) {
-			 * Thread.sleep(500);
-			 * }
-			 * } catch (Exception e) {
-			 * ApplicationLauncher.logger.debug("Exception: " + e.getMessage());
-			 * }
-			 */
-
 			startServerTimer.cancel();
-			// Platform.runLater(() -> {
-			/*
-			 * if ( !(ref_txtClusterIpAddress.getText().isEmpty()) &&
-			 * !(ref_txtClusterPortNo.getText().isEmpty()) ) {
-			 * boolean status=false;
-			 * try{
-			 * String address = ref_txtClusterIpAddress.getText();
-			 * int port = Integer.parseInt(ref_txtClusterPortNo.getText());
-			 * Platform.runLater(() -> {
-			 * 
-			 * ref_txtComStatus.setText("Connecting...");
-			 * });
-			 * ModbusPlcDeviceData.modbusConnect(address,port);
-			 * Sleep(5000);
-			 * if(ModbusPlcDeviceData.getModbusClient().isConnected()) {
-			 * 
-			 * Platform.runLater(() -> {
-			 * 
-			 * ref_txtComStatus.setText("Success");
-			 * });
-			 * }else {
-			 * 
-			 * Platform.runLater(() -> {
-			 * 
-			 * ref_txtComStatus.setText("Failed");
-			 * });
-			 * }
-			 * }catch(UnknownHostException e) {
-			 * e.printStackTrace();
-			 * ApplicationLauncher.logger.
-			 * error("modbusConnectTask: : UnknownHostException: "+e.getMessage());
-			 * }catch(IOException e) {
-			 * e.printStackTrace();
-			 * ApplicationLauncher.logger.error("modbusConnectTask: : IOException: "+e.
-			 * getMessage());
-			 * }
-			 * status=stop_confirmation();
-			 * if(status){
-			 * StopOnClickSuccess();
-			 * }
-			 * 
-			 * }else {
-			 * WindowManager.InformUser("Error-3010","Invalid Server Ip or Invalid Port No"
-			 * ,AlertType.ERROR);
-			 * 
-			 * }
-			 */
-			// startServerTimer.cancel();
-			// });
+
 		}
 
 	}
@@ -1392,48 +1129,10 @@ public class PlcServerBayTestController
 				ref_txtComStatus.setText("Stopped");
 			}
 			stopServerTimer.cancel();
-			// Platform.runLater(() -> {
-			/*
-			 * boolean status=false;
-			 * try{
-			 * //String address = ref_txtIpAddress.getText();
-			 * //int port = Integer.parseInt(ref_txtPort.getText());
-			 * ModbusPlcDeviceData.modbusDisconnect();
-			 * Platform.runLater(() -> {
-			 * ref_txtComStatus.setText("Diconnected");
-			 * });
-			 * }catch(UnknownHostException e) {
-			 * e.printStackTrace();
-			 * ApplicationLauncher.logger.
-			 * error("modbusDisconnectTask: : UnknownHostException: "+e.getMessage());
-			 * }catch(IOException e) {
-			 * e.printStackTrace();
-			 * ApplicationLauncher.logger.error("modbusDisconnectTask: : IOException: "+e.
-			 * getMessage());
-			 * }
-			 */
-			/*
-			 * status=stop_confirmation();
-			 * if(status){
-			 * StopOnClickSuccess();
-			 * }
-			 */
 
-			// });
 		}
 
 	}
-
-	/*
-	 * public ObservableList<InputPort> getInputPortCoilDataList() {
-	 * return inputPortCoilDataList;
-	 * }
-	 * 
-	 * public void setInputPortCoilDataList(ObservableList<InputPort>
-	 * inputPortCoilDataList) {
-	 * this.inputPortCoilDataList = inputPortCoilDataList;
-	 * }
-	 */
 
 	public ModbusTcpServer getModbusTcpServer() {
 		return modbusTcpServer;

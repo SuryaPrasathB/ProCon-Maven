@@ -1,10 +1,14 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-import com.sun.javafx.scene.control.skin.resources.ControlResources;
 import javafx.application.Platform;
 import javafx.beans.NamedArg;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
@@ -48,12 +52,6 @@ public class TextAreaInputDialog extends Dialog<String> {
         this.textArea = new TextArea(defaultValue);
         this.textArea.setMaxWidth(Double.MAX_VALUE);
         this.textArea.setMaxHeight(100);
-        //this.textArea.getStyleClass().add("-fx-background-color: lightgrey");
-        
-        //this.textArea.getStyleClass().add("-fx-prompt-text-fill: white");
-        //this.textArea.getStyleClass().add(".text-area .content {  -fx-background-color: black ;}");
-        //this.textArea.getStyleClass().add("-fx-text-fill: #1e88e5;-fx-font-size: 32px;");
-        //this.textArea.getStyleClass().add("-fx-highlight-text-fill: #1e88e5;-fx-font-size: 32px;");
         GridPane.setHgrow(textArea, Priority.ALWAYS);
         GridPane.setFillWidth(textArea, true);
 
@@ -66,14 +64,11 @@ public class TextAreaInputDialog extends Dialog<String> {
 
         dialogPane.contentTextProperty().addListener(o -> updateGrid());
 
-        setTitle(ControlResources.getString("Dialog.confirm.title"));
-        dialogPane.setHeaderText(ControlResources.getString("Dialog.confirm.header"));
+        setTitle("Confirmation");
+        dialogPane.setHeaderText("Confirmation");
         dialogPane.getStyleClass().add("text-input-dialog");
-        //dialogPane.getStyleClass().add("text-input-dialog;.text-area .content {  -fx-background-color: black ;}");
-        //dialogPane.getStyleClass().add("text-input-dialog;-fx-background-color: lightgrey");
-        //dialogPane.getStyleClass().add("text-input-dialog; .text-area .content {  -fx-background-color: black ;}");
-        //dialogPane.getButtonTypes().addAll(ButtonType.OK,ButtonType.CANCEL);
-        dialogPane.getButtonTypes().addAll(ButtonType.YES,ButtonType.NO);
+
+        dialogPane.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
         updateGrid();
 
         setResultConverter((dialogButton) -> {

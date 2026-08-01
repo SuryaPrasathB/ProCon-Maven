@@ -1,9 +1,5 @@
 package com.tasnetwork.calibration.conveyor.dutprocess;
 
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class DutDataLogParse {
 	
 	private String serialNo = "";

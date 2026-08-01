@@ -1,16 +1,11 @@
 package com.tasnetwork.calibration.conveyor.serial.messenger;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.bay.DevSysEnergyMeter;
-import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
-import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
 import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
-import com.tasnetwork.calibration.conveyor.bay.ir.IR_ReadResult;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmQrScanner;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -86,9 +81,6 @@ public class QrScannerMessenger {
 
 	public Map<String, Object> sendReadCommandQrCodeScanner() {
 		ApplicationLauncher.logger.info("sendReadCommandQrCodeScanner: Entry");
-		boolean status = false;
-		// boolean isResponseExpected = true;
-
 		String payLoadInHex = NewlandQRCodeScanner.ANALOG_TRIGGER_SETTING; // ANALOG_TRIGGER_SETTING;//startTestEndFrame
 																			// ;xcvxc
 		ApplicationLauncher.logger.info("send: payLoadInHex: " + payLoadInHex);
@@ -135,7 +127,6 @@ public class QrScannerMessenger {
 			responseData = getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
 			responseData = GUIUtils.asciiToHex(responseData);
 
-			status = true;
 			responseReturn.put("status", true);
 			responseReturn.put("responseData", responseData);
 			// status = processResponse(readTheConstantOfLiveReferenceMeterCmdFrame,
@@ -145,7 +136,6 @@ public class QrScannerMessenger {
 				if (responseStatus.equals(DeleteMeConstant.NO_RESPONSE)) {
 					ApplicationLauncher.logger
 							.info("sendDataToBofaAfterSemaPhoreAcquired : no response expected success");
-					status = true;
 				}
 			}
 		}
@@ -254,7 +244,6 @@ public class QrScannerMessenger {
 						} else if (getPwrSrcSpmObj().getRxMsgQ_PwrSrc().isExpectedErrorResponseReceived()) {
 							ApplicationLauncher.logger
 									.debug("qrMsngrSendCommandProcess <" + sourceThread + ">:Ack Response Error");
-							String CurrentReadData = getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
 							// ApplicationLauncher.logger.info("qrMsngrSendCommandProcess: ErrorResponse
 							// Received:"+CurrentLDU_Data);
 							// ApplicationLauncher.logger.info("qrMsngrSendCommandProcess:
@@ -363,7 +352,7 @@ public class QrScannerMessenger {
 		}
 
 		boolean status = false;
-		String rxMessageTerminator = GUIUtils.hexToAscii("0D0A");// ConstantPowerSourceBofa.END_BYTE);
+		GUIUtils.hexToAscii("0D0A");
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 		if (getPwrSrcSpmObj().isDeviceSerialStatusConnected()) {

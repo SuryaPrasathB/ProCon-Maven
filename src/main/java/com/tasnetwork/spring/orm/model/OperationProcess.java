@@ -11,9 +11,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 @Entity
 @Table(name = "RpTestFilterOperationProcess")
 public class OperationProcess {

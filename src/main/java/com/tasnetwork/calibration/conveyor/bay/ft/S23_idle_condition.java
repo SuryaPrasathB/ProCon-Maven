@@ -1,8 +1,6 @@
 package com.tasnetwork.calibration.conveyor.bay.ft;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
-import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 
 /**
  * State class representing the idle condition in the FT Bay.

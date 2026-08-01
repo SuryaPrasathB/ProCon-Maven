@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.conveyor;
 
-import com.tasnetwork.calibration.conveyor.AsyncHttpClient.ServerProperties;
-
 public class ClusterServer {
 
 	

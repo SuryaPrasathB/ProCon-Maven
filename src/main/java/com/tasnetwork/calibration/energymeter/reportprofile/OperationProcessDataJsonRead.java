@@ -1,16 +1,10 @@
 package com.tasnetwork.calibration.energymeter.reportprofile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
 
 public class OperationProcessDataJsonRead {
 
@@ -99,103 +93,4 @@ public class OperationProcessDataJsonRead {
 	public void setResultStatusHashMap(HashMap<String, String> resultStatusHashMap) {
 		this.resultStatusHashMap = resultStatusHashMap;
 	}
-	/*public Boolean isResultTypeAverage() {
-		return resultTypeAverage;
-	}
-	public void setResultTypeAverage(Boolean resultTypeAverage) {
-		this.resultTypeAverage = resultTypeAverage;
-	}*/
-	
-	//private HashMap<>
-	//private SimpleStringProperty Key;
-/*	@SerializedName("OperationProcessKey")
-	@Expose
-	private SimpleStringProperty OperationProcessKey;
-	//private SimpleStringProperty OperationProcessKey;
-	@SerializedName("ResultValue")
-	@Expose
-	private SimpleStringProperty ResultValue;
-	@SerializedName("ComparedStatus")
-	@Expose
-	private SimpleStringProperty ComparedStatus;
-	@SerializedName("UpperLimit")
-	@Expose
-	private SimpleStringProperty UpperLimit;
-	@SerializedName("LowerLimit")
-	@Expose
-	private SimpleStringProperty LowerLimit;
-	@SerializedName("PopulateOnlyHeaders")
-	@Expose
-	private BooleanProperty PopulateOnlyHeaders;*/
-	
-	/*OperationProcessData(){
-		this.OperationProcessKey = new SimpleStringProperty("");
-		this.ResultValue = new SimpleStringProperty("");
-		this.ComparedStatus = new SimpleStringProperty("");
-		this.UpperLimit = new SimpleStringProperty("");
-		this.LowerLimit = new SimpleStringProperty("");
-		this.PopulateOnlyHeaders  = new SimpleBooleanProperty(false);
-	}
-	
-	
-	public SimpleStringProperty getOperationProcessKeyProperty() {
-		return OperationProcessKey;
-	}
-	public String getOperationProcessKey() {
-		return OperationProcessKey.get();
-	}
-	public void setOperationProcessKey(String operationProcessKey) {
-		this.OperationProcessKey.set(operationProcessKey);
-	}
-	
-	
-	public SimpleStringProperty getResultValueProperty() {
-		return ResultValue;
-	}
-	public String getResultValue() {
-		return ResultValue.get();
-	}
-	public void setResultValue(String resultValue) {
-		this.ResultValue.set(resultValue);
-	}
-	public SimpleStringProperty getComparedStatusProperty() {
-		return ComparedStatus;
-	}
-	public String getComparedStatus() {
-		return ComparedStatus.get();
-	}
-	public void setComparedStatus(String comparedStatus) {
-		this.ComparedStatus.set(comparedStatus);
-	}
-	public SimpleStringProperty getUpperLimitProperty() {
-		return UpperLimit;
-	}
-	public String getUpperLimit() {
-		return UpperLimit.get();
-	}
-	public void setUpperLimit(String UpperLimit) {
-		this.UpperLimit.set(UpperLimit);
-	}
-	public SimpleStringProperty getLowerLimitProperty() {
-		return LowerLimit;
-	}
-	public String getLowerLimit() {
-		return LowerLimit.get();
-	}
-	public void setLowerLimit(String lowerLimit) {
-		this.LowerLimit.set(lowerLimit);
-	}
-	
-	public BooleanProperty getPopulateOnlyHeadersProperty() {
-		return PopulateOnlyHeaders;
-	}
-	
-	public boolean getPopulateOnlyHeaders() {
-		return PopulateOnlyHeaders.get();
-	}
-
-	public void setPopulateOnlyHeaders(boolean populateOnlyHeaders) {
-		this.PopulateOnlyHeaders.set(populateOnlyHeaders);
-	}*/
-	
 }

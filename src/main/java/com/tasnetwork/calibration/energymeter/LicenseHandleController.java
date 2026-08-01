@@ -4,18 +4,16 @@ import java.io.IOException;
 import java.util.Map;
 
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
 import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
-import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

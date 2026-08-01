@@ -1,7 +1,6 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 
-import com.tasnetwork.spring.orm.model.TerminalProfileSetting;
 import com.tasnetwork.spring.orm.model.BayDeviceConfig;
 
 import javafx.beans.property.SimpleObjectProperty;

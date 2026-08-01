@@ -392,7 +392,6 @@ public class S02_qR_Code_Scanning_of_Rejected_Pallet implements RejectionBayStat
 		}).start();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void sendPalletWithMetersStatusUpdate(String palletQrCode, List<Map<String, Object>> metersData) {
 		Rejection.logger.debug("sendPalletWithMetersStatusUpdate: Entry");
 		new Thread(() -> {

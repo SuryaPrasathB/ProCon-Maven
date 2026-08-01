@@ -1,13 +1,10 @@
 package com.tasnetwork.calibration.energymeter.uac;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,30 +17,20 @@ import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
-import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 import com.tasnetwork.calibration.energymeter.database.MySQL_Controller;
-//import com.tasnetwork.calibration.energymeter.deployment.DeploymentDataModel;
-//import com.tasnetwork.calibration.energymeter.deployment.DeploymentDevicesCheckBoxValueFactory;
-//import com.tasnetwork.calibration.energymeter.deployment.MeterParamsController;
-import com.tasnetwork.calibration.energymeter.testreport.TestReportController;
-import com.tasnetwork.calibration.energymeter.util.EditCell;
-import com.tasnetwork.calibration.energymeter.util.MyIntegerStringConverter;
 
-import javafx.application.Platform;
+import com.tasnetwork.calibration.energymeter.testreport.TestReportController;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class UserAccessController implements Initializable {
 

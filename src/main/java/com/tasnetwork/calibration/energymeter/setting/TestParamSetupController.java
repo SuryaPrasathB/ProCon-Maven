@@ -1,49 +1,25 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashMap;
-
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
-
-import org.json.simple.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-import com.ning.http.client.Request;
-import com.ning.http.client.RequestBuilder;
-import com.tasnetwork.calibration.conveyor.AsyncHttpClient.AsyncClient;
-import com.tasnetwork.calibration.conveyor.AsyncHttpClient.AsyncClientManager;
-import com.tasnetwork.calibration.conveyor.AsyncHttpClient.ServerProperties;
-import com.tasnetwork.calibration.conveyor.constant.ConstantLdu;
 import com.tasnetwork.calibration.conveyor.database.MySQL_Controller;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 
-import gnu.io.CommPortIdentifier;
-import javafx.application.Application;
-import javafx.application.Platform;
 //import SerialPort.Communicator;
 //import application.Communicator;
 //import SerialPort.KeybindingController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class TestParamSetupController implements Initializable {
 
@@ -79,77 +55,6 @@ public class TestParamSetupController implements Initializable {
 	@FXML
 	private TextField txtRefStandardConstant;
 	public static TextField ref_txtRefStandardConstant;
-
-	/*
-	 * @FXML
-	 * private ComboBox<String> cmbBxTimeZoneList;
-	 * public static ComboBox<String> ref_cmbBxTimeZoneList;
-	 * 
-	 * @FXML
-	 * private TextField txtHttpProtocol;
-	 * 
-	 * @FXML
-	 * private TextField txtServerIP;
-	 * 
-	 * @FXML
-	 * private TextField txtServerPort;
-	 * 
-	 * @FXML
-	 * private TextField txtAppVersion;
-	 * 
-	 * @FXML
-	 * private TextField txtServerVersion;
-	 * private static TextField ref_txtServerVersion;
-	 * 
-	 * @FXML
-	 * private TextField txtServerSerialPort1;
-	 * private static TextField ref_txtServerSerialPort1;
-	 * 
-	 * @FXML
-	 * private TextField txtServerSerialPort2;
-	 * private static TextField ref_txtServerSerialPort2;
-	 * 
-	 * @FXML
-	 * private TextField txtCurrentServerIP;
-	 * 
-	 * @FXML
-	 * private Button btnGetFirmwareVersion;
-	 * 
-	 * @FXML
-	 * private Button btnGetServerSerialStatus;
-	 * 
-	 * @FXML
-	 * private Button btnGetServerTimeZone;
-	 * 
-	 * @FXML
-	 * private Button btnSetServerTimeZone;
-	 */
-
-	/* private AsyncClient asyncClient; */
-
-	// public static String rootUrl;
-	/*
-	 * Timer PwrSrcValidateTimer;
-	 * Timer RefStdValidateTimer;
-	 * Timer LDU_ValidateTimer;
-	 * 
-	 * private static HashMap FXML_PortMap = new HashMap();
-	 * 
-	 * private static boolean PortValidationTurnedON = false;
-	 */
-
-	/*
-	 * Timer UI_DisplayTimer = new Timer();
-	 * UI_DisplayTimerTask UI_DisplayTimerTaskObj;
-	 */
-
-	// MyRunnable myRunnable;
-	// Thread myRunnableThread;
-	/*
-	 * public SerialDataManager serialDM_Obj = new SerialDataManager();
-	 * DeviceDataManagerController DisplayDataObj = new
-	 * DeviceDataManagerController();
-	 */
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -244,65 +149,6 @@ public class TestParamSetupController implements Initializable {
 		}
 	}
 
-	/*
-	 * public void setupSystemAppVersion(){
-	 * txtAppVersion.setText(ConstantVersion.APPLICATION_VERSION);
-	 * }
-	 * public void getServerFirmwareVersion(){
-	 * AsyncClientManager httpclientManager = new AsyncClientManager();
-	 * httpclientManager.getServerFirmwareVersion();
-	 * }
-	 * 
-	 * public void getServerSerialStatus(){
-	 * AsyncClientManager httpclientManager = new AsyncClientManager();
-	 * httpclientManager.getServerSerialStatus();
-	 * //asyncClient.lstamper_serialStatus();
-	 * }
-	 * 
-	 * 
-	 * public void getServerTimeZoneList(){
-	 * AsyncClientManager httpclientManager = new AsyncClientManager();
-	 * httpclientManager.getServerTimeZoneList();
-	 * //asyncClient.lstamper_Scan_Available_timezones();
-	 * }
-	 * 
-	 * public void setTimeZoneOnServer(){
-	 * String SelectedTimeZone =
-	 * ref_cmbBxTimeZoneList.getSelectionModel().getSelectedItem();
-	 * AsyncClientManager httpclientManager = new AsyncClientManager();
-	 * httpclientManager.setTimeZoneOnServer(SelectedTimeZone);
-	 * 
-	 * }
-	 * public static void UpdateDisplayServerTimeZoneList(String[] value){
-	 * ref_cmbBxTimeZoneList.getItems().setAll(value);
-	 * Platform.runLater(() -> {
-	 * ref_cmbBxTimeZoneList.getSelectionModel().select(0);
-	 * });
-	 * 
-	 * }
-	 * public static void UpdateDisplaySerialPortPort1(String value){
-	 * ref_txtServerSerialPort1.setText(value);
-	 * }
-	 * 
-	 * public static void UpdateDisplaySerialPortPort2(String value1){
-	 * ref_txtServerSerialPort2.setText(value1);
-	 * }
-	 * 
-	 * public static void UpdateDisplayServerFirmwareVersion(String value1){
-	 * ref_txtServerVersion.setText(value1);
-	 * }
-	 * 
-	 * 
-	 * 
-	 * public void setupGUI_RefreshFreqData(){
-	 * for (int i = 2; i<60; i++){
-	 * cmbBxGUI_RefreshFreq.getItems().add(i);
-	 * }
-	 * 
-	 * cmbBxGUI_RefreshFreq.setValue(3);
-	 * }
-	 * 
-	 */
 	public void LoadSavedTestParamDataToGUI() {
 
 		JSONObject TestParamData = MySQL_Controller.sp_get_testparam_config();
@@ -350,35 +196,7 @@ public class TestParamSetupController implements Initializable {
 
 	}
 
-	/*
-	 * 
-	 * public static String getRootUrl(){
-	 * return rootUrl;
-	 * }
-	 * 
-	 * public static void setRootUrl(){
-	 * rootUrl = ServerProperties.HTTP_Protocol +
-	 * ServerProperties.PublicURL_Id+
-	 * ServerProperties.EndURL+":"+
-	 * ServerProperties.URLPort;
-	 * 
-	 * }
-	 */
-
 	public void SaveOnClick() {
-		/*
-		 * String serverHttpProtocol = txtHttpProtocol.getText() ;
-		 * String serverIP = txtServerIP.getText();
-		 * String serverPort = txtServerPort.getText();
-		 * int refreshGUI_Frequency =
-		 * cmbBxGUI_RefreshFreq.getSelectionModel().getSelectedItem();
-		 * 
-		 * 
-		 * MySQL_Controller.sp_add_server_settings(serverHttpProtocol, serverIP,
-		 * serverPort, refreshGUI_Frequency);
-		 * AsyncClientManager.load_saved_server_settings();
-		 * setRootUrl();
-		 */
 
 		int OccuranceTimeInSec = 0;
 		int RestorationTimeInSec = 0;

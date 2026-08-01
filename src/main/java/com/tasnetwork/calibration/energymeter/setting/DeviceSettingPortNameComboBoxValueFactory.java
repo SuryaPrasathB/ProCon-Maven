@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
 import com.tasnetwork.spring.orm.model.DeviceSetting;
 
 import javafx.beans.property.SimpleObjectProperty;

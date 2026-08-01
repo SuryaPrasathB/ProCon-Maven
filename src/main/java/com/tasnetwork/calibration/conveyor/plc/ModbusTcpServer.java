@@ -3,8 +3,6 @@ package com.tasnetwork.calibration.conveyor.plc;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
@@ -21,7 +19,6 @@ import javafx.scene.control.Alert.AlertType;
 public class ModbusTcpServer {
 
     private ModbusServer modbusServer;
-    private Timer serverMonitorTimer;
     private Timer monitoringTimer;
     private Consumer<int[]> holdingRegisterUpdateListener;
     private Consumer<boolean[]> coilUpdateListener;
@@ -45,38 +42,6 @@ public class ModbusTcpServer {
         modbusServer = new ModbusServer();
         modbusServer.setPort(portAddress);// 502);
         modbusServer.setClientConnectionTimeout(0);
-        // modbusServer.setServerIPAddress("192.168.0.103");
-        // modbusServer.setUnitIdentifier((byte) 1);
-        // modbusServer.
-        // modbusServer.setTimeout(10000);
-        /*
-         * //modbusServer.tcpListener.setAddress(ipAddress);
-         * //modbusServer.setServerSocket(serverSocket);
-         * //modbusServer.UnitIdentifier = 1;
-         * //modbusServer.setUnitIdentifier((byte) 1);
-         * //modbusServer.setServerIPAddress("192.168.0.103");
-         * 
-         * Field socketField;
-         * try {
-         * socketField = ModbusServer.class.getDeclaredField("serverSocket");
-         * socketField.setAccessible(true);
-         * try {
-         * socketField.set(modbusServer, serverSocket);
-         * } catch (IllegalArgumentException e) {
-         * 
-         * e.printStackTrace();
-         * } catch (IllegalAccessException e) {
-         * 
-         * e.printStackTrace();
-         * }
-         * } catch (NoSuchFieldException e) {
-         * 
-         * e.printStackTrace();
-         * } catch (SecurityException e) {
-         * 
-         * e.printStackTrace();
-         * }
-         */
 
         // Initialize Holding Registers (1000 registers)
         modbusServer.holdingRegisters = new int[1000];
@@ -98,11 +63,6 @@ public class ModbusTcpServer {
         modbusServer.coils[10] = true;
 
         ApplicationLauncher.logger.debug("🔧 Modbus Server Initialized.");
-        // } catch (IOException e) {
-
-        // e.printStackTrace();
-        // }
-
     }
 
     public boolean isPortAvailable(int port) {
@@ -118,6 +78,7 @@ public class ModbusTcpServer {
                     serverSocket.setReuseAddress(true);
                     try {
                         serverSocket.bind(new InetSocketAddress(port));
+                        serverSocket.close();
                         return true; // Port is free
                     } catch (IOException e1) {
 
@@ -200,7 +161,6 @@ public class ModbusTcpServer {
             int port = modbusServer.getPort();
             modbusServer.StopListening();
 
-            modbusServer.stop();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -221,14 +181,6 @@ public class ModbusTcpServer {
         }
     }
 
-    private void forceClosePort(int port) {
-        try (ServerSocket socket = new ServerSocket(port)) {
-            ApplicationLauncher.logger.debug("forceClosePort: Port 502 released.");
-        } catch (IOException e) {
-            ApplicationLauncher.logger.debug("forceClosePort :  Port 502 already free.");
-        }
-    }
-
     public void forceKillPort(int port) {
         ApplicationLauncher.logger.debug("forceKillPort: Port : " + port);
         String os = System.getProperty("os.name").toLowerCase();
@@ -238,172 +190,6 @@ public class ModbusTcpServer {
             killPortLinux(port);
         }
     }
-
-    /*
-     * public void killPortWindows(int port) {
-     * ApplicationLauncher.logger.debug("killPortWindows: Entry : port: " + port);
-     * try {
-     * // Find process ID (PID) using the port
-     * Process process = Runtime.getRuntime().exec("netstat -ano | findstr :" +
-     * port);
-     * BufferedReader reader = new BufferedReader(new
-     * InputStreamReader(process.getInputStream()));
-     * String line;
-     * while ((line = reader.readLine()) != null) {
-     * ApplicationLauncher.logger.debug("Netstat Output: " + line);
-     * String[] parts = line.trim().split("\\s+");
-     * String pid = parts[parts.length - 1]; // Extract last column (PID)
-     * 
-     * // Kill the process using the PID
-     * Runtime.getRuntime().exec("taskkill /F /PID " + pid);
-     * ApplicationLauncher.logger.debug("✅ Port " + port + " freed (PID: " + pid +
-     * ")");
-     * }
-     * } catch (Exception e) {
-     * ApplicationLauncher.logger.debug("⚠️ Error closing port: " + e.getMessage());
-     * }
-     * }
-     */
-
-    /*
-     * public void forceKillPortWindows(int port) {
-     * ApplicationLauncher.logger.debug("forceKillPortWindows: Entry : port: " +
-     * port);
-     * try {
-     * // Find process ID (PID) using the port
-     * Process process = Runtime.getRuntime().exec("netstat -ano | findstr :" +
-     * port);
-     * BufferedReader reader = new BufferedReader(new
-     * InputStreamReader(process.getInputStream()));
-     * String line;
-     * boolean killed = false;
-     * 
-     * while ((line = reader.readLine()) != null) {
-     * ApplicationLauncher.logger.debug("Netstat Output: " + line);
-     * String[] parts = line.trim().split("\\s+");
-     * if (parts.length > 4) {
-     * String pid = parts[parts.length - 1]; // Extract last column (PID)
-     * 
-     * // Kill the process using the PID
-     * Runtime.getRuntime().exec("taskkill /F /PID " + pid);
-     * ApplicationLauncher.logger.debug("✅ Process with PID " + pid + " killed.");
-     * killed = true;
-     * Thread.sleep(2000); // Give OS time to clean up
-     * }
-     * }
-     * 
-     * // If no process was killed, log a message
-     * if (!killed) {
-     * ApplicationLauncher.logger.debug("⚠️ No process found on port " + port);
-     * }
-     * 
-     * // Verify if port is still occupied
-     * if (!isPortAvailable(port)) {
-     * ApplicationLauncher.logger.debug("⚠️ Port " + port +
-     * " is still in use! Retrying...");
-     * Thread.sleep(3000);
-     * forceKillPortWindows(port); // Retry once if needed
-     * } else {
-     * ApplicationLauncher.logger.debug("✅ Port " + port + " is now free.");
-     * }
-     * 
-     * } catch (Exception e) {
-     * ApplicationLauncher.logger.debug("⚠️ Error closing port: " + e.getMessage());
-     * }
-     * }
-     */
-
-    /*
-     * public void forceKillPortWindows(int port) {
-     * ApplicationLauncher.logger.debug("forceKillPortWindows: Entry : port: " +
-     * port);
-     * 
-     * try {
-     * // Run netstat and capture output
-     * Process process = Runtime.getRuntime().exec("netstat -ano | findstr :" +
-     * port);
-     * BufferedReader reader = new BufferedReader(new
-     * InputStreamReader(process.getInputStream()));
-     * String line;
-     * boolean found = false;
-     * 
-     * ApplicationLauncher.logger.debug("🔍 Checking port: " + port);
-     * 
-     * while ((line = reader.readLine()) != null) {
-     * ApplicationLauncher.logger.debug("📄 Netstat Output: " + line);
-     * found = true;
-     * 
-     * // Extract the last column (PID)
-     * String[] parts = line.trim().split("\\s+");
-     * String pid = parts[parts.length - 1];
-     * 
-     * // Kill the process using the PID
-     * Runtime.getRuntime().exec("taskkill /F /PID " + pid);
-     * ApplicationLauncher.logger.debug("✅ Port " + port + " freed (PID: " + pid +
-     * ")");
-     * }
-     * 
-     * if (!found) {
-     * ApplicationLauncher.logger.debug("❌ No process found using port: " + port);
-     * }
-     * 
-     * } catch (Exception e) {
-     * ApplicationLauncher.logger.debug("⚠️ Error closing port: " + e.getMessage());
-     * }
-     * }
-     */
-
-    /*
-     * public void forceKillPortWindows(int port) {
-     * ApplicationLauncher.logger.debug("forceKillPortWindows: Entry : port: " +
-     * port);
-     * 
-     * try {
-     * // Use cmd.exe /c to properly execute the command
-     * Process process = Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c",
-     * "netstat -ano | findstr :" + port});
-     * BufferedReader reader = new BufferedReader(new
-     * InputStreamReader(process.getInputStream()));
-     * 
-     * String line;
-     * boolean found = false;
-     * 
-     * ApplicationLauncher.logger.debug("🔍 Checking port: " + port);
-     * 
-     * while ((line = reader.readLine()) != null) {
-     * ApplicationLauncher.logger.debug("📄 Netstat Output: " + line); // <-- This
-     * should now print!
-     * found = true;
-     * 
-     * // Extract the last column (PID)
-     * String[] parts = line.trim().split("\\s+");
-     * if (parts.length > 4) { // Ensure valid parsing
-     * String pid = parts[parts.length - 1];
-     * 
-     * // Kill the process using the PID
-     * //Runtime.getRuntime().exec("taskkill /F /PID " + pid);
-     * Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c",
-     * "taskkill /T /F /PID " + pid});
-     * 
-     * ApplicationLauncher.logger.debug("✅ Port " + port + " freed (PID: " + pid +
-     * ")");
-     * }
-     * }
-     * 
-     * if (!found) {
-     * ApplicationLauncher.logger.debug("❌ No process found using port: " + port);
-     * }
-     * 
-     * // Ensure process output is fully flushed
-     * process.waitFor();
-     * process.destroy();
-     * 
-     * } catch (Exception e) {
-     * ApplicationLauncher.logger.debug("⚠️ Error closing port: " + e.getMessage());
-     * }
-     * }
-     * 
-     */
 
     public static void forceKillPortWindows(int port) {
         try {
@@ -456,25 +242,6 @@ public class ModbusTcpServer {
         } catch (Exception e) {
             ApplicationLauncher.logger.debug("⚠️ Error closing port: " + e.getMessage());
         }
-    }
-
-    // ✅ Monitor Holding Registers for changes
-    private void monitorHoldingRegisters() {
-        serverMonitorTimer = new Timer();
-        serverMonitorTimer.schedule(new TimerTask() {
-            private int[] previousValues = modbusServer.holdingRegisters.clone();
-
-            @Override
-            public void run() {
-                for (int i = 0; i < modbusServer.holdingRegisters.length; i++) {
-                    if (modbusServer.holdingRegisters[i] != previousValues[i]) {
-                        ApplicationLauncher.logger.debug("Register[" + i + "] changed from " + previousValues[i] +
-                                " to " + modbusServer.holdingRegisters[i]);
-                        previousValues[i] = modbusServer.holdingRegisters[i];
-                    }
-                }
-            }
-        }, 0, 1000);
     }
 
     // ✅ Write a value to a specific Holding Register

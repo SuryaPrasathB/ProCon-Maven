@@ -1,6 +1,5 @@
 package com.tasnetwork.spring.orm.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -9,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tasnetwork.spring.orm.model.AppConfig;
-import com.tasnetwork.spring.orm.model.DutCommand;
 import com.tasnetwork.spring.orm.repository.AppConfigRepo;
-import com.tasnetwork.spring.orm.repository.DutCommandRepo;
 
 
 @Component

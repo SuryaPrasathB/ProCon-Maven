@@ -7,9 +7,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -122,7 +120,6 @@ public class PalletTrackerController implements Initializable {
 	private TextField txtAddResultTestCaseName;
 
 	private static ListView<String> ref_lvMeterList;
-	private static TextField ref_txtPalletQrId;
 	private static TextField ref_txtMeterSerialNo;
 	private static TextField ref_txtAddResultPositionNo;
 	private static TextField ref_txtAddResultValue;
@@ -135,33 +132,6 @@ public class PalletTrackerController implements Initializable {
 	String deviceModelName = ConstantLdu.LDU_LSCS_MODEL;
 	String deviceType = ConstantConveyor.DEVICE_TYPE_LDU;
 	String deviceDefaultBaudRate = String.valueOf(ConstantLdu.LDU_DEFAULT_BAUD_RATE);
-
-	// private static TerminalBayConfigModel bayConfigModel =
-	// ConveyorDeviceDataManagerController.getBayConfigParsedKey();
-	/*
-	 * private static Map<String,ArrayList<String>> clusterBayNameListMap = new
-	 * HashMap<String,ArrayList<String>>();
-	 * private static Map<String,String> clusterNameIdListMap = new
-	 * HashMap<String,String>();
-	 * private static Map<String,String> clusterBayNameIdMap = new
-	 * HashMap<String,String>();
-	 */
-	// private static Map<String,ArrayList<String>> clusterBayNamePositionListMap =
-	// new HashMap<String,ArrayList<String>>();
-	// private static Map<String,String> clusterBayPositionNoCnameMap = new
-	// LinkedHashMap<String,String>();
-	// private static Map<String,String> clusterBayPositionNoDeviceIdMap = new
-	// LinkedHashMap<String,String>();
-
-	/*
-	 * @FXML
-	 * private CheckComboBox<String> chkCmbBxModelType;
-	 * static private CheckComboBox<String> ref_chkCmbBxModelType;
-	 * 
-	 * @FXML
-	 * private CheckComboBox<String> chkCmbBxDeviceType;
-	 * static private CheckComboBox<String> ref_chkCmbBxDeviceType;
-	 */
 
 	@FXML
 	private TableColumn<PalletManage, String> colPmBayType;
@@ -429,7 +399,6 @@ public class PalletTrackerController implements Initializable {
 		ref_cmbBxSelectBayType = cmbBxSelectBayType;
 
 		ref_lvMeterList = lvMeterList;
-		ref_txtPalletQrId = txtPalletQrId;
 		ref_txtMeterSerialNo = txtMeterSerialNo;
 		// ref_lvDbMeterList = lvDbMeterList;
 
@@ -527,7 +496,6 @@ public class PalletTrackerController implements Initializable {
 			refreshPalletManageDataFromDb();
 			return true;
 		};
-		int priority = 10;// 10= low // 1 is low , 100 is high
 		long timeoutInSec = 10;// for 5 - concurrent issue occured
 		Future<Boolean> future = ChannelQueueRequestProcessor.addRequest(ConstantConveyor.CHANNEL_KEY_DB_TO_GUI_REFRESH,
 				taskRefreshPalletManageDataFromDb, 5, timeoutInSec, TimeUnit.SECONDS);
@@ -878,16 +846,13 @@ public class PalletTrackerController implements Initializable {
 
 	public static void reOrderedPalletManageSerialNo() {
 		// List<DeviceSetting> deviceSettingList = ref_tvDeviceSetting.getItems();
-		getPalletManageSerialNoAtomic().set(1);
-		ref_tvPalletManage.getItems().stream().forEachOrdered(e -> {
-			e.setSerialNo(getPalletManageSerialNoAtomic().getAndIncrement());
-			// ApplicationLauncher.logger.debug("reOrderedSerialNo: getPositionNo : " +
-			// e.getPositionNo() + " -> getcName: " + e.getcName());
-
-		});
-		ref_tvPalletManage.refresh();
-		// ref_tvDeviceSetting.getItems().clear();
-		// ref_tvDeviceSetting.getItems().addAll(deviceSettingList);
+		if (ref_tvPalletManage != null && ref_tvPalletManage.getItems() != null) {
+			getPalletManageSerialNoAtomic().set(1);
+			ref_tvPalletManage.getItems().stream().forEachOrdered(e -> {
+				e.setSerialNo(getPalletManageSerialNoAtomic().getAndIncrement());
+			});
+			ref_tvPalletManage.refresh();
+		}
 	}
 
 	public void guiInit() {
@@ -1718,7 +1683,7 @@ public class PalletTrackerController implements Initializable {
 							ref_tvPalletBayState.getItems().addAll(palletBayStateList);
 							reOrderedPalletBayStateSerialNo();
 
-							Set<PalletMeterResults> palletMeterResults = new HashSet<PalletMeterResults>();
+							new HashSet<PalletMeterResults>();
 
 							palletMeterList = palletBayTest.getPalletMeterList();
 							for (PalletMeter eachPalletMeter : palletMeterList) {
@@ -2246,7 +2211,8 @@ public class PalletTrackerController implements Initializable {
 							.filter(e -> e.getPalletDistinctId().equals(palletBatchMapId))
 							.forEach(e1 -> {
 								ApplicationLauncher.logger
-										.debug("switchToPreviousBayForPallet: Rolling back from bay: " + presentBayState);
+										.debug("switchToPreviousBayForPallet: Rolling back from bay: "
+												+ presentBayState);
 								e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
 								e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_WFR);
 							});
@@ -2259,7 +2225,8 @@ public class PalletTrackerController implements Initializable {
 				ApplicationLauncher.logger.debug("switchToPreviousBayForPallet: Already at the first bay.");
 			}
 		} else {
-			ApplicationLauncher.logger.debug("switchToPreviswitchToPreviousBayForPalletousBayOnClick: Pallet is inactive");
+			ApplicationLauncher.logger
+					.debug("switchToPreviswitchToPreviousBayForPalletousBayOnClick: Pallet is inactive");
 		}
 	}
 
@@ -2287,7 +2254,7 @@ public class PalletTrackerController implements Initializable {
 					String palletBatchMapId = myPalletManage.getPalletDistinctId();
 					ApplicationLauncher.logger.debug("closePresentBay: : presentBayState: " + presentBayState);
 					ApplicationLauncher.logger.debug("closePresentBay: : palletBatchMapId: " + palletBatchMapId);
-					int indexOfPresentState = ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(presentBayState);
+					ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(presentBayState);
 
 					Set<PalletBayState> palleteBayStateList = myPalletManage.getPalleteBayStateList();
 
@@ -2349,7 +2316,7 @@ public class PalletTrackerController implements Initializable {
 
 		ApplicationLauncher.logger.debug("switchPalletToNextBay: Entry ");
 
-		TextField selectedBayField = ConveyorDebugController.getTextFieldByKey(selectedBayTypeKey);
+		ConveyorDebugController.getTextFieldByKey(selectedBayTypeKey);
 
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
@@ -2420,7 +2387,7 @@ public class PalletTrackerController implements Initializable {
 						ApplicationLauncher.logger.debug("switchPalletToNextBay: getPresentPalletAtBayMap() : put : "
 								+ getPresentPalletAtBayMap());
 						ApplicationLauncher.logger.debug("switchPalletToNextBay: Removing Key : " + selectedBayTypeKey);
-						String destinationBayKey = ConstantConveyor.STATE_SEQUENCE_LIST.get(indexOfPresentState + 1);
+						ConstantConveyor.STATE_SEQUENCE_LIST.get(indexOfPresentState + 1);
 						getPresentPalletAtBayMap().remove(selectedBayTypeKey);
 
 						String matchedQrCode = null;
@@ -2445,7 +2412,7 @@ public class PalletTrackerController implements Initializable {
 
 							Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
 							palletMeterSetList = myPalletManage.getPalletMeterList();
-							List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
+							palletMeterSetList.stream()
 									.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo))
 									.collect(Collectors.toList());
 							for (PalletMeter eachPalletMeter : palletMeterSetList) {
@@ -2685,73 +2652,6 @@ public class PalletTrackerController implements Initializable {
 				String.valueOf((exitTimeEpoch - Long.parseLong(myPalletManage.getPalletConvEntryTimeEpoch())) / 60));
 	}
 
-	// Helper to check if the bay supports multiple pallets
-	private boolean isMultiPalletBay(String bayKey) {
-		return bayKey.equals("WAITB") || bayKey.equals("VERIFICB") || bayKey.equals("STNLD1B")
-				|| bayKey.equals("STNLD2B");
-	}
-
-	// Dynamically assign pallet to the next available slot in a multi-pallet bay
-	private void addPalletToMultiPalletBay(String bayKey, String palletQrId) {
-		List<TextField> palletFields = getMultiPalletTextFields(bayKey);
-
-		for (TextField field : palletFields) {
-			if (field.getText().isEmpty()) {
-				field.setText(palletQrId);
-				return;
-			}
-		}
-		System.out.println("No empty pallet slots available in " + bayKey);
-	}
-
-	// Maps bay keys to their text fields
-	private TextField getTextFieldByKey(String bayKey) {
-		switch (bayKey) {
-			case "FTB":
-				return ConveyorDebugController.getRef_txtFTBayPallet();
-			case "HVB":
-				return ConveyorDebugController.getRef_txtHVBayPallet();
-			case "IRB":
-				return ConveyorDebugController.getRef_txtIRBayPallet();
-			case "CALB":
-				return ConveyorDebugController.getRef_txtCalibBayPallet();
-			default:
-				return null;
-		}
-	}
-
-	// Returns a list of text fields for multi-pallet bays
-	private List<TextField> getMultiPalletTextFields(String bayKey) {
-		switch (bayKey) {
-			case "WTNGB":
-				return Arrays.asList(
-						ConveyorDebugController.getRef_txtWaitingBayPallet1(),
-						ConveyorDebugController.getRef_txtWaitingBayPallet2(),
-						ConveyorDebugController.getRef_txtWaitingBayPallet3(),
-						ConveyorDebugController.getRef_txtWaitingBayPallet4());
-			case "VERIFICB":
-				return Arrays.asList(
-						ConveyorDebugController.getRef_txtVerificBayPallet1(),
-						ConveyorDebugController.getRef_txtVerificBayPallet2(),
-						ConveyorDebugController.getRef_txtVerificBayPallet3(),
-						ConveyorDebugController.getRef_txtVerificBayPallet4());
-			case "STNLD1B":
-				return Arrays.asList(
-						ConveyorDebugController.getRef_txtSCTNLTBay1Pallet1(),
-						ConveyorDebugController.getRef_txtSCTNLTBay1Pallet2(),
-						ConveyorDebugController.getRef_txtSCTNLTBay1Pallet3(),
-						ConveyorDebugController.getRef_txtSCTNLTBay1Pallet4());
-			case "STNLD2B":
-				return Arrays.asList(
-						ConveyorDebugController.getRef_txtSCTNLTBay2Pallet1(),
-						ConveyorDebugController.getRef_txtSCTNLTBay2Pallet2(),
-						ConveyorDebugController.getRef_txtSCTNLTBay2Pallet3(),
-						ConveyorDebugController.getRef_txtSCTNLTBay2Pallet4());
-			default:
-				return Collections.emptyList();
-		}
-	}
-
 	@FXML
 	void addResultOnClick(ActionEvent event) {
 		// String selectedMeterSerialNo =
@@ -2761,7 +2661,7 @@ public class PalletTrackerController implements Initializable {
 		String resultValue = ref_txtAddResultValue.getText();
 		String testCaseName = ref_txtAddResultTestCaseName.getText();
 		String testType = ref_cmbBxAddResultSelectBayTestType.getSelectionModel().getSelectedItem();
-		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
+		ref_tvPalletManage.getSelectionModel().getSelectedIndex();
 		PalletManage myPalletManage = ref_tvPalletManage.getSelectionModel().getSelectedItem();
 		// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
 		if (myPalletManage != null) {
@@ -2845,7 +2745,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetails: testCaseName: " + testCaseName);
 		ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetails: testType: " + testType);
 
-		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
+		ref_tvPalletManage.getSelectionModel().getSelectedIndex();
 		if (myPalletManage != null) {
 			String selectedMeterSerialNo = "";// =
 
@@ -2951,7 +2851,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("addMeterResultSummaryWithPalletDetailsV2: dutSerialNo: " + dutSerialNo);
 		ApplicationLauncher.logger
 				.debug("addMeterResultSummaryWithPalletDetailsV2: palletDistinctId: " + palletDistinctId);
-		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
+		ref_tvPalletManage.getSelectionModel().getSelectedIndex();
 
 		Optional<PalletManage> myPalletManageOpt = MySqlServiceManager.getPalletManageService()
 				.findByPalletDistinctId(palletDistinctId);
@@ -3057,7 +2957,6 @@ public class PalletTrackerController implements Initializable {
 	public void addMeterResultSummary(int positionNo, String resultStatus, String resultValue,
 			String selectedBayTypeKey, String testType, String testCaseName) { // , int palletBayStateSelectedIndex,
 																				// PalletManage myPalletManage) {
-		int palletBayStateSelectedIndex = ref_tvPalletManage.getSelectionModel().getSelectedIndex();
 
 		ApplicationLauncher.logger
 				.debug("addMeterResultSummary: getPresentPalletAtBayMap " + getPresentPalletAtBayMap());
@@ -3430,7 +3329,6 @@ public class PalletTrackerController implements Initializable {
 
 			return queueStatus;
 		};
-		int priority = 10;// 10= low // 1 is low , 100 is high
 		long timeoutInSec = 10;// for 5 - concurrent issue occured
 		Future<Boolean> future = ChannelQueueRequestProcessor.addRequest(
 				ConstantConveyor.CHANNEL_KEY_ADD_METER_RESULT_DB, taskAddResultToMeterDb, 5, timeoutInSec,
@@ -3459,16 +3357,7 @@ public class PalletTrackerController implements Initializable {
 
 	public boolean addResultToMeterQueueTask(int positionNo, String resultStatus, String resultValue,
 			String selectedBayTypeKey, String testType, String testCaseName) {
-		// String selectedMeterSerialNo =
-		// lvDbMeterList.getSelectionModel().getSelectedItem();
-		// int positionNo = Integer.parseInt(ref_txtAddResultPositionNo.getText());//2;
-		// String resultStatus = ref_txtAddResultStatus.getText();
-		// String resultValue = ref_txtAddResultValue.getText();
-		// int palletBayStateSelectedIndex =
-		// ref_tvPalletManage.getSelectionModel().getSelectedIndex();
-		// PalletManage palletTracker =
-		// ref_tvPalletManage.getSelectionModel().getSelectedItem();
-		// MySqlServiceManager.getPalletManageService().saveToDb(palletTracker);
+
 		ApplicationLauncher.logger.debug("addResultToMeterQueueTask: Entry : Position No: " + positionNo);
 		ApplicationLauncher.logger.debug("addResultToMeterQueueTask: Entry : Position No: " + positionNo
 				+ " , selectedBayTypeKey: " + selectedBayTypeKey);
@@ -3638,7 +3527,7 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger
 				.debug("markAsCompletedOnClick: getActivePalletMap after removal: " + getActivePalletMap());
 
-		String presentBayState = palletBayTracker.getPresentBayKey();
+		palletBayTracker.getPresentBayKey();
 	}
 
 	@FXML
@@ -3679,7 +3568,7 @@ public class PalletTrackerController implements Initializable {
 		getActivePalletMap().put(palletBayTracker.getPalletQrId(), palletKey);
 		ApplicationLauncher.logger.debug("revertCompletedOnClick: getActivePalletMap " + getActivePalletMap());
 
-		String presentBayState = palletBayTracker.getPresentBayKey();
+		palletBayTracker.getPresentBayKey();
 	}
 
 	@FXML
@@ -3697,11 +3586,11 @@ public class PalletTrackerController implements Initializable {
 		// palletBayTracker.setPalletActive(false);
 		palletBayTracker.setExitAppeared(true);
 
-		String palletDistinctId = palletBayTracker.getPalletDistinctId();
+		palletBayTracker.getPalletDistinctId();
 		ApplicationLauncher.logger
 				.debug("markAsExitAppearedOnClick: getPalletDistinctId " + palletBayTracker.getPalletDistinctId());
 
-		String presentBayState = palletBayTracker.getPresentBayKey();
+		palletBayTracker.getPresentBayKey();
 	}
 
 	@FXML
@@ -3716,11 +3605,11 @@ public class PalletTrackerController implements Initializable {
 	private void revertExitAppearedForPallet(PalletManage palletBayTracker) {
 		palletBayTracker.setExitAppeared(false);
 
-		String palletDistinctId = palletBayTracker.getPalletDistinctId();
+		palletBayTracker.getPalletDistinctId();
 		ApplicationLauncher.logger
 				.debug("revertExitAppearedOnClick: getPalletDistinctId " + palletBayTracker.getPalletDistinctId());
 
-		String presentBayState = palletBayTracker.getPresentBayKey();
+		palletBayTracker.getPresentBayKey();
 	}
 
 	@FXML
@@ -3882,8 +3771,6 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger
 				.debug("updateMetersToPallet: getPresentPalletAtBayMap(): " + getPresentPalletAtBayMap());
 		ApplicationLauncher.logger.debug("updateMetersToPallet: getActivePalletMap(): " + getActivePalletMap());
-		boolean status = false;
-
 		PalletMeter responsePalletMeter = null;
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
@@ -3923,7 +3810,6 @@ public class PalletTrackerController implements Initializable {
 						ApplicationLauncher.logger.debug("updateMetersToPallet: updated Meter serial No: "
 								+ responsePalletMeter.getMeterSerialNo() + " : Position No: " + positionNo
 								+ " with Error Code: " + newErrorCode);
-						status = true;
 
 					} else {
 						ApplicationLauncher.logger.debug("updateMetersToPallet: No meter found at position: "
@@ -3955,11 +3841,13 @@ public class PalletTrackerController implements Initializable {
 
 		int palletBatchNo = 1;
 		try {
-			OptionalInt maxExistingPalletBatchNo = ref_tvPalletManage.getItems().stream()
-					.mapToInt(e -> e.getPalletBatchNo())
-					.max();
-			if (maxExistingPalletBatchNo.isPresent()) {
-				palletBatchNo = maxExistingPalletBatchNo.getAsInt() + 1;
+			if (ref_tvPalletManage != null && ref_tvPalletManage.getItems() != null) {
+				OptionalInt maxExistingPalletBatchNo = ref_tvPalletManage.getItems().stream()
+						.mapToInt(e -> e.getPalletBatchNo())
+						.max();
+				if (maxExistingPalletBatchNo.isPresent()) {
+					palletBatchNo = maxExistingPalletBatchNo.getAsInt() + 1;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4046,8 +3934,12 @@ public class PalletTrackerController implements Initializable {
 		palletBayTracker.setNoOfMeterPresent(meterSerialNoList.size());
 		MySqlServiceManager.getPalletManageService().saveToDb(palletBayTracker);
 
-		ref_tvPalletManage.getItems().add(palletBayTracker);
-		reOrderedPalletManageSerialNo();
+		if (ref_tvPalletManage != null && ref_tvPalletManage.getItems() != null) {
+			javafx.application.Platform.runLater(() -> {
+				ref_tvPalletManage.getItems().add(palletBayTracker);
+				reOrderedPalletManageSerialNo();
+			});
+		}
 		getActivePalletMap().put(palletQrId, palletDistinctId);
 		getPresentPalletAtBayMap().put(selectedBayTypeKey, palletDistinctId);
 		addPalletBayState(selectedBayTypeKey);
@@ -4228,7 +4120,7 @@ public class PalletTrackerController implements Initializable {
 	}
 
 	public void setPalletManageSerialNoAtomic(AtomicInteger palletManageSerialNoAtomic) {
-		this.palletManageSerialNoAtomic = palletManageSerialNoAtomic;
+		PalletTrackerController.palletManageSerialNoAtomic = palletManageSerialNoAtomic;
 	}
 
 	public void setPalletBayStateSerialNoAtomic(AtomicInteger palletBayStateSerialNoAtomic) {
@@ -4315,7 +4207,6 @@ public class PalletTrackerController implements Initializable {
 		this.resultStyleDefault = resultStyleDefault;
 	}
 
-
 	public void exitBatchFromPresentBay(String currentBay) {
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(currentBay);
@@ -4344,7 +4235,7 @@ public class PalletTrackerController implements Initializable {
 					myPalletManage.setNoOfMeterPassed(0);
 					myPalletManage.setNoOfMeterFailed(0);
 					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-					
+
 					if (!(currentBay.equals(ConstantConveyor.STA_NLD1_BAY_KEY)) &&
 							!(currentBay.equals(ConstantConveyor.STA_NLD2_BAY_KEY))) {
 						addPalletNextBayState(nextBayState);

@@ -1,17 +1,10 @@
 package com.tasnetwork.calibration.conveyor.serial.messenger;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tasnetwork.calibration.conveyor.bay.DevSysEnergyMeter;
-import com.tasnetwork.calibration.conveyor.bay.EIC_MegaOhmMeter;
 import com.tasnetwork.calibration.conveyor.bay.Elmeasure_MultiMeter;
-import com.tasnetwork.calibration.conveyor.bay.NewlandQRCodeScanner;
-import com.tasnetwork.calibration.conveyor.bay.ir.IR_ReadResult;
 import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmLdu;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmQrScanner;
-import com.tasnetwork.calibration.conveyor.serial.portmanager.SpmVoltPm;
 import com.tasnetwork.calibration.conveyor.util.GUIUtils;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.DeleteMeConstant;
@@ -86,9 +79,6 @@ public class LduMessenger {
 	// ==========================================================================================================================
 	public Map<String, Object> lsLDU_SendCommandReadAccuracyData(String slaveId) {
 		ApplicationLauncher.logger.info("lsLDU_SendCommandReadAccuracyData: Entry");
-		boolean status = false;
-		// boolean isResponseExpected = true;
-
 		int slaveIdValue = Integer.parseInt(slaveId, 16); // Convert hex string to integer
 
 		String slaveIdHex = String.format("%02X", slaveIdValue); // Format as 2-character hex string
@@ -133,7 +123,6 @@ public class LduMessenger {
 			responseData = getPwrSrcSpmObj().getRxMsgQ_PwrSrc().getLastReadMessage();
 			responseData = GUIUtils.asciiToHex(responseData);
 
-			status = true;
 			responseReturn.put("status", true);
 			responseReturn.put("responseData", responseData);
 			// status = processResponse(readTheConstantOfLiveReferenceMeterCmdFrame,
@@ -142,7 +131,6 @@ public class LduMessenger {
 			if (!isResponseExpected) {
 				if (responseStatus.equals(DeleteMeConstant.NO_RESPONSE)) {
 					ApplicationLauncher.logger.info("lsLDU_SendCommandReadAccuracyData : no response expected success");
-					status = true;
 				}
 			}
 		}
@@ -356,7 +344,7 @@ public class LduMessenger {
 		}
 
 		boolean status = false;
-		String rxMessageTerminator = GUIUtils.hexToAscii("0D0A");// ConstantPowerSourceBofa.END_BYTE);
+		GUIUtils.hexToAscii("0D0A");
 		Map<String, Object> responseReturn = new HashMap<String, Object>();
 		responseReturn.put("status", false);
 		if (getPwrSrcSpmObj().isDeviceSerialStatusConnected()) {
@@ -440,27 +428,6 @@ public class LduMessenger {
 					ApplicationLauncher.logger.debug(
 							"elmeasurePanelMeterMsngrSendCommandProcessWithLength : <" + sourceThread + ">test1: ");
 
-					/*
-					 * if ( (
-					 * !payLoadInHex.equals(ConstantPowerSourceBofa.CMD_STOP_VOLT_CURRENT_IN_HEX))
-					 * &&
-					 * ( !payLoadInHex.equals(ConstantPowerSourceBofa.CMD_STOP_CURRENT_IN_HEX)) ){
-					 * if(BayUtils.isUserAborted()){
-					 * retryCount = 0;
-					 * responseStatus = DeleteMeConstant.ERROR_RESPONSE;
-					 * ApplicationLauncher.logger.
-					 * info("elmeasurePanelMeterMsngrSendCommandProcessWithLength V2 <"+sourceThread
-					 * +">: user aborted - detected");
-					 * }
-					 * }else if(!getPwrSrcSpmObj().isPwrSrcSerialStatusConnected()){
-					 * retryCount = 0;
-					 * responseStatus = DeleteMeConstant.ERROR_RESPONSE;
-					 * ApplicationLauncher.logger.
-					 * debug("elmeasurePanelMeterMsngrSendCommandProcessWithLength V2 <"
-					 * +sourceThread +">: serial port - disconnected");
-					 * 
-					 * }
-					 */
 				}
 			} else {
 				responseStatus = DeleteMeConstant.NO_RESPONSE;

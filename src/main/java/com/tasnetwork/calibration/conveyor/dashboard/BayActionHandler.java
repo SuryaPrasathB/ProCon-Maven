@@ -1616,12 +1616,32 @@ public class BayActionHandler {
 	}
 
 	private void handleEngineLifecycleActions(PalletController.BayActionType actionType) {
-		// Redirection to StateExecutorController removed, BayControlsManager handles UI
-		// updates.
+		// Redirection to StateExecutorController removed, BayControlsManager handles UI updates.
 		if (actionType == PalletController.BayActionType.BAY_STOP) {
 			triggerStopFlagsForBay();
 			stopUIBlinkers();
+			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().stopTimeUpDisplay(bayTypeKey);
+			
+			BayStateEngine oldEngine = BayThreadManager.getEngine(getBaseBayKey());
 			BayThreadManager.cancelTask(getBaseBayKey());
+
+			if (oldEngine != null) {
+				ApplicationLauncher.logger.info("BAY_STOP: Waiting up to 20s for previous engine to finish...");
+				oldEngine.join(20000);
+			} else {
+				try {
+					Thread.sleep(200);
+				} catch (Exception e) {
+				} // Give time for loop to break
+			}
+
+			BayStateContext context = getContextForBay();
+			if (context != null) {
+				// Clear stop flags
+				clearStopFlagsForBay();
+				BayStateEngine engine = new BayStateEngine(getBaseBayKey(), context, ConstantStateModes.STOP);
+				BayThreadManager.scheduleTask(getBaseBayKey(), engine, actionType.name());
+			}
 			return;
 		}
 
@@ -1636,10 +1656,17 @@ public class BayActionHandler {
 
 			// Stop current running process first
 			triggerStopFlagsForBay();
-			try {
-				Thread.sleep(200);
-			} catch (Exception e) {
-			} // Give time for loop to break
+			BayStateEngine oldEngine = BayThreadManager.getEngine(getBaseBayKey());
+			if (oldEngine != null) {
+				ApplicationLauncher.logger.info("BAY_START: Requesting stop and waiting up to 20s for previous engine to finish...");
+				oldEngine.requestStop();
+				oldEngine.join(20000);
+			} else {
+				try {
+					Thread.sleep(200);
+				} catch (Exception e) {
+				} // Give time for loop to break
+			}
 
 			BayStateContext context = getContextForBay();
 			if (context != null) {

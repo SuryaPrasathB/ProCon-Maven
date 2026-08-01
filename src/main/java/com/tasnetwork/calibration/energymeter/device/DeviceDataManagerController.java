@@ -1742,66 +1742,12 @@ public class DeviceDataManagerController {
 		try {
 			// String selectedPhase = ConstantApp.FIRST_PHASE_DISPLAY_NAME;
 			String absoluteCurrent = "";// getR_PhaseOutputVoltage();
-			String userInputCurrent = "";
 			if (selectedPhase.equals(ConstantApp.FIRST_PHASE_DISPLAY_NAME)) {
-				userInputCurrent = getR_PhaseOutputCurrent();
 			} else if (selectedPhase.equals(ConstantApp.SECOND_PHASE_DISPLAY_NAME)) {
-				userInputCurrent = getY_PhaseOutputCurrent();
 			} else if (selectedPhase.equals(ConstantApp.THIRD_PHASE_DISPLAY_NAME)) {
-				userInputCurrent = getB_PhaseOutputCurrent();
 			}
-			// String current = getR_PhaseOutputCurrent();
-			// String rPhaseCurrent = current;
-			// String rPhaseCurrentRelayId = "002";
-			// String currentRelayId = "002";
-			// currentRelayId = getTargetCurrentRelayId(selectedPhase, current);
-			// setSourceCurrentR_PhaseTapSelection(currentRelayId);
-			// currentRelayId = rPhaseCurrentRelayId;
-			// voltage = getTargetVoltageRms(selectedPhase, voltage);
-			// absoluteCurrent = getAbsoluteCurrent(selectedPhase,
-			// userInputCurrent,powerSourceFeedBackCurrentRms);
+
 			return absoluteCurrent;
-			// current = getTargetCurrentRms(selectedPhase, current);
-			// setR_PhaseOutputVoltageRms(voltage);
-			// setR_PhaseOutputCurrentRms(current);
-			/*
-			 * String metertype = getDeployedEM_ModelType();
-			 * 
-			 * if(metertype.contains(ConstantApp.METERTYPE_THREEPHASE)){
-			 * //String yPhaseCurrentRelayId = "002";
-			 * //String bPhaseCurrentRelayId = "002";
-			 * selectedPhase = ConstantApp.SECOND_PHASE_DISPLAY_NAME;
-			 * voltage = getY_PhaseOutputVoltage();
-			 * current = getY_PhaseOutputCurrent();
-			 * String yPhaseCurrent = current;
-			 * //yPhaseCurrentRelayId = getTargetCurrentRelayId(selectedPhase, current);
-			 * 
-			 * //voltage = getTargetVoltageRms(selectedPhase, voltage);
-			 * //current = getTargetCurrentRms(selectedPhase, current);
-			 * //setY_PhaseOutputVoltageRms(voltage);
-			 * //setY_PhaseOutputCurrentRms(current);
-			 * 
-			 * 
-			 * selectedPhase = ConstantApp.THIRD_PHASE_DISPLAY_NAME;
-			 * voltage = getB_PhaseOutputVoltage();
-			 * current = getB_PhaseOutputCurrent();
-			 * String bPhaseCurrent = current;
-			 * //bPhaseCurrentRelayId = getTargetCurrentRelayId(selectedPhase, current);
-			 * //voltage = getTargetVoltageRms(selectedPhase, voltage);
-			 * //current = getTargetCurrentRms(selectedPhase, current);
-			 * //setB_PhaseOutputVoltageRms(voltage);
-			 * //setB_PhaseOutputCurrentRms(current);
-			 * //String maxCurrent =
-			 * GUIUtils.getMax(rPhaseCurrent,yPhaseCurrent,bPhaseCurrent);
-			 * //selectedPhase = ConstantApp.FIRST_PHASE_DISPLAY_NAME;
-			 * //currentRelayId = getTargetCurrentRelayId(selectedPhase, maxCurrent);//
-			 * added in version s4.0.4.6.3.2 - for voltage unbalance issue
-			 * //ApplicationLauncher.logger.
-			 * info("manipulatePowerSourceFeedbackVoltageRmsToAbsoluteValue : currentRelayId: "
-			 * + currentRelayId);
-			 * }
-			 */
-			// setSourceCurrentR_PhaseTapSelection(currentRelayId);
 
 		} catch (Exception e) {
 
@@ -1824,14 +1770,7 @@ public class DeviceDataManagerController {
 		float Current1 = Float.parseFloat(getR_PhaseOutputCurrent());
 		float Current2 = Float.parseFloat(getY_PhaseOutputCurrent());
 		float Current3 = Float.parseFloat(getB_PhaseOutputCurrent());
-		/*
-		 * float PF_InDegree1 =
-		 * Float.parseFloat(DisplayDataObj.getR_PhaseOutputPhase());
-		 * float PF_InDegree2 =
-		 * Float.parseFloat(DisplayDataObj.getY_PhaseOutputPhase());
-		 * float PF_InDegree3 =
-		 * Float.parseFloat(DisplayDataObj.getB_PhaseOutputPhase());
-		 */
+
 
 		float PF_InDegree1 = DeviceDataManagerController.get_PwrSrcR_PhaseDegreePhase();
 		float PF_InDegree2 = DeviceDataManagerController.get_PwrSrcY_PhaseDegreePhase();
@@ -1856,38 +1795,9 @@ public class DeviceDataManagerController {
 			PF_Value3 = Float.parseFloat(String.format("%.02f", (float) Math.cos(Math.toRadians(PF_InDegree3))));
 		} else if (getDeployedEM_ModelType().contains(ConstantApp.METERTYPE_REACTIVE)) {
 			ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :Reactive");
-			// PF_Value1 = Float.parseFloat(String.format("%.02f",
-			// (float)Math.sin(Math.toRadians(PF_InDegree1))));
-			// PF_Value2 = Float.parseFloat(String.format("%.02f",
-			// (float)Math.sin(Math.toRadians(PF_InDegree2))));
-			// PF_Value3 =
-			// Float.parseFloat(String.format("%.02f",(float)Math.sin(Math.toRadians(PF_InDegree3))));
 			PF_Value1 = Float.parseFloat(String.format("%.02f", (float) Math.sin(Math.toRadians(PF_InDegree1))));
 			PF_Value2 = Float.parseFloat(String.format("%.02f", (float) Math.sin(Math.toRadians(PF_InDegree2))));
 			PF_Value3 = Float.parseFloat(String.format("%.02f", (float) Math.sin(Math.toRadians(PF_InDegree3))));
-			// PF_Value1 = 1.0f;
-			// PF_Value2 = 1.0f;
-			// PF_Value3 = 1.0f;
-			/*
-			 * PF_Value1 = (float) Math.sqrt( (1- (PF_Value1*PF_Value1)) );
-			 * PF_Value2 = (float) Math.sqrt( (1- (PF_Value2*PF_Value2)) );
-			 * PF_Value3 = (float) Math.sqrt( (1- (PF_Value3*PF_Value3)) );
-			 * 
-			 * if(PF_Value1 == 0.0f){
-			 * ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :PF1-0.001");
-			 * PF_Value1 = 0.001f;
-			 * }
-			 * if(PF_Value2 == 0.0f){
-			 * ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :PF2-0.001");
-			 * PF_Value2 = 0.001f;
-			 * }
-			 * 
-			 * if(PF_Value3 == 0.0f){
-			 * ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :PF3-0.001");
-			 * PF_Value3 = 0.001f;
-			 * }
-			 */
-
 		}
 		ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :PF_Value1:" + PF_Value1);
 		ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :PF_Value2:" + PF_Value2);
@@ -1895,22 +1805,6 @@ public class DeviceDataManagerController {
 		ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :Power1:" + (Volt1 * Current1 * PF_Value1));
 		ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :Power2:" + (Volt2 * Current2 * PF_Value2));
 		ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :Power3:" + (Volt3 * Current3 * PF_Value3));
-
-		// double power = (Volt1 * Current1 )+(Volt2 * Current2 )+ (Volt3 * Current3 );
-		// double power = 1.732 *(Volt1 * Current1 );
-
-		// float power = (Volt1 * Current1 *
-		// (float)Math.cos(Math.toRadians(PF_InDegree1)) )+(Volt2 * Current2 *
-		// (float)Math.cos(Math.toRadians(PF_InDegree2)))+ (Volt3 * Current3 *
-		// (float)Math.cos(Math.toRadians(PF_InDegree3)));
-		// 1\float power = (Volt1 * Current1 )+(Volt2 * Current2 )+ (Volt3 * Current3 );
-
-		// float power = (Volt1 * Current1 * Math.acos(PF1) )+(Volt2 * Current2 *
-		// Math.acos(PF2))+ (Volt3 * Current3 * Math.acos(PF3));
-		// float power = (Volt1 * Current1 * PF1)+(Volt2 * Current2 * PF2)+ (Volt3 *
-		// Current3 * PF3);
-		// double RssConstantInWattHour =
-		// (ConstantRefStd.REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ*1000000*3600)/power;
 		double power = (Volt1 * Current1 * PF_Value1) + (Volt2 * Current2 * PF_Value2) + (Volt3 * Current3 * PF_Value3);
 
 		ApplicationLauncher.logger.debug("calculateRSS_ConstantV42 :Total Power :" + power);
@@ -1923,27 +1817,9 @@ public class DeviceDataManagerController {
 		// (ConstantRefStd.REF_STD_MAX_OUTPUT_FREQ_IN_MEGA_HERTZ*1000000*3600)/power;
 
 		long OutputConstantInWattHour = Math.abs((long) RssConstantInWattHour);
-		// System.out.println("Double RssConstantInWattHour : " +
-		// RssConstantInWattHour);
-		// System.out.println("Long OutputConstantInWattHour : " +
-		// OutputConstantInWattHour);
-		// ApplicationLauncher.logger.info("calculateRSS_Constantv42 in Watt
-		// Hour:"+Math.abs(OutputConstantInWattHour));
-		// return Math.abs(OutputConstantInWattHour);
+
 		ApplicationLauncher.logger.info("calculateRSS_Constantv42 in Watt Hour:" + OutputConstantInWattHour);
 
-		/*
-		 * long RssConstantInKWh = OutputConstantInWattHour*1000;
-		 * 
-		 * ApplicationLauncher.logger.
-		 * debug("LDU_SendCommandErrorSetting :RssConstantInKWh: "+String.valueOf(
-		 * RssConstantInKWh));
-		 * String LDU_FormatRSS_PulseRate =
-		 * GUIUtils.FormatPulseRate(String.valueOf(RssConstantInKWh));
-		 * OutputConstantInWattHour = RoundRefConst(LDU_FormatRSS_PulseRate);
-		 */
-		// ApplicationLauncher.logger.info("calculateRSS_Constantv42 in Watt Hour with
-		// Round:"+OutputConstantInWattHour);
 
 		return OutputConstantInWattHour;
 	}
@@ -1982,34 +1858,6 @@ public class DeviceDataManagerController {
 			return;
 		}
 
-		/*
-		 * if(ProcalFeatureEnable.KIGGS_REFSTD_CONNECTED){
-		 * 
-		 * if(ProcalFeatureEnable.KIGGS_REFSTD_AUTO_CALCULATION){
-		 * 
-		 * String manipulatedRSS_PulseConstantInWattHour =
-		 * SerialDataRefStdKiggs.manipulateRssPulseConstantInWattHour(
-		 * getRefStdSelectedVoltageTap(),getRefStdSelectedCurrentTap());
-		 * setRSSPulseRate(manipulatedRSS_PulseConstantInWattHour);
-		 * ApplicationLauncher.logger.
-		 * debug("SetPulseConstantDataWithCurrent: manipulatedRSS_PulseConstantInWattHour: "
-		 * +getRSSPulseRate());
-		 * return;
-		 * }
-		 * }
-		 */
-
-		// if(getDeployedEM_ModelType().contains(ConstantApp.METERTYPE_ACTIVE)){
-		// ApplicationLauncher.logger.debug("SetActiveReactivePulseConstant: Setting
-		// Active Pulse Constant:"+DisplayDataObj.RSS_ActivePulseConstant);
-		// DisplayDataObj.setRSSPulseRate(DisplayDataObj.RSS_ActivePulseConstant);
-		// if(getDeployedEM_CT_Type().equals(ConstantApp.METER_CT_TYPE_LTCT)){
-		// setRSSPulseRate(ConstantConfig.RSS_LTCT_ACTIVE_PULSE_CONSTANT_DEFAULT);
-
-		// commented below section, bcoz rms above 120V it is same, there is no 240 to
-		// 480 pulse constant change value
-		// per kigg requirement over phone - requested by Sundermurty- 10-Feb-2021
-		// reverted the changes on 10-Feb-2021- per Sundermurthy advice
 		if (voltageValue > ConstantRefStdConfig.RSS_LTCT_VOLTAGE_THRESHOLD_IN_AMPS_LEVEL_2) {
 			if (CurrentValue > ConstantRefStdConfig.RSS_LTCT_CURRENT_THRESHOLD_IN_AMPS_LEVEL_1) {
 				ApplicationLauncher.logger
@@ -3055,77 +2903,13 @@ public class DeviceDataManagerController {
 		ApplicationLauncher.logger.info("Extract_V_phase_From_TP_Name: testname_wo_type : " + testname_wo_type);
 		String volt_phase = "";
 		if (testname_wo_type.contains("U")) {
-			String[] test_params = testname_wo_type.split("-");
-			String phase = test_params[0];
+			testname_wo_type.split("-");
 			String[] volt_split = testname_wo_type.split(":");
 			volt_phase = volt_split[0];
 			ApplicationLauncher.logger.info("Extract_V_phase_From_TP_Name: testname_wo_type : " + volt_phase);
 		}
 		return volt_phase;
 	}
-
-	// public int get_no_of_devices_connected(){
-	// ApplicationLauncher.logger.info("get_no_of_devices_connected Invoked:");
-	// int MaximumNumberOfDeviceConnected =
-	// ProjectExecutionController.getListOfDevices().length();
-	// int count =0;
-	// //ApplicationLauncher.logger.info("MaximumNumberOfDeviceConnected: " +
-	// MaximumNumberOfDeviceConnected);
-	//
-	// int initialLduAddress = 1;
-	// if(ProcalFeatureEnable.RACK_HYBRID_MODE_ENABLED){
-	//
-	// if(getDeployedEM_ModelType().contains(ConstantApp.METERTYPE_SINGLEPHASE)){
-	// initialLduAddress =
-	// ProcalFeatureEnable.HYBRID_TOTAL_1PHASE_SUPPORTED_RACK_START_POSITION;
-	// MaximumNumberOfDeviceConnected = initialLduAddress +
-	// ProcalFeatureEnable.HYBRID_TOTAL_1PHASE_SUPPORTED_RACK_POSITIONS-1;
-	// }else
-	// if(getDeployedEM_ModelType().contains(ConstantApp.METERTYPE_THREEPHASE)){
-	// initialLduAddress =
-	// ProcalFeatureEnable.HYBRID_TOTAL_3PHASE_SUPPORTED_RACK_START_POSITION;
-	// MaximumNumberOfDeviceConnected = initialLduAddress +
-	// ProcalFeatureEnable.HYBRID_TOTAL_3PHASE_SUPPORTED_RACK_POSITIONS-1;
-	// }
-	// }
-	// for(int
-	// Address=initialLduAddress;Address<=MaximumNumberOfDeviceConnected;Address++){
-	// try {
-	// if(ProjectExecutionController.getListOfDevices().getBoolean(String.format("%02d",
-	// Address))){
-	// ApplicationLauncher.logger.info("get_no_of_devices_connected: Address: " +
-	// Address);
-	// count++;
-	// }
-	// } catch (JSONException e) {
-	//
-	// e.printStackTrace();
-	// ApplicationLauncher.logger.error("get_no_of_devices_connected :JSONException
-	// :"+ e.getMessage());
-	// }
-	// }
-	// ApplicationLauncher.logger.info("count: " + count);
-	//
-	// return count;
-	// }
-
-	/*
-	 * public float CalculateSTACurrent(){
-	 * ApplicationLauncher.logger.info("CalculateSTACurrent :Entry");
-	 * float RatedCurrent =
-	 * DeviceDataManagerController.getPwrSrcR_PhaseCurrentInFloat();//"240.0";
-	 * float CurrentPercentage =
-	 * DeviceDataManagerController.getPercentageOfCurrent();
-	 * 
-	 * float OutputCurrent = RatedCurrent*CurrentPercentage/100 ;
-	 * ApplicationLauncher.logger.info("Output Current: "+ OutputCurrent);
-	 * //String op_current = String.format("%.02f", OutputCurrent);
-	 * String op_current = String.format(ConstantMtePowerSource.CURRENT_RESOLUTION,
-	 * OutputCurrent);
-	 * OutputCurrent = Float.parseFloat(op_current);
-	 * return OutputCurrent;
-	 * }
-	 */
 
 	public float CalculateSTACurrent() {
 		ApplicationLauncher.logger.info("CalculateSTACurrent :Entry");
@@ -3267,12 +3051,12 @@ public class DeviceDataManagerController {
 
 	public String getLDU_STATimeDurationFormat() {
 
-		return this.STATimeDuration;
+		return DeviceDataManagerController.STATimeDuration;
 	}
 
 	public String getLscsLDU_STATimeDurationFormat() {
 
-		return this.STATimeDuration;
+		return DeviceDataManagerController.STATimeDuration;
 	}
 
 	public static void setR_PhaseOutputCurrent(Float Value) {
@@ -3475,7 +3259,7 @@ public class DeviceDataManagerController {
 
 	public String getLDU_CreepTimeDurationFormat() {
 
-		return this.CreepTimeDuration;
+		return DeviceDataManagerController.CreepTimeDuration;
 	}
 
 	public JSONObject getSkipReadingForAllDevices(ArrayList<Integer> rack_id, int skip_reading) {
@@ -4223,31 +4007,6 @@ public class DeviceDataManagerController {
 		DeviceDataManagerController.uacSelectProfileScreenList = uacSelectProfileScreenList;
 	}
 
-	/*
-	 * public boolean isMeterIdExistInBlackList(int lduAddress){
-	 * boolean status = false;
-	 * ApplicationLauncher.logger.debug("isMeterIdExistInBlackList: Entry" );
-	 * if(ConstantAppConfig.METER_ID_BLACKLIST_VALIDATION){
-	 * if (ConstantAppConfig.METER_ID_BLACKLISTED_LIST.size()>0){
-	 * String readMeterId = getDutSerialNumber(lduAddress);
-	 * ApplicationLauncher.logger.debug("isMeterIdExistInBlackList: readMeterId: " +
-	 * readMeterId );
-	 * 
-	 * if(ConstantAppConfig.METER_ID_BLACKLISTED_LIST.contains(readMeterId)){
-	 * ApplicationLauncher.logger.
-	 * debug("isMeterIdExistInBlackList: meter id found in black list: " +
-	 * readMeterId );
-	 * status = true;
-	 * return status;
-	 * }
-	 * }
-	 * 
-	 * }
-	 * 
-	 * return status;
-	 * }
-	 */
-
 	public static String getDutSerialNumberMap(int lduAddress) {
 		String serialNo = "";
 		try {
@@ -4269,22 +4028,6 @@ public class DeviceDataManagerController {
 			if (ConstantAppConfig.METER_ID_BLACKLISTED_LIST.size() > 0) {
 				String readMeterId = getDutSerialNumberMap(lduAddress);
 				ApplicationLauncher.logger.debug("isMeterIdExistInBlackList: readMeterId: " + readMeterId);
-				/*
-				 * for(int i=0; i< ConstantConfig.TOTAL_METER_ID_BLACKLISTED ; i++){
-				 * ApplicationLauncher.logger.
-				 * debug("isMeterIdExistInBlackList: ConstantConfig.METER_ID_BLACKLISTED_LIST.get(i): "
-				 * + ConstantConfig.METER_ID_BLACKLISTED_LIST.get(i) );
-				 * if(ConstantConfig.METER_ID_BLACKLISTED_LIST.get(i).equals((readMeterId))){
-				 * 
-				 * ApplicationLauncher.logger.
-				 * debug("isMeterIdExistInBlackList: meter id found in black list: " +
-				 * readMeterId );
-				 * status = true;
-				 * return status;
-				 * 
-				 * }
-				 * }
-				 */
 				if (ConstantAppConfig.METER_ID_BLACKLISTED_LIST.contains(readMeterId)) {
 					ApplicationLauncher.logger
 							.debug("isMeterIdExistInBlackList: meter id found in black list: " + readMeterId);
@@ -4305,23 +4048,6 @@ public class DeviceDataManagerController {
 			if (ConstantAppConfig.METER_ID_WHITELISTED_LIST.size() > 0) {
 				String readMeterId = getDutSerialNumberMap(lduAddress);
 				ApplicationLauncher.logger.debug("isMeterIdExistInWhiteList: readMeterId: " + readMeterId);
-				/*
-				 * for(int i=0; i< ConstantConfig.TOTAL_METER_ID_WHITELISTED ; i++){
-				 * ApplicationLauncher.logger.
-				 * debug("isMeterIdExistInWhiteList: ConstantConfig.METER_ID_WHITELISTED_LIST.get(i): "
-				 * + ConstantConfig.METER_ID_WHITELISTED_LIST.get(i) );
-				 * if(ConstantConfig.METER_ID_WHITELISTED_LIST.get(i).equals((readMeterId))){
-				 * 
-				 * ApplicationLauncher.logger.
-				 * debug("isMeterIdExistInWhiteList: meter id found in black list: " +
-				 * readMeterId );
-				 * status = true;
-				 * return status;
-				 * 
-				 * }
-				 * }
-				 */
-
 				if (ConstantAppConfig.METER_ID_WHITELISTED_LIST.contains(readMeterId)) {
 					ApplicationLauncher.logger
 							.debug("isMeterIdExistInWhiteList: meter id found in black list: " + readMeterId);
@@ -4351,180 +4077,6 @@ public class DeviceDataManagerController {
 
 		return status;
 	}
-
-	// public boolean isDutBlackListedOrAlreadyTested(Iterator<DeploymentDataModel>
-	// itr){
-	// boolean status = false;
-	// //clearDutSerialNumber();
-	// clearDutSerialNumberMap();
-	// String dutSerialNo = "";
-	// int lduAddress = 0;
-	// ArrayList<Integer> selectedLduAddressList = new ArrayList<Integer>();
-	//
-	// try{
-	// while (itr.hasNext()) {
-	// DeploymentDataModel dataElement = itr.next();
-	//
-	// if (dataElement.getIsSelected()) {
-	// dutSerialNo = dataElement.getSerialno();
-	// lduAddress = Integer.parseInt(dataElement.getrackid());
-	// selectedLduAddressList.add(lduAddress);
-	// setDutSerialNumberMap(dutSerialNo,lduAddress);
-	//
-	// }
-	//
-	// }
-	// }catch (Exception e){
-	// e.printStackTrace();
-	// ApplicationLauncher.logger.error("isDutBlackListedOrAlreadyTested: Exception:
-	// "+e.getMessage());
-	// }
-	// boolean blackListedMeterIdFoundOverAllStatus = false;
-	// boolean meterIdAlreadyCalibratedFoundOverAllStatus = false;
-	// boolean emptyMeterIdFoundOverAllStatus = false;
-	// ArrayList<String> blackListedMeterIdFoundList = new ArrayList<String>();
-	// ArrayList<String> meterIdAlreadyCalibratedFoundList = new
-	// ArrayList<String>();
-	// ArrayList<String> emptyMeterIdFoundList = new ArrayList<String>();
-	//
-	// for(int i = 0 ;i<selectedLduAddressList.size();i++){
-	// lduAddress = selectedLduAddressList.get(i);
-	// ApplicationLauncher.logger.debug("isDutBlackListedOrAlreadyTested :
-	// lduAddress : " + lduAddress);
-	// boolean blackListedMeterIdFound =isMeterIdExistInBlackList(lduAddress);
-	// if(blackListedMeterIdFound){
-	// blackListedMeterIdFoundList.add("Rack Position-" + lduAddress + " :
-	// "+getDutSerialNumberMap(lduAddress));
-	// blackListedMeterIdFoundOverAllStatus = true;
-	//
-	// }
-	// boolean whiteListedMeterIdFound =isMeterIdExistInWhiteList(lduAddress);
-	// if(!whiteListedMeterIdFound){
-	// boolean meterIdAlreadyTestedFound =
-	// isMeterIdExistInAlreadyTestedList(lduAddress);
-	// if(meterIdAlreadyTestedFound){
-	// meterIdAlreadyCalibratedFoundList.add("Rack Position-" + lduAddress + " : "+
-	// getDutSerialNumberMap(lduAddress));
-	// meterIdAlreadyCalibratedFoundOverAllStatus = true;
-	//
-	// }
-	// }
-	// if(ConstantAppConfig.METER_ID_VALIDATE_FOR_EMPTY){
-	// String readMeterId = getDutSerialNumberMap(lduAddress);
-	// if(readMeterId.isEmpty()){
-	// emptyMeterIdFoundOverAllStatus = true;
-	// emptyMeterIdFoundList.add("Rack Position-" + lduAddress );//+ " :
-	// "+String.valueOf(lduAddress));
-	// }
-	// }
-	// }
-	//
-	// if((blackListedMeterIdFoundOverAllStatus) ||
-	// (meterIdAlreadyCalibratedFoundOverAllStatus) ||
-	// (emptyMeterIdFoundOverAllStatus)){
-	// String meterIdList = "";
-	// if(blackListedMeterIdFoundOverAllStatus) {
-	// status = true;
-	// for (int i = 0; i < blackListedMeterIdFoundList.size(); i++) {
-	//
-	// meterIdList = meterIdList + "\n"+ blackListedMeterIdFoundList.get(i);
-	// }
-	// ApplicationLauncher.logger.info("isDutBlackListedOrAlreadyTested: invoking
-	// exit process due to black listed meter id found");
-	// ApplicationLauncher.logger.debug("isDutBlackListedOrAlreadyTested:
-	// ERROR_CODE_5001 :" + ErrorCodeMapping.ERROR_CODE_5001_MSG + "\n\nMeter Id: "
-	// + meterIdList + " : Prompted");
-	// WindowManager.InformUser(ErrorCodeMapping.ERROR_CODE_5001,
-	// ErrorCodeMapping.ERROR_CODE_5001_MSG + "\n\nMeter Id: " +
-	// meterIdList,AlertType.ERROR);
-	// ApplicationHomeController.updateBottomSecondaryStatus("Aborting execution:
-	// Meter id -black list",ConstantApp.LEFT_STATUS_INFO);
-	//
-	// }
-	//
-	//
-	//
-	// if(meterIdAlreadyCalibratedFoundOverAllStatus) {
-	// status = true;
-	// meterIdList = "";
-	// for (int i = 0; i < meterIdAlreadyCalibratedFoundList.size(); i++) {
-	//
-	// meterIdList = meterIdList + "\n"+ meterIdAlreadyCalibratedFoundList.get(i);
-	// }
-	// ApplicationLauncher.logger.info("isDutBlackListedOrAlreadyTested: invoking
-	// exit process due to meter id found already calibrated");
-	// ApplicationLauncher.logger.debug("isDutBlackListedOrAlreadyTested:
-	// ERROR_CODE_5002 :" + ErrorCodeMapping.ERROR_CODE_5002_MSG + "\n\nMeter Id: "
-	// + meterIdList + " : Prompted");
-	// WindowManager.InformUser(ErrorCodeMapping.ERROR_CODE_5002,
-	// ErrorCodeMapping.ERROR_CODE_5002_MSG + "\n\nMeter Id: " +
-	// meterIdList,AlertType.ERROR);
-	// ApplicationHomeController.updateBottomSecondaryStatus("Aborting execution:
-	// Meter id -Already calibrated List",ConstantApp.LEFT_STATUS_INFO);
-	//
-	// }
-	// if(ConstantAppConfig.METER_ID_VALIDATE_FOR_EMPTY){
-	// if(emptyMeterIdFoundOverAllStatus) {
-	// status = true;
-	// meterIdList = "";
-	// for (int i = 0; i < emptyMeterIdFoundList.size(); i++) {
-	//
-	// meterIdList = meterIdList + "\n"+ emptyMeterIdFoundList.get(i);
-	// }
-	// ApplicationLauncher.logger.info("isDutBlackListedOrAlreadyTested: invoking
-	// exit process due to meter id found empty");
-	// ApplicationLauncher.logger.debug("isDutBlackListedOrAlreadyTested:
-	// ERROR_CODE_5003 :" + ErrorCodeMapping.ERROR_CODE_5003_MSG + "\n\nMeter Id: "
-	// + meterIdList + " : Prompted");
-	// WindowManager.InformUser(ErrorCodeMapping.ERROR_CODE_5003,
-	// ErrorCodeMapping.ERROR_CODE_5003_MSG + "\n\nMeter Id: " +
-	// meterIdList,AlertType.ERROR);
-	// ApplicationHomeController.updateBottomSecondaryStatus("Aborting execution:
-	// Empty Meter id or error in reading meter id
-	// found",ConstantApp.LEFT_STATUS_INFO);
-	//
-	// }
-	// }
-	// }
-	//
-	//
-	// return status;
-	// }
-
-	/*
-	 * public static String getDutSerialNumber(int lduAddress) {
-	 * String serialNo = "";
-	 * try{
-	 * if(dutSerialNumber.containsKey(lduAddress)){
-	 * serialNo = dutSerialNumber.get(lduAddress);
-	 * }
-	 * } catch (Exception e) {
-	 * 
-	 * e.printStackTrace();
-	 * ApplicationLauncher.logger.error("getDutSerialNumber : Exception :"+
-	 * e.getMessage());
-	 * }
-	 * return serialNo;
-	 * }
-	 */
-	/*
-	 * public static void setDutSerialNumber( String dutSerialNo, int lduAddress) {
-	 * 
-	 * ApplicationLauncher.logger.debug("setDutSerialNumber : lduAddress: " +
-	 * lduAddress);
-	 * ApplicationLauncher.logger.debug("setDutSerialNumber : dutSerialNo: " +
-	 * dutSerialNo);
-	 * DeviceDataManagerController.dutSerialNumberMap.put(lduAddress, dutSerialNo);
-	 * 
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public static void clearDutSerialNumber() {
-	 * dutSerialNumber.clear();
-	 * }
-	 */
 
 	public static String getLastSetPowerSourceFrequency() {
 		return lastSetPowerSourceFrequency;
@@ -5020,20 +4572,8 @@ public class DeviceDataManagerController {
 
 	public void setReportProfileMeterMetaDataFilterService(
 			ReportProfileMeterMetaDataFilterService reportProfileMeterMetaDataFilterService) {
-		this.reportProfileMeterMetaDataFilterService = reportProfileMeterMetaDataFilterService;
+		DeviceDataManagerController.reportProfileMeterMetaDataFilterService = reportProfileMeterMetaDataFilterService;
 	}
-
-	/*
-	 * public static ClassPathXmlApplicationContext getSpringAppCtx() {
-	 * return springAppCtx;
-	 * }
-	 * 
-	 * 
-	 * public static void setSpringAppCtx(ClassPathXmlApplicationContext
-	 * springAppCtx) {
-	 * DeviceDataManagerController.springAppCtx = springAppCtx;
-	 * }
-	 */
 
 	public static ReportProfileManageService getReportProfileManageService() {
 		return reportProfileManageService;
@@ -5224,16 +4764,6 @@ public class DeviceDataManagerController {
 		DeviceDataManagerController.readProPowerAllDataNoOfVariables = readProPowerAllDataNoOfVariables;
 	}
 
-	/*
-	 * public static boolean isRefStdReadData() {
-	 * return refStdReadData;
-	 * }
-	 * 
-	 * public static void setRefStdReadData(boolean refStdReadData) {
-	 * DeviceDataManagerController.refStdReadData = refStdReadData;
-	 * }
-	 */
-
 	public static ArrayList<Boolean> getStepRunModeAtleastOneResultReadCompleted() {
 		return stepRunModeAtleastOneResultReadCompleted;
 	}
@@ -5401,26 +4931,10 @@ public class DeviceDataManagerController {
 					xSSFworkbook.close();
 					fileOut.close();
 
-					// String pdfFileName = reportFileNameWithSerialNo;
-
-					// ApplicationHomeController.update_left_status(fileName +"
-					// Exported",ConstantApp.LEFT_STATUS_DEBUG);
-					// promptUserToOpenReportOutputFolderPath(pdfFileName,file_path);
-					// ApplicationLauncher.logger.info("exportAllResultToExcelV2: Export Successful-
-					// " +reportFileName+" generated successfully- Prompted");
-
-					// WindowManager.InformUser("Export Success", reportFileName +" exported
-					// successfully", AlertType.INFORMATION);
 				} catch (Exception e) {
 					e.printStackTrace();
-					// ApplicationLauncher.logger.error("exportAllResultToExcelV2: Export failed- "
-					// +fileName+" failed due to " + e.getMessage()+"- Prompted");
-
-					// WindowManager.InformUser("Export failed", fileName +" failed due to below
-					// reason\n\n" + e.getMessage(), AlertType.ERROR);
 				}
 
-				// System.out.println("updateMetricsOnExcelLogFile: Success");
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -5470,22 +4984,8 @@ public class DeviceDataManagerController {
 			spreadsheet = xSSFworkbook.createSheet("Result");
 			// spreadsheet = xSSFworkbook.getSheetAt(0);//.createSheet("Result");
 
-			/*
-			 * } catch (FileNotFoundException e1) {
-			 * 
-			 * e1.printStackTrace();
-			 * }
-			 */
-			// xSSFworkbook.setActiveSheet(1);
-			int userSelectedRow = 4;// 0
-			int userSelectedColumn = 0;// 1;//0;
-			int userSelectedInitForAutoSizeColumn = userSelectedColumn;
-
 			int meterSerialNoRow = 0;// 1;
 			int meterSerialNoHeaderColumn = 2;// userSelectedColumn+2 ;//3;
-			int meterSerialNoValueColumn = 3;// userSelectedColumn+3;//4;
-
-			int projectDetailTimeStampHeaderColumn = 4;// userSelectedColumn+4;//5;
 			int projectDetailTimeStampValueColumn = 6;// userSelectedColumn+5;//6;
 
 			int dateValuePrintRow = 1;
@@ -5566,127 +5066,6 @@ public class DeviceDataManagerController {
 			spreadsheet.createFreezePane(2, 2);
 
 			setPresentCursorRowNo(new AtomicInteger(1));
-
-			// row.createCell(meterSerialNoValueColumn).setCellValue("test1");
-			// row.getCell(meterSerialNoValueColumn).setCellStyle(style);
-			// meterSerialNoHeaderColumn++;
-
-			// spreadsheet.addMergedRegion(rowFrom ,rowTo, colFrom, colTo);
-			// spreadsheet.addMergedRegion
-			// (meterSerialNoRow,meterSerialNoRow,projectDetailTimeStampValueColumn,(projectDetailTimeStampValueColumn+1));
-
-			/*
-			 * row.createCell(projectDetailTimeStampValueColumn+1);
-			 * spreadsheet.addMergedRegion(new
-			 * CellRangeAddress(meterSerialNoRow,meterSerialNoRow,
-			 * projectDetailTimeStampValueColumn,projectDetailTimeStampValueColumn+1));
-			 * 
-			 * row.createCell(projectDetailTimeStampValueColumn+1);
-			 * row.createCell(projectDetailTimeStampValueColumn).setCellValue(reportFileName
-			 * .replace(".xlsx", ""));
-			 * row.getCell(projectDetailTimeStampValueColumn).setCellStyle(style);
-			 * row.getCell(projectDetailTimeStampValueColumn+1).setCellStyle(style);
-			 */
-
-			// row = spreadsheet.createRow(dateValuePrintRow);//0);
-
-			/*
-			 * row.createCell(dateHeaderPrintColumn).setCellValue("Date:");
-			 * row.getCell(dateHeaderPrintColumn).setCellStyle(headerStyle);
-			 * 
-			 * row.createCell(dateValuePrintColumn).setCellValue(projectDate);
-			 * row.getCell(dateValuePrintColumn).setCellStyle(style);
-			 */
-			// row = spreadsheet.createRow(userSelectedRow);
-
-			// spreadsheet.getRange("A1").getColumns().autoFit();
-
-			/*
-			 * for (int j = 0; j < result_table_view.getColumns().size(); j++) {
-			 * row.createCell(userSelectedColumn+j).setCellValue(result_table_view.
-			 * getColumns().get(j).getText());
-			 * 
-			 * 
-			 * row.getCell(userSelectedColumn+j).setCellStyle(headerStyle);
-			 * 
-			 * ApplicationLauncher.logger.debug("exportAllResultToExcelV2: loop1: "
-			 * +result_table_view.getColumns().get(j).getText());
-			 * }
-			 * 
-			 * row.createCell(result_table_view.getColumns().size()+userSelectedColumn).
-			 * setCellValue("Occurance Status");
-			 * row.getCell(result_table_view.getColumns().size()+userSelectedColumn).
-			 * setCellStyle(headerStyle);
-			 * row.createCell(result_table_view.getColumns().size()+userSelectedColumn+1).
-			 * setCellValue("Restoration Status");
-			 * row.getCell(result_table_view.getColumns().size()+userSelectedColumn+1).
-			 * setCellStyle(headerStyle);
-			 * 
-			 * //style.setFillForegroundColor(IndexedColors.WHITE.getIndex());
-			 * for (int i = 0; i < 2; i++) {
-			 * row = spreadsheet.createRow(userSelectedRow +i+1 );//i + 1);
-			 * //ApplicationLauncher.logger.debug("exportAllResultToExcelV2: loop2-A: ");
-			 * for (int j = 0; j < 4; j++) {
-			 * //if(result_table_view.getColumns().get(j).getCellData(i) != null) {
-			 * row.createCell(j+userSelectedColumn).setCellValue("H-"+i+"-"+j);
-			 * row.getCell(userSelectedColumn+j).setCellStyle(style);
-			 * //ApplicationLauncher.logger.debug("exportAllResultToExcelV2: loop2-B: "
-			 * +result_table_view.getColumns().get(j).getCellData(i).toString());
-			 * }
-			 * else {
-			 * row.createCell(j).setCellValue("");
-			 * }
-			 * }
-			 * }
-			 */
-
-			/*
-			 * for (int i = 0; i < result_table_view.getItems().size(); i++) {
-			 * //row = spreadsheet.createRow(i + 1);
-			 * row = spreadsheet.getRow(userSelectedRow+i+1);//i + 1);
-			 * //ApplicationLauncher.logger.debug("exportAllResultToExcelV2: loop2-D: ");
-			 * for (int j = 3; j < result_table_view.getColumns().size(); j++) {
-			 * if(result_table_view.getColumns().get(j).getCellData(i) != null) {
-			 * 
-			 * if(result_table_view.getColumns().get(j).getCellData(i).toString().startsWith
-			 * (ConstantReport.RESULT_STATUS_PASS)) {
-			 * row.createCell(j+2+userSelectedColumn).setCellValue("Pass");
-			 * }else
-			 * if(result_table_view.getColumns().get(j).getCellData(i).toString().startsWith
-			 * (ConstantReport.RESULT_STATUS_FAIL)) {
-			 * row.createCell(j+2+userSelectedColumn).setCellValue("Fail");
-			 * }else {
-			 * row.createCell(j+2+userSelectedColumn).setCellValue("");
-			 * }
-			 * row.getCell(userSelectedColumn+j+2).setCellStyle(style);
-			 * 
-			 * //ApplicationLauncher.logger.debug("exportAllResultToExcelV2: loop2-E: "
-			 * +result_table_view.getColumns().get(j).getCellData(i).toString());
-			 * }
-			 * else {
-			 * row.createCell(j+2+userSelectedColumn).setCellValue("");
-			 * }
-			 * }
-			 * }
-			 * 
-			 * for(int i=userSelectedInitForAutoSizeColumn; i<
-			 * (userSelectedInitForAutoSizeColumn+8);i++) {
-			 * spreadsheet.autoSizeColumn(i);
-			 * }
-			 */
-
-			// DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
-
-			// String fileName =
-			// "MetricsLog.xlsx";//ConstantReport.ALL_PROJECT_REPORT_FILENAME;
-			// String reportFileName = getProjectFileName();
-			// ApplicationLauncher.logger.info("exportAllResultToExcelV2 :
-			// reportFileNameWithSerialNo:" + reportFileNameWithSerialNo);
-			// ApplicationLauncher.logger.info("exportAllResultToExcelV2 : fileName:" +
-			// fileName);
-
-			// String file_path =
-			// "c:\\Reports\\";//getSaveFilePath("")//ConstantConfig.SAVE_FILE_LOCATION);//ConstantReport.SAVE_FILE_LOCATION);
 			try {
 				FileOutputStream fileOut = new FileOutputStream(file_path + fileName);// fileName);
 				// workbook.write(fileOut);
@@ -5694,31 +5073,11 @@ public class DeviceDataManagerController {
 				xSSFworkbook.close();
 				fileOut.close();
 
-				// String pdfFileName = reportFileNameWithSerialNo;
-
-				// ApplicationHomeController.update_left_status(fileName +"
-				// Exported",ConstantApp.LEFT_STATUS_DEBUG);
-				// promptUserToOpenReportOutputFolderPath(pdfFileName,file_path);
-				// ApplicationLauncher.logger.info("exportAllResultToExcelV2: Export Successful-
-				// " +reportFileName+" generated successfully- Prompted");
-
-				// WindowManager.InformUser("Export Success", reportFileName +" exported
-				// successfully", AlertType.INFORMATION);
 			} catch (Exception e) {
 				e.printStackTrace();
-				// ApplicationLauncher.logger.error("exportAllResultToExcelV2: Export failed- "
-				// +fileName+" failed due to " + e.getMessage()+"- Prompted");
 
-				// WindowManager.InformUser("Export failed", fileName +" failed due to below
-				// reason\n\n" + e.getMessage(), AlertType.ERROR);
 			}
-		} else {
-			// ApplicationLauncher.logger.info("exportAllResultToExcelV2: No project
-			// selected- No Project is selected - Prompted");
-			// WindowManager.InformUser("No project selected", "No Project selected",
-			// AlertType.ERROR);
 		}
-
 	}
 
 	public static AtomicInteger getPresentCursorRowNo() {
@@ -5736,50 +5095,6 @@ public class DeviceDataManagerController {
 	public static void setPresentMetricLogFileName(String presentMetricLogFileName) {
 		DeviceDataManagerController.presentMetricLogFileName = presentMetricLogFileName;
 	}
-
-	// public void updateMetricLogFile( ) {
-	//
-	//
-	// String file_path = "c:\\Reports\\Metrics\\";
-	// String fileName = getPresentMetricLogFileName();
-	// /*String targetVoltage = getR_PhaseOutputVoltage();
-	// String targetCurrent = getR_PhaseOutputCurrent();*/
-	// String actualVoltage = ProjectExecutionController.getFeedbackR_phaseVolt();
-	// String actualCurrent =
-	// ProjectExecutionController.getFeedbackR_phaseCurrent();
-	//
-	// String targetVoltage = getMetricsLogTargetVoltage();
-	// String targetCurrent = getMetricsLogTargetCurrent();
-	// String actualPower = ProjectExecutionController.getFeedbackR_activePower();
-	// String actualPf = ProjectExecutionController.getFeedbackR_powerFactor();
-	// long presentTimeInEpochMilliSec = Instant.now().toEpochMilli();
-	// if(getMetricsLogTestPointStartingEpochTimeInMSec()!=0){
-	// long diffInMSec = presentTimeInEpochMilliSec -
-	// getMetricsLogTestPointStartingEpochTimeInMSec();
-	// String timeInMilliSec = String.valueOf(diffInMSec);
-	// updateMetricsOnExcelLogFile(presentTimeInEpochMilliSec, timeInMilliSec,
-	// file_path, fileName, targetVoltage,targetCurrent,
-	// actualVoltage, actualCurrent, actualPower, actualPf);
-	// ApplicationLauncher.logger.debug("updateMetricLogFile:
-	// getPreviousMetricLogEpochTimeInMSec: " +
-	// getMetricsLogTestPointStartingEpochTimeInMSec());
-	// ApplicationLauncher.logger.debug("updateMetricLogFile: now: " +
-	// presentTimeInEpochMilliSec);
-	// ApplicationLauncher.logger.debug("updateMetricLogFile: diffInMSec: " +
-	// diffInMSec);
-	// ApplicationLauncher.logger.debug("updateMetricLogFile: getMetricsLogCounter:
-	// " + getMetricsLogCounter());
-	// if(getMetricsLogCounter()==0){
-	// ApplicationLauncher.logger.debug("updateMetricLogFile: Loading next test
-	// point" );
-	// ProjectExecutionController.loadNextTestPointTask();
-	// }
-	// decrementMetricsLogCounter();
-	// }
-	// //setPreviousMetricLogEpochTimeInMSec(now);
-	//
-	//
-	// }
 
 	public static long getMetricsLogTestPointStartingEpochTimeInMSec() {
 		return metricsLogTestPointStartingEpochTimeInMSec;
@@ -5843,11 +5158,11 @@ public class DeviceDataManagerController {
 	}
 
 	public void setMetricsLogAcceptedLowerLimit(float metricsLogAcceptedLowerLimit) {
-		this.metricsLogAcceptedLowerLimit = metricsLogAcceptedLowerLimit;
+		DeviceDataManagerController.metricsLogAcceptedLowerLimit = metricsLogAcceptedLowerLimit;
 	}
 
 	public void setMetricsLogAcceptedUpperLimit(float metricsLogAacceptedUpperLimit) {
-		this.metricsLogAcceptedUpperLimit = metricsLogAacceptedUpperLimit;
+		DeviceDataManagerController.metricsLogAcceptedUpperLimit = metricsLogAacceptedUpperLimit;
 	}
 
 	public static String getCalibModeRphaseVoltageTarget() {
@@ -5917,16 +5232,4 @@ public class DeviceDataManagerController {
 	public static void setDutCmdManagerV3(DutCmdManager dutCmdManagerV3) {
 		DeviceDataManagerController.dutCmdManagerV3 = dutCmdManagerV3;
 	}
-
-	/*
-	 * public static SerialPortManagerDutCmd_V3 getSerialPortManagerDutCmd_V2() {
-	 * return serialPortManagerDutCmd_V2;
-	 * }
-	 * 
-	 * public static void setSerialPortManagerDutCmd_V2(SerialPortManagerDutCmd_V3
-	 * serialPortManagerDut_V2) {
-	 * DeviceDataManagerController.serialPortManagerDutCmd_V2 =
-	 * serialPortManagerDut_V2;
-	 * }
-	 */
 }

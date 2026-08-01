@@ -1,14 +1,12 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.tasnetwork.calibration.conveyor.AsyncHttpClient.AsyncClientManager;
@@ -23,9 +21,9 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Alert.AlertType;
 
 public class FirmwareUpgradeController implements Initializable {
 

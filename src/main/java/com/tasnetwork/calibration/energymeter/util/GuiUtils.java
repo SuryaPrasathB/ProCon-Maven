@@ -1,26 +1,5 @@
 package com.tasnetwork.calibration.energymeter.util;
 
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
-import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
-import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
-import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
-import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
-
-import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Skin;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -39,13 +18,27 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TimeZone;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+
+import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
+import com.tasnetwork.calibration.energymeter.constant.ConstantApp;
+import com.tasnetwork.calibration.energymeter.constant.ConstantAppConfig;
+import com.tasnetwork.calibration.energymeter.constant.ConstantReport;
+import com.tasnetwork.calibration.energymeter.constant.ConstantReportV2;
+import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class GuiUtils {
 
@@ -271,100 +264,14 @@ public class GuiUtils {
 
 	public static boolean Validate_voltage(String voltage) {
 		boolean valid_status = false;
-		// ApplicationLauncher.logger.info("Validate_voltage 1" );
 
-		// if(!voltage.isEmpty()){
-		// //ApplicationLauncher.logger.info("Validate_voltage 1" );
-		// try{
-		// float volt = Float.parseFloat(voltage);
-		// String EM_CT_Type= ProjectController.getProjectEM_CT_Type();
-		// if(EM_CT_Type.equals(ConstantApp.METER_CT_TYPE_LTCT)){
-		// if((volt >= ConstantAppConfig.LTCT_VOLT_MIN) &&
-		// (volt <= ConstantAppConfig.LTCT_VOLT_MAX)){
-		// valid_status = true;
-		// }else {
-		// ApplicationLauncher.logger.info("Validate_voltage: LTCT voltage is not with
-		// in acceptable limit. Kindly check the config file : input voltage:" +voltage
-		// + ": ConfigProperty.VOLT_MIN:" + ConstantAppConfig.LTCT_VOLT_MIN + " :
-		// ConfigProperty.VOLT_MAX:"+ConstantAppConfig.LTCT_VOLT_MAX);
-
-		// }
-		// }else if(EM_CT_Type.equals(ConstantApp.METER_CT_TYPE_HTCT)){
-		// //ApplicationLauncher.logger.info("Validate_voltage 2" );
-		// if((volt >= ConstantAppConfig.HTCT_VOLT_MIN) &&
-		// (volt <= ConstantAppConfig.HTCT_VOLT_MAX)){
-		// valid_status = true;
-		// }else {
-		// ApplicationLauncher.logger.info("Validate_voltage: LTCT voltage is not with
-		// in acceptable limit. Kindly check the config file : input voltage:" +voltage
-		// + ": ConfigProperty.VOLT_MIN:" + ConstantAppConfig.LTCT_VOLT_MIN + " :
-		// ConfigProperty.VOLT_MAX:"+ConstantAppConfig.LTCT_VOLT_MAX);
-
-		// }
-		// }
-		// }
-		// catch(Exception e){
-		// valid_status = false;
-		// e.printStackTrace();
-		// ApplicationLauncher.logger.error("Validate_voltage: Exception:"
-		// +e.getMessage());
-		// ApplicationLauncher.logger.info("Validate_voltage: voltage is not a valid
-		// float value : input voltage:" +voltage);
-
-		// }
-		// }else{
-		// ApplicationLauncher.logger.info("Validate_voltage: voltage is empty");
-
-		// }
 		return valid_status;
 
 	}
 
 	public static boolean Validate_current(String current) {
 		boolean valid_status = false;
-		// if(!current.isEmpty()){
-		// try{
-		// float i_current = Float.parseFloat(current);
-		// String EM_CT_Type= ProjectController.getProjectEM_CT_Type();
-		// if(EM_CT_Type.equals(ConstantApp.METER_CT_TYPE_LTCT)){
-		// if((i_current >= ConstantAppConfig.LTCT_CURRENT_MIN) &&
-		// (i_current <= ConstantAppConfig.LTCT_CURRENT_MAX)){
-		// valid_status = true;
-		// }else {
-		// ApplicationLauncher.logger.info("Validate_current: LTCT current is not with
-		// in acceptable limit. Kindly check the config file : input current:" +current
-		// + ": ConfigProperty.CURRENT_MIN:" + ConstantAppConfig.LTCT_CURRENT_MIN + " :
-		// ConfigProperty.CURRENT_MAX:"+ConstantAppConfig.LTCT_CURRENT_MAX);
 
-		// }
-		// }else if(EM_CT_Type.equals(ConstantApp.METER_CT_TYPE_HTCT)){
-		// if((i_current >= ConstantAppConfig.HTCT_CURRENT_MIN) &&
-		// (i_current <= ConstantAppConfig.HTCT_CURRENT_MAX)){
-		// valid_status = true;
-		// }else {
-		// ApplicationLauncher.logger.info("Validate_current: HTCT current is not with
-		// in acceptable limit. Kindly check the config file : input current:" +current
-		// + ": ConfigProperty.CURRENT_MIN:" + ConstantAppConfig.HTCT_CURRENT_MIN + " :
-		// ConfigProperty.CURRENT_MAX:"+ConstantAppConfig.HTCT_CURRENT_MAX);
-
-		// }
-
-		// }
-
-		// }
-		// catch(Exception e){
-		// valid_status = false;
-		// e.printStackTrace();
-		// ApplicationLauncher.logger.error("Validate_current: Exception:"
-		// +e.getMessage());
-		// ApplicationLauncher.logger.info("Validate_current: current is not a valid
-		// float value : input current:" +current);
-
-		// }
-		// }else {
-		// ApplicationLauncher.logger.info("Validate_current: current is empty");
-
-		// }
 		return valid_status;
 
 	}
@@ -999,24 +906,12 @@ public class GuiUtils {
 	}
 
 	public static String calculatePowerFactorWithDegree(String degreeValue, String displayFormat) {
-		// String displayFormat = ConstantApp.DISPLAY_PHASE_ANGLE_DEGREE_RESOLUTION;
-		// ApplicationLauncher.logger.debug("calculateDegreeWithPf: pfValue: "+
-		// pfValue);
-		// String degree =
-		// String.valueOf(Math.acos(Math.toDegrees(Double.parseDouble(pfValue))));
-		// double pfValue = Math.toDegrees(Math.acos(Double.parseDouble(degreeValue)));
-		// double pfValue = Math.cos(Math.toDegrees(Double.parseDouble(degreeValue)));
-		// double pfValue = Math.cos(Math.toDegrees(Double.parseDouble(degreeValue))*
-		// Math.PI);
-		// double pfValue = Math.acos(Math.toDegrees(Double.parseDouble(degreeValue))*
-		// Math.PI);NAN
-		// double pfValue = Math.cos(Math.toDegrees(Double.parseDouble(degreeValue)));
+
 		double pfValue = Math.cos(Math.toRadians(Double.parseDouble(degreeValue)));
 		// double pfValue =
 		// Math.acos(Math.toRadians(Double.parseDouble(degreeValue)));NAN
 		String pfValueStr = String.format(displayFormat, pfValue);
-		// String degreeStr =
-		// String.valueOf(Math.toDegrees(Math.acos(Double.parseDouble(pfValue))));
+
 		ApplicationLauncher.logger.debug(
 				"calculatePowerFactorWithDegree: degreeValue: " + degreeValue + " - > pfValueStr: " + pfValueStr);
 		return pfValueStr;
@@ -1079,7 +974,7 @@ public class GuiUtils {
 		String timeInMsec = "0";
 
 		try {
-			if (NumberUtils.isNumber(degree)) {
+			if (NumberUtils.isCreatable(degree)) {
 				int inputTime = (int) (((Float.valueOf(degree) / 360.0) * 20.0) * multiplierValue);
 				timeInMsec = String.valueOf(inputTime);
 				ApplicationLauncher.logger.debug(

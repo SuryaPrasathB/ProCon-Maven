@@ -1,22 +1,18 @@
 package com.tasnetwork.calibration.conveyor.plc;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
-import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
-import com.tasnetwork.calibration.energymeter.util.ErrorCodeMapping;
 
 import de.re.easymodbus.exceptions.ModbusException;
 import de.re.easymodbus.modbusclient.ModbusClient;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
 
 public class ModbusTcpClient {
 	public static Logger logger = Logger.getLogger(ModbusTcpClient.class.getPackage().getName());
@@ -36,10 +32,6 @@ public class ModbusTcpClient {
 	private volatile boolean plcSemLock = false;
 
 	private boolean readStartSuccess = false;
-	private boolean readStartFailed = false;
-	private boolean readStopSuccess = false;
-	private boolean readStopFailed = false;
-	private boolean readOverCurrent = false;
 	private volatile boolean readFaultOccured = false;
 
 	public String getIpAddress() {
@@ -99,7 +91,6 @@ public class ModbusTcpClient {
 	}
 
 	public void setReadStopSuccess(boolean readStopSuccess) {
-		this.readStopSuccess = readStopSuccess;
 	}
 
 	public void setReadFaultOccured(boolean readFaultOccured) {
@@ -244,8 +235,6 @@ public class ModbusTcpClient {
 				ModbusTcpClient.logger.debug("Start Timer - On Complete Fail: " + modbusClient.ReadCoils(18, 1)[0]);
 				ModbusTcpClient.logger.debug("Stop Timer - Off Complete Fail: " + modbusClient.ReadCoils(19, 1)[0]);
 
-				int numberOfBitsToRead = 1;
-
 				status = true;
 
 			} else {
@@ -298,8 +287,6 @@ public class ModbusTcpClient {
 				// ModbusTcpClient.logger.debug("modbusReadPlcFaultOccured: Fault Occured:
 				// "+modbusClient.ReadCoils(10, 1)[0]);
 
-				int numberOfBitsToRead = 1;
-				boolean value = false;
 				boolean faultOccured = false;
 				// faultOccured =
 				// modbusClient.ReadCoils(ConstantModBusPlc.ADDRESS_BIT_FAULT_OCCURED_STATUS,

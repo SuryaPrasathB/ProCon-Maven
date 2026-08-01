@@ -3,16 +3,12 @@ package com.tasnetwork.calibration.energymeter.util;
 
 import java.util.stream.Stream;
 
-import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Window;
 

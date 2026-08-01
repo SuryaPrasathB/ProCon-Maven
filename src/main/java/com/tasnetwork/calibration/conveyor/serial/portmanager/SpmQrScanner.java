@@ -1,6 +1,5 @@
 package com.tasnetwork.calibration.conveyor.serial.portmanager;
 
-import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,10 +27,6 @@ public class SpmQrScanner {
 
 	public SpmQrScanner(String traceName, boolean terminatorMandatory) {
 		setMyTraceName(traceName);
-		boolean validateByRxDataLength = true;
-		// ApplicationLauncher.logger.debug("SerialPortManagerPwrSrc_V2 :
-		// expectedResponseHexLength: " + expectedResponseHexLength);
-
 		if (!bInitOccured) {
 			InitSerialCommPort();
 			bInitOccured = true;

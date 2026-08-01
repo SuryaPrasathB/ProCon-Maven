@@ -5,8 +5,6 @@ import java.util.TimerTask;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.DeleteMeConstant;
-import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
-import com.tasnetwork.calibration.energymeter.util.GuiUtils;
 
 public class SerialRxPhysical_V2 {
 

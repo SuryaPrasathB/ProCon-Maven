@@ -1,15 +1,11 @@
 package com.tasnetwork.calibration.energymeter.database;
 
-import java.sql.CallableStatement;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONObject;
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.uac.UacDataModel;
-
-import javafx.scene.control.Alert.AlertType;
 
 public class MySQL_Controller {
 
@@ -493,9 +489,8 @@ public class MySQL_Controller {
 			SP_Error2.put("error", "Unable to create. Kindly try after some time");
 			SP_Error2.put("StatusCode", "12005");
 			ApplicationLauncher.logger.info("success2");
-			boolean SP_Response = false;
 			if(SQLConnect.ConnectMySQL()){
-				SP_Response = SQLConnect.sp_ltadd_test_point_setup(  project_name, value);
+				SQLConnect.sp_ltadd_test_point_setup(  project_name, value);
 
 
 			}
@@ -1170,7 +1165,6 @@ public class MySQL_Controller {
 		JSONObject resultjson = new JSONObject();
 		try {
 
-			boolean SP_Response = false;
 			resultjson.put("status", false);
 			resultjson.put("deployment_id", "");
 			resultjson.put("comments", "");
@@ -1212,7 +1206,6 @@ public class MySQL_Controller {
 		JSONObject resultjson = new JSONObject();
 		try {
 
-			boolean SP_Response = false;
 			resultjson.put("status", false);
 			resultjson.put("deployment_id", "");
 			resultjson.put("comments", "");

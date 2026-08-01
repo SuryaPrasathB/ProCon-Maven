@@ -57,7 +57,6 @@ class CellUtils {
      * Simple method to provide a StringConverter implementation in various cell
      * implementations.
      */
-    @SuppressWarnings("unchecked")
     static <T> StringConverter<T> defaultStringConverter() {
         return (StringConverter<T>) defaultStringConverter;
     }
@@ -66,7 +65,6 @@ class CellUtils {
      * Simple method to provide a TreeItem-specific StringConverter
      * implementation in various cell implementations.
      */
-    @SuppressWarnings("unchecked")
     static <T> StringConverter<TreeItem<T>> defaultTreeItemStringConverter() {
         return (StringConverter<TreeItem<T>>) defaultTreeItemStringConverter;
     }

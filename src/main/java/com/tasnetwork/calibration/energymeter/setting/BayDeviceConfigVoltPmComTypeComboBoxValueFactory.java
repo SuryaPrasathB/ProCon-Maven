@@ -1,7 +1,5 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
-import java.util.ArrayList;
-
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.spring.orm.model.BayDeviceConfig;

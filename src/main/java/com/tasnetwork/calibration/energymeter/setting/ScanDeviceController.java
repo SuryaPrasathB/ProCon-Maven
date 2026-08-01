@@ -1,6 +1,5 @@
 package com.tasnetwork.calibration.energymeter.setting;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -22,14 +21,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
 
 public class ScanDeviceController implements Initializable {
 
@@ -517,10 +515,7 @@ public class ScanDeviceController implements Initializable {
 
 	static class getValidateCredResponseBootingTask extends TimerTask {
 
-		private RestAPIResponse CurrentResponseData = new RestAPIResponse();
-
 		getValidateCredResponseBootingTask(RestAPIResponse ResponseData) {
-			CurrentResponseData = ResponseData;
 		}
 
 		public void run() {

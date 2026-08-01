@@ -2,28 +2,20 @@ package com.tasnetwork.calibration.conveyor.database;
 
 
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
-import com.tasnetwork.calibration.energymeter.constant.ConstantVersion;
 import com.tasnetwork.spring.orm.service.BayDeviceConfigService;
 import com.tasnetwork.spring.orm.service.ConveyorOutputMetricsService;
 import com.tasnetwork.spring.orm.service.ConveyorOutputMetricsSummaryService;
 import com.tasnetwork.spring.orm.service.DeviceSettingService;
 import com.tasnetwork.spring.orm.service.DutCommandService;
 import com.tasnetwork.spring.orm.service.OperationParamService;
-import com.tasnetwork.spring.orm.service.OperationProcessService;
 import com.tasnetwork.spring.orm.service.PalletBayStateService;
 import com.tasnetwork.spring.orm.service.PalletManageService;
 import com.tasnetwork.spring.orm.service.PalletMeterArchivedResultsService;
 import com.tasnetwork.spring.orm.service.PalletMeterResultsService;
 import com.tasnetwork.spring.orm.service.PalletMeterService;
-import com.tasnetwork.spring.orm.service.ReportProfileManageService;
-import com.tasnetwork.spring.orm.service.ReportProfileMeterMetaDataFilterService;
-import com.tasnetwork.spring.orm.service.ReportProfileTestDataFilterService;
 import com.tasnetwork.spring.orm.service.ResultSummaryService;
-import com.tasnetwork.spring.orm.service.RpPrintPositionService;
 import com.tasnetwork.spring.orm.service.StateFlowService;
 import com.tasnetwork.spring.orm.service.TerminalProfileSettingService;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MySqlServiceManager {
 
@@ -54,18 +46,6 @@ public class MySqlServiceManager {
 	public static PalletBayStateService palletBayStateService = null;
 	
 	public static DutCommandService dutCommandService = null ;
-	
-	
-/*	public static ClassPathXmlApplicationContext springAppCtx = ConstantVersion.springAppContext;
-	
-	public static ClassPathXmlApplicationContext getSpringAppCtx() {
-		return springAppCtx;
-	}
-
-
-	public static void setSpringAppCtx(ClassPathXmlApplicationContext springAppCtx) {
-		MySqlServiceManager.springAppCtx = springAppCtx;
-	}*/
 	
 	static public void springDataInit(){
 		ApplicationLauncher.logger.info("springDataInit : Entry" );

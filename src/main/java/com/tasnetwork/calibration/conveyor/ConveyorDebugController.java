@@ -21,7 +21,6 @@ import com.tasnetwork.calibration.conveyor.bay.configloader.Bay;
 import com.tasnetwork.calibration.conveyor.bay.configloader.ClusterDetail;
 import com.tasnetwork.calibration.conveyor.bay.configloader.DutDevice;
 import com.tasnetwork.calibration.conveyor.bay.configloader.MegaOhmMeter;
-import com.tasnetwork.calibration.conveyor.bay.configloader.OutputPort;
 import com.tasnetwork.calibration.conveyor.bay.configloader.QrScanner;
 import com.tasnetwork.calibration.conveyor.bay.configloader.Terminal;
 import com.tasnetwork.calibration.conveyor.bay.configloader.TerminalBayConfigModel;
@@ -238,71 +237,21 @@ public class ConveyorDebugController implements Initializable {
 
 	private static Button ref_btnRefresh;
 
-	// private static Button ref_btnFilter;
-
-	private static Button ref_btnSampleData;
-
-	// Test Status STATIC Attributes
-
-	/* private static TableView<TestInterfaceStatus> ref_tvTestStatus; */
-
-	/*
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsSerialNo;
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsBayName;
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsStateName;
-	 * 
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsDeviceType;
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsPathNo;
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsPositionNo;
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsCname;
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsPortName;
-	 * 
-	 * private static TableColumn<TestInterfaceStatus, String>
-	 * ref_colTsSerialStatus;
-	 * 
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsQrResponse;
-	 * 
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsQrData;
-	 * 
-	 * private static TableColumn<TestInterfaceStatus, String> ref_colTsStatus;
-	 * 
-	 * public static ArrayList<TestInterfaceStatus> allData = new
-	 * ArrayList<TestInterfaceStatus>();
-	 */
 
 	Timer sendCommDataTaskTimer;
-	// Timer clusterSelectionOnChangeTimer;
 	Timer posLoadedClusterSelectionOnChangeTimer;
-	// Timer baySelectionOnChangeTimer;
 	Timer posLoadedBaySelectionOnChangeTimer;
 	Timer PosLoadedDeviceTypeSelectionOnChangeTimer;
 	Timer btnRefreshTaskTimer;
-	// Timer loadOnClickTimer;
 
 	@FXML
 	private ComboBox cmbBoxCommMode;
 	public static ComboBox ref_cmbBoxCommMode;
 
-	/*
-	 * @FXML
-	 * private TextField txtClusterIpAddress;
-	 * public static TextField ref_txtClusterIpAddress;
-	 * 
-	 * @FXML
-	 * private TextField txtClusterPortNo;
-	 * public static TextField ref_txtClusterPortNo;
-	 */
-
 	// Position Loaded Attributes
 	@FXML
 	private ComboBox cmbBxPosLoadedTerminalSelection;
 	private static ComboBox ref_cmbBxPosLoadedTerminalSelection;
-
-	/*
-	 * @FXML
-	 * private ComboBox cmbBxPosLoadedDeviceSelection;
-	 * private static ComboBox ref_cmbBxPosLoadedDeviceSelection;
-	 */
 
 	@FXML
 	private ComboBox cmbBxPosLoadedDeviceTypeSelection;
@@ -560,10 +509,7 @@ public class ConveyorDebugController implements Initializable {
 			// String bayId = "11";//getClusterBayNameIdMap().get(clusterName).get(bayName);
 
 			ApplicationLauncher.logger.debug("loadDataFromConfig : clusterId :" + clusterId);
-			String clusterIpAddress = "";
-			String clusterPortNo = "";
-
-			Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
+			getBayConfigModel().getTerminal().stream()
 					.filter(e1 -> e1.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
 					.flatMap(terminal -> terminal.getClusterDetails().stream())
 					.filter(e2 -> e2.getClusterId().equals(clusterId))
@@ -582,7 +528,7 @@ public class ConveyorDebugController implements Initializable {
 				String bayId = bayDetails.getBayId();
 				ApplicationLauncher.logger.debug("loadDataFromConfig : bayId :" + bayId);
 
-				ArrayList<OutputPort> outputPortList = (ArrayList<OutputPort>) getBayConfigModel().getTerminal()
+				getBayConfigModel().getTerminal()
 						.stream()
 						.flatMap(terminal -> terminal.getOutputPort().stream())
 						.filter(p -> clusterId.equals(p.getClusterId()))
@@ -626,8 +572,6 @@ public class ConveyorDebugController implements Initializable {
 		ref_btnRefresh = btnRefresh;
 
 		// ref_btnFilter = btnFilter;
-
-		ref_btnSampleData = btnSampleData;
 
 		// P O S I T I O N L O A D E D
 		ref_tvLoadedPosition = tvLoadedPosition;
@@ -678,7 +622,7 @@ public class ConveyorDebugController implements Initializable {
 
 	class SendCommDataTask extends TimerTask {
 		public void run() {
-			ConveyorClientManager cluster1ClientManager = ConveyorClientManager.getInstance();
+			ConveyorClientManager.getInstance();
 			Platform.runLater(() -> {
 				ref_txtAreaResponseDisplay.clear();
 			});
@@ -829,7 +773,7 @@ public class ConveyorDebugController implements Initializable {
 		public void run() {
 			Platform.runLater(() -> {
 
-				String selectedClusterName = (String) ref_cmbBxPosLoadedClusterSelection.getSelectionModel()
+				ref_cmbBxPosLoadedClusterSelection.getSelectionModel()
 						.getSelectedItem();
 				if (getClusterBayNameListMap().size() > 0) {
 					// ref_txtClusterIpAddress.setText("");
@@ -858,7 +802,7 @@ public class ConveyorDebugController implements Initializable {
 		public void run() {
 			Platform.runLater(() -> {
 
-				String selectedClusterName = (String) ref_cmbBxPosLoadedDeviceTypeSelection.getSelectionModel()
+				ref_cmbBxPosLoadedDeviceTypeSelection.getSelectionModel()
 						.getSelectedItem();
 				if (getClusterBayNameListMap().size() > 0) {
 					// ref_txtClusterIpAddress.setText("");
