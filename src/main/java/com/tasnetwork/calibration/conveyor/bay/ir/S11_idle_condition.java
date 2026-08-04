@@ -1,8 +1,7 @@
 package com.tasnetwork.calibration.conveyor.bay.ir;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
-
-
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 
 public class S11_idle_condition implements IrtBayState {
 	/**
@@ -13,6 +12,9 @@ public class S11_idle_condition implements IrtBayState {
 	@Override
 	public BayResponse handleRequest() {
 		Ir.logger.info("S11_idle_condition : Entry");
+		
+		BayUtils.delay(1000);
+		
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
 		bayResponse.setErrorCode("NO_ERROR_001");

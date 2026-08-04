@@ -237,7 +237,7 @@ public class S05_high_Voltage_Test implements HvtBayState {
      */
     private boolean checkforEnoughVoltageApplied(float readVoltage) {
         Hv.logger.debug("S05_high_Voltage_Test: checkforEnoughVoltageApplied: Entry");
-        boolean status = readVoltage > ConstantBayPortNameMapping.MINIMUM_REQD_VOLTAGE_HV_BAY;
+        boolean status = readVoltage >= ConstantBayPortNameMapping.MINIMUM_REQD_VOLTAGE_HV_BAY;
         Hv.logger.debug("S05_high_Voltage_Test: checkforEnoughVoltageApplied: readVoltage: " + readVoltage + ", status: " + status);
         Hv.logger.debug("S05_high_Voltage_Test: checkforEnoughVoltageApplied: Exit");
         return status;

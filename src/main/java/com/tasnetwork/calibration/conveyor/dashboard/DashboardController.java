@@ -1119,6 +1119,11 @@ public class DashboardController implements IBayUIController, Initializable {
 
 			}
 		};
+		if (Platform.isFxApplicationThread()) {
+			task.run();
+		} else {
+			Platform.runLater(task);
+		}
 	}
 
 	/**
@@ -2683,23 +2688,36 @@ public class DashboardController implements IBayUIController, Initializable {
 		return bayIndicatorManager;
 	}
 
+	private String getBaseBayKey(String bayKey) {
+		if (bayKey.startsWith(ConstantConveyor.WAITING_BAY_KEY))
+			return ConstantConveyor.WAITING_BAY_KEY;
+		if (bayKey.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY))
+			return ConstantConveyor.VERIFICATION_BAY_KEY;
+		if (bayKey.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY))
+			return ConstantConveyor.STA_NLD1_BAY_KEY;
+		if (bayKey.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY))
+			return ConstantConveyor.STA_NLD2_BAY_KEY;
+		return bayKey;
+	}
+
 	@Override
 	public void updateBayUI(String bayKey, boolean isRunning) {
 		javafx.application.Platform.runLater(() -> {
-			AnchorPane targetBay = bayKeyToBayContainer.get(bayKey);
+			String baseKey = getBaseBayKey(bayKey);
+			AnchorPane targetBay = bayKeyToBayContainer.get(baseKey);
 			if (targetBay != null) {
 				if (isRunning) {
 					highlightGreenBay(targetBay);
 				} else {
 					resetBayHighlight(targetBay);
 					if (bayIndicatorManager != null) {
-						bayIndicatorManager.stopAllBlinkersForBay(bayKey);
+						bayIndicatorManager.stopAllBlinkersForBay(baseKey);
 					}
 				}
 			} else {
 				// Handle composite bays by checking prefixes
 				for (Map.Entry<String, AnchorPane> entry : bayKeyToBayContainer.entrySet()) {
-					if (entry.getKey().startsWith(bayKey)) {
+					if (entry.getKey().startsWith(baseKey)) {
 						if (isRunning) {
 							highlightGreenBay(entry.getValue());
 						} else {
