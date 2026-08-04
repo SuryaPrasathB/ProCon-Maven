@@ -1059,8 +1059,7 @@ public class DashboardController implements IBayUIController, Initializable {
 			return;
 		}
 
-		// Changed from lambda to Runnable for Java 8 compatibility
-		Platform.runLater(new Runnable() {
+		Runnable task = new Runnable() {
 			@Override
 			public void run() {
 				if (targetBay.getChildren().stream().anyMatch(new java.util.function.Predicate<Node>() {
@@ -1119,7 +1118,7 @@ public class DashboardController implements IBayUIController, Initializable {
 				}
 
 			}
-		});
+		};
 	}
 
 	/**
@@ -1132,331 +1131,142 @@ public class DashboardController implements IBayUIController, Initializable {
 	 */
 	public boolean addPalletToFirstAvailableWaitingBay(String palletName,
 			Map<Integer, String> meterListWithSerialNoMap) {
-		// Define the order of waiting bays to check (PP1 to PP4)
-		String[] waitingBaysInOrder = {
-				ConstantConveyor.WAITING_PP1_BAY_KEY,
-				ConstantConveyor.WAITING_PP2_BAY_KEY,
-				ConstantConveyor.WAITING_PP3_BAY_KEY,
-				ConstantConveyor.WAITING_PP4_BAY_KEY
-		};
+		Platform.runLater(() -> {
+			// Define the order of waiting bays to check (PP1 to PP4)
+			String[] waitingBaysInOrder = {
+					ConstantConveyor.WAITING_PP1_BAY_KEY,
+					ConstantConveyor.WAITING_PP2_BAY_KEY,
+					ConstantConveyor.WAITING_PP3_BAY_KEY,
+					ConstantConveyor.WAITING_PP4_BAY_KEY
+			};
 
-		for (String bayKey : waitingBaysInOrder) {
-			AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
-			if (targetBay == null) {
-				ApplicationLauncher.logger.error("Invalid waiting bay key: " + bayKey);
-				continue;
+			for (String bayKey : waitingBaysInOrder) {
+				AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
+				if (targetBay == null) {
+					ApplicationLauncher.logger.error("Invalid waiting bay key: " + bayKey);
+					continue;
+				}
+
+				// Check if bay is empty
+				boolean isBayEmpty = targetBay.getChildren().stream()
+						.noneMatch(node -> node.getUserData() instanceof PalletController);
+
+				if (isBayEmpty) {
+					// Found an empty bay - add the pallet here
+					addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
+					logEvent("Added pallet " + palletName + " to " + bayKey);
+					return;
+				}
 			}
 
-			// Check if bay is empty
-			boolean isBayEmpty = targetBay.getChildren().stream()
-					.noneMatch(node -> node.getUserData() instanceof PalletController);
-
-			if (isBayEmpty) {
-				// Found an empty bay - add the pallet here
-				addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
-				logEvent("Added pallet " + palletName + " to " + bayKey);
-				return true;
-			}
-		}
-
-		// All waiting bays are occupied
-		logEvent("Failed to add pallet " + palletName + ": All waiting bays are occupied");
-		ApplicationLauncher.logger.warn("All waiting bays are occupied - cannot add pallet " + palletName);
-		return false;
+			// All waiting bays are occupied
+			logEvent("Failed to add pallet " + palletName + ": All waiting bays are occupied");
+			ApplicationLauncher.logger.warn("All waiting bays are occupied - cannot add pallet " + palletName);
+		});
+		return true;
 	}
 
 	public boolean addPalletToFirstAvailableVerificationBay(String palletName,
 			Map<Integer, String> meterListWithSerialNoMap) {
 		ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName);
-		// Define the order of verification bays to check (PP1 to PP4)
-		String[] verificBaysInOrder = {
-				ConstantConveyor.VERIFICATION_PP1_BAY_KEY,
-				ConstantConveyor.VERIFICATION_PP2_BAY_KEY,
-				ConstantConveyor.VERIFICATION_PP3_BAY_KEY,
-				ConstantConveyor.VERIFICATION_PP4_BAY_KEY
-		};
+		Platform.runLater(() -> {
+			String[] verificBaysInOrder = {
+					ConstantConveyor.VERIFICATION_PP1_BAY_KEY,
+					ConstantConveyor.VERIFICATION_PP2_BAY_KEY,
+					ConstantConveyor.VERIFICATION_PP3_BAY_KEY,
+					ConstantConveyor.VERIFICATION_PP4_BAY_KEY
+			};
 
-		for (String bayKey : verificBaysInOrder) {
-			AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
-			ApplicationLauncher.logger
-					.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit1");
-			if (targetBay == null) {
-				ApplicationLauncher.logger.error("addPalletToFirstAvailableVerificationBay:  palletName : " + palletName
-						+ " : Invalid Verification bay key: " + bayKey);
-				continue;
-			}
-
-			// Skip if bay is already scheduled for update
-			/*
-			 * if (reservedVerificBayKeys.contains(bayKey)) {
-			 * ApplicationLauncher.logger.
-			 * debug("addPalletToFirstAvailableVerificationBay: Bay " + bayKey +
-			 * " is already reserved for update.");
-			 * continue;
-			 * }
-			 */
-
-			boolean isBayEmpty = targetBay.getChildren().stream()
-					.noneMatch(node -> node.getUserData() instanceof PalletController);
-
-			if (isBayEmpty) {
-				ApplicationLauncher.logger
-						.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit2");
-				// reservedVerificBayKeys.add(bayKey); // ✅ Reserve immediately to prevent race
-				// condition
-
-				// Platform.runLater(() -> {
-				try {
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit3");
-					// Double-check again inside Platform.runLater
-					boolean stillEmpty = targetBay.getChildren().stream()
-							.noneMatch(node -> node.getUserData() instanceof PalletController);
-
-					if (!stillEmpty) {
-						ApplicationLauncher.logger.debug(
-								"addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit4");
-						ApplicationLauncher.logger.warn("addPalletToFirstAvailableVerificationBay : Bay " + bayKey
-								+ " already contains a pallet (during Platform.runLater)");
-						logEvent("Skipped adding pallet " + palletName + " to " + bayKey
-								+ ": already occupied at UI time");
-						// return;
-					}
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit5");
-					int waitTimeInMSec = 3000;
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
-							+ palletName + " : awaiting for verific semlock acquiring entry: " + waitTimeInMSec);
-					while ((waitTimeInMSec > 0) && (!BayUtils.isUserAborted())
-							&& (verific1BayLocked)) {
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
-								+ palletName + " : still awaiting for verific semlock: " + waitTimeInMSec);
-						waitTimeInMSec = waitTimeInMSec - 200;
-					}
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
-							+ palletName + " : awaiting for verific semlock exit");
-					if (!verific1BayLocked) {
-						verific1BayLocked = true;
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
-								+ palletName + " : verific semlock: acquired");
-						addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
-					} else {
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableVerificationBay: palletName : "
-								+ palletName + " : verific semlock stil found locked");
-					}
-					logEvent("Added pallet " + palletName + " to " + bayKey);// "(confirmed in Platform.runLater)");
-				} finally {
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit6");
-					// reservedVerificBayKeys.remove(bayKey); // ✅ Always clean up reservation
+			for (String bayKey : verificBaysInOrder) {
+				AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
+				if (targetBay == null) {
+					ApplicationLauncher.logger.error("addPalletToFirstAvailableVerificationBay: Invalid Verification bay key: " + bayKey);
+					continue;
 				}
-				// });
-				ApplicationLauncher.logger
-						.debug("addPalletToFirstAvailableVerificationBay: palletName : " + palletName + " : Hit7");
-				return true; // We scheduled the addition
-			}
-		}
 
-		// All bays are occupied or reserved
-		logEvent("Failed to add pallet " + palletName + ": All Verification bays are occupied or reserved");
-		ApplicationLauncher.logger.warn("addPalletToFirstAvailableVerificationBay: palletName : " + palletName
-				+ " : All Verification bays are occupied or reserved - cannot add pallet " + palletName);
-		return false;
+				boolean isBayEmpty = targetBay.getChildren().stream()
+						.noneMatch(node -> node.getUserData() instanceof PalletController);
+
+				if (isBayEmpty) {
+					addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
+					logEvent("Added pallet " + palletName + " to " + bayKey);
+					return;
+				}
+			}
+
+			// All bays are occupied
+			logEvent("Failed to add pallet " + palletName + ": All Verification bays are occupied");
+			ApplicationLauncher.logger.warn("All Verification bays are occupied - cannot add pallet " + palletName);
+		});
+		return true;
 	}
 
 	public boolean addPalletToFirstAvailableSta1Bay(String palletName, Map<Integer, String> meterListWithSerialNoMap) {
 		ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName);
-		// Define the order of verification bays to check (PP1 to PP4)
-		String[] verificBaysInOrder = {
-				ConstantConveyor.STA_NLD1_PP1_BAY_KEY,
-				ConstantConveyor.STA_NLD1_PP2_BAY_KEY,
-				ConstantConveyor.STA_NLD1_PP3_BAY_KEY,
-				ConstantConveyor.STA_NLD1_PP4_BAY_KEY
-		};
+		Platform.runLater(() -> {
+			String[] verificBaysInOrder = {
+					ConstantConveyor.STA_NLD1_PP1_BAY_KEY,
+					ConstantConveyor.STA_NLD1_PP2_BAY_KEY,
+					ConstantConveyor.STA_NLD1_PP3_BAY_KEY,
+					ConstantConveyor.STA_NLD1_PP4_BAY_KEY
+			};
 
-		for (String bayKey : verificBaysInOrder) {
-			AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
-			ApplicationLauncher.logger
-					.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit1");
-			if (targetBay == null) {
-				ApplicationLauncher.logger.error("addPalletToFirstAvailableSta1Bay:  palletName : " + palletName
-						+ " : Invalid STA1 bay key: " + bayKey);
-				continue;
-			}
-
-			// Skip if bay is already scheduled for update
-			/*
-			 * if (reservedVerificBayKeys.contains(bayKey)) {
-			 * ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: Bay " +
-			 * bayKey + " is already reserved for update.");
-			 * continue;
-			 * }
-			 */
-
-			boolean isBayEmpty = targetBay.getChildren().stream()
-					.noneMatch(node -> node.getUserData() instanceof PalletController);
-
-			if (isBayEmpty) {
-				ApplicationLauncher.logger
-						.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit2");
-				// reservedVerificBayKeys.add(bayKey); // ✅ Reserve immediately to prevent race
-				// condition
-
-				// Platform.runLater(() -> {
-				try {
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit3");
-					// Double-check again inside Platform.runLater
-					boolean stillEmpty = targetBay.getChildren().stream()
-							.noneMatch(node -> node.getUserData() instanceof PalletController);
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-							+ " : stillEmpty : " + stillEmpty);
-					if (!stillEmpty) {
-						ApplicationLauncher.logger
-								.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit4");
-						ApplicationLauncher.logger.warn("addPalletToFirstAvailableSta1Bay : Bay " + bayKey
-								+ " already contains a pallet (during Platform.runLater)");
-						logEvent("Skipped adding pallet " + palletName + " to " + bayKey
-								+ ": already occupied at UI time");
-						// return;
-					}
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit5");
-					int waitTimeInMSec = 3000;
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-							+ " : awaiting for STA1 semlock acquiring entry: " + waitTimeInMSec);
-					while ((waitTimeInMSec > 0) && (!BayUtils.isUserAborted())
-							&& (sta1BayLocked)) {
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-								+ " : still awaiting for STA1 semlock: " + waitTimeInMSec);
-						waitTimeInMSec = waitTimeInMSec - 200;
-					}
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-							+ " : awaiting for STA1 semlock exit");
-					if (!sta1BayLocked) {
-						sta1BayLocked = true;
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-								+ " : STA1 semlock: acquired");
-						addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
-					} else {
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-								+ " : STA1 semlock stil found locked");
-					}
-					logEvent("Added pallet " + palletName + " to " + bayKey);// + " (confirmed in Platform.runLater)");
-				} finally {
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit6");
-					// reservedVerificBayKeys.remove(bayKey); // ✅ Always clean up reservation
+			for (String bayKey : verificBaysInOrder) {
+				AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
+				if (targetBay == null) {
+					ApplicationLauncher.logger.error("addPalletToFirstAvailableSta1Bay: Invalid STA1 bay key: " + bayKey);
+					continue;
 				}
-				// });
-				ApplicationLauncher.logger
-						.debug("addPalletToFirstAvailableSta1Bay: palletName : " + palletName + " : Hit7");
-				return true; // We scheduled the addition
-			}
-		}
 
-		// All bays are occupied or reserved
-		logEvent("Failed to add pallet " + palletName + ": All STA1 bays are occupied or reserved");
-		ApplicationLauncher.logger.warn("addPalletToFirstAvailableSta1Bay: palletName : " + palletName
-				+ " : All STA1 bays are occupied or reserved - cannot add pallet " + palletName);
-		return false;
+				boolean isBayEmpty = targetBay.getChildren().stream()
+						.noneMatch(node -> node.getUserData() instanceof PalletController);
+
+				if (isBayEmpty) {
+					addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
+					logEvent("Added pallet " + palletName + " to " + bayKey);
+					return;
+				}
+			}
+
+			// All bays are occupied
+			logEvent("Failed to add pallet " + palletName + ": All STA1 bays are occupied");
+			ApplicationLauncher.logger.warn("All STA1 bays are occupied - cannot add pallet " + palletName);
+		});
+		return true;
 	}
 
 	public boolean addPalletToFirstAvailableSta2Bay(String palletName, Map<Integer, String> meterListWithSerialNoMap) {
 		ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName);
-		// Define the order of verification bays to check (PP1 to PP4)
-		String[] verificBaysInOrder = {
-				ConstantConveyor.STA_NLD2_PP1_BAY_KEY,
-				ConstantConveyor.STA_NLD2_PP2_BAY_KEY,
-				ConstantConveyor.STA_NLD2_PP3_BAY_KEY,
-				ConstantConveyor.STA_NLD2_PP4_BAY_KEY
-		};
+		Platform.runLater(() -> {
+			String[] verificBaysInOrder = {
+					ConstantConveyor.STA_NLD2_PP1_BAY_KEY,
+					ConstantConveyor.STA_NLD2_PP2_BAY_KEY,
+					ConstantConveyor.STA_NLD2_PP3_BAY_KEY,
+					ConstantConveyor.STA_NLD2_PP4_BAY_KEY
+			};
 
-		for (String bayKey : verificBaysInOrder) {
-			AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
-			ApplicationLauncher.logger
-					.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit1");
-			if (targetBay == null) {
-				ApplicationLauncher.logger.error("addPalletToFirstAvailableSta2Bay:  palletName : " + palletName
-						+ " : Invalid STA2 bay key: " + bayKey);
-				continue;
-			}
-
-			// Skip if bay is already scheduled for update
-			/*
-			 * if (reservedVerificBayKeys.contains(bayKey)) {
-			 * ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: Bay " +
-			 * bayKey + " is already reserved for update.");
-			 * continue;
-			 * }
-			 */
-
-			boolean isBayEmpty = targetBay.getChildren().stream()
-					.noneMatch(node -> node.getUserData() instanceof PalletController);
-
-			if (isBayEmpty) {
-				ApplicationLauncher.logger
-						.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit2");
-				// reservedVerificBayKeys.add(bayKey); // ✅ Reserve immediately to prevent race
-				// condition
-
-				// Platform.runLater(() -> {
-				try {
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit3");
-					// Double-check again inside Platform.runLater
-					boolean stillEmpty = targetBay.getChildren().stream()
-							.noneMatch(node -> node.getUserData() instanceof PalletController);
-
-					if (!stillEmpty) {
-						ApplicationLauncher.logger
-								.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit4");
-						ApplicationLauncher.logger.warn("addPalletToFirstAvailableSta2Bay : Bay " + bayKey
-								+ " already contains a pallet (during Platform.runLater)");
-						logEvent("Skipped adding pallet " + palletName + " to " + bayKey
-								+ ": already occupied at UI time");
-						// return;
-					}
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit5");
-					int waitTimeInMSec = 3000;
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
-							+ " : awaiting for STA2 semlock acquiring entry: " + waitTimeInMSec);
-					while ((waitTimeInMSec > 0) && (!BayUtils.isUserAborted())
-							&& (sta2BayLocked)) {
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
-								+ " : still awaiting for STA2 semlock: " + waitTimeInMSec);
-						waitTimeInMSec = waitTimeInMSec - 200;
-					}
-					ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
-							+ " : awaiting for STA2 semlock exit");
-					if (!sta2BayLocked) {
-						sta2BayLocked = true;
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
-								+ " : STA2 semlock: acquired");
-						addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
-					} else {
-						ApplicationLauncher.logger.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
-								+ " : STA2 semlock stil found locked");
-					}
-					logEvent("Added pallet " + palletName + " to " + bayKey);// + " (confirmed in Platform.runLater)");
-				} finally {
-					ApplicationLauncher.logger
-							.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit6");
-					// reservedVerificBayKeys.remove(bayKey); // ✅ Always clean up reservation
+			for (String bayKey : verificBaysInOrder) {
+				AnchorPane targetBay = bayKeyToPalletContainer.get(bayKey);
+				if (targetBay == null) {
+					ApplicationLauncher.logger.error("addPalletToFirstAvailableSta2Bay: Invalid STA2 bay key: " + bayKey);
+					continue;
 				}
-				// });
-				ApplicationLauncher.logger
-						.debug("addPalletToFirstAvailableSta2Bay: palletName : " + palletName + " : Hit7");
-				return true; // We scheduled the addition
-			}
-		}
 
-		// All bays are occupied or reserved
-		logEvent("Failed to add pallet " + palletName + ": All STA2 bays are occupied or reserved");
-		ApplicationLauncher.logger.warn("addPalletToFirstAvailableSta2Bay: palletName : " + palletName
-				+ " : All STA2 bays are occupied or reserved - cannot add pallet " + palletName);
-		return false;
+				boolean isBayEmpty = targetBay.getChildren().stream()
+						.noneMatch(node -> node.getUserData() instanceof PalletController);
+
+				if (isBayEmpty) {
+					addNewPalletViewDashboard(bayKey, palletName, meterListWithSerialNoMap);
+					logEvent("Added pallet " + palletName + " to " + bayKey);
+					return;
+				}
+			}
+
+			// All bays are occupied
+			logEvent("Failed to add pallet " + palletName + ": All STA2 bays are occupied");
+			ApplicationLauncher.logger.warn("All STA2 bays are occupied - cannot add pallet " + palletName);
+		});
+		return true;
 	}
 
 	public void removeAllPalletsFromVerificationBays() {
@@ -2884,6 +2694,20 @@ public class DashboardController implements IBayUIController, Initializable {
 					resetBayHighlight(targetBay);
 					if (bayIndicatorManager != null) {
 						bayIndicatorManager.stopAllBlinkersForBay(bayKey);
+					}
+				}
+			} else {
+				// Handle composite bays by checking prefixes
+				for (Map.Entry<String, AnchorPane> entry : bayKeyToBayContainer.entrySet()) {
+					if (entry.getKey().startsWith(bayKey)) {
+						if (isRunning) {
+							highlightGreenBay(entry.getValue());
+						} else {
+							resetBayHighlight(entry.getValue());
+							if (bayIndicatorManager != null) {
+								bayIndicatorManager.stopAllBlinkersForBay(entry.getKey());
+							}
+						}
 					}
 				}
 			}

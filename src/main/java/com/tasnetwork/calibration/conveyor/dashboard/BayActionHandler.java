@@ -613,7 +613,6 @@ public class BayActionHandler {
 		BayUtils.delay(100);
 		ApplicationLauncher.logger.debug("refreshMultiplePalletInBay: delay done :for removal: ");
 
-		Map<Integer, String> meterListWithSerialNoMap = new HashMap<Integer, String>();
 		Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
 		List<PalletManage> palletManageList = bayUtils.fetchPalletsByBayState(bayKey);
 		ApplicationLauncher.logger
@@ -671,7 +670,7 @@ public class BayActionHandler {
 		} else {
 
 			for (PalletManage eachPalletManage : palletManageList) {
-				meterListWithSerialNoMap.clear();
+				Map<Integer, String> meterListWithSerialNoMap = new HashMap<Integer, String>();
 				// myPalletManage = myPalletManageList.get(0);
 				palletMeterSetList = eachPalletManage.getPalletMeterList();
 				palletMeterSetList.stream()
