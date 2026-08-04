@@ -23,6 +23,8 @@ import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld1.StaNld_Bay1;
 import com.tasnetwork.calibration.conveyor.bay.sta_nld2.StaNld_Bay2;
 import com.tasnetwork.calibration.conveyor.bay.comm.Comm;
+import com.tasnetwork.calibration.conveyor.bay.rejection.Rejection;
+import com.tasnetwork.calibration.conveyor.bay.unloading.Unloading;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
@@ -60,7 +62,8 @@ public class BayActionHandler {
 			if (actionType == PalletController.BayActionType.BAY_START ||
 					actionType == PalletController.BayActionType.BAY_STOP ||
 					actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
-					actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+					actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY ||
+					actionType == PalletController.BayActionType.BAY_RESET) {
 				handleEngineLifecycleActions(actionType);
 				return;
 			}
@@ -1647,11 +1650,14 @@ public class BayActionHandler {
 
 		if (actionType == PalletController.BayActionType.BAY_START ||
 				actionType == PalletController.BayActionType.RUN_BAY_ONCE ||
-				actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
+				actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY ||
+				actionType == PalletController.BayActionType.BAY_RESET) {
 
 			String mode = ConstantStateModes.RUN;
 			if (actionType == PalletController.BayActionType.RELEASE_METER_FROM_BAY) {
 				mode = ConstantStateModes.RELEASE_METERS;
+			} else if (actionType == PalletController.BayActionType.BAY_RESET) {
+				mode = ConstantStateModes.RESET;
 			}
 
 			// Stop current running process first
@@ -1722,6 +1728,11 @@ public class BayActionHandler {
 				return new StaNld_Bay2();
 			case ConstantConveyor.COMMUNICATION_BAY_KEY:
 				return new Comm();
+			case ConstantConveyor.REJECTION_BAY_KEY:
+				return new Rejection();
+			case ConstantConveyor.UNLOADING_BAY_KEY:
+				return new Unloading();
+			
 		}
 		return null;
 	}
@@ -1755,6 +1766,12 @@ public class BayActionHandler {
 			case ConstantConveyor.COMMUNICATION_BAY_KEY:
 				Comm.stopProcessRequestedCommBay = true;
 				break;
+			case ConstantConveyor.REJECTION_BAY_KEY:
+				Rejection.stopProcessRequestedRejectionBay = true;
+				break;
+			case ConstantConveyor.UNLOADING_BAY_KEY:
+				Unloading.stopProcessRequestedUnloadingBay = true;
+				break;
 		}
 	}
 
@@ -1786,6 +1803,12 @@ public class BayActionHandler {
 				break;
 			case ConstantConveyor.COMMUNICATION_BAY_KEY:
 				Comm.stopProcessRequestedCommBay = false;
+				break;
+			case ConstantConveyor.REJECTION_BAY_KEY:
+				Rejection.stopProcessRequestedRejectionBay = false;
+				break;
+			case ConstantConveyor.UNLOADING_BAY_KEY:
+				Unloading.stopProcessRequestedUnloadingBay = false;
 				break;
 		}
 	}

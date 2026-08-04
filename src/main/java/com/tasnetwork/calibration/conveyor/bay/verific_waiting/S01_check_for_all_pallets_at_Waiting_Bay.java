@@ -41,7 +41,7 @@ public class S01_check_for_all_pallets_at_Waiting_Bay implements WaitingBayState
         BayUtils.delay(3000);*/
 
 		while (!stableDetection && !ConstantConveyor.ALL_LOOP_BREAK_FLAG 
-				&& VerificWaiting.isStartProcessRequestedWaitingBay()) {
+				&& !VerificWaiting.isStopProcessRequestedWaitingBay()) {
 			if(logEnabled) {
 				VerificWaiting.logger.info("S01_check_for_all_pallets_at_Waiting_Bay : Not All pallets Available at Waiting Bay");
 			}

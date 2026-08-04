@@ -83,6 +83,7 @@ public class BayStateEngine extends TimerTask {
             BayResponse bayStatus = context.processCurrentState();
 
             presentRow = nextRow;
+            currentStateName = presentRow.getState();
 
             if (bayStatus.isStatus()) {
                 // SUCCESS
@@ -93,6 +94,12 @@ public class BayStateEngine extends TimerTask {
                     logger.info("BayStateEngine : Run Once requested and loop reached start state. Stopping engine for BayKey: " + bayKey);
                     stopRequested = true;
                     runOnceRequested = false;
+                }
+
+                if (ConstantStateModes.STOP.equals(executionMode) && nextStateName != null && 
+                    (nextStateName.equals(currentStateName) || currentStateName.toLowerCase().contains("idle_condition"))) {
+                    logger.info("BayStateEngine : Reached terminal idle loop in STOP mode for BayKey: " + bayKey + ". Stopping engine.");
+                    break;
                 }
 
                 if (nextStateName != null && !nextStateName.isEmpty()) {
@@ -123,6 +130,12 @@ public class BayStateEngine extends TimerTask {
 
                 if (nextStateName != null && !nextStateName.isEmpty()) {
                     context.setNextState(nextStateName, errorCode);
+                }
+
+                if (ConstantStateModes.STOP.equals(executionMode) && nextStateName != null && 
+                    (nextStateName.equals(currentStateName) || currentStateName.toLowerCase().contains("idle_condition"))) {
+                    logger.info("BayStateEngine : Reached terminal idle loop in STOP mode for BayKey: " + bayKey + ". Stopping engine.");
+                    break;
                 }
 
                 boolean foundNextState = false;

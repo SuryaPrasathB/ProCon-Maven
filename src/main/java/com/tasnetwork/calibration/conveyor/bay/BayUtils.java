@@ -90,6 +90,7 @@ public class BayUtils {
 
 	private static Map<String, IoPortInfo> inputIoPortInfoMap = new LinkedHashMap<String, IoPortInfo>();
 	private static Map<String, IoPortInfo> outputIoPortInfoMap = new LinkedHashMap<String, IoPortInfo>();
+	private static final ConcurrentHashMap<String, String> lastInputStatusMap = new ConcurrentHashMap<>();
 
 	private static List<String> unloadingBayPalletDistinctIdList = new ArrayList<String>();
 	private static List<String> rejectionBayPalletDistinctIdList = new ArrayList<String>();
@@ -819,14 +820,9 @@ public class BayUtils {
 		String clusterId = io_portInfo.getClusterId();
 		String bayId = io_portInfo.getBayId();
 		String inputPortId = io_portInfo.getPortId();
-		ModbusTcpClient.logger.debug("getInputDataFromPlcBay: clusterId: " + clusterId + " -> bayId :" + bayId
-				+ " -> inputPortId: " + inputPortId);
-		// ApplicationLauncher.logger.debug("getInputDataFromPlcBay: bayId: " + bayId);
-		// ApplicationLauncher.logger.debug("getInputDataFromPlcBay: clusterId: " +
-		// clusterId);
+
 		String statusResponse = "";
-		// ConveyorClientManager cluster1ClientManager =
-		// ConveyorClientManager.getInstance(clusterId);
+
 		String terminalId = ConstantConveyorConfig.MY_TERMINAL_ID;
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 		boolean modbusPlcConnected = false;
@@ -841,15 +837,11 @@ public class BayUtils {
 
 		Object clusterLock = ClusterUtils.getClusterLock(clusterId); // Get lock for this cluster
 
-		// ApplicationLauncher.logger.debug("getInputDataFromPlcBay : clusterLock : " +
-		// clusterLock);
 
 		while ((retryCount != 0) && (!messageProcessed) && (!BayUtils.isUserAborted())) {
 			retryCount--;
 
 			synchronized (clusterLock) { // Lock based on clusterId
-				// ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Processing cluster: " +
-				// clusterId + " : inputPortId : " + io_portInfo.getPortId());
 
 				// Process the message
 				modbusPlcConnected = getModbusTcpClientManager().ensureModbusConnection(clusterServer);
@@ -857,8 +849,6 @@ public class BayUtils {
 				if (modbusPlcConnected) {
 
 					inputPortId = inputPortId.replaceAll("[^0-9.]", "");
-					// ApplicationLauncher.logger.info("SendDataToBayTask: inputPortId:
-					// "+inputPortId);
 
 					if (GuiUtils.isNumber(inputPortId)) {
 						int plcCoilAddress = -1;
@@ -869,45 +859,23 @@ public class BayUtils {
 						if (!bayResponse.getStatus()) {
 							ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId: device not responded ");
 							statusResponse = inputPortId;
-							// ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
-							// stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-							// overAllStatus = false;
 						} else {
-							// stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-							// ref_tbViewInputPortData.getItems().get(i).setInputActive(bayResponse.isResponseBooleanData());
-							ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId:  "
-									+ io_portInfo.getPortId() + " : " + bayResponse.isResponseBooleanData());
 							statusResponse = bayResponse.getResponseData();
-							//// statusResponse =
-							//// Constant_IO_ActionMapping.OLD_ON_NEW_OFF.equalsIgnoreCase(statusResponse) ?
-							//// Constant_IO_ActionMapping.OLD_OFF_NEW_ON :
-							//// Constant_IO_ActionMapping.OLD_ON_NEW_OFF;
-
-							ModbusTcpClient.logger.info(
-									"getInputDataFromPlcBay: inputPortId:  " + statusResponse + " : " + statusResponse);
-
-							/*
-							 * if(bayResponse.isResponseBooleanData()) {
-							 * stateDesc = ref_tbViewInputPortData.getItems().get(i).getOnStateDesc();
-							 * }else {
-							 * stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
-							 * }
-							 */
+							String mapKey = clusterId + "-" + io_portInfo.getPortId();
+							String lastStatus = lastInputStatusMap.get(mapKey);
+							if (lastStatus == null || !lastStatus.equals(statusResponse)) {
+								ModbusTcpClient.logger.debug("getInputDataFromPlcBay: clusterId: " + clusterId + " -> bayId :" + bayId + " -> inputPortId: " + io_portInfo.getPortId());
+								ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId:  " + io_portInfo.getPortId() + " : " + bayResponse.isResponseBooleanData());
+								ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId:  " + statusResponse + " : " + statusResponse);
+								ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Completed processing for cluster: " + clusterId + " : inputPortId : " + io_portInfo.getPortId());
+								lastInputStatusMap.put(mapKey, statusResponse);
+							}
 						}
 					} else {
-						// ref_tbViewInputPortData.getItems().get(i).setInputActive(false);
-						// stateDesc = ref_tbViewInputPortData.getItems().get(i).getOffStateDesc();
 						statusResponse = inputPortId;
 						ModbusTcpClient.logger
 								.info("getInputDataFromPlcBay: invalid inputPortId: " + io_portInfo.getPortId());
-						// overAllStatus = false;
-
-						// ModbusTcpClient.InformUser("Error-2010","Kindly check key :
-						// "+inputPortDetails.getPortId() +" on conveyor config file on <inputPort>
-						// section",AlertType.ERROR);
 					}
-					// }
-
 				} else {
 					statusResponse = inputPortId;
 					ModbusTcpClient.logger
@@ -915,16 +883,6 @@ public class BayUtils {
 				}
 
 				messageProcessed = true;
-				/*
-				 * try {
-				 * Thread.sleep(500); // Prevent flooding the cluster
-				 * } catch (InterruptedException e) {
-				 * Thread.currentThread().interrupt();
-				 * }
-				 */
-
-				ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Completed processing for cluster: " + clusterId
-						+ " : inputPortId : " + io_portInfo.getPortId());
 			}
 		}
 
