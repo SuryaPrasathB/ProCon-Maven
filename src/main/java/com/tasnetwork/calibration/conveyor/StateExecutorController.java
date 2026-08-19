@@ -37,6 +37,10 @@ import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager;
+import com.tasnetwork.calibration.conveyor.dashboard.DashboardController;
+import com.tasnetwork.calibration.conveyor.dashboard.IBayUIController;
+import com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.WindowManager;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
@@ -53,7 +57,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 
 public class StateExecutorController
-		implements com.tasnetwork.calibration.conveyor.dashboard.IBayUIController, Initializable {
+		implements IBayUIController, Initializable {
 
 	private static volatile StateExecutorController instance;
 
@@ -394,7 +398,7 @@ public class StateExecutorController
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance().registerController(this);
+		BayControlsManager.getInstance().registerController(this);
 		instance = this;
 		setupTestStatusTabs();
 
@@ -515,20 +519,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnRjStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.REJECTION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnRjStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.REJECTION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnRjResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.REJECTION_BAY_KEY);
 	}
 
 	@FXML
@@ -590,20 +594,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnFtStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.FT_BAY_KEY);
 	}
 
 	@FXML
 	public void btnFtStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.FT_BAY_KEY);
 	}
 
 	@FXML
 	public void btnFtResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.FT_BAY_KEY);
 	}
 
 	@FXML
@@ -659,20 +663,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnHvtStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.HV_BAY_KEY);
 	}
 
 	@FXML
 	public void btnHvtStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.HV_BAY_KEY);
 	}
 
 	@FXML
 	public void btnHvtResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.HV_BAY_KEY);
 	}
 
 	@FXML
@@ -729,20 +733,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnIrtStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.IR_BAY_KEY);
 	}
 
 	@FXML
 	public void btnIrtStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.IR_BAY_KEY);
 	}
 
 	@FXML
 	public void btnIrtResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.IR_BAY_KEY);
 	}
 
 	@FXML
@@ -799,20 +803,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnCalibStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.CALIBRATION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnCalibStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnCalibResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.CALIBRATION_BAY_KEY);
 	}
 
 	@FXML
@@ -868,20 +872,20 @@ public class StateExecutorController
 	// ====================================================================================
 	@FXML
 	public void btnWaitingBayStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.WAITING_BAY_KEY);
 	}
 
 	@FXML
 	public void btnWaitingBayStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.WAITING_BAY_KEY);
 	}
 
 	@FXML
 	public void btnWaitingBayResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.WAITING_BAY_KEY);
 	}
 
 	@FXML
@@ -923,20 +927,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnVerificTestStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.VERIFICATION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnVerificTestStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.VERIFICATION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnVerificTestResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.VERIFICATION_BAY_KEY);
 	}
 
 	@FXML
@@ -993,20 +997,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnSctNlt1StartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.STA_NLD1_BAY_KEY);
 	}
 
 	@FXML
 	public void btnSctNlt1StopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.STA_NLD1_BAY_KEY);
 	}
 
 	@FXML
 	public void btnSctNlt1ResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.STA_NLD1_BAY_KEY);
 	}
 
 	@FXML
@@ -1063,20 +1067,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnSctNlt2StartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.STA_NLD2_BAY_KEY);
 	}
 
 	@FXML
 	public void btnSctNlt2StopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.STA_NLD2_BAY_KEY);
 	}
 
 	@FXML
 	public void btnSctNlt2ResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.STA_NLD2_BAY_KEY);
 	}
 
 	@FXML
@@ -1134,20 +1138,20 @@ public class StateExecutorController
 
 	@FXML
 	public void btnCommTestStartOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStart(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStart(ConstantConveyor.COMMUNICATION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnCommTestStopOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleStop(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleStop(ConstantConveyor.COMMUNICATION_BAY_KEY);
 	}
 
 	@FXML
 	public void btnCommTestResetOnClick() {
-		com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager.getInstance()
-				.handleReset(com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY);
+		BayControlsManager.getInstance()
+				.handleReset(ConstantConveyor.COMMUNICATION_BAY_KEY);
 	}
 
 	@FXML
@@ -1265,7 +1269,7 @@ public class StateExecutorController
 		tpTestStatusBays.getTabs().add(allBaysTab);
 
 		// Create individual bay tabs
-		for (String bayKey : com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STATE_SEQUENCE_LIST) {
+		for (String bayKey : ConstantConveyor.STATE_SEQUENCE_LIST) {
 			javafx.scene.control.Tab bayTab = new javafx.scene.control.Tab(bayKey);
 			javafx.scene.control.TableView<TestInterfaceStatus> bayTable = createTestStatusTableView();
 			bayTable.setItems(
@@ -1851,7 +1855,7 @@ public class StateExecutorController
 
 	public void triggerStartByBayKey(String bayKey) {
 		Platform.runLater(() -> {
-			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController
+			MainControlPaneController mcpc = MainControlPaneController
 					.getInstance();
 			if (mcpc != null) {
 				switch (bayKey) {
@@ -1957,7 +1961,7 @@ public class StateExecutorController
 
 	public void triggerStopByBayKey(String bayKey) {
 		Platform.runLater(() -> {
-			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController
+			MainControlPaneController mcpc = MainControlPaneController
 					.getInstance();
 			if (mcpc != null) {
 				switch (bayKey) {
@@ -2063,7 +2067,7 @@ public class StateExecutorController
 
 	public void triggerResetByBayKey(String bayKey) {
 		Platform.runLater(() -> {
-			com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController mcpc = com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController
+			MainControlPaneController mcpc = MainControlPaneController
 					.getInstance();
 			if (mcpc != null) {
 				switch (bayKey) {
@@ -2241,6 +2245,7 @@ public class StateExecutorController
 					default:
 						break;
 				}
+				DashboardController.logEvent("PROMPT [" + bayKey + "]: " + promptMessage);
 			} catch (Exception e) {
 				ApplicationLauncher.logger.warn("updateBayPrompt exception: " + e.getMessage());
 			}
@@ -2249,9 +2254,9 @@ public class StateExecutorController
 
 	@Override
 	public void updateBayUI(String bayKey, boolean isRunning) {
-		javafx.application.Platform.runLater(() -> {
+		Platform.runLater(() -> {
 			switch (bayKey) {
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.FT_BAY_KEY:
+				case ConstantConveyor.FT_BAY_KEY:
 					if (btnFtStart != null) {
 						if (isRunning) {
 							btnFtStart.setStyle("-fx-background-color: #FF5733;");
@@ -2286,7 +2291,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.HV_BAY_KEY:
+				case ConstantConveyor.HV_BAY_KEY:
 					if (btnHvtStart != null) {
 						if (isRunning) {
 							btnHvtStart.setStyle("-fx-background-color: #FF5733;");
@@ -2321,7 +2326,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.IR_BAY_KEY:
+				case ConstantConveyor.IR_BAY_KEY:
 					if (btnIrtStart != null) {
 						if (isRunning) {
 							btnIrtStart.setStyle("-fx-background-color: #FF5733;");
@@ -2356,7 +2361,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.CALIBRATION_BAY_KEY:
+				case ConstantConveyor.CALIBRATION_BAY_KEY:
 					if (btnCalibStart != null) {
 						if (isRunning) {
 							btnCalibStart.setStyle("-fx-background-color: #FF5733;");
@@ -2391,7 +2396,11 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_BAY_KEY:
+				case ConstantConveyor.WAITING_PP1_BAY_KEY:
+				case ConstantConveyor.WAITING_PP2_BAY_KEY:
+				case ConstantConveyor.WAITING_PP3_BAY_KEY:
+				case ConstantConveyor.WAITING_PP4_BAY_KEY:
 					if (btnWaitingBayStart != null) {
 						if (isRunning) {
 							btnWaitingBayStart.setStyle("-fx-background-color: #FF5733;");
@@ -2418,7 +2427,11 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP1_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP2_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP3_BAY_KEY:
+				case ConstantConveyor.VERIFICATION_PP4_BAY_KEY:
 					if (btnVerificTestStart != null) {
 						if (isRunning) {
 							btnVerificTestStart.setStyle("-fx-background-color: #FF5733;");
@@ -2453,7 +2466,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD1_BAY_KEY:
+				case ConstantConveyor.STA_NLD1_BAY_KEY:
 					if (btnSctNlt1Start != null) {
 						if (isRunning) {
 							btnSctNlt1Start.setStyle("-fx-background-color: #FF5733;");
@@ -2488,7 +2501,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.STA_NLD2_BAY_KEY:
+				case ConstantConveyor.STA_NLD2_BAY_KEY:
 					if (btnSctNlt2Start != null) {
 						if (isRunning) {
 							btnSctNlt2Start.setStyle("-fx-background-color: #FF5733;");
@@ -2523,7 +2536,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.COMMUNICATION_BAY_KEY:
+				case ConstantConveyor.COMMUNICATION_BAY_KEY:
 					if (btnCommTestStart != null) {
 						if (isRunning) {
 							btnCommTestStart.setStyle("-fx-background-color: #FF5733;");
@@ -2558,7 +2571,7 @@ public class StateExecutorController
 						}
 					}
 					break;
-				case com.tasnetwork.calibration.conveyor.constant.ConstantConveyor.REJECTION_BAY_KEY:
+				case ConstantConveyor.REJECTION_BAY_KEY:
 					if (btnRejectStart != null) {
 						if (isRunning) {
 							btnRejectStart.setStyle("-fx-background-color: #FF5733;");

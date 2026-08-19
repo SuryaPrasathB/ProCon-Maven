@@ -108,7 +108,7 @@ public class QrCodeScanningPallet {
 			// Logic for failure case (status is false)
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
-			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: NOT_GOOD_READ");
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: NOT_GOOD_READ. Please stop and restart Bay " + getBayKey() + ".");
 		}
 
 		eachBaylogger.info("qrCodePalletScanningProcess : Exit : " + getBayKey());

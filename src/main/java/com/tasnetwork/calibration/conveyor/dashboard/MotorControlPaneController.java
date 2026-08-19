@@ -11,6 +11,7 @@ import com.tasnetwork.calibration.conveyor.bay.Constant_IO_ActionMapping;
 import com.tasnetwork.calibration.conveyor.bay.IoPortInfo;
 import com.tasnetwork.calibration.conveyor.bay.ft.Ft;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 import com.tasnetwork.calibration.energymeter.constant.ProcalFeatureEnable;
 
@@ -114,6 +115,10 @@ public class MotorControlPaneController implements Initializable {
 
         new Thread(() -> {
             boolean success = controlOutput(portName, turnOn);
+
+            if (!turnOn) {
+                clearMotorRequirementsForBays(motorIndex);
+            }
 
             Platform.runLater(() -> {
                 if (success) {
@@ -240,5 +245,54 @@ public class MotorControlPaneController implements Initializable {
 
     public void setBayUtils(BayUtils bayUtils) {
         this.bayUtils = bayUtils;
+    }
+
+    private void clearMotorRequirementsForBays(int motorIndex) {
+        switch (motorIndex) {
+            case 1:
+                bayUtils.set_motor_not_required(ConstantConveyor.FT_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.REJECTION_BAY_KEY);
+                break;
+            case 2:
+                bayUtils.set_motor_not_required(ConstantConveyor.FT_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.HV_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.IR_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.CALIBRATION_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.WAITING_BAY_KEY);
+                break;
+            case 3:
+                bayUtils.set_motor_not_required(ConstantConveyor.WAITING_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.VERIFICATION_BAY_KEY);
+                break;
+            case 4:
+                bayUtils.set_motor_not_required(ConstantConveyor.VERIFICATION_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD1_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD2_BAY_KEY);
+                break;
+            case 5:
+                bayUtils.set_motor_not_required(ConstantConveyor.VERIFICATION_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD1_BAY_KEY);
+                break;
+            case 6:
+                bayUtils.set_motor_not_required(ConstantConveyor.VERIFICATION_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD1_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD2_BAY_KEY);
+                break;
+            case 7:
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD1_BAY_KEY);
+                break;
+            case 8:
+                bayUtils.set_motor_not_required(ConstantConveyor.VERIFICATION_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD1_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.STA_NLD2_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.COMMUNICATION_BAY_KEY);
+                break;
+            case 9:
+                bayUtils.set_motor_not_required(ConstantConveyor.UNLOADING_BAY_KEY);
+                bayUtils.set_motor_not_required(ConstantConveyor.LOADING_BAY_KEY);
+                break;
+            default:
+                break;
+        }
     }
 }

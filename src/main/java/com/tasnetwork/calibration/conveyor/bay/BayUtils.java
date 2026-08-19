@@ -189,7 +189,9 @@ public class BayUtils {
 			try {
 				Thread.sleep(1); // Sleep briefly to reduce CPU usage
 			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt(); // Restore interrupted status
+				// DO NOT restore interrupted status here (Thread.currentThread().interrupt())
+				// as it causes infinite tight CPU loops in callers that do not check for it.
+				// Just break the delay loop to allow the caller to evaluate stop flags.
 				break;
 			}
 		}

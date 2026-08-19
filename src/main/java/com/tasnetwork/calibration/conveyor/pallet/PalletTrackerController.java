@@ -4209,10 +4209,9 @@ public class PalletTrackerController implements Initializable {
 
 	public void exitBatchFromPresentBay(String currentBay) {
 		try {
-			String myPalletDistinctId = getPresentPalletAtBayMap().get(currentBay);
-			if (myPalletDistinctId != null && getActivePalletMap().values().contains(myPalletDistinctId)) {
-				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
-						.findFirstByPalletDistinctId(myPalletDistinctId);
+			List<PalletManage> myPalletManageList = MySqlServiceManager.getPalletManageService()
+					.findByPresentBayKeyAndPalletActive(currentBay);
+			for (PalletManage myPalletManage : myPalletManageList) {
 				if (myPalletManage.isPalletActive()) {
 					updatePalletBayState(myPalletManage, currentBay);
 					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
@@ -4225,21 +4224,22 @@ public class PalletTrackerController implements Initializable {
 
 	public void enterBatchToNextBay(String currentBay, String nextBayState) {
 		try {
-			String myPalletDistinctId = getPresentPalletAtBayMap().get(currentBay);
-			if (myPalletDistinctId != null && getActivePalletMap().values().contains(myPalletDistinctId)) {
-				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
-						.findFirstByPalletDistinctId(myPalletDistinctId);
+			List<PalletManage> myPalletManageList = MySqlServiceManager.getPalletManageService()
+					.findByPresentBayKeyAndPalletActive(currentBay);
+			for (PalletManage myPalletManage : myPalletManageList) {
 				if (myPalletManage.isPalletActive()) {
 					myPalletManage.setPresentBayKey(nextBayState);
-					getPresentPalletAtBayMap().put(nextBayState, myPalletDistinctId);
+					getPresentPalletAtBayMap().put(nextBayState, myPalletManage.getPalletDistinctId());
 					myPalletManage.setNoOfMeterPassed(0);
 					myPalletManage.setNoOfMeterFailed(0);
 					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-
-					if (!(currentBay.equals(ConstantConveyor.STA_NLD1_BAY_KEY)) &&
-							!(currentBay.equals(ConstantConveyor.STA_NLD2_BAY_KEY))) {
-						addPalletNextBayState(nextBayState);
-					}
+				}
+			}
+			
+			if (!myPalletManageList.isEmpty()) {
+				if (!(currentBay.equals(ConstantConveyor.STA_NLD1_BAY_KEY)) &&
+						!(currentBay.equals(ConstantConveyor.STA_NLD2_BAY_KEY))) {
+					addPalletNextBayState(nextBayState);
 				}
 			}
 		} catch (Exception e) {

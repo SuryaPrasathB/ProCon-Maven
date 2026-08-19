@@ -2,15 +2,23 @@ package com.tasnetwork.calibration.conveyor.bay.calib;
 
 import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
+import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import javafx.application.Platform;
 
 public class S11_idle_condition implements CalibrationBayState {
 	@Override
 	public BayResponse handleRequest() {
 		Calib.logger.info("S11_idle_condition : Entry");
 
-		StateExecutorController.BTN_CALIB_START.setDisable(true);
-		StateExecutorController.BTN_CALIB_STOP.setDisable(true);
-		StateExecutorController.BTN_CALIB_RESET.setDisable(true);
+		Platform.runLater(() -> {
+			if (StateExecutorController.BTN_CALIB_START != null) {
+				StateExecutorController.BTN_CALIB_START.setDisable(true);
+				StateExecutorController.BTN_CALIB_STOP.setDisable(true);
+				StateExecutorController.BTN_CALIB_RESET.setDisable(true);
+			}
+		});
+
+		BayUtils.delay(1000); // Prevent CPU looping while idle
 
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
@@ -30,8 +38,12 @@ public class S11_idle_condition implements CalibrationBayState {
 			Calib.setResetProcessCompletedCalibBay(true);
 		}
 
-		StateExecutorController.BTN_CALIB_START.setDisable(false);
-		StateExecutorController.BTN_CALIB_RESET.setDisable(false);
+		Platform.runLater(() -> {
+			if (StateExecutorController.BTN_CALIB_START != null) {
+				StateExecutorController.BTN_CALIB_START.setDisable(false);
+				StateExecutorController.BTN_CALIB_RESET.setDisable(false);
+			}
+		});
 
 		return bayResponse;
 	}

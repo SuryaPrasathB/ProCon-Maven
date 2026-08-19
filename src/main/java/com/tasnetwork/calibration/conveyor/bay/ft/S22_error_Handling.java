@@ -7,6 +7,7 @@ import com.tasnetwork.calibration.conveyor.StateExecutorController;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayStateManage;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
@@ -105,8 +106,7 @@ public class S22_error_Handling implements FtBayState {
 				Ft.logger.debug(String.format(
 						"[%s] : [ERROR_HANDLER_CONSTRUCTOR] : [ACTION] - Handling error code %s: Scheduling FunctionalTestBayStop task.",
 						getMyBayKey(), errorCode));
-				funtionalBayStopTaskTimer = new Timer();
-				funtionalBayStopTaskTimer.schedule(new FunctionalTestBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.FT_BAY_KEY);
 
 				ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.FT_BAY_KEY, errorCode);
 

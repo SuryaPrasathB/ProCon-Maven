@@ -4,6 +4,7 @@ import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
@@ -46,83 +47,67 @@ public class S10_error_Handling implements CalibrationBayState {
 
 		switch (errorCode) {
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_001:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_002:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_003:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_004:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_005:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_006:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_007:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_008:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_009:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_010:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_011:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_012:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_013:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_014:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			case ConvErrorCodeMapping.ERROR_CODE_CALIB_015:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 			default:
-				calibrationStopTaskTimer = new Timer();
-				calibrationStopTaskTimer.schedule(new CalibrationBayStop(), 100);
+				BayControlsManager.getInstance().handleStop(ConstantConveyor.CALIBRATION_BAY_KEY);
 
 				break;
 		}

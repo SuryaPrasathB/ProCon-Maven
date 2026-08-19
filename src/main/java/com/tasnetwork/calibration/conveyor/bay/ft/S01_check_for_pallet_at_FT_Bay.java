@@ -113,10 +113,7 @@ public class S01_check_for_pallet_at_FT_Bay implements FtBayState {
 						.updateBayAllPalletsExistInBay(getMyBayKey(), true);
 				bayResponse.setStatus(true);
 				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601); // Success code
-				// ConveyorDeviceDataManagerController.getDashboardObject().updateBayAllPalletsExistInBay(getMyBayKey(),true);
 			} else {
-				// Log error, indicating why detection failed (e.g., process stopped or never
-				// detected)
 				Ft.logger.error(String.format(
 						"[%s] : [PALLET_DETECTION] : [FAILED] - Pallet not detected or process stopped before stable detection. Error: %s",
 						getMyBayKey(), ConvErrorCodeMapping.ERROR_CODE_FT_002));
@@ -139,12 +136,10 @@ public class S01_check_for_pallet_at_FT_Bay implements FtBayState {
 								getMyBayKey()));
 				bayResponse.setStatus(true);
 				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-				ConveyorDataManager.getDashboardObject().getBayIndicatorManager()
-						.updateBayAllPalletsExistInBay(getMyBayKey(), true);
+				ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInBay(getMyBayKey(), true);
 			} else {
 				// Log error
-				Ft.logger.error(String.format(
-						"[%s] : [PALLET_DETECTION] : [NOT_AVAILABLE] - No pallet detected with stopper closed. Error: %s",
+				Ft.logger.error(String.format("[%s] : [PALLET_DETECTION] : [NOT_AVAILABLE] - No pallet detected with stopper closed. Error: %s",
 						getMyBayKey(), ConvErrorCodeMapping.ERROR_CODE_FT_002));
 				bayResponse.setStatus(false);
 				bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_FT_002);
@@ -179,14 +174,12 @@ public class S01_check_for_pallet_at_FT_Bay implements FtBayState {
 
 	private void markAsCompleteForPreviousFtBayPallet() {
 
-		List<PalletManage> palletManageList = MySqlServiceManager.getPalletManageService()
-				.findByBayKeyAndPalletActive(getMyBayKey());
+		List<PalletManage> palletManageList = MySqlServiceManager.getPalletManageService().findByBayKeyAndPalletActive(getMyBayKey());
 		for (PalletManage eachPalletManage : palletManageList) {
 			eachPalletManage.setPalletActive(false);
-			Ft.logger.debug("markAsCompleteForPreviousFtBayPallet - getPalletDistinctId: "
-					+ eachPalletManage.getPalletDistinctId());
+			eachPalletManage.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
+			Ft.logger.debug("markAsCompleteForPreviousFtBayPallet - getPalletDistinctId: " + eachPalletManage.getPalletDistinctId());
 			MySqlServiceManager.getPalletManageService().saveToDb(eachPalletManage);
-
 		}
 	}
 

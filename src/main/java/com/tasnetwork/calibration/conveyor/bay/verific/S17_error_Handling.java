@@ -2,7 +2,7 @@ package com.tasnetwork.calibration.conveyor.bay.verific;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
-import com.tasnetwork.calibration.conveyor.dashboard.MainControlPaneController;
+import com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
@@ -24,8 +24,7 @@ public class S17_error_Handling implements VerificTestBayState {
 	}
 
 	public S17_error_Handling(String errorCode) {
-		MainControlPaneController mainControlPaneController = new MainControlPaneController();
-		mainControlPaneController.verificTestStop();
+		BayControlsManager.getInstance().handleStop(ConstantConveyor.VERIFICATION_BAY_KEY);
 		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.VERIFICATION_BAY_KEY, errorCode);
 	}
 

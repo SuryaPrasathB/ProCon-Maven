@@ -4,6 +4,7 @@ import java.util.Timer;
 
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
+import com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
 
 public class S10_error_Handling implements IrtBayState {
@@ -32,8 +33,7 @@ public class S10_error_Handling implements IrtBayState {
 	}
 
 	public S10_error_Handling(String errorCode) {
-		insResStopTaskTimer = new Timer();
-		insResStopTaskTimer.schedule(new InsulationResistanceTestBayStop(), 100);
+		BayControlsManager.getInstance().handleStop(ConstantConveyor.IR_BAY_KEY);
 		ConveyorDataManager.getDashboardObject().showInlineBayError(ConstantConveyor.IR_BAY_KEY, errorCode);
 	}
 

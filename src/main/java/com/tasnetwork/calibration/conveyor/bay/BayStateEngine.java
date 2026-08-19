@@ -96,9 +96,9 @@ public class BayStateEngine extends TimerTask {
                     runOnceRequested = false;
                 }
 
-                if (ConstantStateModes.STOP.equals(executionMode) && nextStateName != null && 
+                if (nextStateName != null && 
                     (nextStateName.equals(currentStateName) || currentStateName.toLowerCase().contains("idle_condition"))) {
-                    logger.info("BayStateEngine : Reached terminal idle loop in STOP mode for BayKey: " + bayKey + ". Stopping engine.");
+                    logger.info("BayStateEngine : Reached terminal idle loop for BayKey: " + bayKey + ". Stopping engine.");
                     break;
                 }
 
@@ -132,9 +132,9 @@ public class BayStateEngine extends TimerTask {
                     context.setNextState(nextStateName, errorCode);
                 }
 
-                if (ConstantStateModes.STOP.equals(executionMode) && nextStateName != null && 
+                if (nextStateName != null && 
                     (nextStateName.equals(currentStateName) || currentStateName.toLowerCase().contains("idle_condition"))) {
-                    logger.info("BayStateEngine : Reached terminal idle loop in STOP mode for BayKey: " + bayKey + ". Stopping engine.");
+                    logger.info("BayStateEngine : Reached terminal idle loop for BayKey: " + bayKey + ". Stopping engine.");
                     break;
                 }
 

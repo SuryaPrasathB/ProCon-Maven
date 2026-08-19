@@ -204,8 +204,7 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 					Verification.logger.warn("Thread interrupted while waiting to re-check pallets.", e);
-					// If interrupted, we might want to exit or handle differently depending on context.
-					// For now, it will just re-loop immediately.
+					break; // Exit loop on interrupt to avoid infinite tight loop
 				}
 			} else {
 				Verification.logger.info("Enough pallets (" + myPalletManageList.size() + ") found. Proceeding with meter mapping.");
@@ -273,6 +272,7 @@ public class S045_Select_Run_Project implements VerificTestBayState  {
 	            } catch (InterruptedException e) {
 	                Thread.currentThread().interrupt();
 	                Verification.logger.warn("getMeterSerialNumberWithPalletMap: Thread interrupted while waiting to re-check pallets.", e);
+	                break; // Exit loop on interrupt to avoid infinite tight loop
 	            }
 	        } else {
 	            Verification.logger.info("Enough pallets (" + palletManageList.size() + ") found. Proceeding with meter mapping.");

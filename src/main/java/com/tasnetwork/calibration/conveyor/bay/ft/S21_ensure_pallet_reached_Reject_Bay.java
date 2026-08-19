@@ -30,11 +30,10 @@ public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
         bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601); // Default success code, but set to failure if pallet not detected
 
         int try_count = 0;
-        final int MAX_RETRY_COUNT = 3;
 
         // Loop to retry checking if the pallet has reached the rejection bay
-        Ft.logger.debug(String.format("[%s] : [PALLET_REACH_CHECK] : [RETRY_LOOP_START] - Starting retry loop to confirm pallet presence (Max retries: %d).", getMyBayKey(), MAX_RETRY_COUNT));
-        while (try_count <= MAX_RETRY_COUNT && !Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
+        Ft.logger.debug(String.format("[%s] : [PALLET_REACH_CHECK] : [RETRY_LOOP_START] - Starting loop to confirm pallet presence at Rejection Bay.", getMyBayKey()));
+        while (!Ft.isStopProcessRequestedFtBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
             Map<String,Object> responseReturn = pallet_sensed_at_Reject_Bay();
             // Ensure safe retrieval from map, defaulting to an unexpected state string
             String pallet_sensed_at_Reject_Bay_status = (String)responseReturn.getOrDefault("status", "UNEXPECTED_STATUS");
@@ -62,7 +61,7 @@ public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
                 bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
                 break; // Exit loop on success
             } else {
-                Ft.logger.warn(String.format("[%s] : [PALLET_REACH_CHECK] : [NOT_DETECTED] - Pallet not yet detected at Rejection Bay. Attempt %d of %d. Retrying...", getMyBayKey(), (try_count + 1), MAX_RETRY_COUNT));
+                Ft.logger.warn(String.format("[%s] : [PALLET_REACH_CHECK] : [NOT_DETECTED] - Pallet not yet detected at Rejection Bay. Attempt %d. Retrying...", getMyBayKey(), (try_count + 1)));
                 bayResponse.setStatus(false);
                 bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_FT_025);
                 BayUtils.delay(1000); // Wait for 1 second before retrying
@@ -72,7 +71,7 @@ public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
 
         // Check if the loop completed without success
         if (!bayResponse.getStatus()) {
-            Ft.logger.error(String.format("[%s] : [PALLET_REACH_CHECK] : [FAILED_AFTER_RETRIES] - Failed to detect pallet at Rejection Bay after %d attempts. Final Error Code: %s", getMyBayKey(), MAX_RETRY_COUNT, ConvErrorCodeMapping.ERROR_CODE_FT_025));
+            Ft.logger.error(String.format("[%s] : [PALLET_REACH_CHECK] : [FINAL_FAILURE] - Failed to ensure pallet reached Rejection Bay after multiple attempts or process stopped. Final Error Code: %s", getMyBayKey(), ConvErrorCodeMapping.ERROR_CODE_FT_025));
         }
 
         // Structured log for sequence exit

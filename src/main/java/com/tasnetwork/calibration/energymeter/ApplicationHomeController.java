@@ -205,6 +205,9 @@ public class ApplicationHomeController implements Initializable {
 			unloadChildNodeFXML();
 			Parent nodeFromFXML = getNodeFromFXML("/fxml/conveyor/Dashboard_v1_5_W.fxml");
 			childPane.getChildren().add(nodeFromFXML);
+			
+			showPopupScreen("Pallet Tracker", "/fxml/conveyor/PalletTracker_W.fxml");
+			showPopupScreen("Conveyor Debug", "/fxml/conveyor/ConveyorDebugV2_W.fxml");
 		} catch (IOException e) {
 			ApplicationLauncher.logger.error("Failed to load dashboard on startup: " + e.getMessage());
 		}
