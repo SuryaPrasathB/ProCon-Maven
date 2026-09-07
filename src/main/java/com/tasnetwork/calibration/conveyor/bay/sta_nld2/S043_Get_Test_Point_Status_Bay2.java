@@ -23,26 +23,24 @@ import com.tasnetwork.calibration.conveyor.util.ConvErrorCodeMapping;
 import com.tasnetwork.spring.orm.model.PalletManage;
 import com.tasnetwork.spring.orm.model.TestInterfaceStatus;
 
-public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State  {
+public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State {
 
 	BayUtils bayUtils = new BayUtils();
 	String presentBayKey = "";
 	String sequencePathId = "p1";
 
-
 	private TestInterfaceStatus palletAvailableTest_I_F_Status = new TestInterfaceStatus();
 
-	//===========================================================================================
+	// ===========================================================================================
 	@Override
 	public BayResponse handleRequest() {
 		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Entry");
 
-		//BayUtils.delay(10000);
+		// BayUtils.delay(10000);
 
 		BayResponse bayResponse = new BayResponse();
 		bayResponse.setStatus(true);
-		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601 );
-
+		bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 
 		ProcalRemoteSender procalRemoteSender = new ProcalRemoteSender();
 
@@ -54,22 +52,20 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 
 		ProcalRemoteResponse myProcalRemoteResponse = procalRemoteSender.sendCommResultRefreshToProcal(stdNldt2ClusterServer, endpoint);
 
-
 		int i = 0;
 		int delayCount = 10;
-		while (!(myProcalRemoteResponse.getTestPointStatus().isAllTestExecutionCompleted()) && 
-				!(StaNld_Bay2.isStopProcessRequestedStaNldBay2()) 							&& 
-				//i < 60 																		&&// commented by Gopi on d0.8.5.4 06-jul-2025
-				(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)){
+		while (!(myProcalRemoteResponse.getTestPointStatus().isAllTestExecutionCompleted()) && !(StaNld_Bay2.isStopProcessRequestedStaNldBay2()) &&
+		// i < 60 &&// commented by Gopi on d0.8.5.4 06-jul-2025
+				(!ConstantConveyor.ALL_LOOP_BREAK_FLAG)) {
 
-			StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status...");		
-			//BayUtils.delay(10000); // 10 sec once
+			StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status...");
+			// BayUtils.delay(10000); // 10 sec once
 			delayCount = 10;
-			while( (delayCount>0) && (!StaNld_Bay2.isStopProcessRequestedStaNldBay2()) ){
+			while ((delayCount > 0) && (!StaNld_Bay2.isStopProcessRequestedStaNldBay2())) {
 				delayCount--;
 				BayUtils.delay(1000);
 			}
-			if(StaNld_Bay2.isStopProcessRequestedStaNldBay2()){
+			if (StaNld_Bay2.isStopProcessRequestedStaNldBay2()) {
 				StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : sta2 stop requested: break");
 				break;
 			}
@@ -80,46 +76,44 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 			ArrayList<TestResult> presentTpResult;
 			presentTpResult = myProcalRemoteResponse.getTestPointStatus().getPresentTpResult();
 
-			StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : presentTpResult : " + presentTpResult);	
+			StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : presentTpResult : " + presentTpResult);
 
 		}
-		
-		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: isAllTestExecutionCompleted: " + myProcalRemoteResponse.getTestPointStatus().isAllTestExecutionCompleted());	
-		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: isStopProcessRequestedSctNltBay2: " + StaNld_Bay2.isStopProcessRequestedStaNldBay2());	
-		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: ALL_LOOP_BREAK_FLAG: " + ConstantConveyor.ALL_LOOP_BREAK_FLAG);	
+
+		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: isAllTestExecutionCompleted: " + myProcalRemoteResponse.getTestPointStatus().isAllTestExecutionCompleted());
+		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: isStopProcessRequestedSctNltBay2: " + StaNld_Bay2.isStopProcessRequestedStaNldBay2());
+		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: ALL_LOOP_BREAK_FLAG: " + ConstantConveyor.ALL_LOOP_BREAK_FLAG);
 		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Getting test point status: iteration count : " + i);
-		if (!(StaNld_Bay2.isStopProcessRequestedStaNldBay2()) ){
-		if (myProcalRemoteResponse.getTestPointStatus().isAllTestExecutionCompleted()) {
+		if (!(StaNld_Bay2.isStopProcessRequestedStaNldBay2())) {
+			if (myProcalRemoteResponse.getTestPointStatus().isAllTestExecutionCompleted()) {
 				StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Execution Success");
 				int retryCount = 3;
 				String myProcalRemoteResult = "";
 				boolean expectedResultRecieved = false;
 				String expectedContent = "\"Results\":";
-				while ( (retryCount>0) && 
-						(!StaNld_Bay2.isStopProcessRequestedStaNldBay2()) &&
-						(!expectedResultRecieved) ){
+				while ((retryCount > 0) && (!StaNld_Bay2.isStopProcessRequestedStaNldBay2()) && (!expectedResultRecieved)) {
 					myProcalRemoteResult = procalRemoteSender.sendCommAllResultToProcal(stdNldt2ClusterServer, endpoint);
 					retryCount--;
-					if(myProcalRemoteResult.contains(expectedContent)){
-						if(myProcalRemoteResult.length() > 40 ) {
+					if (myProcalRemoteResult.contains(expectedContent)) {
+						if (myProcalRemoteResult.length() > 40) {
 							StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Expected result found");
 							expectedResultRecieved = true;
-						}else {
-							StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : length not sufficient: "+ myProcalRemoteResult);
+						} else {
+							StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : length not sufficient: " + myProcalRemoteResult);
 						}
 					}
 				}
 				StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : All results : " + myProcalRemoteResult);
-				if(expectedResultRecieved){
+				if (expectedResultRecieved) {
 					addTestPointMeterResults(myProcalRemoteResult);
 					bayResponse.setStatus(true);
 					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-				}else{
+				} else {
 					StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Expected result not found");
 					bayResponse.setStatus(false);
 					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_028);
 				}
-				
+
 			} else {
 				StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : Execution Failed");
 				bayResponse.setStatus(false);
@@ -131,7 +125,7 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 		return bayResponse;
 	}
 
-	//============================================================================================================================================  
+	// ============================================================================================================================================
 
 	private void addTestPointMeterResults(String myProcalRemoteResult) {
 		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Entry ");
@@ -149,34 +143,22 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 
 			StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : myPalletManageList : size: " + myPalletManageList.size());
 
-
-			
 			ProCalTestResultsResponse procalResult = new ProCalTestResultsResponse();
 			try {
 
-				
 				ObjectMapper mapper = new ObjectMapper();
 				mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
 
 				procalResult = mapper.readValue(myProcalRemoteResult, ProCalTestResultsResponse.class);
-				
-				for(Result eachResult: procalResult.getResults()) {
-					StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : eachResult :" 
-							+ ", Pallet:" + eachResult.getPallet_distinct_id()
-							+ ", serialNo: " + eachResult.getDut_serial_no()
-							+ ", lduPosition: " + eachResult.getDevice_name()
-							+ ", palletPosition: " + eachResult.getPallet_rack_position_no()
-							+ ", TestCase: " + eachResult.getTest_case_name()
-							+ ", ErrorValue: <" + eachResult.getError_value()
-							+ ">, ErrorStatus: <" + eachResult.getTest_status()
-							+ ">, getRun_id: " + eachResult.getRun_id()
-							);
+
+				for (Result eachResult : procalResult.getResults()) {
+					StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : eachResult :" + ", Pallet:" + eachResult.getPallet_distinct_id() + ", serialNo: " + eachResult.getDut_serial_no() + ", lduPosition: " + eachResult.getDevice_name() + ", palletPosition: " + eachResult.getPallet_rack_position_no() + ", TestCase: " + eachResult.getTest_case_name() + ", ErrorValue: <" + eachResult.getError_value() + ">, ErrorStatus: <" + eachResult.getTest_status() + ">, getRun_id: " + eachResult.getRun_id());
 				}
-			
-			}catch(Exception e) {
+
+			} catch (Exception e) {
 				e.printStackTrace();
 				StaNld_Bay2.logger.error("S043_Get_Test_Point_Status procalResult : Exception: " + e.getMessage());
-				
+
 			}
 
 			int positionNo = 0;
@@ -188,48 +170,48 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 			String palletDistinctId = "";
 			String error_min = "";
 			String error_max = "";
-			for (Result eachResult: procalResult.getResults()) {
+			for (Result eachResult : procalResult.getResults()) {
 
 				try {
-				
-					if(eachResult.getPallet_rack_position_no().isEmpty()){
+					testCaseName = eachResult.getTest_case_name();
+					if (testCaseName != null && testCaseName.trim().equalsIgnoreCase("NLD_SKIP")) {
+						StaNld_Bay2.logger.info("S043_Get_Test_Point_Status_Bay2 : Skipping ignored test point: " + testCaseName + " for position: " + eachResult.getPallet_rack_position_no() + ", serialNo: " + eachResult.getDut_serial_no());
+						continue;
+					}
+
+					if (eachResult.getPallet_rack_position_no().isEmpty()) {
 						positionNo = 0;
-					}else{
+					} else {
 						positionNo = Integer.parseInt(eachResult.getPallet_rack_position_no());
 					}
-				resultValue = eachResult.getError_value();
-				resultStatus = eachResult.getTest_status().equals("P") ? "Pass" : "Fail";
-				testCaseName = eachResult.getTest_case_name();
-				dutSerialNo = eachResult.getDut_serial_no();
-				testType = testCaseName.startsWith("NLD") ? ConstantConveyor.NLD_RESULT_KEY : ConstantConveyor.STA_RESULT_KEY; //"NLD" : "STA";
-				StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : testCaseName " + testCaseName + "-> testType:" + testType + ", dutSerialNo: " + dutSerialNo + " ,palletDistinctId:" + palletDistinctId);
+					palletDistinctId = eachResult.getPallet_distinct_id();
+					resultValue = eachResult.getError_value();
+					resultStatus = eachResult.getTest_status().equals("P") ? "Pass" : "Fail";
+					dutSerialNo = eachResult.getDut_serial_no();
+					testType = testCaseName.startsWith("NLD") ? ConstantConveyor.NLD_RESULT_KEY : ConstantConveyor.STA_RESULT_KEY; // "NLD" : "STA";
+					StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : testCaseName " + testCaseName + "-> testType:" + testType + ", dutSerialNo: " + dutSerialNo + " ,palletDistinctId:" + palletDistinctId);
 
+					if (positionNo != 0) {
+						StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Adding result to Meter : " + positionNo);
 
-					
-				if(positionNo!=0){
-					StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Adding result to Meter : " + positionNo);
+						palletTracker.addResultToPalletMeterV1_1(positionNo, dutSerialNo, resultStatus, resultValue, getMyBayKey(), palletDistinctId, testType, testCaseName, error_min, error_max);
 
-					palletTracker.addResultToPalletMeterV1_1(positionNo,  dutSerialNo , resultStatus,  resultValue,  getMyBayKey(), palletDistinctId,  testType,  testCaseName,error_min, error_max  );
-					
-					if (testType.equals(ConstantConveyor.NLD_RESULT_KEY )) { //"NLD") {
-						testCaseName = ConstantConveyor.NLD_RESULT_TEST_NAME ; //"No Load";
-					} else if (testType.equals(ConstantConveyor.STA_RESULT_KEY)) { //"STA"){
-						testCaseName = ConstantConveyor.STA_RESULT_TEST_NAME; //"Starting Current";
+						if (testType.equals(ConstantConveyor.NLD_RESULT_KEY)) { // "NLD") {
+							testCaseName = ConstantConveyor.NLD_RESULT_TEST_NAME; // "No Load";
+						} else if (testType.equals(ConstantConveyor.STA_RESULT_KEY)) { // "STA"){
+							testCaseName = ConstantConveyor.STA_RESULT_TEST_NAME; // "Starting Current";
+						}
+
+						palletTracker.addMeterResultSummaryWithPalletDetailsV2(positionNo, dutSerialNo, resultStatus, resultStatus, testCaseName, testType, palletDistinctId);
+					} else {
+						StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Skipping: " + positionNo);
 					}
-					
-
-					palletTracker.addMeterResultSummaryWithPalletDetailsV2(positionNo,dutSerialNo, resultStatus, resultStatus, testCaseName,  testType, palletDistinctId);
-				}else{
-					StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Skipping: " + positionNo);
-				}
-
-					
-				}catch(Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					StaNld_Bay2.logger.error("S043_Get_Test_Point_Status procalResult : Exception2: " + e.getMessage());
-					
+
 				}
-					
+
 			}
 
 		} catch (org.json.JSONException e) {
@@ -239,7 +221,7 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 		StaNld_Bay2.logger.info("S043_Get_Test_Point_Status : addTestPointMeterResults : Exit ");
 	}
 
-	//============================================================================================================================================  
+	// ============================================================================================================================================
 
 	public String getSequencePathId() {
 		return sequencePathId;
@@ -256,8 +238,5 @@ public class S043_Get_Test_Point_Status_Bay2 implements STA_NoLoadTestBay2State 
 	public void setPalletAvailableTest_I_F_Status(TestInterfaceStatus palletAvailableTest_I_F_Status) {
 		this.palletAvailableTest_I_F_Status = palletAvailableTest_I_F_Status;
 	}
-
-
-
 
 }

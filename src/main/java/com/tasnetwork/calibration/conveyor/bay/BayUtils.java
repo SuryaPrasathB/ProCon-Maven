@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-// import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,7 +19,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
-// import org.codehaus.groovy.transform.stc.StaticTypeCheckingSupport.FloatArrayStaticTypesHelper;
 
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 // import com.tasnetwork.calibration.conveyor.RestApiClusterResponse;
@@ -144,11 +142,7 @@ public class BayUtils {
 		ApplicationLauncher.logger.debug("manipulateDeviceId : getBayId : " + deviceSetting.getBayId());
 		ApplicationLauncher.logger.debug("manipulateDeviceId : getDeviceType : " + deviceSetting.getDeviceType());
 		ApplicationLauncher.logger.debug("manipulateDeviceId : getPositionNo : " + deviceSetting.getPositionNo());
-		String deviceId = String.format("%02d", Integer.parseInt(ConstantConveyorConfig.MY_TERMINAL_ID)) +
-				String.format("%02d", Integer.parseInt(deviceSetting.getClusterId())) +
-				String.format("%02d", Integer.parseInt(deviceSetting.getBayId())) +
-				deviceSetting.getDeviceType() +
-				String.format("%02d", Integer.parseInt(deviceSetting.getPositionNo()));
+		String deviceId = String.format("%02d", Integer.parseInt(ConstantConveyorConfig.MY_TERMINAL_ID)) + String.format("%02d", Integer.parseInt(deviceSetting.getClusterId())) + String.format("%02d", Integer.parseInt(deviceSetting.getBayId())) + deviceSetting.getDeviceType() + String.format("%02d", Integer.parseInt(deviceSetting.getPositionNo()));
 		ApplicationLauncher.logger.debug("manipulateDeviceId : deviceId : " + deviceId);
 		return deviceId;
 
@@ -160,18 +154,13 @@ public class BayUtils {
 
 		// String clusterIpAddress = "";
 		// String clusterPortNo = "";
-		Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream()
-				.filter(e1 -> e1.getTerminalId().equals(terminalId))
-				.flatMap(terminal -> terminal.getClusterDetails().stream())
-				.filter(e2 -> e2.getClusterId().equals(clusterId))
-				.findFirst();
+		Optional<ClusterDetail> clusterOpt = getBayConfigModel().getTerminal().stream().filter(e1 -> e1.getTerminalId().equals(terminalId)).flatMap(terminal -> terminal.getClusterDetails().stream()).filter(e2 -> e2.getClusterId().equals(clusterId)).findFirst();
 
 		if (clusterOpt.isPresent()) {
 			// ClusterDetail clusterDetail = clusterOpt.get();
 			// clusterIpAddress = clusterOpt.get().getClusterIpAddress();
 			// clusterPortNo = clusterOpt.get().getClusterPortId();
-			clusterServer = new ClusterServer(clusterOpt.get().getClusterIpAddress(),
-					clusterOpt.get().getClusterPortId(), clusterId);
+			clusterServer = new ClusterServer(clusterOpt.get().getClusterIpAddress(), clusterOpt.get().getClusterPortId(), clusterId);
 		}
 
 		return clusterServer;
@@ -204,23 +193,16 @@ public class BayUtils {
 			return getOutputIoPortInfoMap().get(searchPortName);
 		}
 
-		Optional<OutputPort> outputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream()
-				.filter(e -> e.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
-				.flatMap(terminal -> terminal.getOutputPort().stream())
-				.filter(p -> searchPortName.equals(p.getPortName()))
-				.findFirst();
+		Optional<OutputPort> outputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream().filter(e -> e.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID)).flatMap(terminal -> terminal.getOutputPort().stream()).filter(p -> searchPortName.equals(p.getPortName())).findFirst();
 
 		if (outputPortOpt.isPresent()) {
 			OutputPort outputPortDetails = outputPortOpt.get();
-			ModbusTcpClient.logger
-					.debug("getOutputPortDetails : getClusterId: " + outputPortDetails.getClusterId() + " -> getBayId: "
-							+ outputPortDetails.getBayId() + " -> getPortId: " + outputPortDetails.getPortId());
+			ModbusTcpClient.logger.debug("getOutputPortDetails : getClusterId: " + outputPortDetails.getClusterId() + " -> getBayId: " + outputPortDetails.getBayId() + " -> getPortId: " + outputPortDetails.getPortId());
 			// ModbusTcpClient.logger.debug("getOutputPortDetails : getClusterId : " +
 			// outputPortDetails.getClusterId());
 			// ModbusTcpClient.logger.debug("getOutputPortDetails : getBayId : " +
 			// outputPortDetails.getBayId());
-			IoPortInfo outputPortInfo = new IoPortInfo(outputPortDetails.getPortId(), outputPortDetails.getClusterId(),
-					outputPortDetails.getBayId());
+			IoPortInfo outputPortInfo = new IoPortInfo(outputPortDetails.getPortId(), outputPortDetails.getClusterId(), outputPortDetails.getBayId());
 			getOutputIoPortInfoMap().put(searchPortName, outputPortInfo);
 
 			// return new IoPortInfo(outputPortDetails.getPortId(),
@@ -233,118 +215,71 @@ public class BayUtils {
 		return null; // or handle the case if outputPort is not found
 	}
 
-	public static IoPortInfo getOutputPortDetailsWithPortNamePrefixAndPositionNo(String terminalId, String clusterId,
-			String bayId,
-			int positionNo,
-			String searchPrefixPortName) {
+	public static IoPortInfo getOutputPortDetailsWithPortNamePrefixAndPositionNo(String terminalId, String clusterId, String bayId, int positionNo, String searchPrefixPortName) {
 
-		ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp terminalId     : "
-				+ Integer.parseInt(terminalId));
-		ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp clusterId     : "
-				+ Integer.parseInt(clusterId));
-		ApplicationLauncher.logger.debug(
-				"getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp bayId         : " + Integer.parseInt(bayId));
-		ApplicationLauncher.logger
-				.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp positionNo    : " + positionNo);
+		ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp terminalId     : " + Integer.parseInt(terminalId));
+		ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp clusterId     : " + Integer.parseInt(clusterId));
+		ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp bayId         : " + Integer.parseInt(bayId));
+		ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : inp positionNo    : " + positionNo);
 
 		Optional<OutputPort> outputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream()
 				// .filter(e-> e.getTerminalId().equals(terminalId))
-				.filter(e -> Integer.parseInt(e.getTerminalId()) == Integer.parseInt(terminalId))
-				.flatMap(terminal -> terminal.getOutputPort().stream())
-				.filter(p -> Integer.parseInt(p.getClusterId()) == Integer.parseInt(clusterId))
-				.filter(p1 -> Integer.parseInt(p1.getBayId()) == Integer.parseInt(bayId))
-				.filter(p2 -> p2.getPortName().contains(searchPrefixPortName))
-				.filter(p3 -> Integer.parseInt(p3.getPositionId()) == positionNo)
-				.findFirst();
+				.filter(e -> Integer.parseInt(e.getTerminalId()) == Integer.parseInt(terminalId)).flatMap(terminal -> terminal.getOutputPort().stream()).filter(p -> Integer.parseInt(p.getClusterId()) == Integer.parseInt(clusterId)).filter(p1 -> Integer.parseInt(p1.getBayId()) == Integer.parseInt(bayId)).filter(p2 -> p2.getPortName().contains(searchPrefixPortName)).filter(p3 -> Integer.parseInt(p3.getPositionId()) == positionNo).findFirst();
 
 		if (outputPortOpt.isPresent()) {
 			OutputPort outputPortDetails = outputPortOpt.get();
-			ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : getPortId    : "
-					+ outputPortDetails.getPortId());
-			ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : getClusterId : "
-					+ outputPortDetails.getClusterId());
-			ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : getBayId     : "
-					+ outputPortDetails.getBayId());
+			ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : getPortId    : " + outputPortDetails.getPortId());
+			ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : getClusterId : " + outputPortDetails.getClusterId());
+			ApplicationLauncher.logger.debug("getOutputPortDetailsWithPortNamePrefixAndPositionNo : getBayId     : " + outputPortDetails.getBayId());
 
 			// Return all three values wrapped in an OutputPortInfo object
-			return new IoPortInfo(outputPortDetails.getPortId(), outputPortDetails.getClusterId(),
-					outputPortDetails.getBayId());
+			return new IoPortInfo(outputPortDetails.getPortId(), outputPortDetails.getClusterId(), outputPortDetails.getBayId());
 		}
 
 		return null; // or handle the case if outputPort is not found
 	}
 
-	public static IoPortInfo getInputPortDetailsWithPortNamePrefixAndPositionNo(String terminalId, String clusterId,
-			String bayId,
-			int positionNo, String searchPrefixPortName) {
-		ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp terminalId     : "
-				+ Integer.parseInt(terminalId));
-		ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp clusterId     : "
-				+ Integer.parseInt(clusterId));
-		ApplicationLauncher.logger.debug(
-				"getInputPortDetailsWithPortNamePrefixAndPositionNo : inp bayId         : " + Integer.parseInt(bayId));
-		ApplicationLauncher.logger
-				.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp positionNo    : " + positionNo);
+	public static IoPortInfo getInputPortDetailsWithPortNamePrefixAndPositionNo(String terminalId, String clusterId, String bayId, int positionNo, String searchPrefixPortName) {
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp terminalId     : " + Integer.parseInt(terminalId));
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp clusterId     : " + Integer.parseInt(clusterId));
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp bayId         : " + Integer.parseInt(bayId));
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : inp positionNo    : " + positionNo);
 
 		Optional<InputPort> inputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream()
 				// .filter(e-> e.getTerminalId().equals(terminalId))
-				.filter(e -> Integer.parseInt(e.getTerminalId()) == Integer.parseInt(terminalId))
-				.flatMap(terminal -> terminal.getInputPort().stream())
-				.filter(p -> Integer.parseInt(p.getClusterId()) == Integer.parseInt(clusterId))
-				.filter(p1 -> Integer.parseInt(p1.getBayId()) == Integer.parseInt(bayId))
-				.filter(p2 -> p2.getPortName().contains(searchPrefixPortName))
-				.filter(p3 -> Integer.parseInt(p3.getPositionId()) == positionNo)
-				.findFirst();
+				.filter(e -> Integer.parseInt(e.getTerminalId()) == Integer.parseInt(terminalId)).flatMap(terminal -> terminal.getInputPort().stream()).filter(p -> Integer.parseInt(p.getClusterId()) == Integer.parseInt(clusterId)).filter(p1 -> Integer.parseInt(p1.getBayId()) == Integer.parseInt(bayId)).filter(p2 -> p2.getPortName().contains(searchPrefixPortName)).filter(p3 -> Integer.parseInt(p3.getPositionId()) == positionNo).findFirst();
 
 		if (inputPortOpt.isPresent()) {
 			InputPort inputPortDetails = inputPortOpt.get();
-			ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : getPortId    : "
-					+ inputPortDetails.getPortId());
-			ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : getClusterId : "
-					+ inputPortDetails.getClusterId());
-			ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : getBayId     : "
-					+ inputPortDetails.getBayId());
+			ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : getPortId    : " + inputPortDetails.getPortId());
+			ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : getClusterId : " + inputPortDetails.getClusterId());
+			ApplicationLauncher.logger.debug("getInputPortDetailsWithPortNamePrefixAndPositionNo : getBayId     : " + inputPortDetails.getBayId());
 
 			// Return all three values wrapped in an OutputPortInfo object
-			return new IoPortInfo(inputPortDetails.getPortId(), inputPortDetails.getClusterId(),
-					inputPortDetails.getBayId());
+			return new IoPortInfo(inputPortDetails.getPortId(), inputPortDetails.getClusterId(), inputPortDetails.getBayId());
 		}
 
 		return null; // or handle the case if outputPort is not found
 	}
 
-	public static IoPortInfo getInputPortDetailsWithPositionNo(String terminalId, String clusterId,
-			String bayId,
-			int positionNo) {
-		ApplicationLauncher.logger
-				.debug("getInputPortDetailsWithPositionNo : inp terminalId     : " + Integer.parseInt(terminalId));
-		ApplicationLauncher.logger
-				.debug("getInputPortDetailsWithPositionNo : inp clusterId     : " + Integer.parseInt(clusterId));
-		ApplicationLauncher.logger
-				.debug("getInputPortDetailsWithPositionNo : inp bayId         : " + Integer.parseInt(bayId));
+	public static IoPortInfo getInputPortDetailsWithPositionNo(String terminalId, String clusterId, String bayId, int positionNo) {
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : inp terminalId     : " + Integer.parseInt(terminalId));
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : inp clusterId     : " + Integer.parseInt(clusterId));
+		ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : inp bayId         : " + Integer.parseInt(bayId));
 		ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : inp positionNo    : " + positionNo);
 
 		Optional<InputPort> inputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream()
 				// .filter(e-> e.getTerminalId().equals(terminalId))
-				.filter(e -> Integer.parseInt(e.getTerminalId()) == Integer.parseInt(terminalId))
-				.flatMap(terminal -> terminal.getInputPort().stream())
-				.filter(p -> Integer.parseInt(p.getClusterId()) == Integer.parseInt(clusterId))
-				.filter(p1 -> Integer.parseInt(p1.getBayId()) == Integer.parseInt(bayId))
-				.filter(p2 -> Integer.parseInt(p2.getPositionId()) == positionNo)
-				.findFirst();
+				.filter(e -> Integer.parseInt(e.getTerminalId()) == Integer.parseInt(terminalId)).flatMap(terminal -> terminal.getInputPort().stream()).filter(p -> Integer.parseInt(p.getClusterId()) == Integer.parseInt(clusterId)).filter(p1 -> Integer.parseInt(p1.getBayId()) == Integer.parseInt(bayId)).filter(p2 -> Integer.parseInt(p2.getPositionId()) == positionNo).findFirst();
 
 		if (inputPortOpt.isPresent()) {
 			InputPort inputPortDetails = inputPortOpt.get();
-			ApplicationLauncher.logger
-					.debug("getInputPortDetailsWithPositionNo : getPortId    : " + inputPortDetails.getPortId());
-			ApplicationLauncher.logger
-					.debug("getInputPortDetailsWithPositionNo : getClusterId : " + inputPortDetails.getClusterId());
-			ApplicationLauncher.logger
-					.debug("getInputPortDetailsWithPositionNo : getBayId     : " + inputPortDetails.getBayId());
+			ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : getPortId    : " + inputPortDetails.getPortId());
+			ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : getClusterId : " + inputPortDetails.getClusterId());
+			ApplicationLauncher.logger.debug("getInputPortDetailsWithPositionNo : getBayId     : " + inputPortDetails.getBayId());
 
 			// Return all three values wrapped in an OutputPortInfo object
-			return new IoPortInfo(inputPortDetails.getPortId(), inputPortDetails.getClusterId(),
-					inputPortDetails.getBayId());
+			return new IoPortInfo(inputPortDetails.getPortId(), inputPortDetails.getClusterId(), inputPortDetails.getBayId());
 		}
 
 		return null; // or handle the case if outputPort is not found
@@ -355,17 +290,12 @@ public class BayUtils {
 		if (getInputIoPortInfoMap().containsKey(searchPortName)) {
 			return getInputIoPortInfoMap().get(searchPortName);
 		}
-		Optional<InputPort> inputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream()
-				.filter(e -> e.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID))
-				.flatMap(terminal -> terminal.getInputPort().stream())
-				.filter(p -> searchPortName.equals(p.getPortName()))
-				.findFirst();
+		Optional<InputPort> inputPortOpt = ConveyorDataManager.getTerminalBayConfig().getTerminal().stream().filter(e -> e.getTerminalId().equals(ConstantConveyorConfig.MY_TERMINAL_ID)).flatMap(terminal -> terminal.getInputPort().stream()).filter(p -> searchPortName.equals(p.getPortName())).findFirst();
 
 		if (inputPortOpt.isPresent()) {
 			InputPort inputPortDetails = inputPortOpt.get();
 
-			IoPortInfo ioPortInfo = new IoPortInfo(inputPortDetails.getPortId(), inputPortDetails.getClusterId(),
-					inputPortDetails.getBayId());
+			IoPortInfo ioPortInfo = new IoPortInfo(inputPortDetails.getPortId(), inputPortDetails.getClusterId(), inputPortDetails.getBayId());
 
 			getInputIoPortInfoMap().put(searchPortName, ioPortInfo);
 
@@ -375,8 +305,7 @@ public class BayUtils {
 		return null; // or handle the case if outputPort is not found
 	}
 
-	public boolean setInitiatePulseCounterOnCluster(String clusterId, String bayId, String inputPortId,
-			String outputStatus) {
+	public boolean setInitiatePulseCounterOnCluster(String clusterId, String bayId, String inputPortId, String outputStatus) {
 		ApplicationLauncher.logger.info("setInitiatePulseCounterOnCluster-bay-utils: Entry-failed-debug");
 		ApplicationLauncher.logger.debug("setInitiatePulseCounterOnCluster: inputPortId: " + inputPortId);
 		Boolean status = false;
@@ -386,9 +315,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 
 		if (clusterServer == null) {
-			ApplicationLauncher.logger
-					.debug("setInitiatePulseCounterOnCluster: cluster IP address details not found for terminalId: "
-							+ terminalId + " , clusterId: " + clusterId);
+			ApplicationLauncher.logger.debug("setInitiatePulseCounterOnCluster: cluster IP address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return status;
 		}
 
@@ -422,12 +349,10 @@ public class BayUtils {
 				ApplicationLauncher.logger.debug("setInitiatePulseCounterOnCluster: isResponseReceived : test2");
 				try {
 					statusResponse = clusterResponseData.getJsonBodyResponse().get(inputPortId).toString();
-					ApplicationLauncher.logger.debug("setInitiatePulseCounterOnCluster: " + inputPortId
-							+ " : statusResponse Data: " + statusResponse);
+					ApplicationLauncher.logger.debug("setInitiatePulseCounterOnCluster: " + inputPortId + " : statusResponse Data: " + statusResponse);
 				} catch (Exception e) {
 					e.printStackTrace();
-					ApplicationLauncher.logger
-							.error("setInitiatePulseCounterOnCluster: Exception1 : " + e.getMessage());
+					ApplicationLauncher.logger.error("setInitiatePulseCounterOnCluster: Exception1 : " + e.getMessage());
 				}
 			} else {
 				ApplicationLauncher.logger.debug("setInitiatePulseCounterOnCluster: isResponseReceived : test3");
@@ -464,9 +389,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 
 		if (clusterServer == null) {
-			ApplicationLauncher.logger
-					.debug("getInputDataFromBayV2: cluster ip address details not found for terminalId: " + terminalId
-							+ " , clusterId: " + clusterId);
+			ApplicationLauncher.logger.debug("getInputDataFromBayV2: cluster ip address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 
@@ -499,15 +422,12 @@ public class BayUtils {
 			if (clusterResponseData.getStatusCode().equals(ConstantConveyor.HTTP_RESPONSE_SUCCESS)) {
 				ApplicationLauncher.logger.debug("getInputDataFromBayV2: isResponseReceived : test2: " + inputPortId);
 				try {
-					ApplicationLauncher.logger
-							.debug("getInputDataFromBayV2: isResponseReceived : inputPortId: " + inputPortId);
+					ApplicationLauncher.logger.debug("getInputDataFromBayV2: isResponseReceived : inputPortId: " + inputPortId);
 					statusResponse = clusterResponseData.getJsonBodyResponse().get(inputPortId).toString();
-					ApplicationLauncher.logger
-							.debug("getInputDataFromBayV2: isResponseReceived : statusResponse: " + statusResponse);
+					ApplicationLauncher.logger.debug("getInputDataFromBayV2: isResponseReceived : statusResponse: " + statusResponse);
 				} catch (Exception e) {
 					e.printStackTrace();
-					ApplicationLauncher.logger.error("getInputDataFromBayV2-1: Exception1 : " + e.getMessage()
-							+ " : inputPortId: " + inputPortId);
+					ApplicationLauncher.logger.error("getInputDataFromBayV2-1: Exception1 : " + e.getMessage() + " : inputPortId: " + inputPortId);
 				}
 			} else {
 				ApplicationLauncher.logger.debug("getInputDataFromBayV2: isResponseReceived : test3");
@@ -523,20 +443,16 @@ public class BayUtils {
 	public String setOutputDataToPlcBayV2(String clusterId, String bayId, String outputPortId, String outputStatus) {
 		// ModbusTcpClient.logger.debug("setOutputDataToPlcBay: Entry ");
 		AtomicReference<String> statusResponse = new AtomicReference<>("");
-		outputStatus = Constant_IO_ActionMapping.OFF.equalsIgnoreCase(outputStatus) ? Constant_IO_ActionMapping.ON
-				: Constant_IO_ActionMapping.OFF;
+		outputStatus = Constant_IO_ActionMapping.OFF.equalsIgnoreCase(outputStatus) ? Constant_IO_ActionMapping.ON : Constant_IO_ActionMapping.OFF;
 		String terminalId = ConstantConveyorConfig.MY_TERMINAL_ID;
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 
 		if (clusterServer == null) {
-			ModbusTcpClient.logger
-					.debug("setOutputDataToPlcBayV2: cluster IP address details not found for terminalId: " + terminalId
-							+ " , clusterId: " + clusterId);
+			ModbusTcpClient.logger.debug("setOutputDataToPlcBayV2: cluster IP address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 
-		ModbusTcpClient.logger
-				.debug("setOutputDataToPlcBayV2: Processing cluster: " + clusterId + " : outputId : " + outputPortId);
+		ModbusTcpClient.logger.debug("setOutputDataToPlcBayV2: Processing cluster: " + clusterId + " : outputId : " + outputPortId);
 		boolean modbusPlcConnected = getModbusTcpClientManager().ensureModbusConnection(clusterServer);
 
 		if (modbusPlcConnected) {
@@ -548,20 +464,14 @@ public class BayUtils {
 				String outputStatusFinal = outputStatus;
 				ModbusRequestProcessor.addRequest(clusterServer.getClusterId(), () -> {
 					try {
-						BayResponse bayResponse = getModbusTcpClientManager().modbusWriteCoil(clusterServer,
-								plcCoilAddress, outputValue);
+						BayResponse bayResponse = getModbusTcpClientManager().modbusWriteCoil(clusterServer, plcCoilAddress, outputValue);
 
 						if (!bayResponse.getStatus()) {
-							ModbusTcpClient.logger.info(
-									"setOutputDataToPlcBayV2: outputPortId: device not responded : " + outputPortId);
-							statusResponse.set(outputStatusFinal.equalsIgnoreCase(Constant_IO_ActionMapping.OFF)
-									? Constant_IO_ActionMapping.ON
-									: Constant_IO_ActionMapping.OFF);
+							ModbusTcpClient.logger.info("setOutputDataToPlcBayV2: outputPortId: device not responded : " + outputPortId);
+							statusResponse.set(outputStatusFinal.equalsIgnoreCase(Constant_IO_ActionMapping.OFF) ? Constant_IO_ActionMapping.ON : Constant_IO_ActionMapping.OFF);
 						} else {
-							ModbusTcpClient.logger.info("setOutputDataToPlcBayV2: success : outputPortId: "
-									+ outputPortId + " : " + bayResponse.isResponseBooleanData());
-							statusResponse
-									.set(outputValue ? Constant_IO_ActionMapping.OFF : Constant_IO_ActionMapping.ON);
+							ModbusTcpClient.logger.info("setOutputDataToPlcBayV2: success : outputPortId: " + outputPortId + " : " + bayResponse.isResponseBooleanData());
+							statusResponse.set(outputValue ? Constant_IO_ActionMapping.OFF : Constant_IO_ActionMapping.ON);
 						}
 					} finally {
 						latch.countDown();
@@ -579,8 +489,7 @@ public class BayUtils {
 			}
 		} else {
 			statusResponse.set(outputPortId);
-			ModbusTcpClient.logger
-					.info("setOutputDataToPlcBayV2: modbus failed to connect : outputPortId: " + outputPortId);
+			ModbusTcpClient.logger.info("setOutputDataToPlcBayV2: modbus failed to connect : outputPortId: " + outputPortId);
 		}
 
 		ModbusTcpClient.logger.debug("setOutputDataToPlcBayV2: Exit ");
@@ -589,8 +498,7 @@ public class BayUtils {
 
 	public String setOutputWordToPlcBay(String clusterId, String bayId, String outputPortId, int outputValue) {
 		// ModbusTcpClient.logger.debug("setOutputWordToPlcBay: Entry ");
-		ModbusTcpClient.logger.debug("setOutputWordToPlcBay: clusterId: " + clusterId + " -> bayId :" + bayId
-				+ " -> outputPortId: " + outputPortId);
+		ModbusTcpClient.logger.debug("setOutputWordToPlcBay: clusterId: " + clusterId + " -> bayId :" + bayId + " -> outputPortId: " + outputPortId);
 
 		String statusResponse = "";
 
@@ -599,8 +507,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 		// ModbusTcpClient.logger.debug("setOutputWordToPlcBay: Test1 ");
 		if (clusterServer == null) {
-			ModbusTcpClient.logger.debug("setOutputWordToPlcBay: cluster ip address details not found for terminalId: "
-					+ terminalId + " , clusterId: " + clusterId);
+			ModbusTcpClient.logger.debug("setOutputWordToPlcBay: cluster ip address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 		boolean modbusPlcConnected = false;
@@ -615,8 +522,7 @@ public class BayUtils {
 			ModbusTcpClient.logger.debug("setOutputWordToPlcBay : retryCount: " + retryCount + " : " + outputPortId);
 
 			synchronized (clusterLock) { // Lock based on clusterId
-				ModbusTcpClient.logger.debug(
-						"setOutputWordToPlcBay: Processing cluster: " + clusterId + " : outputId : " + outputPortId);
+				ModbusTcpClient.logger.debug("setOutputWordToPlcBay: Processing cluster: " + clusterId + " : outputId : " + outputPortId);
 
 				// Process the message
 
@@ -633,17 +539,14 @@ public class BayUtils {
 						plcCoilAddress = Integer.parseInt(formattedOutputPortId);
 
 						/*
-						 * if(Constant_IO_ActionMapping.OLD_OFF_NEW_ON.equals(outputValue)){
-						 * outputValue = true;
-						 * }
+						 * if(Constant_IO_ActionMapping.OLD_OFF_NEW_ON.equals(outputValue)){ outputValue
+						 * = true; }
 						 */
 
 						BayResponse bayResponse = new BayResponse();
-						bayResponse = getModbusTcpClientManager().modbusWriteHoldingRegister(clusterServer,
-								plcCoilAddress, outputValue);
+						bayResponse = getModbusTcpClientManager().modbusWriteHoldingRegister(clusterServer, plcCoilAddress, outputValue);
 						if (!bayResponse.getStatus()) {
-							ModbusTcpClient.logger.info(
-									"setOutputWordToPlcBay: outputPortId: device not responded : " + outputPortId);
+							ModbusTcpClient.logger.info("setOutputWordToPlcBay: outputPortId: device not responded : " + outputPortId);
 
 							statusResponse = Constant_IO_ActionMapping.OFF; // Constant_IO_ActionMapping.OLD_ON_NEW_OFF.equalsIgnoreCase(outputStatus)
 																			// ?
@@ -651,8 +554,7 @@ public class BayUtils {
 																			// :
 																			// Constant_IO_ActionMapping.OLD_OFF_NEW_ON;
 						} else {
-							ModbusTcpClient.logger.info("setOutputWordToPlcBay: success : outputPortId:  "
-									+ outputPortId + " : " + bayResponse.isResponseBooleanData());
+							ModbusTcpClient.logger.info("setOutputWordToPlcBay: success : outputPortId:  " + outputPortId + " : " + bayResponse.isResponseBooleanData());
 
 							statusResponse = Constant_IO_ActionMapping.OFF; // Constant_IO_ActionMapping.OLD_ON_NEW_OFF.equalsIgnoreCase(outputStatus)
 																			// ?
@@ -669,14 +571,12 @@ public class BayUtils {
 
 				} else {
 					statusResponse = outputPortId;
-					ModbusTcpClient.logger
-							.info("setOutputWordToPlcBay: modbus failed to connect :  outputPortId: " + outputPortId);
+					ModbusTcpClient.logger.info("setOutputWordToPlcBay: modbus failed to connect :  outputPortId: " + outputPortId);
 				}
 
 				messageProcessed = true;
 
-				ModbusTcpClient.logger.debug("setOutputWordToPlcBay: Completed processing for cluster: " + clusterId
-						+ " : outputId : " + outputPortId);
+				ModbusTcpClient.logger.debug("setOutputWordToPlcBay: Completed processing for cluster: " + clusterId + " : outputId : " + outputPortId);
 			}
 		}
 
@@ -686,8 +586,7 @@ public class BayUtils {
 
 	public String setOutputDataToPlcBay(String clusterId, String bayId, String outputPortId, String outputStatus) {
 		// ModbusTcpClient.logger.debug("setOutputDataToPlcBay: Entry ");
-		ModbusTcpClient.logger.debug("setOutputDataToPlcBay: clusterId: " + clusterId + " -> bayId :" + bayId
-				+ " -> outputPortId: " + outputPortId);
+		ModbusTcpClient.logger.debug("setOutputDataToPlcBay: clusterId: " + clusterId + " -> bayId :" + bayId + " -> outputPortId: " + outputPortId);
 
 		String statusResponse = "";
 
@@ -704,8 +603,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 		// ModbusTcpClient.logger.debug("setOutputDataToPlcBay: Test1 ");
 		if (clusterServer == null) {
-			ModbusTcpClient.logger.debug("setOutputDataToPlcBay: cluster ip address details not found for terminalId: "
-					+ terminalId + " , clusterId: " + clusterId);
+			ModbusTcpClient.logger.debug("setOutputDataToPlcBay: cluster ip address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 		boolean modbusPlcConnected = false;
@@ -716,28 +614,18 @@ public class BayUtils {
 		 * 
 		 * BayResponse bayResponse =
 		 * getModbusTcpClientManager().modbusConnect(clusterServer.getIpAddress(),
-		 * clusterServer.getPort());
-		 * if(bayResponse.getStatus()) {
+		 * clusterServer.getPort()); if(bayResponse.getStatus()) {
 		 * ApplicationLauncher.logger.debug("setOutputDataToPlcBay: modbus connected : "
-		 * + outputPortId);
-		 * modbusPlcConnected = true;
-		 * }
-		 * }else {
+		 * + outputPortId); modbusPlcConnected = true; } }else {
 		 * if(!getModbusTcpClientManager().getModbusTcpServerConnectedMap().get(
-		 * clusterServer.getIpAddress())){
-		 * BayResponse bayResponse =
+		 * clusterServer.getIpAddress())){ BayResponse bayResponse =
 		 * getModbusTcpClientManager().modbusConnect(clusterServer.getIpAddress(),
-		 * clusterServer.getPort());
-		 * if(bayResponse.getStatus()) {
+		 * clusterServer.getPort()); if(bayResponse.getStatus()) {
 		 * ApplicationLauncher.logger.
 		 * debug("setOutputDataToPlcBay: modbus connected-B : " + outputPortId);
-		 * modbusPlcConnected = true;
-		 * }
-		 * }else{
-		 * ApplicationLauncher.logger.
+		 * modbusPlcConnected = true; } }else{ ApplicationLauncher.logger.
 		 * debug("setOutputDataToPlcBay: modbus already connected-C : " + outputPortId);
-		 * modbusPlcConnected = true;
-		 * }
+		 * modbusPlcConnected = true; }
 		 * 
 		 * }
 		 */
@@ -755,8 +643,7 @@ public class BayUtils {
 			ModbusTcpClient.logger.debug("setOutputDataToPlcBay : retryCount: " + retryCount + " : " + outputPortId);
 
 			synchronized (clusterLock) { // Lock based on clusterId
-				ModbusTcpClient.logger.debug(
-						"setOutputDataToPlcBay: Processing cluster: " + clusterId + " : outputId : " + outputPortId);
+				ModbusTcpClient.logger.debug("setOutputDataToPlcBay: Processing cluster: " + clusterId + " : outputId : " + outputPortId);
 
 				// Process the message
 
@@ -776,22 +663,15 @@ public class BayUtils {
 							outputValue = true;
 						}
 						BayResponse bayResponse = new BayResponse();
-						bayResponse = getModbusTcpClientManager().modbusWriteCoil(clusterServer, plcCoilAddress,
-								outputValue);// .getModbusTcpClient().modbusTcpSendWriteCoilCmd(plcCoilAddress,outputValue);
+						bayResponse = getModbusTcpClientManager().modbusWriteCoil(clusterServer, plcCoilAddress, outputValue);// .getModbusTcpClient().modbusTcpSendWriteCoilCmd(plcCoilAddress,outputValue);
 						if (!bayResponse.getStatus()) {
-							ModbusTcpClient.logger.info(
-									"setOutputDataToPlcBay: outputPortId: device not responded : " + outputPortId);
-							statusResponse = Constant_IO_ActionMapping.OFF.equalsIgnoreCase(outputStatus)
-									? Constant_IO_ActionMapping.OFF
-									: Constant_IO_ActionMapping.ON;
+							ModbusTcpClient.logger.info("setOutputDataToPlcBay: outputPortId: device not responded : " + outputPortId);
+							statusResponse = Constant_IO_ActionMapping.OFF.equalsIgnoreCase(outputStatus) ? Constant_IO_ActionMapping.OFF : Constant_IO_ActionMapping.ON;
 
 						} else {
-							ModbusTcpClient.logger.info("setOutputDataToPlcBay: success : outputPortId:  "
-									+ outputPortId + " : " + bayResponse.isResponseBooleanData());
+							ModbusTcpClient.logger.info("setOutputDataToPlcBay: success : outputPortId:  " + outputPortId + " : " + bayResponse.isResponseBooleanData());
 
-							statusResponse = Constant_IO_ActionMapping.OFF.equalsIgnoreCase(outputStatus)
-									? Constant_IO_ActionMapping.OFF
-									: Constant_IO_ActionMapping.ON;
+							statusResponse = Constant_IO_ActionMapping.OFF.equalsIgnoreCase(outputStatus) ? Constant_IO_ActionMapping.OFF : Constant_IO_ActionMapping.ON;
 
 						}
 					} else {
@@ -802,14 +682,12 @@ public class BayUtils {
 					}
 				} else {
 					statusResponse = outputPortId;
-					ModbusTcpClient.logger
-							.info("setOutputDataToPlcBay: modbus failed to connect :  outputPortId: " + outputPortId);
+					ModbusTcpClient.logger.info("setOutputDataToPlcBay: modbus failed to connect :  outputPortId: " + outputPortId);
 				}
 
 				messageProcessed = true;
 
-				ModbusTcpClient.logger.debug("setOutputDataToPlcBay: Completed processing for cluster: " + clusterId
-						+ " : outputId : " + outputPortId);
+				ModbusTcpClient.logger.debug("setOutputDataToPlcBay: Completed processing for cluster: " + clusterId + " : outputId : " + outputPortId);
 			}
 		}
 
@@ -829,8 +707,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 		boolean modbusPlcConnected = false;
 		if (clusterServer == null) {
-			ModbusTcpClient.logger.debug("getInputDataFromPlcBay: cluster ip address details not found for terminalId: "
-					+ terminalId + " , clusterId: " + clusterId);
+			ModbusTcpClient.logger.debug("getInputDataFromPlcBay: cluster ip address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 
@@ -838,7 +715,6 @@ public class BayUtils {
 		boolean messageProcessed = false;
 
 		Object clusterLock = ClusterUtils.getClusterLock(clusterId); // Get lock for this cluster
-
 
 		while ((retryCount != 0) && (!messageProcessed) && (!BayUtils.isUserAborted())) {
 			retryCount--;
@@ -856,8 +732,7 @@ public class BayUtils {
 						int plcCoilAddress = -1;
 						plcCoilAddress = Integer.parseInt(inputPortId);
 
-						BayResponse bayResponse = getModbusTcpClientManager().modbusReadCoil(clusterServer,
-								plcCoilAddress);// .modbusTcpSendReadCoilCmd(plcCoilAddress);
+						BayResponse bayResponse = getModbusTcpClientManager().modbusReadCoil(clusterServer, plcCoilAddress);// .modbusTcpSendReadCoilCmd(plcCoilAddress);
 						if (!bayResponse.getStatus()) {
 							ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId: device not responded ");
 							statusResponse = inputPortId;
@@ -875,13 +750,11 @@ public class BayUtils {
 						}
 					} else {
 						statusResponse = inputPortId;
-						ModbusTcpClient.logger
-								.info("getInputDataFromPlcBay: invalid inputPortId: " + io_portInfo.getPortId());
+						ModbusTcpClient.logger.info("getInputDataFromPlcBay: invalid inputPortId: " + io_portInfo.getPortId());
 					}
 				} else {
 					statusResponse = inputPortId;
-					ModbusTcpClient.logger
-							.info("getInputDataFromPlcBay: modbus failed to connect :  outputPortId: " + inputPortId);
+					ModbusTcpClient.logger.info("getInputDataFromPlcBay: modbus failed to connect :  outputPortId: " + inputPortId);
 				}
 
 				messageProcessed = true;
@@ -900,15 +773,13 @@ public class BayUtils {
 		String terminalId = ConstantConveyorConfig.MY_TERMINAL_ID;
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 		if (clusterServer == null) {
-			ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Cluster IP address details not found for terminalId: "
-					+ terminalId + " , clusterId: " + clusterId);
+			ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Cluster IP address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 
 		boolean modbusPlcConnected = getModbusTcpClientManager().ensureModbusConnection(clusterServer);
 		if (!modbusPlcConnected) {
-			ModbusTcpClient.logger
-					.info("getInputDataFromPlcBay: Modbus failed to connect : inputPortId: " + inputPortId);
+			ModbusTcpClient.logger.info("getInputDataFromPlcBay: Modbus failed to connect : inputPortId: " + inputPortId);
 			return inputPortId;
 		}
 
@@ -928,12 +799,9 @@ public class BayUtils {
 					ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId: device not responded");
 					statusResponse.set(inputPortIdFinal);
 				} else {
-					ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId: " + io_portInfo.getPortId()
-							+ " : " + bayResponse.isResponseBooleanData());
+					ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId: " + io_portInfo.getPortId() + " : " + bayResponse.isResponseBooleanData());
 					String response = bayResponse.getResponseData();
-					statusResponse
-							.set(Constant_IO_ActionMapping.OFF.equalsIgnoreCase(response) ? Constant_IO_ActionMapping.ON
-									: Constant_IO_ActionMapping.OFF);
+					statusResponse.set(Constant_IO_ActionMapping.OFF.equalsIgnoreCase(response) ? Constant_IO_ActionMapping.ON : Constant_IO_ActionMapping.OFF);
 					ModbusTcpClient.logger.info("getInputDataFromPlcBay: inputPortId: " + statusResponse.get());
 				}
 				future.complete(null);
@@ -949,8 +817,7 @@ public class BayUtils {
 			ModbusTcpClient.logger.info("getInputDataFromPlcBay: invalid inputPortId: " + io_portInfo.getPortId());
 		}
 
-		ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Completed processing for cluster: " + clusterId
-				+ " : inputPortId : " + io_portInfo.getPortId());
+		ModbusTcpClient.logger.debug("getInputDataFromPlcBay: Completed processing for cluster: " + clusterId + " : inputPortId : " + io_portInfo.getPortId());
 		return statusResponse.get();
 	}
 
@@ -966,9 +833,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 
 		if (clusterServer == null) {
-			ApplicationLauncher.logger
-					.debug("getPulseCounterStatusFromBay: cluster IP address details not found for terminalId: "
-							+ terminalId + " , clusterId: " + clusterId);
+			ApplicationLauncher.logger.debug("getPulseCounterStatusFromBay: cluster IP address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 
@@ -1046,8 +911,7 @@ public class BayUtils {
 		ClusterServer clusterServer = getServerDetails(terminalId, clusterId);
 
 		if (clusterServer == null) {
-			ApplicationLauncher.logger.debug("setOutputDataToBay: cluster ip address details not found for terminalId: "
-					+ terminalId + " , clusterId: " + clusterId);
+			ApplicationLauncher.logger.debug("setOutputDataToBay: cluster ip address details not found for terminalId: " + terminalId + " , clusterId: " + clusterId);
 			return null;
 		}
 
@@ -1070,14 +934,12 @@ public class BayUtils {
 				clusterResponseData = cluster1ClientManager.getAsyncConvClient().getRestApiClusterResponseBodyData();
 			}
 
-			if (clusterResponseData != null
-					&& clusterResponseData.getStatusCode().equals(ConstantConveyor.HTTP_RESPONSE_SUCCESS)) {
+			if (clusterResponseData != null && clusterResponseData.getStatusCode().equals(ConstantConveyor.HTTP_RESPONSE_SUCCESS)) {
 				try {
 					if (clusterResponseData.getJsonBodyResponse() != null) {
 						statusResponse = clusterResponseData.getJsonBodyResponse().get(outputPortId).toString();
 					} else {
-						ApplicationLauncher.logger.error(
-								"setOutputDataToBay: JsonBodyResponse is null for outputPortId: " + outputPortId);
+						ApplicationLauncher.logger.error("setOutputDataToBay: JsonBodyResponse is null for outputPortId: " + outputPortId);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -1116,8 +978,7 @@ public class BayUtils {
 						getClusterBayNameListMap().put(eachClusterDetail.getName(), bayList);
 						Map<String, String> bayNameIdMap = new HashMap<String, String>();
 						bayNameIdMap.put(eachBay.getBayName(), eachBay.getBayId());
-						getClusterBayNameIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(),
-								eachBay.getBayId());
+						getClusterBayNameIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), eachBay.getBayId());
 						// getClusterBayNameIdMap().put(eachClusterDetail.getName(), bayNameIdMap);
 						// ApplicationLauncher.logger.debug("loadDataFromConfig :
 						// getClusterBayNameIdMap().get(clusterName)-1 :"+ getClusterBayNameIdMap());
@@ -1139,50 +1000,34 @@ public class BayUtils {
 						bayId = getClusterBayNameIdMap().get(eachClusterDetail.getName() + "_" + eachBay.getBayName());
 						ArrayList<String> qrPositionNoList = new ArrayList<String>();
 						for (QrScanner eachQrDevice : eachTerminal.getQrScanner()) {
-							if ((eachQrDevice.getClusterId().equals(clusterId))
-									&& (eachQrDevice.getBayId().equals(bayId))) {
+							if ((eachQrDevice.getClusterId().equals(clusterId)) && (eachQrDevice.getBayId().equals(bayId))) {
 								// getClusterBayNamePositionListMap().put
 								qrPositionNoList.add(eachQrDevice.getPositionId());
-								getQrClusterBayPositionNoCnameMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachQrDevice.getPositionId(),
-										eachQrDevice.getPortName());
-								getQrClusterBayPositionNoDeviceIdMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachQrDevice.getPositionId(),
-										eachQrDevice.getDeviceId());
+								getQrClusterBayPositionNoCnameMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachQrDevice.getPositionId(), eachQrDevice.getPortName());
+								getQrClusterBayPositionNoDeviceIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachQrDevice.getPositionId(), eachQrDevice.getDeviceId());
 
 							}
 
 						}
 						if (qrPositionNoList.size() > 0) {
-							getQrClusterBayNamePositionListMap()
-									.put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), qrPositionNoList);
+							getQrClusterBayNamePositionListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), qrPositionNoList);
 						}
 
 						/////////////////////////////////////
 
 						ArrayList<String> dutPositionNoList = new ArrayList<String>();
 						for (DutDevice eachDutDevice : eachTerminal.getDutDevice()) {
-							if ((eachDutDevice.getClusterId().equals(clusterId))
-									&& (eachDutDevice.getBayId().equals(bayId))) {
+							if ((eachDutDevice.getClusterId().equals(clusterId)) && (eachDutDevice.getBayId().equals(bayId))) {
 								// getClusterBayNamePositionListMap().put
 								dutPositionNoList.add(eachDutDevice.getPositionId());
-								getDutClusterBayPositionNoCnameMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachDutDevice.getPositionId(),
-										eachDutDevice.getPortName());
-								getDutClusterBayPositionNoDeviceIdMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachDutDevice.getPositionId(),
-										eachDutDevice.getDeviceId());
+								getDutClusterBayPositionNoCnameMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachDutDevice.getPositionId(), eachDutDevice.getPortName());
+								getDutClusterBayPositionNoDeviceIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachDutDevice.getPositionId(), eachDutDevice.getDeviceId());
 
 							}
 
 						}
 						if (dutPositionNoList.size() > 0) {
-							getDutClusterBayNamePositionListMap()
-									.put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), dutPositionNoList);
+							getDutClusterBayNamePositionListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), dutPositionNoList);
 						}
 						//////////////////////////////////////////////////
 
@@ -1191,40 +1036,27 @@ public class BayUtils {
 						ArrayList<String> megaOhmPositionNoList = new ArrayList<String>();
 						ArrayList<String> megaOhmAddressList = new ArrayList<String>();
 						for (MegaOhmMeter eachMegaOhmMeterDevice : eachTerminal.getMegaOhmMeter()) {
-							if ((eachMegaOhmMeterDevice.getClusterId().equals(clusterId))
-									&& (eachMegaOhmMeterDevice.getBayId().equals(bayId))) {
+							if ((eachMegaOhmMeterDevice.getClusterId().equals(clusterId)) && (eachMegaOhmMeterDevice.getBayId().equals(bayId))) {
 								// getClusterBayNamePositionListMap().put
 								megaOhmPositionNoList.add(eachMegaOhmMeterDevice.getPositionId());
-								getMegaOhmMeterClusterBayPositionNoCnameMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachMegaOhmMeterDevice.getPositionId(),
-										eachMegaOhmMeterDevice.getPortName());
-								getMegaOhmMeterClusterBayPositionNoDeviceIdMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachMegaOhmMeterDevice.getPositionId(),
-										eachMegaOhmMeterDevice.getDeviceId());
-								ApplicationLauncher.logger.debug(
-										"loadDataFromConfig-M : getDeviceId :" + eachMegaOhmMeterDevice.getDeviceId());
+								getMegaOhmMeterClusterBayPositionNoCnameMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachMegaOhmMeterDevice.getPositionId(), eachMegaOhmMeterDevice.getPortName());
+								getMegaOhmMeterClusterBayPositionNoDeviceIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachMegaOhmMeterDevice.getPositionId(), eachMegaOhmMeterDevice.getDeviceId());
+								ApplicationLauncher.logger.debug("loadDataFromConfig-M : getDeviceId :" + eachMegaOhmMeterDevice.getDeviceId());
 								if (eachMegaOhmMeterDevice.isRs485Enabled()) {
 									megaOhmAddressList = eachMegaOhmMeterDevice.getRs485DeviceIdList();
-									ApplicationLauncher.logger.debug(
-											"loadDataFromConfig-M : addressList :" + megaOhmAddressList.toString());
+									ApplicationLauncher.logger.debug("loadDataFromConfig-M : addressList :" + megaOhmAddressList.toString());
 								}
 
 								if (megaOhmAddressList.size() > 0) {
-									String formattedPositionId = String.format("%02d",
-											Integer.parseInt(eachMegaOhmMeterDevice.getPositionId()));
-									getMegaOhmMeterClusterBayPositionNoAddressListMap().put(eachClusterDetail.getName()
-											+ "_" + eachBay.getBayName() + "_" + formattedPositionId,
-											megaOhmAddressList);
+									String formattedPositionId = String.format("%02d", Integer.parseInt(eachMegaOhmMeterDevice.getPositionId()));
+									getMegaOhmMeterClusterBayPositionNoAddressListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + formattedPositionId, megaOhmAddressList);
 								}
 
 							}
 
 						}
 						if (megaOhmPositionNoList.size() > 0) {
-							getMegaOhmMeterClusterBayNamePositionListMap().put(
-									eachClusterDetail.getName() + "_" + eachBay.getBayName(), megaOhmPositionNoList);
+							getMegaOhmMeterClusterBayNamePositionListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), megaOhmPositionNoList);
 						}
 
 						//////////////////////////////////////////////////
@@ -1234,39 +1066,27 @@ public class BayUtils {
 						ArrayList<String> voltPositionNoList = new ArrayList<String>();
 						ArrayList<String> voltAddressList = new ArrayList<String>();
 						for (VoltMeter eachVoltMeterDevice : eachTerminal.getVoltMeter()) {
-							if ((eachVoltMeterDevice.getClusterId().equals(clusterId))
-									&& (eachVoltMeterDevice.getBayId().equals(bayId))) {
+							if ((eachVoltMeterDevice.getClusterId().equals(clusterId)) && (eachVoltMeterDevice.getBayId().equals(bayId))) {
 								// getClusterBayNamePositionListMap().put
 								voltPositionNoList.add(eachVoltMeterDevice.getPositionId());
-								getVoltMeterClusterBayPositionNoCnameMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachVoltMeterDevice.getPositionId(),
-										eachVoltMeterDevice.getPortName());
-								getVoltMeterClusterBayPositionNoDeviceIdMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachVoltMeterDevice.getPositionId(),
-										eachVoltMeterDevice.getDeviceId());
-								ApplicationLauncher.logger.debug(
-										"loadDataFromConfig-V : getDeviceId :" + eachVoltMeterDevice.getDeviceId());
+								getVoltMeterClusterBayPositionNoCnameMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachVoltMeterDevice.getPositionId(), eachVoltMeterDevice.getPortName());
+								getVoltMeterClusterBayPositionNoDeviceIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachVoltMeterDevice.getPositionId(), eachVoltMeterDevice.getDeviceId());
+								ApplicationLauncher.logger.debug("loadDataFromConfig-V : getDeviceId :" + eachVoltMeterDevice.getDeviceId());
 								if (eachVoltMeterDevice.isRs485Enabled()) {
 									voltAddressList = eachVoltMeterDevice.getRs485DeviceIdList();
-									ApplicationLauncher.logger
-											.debug("loadDataFromConfig-V : addressList :" + voltAddressList.toString());
+									ApplicationLauncher.logger.debug("loadDataFromConfig-V : addressList :" + voltAddressList.toString());
 								}
 
 								if (voltAddressList.size() > 0) {
-									String formattedPositionId = String.format("%02d",
-											Integer.parseInt(eachVoltMeterDevice.getPositionId()));
-									getVoltMeterClusterBayPositionNoAddressListMap().put(eachClusterDetail.getName()
-											+ "_" + eachBay.getBayName() + "_" + formattedPositionId, voltAddressList);
+									String formattedPositionId = String.format("%02d", Integer.parseInt(eachVoltMeterDevice.getPositionId()));
+									getVoltMeterClusterBayPositionNoAddressListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + formattedPositionId, voltAddressList);
 								}
 
 							}
 
 						}
 						if (voltPositionNoList.size() > 0) {
-							getVoltMeterClusterBayNamePositionListMap()
-									.put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), voltPositionNoList);
+							getVoltMeterClusterBayNamePositionListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), voltPositionNoList);
 						}
 						//////////////////////////////////////////////////
 
@@ -1275,39 +1095,27 @@ public class BayUtils {
 						ArrayList<String> lduPositionNoList = new ArrayList<String>();
 						ArrayList<String> lduAddressList = new ArrayList<String>();
 						for (Ldu eachLduDevice : eachTerminal.getLdu()) {
-							if ((eachLduDevice.getClusterId().equals(clusterId))
-									&& (eachLduDevice.getBayId().equals(bayId))) {
+							if ((eachLduDevice.getClusterId().equals(clusterId)) && (eachLduDevice.getBayId().equals(bayId))) {
 								// getClusterBayNamePositionListMap().put
 								lduPositionNoList.add(eachLduDevice.getPositionId());
-								getLduClusterBayPositionNoCnameMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachLduDevice.getPositionId(),
-										eachLduDevice.getPortName());
-								getLduClusterBayPositionNoDeviceIdMap().put(
-										eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_"
-												+ eachLduDevice.getPositionId(),
-										eachLduDevice.getDeviceId());
-								ApplicationLauncher.logger
-										.debug("loadDataFromConfig-L : getDeviceId :" + eachLduDevice.getDeviceId());
+								getLduClusterBayPositionNoCnameMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachLduDevice.getPositionId(), eachLduDevice.getPortName());
+								getLduClusterBayPositionNoDeviceIdMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + eachLduDevice.getPositionId(), eachLduDevice.getDeviceId());
+								ApplicationLauncher.logger.debug("loadDataFromConfig-L : getDeviceId :" + eachLduDevice.getDeviceId());
 								if (eachLduDevice.isRs485Enabled()) {
 									lduAddressList = eachLduDevice.getRs485DeviceIdList();
-									ApplicationLauncher.logger
-											.debug("loadDataFromConfig-L : addressList :" + lduAddressList.toString());
+									ApplicationLauncher.logger.debug("loadDataFromConfig-L : addressList :" + lduAddressList.toString());
 								}
 
 								if (lduAddressList.size() > 0) {
-									String formattedPositionId = String.format("%02d",
-											Integer.parseInt(eachLduDevice.getPositionId()));
-									getLduClusterBayPositionNoAddressListMap().put(eachClusterDetail.getName() + "_"
-											+ eachBay.getBayName() + "_" + formattedPositionId, lduAddressList);
+									String formattedPositionId = String.format("%02d", Integer.parseInt(eachLduDevice.getPositionId()));
+									getLduClusterBayPositionNoAddressListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName() + "_" + formattedPositionId, lduAddressList);
 								}
 
 							}
 
 						}
 						if (lduPositionNoList.size() > 0) {
-							getLduClusterBayNamePositionListMap()
-									.put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), lduPositionNoList);
+							getLduClusterBayNamePositionListMap().put(eachClusterDetail.getName() + "_" + eachBay.getBayName(), lduPositionNoList);
 						}
 						//////////////////////////////////////////////////
 
@@ -1322,79 +1130,53 @@ public class BayUtils {
 		 * getQrClusterBayPositionNoCnameMap().entrySet().forEach((e)->{
 		 * ApplicationLauncher.logger.
 		 * debug("loadDataFromConfig-2: getQrClusterBayPositionNoCnameMap: key : " +
-		 * e.getKey() + " -> " + e.getValue());
-		 * });
+		 * e.getKey() + " -> " + e.getValue()); });
 		 * 
 		 * getQrClusterBayPositionNoDeviceIdMap().entrySet().forEach((e)->{
 		 * ApplicationLauncher.logger.
 		 * debug("loadDataFromConfig-Qr2: getQrClusterBayPositionNoDeviceIdMap: key : "
-		 * + e.getKey() + " -> " + e.getValue());
-		 * });
+		 * + e.getKey() + " -> " + e.getValue()); });
 		 * 
 		 * 
 		 * getDutClusterBayPositionNoCnameMap().entrySet().forEach((e)->{
 		 * ApplicationLauncher.logger.
 		 * debug("loadDataFromConfig-2: getDutClusterBayPositionNoCnameMap: key : " +
-		 * e.getKey() + " -> " + e.getValue());
-		 * });
+		 * e.getKey() + " -> " + e.getValue()); });
 		 * 
 		 * getDutClusterBayPositionNoDeviceIdMap().entrySet().forEach((e)->{
 		 * ApplicationLauncher.logger.
 		 * debug("loadDataFromConfig-Dut2: getDutClusterBayPositionNoDeviceIdMap: key : "
-		 * + e.getKey() + " -> " + e.getValue());
-		 * });
+		 * + e.getKey() + " -> " + e.getValue()); });
 		 */
 
 		getMegaOhmMeterClusterBayNamePositionListMap().entrySet().forEach((e) -> {
-			ApplicationLauncher.logger
-					.debug("loadDataFromConfig-OhmMeter: getMegaOhmMeterClusterBayNamePositionListMap: key : "
-							+ e.getKey() + " -> " + e.getValue());
+			ApplicationLauncher.logger.debug("loadDataFromConfig-OhmMeter: getMegaOhmMeterClusterBayNamePositionListMap: key : " + e.getKey() + " -> " + e.getValue());
 		});
-		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_QR_SCANNER,
-				getQrClusterBayNamePositionListMap());
-		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_QR_SCANNER,
-				getQrClusterBayPositionNoCnameMap());
-		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_QR_SCANNER,
-				getQrClusterBayPositionNoDeviceIdMap());
+		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_QR_SCANNER, getQrClusterBayNamePositionListMap());
+		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_QR_SCANNER, getQrClusterBayPositionNoCnameMap());
+		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_QR_SCANNER, getQrClusterBayPositionNoDeviceIdMap());
 
-		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_DUT,
-				getDutClusterBayNamePositionListMap());
-		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_DUT,
-				getDutClusterBayPositionNoCnameMap());
-		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_DUT,
-				getDutClusterBayPositionNoDeviceIdMap());
+		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_DUT, getDutClusterBayNamePositionListMap());
+		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_DUT, getDutClusterBayPositionNoCnameMap());
+		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_DUT, getDutClusterBayPositionNoDeviceIdMap());
 
-		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER,
-				getMegaOhmMeterClusterBayNamePositionListMap());
-		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER,
-				getMegaOhmMeterClusterBayPositionNoCnameMap());
-		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER,
-				getMegaOhmMeterClusterBayPositionNoDeviceIdMap());
-		getFilteredClusterBayPositionNoAddressListMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER,
-				getMegaOhmMeterClusterBayPositionNoAddressListMap());
+		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER, getMegaOhmMeterClusterBayNamePositionListMap());
+		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER, getMegaOhmMeterClusterBayPositionNoCnameMap());
+		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER, getMegaOhmMeterClusterBayPositionNoDeviceIdMap());
+		getFilteredClusterBayPositionNoAddressListMap().put(ConstantConveyor.DEVICE_TYPE_OHM_METER, getMegaOhmMeterClusterBayPositionNoAddressListMap());
 
-		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER,
-				getVoltMeterClusterBayNamePositionListMap());
-		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER,
-				getVoltMeterClusterBayPositionNoCnameMap());
-		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER,
-				getVoltMeterClusterBayPositionNoDeviceIdMap());
-		getFilteredClusterBayPositionNoAddressListMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER,
-				getVoltMeterClusterBayPositionNoAddressListMap());
+		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER, getVoltMeterClusterBayNamePositionListMap());
+		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER, getVoltMeterClusterBayPositionNoCnameMap());
+		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER, getVoltMeterClusterBayPositionNoDeviceIdMap());
+		getFilteredClusterBayPositionNoAddressListMap().put(ConstantConveyor.DEVICE_TYPE_VOLT_METER, getVoltMeterClusterBayPositionNoAddressListMap());
 
-		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_LDU,
-				getLduClusterBayNamePositionListMap());
-		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_LDU,
-				getLduClusterBayPositionNoCnameMap());
-		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_LDU,
-				getLduClusterBayPositionNoDeviceIdMap());
-		getFilteredClusterBayPositionNoAddressListMap().put(ConstantConveyor.DEVICE_TYPE_LDU,
-				getLduClusterBayPositionNoAddressListMap());
+		getFilteredClusterBayNamePositionListMap().put(ConstantConveyor.DEVICE_TYPE_LDU, getLduClusterBayNamePositionListMap());
+		getFilteredClusterBayPositionNoCnameMap().put(ConstantConveyor.DEVICE_TYPE_LDU, getLduClusterBayPositionNoCnameMap());
+		getFilteredClusterBayPositionNoDeviceIdMap().put(ConstantConveyor.DEVICE_TYPE_LDU, getLduClusterBayPositionNoDeviceIdMap());
+		getFilteredClusterBayPositionNoAddressListMap().put(ConstantConveyor.DEVICE_TYPE_LDU, getLduClusterBayPositionNoAddressListMap());
 
 		getFilteredClusterBayPositionNoAddressListMap().entrySet().forEach((e) -> {
-			ApplicationLauncher.logger
-					.debug("loadDataFromConfig-OhmMeter: getFilteredClusterBayPositionNoAddressListMap: key : "
-							+ e.getKey() + " -> " + e.getValue());
+			ApplicationLauncher.logger.debug("loadDataFromConfig-OhmMeter: getFilteredClusterBayPositionNoAddressListMap: key : " + e.getKey() + " -> " + e.getValue());
 		});
 
 	}
@@ -1415,15 +1197,12 @@ public class BayUtils {
 			noOfPalletsInBay = DeviceDataManagerController.getConveyorConfigParsedKey().getMaxNoOfPalletsInStaNld2();
 		} else if (bayKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
 			ApplicationLauncher.logger.debug("fetchPalletsByBayState: waiting bay");
-			noOfPalletsInBay = DeviceDataManagerController.getConveyorConfigParsedKey()
-					.getMaxNoOfPalletsInWaitingVerific1();
+			noOfPalletsInBay = DeviceDataManagerController.getConveyorConfigParsedKey().getMaxNoOfPalletsInWaitingVerific1();
 		}
 		ApplicationLauncher.logger.debug("fetchPalletsByBayState: noOfPalletsInBay : " + noOfPalletsInBay);
-		palletManageList = MySqlServiceManager.getPalletManageService().findTopXActiveByPresentBayKey(bayKey,
-				noOfPalletsInBay);
+		palletManageList = MySqlServiceManager.getPalletManageService().findTopXActiveByPresentBayKey(bayKey, noOfPalletsInBay);
 		for (PalletManage eachPalletManage : palletManageList) {
-			ApplicationLauncher.logger
-					.debug("fetchPalletsByBayState: getPalletDistinctId:    " + eachPalletManage.getPalletDistinctId());
+			ApplicationLauncher.logger.debug("fetchPalletsByBayState: getPalletDistinctId:    " + eachPalletManage.getPalletDistinctId());
 		}
 		return palletManageList;
 	}
@@ -1443,15 +1222,12 @@ public class BayUtils {
 			noOfPalletsInBay = DeviceDataManagerController.getConveyorConfigParsedKey().getMaxNoOfPalletsInStaNld2();
 		} else if (bayKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
 			ApplicationLauncher.logger.debug("fetchPalletsByBayState: waiting bay");
-			noOfPalletsInBay = DeviceDataManagerController.getConveyorConfigParsedKey()
-					.getMaxNoOfPalletsInWaitingVerific1();
+			noOfPalletsInBay = DeviceDataManagerController.getConveyorConfigParsedKey().getMaxNoOfPalletsInWaitingVerific1();
 		}
 		ApplicationLauncher.logger.debug("fetchPalletsByBayState: noOfPalletsInBay : " + noOfPalletsInBay);
-		palletManageList = MySqlServiceManager.getPalletManageService().findLastWeekTopXActiveByPresentBayKey(bayKey,
-				noOfPalletsInBay);
+		palletManageList = MySqlServiceManager.getPalletManageService().findLastWeekTopXActiveByPresentBayKey(bayKey, noOfPalletsInBay);
 		for (PalletManage eachPalletManage : palletManageList) {
-			ApplicationLauncher.logger
-					.debug("fetchPalletsByBayState: getPalletDistinctId:    " + eachPalletManage.getPalletDistinctId());
+			ApplicationLauncher.logger.debug("fetchPalletsByBayState: getPalletDistinctId:    " + eachPalletManage.getPalletDistinctId());
 		}
 		return palletManageList;
 	}
@@ -1501,8 +1277,7 @@ public class BayUtils {
 
 		if (!ProconFeatureEnable.MOTOR_CONTROL_DISABLE) {
 			if (portInfo != null) {
-				ApplicationLauncher.logger.debug("set_motor_required: ClusterId :" + portInfo.getClusterId()
-						+ "-> BayId: " + portInfo.getBayId() + "-> PortId: " + portInfo.getPortId());
+				ApplicationLauncher.logger.debug("set_motor_required: ClusterId :" + portInfo.getClusterId() + "-> BayId: " + portInfo.getBayId() + "-> PortId: " + portInfo.getPortId());
 				// ApplicationLauncher.logger.debug("ClusterId : " + portInfo.getClusterId());
 				// ApplicationLauncher.logger.debug("BayId : " + portInfo.getBayId());
 
@@ -1510,11 +1285,9 @@ public class BayUtils {
 				int outputValue = BayUtils.generateModBusWord(motor_requirement);
 
 				if (ProcalFeatureEnable.MODBUS_PLC_SLAVE_MODE) {
-					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
-							outputValue);
+					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), outputValue);
 				} else {
-					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
-							outputValue);
+					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), outputValue);
 				}
 
 				ApplicationLauncher.logger.debug("Bay Utils : set_motor_required : state : " + state);
@@ -1564,18 +1337,15 @@ public class BayUtils {
 				 * ApplicationLauncher.logger.debug("ClusterId : " + portInfo.getClusterId());
 				 * ApplicationLauncher.logger.debug("BayId     : " + portInfo.getBayId());
 				 */
-				ApplicationLauncher.logger.debug("set_motor_required With Req: ClusterId :" + portInfo.getClusterId()
-						+ "-> BayId: " + portInfo.getBayId() + "-> PortId: " + portInfo.getPortId());
+				ApplicationLauncher.logger.debug("set_motor_required With Req: ClusterId :" + portInfo.getClusterId() + "-> BayId: " + portInfo.getBayId() + "-> PortId: " + portInfo.getPortId());
 
 				// List<String> motor_requirement = getMotorRequirement(bayKey);
 				int outputValue = BayUtils.generateModBusWord(motor_requirement);
 
 				if (ProcalFeatureEnable.MODBUS_PLC_SLAVE_MODE) {
-					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
-							outputValue);
+					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), outputValue);
 				} else {
-					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
-							outputValue);
+					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), outputValue);
 				}
 
 				ApplicationLauncher.logger.debug("Bay Utils : set_motor_required : state : " + state);
@@ -1621,21 +1391,14 @@ public class BayUtils {
 
 		if (!ProconFeatureEnable.MOTOR_CONTROL_DISABLE) {
 			if (portInfo != null) {
-				// ApplicationLauncher.logger.debug("PortId : " + portInfo.getPortId());
-				// ApplicationLauncher.logger.debug("ClusterId : " + portInfo.getClusterId());
-				// ApplicationLauncher.logger.debug("BayId : " + portInfo.getBayId());
-
-				ApplicationLauncher.logger.debug("set_motor_not_required: ClusterId :" + portInfo.getClusterId()
-						+ "-> BayId: " + portInfo.getBayId() + "-> PortId: " + portInfo.getPortId());
+				ApplicationLauncher.logger.debug("set_motor_not_required: ClusterId :" + portInfo.getClusterId() + "-> BayId: " + portInfo.getBayId() + "-> PortId: " + portInfo.getPortId());
 
 				int outputValue = 0;
 
 				if (ProcalFeatureEnable.MODBUS_PLC_SLAVE_MODE) {
-					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
-							outputValue);
+					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), outputValue);
 				} else {
-					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(),
-							outputValue);
+					state = setOutputWordToPlcBay(portInfo.getClusterId(), portInfo.getBayId(), portInfo.getPortId(), outputValue);
 				}
 
 				ApplicationLauncher.logger.debug("Bay Utils : set_motor_not_required : state : " + state);
@@ -1669,32 +1432,32 @@ public class BayUtils {
 
 	public String getBayAddress(String bayKey) {
 		switch (bayKey) {
-			case ConstantConveyor.FT_BAY_KEY:
-				return ConstantBayPortNameMapping.FT_PORT_NAME_ADDRESS;
-			case ConstantConveyor.HV_BAY_KEY:
-				return ConstantBayPortNameMapping.HV_PORT_NAME_ADDRESS;
-			case ConstantConveyor.IR_BAY_KEY:
-				return ConstantBayPortNameMapping.IR_PORT_NAME_ADDRESS;
-			case ConstantConveyor.CALIBRATION_BAY_KEY:
-				return ConstantBayPortNameMapping.CALIB_PORT_NAME_ADDRESS;
-			case ConstantConveyor.COMMUNICATION_BAY_KEY:
-				return ConstantBayPortNameMapping.COMM_PORT_NAME_ADDRESS;
-			case ConstantConveyor.LOADING_BAY_KEY:
-				return ConstantBayPortNameMapping.LOADING_PORT_NAME_ADDRESS;
-			case ConstantConveyor.REJECTION_BAY_KEY:
-				return ConstantBayPortNameMapping.REJECTION_PORT_NAME_ADDRESS;
-			case ConstantConveyor.STA_NLD1_BAY_KEY:
-				return ConstantBayPortNameMapping.STA1_PORT_NAME_ADDRESS;
-			case ConstantConveyor.STA_NLD2_BAY_KEY:
-				return ConstantBayPortNameMapping.STA2_PORT_NAME_ADDRESS;
-			case ConstantConveyor.WAITING_BAY_KEY:
-				return ConstantBayPortNameMapping.WAITING_PORT_NAME_ADDRESS;
-			case ConstantConveyor.VERIFICATION_BAY_KEY:
-				return ConstantBayPortNameMapping.VERIFIC_PORT_NAME_ADDRESS;
-			case ConstantConveyor.UNLOADING_BAY_KEY:
-				return ConstantBayPortNameMapping.UNLOADING_PORT_NAME_ADDRESS;
-			default:
-				return null; // or throw an IllegalArgumentException if preferred
+		case ConstantConveyor.FT_BAY_KEY:
+			return ConstantBayPortNameMapping.FT_PORT_NAME_ADDRESS;
+		case ConstantConveyor.HV_BAY_KEY:
+			return ConstantBayPortNameMapping.HV_PORT_NAME_ADDRESS;
+		case ConstantConveyor.IR_BAY_KEY:
+			return ConstantBayPortNameMapping.IR_PORT_NAME_ADDRESS;
+		case ConstantConveyor.CALIBRATION_BAY_KEY:
+			return ConstantBayPortNameMapping.CALIB_PORT_NAME_ADDRESS;
+		case ConstantConveyor.COMMUNICATION_BAY_KEY:
+			return ConstantBayPortNameMapping.COMM_PORT_NAME_ADDRESS;
+		case ConstantConveyor.LOADING_BAY_KEY:
+			return ConstantBayPortNameMapping.LOADING_PORT_NAME_ADDRESS;
+		case ConstantConveyor.REJECTION_BAY_KEY:
+			return ConstantBayPortNameMapping.REJECTION_PORT_NAME_ADDRESS;
+		case ConstantConveyor.STA_NLD1_BAY_KEY:
+			return ConstantBayPortNameMapping.STA1_PORT_NAME_ADDRESS;
+		case ConstantConveyor.STA_NLD2_BAY_KEY:
+			return ConstantBayPortNameMapping.STA2_PORT_NAME_ADDRESS;
+		case ConstantConveyor.WAITING_BAY_KEY:
+			return ConstantBayPortNameMapping.WAITING_PORT_NAME_ADDRESS;
+		case ConstantConveyor.VERIFICATION_BAY_KEY:
+			return ConstantBayPortNameMapping.VERIFIC_PORT_NAME_ADDRESS;
+		case ConstantConveyor.UNLOADING_BAY_KEY:
+			return ConstantBayPortNameMapping.UNLOADING_PORT_NAME_ADDRESS;
+		default:
+			return null; // or throw an IllegalArgumentException if preferred
 		}
 	}
 
@@ -1702,32 +1465,31 @@ public class BayUtils {
 
 	public List<String> getMotorRequirement(String bayKey) {
 		switch (bayKey) {
-			/*
-			 * case ConstantConveyor.FT_BAY_KEY:
-			 * return Constant_Motor_Requirement.ft
-			 */
-			case ConstantConveyor.HV_BAY_KEY:
-				return Constant_Motor_Requirement.HV_MOTOR_REQUIRED;
-			case ConstantConveyor.IR_BAY_KEY:
-				return Constant_Motor_Requirement.IR_MOTOR_REQUIRED;
-			case ConstantConveyor.CALIBRATION_BAY_KEY:
-				return Constant_Motor_Requirement.CALIB_MOTOR_REQUIRED;
-			case ConstantConveyor.COMMUNICATION_BAY_KEY:
-				return Constant_Motor_Requirement.COMM_MOTOR_REQUIRED;
-			case ConstantConveyor.LOADING_BAY_KEY:
-				return Constant_Motor_Requirement.LOADING_MOTOR_REQUIRED;
-			case ConstantConveyor.REJECTION_BAY_KEY:
-				return Constant_Motor_Requirement.REJECTION_MOTOR_REQUIRED;
-			case ConstantConveyor.STA_NLD1_BAY_KEY:
-				return Constant_Motor_Requirement.STA1_MOTOR_REQUIRED;
-			case ConstantConveyor.STA_NLD2_BAY_KEY:
-				return Constant_Motor_Requirement.STA2_MOTOR_REQUIRED;
-			case ConstantConveyor.WAITING_BAY_KEY:
-				return Constant_Motor_Requirement.WAITING_MOTOR_REQUIRED;
-			case ConstantConveyor.UNLOADING_BAY_KEY:
-				return Constant_Motor_Requirement.UNLOADING_MOTOR_REQUIRED;
-			default:
-				throw new IllegalArgumentException("Invalid bay key: " + bayKey);
+		/*
+		 * case ConstantConveyor.FT_BAY_KEY: return Constant_Motor_Requirement.ft
+		 */
+		case ConstantConveyor.HV_BAY_KEY:
+			return Constant_Motor_Requirement.HV_MOTOR_REQUIRED;
+		case ConstantConveyor.IR_BAY_KEY:
+			return Constant_Motor_Requirement.IR_MOTOR_REQUIRED;
+		case ConstantConveyor.CALIBRATION_BAY_KEY:
+			return Constant_Motor_Requirement.CALIB_MOTOR_REQUIRED;
+		case ConstantConveyor.COMMUNICATION_BAY_KEY:
+			return Constant_Motor_Requirement.COMM_MOTOR_REQUIRED;
+		case ConstantConveyor.LOADING_BAY_KEY:
+			return Constant_Motor_Requirement.LOADING_MOTOR_REQUIRED;
+		case ConstantConveyor.REJECTION_BAY_KEY:
+			return Constant_Motor_Requirement.REJECTION_MOTOR_REQUIRED;
+		case ConstantConveyor.STA_NLD1_BAY_KEY:
+			return Constant_Motor_Requirement.STA1_MOTOR_REQUIRED;
+		case ConstantConveyor.STA_NLD2_BAY_KEY:
+			return Constant_Motor_Requirement.STA2_MOTOR_REQUIRED;
+		case ConstantConveyor.WAITING_BAY_KEY:
+			return Constant_Motor_Requirement.WAITING_MOTOR_REQUIRED;
+		case ConstantConveyor.UNLOADING_BAY_KEY:
+			return Constant_Motor_Requirement.UNLOADING_MOTOR_REQUIRED;
+		default:
+			throw new IllegalArgumentException("Invalid bay key: " + bayKey);
 		}
 	}
 
@@ -1742,61 +1504,6 @@ public class BayUtils {
 		BayUtils.bayConfigModel = bayConfigModel;
 	}
 
-	// ========================================================================================
-	/*
-	 * public static Map<String, ArrayList<String>> getClusterBayNameListMap() {
-	 * return clusterBayNameListMap;
-	 * }
-	 * public static Map<String, String> getClusterNameIdListMap() {
-	 * return clusterNameIdListMap;
-	 * }
-	 * public static Map<String, String> getClusterBayNameIdMap() {
-	 * return clusterBayNameIdMap;
-	 * }
-	 * public static Map<String, ArrayList<String>>
-	 * getClusterBayNamePositionListMap() {
-	 * return clusterBayNamePositionListMap;
-	 * }
-	 * public static Map<String, String> getClusterBayPositionNoCnameMap() {
-	 * return clusterBayPositionNoCnameMap;
-	 * }
-	 * public static Map<String, String> getClusterBayPositionNoDeviceIdMap() {
-	 * return clusterBayPositionNoDeviceIdMap;
-	 * }
-	 * public static Map<String, ArrayList<String>>
-	 * getClusterBayPositionNoAddressListMap() {
-	 * return clusterBayPositionNoAddressListMap;
-	 * }
-	 * public static void setClusterBayNameListMap(Map<String, ArrayList<String>>
-	 * clusterBayNameListMap) {
-	 * BayUtils.clusterBayNameListMap = clusterBayNameListMap;
-	 * }
-	 * public static void setClusterNameIdListMap(Map<String, String>
-	 * clusterNameIdListMap) {
-	 * BayUtils.clusterNameIdListMap = clusterNameIdListMap;
-	 * }
-	 * public static void setClusterBayNameIdMap(Map<String, String>
-	 * clusterBayNameIdMap) {
-	 * BayUtils.clusterBayNameIdMap = clusterBayNameIdMap;
-	 * }
-	 * public static void setClusterBayNamePositionListMap(Map<String,
-	 * ArrayList<String>> clusterBayNamePositionListMap) {
-	 * BayUtils.clusterBayNamePositionListMap = clusterBayNamePositionListMap;
-	 * }
-	 * public static void setClusterBayPositionNoCnameMap(Map<String, String>
-	 * clusterBayPositionNoCnameMap) {
-	 * BayUtils.clusterBayPositionNoCnameMap = clusterBayPositionNoCnameMap;
-	 * }
-	 * public static void setClusterBayPositionNoDeviceIdMap(Map<String, String>
-	 * clusterBayPositionNoDeviceIdMap) {
-	 * BayUtils.clusterBayPositionNoDeviceIdMap = clusterBayPositionNoDeviceIdMap;
-	 * }
-	 * public static void setClusterBayPositionNoAddressListMap(
-	 * Map<String, ArrayList<String>> clusterBayPositionNoAddressListMap) {
-	 * BayUtils.clusterBayPositionNoAddressListMap =
-	 * clusterBayPositionNoAddressListMap;
-	 * }
-	 */
 	public static Map<String, ArrayList<String>> getClusterBayNameListMap() {
 		return clusterBayNameListMap;
 	}
@@ -1833,8 +1540,7 @@ public class BayUtils {
 		BayUtils.clusterBayNameIdMap = clusterBayNameIdMap;
 	}
 
-	public static void setQrClusterBayNamePositionListMap(
-			Map<String, ArrayList<String>> qrClusterBayNamePositionListMap) {
+	public static void setQrClusterBayNamePositionListMap(Map<String, ArrayList<String>> qrClusterBayNamePositionListMap) {
 		BayUtils.qrClusterBayNamePositionListMap = qrClusterBayNamePositionListMap;
 	}
 
@@ -1858,8 +1564,7 @@ public class BayUtils {
 		return dutClusterBayPositionNoDeviceIdMap;
 	}
 
-	public static void setDutClusterBayNamePositionListMap(
-			Map<String, ArrayList<String>> dutClusterBayNamePositionListMap) {
+	public static void setDutClusterBayNamePositionListMap(Map<String, ArrayList<String>> dutClusterBayNamePositionListMap) {
 		BayUtils.dutClusterBayNamePositionListMap = dutClusterBayNamePositionListMap;
 	}
 
@@ -1883,18 +1588,15 @@ public class BayUtils {
 		return filteredClusterBayPositionNoDeviceIdMap;
 	}
 
-	public static void setFilteredClusterBayNamePositionListMap(
-			Map<String, Map<String, ArrayList<String>>> filteredClusterBayNamePositionListMap) {
+	public static void setFilteredClusterBayNamePositionListMap(Map<String, Map<String, ArrayList<String>>> filteredClusterBayNamePositionListMap) {
 		BayUtils.filteredClusterBayNamePositionListMap = filteredClusterBayNamePositionListMap;
 	}
 
-	public static void setFilteredClusterBayPositionNoCnameMap(
-			Map<String, Map<String, String>> filteredClusterBayPositionNoCnameMap) {
+	public static void setFilteredClusterBayPositionNoCnameMap(Map<String, Map<String, String>> filteredClusterBayPositionNoCnameMap) {
 		BayUtils.filteredClusterBayPositionNoCnameMap = filteredClusterBayPositionNoCnameMap;
 	}
 
-	public static void setFilteredClusterBayPositionNoDeviceIdMap(
-			Map<String, Map<String, String>> filteredClusterBayPositionNoDeviceIdMap) {
+	public static void setFilteredClusterBayPositionNoDeviceIdMap(Map<String, Map<String, String>> filteredClusterBayPositionNoDeviceIdMap) {
 		BayUtils.filteredClusterBayPositionNoDeviceIdMap = filteredClusterBayPositionNoDeviceIdMap;
 	}
 
@@ -1934,38 +1636,31 @@ public class BayUtils {
 		return lduClusterBayPositionNoDeviceIdMap;
 	}
 
-	public static void setMegaOhmMeterClusterBayNamePositionListMap(
-			Map<String, ArrayList<String>> megaOhmMeterClusterBayNamePositionListMap) {
+	public static void setMegaOhmMeterClusterBayNamePositionListMap(Map<String, ArrayList<String>> megaOhmMeterClusterBayNamePositionListMap) {
 		BayUtils.megaOhmMeterClusterBayNamePositionListMap = megaOhmMeterClusterBayNamePositionListMap;
 	}
 
-	public static void setMegaOhmMeterClusterBayPositionNoCnameMap(
-			Map<String, String> megaOhmMeterClusterBayPositionNoCnameMap) {
+	public static void setMegaOhmMeterClusterBayPositionNoCnameMap(Map<String, String> megaOhmMeterClusterBayPositionNoCnameMap) {
 		BayUtils.megaOhmMeterClusterBayPositionNoCnameMap = megaOhmMeterClusterBayPositionNoCnameMap;
 	}
 
-	public static void setMegaOhmMeterClusterBayPositionNoDeviceIdMap(
-			Map<String, String> megaOhmMeterClusterBayPositionNoDeviceIdMap) {
+	public static void setMegaOhmMeterClusterBayPositionNoDeviceIdMap(Map<String, String> megaOhmMeterClusterBayPositionNoDeviceIdMap) {
 		BayUtils.megaOhmMeterClusterBayPositionNoDeviceIdMap = megaOhmMeterClusterBayPositionNoDeviceIdMap;
 	}
 
-	public static void setVoltMeterClusterBayNamePositionListMap(
-			Map<String, ArrayList<String>> voltMeterClusterBayNamePositionListMap) {
+	public static void setVoltMeterClusterBayNamePositionListMap(Map<String, ArrayList<String>> voltMeterClusterBayNamePositionListMap) {
 		BayUtils.voltMeterClusterBayNamePositionListMap = voltMeterClusterBayNamePositionListMap;
 	}
 
-	public static void setVoltMeterClusterBayPositionNoCnameMap(
-			Map<String, String> voltMeterClusterBayPositionNoCnameMap) {
+	public static void setVoltMeterClusterBayPositionNoCnameMap(Map<String, String> voltMeterClusterBayPositionNoCnameMap) {
 		BayUtils.voltMeterClusterBayPositionNoCnameMap = voltMeterClusterBayPositionNoCnameMap;
 	}
 
-	public static void setVoltMeterClusterBayPositionNoDeviceIdMap(
-			Map<String, String> voltMeterClusterBayPositionNoDeviceIdMap) {
+	public static void setVoltMeterClusterBayPositionNoDeviceIdMap(Map<String, String> voltMeterClusterBayPositionNoDeviceIdMap) {
 		BayUtils.voltMeterClusterBayPositionNoDeviceIdMap = voltMeterClusterBayPositionNoDeviceIdMap;
 	}
 
-	public static void setLduClusterBayNamePositionListMap(
-			Map<String, ArrayList<String>> lduClusterBayNamePositionListMap) {
+	public static void setLduClusterBayNamePositionListMap(Map<String, ArrayList<String>> lduClusterBayNamePositionListMap) {
 		BayUtils.lduClusterBayNamePositionListMap = lduClusterBayNamePositionListMap;
 	}
 
@@ -1989,18 +1684,15 @@ public class BayUtils {
 		return lduClusterBayPositionNoAddressListMap;
 	}
 
-	public void setMegaOhmMeterClusterBayPositionNoAddressListMap(
-			Map<String, ArrayList<String>> megaOhmMeterClusterBayPositionNoAddressListMap) {
+	public void setMegaOhmMeterClusterBayPositionNoAddressListMap(Map<String, ArrayList<String>> megaOhmMeterClusterBayPositionNoAddressListMap) {
 		BayUtils.megaOhmMeterClusterBayPositionNoAddressListMap = megaOhmMeterClusterBayPositionNoAddressListMap;
 	}
 
-	public void setVoltMeterClusterBayPositionNoAddressListMap(
-			Map<String, ArrayList<String>> voltMeterClusterBayPositionNoAddressListMap) {
+	public void setVoltMeterClusterBayPositionNoAddressListMap(Map<String, ArrayList<String>> voltMeterClusterBayPositionNoAddressListMap) {
 		BayUtils.voltMeterClusterBayPositionNoAddressListMap = voltMeterClusterBayPositionNoAddressListMap;
 	}
 
-	public void setLduClusterBayPositionNoAddressListMap(
-			Map<String, ArrayList<String>> lduMeterClusterBayPositionNoAddressListMap) {
+	public void setLduClusterBayPositionNoAddressListMap(Map<String, ArrayList<String>> lduMeterClusterBayPositionNoAddressListMap) {
 		BayUtils.lduClusterBayPositionNoAddressListMap = lduMeterClusterBayPositionNoAddressListMap;
 	}
 
@@ -2008,8 +1700,7 @@ public class BayUtils {
 		return filteredClusterBayPositionNoAddressListMap;
 	}
 
-	public static void setFilteredClusterBayPositionNoAddressListMap(
-			Map<String, Map<String, ArrayList<String>>> filteredClusterBayPositionNoAddressListMap) {
+	public static void setFilteredClusterBayPositionNoAddressListMap(Map<String, Map<String, ArrayList<String>>> filteredClusterBayPositionNoAddressListMap) {
 		BayUtils.filteredClusterBayPositionNoAddressListMap = filteredClusterBayPositionNoAddressListMap;
 	}
 
@@ -2025,8 +1716,7 @@ public class BayUtils {
 	public void computeMeterOverAllStatus(String palletDistinctId) {
 		ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: Entry");
 
-		Optional<PalletManage> myPalletManageOpt = MySqlServiceManager.getPalletManageService()
-				.findByPalletDistinctId(palletDistinctId);
+		Optional<PalletManage> myPalletManageOpt = MySqlServiceManager.getPalletManageService().findByPalletDistinctId(palletDistinctId);
 		if (myPalletManageOpt.isPresent()) {
 			PalletManage myPalletManage = myPalletManageOpt.get();
 			//// ********************************************************************
@@ -2041,13 +1731,10 @@ public class BayUtils {
 					meterTestTypeResultTemplate.put(eachTestType, false);
 				}
 			}
-			ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: getPalletDistinctId: "
-					+ myPalletManage.getPalletDistinctId());
-			ApplicationLauncher.logger.debug(
-					"BayUtils: computeMeterOverAllStatus: meterTestTypeResultTemplate: " + meterTestTypeResultTemplate);
+			ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: getPalletDistinctId: " + myPalletManage.getPalletDistinctId());
+			ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultTemplate: " + meterTestTypeResultTemplate);
 			Set<PalletMeter> palletMeterSetList = myPalletManage.getPalletMeterList();
-			List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
-					.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
+			List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream().sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
 			for (int i = 0; i < sortedPalletMeterList.size(); i++) {
 				// meterResultSummary = ref_tvMeterResultSummary.getItems().get(i);
 				meterOverAllStatus = ConstantReport.REPORT_POPULATE_WFR;
@@ -2059,56 +1746,27 @@ public class BayUtils {
 				palletMeter.getRackPositionNo();
 				if (palletMeter != null) {
 
-					Map<String, Boolean> meterTestTypeResultPresent = new HashMap<String, Boolean>(
-							meterTestTypeResultTemplate);
+					Map<String, Boolean> meterTestTypeResultPresent = new HashMap<String, Boolean>(meterTestTypeResultTemplate);
 
-					/*
-					 * palletMeter.getPalletMeterResultsList().stream().forEach(e->{
-					 * if(palletMeter.getPalletMeterResultsList().contains(o)) {
-					 * 
-					 * }
-					 * meterTestTypePresent.put(e.getTestType(), true);
-					 * });
-					 */
-					ApplicationLauncher.logger
-							.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-1 : "
-									+ meterTestTypeResultPresent);
+					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-1 : " + meterTestTypeResultPresent);
 					palletMeter.getPalletMeterResultsList().stream()
 							// .filter(e->e.getResultActive())
 							.forEach(e -> {
-								ApplicationLauncher.logger
-										.debug("BayUtils: computeMeterOverAllStatus: getPalletMeterResultsList : "
-												+ e.getMeterSerialNo() + " : " + e.getTestType());
+								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: getPalletMeterResultsList : " + e.getMeterSerialNo() + " : " + e.getTestType());
 
 								if (meterTestTypeResultPresent.containsKey(e.getTestType())) {
 									meterTestTypeResultPresent.put(e.getTestType(), true);
 								} else {
-									ApplicationLauncher.logger.debug(
-											"BayUtils: computeMeterOverAllStatus: skipping  : Test type validation: "
-													+ e.getTestType());
+									ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: skipping  : Test type validation: " + e.getTestType());
 								}
 							});
 
-					ApplicationLauncher.logger
-							.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-2 : "
-									+ meterTestTypeResultPresent);
-					ApplicationLauncher.logger.debug(
-							"BayUtils: computeMeterOverAllStatus: presentMeterSerialNo : " + presentMeterSerialNo);
-
-					/*
-					 * meterTestTypeResultPresent.entrySet().stream().forEach(e->{
-					 * ApplicationLauncher.logger.
-					 * debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent : key: "
-					 * + e.getKey() + " -> " + e.getValue());
-					 * //meterTestTypePresent.put(e.getTestType(), true);
-					 * });
-					 */
+					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-2 : " + meterTestTypeResultPresent);
+					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo : " + presentMeterSerialNo);
 
 					StringBuilder nonExecutedResultMessage = new StringBuilder();
 					meterTestTypeResultPresent.entrySet().stream().forEach(e -> {
-						ApplicationLauncher.logger
-								.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent : key: "
-										+ e.getKey() + " -> " + e.getValue());
+						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent : key: " + e.getKey() + " -> " + e.getValue());
 						// meterTestTypePresent.put(e.getTestType(), true);
 						if (!e.getValue()) {
 							if (nonExecutedResultMessage.length() > 0) {
@@ -2118,204 +1776,84 @@ public class BayUtils {
 
 						}
 					});
-					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: nonExecutedResultMessage : "
-							+ nonExecutedResultMessage);
-					Boolean allTestTypeCompleted = meterTestTypeResultPresent.entrySet().stream()
-							.allMatch(e -> e.getValue().equals(true)); // this logic need to be modified for all testing
-																		// completed
-					ApplicationLauncher.logger.debug(
-							"BayUtils: computeMeterOverAllStatus: allTestTypeCompleted : " + allTestTypeCompleted);
+					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: nonExecutedResultMessage : " + nonExecutedResultMessage);
+					Boolean allTestTypeCompleted = meterTestTypeResultPresent.entrySet().stream().allMatch(e -> e.getValue().equals(true)); // this logic need to be modified for all testing
+																																			// completed
+					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: allTestTypeCompleted : " + allTestTypeCompleted);
 					if (allTestTypeCompleted) {
 
 						palletMeter.getPalletMeterResultsList().stream().forEachOrdered(e -> {
-							ApplicationLauncher.logger.debug(
-									"BayUtils: Result : bay: " + e.getBayStateKey() + ", TestType : " + e.getTestType()
-											+ ", Position: " + e.getRackPositionNo() + ", ResultStatus: <"
-											+ e.getResultStatus() + ">, ResultValue: <" + e.getResultValue() + ">");
+							ApplicationLauncher.logger.debug("BayUtils: Result : bay: " + e.getBayStateKey() + ", TestType : " + e.getTestType() + ", Position: " + e.getRackPositionNo() + ", ResultStatus: <" + e.getResultStatus() + ">, ResultValue: <" + e.getResultValue() + ">");
 						});
-						/*
-						 * boolean failedResultFound =
-						 * palletMeter.getPalletMeterResultsList().stream().filter(e->e.getMeterSerialNo
-						 * ().equals(presentMeterSerialNo))
-						 * .anyMatch(e->e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL))
-						 * ;
-						 * ApplicationLauncher.logger.
-						 * debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " +
-						 * presentMeterSerialNo + " : failedResultFound : " + failedResultFound);
-						 * boolean wfrResultFound =
-						 * palletMeter.getPalletMeterResultsList().stream().filter(e->e.getMeterSerialNo
-						 * ().equals(presentMeterSerialNo))
-						 * .anyMatch(e->e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR));
-						 * ApplicationLauncher.logger.
-						 * debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " +
-						 * presentMeterSerialNo + " : wfrResultFound : " + wfrResultFound);
-						 */
 
 						String failureReason = "";
-						boolean batchFailedResultFound = palletMeter.getPalletMeterResultsList().stream()
-								.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-								.anyMatch(e -> e.getResultValue()
-										.contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER));
-						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: "
-								+ presentMeterSerialNo + " : batchFailedResultFound status: " + batchFailedResultFound);
-
-						/*
-						 * if(batchFailedResultFound) {
-						 * ApplicationLauncher.logger.
-						 * debug("BayUtils: computeMeterOverAllStatus: batch failed found");
-						 * String batchFailedTestTypesCsv =
-						 * palletMeter.getPalletMeterResultsList().stream()
-						 * .filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-						 * .filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL))
-						 * .filter(e -> e.getResultValue().contains(ConstantConveyor.
-						 * REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))
-						 * .map(e -> e.getTestType() + ":" +
-						 * ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER )
-						 * .distinct() // optional, if you want unique test types
-						 * .collect(Collectors.joining(","));
-						 * //failedTestTypesCsv = "Failed: " + failedTestTypesCsv;
-						 * batchFailedTestTypesCsv = ConstantConveyor.REASON_RESULT_FAILED_DISPLAY +
-						 * batchFailedTestTypesCsv;
-						 * ApplicationLauncher.logger.
-						 * debug("BayUtils: computeMeterOverAllStatus: batch failedResultFound : presentMeterSerialNo: "
-						 * + presentMeterSerialNo + " : batchFailedTestTypesCsv : " +
-						 * batchFailedTestTypesCsv);
-						 * failureReason = batchFailedTestTypesCsv;// + "\n" + wfrResultFoundCsv;
-						 * 
-						 * if(!failureReason.isEmpty()){// removing last newline char
-						 * if (failureReason.endsWith("\n")) {// removing last newline char
-						 * failureReason = failureReason.substring(0, failureReason.length() - 1);
-						 * }
-						 * }
-						 * ApplicationLauncher.logger.
-						 * debug("BayUtils: computeMeterOverAllStatus: batch : presentMeterSerialNo: " +
-						 * presentMeterSerialNo + " : failureReason : " + failureReason);
-						 * palletMeter.setErrorCode(failureReason);
-						 * 
-						 * meterOverAllStatus = ConstantReport.REPORT_POPULATE_FAIL;
-						 * }else {
-						 */
+						boolean batchFailedResultFound = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).anyMatch(e -> e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER));
+						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : batchFailedResultFound status: " + batchFailedResultFound);
 
 						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: batch failed NOT found");
-						boolean failedResultFound = palletMeter.getPalletMeterResultsList().stream()
-								.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-								.anyMatch(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL))
-										&& (!e.getResultValue().contains(
-												ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))));
-						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: "
-								+ presentMeterSerialNo + " : failedResultFound status : " + failedResultFound);
-						boolean wfrResultFound = palletMeter.getPalletMeterResultsList().stream()
-								.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-								.anyMatch(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR));
-						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: "
-								+ presentMeterSerialNo + " : wfrResultFound status : " + wfrResultFound);
+						boolean failedResultFound = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).anyMatch(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)) && (!e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))));
+						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : failedResultFound status : " + failedResultFound);
+						boolean wfrResultFound = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).anyMatch(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR));
+						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : wfrResultFound status : " + wfrResultFound);
 						if (failedResultFound || wfrResultFound || batchFailedResultFound) {
-							ApplicationLauncher.logger.debug(
-									"BayUtils: computeMeterOverAllStatus: failedResultFound : presentMeterSerialNo: "
-											+ presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
+							ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: failedResultFound : presentMeterSerialNo: " + presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
 
 							String batchFailedTestTypesCsv = "";
 							if (batchFailedResultFound) {
-								ApplicationLauncher.logger
-										.debug("BayUtils: computeMeterOverAllStatus: batch failed found");
-								batchFailedTestTypesCsv = palletMeter.getPalletMeterResultsList().stream()
-										.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-										.filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL))
-										.filter(e -> e.getResultValue()
-												.contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))
-										.map(e -> e.getTestType())
-										.distinct() // optional, if you want unique test types
+								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: batch failed found");
+								batchFailedTestTypesCsv = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)).filter(e -> e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER)).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
 										.collect(Collectors.joining(","));
 								// failedTestTypesCsv = "Failed: " + failedTestTypesCsv;
-								batchFailedTestTypesCsv = ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER
-										+ ":" + batchFailedTestTypesCsv;// ConstantConveyor.REASON_RESULT_FAILED_DISPLAY
-																		// + batchFailedTestTypesCsv;
-								ApplicationLauncher.logger.debug(
-										"BayUtils: computeMeterOverAllStatus: batch failedResultFound : presentMeterSerialNo: "
-												+ presentMeterSerialNo + " : batchFailedTestTypesCsv : "
-												+ batchFailedTestTypesCsv);
-								/*
-								 * failureReason = batchFailedTestTypesCsv;// + "\n" + wfrResultFoundCsv;
-								 * 
-								 * if(!failureReason.isEmpty()){// removing last newline char
-								 * if (failureReason.endsWith("\n")) {// removing last newline char
-								 * failureReason = failureReason.substring(0, failureReason.length() - 1);
-								 * }
-								 * }
-								 */
-
+								batchFailedTestTypesCsv = ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER + ":" + batchFailedTestTypesCsv;// ConstantConveyor.REASON_RESULT_FAILED_DISPLAY
+																																						// + batchFailedTestTypesCsv;
+								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: batch failedResultFound : presentMeterSerialNo: " + presentMeterSerialNo + " : batchFailedTestTypesCsv : " + batchFailedTestTypesCsv);
 							}
 
 							String failedTestTypesCsv = "";
 							if (failedResultFound) {
-								failedTestTypesCsv = palletMeter.getPalletMeterResultsList().stream()
-										.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-										.filter(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL))
-												&& (!e.getResultValue().contains(
-														ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))))
-										.map(e -> e.getTestType())
-										.distinct() // optional, if you want unique test types
+								failedTestTypesCsv = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).filter(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)) && (!e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER)))).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
 										.collect(Collectors.joining(","));
 								// failedTestTypesCsv = "Failed: " + failedTestTypesCsv;
 								failedTestTypesCsv = ConstantConveyor.REASON_RESULT_FAILED_DISPLAY + failedTestTypesCsv;
-								ApplicationLauncher.logger.debug(
-										"BayUtils: computeMeterOverAllStatus: failedResultFound : presentMeterSerialNo: "
-												+ presentMeterSerialNo + " : failedTestTypesCsv : "
-												+ failedTestTypesCsv);
+								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: failedResultFound : presentMeterSerialNo: " + presentMeterSerialNo + " : failedTestTypesCsv : " + failedTestTypesCsv);
 
 							}
 
 							String wfrResultFoundCsv = "";
 							if (wfrResultFound) {
-								wfrResultFoundCsv = palletMeter.getPalletMeterResultsList().stream()
-										.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
-										.filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR))
-										.map(e -> e.getTestType())
-										.distinct() // optional, if you want unique test types
+								wfrResultFoundCsv = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR)).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
 										.collect(Collectors.joining(","));
 								// wfrResultFoundCsv = "WFR: " + wfrResultFoundCsv;
 								wfrResultFoundCsv = ConstantConveyor.REASON_RESULT_WFR_DISPLAY + wfrResultFoundCsv;
-								ApplicationLauncher.logger.debug(
-										"BayUtils: computeMeterOverAllStatus: wfrResultFound : presentMeterSerialNo: "
-												+ presentMeterSerialNo + " : wfrResultFoundCsv : " + wfrResultFoundCsv);
+								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: wfrResultFound : presentMeterSerialNo: " + presentMeterSerialNo + " : wfrResultFoundCsv : " + wfrResultFoundCsv);
 							}
 
-							failureReason = batchFailedTestTypesCsv + "\n" + failedTestTypesCsv + "\n"
-									+ wfrResultFoundCsv;
+							failureReason = batchFailedTestTypesCsv + "\n" + failedTestTypesCsv + "\n" + wfrResultFoundCsv;
 							/*
-							 * if(!failureReason.isEmpty()){// removing last newline char
-							 * failureReason = failureReason.replaceFirst("(?s)[\\r\\n]+\\z", "");
-							 * }
+							 * if(!failureReason.isEmpty()){// removing last newline char failureReason =
+							 * failureReason.replaceFirst("(?s)[\\r\\n]+\\z", ""); }
 							 */
 							/*
-							 * if(!failureReason.isEmpty()){// removing last newline char
-							 * if (failureReason.endsWith("\n")) {// removing last newline char
-							 * failureReason = failureReason.substring(0, failureReason.length() - 1);
-							 * }
-							 * }
+							 * if(!failureReason.isEmpty()){// removing last newline char if
+							 * (failureReason.endsWith("\n")) {// removing last newline char failureReason =
+							 * failureReason.substring(0, failureReason.length() - 1); } }
 							 */
 							// failureReason = failureReason.replaceAll("[\\r\\n]+$", "");
 							failureReason = failureReason.replaceAll("^[\\r\\n]+|[\\r\\n]+$", "");
 
-							ApplicationLauncher.logger
-									.debug("BayUtils: computeMeterOverAllStatus: Combined : presentMeterSerialNo: "
-											+ presentMeterSerialNo + " : failureReason : " + failureReason);
+							ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: Combined : presentMeterSerialNo: " + presentMeterSerialNo + " : failureReason : " + failureReason);
 							palletMeter.setErrorCode(failureReason);
 
 							meterOverAllStatus = ConstantReport.REPORT_POPULATE_FAIL;
 						} else {
-							ApplicationLauncher.logger.debug(
-									"BayUtils: computeMeterOverAllStatus: failedResultNotFound : Pass hit : presentMeterSerialNo: "
-											+ presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
+							ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: failedResultNotFound : Pass hit : presentMeterSerialNo: " + presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
 
 							meterOverAllStatus = ConstantReport.REPORT_POPULATE_PASS;
 							palletMeter.setErrorCode("");
 						}
 						// }
 					} else {
-						ApplicationLauncher.logger
-								.debug("BayUtils: one or few result results missing: nonExecutedResultMessage: "
-										+ nonExecutedResultMessage.toString());
+						ApplicationLauncher.logger.debug("BayUtils: one or few result results missing: nonExecutedResultMessage: " + nonExecutedResultMessage.toString());
 						meterOverAllStatus = ConstantReport.REPORT_POPULATE_FAIL;
 						palletMeter.setErrorCode(nonExecutedResultMessage.toString());
 					}
@@ -2324,15 +1862,13 @@ public class BayUtils {
 
 				// meterResultSummary.setOverAllStatus(meterOverAllStatus);
 				// ref_tvMeterResultSummary.getItems().set(i, meterResultSummary);
-				ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: "
-						+ presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
+				ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
 				palletMeter.setOverAllTestResultStatus(meterOverAllStatus);
 				MySqlServiceManager.getPalletMeterService().save(palletMeter);
 			}
 
 		} else {
-			ApplicationLauncher.logger
-					.debug("BayUtils: computeMeterOverAllStatus: palletDistinctId NOT found:" + palletDistinctId);
+			ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: palletDistinctId NOT found:" + palletDistinctId);
 		}
 
 		ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: Exit");
@@ -2342,39 +1878,30 @@ public class BayUtils {
 	public void archiveExistingResultInDb(String myBayKey, String palletDistinctId) {
 
 		ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb: Entry");
-		ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb: myBayKey: " + myBayKey
-				+ ", eachPalletDistinctId: " + palletDistinctId);
-		Optional<PalletManage> myPalletManageOpt = MySqlServiceManager.getPalletManageService()
-				.findByPalletDistinctId(palletDistinctId);
+		ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb: myBayKey: " + myBayKey + ", eachPalletDistinctId: " + palletDistinctId);
+		Optional<PalletManage> myPalletManageOpt = MySqlServiceManager.getPalletManageService().findByPalletDistinctId(palletDistinctId);
 		if (myPalletManageOpt.isPresent()) {
 			// ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb: Hit");
 			PalletManage myPalletManage = myPalletManageOpt.get();
 			Set<PalletMeter> palletMeterSetList = myPalletManage.getPalletMeterList();
-			List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream()
-					.sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
+			List<PalletMeter> sortedPalletMeterList = palletMeterSetList.stream().sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
 			for (PalletMeter eachPalletMeter : sortedPalletMeterList) {
 				// ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb:
 				// Hit2");
 				// eachPalletMeter.getPalletMeterResultsList().stream().filter(e->e.getBayStateKey().equals(myBayKey))
 				/*
-				 * eachPalletMeter.getPalletMeterResultsList().removeIf(result -> {
-				 * if (result.getBayStateKey().equals(myBayKey)) {
-				 * result.setPalletMeter(null); // break reference to parent
-				 * return true; // mark for removal
-				 * }
-				 * return false;
+				 * eachPalletMeter.getPalletMeterResultsList().removeIf(result -> { if
+				 * (result.getBayStateKey().equals(myBayKey)) { result.setPalletMeter(null); //
+				 * break reference to parent return true; // mark for removal } return false;
 				 * });
 				 */
 
 				archiveResultsForBayKey(eachPalletMeter, myBayKey);
-				eachPalletMeter.getPalletMeterResultsList().stream()
-						.filter(e -> e.getBayStateKey().equals(myBayKey))
-						.collect(Collectors.toList());
+				eachPalletMeter.getPalletMeterResultsList().stream().filter(e -> e.getBayStateKey().equals(myBayKey)).collect(Collectors.toList());
 			}
 
 		} else {
-			ApplicationLauncher.logger
-					.debug("BayUtils: archiveExistingResultInDb: palletDistinctId NOT found:" + palletDistinctId);
+			ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb: palletDistinctId NOT found:" + palletDistinctId);
 
 		}
 		ApplicationLauncher.logger.debug("BayUtils: archiveExistingResultInDb: Exit");
@@ -2383,9 +1910,7 @@ public class BayUtils {
 	public void archiveResultsForBayKey(PalletMeter palletMeter, String bayKey) {
 
 		ApplicationLauncher.logger.debug("BayUtils: archiveResultsForBayKey: Entry");
-		Set<PalletMeterResults> resultsToArchive = palletMeter.getPalletMeterResultsList().stream()
-				.filter(r -> r.getBayStateKey().equals(bayKey))
-				.collect(Collectors.toSet());
+		Set<PalletMeterResults> resultsToArchive = palletMeter.getPalletMeterResultsList().stream().filter(r -> r.getBayStateKey().equals(bayKey)).collect(Collectors.toSet());
 
 		for (PalletMeterResults result : resultsToArchive) {
 			// Copy to archive object
@@ -2425,9 +1950,7 @@ public class BayUtils {
 
 	public boolean updateConveyorMetrics(
 
-			String bayKey,
-			String palletDistinctId,
-			String palletQrId,
+			String bayKey, String palletDistinctId, String palletQrId,
 			// String customerName,
 			// List<Map<String, Object>> metersToUpdate
 			ArrayList<PalletMeter> palletMeterList) {
@@ -2437,17 +1960,12 @@ public class BayUtils {
 			if (isInMidnightBufferZone()) {
 
 				int bufferTimeWaitInSec = 11;
-				ApplicationLauncher.logger
-						.debug("BayUtils: updateConveyorMetrics: isInMidnightBufferZone: Entry : bufferTimeWaitInSec: "
-								+ bufferTimeWaitInSec);
-				while ((bufferTimeWaitInSec > 0)
-						&& (!BayUtils.isUserAborted())) {
+				ApplicationLauncher.logger.debug("BayUtils: updateConveyorMetrics: isInMidnightBufferZone: Entry : bufferTimeWaitInSec: " + bufferTimeWaitInSec);
+				while ((bufferTimeWaitInSec > 0) && (!BayUtils.isUserAborted())) {
 
 					bufferTimeWaitInSec--;
 					delay(1000);
-					ApplicationLauncher.logger.debug(
-							"BayUtils: updateConveyorMetrics: isInMidnightBufferZone: waiting : bufferTimeWaitInSec: "
-									+ bufferTimeWaitInSec);
+					ApplicationLauncher.logger.debug("BayUtils: updateConveyorMetrics: isInMidnightBufferZone: waiting : bufferTimeWaitInSec: " + bufferTimeWaitInSec);
 
 				}
 				ApplicationLauncher.logger.debug("BayUtils: updateConveyorMetrics: isInMidnightBufferZone: Exit");
@@ -2455,8 +1973,7 @@ public class BayUtils {
 			}
 
 		} catch (Exception e) {
-			ApplicationLauncher.logger
-					.error("BayUtils: Exception :updateConveyorMetrics: isInMidnightBufferZone:" + e.getMessage());
+			ApplicationLauncher.logger.error("BayUtils: Exception :updateConveyorMetrics: isInMidnightBufferZone:" + e.getMessage());
 
 		}
 
@@ -2483,81 +2000,59 @@ public class BayUtils {
 					status = eachpalletMeter.getOverAllTestResultStatus();// (String)
 																			// meterData.get("overallTestResultStatus");
 					reason = eachpalletMeter.getErrorCode();// (String) meterData.get("errorCode");
-					ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo
-							+ " status :<" + status + ">");
+					ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " status :<" + status + ">");
 
 					if ("PASS".equalsIgnoreCase(status)) {
 						currentPalletPassedMeters++;
-						ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo
-								+ " currentPalletPassedMeters hit1");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " currentPalletPassedMeters hit1");
 					} else if ("FAIL".equalsIgnoreCase(status)) {
 						currentPalletFailedMeters++;
-						ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo
-								+ " currentPalletFailedMeters hit2");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " currentPalletFailedMeters hit2");
 					} else {
 						currentPalletFailedMeters++;
-						ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo
-								+ " currentPalletFailedMeters hit3");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Unloading: positionNo: " + positionNo + " currentPalletFailedMeters hit3");
 					}
 
 					/*
-					 * if (positionNo != null) {
-					 * //sendunloadingMeterUpdate(positionNo, serialNo, status, reason);
-					 * //BayUtils.delay(20000);
+					 * if (positionNo != null) { //sendunloadingMeterUpdate(positionNo, serialNo,
+					 * status, reason); //BayUtils.delay(20000);
 					 * //sendPalletWithMetersStatusUpdate(palletQrCode, metersToUpdate);
 					 * //MeterStatus meterStatus = status.equals("Pass") ? MeterStatus.PASSED :
-					 * MeterStatus.FAILED;
-					 * MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS)
-					 * ? MeterStatus.PASSED : MeterStatus.FAILED;
-					 * if(status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
-					 * meterStatus = MeterStatus.PASSED;
+					 * MeterStatus.FAILED; MeterStatus meterStatus =
+					 * status.equals(ConstantReport.REPORT_POPULATE_PASS) ? MeterStatus.PASSED :
+					 * MeterStatus.FAILED; if(status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
+					 * meterStatus = MeterStatus.PASSED; ApplicationLauncher.logger.
+					 * debug("updateConveyorMetrics: Unloading: positionNo: "+ positionNo
+					 * +" Pass hit1"); }else if(status.equals(ConstantReport.REPORT_POPULATE_FAIL))
+					 * { meterStatus = MeterStatus.FAILED; ApplicationLauncher.logger.
+					 * debug("updateConveyorMetrics: Unloading: positionNo: "+ positionNo
+					 * +" Fail hit2"); }else if(status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
 					 * ApplicationLauncher.logger.
 					 * debug("updateConveyorMetrics: Unloading: positionNo: "+ positionNo
-					 * +" Pass hit1");
-					 * }else if(status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
-					 * meterStatus = MeterStatus.FAILED;
+					 * +" WFR hit3"); meterStatus = MeterStatus.FAILED; }else {
 					 * ApplicationLauncher.logger.
 					 * debug("updateConveyorMetrics: Unloading: positionNo: "+ positionNo
-					 * +" Fail hit2");
-					 * }else if(status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
-					 * ApplicationLauncher.logger.
-					 * debug("updateConveyorMetrics: Unloading: positionNo: "+ positionNo
-					 * +" WFR hit3");
-					 * meterStatus = MeterStatus.FAILED;
-					 * }else {
-					 * ApplicationLauncher.logger.
-					 * debug("updateConveyorMetrics: Unloading: positionNo: "+ positionNo
-					 * +" others hit4");
-					 * meterStatus = MeterStatus.FAILED;
-					 * }
+					 * +" others hit4"); meterStatus = MeterStatus.FAILED; }
 					 * //ConveyorDeviceDataManagerController.getDashboardObject().
-					 * updatePalletMeterStatusByBayAndPosition(
-					 * // getMyBayKey(), positionNo, meterStatus, reason);
-					 * ConveyorDataManager.getDashboardObject().
+					 * updatePalletMeterStatusByBayAndPosition( // getMyBayKey(), positionNo,
+					 * meterStatus, reason); ConveyorDataManager.getDashboardObject().
 					 * updatePalletMeterStatusByBayAndPositionWithSerialNo(bayKey, positionNo,
 					 * serialNo, meterStatus,
 					 * reason.replace(ConstantConveyor.REASON_RESULT_FAILED_DISPLAY,
 					 * "").replace("\n", ""));//.replace(ConstantConveyor.REASON_RESULT_WFR_DISPLAY,
-					 * ""));
-					 * } else {
-					 * ApplicationLauncher.logger.
+					 * "")); } else { ApplicationLauncher.logger.
 					 * debug("batchUpdateMeters: Unloading: Meter ID is null, skipping update for: "
-					 * + serialNo);
-					 * allUpdatesInitiatedSuccessfully = false;
-					 * }
+					 * + serialNo); allUpdatesInitiatedSuccessfully = false; }
 					 */
 				} catch (Exception e) {
-					ApplicationLauncher.logger
-							.error("batchUpdateMeters: Unloading: Error initiating update for meter data: "
-									+ eachpalletMeter.getMeterSerialNo() + ". Exception: " + e.getMessage(), e);
+					ApplicationLauncher.logger.error("batchUpdateMeters: Unloading: Error initiating update for meter data: " + eachpalletMeter.getMeterSerialNo() + ". Exception: " + e.getMessage(), e);
 					allUpdatesInitiatedSuccessfully = false;
 				}
 			}
 
 		} else if (bayKey.contains(ConstantConveyor.REJECTION_BAY_KEY)) {
 
-			ApplicationLauncher.logger
-					.debug("updateConveyorMetrics: palletMeterList.size(): " + palletMeterList.size());
+			ApplicationLauncher.logger.debug("updateConveyorMetrics: palletMeterList.size(): " + palletMeterList.size());
 			// for (Map<String, Object> meterData : metersToUpdate) {
 			for (PalletMeter eachpalletMeter : palletMeterList) {
 				try {
@@ -2566,24 +2061,19 @@ public class BayUtils {
 					status = eachpalletMeter.getOverAllTestResultStatus();// (String)
 																			// meterData.get("overallTestResultStatus");
 					reason = eachpalletMeter.getErrorCode();// (String) meterData.get("errorCode");
-					ApplicationLauncher.logger.debug("updateConveyorMetrics: Rejection: positionNo: " + positionNo
-							+ " ,serialNo: " + serialNo + " , status: <" + status + "> , reason: " + reason);
+					ApplicationLauncher.logger.debug("updateConveyorMetrics: Rejection: positionNo: " + positionNo + " ,serialNo: " + serialNo + " , status: <" + status + "> , reason: " + reason);
 					if (ConstantReport.REPORT_POPULATE_PASS.equalsIgnoreCase(status)) {
 						currentPalletPassedMeters++;
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": Pass hit1");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": Pass hit1");
 					} else if (ConstantReport.REPORT_POPULATE_FAIL.equalsIgnoreCase(status)) {
 						currentPalletFailedMeters++;
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": Fail hit2");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": Fail hit2");
 					} else if (ConstantReport.REPORT_POPULATE_WFR.equalsIgnoreCase(status)) {
 						currentPalletPassedMeters++;
-						ApplicationLauncher.logger
-								.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": WFR hit3");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": WFR hit3");
 					} else {
 						currentPalletPassedMeters++;
-						ApplicationLauncher.logger.debug(
-								"updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": Others hit4");
+						ApplicationLauncher.logger.debug("updateConveyorMetrics: Rejection: positionNo : " + positionNo + ": Others hit4");
 					}
 
 					/*
@@ -2591,41 +2081,27 @@ public class BayUtils {
 					 * 
 					 * MeterStatus meterStatus = status.equals(ConstantReport.REPORT_POPULATE_PASS)
 					 * ? MeterStatus.PASSED : MeterStatus.FAILED;
-					 * if(status.equals(ConstantReport.REPORT_POPULATE_PASS)) {
-					 * meterStatus = MeterStatus.PASSED;
+					 * if(status.equals(ConstantReport.REPORT_POPULATE_PASS)) { meterStatus =
+					 * MeterStatus.PASSED; ApplicationLauncher.logger.
+					 * debug("updateConveyorMetrics: Rejection: positionNo: "+ positionNo
+					 * +" Pass hit1"); }else if(status.equals(ConstantReport.REPORT_POPULATE_FAIL))
+					 * { meterStatus = MeterStatus.FAILED; ApplicationLauncher.logger.
+					 * debug("updateConveyorMetrics: Rejection: positionNo: "+ positionNo
+					 * +" Fail hit2"); }else if(status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
 					 * ApplicationLauncher.logger.
 					 * debug("updateConveyorMetrics: Rejection: positionNo: "+ positionNo
-					 * +" Pass hit1");
-					 * }else if(status.equals(ConstantReport.REPORT_POPULATE_FAIL)) {
-					 * meterStatus = MeterStatus.FAILED;
+					 * +" WFR hit3"); meterStatus = MeterStatus.IDLE; }else {
 					 * ApplicationLauncher.logger.
 					 * debug("updateConveyorMetrics: Rejection: positionNo: "+ positionNo
-					 * +" Fail hit2");
-					 * }else if(status.equals(ConstantReport.REPORT_POPULATE_WFR)) {
-					 * ApplicationLauncher.logger.
-					 * debug("updateConveyorMetrics: Rejection: positionNo: "+ positionNo
-					 * +" WFR hit3");
-					 * meterStatus = MeterStatus.IDLE;
-					 * }else {
-					 * ApplicationLauncher.logger.
-					 * debug("updateConveyorMetrics: Rejection: positionNo: "+ positionNo
-					 * +" others hit4");
-					 * meterStatus = MeterStatus.IDLE;
-					 * }
+					 * +" others hit4"); meterStatus = MeterStatus.IDLE; }
 					 * ConveyorDataManager.getDashboardObject().
-					 * updatePalletMeterStatusByBayAndPositionWithSerialNo(
-					 * bayKey, positionNo, serialNo, meterStatus, reason);
-					 * } else {
-					 * ApplicationLauncher.logger.
+					 * updatePalletMeterStatusByBayAndPositionWithSerialNo( bayKey, positionNo,
+					 * serialNo, meterStatus, reason); } else { ApplicationLauncher.logger.
 					 * error("updateConveyorMetrics: Rejection: Meter ID is null, skipping update for: "
-					 * + serialNo);
-					 * allUpdatesInitiatedSuccessfully = false;
-					 * }
+					 * + serialNo); allUpdatesInitiatedSuccessfully = false; }
 					 */
 				} catch (Exception e) {
-					ApplicationLauncher.logger
-							.error("updateConveyorMetrics: Rejection: Error initiating update for meter data: "
-									+ eachpalletMeter.getMeterSerialNo() + ". Exception: " + e.getMessage(), e);
+					ApplicationLauncher.logger.error("updateConveyorMetrics: Rejection: Error initiating update for meter data: " + eachpalletMeter.getMeterSerialNo() + ". Exception: " + e.getMessage(), e);
 					allUpdatesInitiatedSuccessfully = false;
 				}
 			}
@@ -2663,22 +2139,19 @@ public class BayUtils {
 		try {
 			boolean recordAlreadyExist = false;
 			try {
-				Optional<ConveyorOutputMetrics> conveyorOutputMetricsOpt = MySqlServiceManager
-						.getConveyorOutputMetricsService().findByPalletDistinctId(palletDistinctId);
+				Optional<ConveyorOutputMetrics> conveyorOutputMetricsOpt = MySqlServiceManager.getConveyorOutputMetricsService().findByPalletDistinctId(palletDistinctId);
 				if (conveyorOutputMetricsOpt.isPresent()) {
 					recordAlreadyExist = true;
 					if (recordAlreadyExist) {
 						metrics.setId(conveyorOutputMetricsOpt.get().getId());
 						metrics.setDateH(conveyorOutputMetricsOpt.get().getDateH());
 						// metrics.setCreatedAt(conveyorOutputMetricsOpt.get().getCreatedAt());
-						ApplicationLauncher.logger.info(
-								"ConveyorOutputMetrics record already exist for palletDistinctId: " + palletDistinctId);
+						ApplicationLauncher.logger.info("ConveyorOutputMetrics record already exist for palletDistinctId: " + palletDistinctId);
 					}
 				}
 
 			} catch (Exception e) {
-				ApplicationLauncher.logger
-						.error("ConveyorOutputMetrics : Exception: recordAlreadyExist : " + e.getMessage());
+				ApplicationLauncher.logger.error("ConveyorOutputMetrics : Exception: recordAlreadyExist : " + e.getMessage());
 				allUpdatesInitiatedSuccessfully = false;
 			}
 
@@ -2688,8 +2161,7 @@ public class BayUtils {
 			// today. Avg Hourly Output: " + String.format("%.2f", calculatedAverage));
 			/*
 			 * Platform.runLater(()->{
-			 * ConveyorDataManager.getDashboardObject().refreshMetricsTable();
-			 * });
+			 * ConveyorDataManager.getDashboardObject().refreshMetricsTable(); });
 			 */
 		} catch (Exception e) {
 			ApplicationLauncher.logger.error("Error saving ConveyorOutputMetrics (Daily): " + e.getMessage(), e);
@@ -2701,8 +2173,7 @@ public class BayUtils {
 		updateSummaryMetrics(bayKey, palletDistinctId);
 		/*
 		 * Platform.runLater(()->{
-		 * ConveyorDataManager.getDashboardObject().refreshMetricsTable();
-		 * });
+		 * ConveyorDataManager.getDashboardObject().refreshMetricsTable(); });
 		 */
 		return allUpdatesInitiatedSuccessfully;
 	}
@@ -2711,10 +2182,7 @@ public class BayUtils {
 
 			ConveyorOutputMetrics metrics,
 			// String customerName,
-			String bayType,
-			int currentPalletTotalMeters,
-			int currentPalletPassedMeters,
-			int currentPalletFailedMeters) {
+			String bayType, int currentPalletTotalMeters, int currentPalletPassedMeters, int currentPalletFailedMeters) {
 
 		ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : Entry: bayType" + bayType);
 		// String customerName =
@@ -2725,9 +2193,7 @@ public class BayUtils {
 		try {
 			Date metricsCreatedAt = metrics.getCreatedAt();
 
-			Optional<ConveyorOutputMetricsSummary> summaryOptional = MySqlServiceManager
-					.getConveyorOutputMetricsSummaryService()
-					.findByCustomerNameBayTypeAndCurrentDate(customerName, bayType);
+			Optional<ConveyorOutputMetricsSummary> summaryOptional = MySqlServiceManager.getConveyorOutputMetricsSummaryService().findByCustomerNameBayTypeAndCurrentDate(customerName, bayType);
 
 			ConveyorOutputMetricsSummary summary = summaryOptional.orElseGet(() -> {
 				ConveyorOutputMetricsSummary s = new ConveyorOutputMetricsSummary();
@@ -2745,11 +2211,9 @@ public class BayUtils {
 			long diffInMillis = 0;
 			try {
 				diffInMillis = now.getTime() - summary.getCreatedAt().getTime(); // Time elapsed since start of day
-				ApplicationLauncher.logger.debug(
-						"BayUtils: updateSummaryMetrics : diffInMillis: " + diffInMillis + " : bayType" + bayType);
+				ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : diffInMillis: " + diffInMillis + " : bayType" + bayType);
 			} catch (Exception e) {
-				ApplicationLauncher.logger.error("BayUtils: updateSummaryMetrics : Exception: diffInMillis: "
-						+ e.getMessage() + " : bayType" + bayType);
+				ApplicationLauncher.logger.error("BayUtils: updateSummaryMetrics : Exception: diffInMillis: " + e.getMessage() + " : bayType" + bayType);
 				e.printStackTrace();
 				if (e instanceof InterruptedException) {
 					Thread.currentThread().interrupt(); // Restore interrupt status
@@ -2757,8 +2221,7 @@ public class BayUtils {
 			}
 
 			double hoursElapsed = (double) diffInMillis / (1000 * 60 * 60); // Convert milliseconds to hours
-			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : hoursElapsed: " + hoursElapsed
-					+ " : bayType" + bayType);
+			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : hoursElapsed: " + hoursElapsed + " : bayType" + bayType);
 			// To avoid division by zero or inflated "per hour" numbers for very short
 			// durations
 			// If the elapsed time is less than an hour, we'll consider it 1 hour for
@@ -2769,12 +2232,9 @@ public class BayUtils {
 			}
 
 			double calculatedSummaryAverage = (summary.getTotalNoOfMeters() + currentPalletTotalMeters) / hoursElapsed;
-			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : hoursElapsed: " + hoursElapsed
-					+ " : bayType" + bayType);
-			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : TotalNoOfMeters: "
-					+ summary.getTotalNoOfMeters() + " : bayType" + bayType);
-			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : calculatedSummaryAverage: "
-					+ calculatedSummaryAverage + " : bayType" + bayType);
+			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : hoursElapsed: " + hoursElapsed + " : bayType" + bayType);
+			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : TotalNoOfMeters: " + summary.getTotalNoOfMeters() + " : bayType" + bayType);
+			ApplicationLauncher.logger.debug("BayUtils: updateSummaryMetrics : summary : calculatedSummaryAverage: " + calculatedSummaryAverage + " : bayType" + bayType);
 
 			summaryOptional.ifPresent(existing -> summary.setId(existing.getId())); // Keep ID if exists
 			summary.setUpdatedAt(now);
@@ -2792,11 +2252,9 @@ public class BayUtils {
 
 			MySqlServiceManager.getConveyorOutputMetricsSummaryService().saveToDb(summary);
 
-			ApplicationLauncher.logger.info("BayUtils: ConveyorOutputMetricsSummary upserted for customer: "
-					+ customerName + ", bay: " + bayType);
+			ApplicationLauncher.logger.info("BayUtils: ConveyorOutputMetricsSummary upserted for customer: " + customerName + ", bay: " + bayType);
 		} catch (Exception e) {
-			ApplicationLauncher.logger.error("BayUtils: Exception: Error saving ConveyorOutputMetricsSummary: "
-					+ e.getMessage() + " : bayType" + bayType);
+			ApplicationLauncher.logger.error("BayUtils: Exception: Error saving ConveyorOutputMetricsSummary: " + e.getMessage() + " : bayType" + bayType);
 		}
 	}
 
@@ -2834,15 +2292,12 @@ public class BayUtils {
 
 	public void updateSummaryMetrics(String bayKey, String palletDistinctId) {
 		// Find the specific metric that triggered this update
-		ConveyorOutputMetrics triggerMetric = MySqlServiceManager.getConveyorOutputMetricsService()
-				.findByPalletDistinctId(palletDistinctId)
-				.orElseThrow(() -> new RuntimeException("Metric not found with palletDistinctId: " + palletDistinctId));
+		ConveyorOutputMetrics triggerMetric = MySqlServiceManager.getConveyorOutputMetricsService().findByPalletDistinctId(palletDistinctId).orElseThrow(() -> new RuntimeException("Metric not found with palletDistinctId: " + palletDistinctId));
 
 		// Validate the bayKey matches the metric's bayType
 
 		ApplicationLauncher.logger.info("updateSummaryMetrics: bayKey: " + bayKey);
-		ApplicationLauncher.logger
-				.info("updateSummaryMetrics: triggerMetric.getBayType(): " + triggerMetric.getBayType());
+		ApplicationLauncher.logger.info("updateSummaryMetrics: triggerMetric.getBayType(): " + triggerMetric.getBayType());
 		if (!bayKey.equals(triggerMetric.getBayType())) {
 			throw new IllegalArgumentException("bayKey does not match the bayType in the metric record");
 		}
@@ -2853,20 +2308,13 @@ public class BayUtils {
 		// Date endOfDay = getEndOfDay(metricDate);
 
 		// Find all metrics for this bayKey on the same day
-		List<ConveyorOutputMetrics> dailyMetrics = MySqlServiceManager.getConveyorOutputMetricsService()
-				.findAllByBayTypeAndDateH(
-						bayKey,
-						metricTargetDate);
+		List<ConveyorOutputMetrics> dailyMetrics = MySqlServiceManager.getConveyorOutputMetricsService().findAllByBayTypeAndDateH(bayKey, metricTargetDate);
 
 		// Calculate aggregated values with percentages
 		AggregatedMetrics aggregated = calculateAggregatedMetrics(dailyMetrics);
 
 		// Find existing summary or create new one
-		ConveyorOutputMetricsSummary summary = MySqlServiceManager.getConveyorOutputMetricsSummaryService()
-				.findByBayTypeAndDateH(
-						bayKey,
-						metricTargetDate)
-				.orElseGet(() -> createNewSummary(triggerMetric));
+		ConveyorOutputMetricsSummary summary = MySqlServiceManager.getConveyorOutputMetricsSummaryService().findByBayTypeAndDateH(bayKey, metricTargetDate).orElseGet(() -> createNewSummary(triggerMetric));
 
 		// Update all summary fields including percentages
 		updateSummaryFields(summary, aggregated);
@@ -2889,9 +2337,7 @@ public class BayUtils {
 		ApplicationLauncher.logger.info("calculateAggregatedMetrics: totalMeters: " + result.totalMeters);
 
 		// Calculate average hourly output with 3 decimal precision
-		result.averageHourlyOutput = operationalHours > 0
-				? roundToTwoDecimals((double) result.totalMeters / operationalHours)
-				: 0.0;
+		result.averageHourlyOutput = operationalHours > 0 ? roundToTwoDecimals((double) result.totalMeters / operationalHours) : 0.0;
 
 		// Calculate pass/fail percentages with 2 decimal precision
 		if (result.totalMeters > 0) {
@@ -2907,9 +2353,7 @@ public class BayUtils {
 	}
 
 	private double roundToTwoDecimals(double value) {
-		return BigDecimal.valueOf(value)
-				.setScale(2, RoundingMode.HALF_UP)
-				.doubleValue();
+		return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 
 	private ConveyorOutputMetricsSummary createNewSummary(ConveyorOutputMetrics metric) {
@@ -2941,28 +2385,21 @@ public class BayUtils {
 
 	// Date utility methods (unchanged from previous implementation)
 	/*
-	 * private Date getDateWithoutTime(Date date) {
-	 * Calendar calendar = Calendar.getInstance();
-	 * calendar.setTime(date);
-	 * calendar.set(Calendar.HOUR_OF_DAY, 0);
-	 * calendar.set(Calendar.MINUTE, 0);
-	 * calendar.set(Calendar.SECOND, 0);
-	 * calendar.set(Calendar.MILLISECOND, 0);
-	 * return calendar.getTime();
-	 * }
+	 * private Date getDateWithoutTime(Date date) { Calendar calendar =
+	 * Calendar.getInstance(); calendar.setTime(date);
+	 * calendar.set(Calendar.HOUR_OF_DAY, 0); calendar.set(Calendar.MINUTE, 0);
+	 * calendar.set(Calendar.SECOND, 0); calendar.set(Calendar.MILLISECOND, 0);
+	 * return calendar.getTime(); }
 	 */
-
 
 	/*
 	 * private long calculateOperationalHours(List<ConveyorOutputMetrics> metrics) {
-	 * if (metrics.isEmpty()) return 0;
-	 * if (metrics.size() == 1) return 1;
+	 * if (metrics.isEmpty()) return 0; if (metrics.size() == 1) return 1;
 	 * 
-	 * Date first = metrics.get(0).getCreatedAt();
-	 * Date last = metrics.get(metrics.size() - 1).getCreatedAt();
-	 * long diffHours = (last.getTime() - first.getTime()) / (60 * 60 * 1000);
-	 * return Math.max(diffHours, 1);
-	 * }
+	 * Date first = metrics.get(0).getCreatedAt(); Date last =
+	 * metrics.get(metrics.size() - 1).getCreatedAt(); long diffHours =
+	 * (last.getTime() - first.getTime()) / (60 * 60 * 1000); return
+	 * Math.max(diffHours, 1); }
 	 */
 
 	private double calculateOperationalHours(List<ConveyorOutputMetrics> metrics) {
@@ -2998,20 +2435,16 @@ public class BayUtils {
 
 	public void markAsCompleteForPreviousBayPallet(String bayKey, Logger eachLogger) {
 
-		List<PalletManage> palletManageList = MySqlServiceManager.getPalletManageService()
-				.findByBayKeyAndPalletActive(bayKey);
+		List<PalletManage> palletManageList = MySqlServiceManager.getPalletManageService().findByBayKeyAndPalletActive(bayKey);
 		if (palletManageList.size() > 1) {
-			palletManageList.stream().map(e -> e.getPalletDistinctId())
-					.collect(Collectors.toList());
-			Optional<PalletManage> palletManageOpt = MySqlServiceManager.getPalletManageService()
-					.findTopByBayKeyAndPalletActive(bayKey);
+			palletManageList.stream().map(e -> e.getPalletDistinctId()).collect(Collectors.toList());
+			Optional<PalletManage> palletManageOpt = MySqlServiceManager.getPalletManageService().findTopByBayKeyAndPalletActive(bayKey);
 			if (palletManageOpt.isPresent()) {
 				String topPalletDistinctId = palletManageOpt.get().getPalletDistinctId();
 				for (PalletManage eachPalletManage : palletManageList) {
 					if (!eachPalletManage.getPalletDistinctId().equals(topPalletDistinctId)) {
 						eachPalletManage.setPalletActive(false);
-						eachLogger.debug("markAsCompleteForPreviousHvBayPallet - getPalletDistinctId: "
-								+ eachPalletManage.getPalletDistinctId() + " , bayKey: " + bayKey);
+						eachLogger.debug("markAsCompleteForPreviousHvBayPallet - getPalletDistinctId: " + eachPalletManage.getPalletDistinctId() + " , bayKey: " + bayKey);
 						MySqlServiceManager.getPalletManageService().saveToDb(eachPalletManage);
 					}
 				}

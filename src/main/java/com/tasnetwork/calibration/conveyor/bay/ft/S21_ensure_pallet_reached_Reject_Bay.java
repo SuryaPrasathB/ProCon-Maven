@@ -43,20 +43,7 @@ public class S21_ensure_pallet_reached_Reject_Bay implements FtBayState {
             if (pallet_sensed_at_Reject_Bay_status.equals(Constant_IO_ActionMapping.DETECTED)) {  // Verify if pallet is detected
             	ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInNextTargetBay(getMyBayKey(),true); 
                 Ft.logger.info(String.format("[%s] : [PALLET_REACH_CHECK] : [SUCCESS] - Pallet successfully detected at Rejection Bay after %d attempts.", getMyBayKey(), (try_count + 1)));
-                if (ProconFeatureEnable.MOTOR_CONTROL_ENABLE) {
-    				BayUtils bayUtils = new BayUtils();
-    					responseReturn = bayUtils.set_motor_not_required(getMyBayKey());
-    				boolean set_motor_required = (boolean) responseReturn.get("status");
-    				if (set_motor_required) {
-    					Ft.logger.info("set_motor_not_required : Success");
-    					bayResponse.setStatus(true);
-    					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
-    				} else {
-    					Ft.logger.info("set_motor_not_required: Failed to set_motor_required ");
-    					bayResponse.setStatus(false);
-    					bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_CALIB_026);
-    				} 
-    			}
+
                 bayResponse.setStatus(true);
                 bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
                 break; // Exit loop on success
