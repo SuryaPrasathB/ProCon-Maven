@@ -2437,14 +2437,14 @@ public class BayUtils {
 
 		List<PalletManage> palletManageList = MySqlServiceManager.getPalletManageService().findByBayKeyAndPalletActive(bayKey);
 		if (palletManageList.size() > 1) {
-			palletManageList.stream().map(e -> e.getPalletDistinctId()).collect(Collectors.toList());
-			Optional<PalletManage> palletManageOpt = MySqlServiceManager.getPalletManageService().findTopByBayKeyAndPalletActive(bayKey);
+			Optional<PalletManage> palletManageOpt = MySqlServiceManager.getPalletManageService().findTopByBayKeyAndPalletActiveOrderByIdDesc(bayKey);
 			if (palletManageOpt.isPresent()) {
-				String topPalletDistinctId = palletManageOpt.get().getPalletDistinctId();
+				PalletManage latestPallet = palletManageOpt.get();
 				for (PalletManage eachPalletManage : palletManageList) {
-					if (!eachPalletManage.getPalletDistinctId().equals(topPalletDistinctId)) {
+					if (!eachPalletManage.getId().equals(latestPallet.getId())) {
 						eachPalletManage.setPalletActive(false);
-						eachLogger.debug("markAsCompleteForPreviousHvBayPallet - getPalletDistinctId: " + eachPalletManage.getPalletDistinctId() + " , bayKey: " + bayKey);
+						eachPalletManage.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
+						eachLogger.info("markAsCompleteForPreviousBayPallet - Deactivated older pallet: " + eachPalletManage.getPalletDistinctId() + " (id=" + eachPalletManage.getId() + ") at bay: " + bayKey + " in favor of latest pallet: " + latestPallet.getPalletDistinctId() + " (id=" + latestPallet.getId() + ")");
 						MySqlServiceManager.getPalletManageService().saveToDb(eachPalletManage);
 					}
 				}

@@ -76,6 +76,16 @@ public class PalletManageService {
 	public List<PalletManage> findByPalletActive() {
 		return palletManageRepo.findByPalletActive(true);
 	}
+
+	@Transactional
+	public List<PalletManage> findByPalletActiveOrderByIdDesc() {
+		return palletManageRepo.findByPalletActiveOrderByIdDesc(true);
+	}
+
+	@Transactional
+	public List<PalletManage> findByPalletQrIdAndPalletActive(String palletQrCode, boolean isPalletActive) {
+		return palletManageRepo.findByPalletQrIdAndPalletActive(palletQrCode, isPalletActive);
+	}
 	
 	@Transactional
 	public List<PalletManage> findByBayKeyAndEpochRange(String bayKey,int startEpoch,int endEpoch) {
@@ -92,6 +102,11 @@ public class PalletManageService {
 	public Optional<PalletManage> findTopByBayKeyAndPalletActive(String bayKey) {
 		return palletManageRepo.findTopByPresentBayKeyAndPalletActive( bayKey,true);
 		
+	}
+
+	@Transactional
+	public Optional<PalletManage> findTopByBayKeyAndPalletActiveOrderByIdDesc(String bayKey) {
+		return palletManageRepo.findTopByPresentBayKeyAndPalletActiveOrderByIdDesc(bayKey, true);
 	}
 	
 	@Transactional

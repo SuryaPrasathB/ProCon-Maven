@@ -427,12 +427,12 @@ public class PalletTrackerController implements Initializable {
 		ApplicationLauncher.logger.debug("loadDataConfig : Entry");
 		// setClusterBayPositionNoCnameMap(BayUtils.getDutClusterBayPositionNoCnameMap());
 		// setClusterBayNamePositionListMap(BayUtils.getDutClusterBayNamePositionListMap());
-		List<PalletManage> myPalletManageList = MySqlServiceManager.getPalletManageService().findByPalletActive();
+		List<PalletManage> myPalletManageList = MySqlServiceManager.getPalletManageService().findByPalletActiveOrderByIdDesc();
 		PalletManage palletBayTracker = null;
 
 		for (int i = 0; i < myPalletManageList.size(); i++) {
 			palletBayTracker = myPalletManageList.get(i);
-			getPresentPalletAtBayMap().put(palletBayTracker.getPresentBayKey(), palletBayTracker.getPalletDistinctId());
+			getPresentPalletAtBayMap().putIfAbsent(palletBayTracker.getPresentBayKey(), palletBayTracker.getPalletDistinctId());
 		}
 		ApplicationLauncher.logger.debug("loadDataConfig : getPresentPalletAtBayMap() : " + getPresentPalletAtBayMap());
 
@@ -564,9 +564,10 @@ public class PalletTrackerController implements Initializable {
 
 		// LOGIC UPDATED - 28/2/2025 -- findByPalletActive
 
-		List<PalletManage> palletActiveList = MySqlServiceManager.getPalletManageService().findByPalletActive();
+		List<PalletManage> palletActiveList = MySqlServiceManager.getPalletManageService().findByPalletActiveOrderByIdDesc();
+		getActivePalletMap().clear();
 		for (PalletManage eachPallet : palletActiveList) {
-			getActivePalletMap().put(eachPallet.getPalletQrId(), eachPallet.getPalletDistinctId());
+			getActivePalletMap().putIfAbsent(eachPallet.getPalletQrId(), eachPallet.getPalletDistinctId());
 		}
 
 		ApplicationLauncher.logger.debug("refreshFromDb: getActivePalletMap: " + getActivePalletMap());
@@ -1889,42 +1890,49 @@ public class PalletTrackerController implements Initializable {
 
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
-			if (getActivePalletMap().values().contains(myPalletDistinctId)) {
+			if (myPalletDistinctId != null) {
 
 				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findLastByPalletDistinctId(myPalletDistinctId);
+				if (myPalletManage != null) {
+					if (!getActivePalletMap().containsValue(myPalletDistinctId)) {
+						getActivePalletMap().put(myPalletManage.getPalletQrId(), myPalletDistinctId);
+					}
 
-				PalletBayState palletBayState = new PalletBayState();
-				palletBayState.setSerialNo(getPalletBayStateSerialNoAtomic().getAndIncrement());
-				palletBayState.setPalletBatchNo(myPalletManage.getPalletBatchNo());
-				palletBayState.setPalletDistinctId(myPalletManage.getPalletDistinctId());
-				palletBayState.setBayStateKey(selectedBayTypeKey);
+					PalletBayState palletBayState = new PalletBayState();
+					palletBayState.setSerialNo(getPalletBayStateSerialNoAtomic().getAndIncrement());
+					palletBayState.setPalletBatchNo(myPalletManage.getPalletBatchNo());
+					palletBayState.setPalletDistinctId(myPalletManage.getPalletDistinctId());
+					palletBayState.setBayStateKey(selectedBayTypeKey);
 
-				ApplicationLauncher.logger.debug("addPalletBayState: selectedBayTypeKey : " + selectedBayTypeKey);
+					ApplicationLauncher.logger.debug("addPalletBayState: selectedBayTypeKey : " + selectedBayTypeKey);
 
-				palletBayState.setPalletQrId(myPalletManage.getPalletQrId());
-				palletBayState.setNoOfMeterPresent(myPalletManage.getNoOfMeterPresent());
-				palletBayState.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
-				palletBayState.setBayResultStatus(ConstantReport.REPORT_POPULATE_WFR);
+					palletBayState.setPalletQrId(myPalletManage.getPalletQrId());
+					palletBayState.setNoOfMeterPresent(myPalletManage.getNoOfMeterPresent());
+					palletBayState.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
+					palletBayState.setBayResultStatus(ConstantReport.REPORT_POPULATE_WFR);
 
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-				LocalDateTime startTime = LocalDateTime.now();
-				ApplicationLauncher.logger.debug("addPalletBayState: Start Time: " + dtf.format(startTime));
-				String palletBayEntryTime = dtf.format(startTime);
-				ZoneId zoneId = ZoneId.systemDefault();
-				long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
-				palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
-				palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+					LocalDateTime startTime = LocalDateTime.now();
+					ApplicationLauncher.logger.debug("addPalletBayState: Start Time: " + dtf.format(startTime));
+					String palletBayEntryTime = dtf.format(startTime);
+					ZoneId zoneId = ZoneId.systemDefault();
+					long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
+					palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
+					palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
-				getPresentPalletAtBayMap().put(selectedBayTypeKey, myPalletManage.getPalletDistinctId());
-				myPalletManage.addPalleteBayState(palletBayState);
-				MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
+					getPresentPalletAtBayMap().put(selectedBayTypeKey, myPalletManage.getPalletDistinctId());
+					myPalletManage.addPalleteBayState(palletBayState);
+					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
 
-				ApplicationLauncher.logger.debug("addPalletBayState: new bay added " + " : selectedBayTypeKey: " + selectedBayTypeKey + " : myPalletDistinctId : " + myPalletDistinctId);
+					ApplicationLauncher.logger.debug("addPalletBayState: new bay added " + " : selectedBayTypeKey: " + selectedBayTypeKey + " : myPalletDistinctId : " + myPalletDistinctId);
 
-				status = true;
+					status = true;
+				} else {
+					ApplicationLauncher.logger.warn("addPalletBayState: PalletManage not found in DB: " + myPalletDistinctId);
+				}
 
 			} else {
-				ApplicationLauncher.logger.debug("addPalletBayState: pallet not in active mode " + " : selectedBayTypeKey: " + selectedBayTypeKey + " : myPalletDistinctId : " + myPalletDistinctId);
+				ApplicationLauncher.logger.debug("addPalletBayState: no pallet at bay : " + selectedBayTypeKey);
 			}
 		} catch (Exception e) {
 			ApplicationLauncher.logger.error("addPalletBayState: Exception: " + e.getMessage());
@@ -1941,41 +1949,48 @@ public class PalletTrackerController implements Initializable {
 
 		try {
 			String myPalletDistinctId = getPresentPalletAtBayMap().get(nextBayState);
-			if (getActivePalletMap().values().contains(myPalletDistinctId)) {
+			if (myPalletDistinctId != null) {
 				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
+				if (myPalletManage != null) {
+					if (!getActivePalletMap().containsValue(myPalletDistinctId)) {
+						getActivePalletMap().put(myPalletManage.getPalletQrId(), myPalletDistinctId);
+					}
 
-				PalletBayState palletBayState = new PalletBayState();
-				palletBayState.setSerialNo(getPalletBayStateSerialNoAtomic().getAndIncrement());
-				palletBayState.setPalletBatchNo(myPalletManage.getPalletBatchNo());
-				palletBayState.setPalletDistinctId(myPalletManage.getPalletDistinctId());
-				palletBayState.setBayStateKey(nextBayState);
+					PalletBayState palletBayState = new PalletBayState();
+					palletBayState.setSerialNo(getPalletBayStateSerialNoAtomic().getAndIncrement());
+					palletBayState.setPalletBatchNo(myPalletManage.getPalletBatchNo());
+					palletBayState.setPalletDistinctId(myPalletManage.getPalletDistinctId());
+					palletBayState.setBayStateKey(nextBayState);
 
-				ApplicationLauncher.logger.debug("addPalletNextBayState: myPalletManage.getPresentBayKey() : " + myPalletManage.getPresentBayKey());
+					ApplicationLauncher.logger.debug("addPalletNextBayState: myPalletManage.getPresentBayKey() : " + myPalletManage.getPresentBayKey());
 
-				palletBayState.setPalletQrId(myPalletManage.getPalletQrId());
-				palletBayState.setNoOfMeterPresent(myPalletManage.getNoOfMeterPresent());
-				palletBayState.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
-				palletBayState.setBayResultStatus(ConstantReport.REPORT_POPULATE_WFR);
+					palletBayState.setPalletQrId(myPalletManage.getPalletQrId());
+					palletBayState.setNoOfMeterPresent(myPalletManage.getNoOfMeterPresent());
+					palletBayState.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_INPROGRESS);
+					palletBayState.setBayResultStatus(ConstantReport.REPORT_POPULATE_WFR);
 
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-				LocalDateTime startTime = LocalDateTime.now();
-				ApplicationLauncher.logger.debug("addPalletNextBayState: Start Time: " + dtf.format(startTime));
-				String palletBayEntryTime = dtf.format(startTime);
-				ZoneId zoneId = ZoneId.systemDefault();
-				long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
-				palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
-				palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+					LocalDateTime startTime = LocalDateTime.now();
+					ApplicationLauncher.logger.debug("addPalletNextBayState: Start Time: " + dtf.format(startTime));
+					String palletBayEntryTime = dtf.format(startTime);
+					ZoneId zoneId = ZoneId.systemDefault();
+					long startTimeEpoch = startTime.atZone(zoneId).toInstant().toEpochMilli();
+					palletBayState.setPalletBayEntryTimeStampH(palletBayEntryTime);
+					palletBayState.setPalletBayEntryTimeEpoch(String.valueOf(startTimeEpoch));
 
-				getPresentPalletAtBayMap().put(nextBayState, myPalletManage.getPalletDistinctId());
-				myPalletManage.addPalleteBayState(palletBayState);
-				MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
+					getPresentPalletAtBayMap().put(nextBayState, myPalletManage.getPalletDistinctId());
+					myPalletManage.addPalleteBayState(palletBayState);
+					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
 
-				ApplicationLauncher.logger.debug("addPalletNextBayState: new bay added " + " : nextBayState: " + nextBayState + " : myPalletDistinctId : " + myPalletDistinctId);
+					ApplicationLauncher.logger.debug("addPalletNextBayState: new bay added " + " : nextBayState: " + nextBayState + " : myPalletDistinctId : " + myPalletDistinctId);
 
-				status = true;
+					status = true;
+				} else {
+					ApplicationLauncher.logger.warn("addPalletNextBayState: PalletManage not found in DB: " + myPalletDistinctId);
+				}
 
 			} else {
-				ApplicationLauncher.logger.debug("addPalletNextBayState: pallet not in active mode " + " : nextBayState: " + nextBayState + " : myPalletDistinctId : " + myPalletDistinctId);
+				ApplicationLauncher.logger.debug("addPalletNextBayState: no pallet at bay : " + nextBayState);
 			}
 		} catch (Exception e) {
 			ApplicationLauncher.logger.error("addPalletNextBayState: Exception: " + e.getMessage());
@@ -2178,176 +2193,197 @@ public class PalletTrackerController implements Initializable {
 
 			ApplicationLauncher.logger.debug("switchPalletToNextBay : getPresentPalletAtBayMap() : " + getPresentPalletAtBayMap());
 
-			if (getActivePalletMap().values().contains(myPalletDistinctId)) {
-				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
+			if (myPalletDistinctId == null) {
+				ApplicationLauncher.logger.error("switchPalletToNextBay: No pallet found at bay: " + selectedBayTypeKey + " in presentPalletAtBayMap!");
+				return;
+			}
 
-				if (myPalletManage.isPalletActive()) {
-					String presentBayState = myPalletManage.getPresentBayKey();
-					String palletBatchMapId = myPalletManage.getPalletDistinctId();
-					int indexOfPresentState = ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(presentBayState);
+			PalletManage myPalletManage = MySqlServiceManager.getPalletManageService().findFirstByPalletDistinctId(myPalletDistinctId);
+			if (myPalletManage == null) {
+				ApplicationLauncher.logger.error("switchPalletToNextBay: PalletManage record not found in DB for distinctId: " + myPalletDistinctId);
+				return;
+			}
 
-					boolean nextBayIsExit = false;
-					if (ConstantConveyor.EXIT_BAY_LIST.contains(nextBayState)) {
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: EXIT_BAY_LIST-X : present");
-						nextBayIsExit = true;
+			// Ensure pallet is in getActivePalletMap()
+			if (!getActivePalletMap().containsValue(myPalletDistinctId)) {
+				ApplicationLauncher.logger.warn("switchPalletToNextBay: myPalletDistinctId: " + myPalletDistinctId + " not found in activePalletMap, re-registering");
+				getActivePalletMap().put(myPalletManage.getPalletQrId(), myPalletDistinctId);
+			}
+
+			// If pallet was accidentally marked inactive, reactivate it so the transition can complete
+			if (!myPalletManage.isPalletActive()) {
+				ApplicationLauncher.logger.warn("switchPalletToNextBay: Pallet was inactive in DB, reactivating for switch: " + myPalletDistinctId);
+				myPalletManage.setPalletActive(true);
+			}
+
+			if (myPalletManage.isPalletActive()) {
+				String presentBayState = myPalletManage.getPresentBayKey();
+				String palletBatchMapId = myPalletManage.getPalletDistinctId();
+				int indexOfPresentState = ConstantConveyor.STATE_SEQUENCE_LIST.indexOf(presentBayState);
+
+				boolean nextBayIsExit = false;
+				if (ConstantConveyor.EXIT_BAY_LIST.contains(nextBayState)) {
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: EXIT_BAY_LIST-X : present");
+					nextBayIsExit = true;
+				}
+				if (ConstantConveyor.STATE_SEQUENCE_LIST.size() > (indexOfPresentState + 1) && !nextBayState.equals(ConstantConveyor.REJECTION_BAY_KEY) && !nextBayState.equals(ConstantConveyor.UNLOADING_BAY_KEY) && !nextBayState.equals(ConstantConveyor.COMMUNICATION_BAY_KEY)
+				// && !nextBayState.equals(ConstantConveyor.CALIBRATION_BAY_KEY)
+				) {
+
+					Set<PalletBayState> palleteBayStateList = myPalletManage.getPalleteBayStateList();
+
+					if (palleteBayStateList.size() > 0) {
+						palleteBayStateList.stream().filter(e -> e.getBayStateKey().equals(presentBayState)).filter(e -> e.getPalletDistinctId().equals(palletBatchMapId)).forEach(e1 -> {
+							DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+							LocalDateTime endTime = LocalDateTime.now();
+
+							ApplicationLauncher.logger.debug("switchPalletToNextBay: End Time: " + dtf.format(endTime));
+
+							String palletBayExitTime = dtf.format(endTime);
+							ZoneId zoneId = ZoneId.systemDefault();
+							long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
+							e1.setPalletBayExitTimeStampH(palletBayExitTime);
+							e1.setPalletBayExitTimeEpoch(String.valueOf(exitTimeEpoch));
+
+							e1.setNoOfMeterPresent(myPalletManage.getNoOfMeterPresent());
+							e1.setNoOfMeterPassed(myPalletManage.getNoOfMeterPassed());
+							e1.setNoOfMeterFailed(myPalletManage.getNoOfMeterFailed());
+
+							long palleteBayRuntimeInMin = (exitTimeEpoch - e1.getNormalizedEntryTimeMilli()) / 60000;
+
+							ApplicationLauncher.logger.debug("switchPalletToNextBay: palleteBayRuntimeInMin: " + palleteBayRuntimeInMin);
+
+							e1.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
+							e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
+							e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_PASS);
+							e1.setTestCompleted("Y");
+						});
 					}
-					if (ConstantConveyor.STATE_SEQUENCE_LIST.size() > (indexOfPresentState + 1) && !nextBayState.equals(ConstantConveyor.REJECTION_BAY_KEY) && !nextBayState.equals(ConstantConveyor.UNLOADING_BAY_KEY) && !nextBayState.equals(ConstantConveyor.COMMUNICATION_BAY_KEY)
-					// && !nextBayState.equals(ConstantConveyor.CALIBRATION_BAY_KEY)
-					) {
+					String palletDistinctId = myPalletManage.getPalletDistinctId();
+					myPalletManage.setPresentBayKey(nextBayState);
+					getPresentPalletAtBayMap().put(nextBayState, palletDistinctId);
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: getPresentPalletAtBayMap() : put : " + getPresentPalletAtBayMap());
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: Removing Key : " + selectedBayTypeKey);
+					ConstantConveyor.STATE_SEQUENCE_LIST.get(indexOfPresentState + 1);
+					getPresentPalletAtBayMap().remove(selectedBayTypeKey);
 
-						Set<PalletBayState> palleteBayStateList = myPalletManage.getPalleteBayStateList();
+					String matchedQrCode = null;
 
-						if (palleteBayStateList.size() > 0) {
-							palleteBayStateList.stream().filter(e -> e.getBayStateKey().equals(presentBayState)).filter(e -> e.getPalletDistinctId().equals(palletBatchMapId)).forEach(e1 -> {
-								DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-								LocalDateTime endTime = LocalDateTime.now();
-
-								ApplicationLauncher.logger.debug("switchPalletToNextBay: End Time: " + dtf.format(endTime));
-
-								String palletBayExitTime = dtf.format(endTime);
-								ZoneId zoneId = ZoneId.systemDefault();
-								long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
-								e1.setPalletBayExitTimeStampH(palletBayExitTime);
-								e1.setPalletBayExitTimeEpoch(String.valueOf(exitTimeEpoch));
-
-								e1.setNoOfMeterPresent(myPalletManage.getNoOfMeterPresent());
-								e1.setNoOfMeterPassed(myPalletManage.getNoOfMeterPassed());
-								e1.setNoOfMeterFailed(myPalletManage.getNoOfMeterFailed());
-
-								long palleteBayRuntimeInMin = (exitTimeEpoch - e1.getNormalizedEntryTimeMilli()) / 60000;
-
-								ApplicationLauncher.logger.debug("switchPalletToNextBay: palleteBayRuntimeInMin: " + palleteBayRuntimeInMin);
-
-								e1.setPalleteBayRunTimeInMin(String.valueOf(palleteBayRuntimeInMin));
-								e1.setBayExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
-								e1.setBayResultStatus(ConstantReport.REPORT_POPULATE_PASS);
-								e1.setTestCompleted("Y");
-							});
+					for (Map.Entry<String, String> entry : getActivePalletMap().entrySet()) {
+						if (entry.getValue().equals(palletBatchMapId)) {
+							matchedQrCode = entry.getKey();
+							break;
 						}
-						String palletDistinctId = myPalletManage.getPalletDistinctId();
-						myPalletManage.setPresentBayKey(nextBayState);
-						getPresentPalletAtBayMap().put(nextBayState, palletDistinctId);
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: getPresentPalletAtBayMap() : put : " + getPresentPalletAtBayMap());
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: Removing Key : " + selectedBayTypeKey);
-						ConstantConveyor.STATE_SEQUENCE_LIST.get(indexOfPresentState + 1);
-						getPresentPalletAtBayMap().remove(selectedBayTypeKey);
+					}
+					if (matchedQrCode == null) {
+						matchedQrCode = myPalletManage.getPalletQrId();
+					}
 
-						String matchedQrCode = null;
+					String fromBayName = presentBayState;
+					// String toBayName =
+					// ConstantConveyor.STATE_SEQUENCE_LIST.get(indexOfPresentState+1);
+					String palletName = matchedQrCode;
+					// ConveyorDeviceDataManagerController.getDashboardObject().movePalletByName(palletName,
+					// fromBayName, toBayName,destinationBayKey);
+					ConveyorDataManager.getDashboardObject().removePalletByName(palletName, fromBayName);
+					if (ConstantConveyor.GROUPED_BAY_LIST.contains(nextBayState)) { // nextBayState.equals(ConstantConveyor.WAITING_BAY_KEY)){
 
-						for (Map.Entry<String, String> entry : getActivePalletMap().entrySet()) {
-							if (entry.getValue().equals(palletBatchMapId)) {
-								matchedQrCode = entry.getKey();
-								break;
-							}
+						Map<Integer, String> meterListWithSerialNoMap = new HashMap<Integer, String>();
+
+						Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
+						palletMeterSetList = myPalletManage.getPalletMeterList();
+						palletMeterSetList.stream().sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
+						for (PalletMeter eachPalletMeter : palletMeterSetList) {
+							meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(), eachPalletMeter.getMeterSerialNo());
 						}
+						// Platform.runLater(() -> {
+						if (nextBayState.equals(ConstantConveyor.WAITING_BAY_KEY)) {
+							ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName, meterListWithSerialNoMap);
+							BayUtils.delay(100);
+							Map<Integer, MeterStatus> statusMap = new HashMap<>();
+							statusMap.put(1, MeterStatus.IDLE);
+							statusMap.put(2, MeterStatus.IDLE);
+							statusMap.put(3, MeterStatus.IDLE);
+							statusMap.put(4, MeterStatus.IDLE);
+							statusMap.put(5, MeterStatus.IDLE);
+							statusMap.put(6, MeterStatus.IDLE);
 
-						String fromBayName = presentBayState;
-						// String toBayName =
-						// ConstantConveyor.STATE_SEQUENCE_LIST.get(indexOfPresentState+1);
-						String palletName = matchedQrCode;
-						// ConveyorDeviceDataManagerController.getDashboardObject().movePalletByName(palletName,
-						// fromBayName, toBayName,destinationBayKey);
-						ConveyorDataManager.getDashboardObject().removePalletByName(palletName, fromBayName);
-						if (ConstantConveyor.GROUPED_BAY_LIST.contains(nextBayState)) { // nextBayState.equals(ConstantConveyor.WAITING_BAY_KEY)){
+							Map<Integer, String> errorCodeMap = new HashMap<>();
 
-							Map<Integer, String> meterListWithSerialNoMap = new HashMap<Integer, String>();
-
-							Set<PalletMeter> palletMeterSetList = new HashSet<PalletMeter>();
-							palletMeterSetList = myPalletManage.getPalletMeterList();
-							palletMeterSetList.stream().sorted(Comparator.comparingInt(PalletMeter::getRackPositionNo)).collect(Collectors.toList());
-							for (PalletMeter eachPalletMeter : palletMeterSetList) {
-								meterListWithSerialNoMap.put(eachPalletMeter.getRackPositionNo(), eachPalletMeter.getMeterSerialNo());
-							}
-							// Platform.runLater(() -> {
-							if (nextBayState.equals(ConstantConveyor.WAITING_BAY_KEY)) {
-								ConveyorDataManager.getDashboardObject().addPalletToFirstAvailableWaitingBay(palletName, meterListWithSerialNoMap);
-								BayUtils.delay(100);
-								Map<Integer, MeterStatus> statusMap = new HashMap<>();
-								statusMap.put(1, MeterStatus.IDLE);
-								statusMap.put(2, MeterStatus.IDLE);
-								statusMap.put(3, MeterStatus.IDLE);
-								statusMap.put(4, MeterStatus.IDLE);
-								statusMap.put(5, MeterStatus.IDLE);
-								statusMap.put(6, MeterStatus.IDLE);
-
-								Map<Integer, String> errorCodeMap = new HashMap<>();
-
-								errorCodeMap.put(1, "");
-								errorCodeMap.put(2, "");
-								errorCodeMap.put(3, "");
-								errorCodeMap.put(4, "");
-								errorCodeMap.put(5, "");
-								errorCodeMap.put(6, "");
-								// Platform.runLater(()->{
-								ConveyorDataManager.getDashboardObject().updateDashBoardPalletStatus(palletName, statusMap, errorCodeMap);
-								// });
-							}
-
+							errorCodeMap.put(1, "");
+							errorCodeMap.put(2, "");
+							errorCodeMap.put(3, "");
+							errorCodeMap.put(4, "");
+							errorCodeMap.put(5, "");
+							errorCodeMap.put(6, "");
+							// Platform.runLater(()->{
+							ConveyorDataManager.getDashboardObject().updateDashBoardPalletStatus(palletName, statusMap, errorCodeMap);
 							// });
 						}
-						// ref_tvPalletManage.getItems().set(selectedIndex, myPalletManage);
-						if (ref_tvPalletBayState != null) {
-							ref_tvPalletBayState.refresh();
-						}
 
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: getPresentPalletAtBayMap() : remove :" + getPresentPalletAtBayMap());
-
-						if (nextBayState.equals(ConstantConveyor.WAITING_BAY_KEY) || nextBayState.equals(ConstantConveyor.REJECTION_BAY_KEY)) {
-							addPalletBayState(nextBayState);
-						}
-						// addPalletBayState(nextBayState);
-
-						ref_tvPalletBayState.refresh();
-					} else {
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: reached End of Conveyor ");
-						myPalletManage.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
-						myPalletManage.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
-
-						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-						LocalDateTime endTime = LocalDateTime.now();
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: End Time: " + dtf.format(endTime));
-						String conveyorPalletExitTime = dtf.format(endTime);
-						ZoneId zoneId = ZoneId.systemDefault();
-						long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
-						String palletDistinctId = myPalletManage.getPalletDistinctId();
-						myPalletManage.setPresentBayKey(nextBayState);
-
-						getPresentPalletAtBayMap().remove(selectedBayTypeKey);
-						String palletKey = extractPalletKey(palletDistinctId); // Extract the correct key
-						getActivePalletMap().remove(palletKey);
-						ref_tvPalletBayState.refresh();
-
-						getPresentPalletAtBayMap().put(nextBayState, palletDistinctId);
-						myPalletManage.setPalletConvExitTimeStampH(conveyorPalletExitTime);
-						myPalletManage.setPalletConvExitTimeEpoch(String.valueOf(exitTimeEpoch));
-						myPalletManage.setPalletActive(false);
-						long conveyorPalleteRuntimeInMin = (exitTimeEpoch - Long.parseLong(myPalletManage.getPalletConvEntryTimeEpoch())) / 60;
-						ApplicationLauncher.logger.debug("switchPalletToNextBay: conveyorPalleteRuntimeInMin: " + conveyorPalleteRuntimeInMin);
-						myPalletManage.setPalleteConveyorRunTimeInMin(String.valueOf(conveyorPalleteRuntimeInMin));
-						if (nextBayIsExit) {
-
-							ApplicationLauncher.logger.debug("switchPalletToNextBay: Adding to getRejectionBayPalletDistinctIdList : " + myPalletManage.getPalletDistinctId());
-							BayUtils.getRejectionBayPalletDistinctIdList().add(myPalletManage.getPalletDistinctId());
-						}
-						// ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
+						// });
 					}
-					// String palletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
-					// getPresentPalletAtBayMap().put(nextBayState, palletDistinctId);
+					// ref_tvPalletManage.getItems().set(selectedIndex, myPalletManage);
+					if (ref_tvPalletBayState != null) {
+						ref_tvPalletBayState.refresh();
+					}
 
-					myPalletManage.setNoOfMeterPassed(0);
-					myPalletManage.setNoOfMeterFailed(0);
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: getPresentPalletAtBayMap() : remove :" + getPresentPalletAtBayMap());
 
-					MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
-					// refreshPalletManageDataFromDb();
-					// refreshPalletManageDataFromDbv2("PalletTracker-switchPalletsToNextBay-2");
+					if (nextBayState.equals(ConstantConveyor.WAITING_BAY_KEY) || nextBayState.equals(ConstantConveyor.REJECTION_BAY_KEY)) {
+						addPalletBayState(nextBayState);
+					}
+					// addPalletBayState(nextBayState);
 
+					ref_tvPalletBayState.refresh();
 				} else {
-					ApplicationLauncher.logger.debug("switchPalletToNextBay: pallet not in active mode " + " : selectedBayTypeKey: " + selectedBayTypeKey + " : myPalletDistinctId : " + myPalletDistinctId);
-				}
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: reached End of Conveyor ");
+					myPalletManage.setPalletResultStatus(ConstantReport.REPORT_POPULATE_PASS);
+					myPalletManage.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
 
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+					LocalDateTime endTime = LocalDateTime.now();
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: End Time: " + dtf.format(endTime));
+					String conveyorPalletExitTime = dtf.format(endTime);
+					ZoneId zoneId = ZoneId.systemDefault();
+					long exitTimeEpoch = endTime.atZone(zoneId).toInstant().toEpochMilli();
+					String palletDistinctId = myPalletManage.getPalletDistinctId();
+					myPalletManage.setPresentBayKey(nextBayState);
+
+					getPresentPalletAtBayMap().remove(selectedBayTypeKey);
+					String palletKey = extractPalletKey(palletDistinctId); // Extract the correct key
+					getActivePalletMap().remove(palletKey);
+					ref_tvPalletBayState.refresh();
+
+					getPresentPalletAtBayMap().put(nextBayState, palletDistinctId);
+					myPalletManage.setPalletConvExitTimeStampH(conveyorPalletExitTime);
+					myPalletManage.setPalletConvExitTimeEpoch(String.valueOf(exitTimeEpoch));
+					myPalletManage.setPalletActive(false);
+					long conveyorPalleteRuntimeInMin = (exitTimeEpoch - Long.parseLong(myPalletManage.getPalletConvEntryTimeEpoch())) / 60;
+					ApplicationLauncher.logger.debug("switchPalletToNextBay: conveyorPalleteRuntimeInMin: " + conveyorPalleteRuntimeInMin);
+					myPalletManage.setPalleteConveyorRunTimeInMin(String.valueOf(conveyorPalleteRuntimeInMin));
+					if (nextBayIsExit) {
+
+						ApplicationLauncher.logger.debug("switchPalletToNextBay: Adding to getRejectionBayPalletDistinctIdList : " + myPalletManage.getPalletDistinctId());
+						BayUtils.getRejectionBayPalletDistinctIdList().add(myPalletManage.getPalletDistinctId());
+					}
+					// ref_tvPalletManage.getItems().set(selectedIndex, palletBayTracker);
+				}
+				// String palletDistinctId = getPresentPalletAtBayMap().get(selectedBayTypeKey);
+				// getPresentPalletAtBayMap().put(nextBayState, palletDistinctId);
+
+				myPalletManage.setNoOfMeterPassed(0);
+				myPalletManage.setNoOfMeterFailed(0);
+
+				MySqlServiceManager.getPalletManageService().saveToDb(myPalletManage);
+				// refreshPalletManageDataFromDb();
+				// refreshPalletManageDataFromDbv2("PalletTracker-switchPalletsToNextBay-2");
+
+			} else {
+				ApplicationLauncher.logger.debug("switchPalletToNextBay: pallet not in active mode " + " : selectedBayTypeKey: " + selectedBayTypeKey + " : myPalletDistinctId : " + myPalletDistinctId);
 			}
 		} catch (Exception e) {
-			ApplicationLauncher.logger.error("switchPalletToNextBay: Exception: " + e.getMessage());
+			ApplicationLauncher.logger.error("switchPalletToNextBay: Exception: " + e.getMessage(), e);
 		}
 	}
 
@@ -3507,7 +3543,18 @@ public class PalletTrackerController implements Initializable {
 			meterSerialNoList.add(palletMeter);
 		});
 
-		// }
+		// Deactivate any existing active records for this physical palletQrId
+		try {
+			List<PalletManage> existingActivePallets = MySqlServiceManager.getPalletManageService().findByPalletQrIdAndPalletActive(palletQrId, true);
+			for (PalletManage oldPallet : existingActivePallets) {
+				oldPallet.setPalletActive(false);
+				oldPallet.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
+				MySqlServiceManager.getPalletManageService().saveToDb(oldPallet);
+				ApplicationLauncher.logger.info("addNewPalletManage: Deactivated previous active pallet run for " + palletQrId + " : " + oldPallet.getPalletDistinctId());
+			}
+		} catch (Exception ex) {
+			ApplicationLauncher.logger.error("addNewPalletManage: Error deactivating previous active pallets for " + palletQrId + ": " + ex.getMessage());
+		}
 
 		palletBayTracker.setPalletMeterList(meterSerialNoList); // GopiConveyorReport
 		palletBayTracker.setNoOfMeterPresent(meterSerialNoList.size());
@@ -3575,6 +3622,19 @@ public class PalletTrackerController implements Initializable {
 			palletMeter.setPalletDistinctId(palletDistinctId);
 			meterSerialNoList.add(palletMeter);
 			meterListWithSerialNoMap.put(i + 1, ref_lvMeterList.getItems().get(i));
+		}
+
+		// Deactivate any existing active records for this physical palletQrId
+		try {
+			List<PalletManage> existingActivePallets = MySqlServiceManager.getPalletManageService().findByPalletQrIdAndPalletActive(palletQrId, true);
+			for (PalletManage oldPallet : existingActivePallets) {
+				oldPallet.setPalletActive(false);
+				oldPallet.setPalletExecutionStatus(ConstantConveyor.EXECUTION_STATUS_COMPLETED);
+				MySqlServiceManager.getPalletManageService().saveToDb(oldPallet);
+				ApplicationLauncher.logger.info("addPalletManageOnClick: Deactivated previous active pallet run for " + palletQrId + " : " + oldPallet.getPalletDistinctId());
+			}
+		} catch (Exception ex) {
+			ApplicationLauncher.logger.error("addPalletManageOnClick: Error deactivating previous active pallets for " + palletQrId + ": " + ex.getMessage());
 		}
 
 		palletBayTracker.setPalletMeterList(meterSerialNoList); // GopiConveyorReport

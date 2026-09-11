@@ -37,6 +37,8 @@ public interface PalletManageRepo extends JpaRepository<PalletManage, Long>{
 	
 	public Optional<PalletManage> findTopByPalletQrIdAndPresentBayKeyOrderByIdDesc(String palletQrCode,String presentBayKey);
 	public List<PalletManage> findByPalletActive(boolean palletActive);
+	public List<PalletManage> findByPalletActiveOrderByIdDesc(boolean palletActive);
+	public List<PalletManage> findByPalletQrIdAndPalletActive(String palletQrCode, boolean palletActive);
 	
 	public List<PalletManage> findByCreatedAtAfterOrderByCreatedAtDesc(Date cutoff);
 	public Page<PalletManage> findByCreatedAtAfterOrderByCreatedAtDesc(Date cutoff, Pageable pageable);
@@ -51,6 +53,7 @@ public interface PalletManageRepo extends JpaRepository<PalletManage, Long>{
 	public List<PalletManage> findByPresentBayKeyAndPalletActive(String bayKey, boolean isPalletActive);
 	
 	public Optional<PalletManage> findTopByPresentBayKeyAndPalletActive(String bayKey, boolean isPalletActive);
+	public Optional<PalletManage> findTopByPresentBayKeyAndPalletActiveOrderByIdDesc(String bayKey, boolean isPalletActive);
 	
 	    // For descending order:
 	public List<PalletManage> findAllByOrderByPalletDistinctIdDesc();
