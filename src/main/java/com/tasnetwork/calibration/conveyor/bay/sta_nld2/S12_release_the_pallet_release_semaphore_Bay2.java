@@ -20,14 +20,11 @@ public class S12_release_the_pallet_release_semaphore_Bay2 implements STA_NoLoad
         	if (semaphore.availablePermits() == 0) { // Check before releasing
 				semaphore.release();
 				StaNld_Bay2.logger.info("S12_release_the_pallet_release_semaphore : BAY 2 : Semaphore released successfully.");
-
-                bayResponse.setStatus(true);
-                bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
 			} else {
-				StaNld_Bay2.logger.warn("S12_release_the_pallet_release_semaphore : BAY 2 : Attempted to release an unheld semaphore.");
-                bayResponse.setStatus(false);
-                bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_024);
+				StaNld_Bay2.logger.info("S12_release_the_pallet_release_semaphore : BAY 2 : Semaphore was already unheld/available.");
 			}
+            bayResponse.setStatus(true);
+            bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_601);
         } catch (Exception e) {
         	bayResponse.setStatus(false);
             bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_SCT_NLT_BAY2_024);

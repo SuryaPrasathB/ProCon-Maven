@@ -221,37 +221,38 @@ public class NewlandQRCodeScanner {
 		try {
 			if ((!commBaudRate.isEmpty()) && (!commPortID.isEmpty())) {
 				SpmQrScanner serialPortManagerQrScanner = new SpmQrScanner("qrScn-1");
-				status = serialPortManagerQrScanner.powerSourceComInitV2(commPortID, commBaudRate);
-				if (!status) {
-					// status = false;
-					ApplicationLauncher.logger.debug("analogTrigger :Analog Trigger  Failed");
-				} else {
-					// setPortValidationTurnedON(true);
-					// status = serialDM_Obj.lscsLDU1_CheckCom();
-					// DisplayDataObj.pwrSrcEnableSerialMonitoring_V2();
-					serialPortManagerQrScanner.startSerialRxPhysical_PwrSrc();
-					serialPortManagerQrScanner.enableSerialRxPhysical_QrScannerMonitor();
-					QrScannerDirector pwrSrcDirector = new QrScannerDirector(serialPortManagerQrScanner);
-					Map<String, Object> responseMap = pwrSrcDirector.scanQrCode();
+				try {
+					status = serialPortManagerQrScanner.powerSourceComInitV2(commPortID, commBaudRate);
+					if (!status) {
+						// status = false;
+						ApplicationLauncher.logger.debug("analogTrigger :Analog Trigger  Failed");
+			 		} else {
+						// setPortValidationTurnedON(true);
+						// status = serialDM_Obj.lscsLDU1_CheckCom();
+						// DisplayDataObj.pwrSrcEnableSerialMonitoring_V2();
+						serialPortManagerQrScanner.startSerialRxPhysical_PwrSrc();
+						serialPortManagerQrScanner.enableSerialRxPhysical_QrScannerMonitor();
+						QrScannerDirector pwrSrcDirector = new QrScannerDirector(serialPortManagerQrScanner);
+						Map<String, Object> responseMap = pwrSrcDirector.scanQrCode();
 
-					status = (boolean) responseMap.get("status");
+						status = (boolean) responseMap.get("status");
 
-					try {
-						if (status) {
-							qrData = (String) responseMap.get("responseData");
-							ApplicationLauncher.logger.debug("analogTrigger: qrData1: " + qrData);
-							qrData = NewlandQRCodeScanner.extractScannedData((String) responseMap.get("responseData"));
-							ApplicationLauncher.logger.debug("analogTrigger: qrData2: " + qrData);
+						try {
+							if (status) {
+								qrData = (String) responseMap.get("responseData");
+								ApplicationLauncher.logger.debug("analogTrigger: qrData1: " + qrData);
+								qrData = NewlandQRCodeScanner.extractScannedData((String) responseMap.get("responseData"));
+								ApplicationLauncher.logger.debug("analogTrigger: qrData2: " + qrData);
 
-						} else {
-							ApplicationLauncher.logger.debug("analogTrigger: No response ");
+							} else {
+								ApplicationLauncher.logger.debug("analogTrigger: No response ");
+							}
+						} catch (Exception e) {
+							e.printStackTrace();
+							ApplicationLauncher.logger.error("analogTrigger: Exception" + e.getMessage());
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						ApplicationLauncher.logger.error("analogTrigger: Exception" + e.getMessage());
 					}
-
-					// DisplayDataObj.pwrSrcDisconnectPort_V2();
+				} finally {
 					serialPortManagerQrScanner.disconnectQrScanner();
 				}
 			}
@@ -291,46 +292,47 @@ public class NewlandQRCodeScanner {
 		try {
 			if ((!commBaudRate.isEmpty()) && (!commPortID.isEmpty())) {
 				SpmQrScanner serialPortManagerQrScanner = new SpmQrScanner("qrScn-" + positionNo);
-				status = serialPortManagerQrScanner.powerSourceComInitV2(commPortID, commBaudRate);
-				if (!status) {
-					// status = false;
-					ApplicationLauncher.logger.debug("analogTriggerV2 :Analog Trigger  Failed");
-				} else {
-					// setPortValidationTurnedON(true);
-					// status = serialDM_Obj.lscsLDU1_CheckCom();
-					// DisplayDataObj.pwrSrcEnableSerialMonitoring_V2();
-					serialPortManagerQrScanner.startSerialRxPhysical_PwrSrc();
-					serialPortManagerQrScanner.enableSerialRxPhysical_QrScannerMonitor();
-					QrScannerDirector pwrSrcDirector = new QrScannerDirector(serialPortManagerQrScanner);
-					Map<String, Object> responseMap = pwrSrcDirector.scanQrCode();
+				try {
+					status = serialPortManagerQrScanner.powerSourceComInitV2(commPortID, commBaudRate);
+					if (!status) {
+						// status = false;
+						ApplicationLauncher.logger.debug("analogTriggerV2 :Analog Trigger  Failed");
+					} else {
+						// setPortValidationTurnedON(true);
+						// status = serialDM_Obj.lscsLDU1_CheckCom();
+						// DisplayDataObj.pwrSrcEnableSerialMonitoring_V2();
+						serialPortManagerQrScanner.startSerialRxPhysical_PwrSrc();
+						serialPortManagerQrScanner.enableSerialRxPhysical_QrScannerMonitor();
+						QrScannerDirector pwrSrcDirector = new QrScannerDirector(serialPortManagerQrScanner);
+						Map<String, Object> responseMap = pwrSrcDirector.scanQrCode();
 
-					status = (boolean) responseMap.get("status");
+						status = (boolean) responseMap.get("status");
 
-					int retry_count = 3;
-					try {
-						for (int i = 0; i < retry_count; i++) {
+						int retry_count = 3;
+						try {
+							for (int i = 0; i < retry_count; i++) {
 
-							if (status) {
-								qrData = (String) responseMap.get("responseData");
-								ApplicationLauncher.logger.debug("analogTriggerV2: qrData1: " + qrData);
-								qrData = NewlandQRCodeScanner
-										.extractScannedData((String) responseMap.get("responseData"));
-								ApplicationLauncher.logger
-										.debug("analogTriggerV2: qrData2: <" + qrData + "> : Index : " + i);
+								if (status) {
+									qrData = (String) responseMap.get("responseData");
+									ApplicationLauncher.logger.debug("analogTriggerV2: qrData1: " + qrData);
+									qrData = NewlandQRCodeScanner
+											.extractScannedData((String) responseMap.get("responseData"));
+									ApplicationLauncher.logger
+											.debug("analogTriggerV2: qrData2: <" + qrData + "> : Index : " + i);
 
-								if (!qrData.contains("NG")) {
-									break;
+									if (!qrData.contains("NG")) {
+										break;
+									}
+								} else {
+									ApplicationLauncher.logger.debug("analogTriggerV2: No response ");
 								}
-							} else {
-								ApplicationLauncher.logger.debug("analogTriggerV2: No response ");
 							}
+						} catch (Exception e) {
+							e.printStackTrace();
+							ApplicationLauncher.logger.error("analogTriggerV2: Exception" + e.getMessage());
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						ApplicationLauncher.logger.error("analogTriggerV2: Exception" + e.getMessage());
 					}
-
-					// DisplayDataObj.pwrSrcDisconnectPort_V2();
+				} finally {
 					serialPortManagerQrScanner.disconnectQrScanner();
 				}
 			}

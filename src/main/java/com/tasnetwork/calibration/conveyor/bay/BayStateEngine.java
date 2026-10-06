@@ -41,6 +41,10 @@ public class BayStateEngine extends TimerTask {
         this.runOnceRequested = true;
     }
 
+    public String getExecutionMode() {
+        return executionMode;
+    }
+
     @Override
     public void run() {
         this.runningThread = Thread.currentThread();

@@ -109,6 +109,16 @@ public class QrCodeScanningPallet {
 			bayResponse.setStatus(false);
 			bayResponse.setErrorCode(getFailPathErrorCode()); // Failure error code
 			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: NOT_GOOD_READ. Please stop and restart Bay " + getBayKey() + ".");
+		} else if (status.equals("PALLET_NOT_FOUND")) {
+			eachBaylogger.warn("qrCodePalletScanningProcess : Pallet Not Found in Active Map : " + getBayKey());
+			bayResponse.setStatus(false);
+			bayResponse.setErrorCode(getFailPathErrorCode());
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: Unmapped Pallet QR Code");
+		} else {
+			eachBaylogger.warn("qrCodePalletScanningProcess : QR Scan Failed with status '" + status + "' : " + getBayKey());
+			bayResponse.setStatus(false);
+			bayResponse.setErrorCode(getFailPathErrorCode());
+			StateExecutorController.updateBayPrompt(getBayKey(), "[" + getBayKey() + "] Pallet QR Scan Failed: " + status);
 		}
 
 		eachBaylogger.info("qrCodePalletScanningProcess : Exit : " + getBayKey());
@@ -163,14 +173,18 @@ public class QrCodeScanningPallet {
 		String scannedData = qrScannerObj.scan_QR_code(getPalletQrScannerPositionId());
 
 		eachBaylogger.debug("qrCodePalletScanning : scannedData: " + scannedData);
-		if (scannedData.equals("NO_QR_CODE_AVAILABLE")) {
+		if (scannedData == null || scannedData.trim().isEmpty()) {
+			status = "NO_QR_CODE_AVAILABLE";
+			testIntefaceStatus.setDeviceResponseStatus("Failed");
+			testIntefaceStatus.setDeviceResponseData("NO_DATA_RECEIVED");
+		} else if (scannedData.equals("NO_QR_CODE_AVAILABLE")) {
 			status = "NO_QR_CODE_AVAILABLE";
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
 			testIntefaceStatus.setDeviceResponseData(status);
-		} else if (scannedData.equals("SCNR_NW")) {
+		} else if (scannedData.equals("SCNR_NW") || scannedData.equals("COM_PORT_NOT_CONFIGURED")) {
 			status = "SCNR_NW";
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
-			testIntefaceStatus.setDeviceResponseData(status);
+			testIntefaceStatus.setDeviceResponseData(scannedData);
 		} else if (scannedData.equals(ConstantConveyor.COMM_ACCESS_FAILED)) {
 			status = ConstantConveyor.COMM_ACCESS_FAILED;
 			testIntefaceStatus.setDeviceResponseStatus("Failed");
@@ -184,49 +198,79 @@ public class QrCodeScanningPallet {
 			eachBaylogger.debug("qrCodePalletScanning : Else Hit1: ");
 			PalletTrackerController palletTrackerController = new PalletTrackerController();
 			String selectedBayTypeKey = getBayKey();
-			String palletQrId = scannedData.replace("\r", "").replace("\n", "");
+			String palletQrId = scannedData.replace("\r", "").replace("\n", "").trim();
 
 			String palletDistinctId = PalletTrackerController.getActivePalletMap().get(palletQrId);
+			boolean isEntryBay = ConstantConveyor.ENTRY_BAY_LIST.contains(selectedBayTypeKey);
+			boolean isRejectionBay = selectedBayTypeKey.equals(ConstantConveyor.REJECTION_BAY_KEY);
+			
+			if (isRejectionBay && (palletDistinctId == null || palletDistinctId.trim().isEmpty())) {
+				// For rejection bay, if not in active map, fetch the latest processed entry from DB
+				java.util.Optional<PalletManage> lastPalletOpt = MySqlServiceManager.getPalletManageService().findLastByPalletQrIdAndPresentBayKey(palletQrId, selectedBayTypeKey);
+				if (lastPalletOpt.isPresent()) {
+					palletDistinctId = lastPalletOpt.get().getPalletDistinctId();
+					eachBaylogger.info("qrCodePalletScanning : Fetched previous pallet record for Rejection Bay: " + palletDistinctId);
+				}
+			}
 
-			// Check if test is already completed
-			boolean isAlreadyCompleted = false;
-			try {
-				PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
-						.findFirstByPalletDistinctId(palletDistinctId);
-				if (myPalletManage != null) {
-					PalletBayState presentBayState = myPalletManage.getPalleteBayStateList().stream()
-							.filter(e -> e.getBayStateKey().equals(selectedBayTypeKey))
-							.findFirst()
-							.orElse(null);
-					if (presentBayState != null && Boolean.TRUE.equals(presentBayState.isTestCompleted())) {
-						// isAlreadyCompleted = true; // Bypassed for now to avoid false flags
+			if (!isEntryBay && !isRejectionBay && (palletDistinctId == null || palletDistinctId.trim().isEmpty())) {
+				eachBaylogger.warn("qrCodePalletScanning : Scanned QR '" + palletQrId + "' not found in active pallet map for bay " + selectedBayTypeKey);
+				status = "PALLET_NOT_FOUND";
+				testIntefaceStatus.setDeviceResponseStatus("Failed");
+				testIntefaceStatus.setDeviceResponseData("UNMAPPED_PALLET_QR: " + palletQrId);
+			} else if (isRejectionBay && (palletDistinctId == null || palletDistinctId.trim().isEmpty())) {
+				eachBaylogger.warn("qrCodePalletScanning : Scanned QR '" + palletQrId + "' has no previous records for Rejection Bay");
+				status = "PALLET_NOT_FOUND";
+				testIntefaceStatus.setDeviceResponseStatus("Failed");
+				testIntefaceStatus.setDeviceResponseData("UNMAPPED_PALLET_QR: " + palletQrId);
+			} else {
+				// Check if test is already completed
+				boolean isAlreadyCompleted = false;
+				if (palletDistinctId != null && !palletDistinctId.trim().isEmpty()) {
+					try {
+						PalletManage myPalletManage = MySqlServiceManager.getPalletManageService()
+								.findFirstByPalletDistinctId(palletDistinctId);
+						if (myPalletManage != null) {
+							PalletBayState presentBayState = myPalletManage.getPalleteBayStateList().stream()
+									.filter(e -> e.getBayStateKey().equals(selectedBayTypeKey))
+									.findFirst()
+									.orElse(null);
+							if (presentBayState != null && Boolean.TRUE.equals(presentBayState.isTestCompleted())) {
+								// isAlreadyCompleted = true; // Bypassed for now to avoid false flags
+							}
+						}
+					} catch (Exception e) {
+						eachBaylogger.error("Error checking testCompleted flag: " + e.getMessage());
 					}
 				}
-			} catch (Exception e) {
-				eachBaylogger.error("Error checking testCompleted flag: " + e.getMessage());
+
+				if (isAlreadyCompleted) {
+					status = "ALREADY_COMPLETED";
+					testIntefaceStatus.setDeviceResponseStatus("Success");
+					testIntefaceStatus.setDeviceResponseData("ALREADY_COMPLETED");
+				} else {
+					status = "GOOD";
+					testIntefaceStatus.setDeviceResponseStatus("Success");
+					testIntefaceStatus.setDeviceResponseData(scannedData);
+				}
+
+				refreshDashBoard(palletTrackerController, palletQrId, selectedBayTypeKey, palletDistinctId);
+
+				// For entry bays, addNewPalletManage has registered the new pallet into activePalletMap
+				if (palletDistinctId == null || palletDistinctId.trim().isEmpty()) {
+					palletDistinctId = PalletTrackerController.getActivePalletMap().get(palletQrId);
+				}
+
+				eachBaylogger.debug("qrCodePalletScanning: getActivePalletMap palletDistinctId : " + palletDistinctId
+						+ "  selectedBayTypeKey: " + selectedBayTypeKey);
+
+				Constant_Pallet_Bay_Map.setFT_PALLET_QR(palletQrId);
+
+				eachBaylogger.debug("qrCodePalletScanning : palletDistinctId: " + " : " + palletDistinctId +
+						" : bay: " + selectedBayTypeKey + " : qrCode: " + palletQrId);
+				bayResponse.setMyPalletDistinctId(palletDistinctId);
+				bayResponse.setMyPalletQrCode(palletQrId);
 			}
-
-			if (isAlreadyCompleted) {
-				status = "ALREADY_COMPLETED";
-				testIntefaceStatus.setDeviceResponseStatus("Success");
-				testIntefaceStatus.setDeviceResponseData("ALREADY_COMPLETED");
-			} else {
-				status = "GOOD";
-				testIntefaceStatus.setDeviceResponseStatus("Success");
-				testIntefaceStatus.setDeviceResponseData(scannedData);
-			}
-
-			eachBaylogger.debug("qrCodePalletScanning: getActivePalletMap palletDistinctId : " + palletDistinctId
-					+ "  selectedBayTypeKey: " + selectedBayTypeKey);
-
-			refreshDashBoard(palletTrackerController, palletQrId, selectedBayTypeKey, palletDistinctId);
-
-			Constant_Pallet_Bay_Map.setFT_PALLET_QR(palletQrId);
-
-			eachBaylogger.debug("qrCodePalletScanning : palletDistinctId: " + " : " + palletDistinctId +
-					" : bay: " + selectedBayTypeKey + " : qrCode: " + palletQrId);
-			bayResponse.setMyPalletDistinctId(palletDistinctId);
-			bayResponse.setMyPalletQrCode(palletQrId);
 		}
 
 		StateExecutorController.updateTestStatusGui(testIntefaceStatus);

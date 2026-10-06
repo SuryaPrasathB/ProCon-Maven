@@ -66,11 +66,9 @@ public class SpmQrScanner {
 	// public static CommunicatorV2 commPowerSource= null;
 	public Communicator commQrScanner = null;
 
-	public SerialTxMessageQ txMsgQ_PwrSrc = new SerialTxMessageQ(commQrScanner);
-
-	public SerialRxMessageQ rxMsgQ_PwrSrc = new SerialRxMessageQ(commQrScanner);
-	public SerialRxPhysical rxPhysical_PwrSrc = new SerialRxPhysical(commQrScanner, rxMsgQ_PwrSrc, false,
-			getMyTraceName(), DeleteMeConstant.HV_ER_TERMINATOR, "");
+	public SerialTxMessageQ txMsgQ_PwrSrc = null;
+	public SerialRxMessageQ rxMsgQ_PwrSrc = null;
+	public SerialRxPhysical rxPhysical_PwrSrc = null;
 	// public SerialRxPhysical rxPhysical_PwrSrc = new
 	// SerialRxPhysical(commPowerSrc,rxMsgQ_PwrSrc,false,"PwrSrc",DeleteMeConstant.HV_ER_TERMINATOR,"");
 
@@ -142,8 +140,9 @@ public class SpmQrScanner {
 	}
 
 	public void disableSerialRxPhysical_QrScannerMonitor() {
-		rxPhysical_PwrSrc.setReadRxPhysicalFlag(false);
-
+		if (rxPhysical_PwrSrc != null) {
+			rxPhysical_PwrSrc.SerialRxPhysicalTimerStop();
+		}
 	}
 
 	public void disconnectQrScanner() {
@@ -159,6 +158,7 @@ public class SpmQrScanner {
 
 		} else {
 			ApplicationLauncher.logger.debug("disconnectQrScanner V2 : Path2");
+			disableSerialRxPhysical_QrScannerMonitor();
 		}
 	}
 

@@ -10,14 +10,14 @@ import com.tasnetwork.calibration.energymeter.ApplicationLauncher;
 
 public class QrScannerDirector {
 
-	private SpmQrScanner serialPortManager = new SpmQrScanner();
+	private SpmQrScanner serialPortManager;
 
 	public QrScannerDirector(SpmQrScanner serialPortManagerQrScanner) {
 		this.serialPortManager = serialPortManagerQrScanner;
 	}
 
 	public QrScannerDirector() {
-
+		this.serialPortManager = new SpmQrScanner();
 	}
 
 	public Map<String, Object> scanQrCode() {

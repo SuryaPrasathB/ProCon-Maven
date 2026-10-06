@@ -1749,7 +1749,17 @@ public class BayUtils {
 					Map<String, Boolean> meterTestTypeResultPresent = new HashMap<String, Boolean>(meterTestTypeResultTemplate);
 
 					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-1 : " + meterTestTypeResultPresent);
-					palletMeter.getPalletMeterResultsList().stream()
+					// Get the latest result for each test type for this meter
+					List<PalletMeterResults> latestResults = palletMeter.getPalletMeterResultsList().stream()
+							.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
+							.collect(Collectors.groupingBy(PalletMeterResults::getTestType,
+									Collectors.maxBy(Comparator.comparing(PalletMeterResults::getId))))
+							.values().stream()
+							.filter(Optional::isPresent)
+							.map(Optional::get)
+							.collect(Collectors.toList());
+
+					latestResults.stream()
 							// .filter(e->e.getResultActive())
 							.forEach(e -> {
 								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: getPalletMeterResultsList : " + e.getMeterSerialNo() + " : " + e.getTestType());
@@ -1782,18 +1792,18 @@ public class BayUtils {
 					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: allTestTypeCompleted : " + allTestTypeCompleted);
 					if (allTestTypeCompleted) {
 
-						palletMeter.getPalletMeterResultsList().stream().forEachOrdered(e -> {
+						latestResults.stream().forEachOrdered(e -> {
 							ApplicationLauncher.logger.debug("BayUtils: Result : bay: " + e.getBayStateKey() + ", TestType : " + e.getTestType() + ", Position: " + e.getRackPositionNo() + ", ResultStatus: <" + e.getResultStatus() + ">, ResultValue: <" + e.getResultValue() + ">");
 						});
 
 						String failureReason = "";
-						boolean batchFailedResultFound = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).anyMatch(e -> e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER));
+						boolean batchFailedResultFound = latestResults.stream().anyMatch(e -> e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER));
 						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : batchFailedResultFound status: " + batchFailedResultFound);
 
 						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: batch failed NOT found");
-						boolean failedResultFound = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).anyMatch(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)) && (!e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))));
+						boolean failedResultFound = latestResults.stream().anyMatch(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)) && (!e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER))));
 						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : failedResultFound status : " + failedResultFound);
-						boolean wfrResultFound = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).anyMatch(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR));
+						boolean wfrResultFound = latestResults.stream().anyMatch(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR));
 						ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo: " + presentMeterSerialNo + " : wfrResultFound status : " + wfrResultFound);
 						if (failedResultFound || wfrResultFound || batchFailedResultFound) {
 							ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: failedResultFound : presentMeterSerialNo: " + presentMeterSerialNo + " : meterOverAllStatus : " + meterOverAllStatus);
@@ -1801,7 +1811,7 @@ public class BayUtils {
 							String batchFailedTestTypesCsv = "";
 							if (batchFailedResultFound) {
 								ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: batch failed found");
-								batchFailedTestTypesCsv = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)).filter(e -> e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER)).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
+								batchFailedTestTypesCsv = latestResults.stream().filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)).filter(e -> e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER)).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
 										.collect(Collectors.joining(","));
 								// failedTestTypesCsv = "Failed: " + failedTestTypesCsv;
 								batchFailedTestTypesCsv = ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER + ":" + batchFailedTestTypesCsv;// ConstantConveyor.REASON_RESULT_FAILED_DISPLAY
@@ -1811,7 +1821,7 @@ public class BayUtils {
 
 							String failedTestTypesCsv = "";
 							if (failedResultFound) {
-								failedTestTypesCsv = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).filter(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)) && (!e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER)))).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
+								failedTestTypesCsv = latestResults.stream().filter(e -> ((e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_FAIL)) && (!e.getResultValue().contains(ConstantConveyor.REASON_RESULT_BATCH_FAILED_DISPLAY_HEADER)))).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
 										.collect(Collectors.joining(","));
 								// failedTestTypesCsv = "Failed: " + failedTestTypesCsv;
 								failedTestTypesCsv = ConstantConveyor.REASON_RESULT_FAILED_DISPLAY + failedTestTypesCsv;
@@ -1821,7 +1831,7 @@ public class BayUtils {
 
 							String wfrResultFoundCsv = "";
 							if (wfrResultFound) {
-								wfrResultFoundCsv = palletMeter.getPalletMeterResultsList().stream().filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo)).filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR)).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
+								wfrResultFoundCsv = latestResults.stream().filter(e -> e.getResultStatus().equals(ConstantReport.REPORT_POPULATE_WFR)).map(e -> e.getTestType()).distinct() // optional, if you want unique test types
 										.collect(Collectors.joining(","));
 								// wfrResultFoundCsv = "WFR: " + wfrResultFoundCsv;
 								wfrResultFoundCsv = ConstantConveyor.REASON_RESULT_WFR_DISPLAY + wfrResultFoundCsv;

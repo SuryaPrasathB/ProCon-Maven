@@ -13,6 +13,9 @@ public class Communicator {
 	// private Enumeration ports = null;
 
 	SerialPort[] portsAvailable;
+	private static volatile SerialPort[] cachedPortsAvailable = null;
+	private static volatile long lastScanTime = 0;
+	private static final long PORT_CACHE_TTL_MS = 10000; // 10 seconds cache
 	private boolean deviceConnected = false;
 
 	HashMap portMap = new HashMap();
@@ -35,49 +38,28 @@ public class Communicator {
 		this.deviceType = serialPortDeviceType;
 	}
 
-	public HashMap searchForPorts() {
+	public synchronized HashMap searchForPorts() {
 		try {
-			// ports = CommPortIdentifier.getPortIdentifiers();
-			portsAvailable = SerialPort.getCommPorts();
-			/*
-			 * while (portsAvailable.hasMoreElements())
-			 * {
-			 * CommPortIdentifier curPort = (CommPortIdentifier)ports.nextElement();
-			 * 
-			 * 
-			 * //get only serial ports
-			 * if (curPort.getPortType() == CommPortIdentifier.PORT_SERIAL)
-			 * {
-			 * //window.cboxPorts.addItem(curPort.getName());
-			 * portMap.put(curPort.getName(), curPort);
-			 * ApplicationLauncher.logger.info("Existing ComPort ID:"+curPort.getName());
-			 * }
-			 * 
-			 * 
-			 * }
-			 */
+			long now = System.currentTimeMillis();
+			if (cachedPortsAvailable != null && (now - lastScanTime < PORT_CACHE_TTL_MS)) {
+				portsAvailable = cachedPortsAvailable;
+			} else {
+				portsAvailable = SerialPort.getCommPorts();
+				cachedPortsAvailable = portsAvailable;
+				lastScanTime = now;
+			}
 
-			for (SerialPort S : portsAvailable) {
-				// ApplicationLauncher.logger.debug("Port Number -> .getSystemPortName() -> " +
-				// S.getSystemPortName()); //Gives the number of com port,Eg COM9
-				// System.out.println("Port Physical Location (OS) -> .getSystemPortPath() -> "
-				// + S.getSystemPortPath());
-				// System.out.println("Port Physical Location (USB hub) ->
-				// .getSystemPortLocation() -> " + S.getPortLocation());
-				// System.out.println("Port Description as reported by the device ->
-				// .getDescriptivePortName()-> " + S.getDescriptivePortName());
-				// System.out.println("Port Description .toString() -> .toString() -> " +
-				// S.toString() + "\n");
-				portMap.put(S.getSystemPortName(), S.getSystemPortPath());
+			portMap.clear();
+			if (portsAvailable != null) {
+				for (SerialPort S : portsAvailable) {
+					portMap.put(S.getSystemPortName(), S.getSystemPortPath());
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ApplicationLauncher.logger.error("searchForPorts: exception:" + e.getMessage());
-			// WindowManager.InformUser("SerialPort search failed","Serial Port scan failed
-			// due to followinf reason\n\n" + e.getMessage(),AlertType.ERROR);
 		}
 		return portMap;
-		// ApplicationLauncher.logger.info("test1:"+portMap.get("COM3"));
 	}
 
 	public void assignSerialPort(String comPortId) {
@@ -446,13 +428,39 @@ public class Communicator {
 	}
 
 	public boolean isDevicePortExist(String inputPortId) {
+		if (inputPortId == null || inputPortId.trim().isEmpty()) {
+			return false;
+		}
 
-		for (SerialPort S : portsAvailable) {
+		if (portsAvailable == null) {
+			searchForPorts();
+		}
 
-			if (S.getSystemPortName().equals(inputPortId)) {
-				ApplicationLauncher.logger.debug("isDevicePortExist: Serial port device found success: " + inputPortId);
-				return true;
+		if (portsAvailable != null) {
+			for (SerialPort S : portsAvailable) {
+				if (S.getSystemPortName().equalsIgnoreCase(inputPortId)) {
+					ApplicationLauncher.logger.debug("isDevicePortExist: Serial port device found success: " + inputPortId);
+					return true;
+				}
 			}
+		}
+
+		// Fallback: Force a fresh scan if not found in current cache
+		try {
+			portsAvailable = SerialPort.getCommPorts();
+			cachedPortsAvailable = portsAvailable;
+			lastScanTime = System.currentTimeMillis();
+			if (portsAvailable != null) {
+				for (SerialPort S : portsAvailable) {
+					portMap.put(S.getSystemPortName(), S.getSystemPortPath());
+					if (S.getSystemPortName().equalsIgnoreCase(inputPortId)) {
+						ApplicationLauncher.logger.debug("isDevicePortExist: Serial port device found after refresh: " + inputPortId);
+						return true;
+					}
+				}
+			}
+		} catch (Exception e) {
+			ApplicationLauncher.logger.error("isDevicePortExist: Refresh failed: " + e.getMessage());
 		}
 
 		ApplicationLauncher.logger.debug("isDevicePortExist: Serial port search failed for : " + inputPortId);

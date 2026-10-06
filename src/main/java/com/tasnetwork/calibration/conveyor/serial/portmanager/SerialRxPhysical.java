@@ -98,10 +98,23 @@ public class SerialRxPhysical {
 	 */
 
 	public void SerialRxPhysicalTimerStart() {
-		rxPhysicalTimer = new Timer();
+		SerialRxPhysicalTimerStop();
+		rxPhysicalTimer = new Timer(true);
 		rxPhysicalTimer.schedule(new SerialRxPhysicalTask(), TaskIntervalInMsec);
 		// rxMessageQ.responseWaitCount = seconds;
 		ApplicationLauncher.logger.info("SerialRxTimerStart_V2 : Triggered: " + rxLabel);
+	}
+
+	public void SerialRxPhysicalTimerStop() {
+		setReadRxPhysicalFlag(false);
+		if (rxPhysicalTimer != null) {
+			try {
+				rxPhysicalTimer.cancel();
+				rxPhysicalTimer.purge();
+			} catch (Exception e) {
+			}
+			rxPhysicalTimer = null;
+		}
 	}
 
 	/*
@@ -313,11 +326,21 @@ public class SerialRxPhysical {
 				}
 			}
 			if (isReadRxPhysicalFlag()) {
-				rxPhysicalTimer.schedule(new SerialRxPhysicalTask(), TaskIntervalInMsec);
+				if (rxPhysicalTimer != null) {
+					rxPhysicalTimer.schedule(new SerialRxPhysicalTask(), TaskIntervalInMsec);
+				}
 				// ApplicationLauncher.logger.debug("SerialRxPhysicalTask: Renewed");
 			} else {
 				ApplicationLauncher.logger.debug(
-						"SerialRxPhysicalTask: Stopped :" + rxLabel + " : Port: " + SerialPortObj.getSystemPortName());
+						"SerialRxPhysicalTask: Stopped :" + rxLabel + " : Port: " + (SerialPortObj != null ? SerialPortObj.getSystemPortName() : "null"));
+				if (rxPhysicalTimer != null) {
+					try {
+						rxPhysicalTimer.cancel();
+						rxPhysicalTimer.purge();
+					} catch (Exception e) {
+					}
+					rxPhysicalTimer = null;
+				}
 			}
 		}
 

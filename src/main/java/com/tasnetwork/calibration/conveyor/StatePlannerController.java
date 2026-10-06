@@ -596,7 +596,15 @@ public class StatePlannerController implements Initializable {
 
 		Supplier<TimerTask> taskSupplier = singleStateTasks.get(bayName);
 		if (taskSupplier != null) {
-			new Timer().schedule(taskSupplier.get(), 100);
+			String bayKey = ConstantConveyor.getBayLookup().get(bayName);
+			if (bayKey != null) {
+				com.tasnetwork.calibration.conveyor.dashboard.BayActionHandler bayActionHandler = 
+						new com.tasnetwork.calibration.conveyor.dashboard.BayActionHandler(bayKey);
+				bayActionHandler.clearStopFlagsForBay();
+				com.tasnetwork.calibration.conveyor.dashboard.BayThreadManager.scheduleTask(bayKey, taskSupplier.get(), "SINGLE_STATE_" + bayName);
+			} else {
+				new Timer().schedule(taskSupplier.get(), 100);
+			}
 		}
 	}
 

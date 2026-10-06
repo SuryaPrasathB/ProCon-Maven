@@ -10,17 +10,25 @@ import com.tasnetwork.calibration.conveyor.bay.BayStateContext;
 import com.tasnetwork.spring.orm.model.StateFlow;
 
 public class Rejection implements BayStateContext {
-	public static Logger logger = Logger.getLogger(Rejection.class.getPackage().getName()); 
+	public static Logger logger = Logger.getLogger("com.tasnetwork.calibration.conveyor.bay.rejection"); 
+	
+	public static Logger getLogger() {
+		if (logger == null) {
+			logger = Logger.getLogger("com.tasnetwork.calibration.conveyor.bay.rejection");
+		}
+		return logger;
+	}  
+	
 	private RejectionBayContext rejectionBayStateManager = new RejectionBayContext();  
 	
 	
 	public static volatile boolean startProcessRequestedRejectionBay = false ;
-	public static boolean stopProcessRequestedRejectionBay = false ;
-	public static boolean resetProcessRequestedRejectionBay = false ;
+	public static volatile boolean stopProcessRequestedRejectionBay = false ;
+	public static volatile boolean resetProcessRequestedRejectionBay = false ;
 	
-	public static boolean startProcessCompletedRejectionBay = false ;
-	public static boolean stopProcessCompletedRejectionBay = false ;
-	public static boolean resetProcessCompletedRejectionBay = false ;
+	public static volatile boolean startProcessCompletedRejectionBay = false ;
+	public static volatile boolean stopProcessCompletedRejectionBay = false ;
+	public static volatile boolean resetProcessCompletedRejectionBay = false ;
 	
 	public static boolean abort_Rejection_Bay = false ;
 	@Override
@@ -30,9 +38,8 @@ public class Rejection implements BayStateContext {
 
 	@Override
 	public void onStopComplete() {
-		setStopProcessCompletedRejectionBay(false);
-		setStopProcessRequestedRejectionBay(false);
-		Rejection.logger.debug("Rejection : onStopComplete -Pass");
+		setStopProcessCompletedRejectionBay(true);
+		getLogger().debug("Rejection : onStopComplete -Pass");
 	}
 	
 	@Override
@@ -50,8 +57,8 @@ public class Rejection implements BayStateContext {
 		// Process the current state
 		BayResponse bayStatus = rejectionBayStateManager.processPresentState();
 
-		Rejection.logger.debug("processCurrentState : " + rejectionBayStateManager.getState().getClass().getSimpleName() + " : Status     : " + bayStatus.isStatus());
-		Rejection.logger.debug("processCurrentState : " + rejectionBayStateManager.getState().getClass().getSimpleName() + " : Error Code : " + bayStatus.getErrorCode());
+		getLogger().debug("processCurrentState : " + rejectionBayStateManager.getState().getClass().getSimpleName() + " : Status     : " + bayStatus.isStatus());
+		getLogger().debug("processCurrentState : " + rejectionBayStateManager.getState().getClass().getSimpleName() + " : Error Code : " + bayStatus.getErrorCode());
 		return bayStatus ;
 	}
 

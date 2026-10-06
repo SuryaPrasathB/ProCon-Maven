@@ -79,13 +79,13 @@ public class S01_check_for_pallets_at_Reject_Bay implements RejectionBayState {
 					responseReturn = isPalletAvailableAt_RejectBay();
 					isPalletAvailableAt_RejectBay = (boolean) responseReturn.get("status");
 
-					if (!isPalletAvailableAt_RejectBay) {
-						break; // Reset if detection is lost
+					if (!isPalletAvailableAt_RejectBay || Rejection.isStopProcessRequestedRejectionBay() || ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
+						break; // Reset if detection is lost or stop requested
 					}
 				}
 
 				// If detection lasted for stable pallet time, confirm stability
-				if (isPalletAvailableAt_RejectBay) {
+				if (isPalletAvailableAt_RejectBay && !Rejection.isStopProcessRequestedRejectionBay() && !ConstantConveyor.ALL_LOOP_BREAK_FLAG) {
 					stableDetection = true;
 				}
 			} else {
@@ -94,10 +94,14 @@ public class S01_check_for_pallets_at_Reject_Bay implements RejectionBayState {
 				}
 				BayUtils.delay(1000);
 			}
-			//logEnabled = false;
+			logEnabled = false;
 		}
 
-		if (stableDetection) {
+		if (Rejection.isStopProcessRequestedRejectionBay()) {
+			Rejection.logger.info("S01_check_for_pallets_at_Reject_Bay : Stop requested, exiting.");
+			bayResponse.setStatus(false);
+			bayResponse.setErrorCode(ConvErrorCodeMapping.ERROR_CODE_REJECTION_001);
+		} else if (stableDetection) {
 			Rejection.logger.info("S01_check_for_pallets_at_Reject_Bay : Pallet Available");
 			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().updateBayAllPalletsExistInBay(getMyBayKey(),true);
 			bayResponse.setStatus(true);

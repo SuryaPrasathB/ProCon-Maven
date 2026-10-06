@@ -1620,11 +1620,20 @@ public class BayActionHandler {
 	private void handleEngineLifecycleActions(PalletController.BayActionType actionType) {
 		// Redirection to StateExecutorController removed, BayControlsManager handles UI updates.
 		if (actionType == PalletController.BayActionType.BAY_STOP) {
+			BayStateEngine oldEngine = BayThreadManager.getEngine(getBaseBayKey());
+			if (oldEngine != null && ConstantStateModes.STOP.equals(oldEngine.getExecutionMode())) {
+				if (!oldEngine.isFinished()) {
+					ApplicationLauncher.logger.info("BAY_STOP: Engine is already executing STOP for " + getBaseBayKey() + ", ignoring duplicate stop.");
+				} else {
+					ApplicationLauncher.logger.info("BAY_STOP: Bay " + getBaseBayKey() + " is already stopped, ignoring duplicate stop.");
+				}
+				return;
+			}
+
 			triggerStopFlagsForBay();
 			stopUIBlinkers();
 			ConveyorDataManager.getDashboardObject().getBayIndicatorManager().stopTimeUpDisplay(bayTypeKey);
 			
-			BayStateEngine oldEngine = BayThreadManager.getEngine(getBaseBayKey());
 			BayThreadManager.cancelTask(getBaseBayKey());
 
 			if (oldEngine != null) {
@@ -1639,10 +1648,13 @@ public class BayActionHandler {
 
 			BayStateContext context = getContextForBay();
 			if (context != null) {
-				// Clear stop flags
-				clearStopFlagsForBay();
-				BayStateEngine engine = new BayStateEngine(getBaseBayKey(), context, ConstantStateModes.STOP);
-				BayThreadManager.scheduleTask(getBaseBayKey(), engine, actionType.name());
+				java.util.List<com.tasnetwork.spring.orm.model.StateFlow> stopStates = 
+						com.tasnetwork.calibration.conveyor.database.MySqlServiceManager.getStateFlowService()
+						.findByBayKeyAndExecutionMode(getBaseBayKey(), ConstantStateModes.STOP);
+				if (stopStates != null && !stopStates.isEmpty()) {
+					BayStateEngine engine = new BayStateEngine(getBaseBayKey(), context, ConstantStateModes.STOP);
+					BayThreadManager.scheduleTask(getBaseBayKey(), engine, actionType.name());
+				}
 			}
 			return;
 		}
@@ -1736,7 +1748,7 @@ public class BayActionHandler {
 		return null;
 	}
 
-	private void triggerStopFlagsForBay() {
+	public void triggerStopFlagsForBay() {
 		switch (getBaseBayKey()) {
 			case ConstantConveyor.FT_BAY_KEY:
 				Ft.stopProcessRequestedFtBay = true;
@@ -1774,7 +1786,7 @@ public class BayActionHandler {
 		}
 	}
 
-	private void clearStopFlagsForBay() {
+	public void clearStopFlagsForBay() {
 		switch (getBaseBayKey()) {
 			case ConstantConveyor.FT_BAY_KEY:
 				Ft.stopProcessRequestedFtBay = false;

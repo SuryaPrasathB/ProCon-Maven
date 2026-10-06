@@ -39,7 +39,7 @@ public class ConstantBypassFlags {
         // Initialize full bay bypass flags for each bay.
         // By default, set them all to false (not bypassed).
         // You can change these values as needed for specific operational bypass.
-        BAY_BYPASS_FLAGS.put(ConstantConveyor.FT_BAY_KEY, 				true);
+        BAY_BYPASS_FLAGS.put(ConstantConveyor.FT_BAY_KEY, 				false);
         BAY_BYPASS_FLAGS.put(ConstantConveyor.HV_BAY_KEY, 				false);
         BAY_BYPASS_FLAGS.put(ConstantConveyor.IR_BAY_KEY, 				false);
         BAY_BYPASS_FLAGS.put(ConstantConveyor.CALIBRATION_BAY_KEY, 		false);

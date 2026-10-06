@@ -139,6 +139,9 @@ public class S072_ensure_FT_source_started implements FtBayState {
 		    Ft.logger.info(String.format("[%s] : [LDU_SENSOR_PROMPT] : [DISABLED] - User input for LDU sensors is disabled.", getMyBayKey()));
 		}
 
+		// Wait for meters to boot up and initialize communication
+		Ft.logger.info(String.format("[%s] : [FT_SOURCE_START] : Waiting for 5 seconds to allow meters to boot up.", getMyBayKey()));
+		BayUtils.delay(5000);
 
 		// Structured log for sequence exit
 		Ft.logger.info(String.format("[%s] : [FT_SOURCE_STATUS_CHECK] : [SEQUENCE_EXIT] - FT source status check sequence completed.", getMyBayKey()));

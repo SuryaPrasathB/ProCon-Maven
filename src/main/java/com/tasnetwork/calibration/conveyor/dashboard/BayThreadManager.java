@@ -16,6 +16,9 @@ public class BayThreadManager {
     // Map of BayKey -> Currently active Engine (for stopping)
     private static final Map<String, BayStateEngine> activeEngines = new ConcurrentHashMap<>();
     
+    // Map of BayKey -> Currently active running Thread
+    private static final Map<String, Thread> activeThreads = new ConcurrentHashMap<>();
+    
     /**
      * Safely schedules a new task for a bay, cancelling any existing tasks.
      * @param bayKey The unique identifier for the bay
@@ -39,8 +42,18 @@ public class BayThreadManager {
             ApplicationLauncher.logger.warn(String.format("BayThreadManager: Requesting graceful stop of existing engine for %s", bayKey));
             oldEngine.requestStop();
         }
+
+        // Interrupt any active thread running for this bay
+        Thread oldThread = activeThreads.remove(bayKey);
+        if (oldThread != null && oldThread.isAlive()) {
+            try {
+                oldThread.interrupt();
+            } catch (Exception e) {
+                ApplicationLauncher.logger.warn("BayThreadManager: Exception interrupting previous thread for " + bayKey, e);
+            }
+        }
         
-        // 3. Create new timer and schedule
+        // 3. Create new timer and schedule wrapped task
         Timer newTimer = new Timer();
         activeTimers.put(bayKey, newTimer);
         
@@ -48,7 +61,19 @@ public class BayThreadManager {
             activeEngines.put(bayKey, (BayStateEngine) task);
         }
         
-        newTimer.schedule(task, 100);
+        TimerTask wrappedTask = new TimerTask() {
+            @Override
+            public void run() {
+                activeThreads.put(bayKey, Thread.currentThread());
+                try {
+                    task.run();
+                } finally {
+                    activeThreads.remove(bayKey);
+                }
+            }
+        };
+
+        newTimer.schedule(wrappedTask, 100);
         return newTimer;
     }
 
@@ -67,6 +92,15 @@ public class BayThreadManager {
         if (oldEngine != null) {
             ApplicationLauncher.logger.warn(String.format("BayThreadManager: Requesting graceful stop of existing engine for %s", bayKey));
             oldEngine.requestStop();
+        }
+
+        Thread runningThread = activeThreads.remove(bayKey);
+        if (runningThread != null && runningThread.isAlive()) {
+            try {
+                runningThread.interrupt();
+            } catch (Exception e) {
+                ApplicationLauncher.logger.warn("BayThreadManager: Exception interrupting thread for " + bayKey, e);
+            }
         }
     }
 

@@ -2226,7 +2226,7 @@ public class PalletTrackerController implements Initializable {
 					ApplicationLauncher.logger.debug("switchPalletToNextBay: EXIT_BAY_LIST-X : present");
 					nextBayIsExit = true;
 				}
-				if (ConstantConveyor.STATE_SEQUENCE_LIST.size() > (indexOfPresentState + 1) && !nextBayState.equals(ConstantConveyor.REJECTION_BAY_KEY) && !nextBayState.equals(ConstantConveyor.UNLOADING_BAY_KEY) && !nextBayState.equals(ConstantConveyor.COMMUNICATION_BAY_KEY)
+				if (ConstantConveyor.STATE_SEQUENCE_LIST.size() > (indexOfPresentState + 1) && !nextBayState.equals(ConstantConveyor.UNLOADING_BAY_KEY) && !nextBayState.equals(ConstantConveyor.COMMUNICATION_BAY_KEY)
 				// && !nextBayState.equals(ConstantConveyor.CALIBRATION_BAY_KEY)
 				) {
 

@@ -9,30 +9,46 @@ import com.tasnetwork.spring.orm.model.StateFlow;
 
 import javafx.scene.control.TableView;
 
+import org.apache.log4j.Logger;
+
 public class RejectionBaySingleStateTestRun extends TimerTask{
-	//public static Logger logger = Logger.getLogger(RejectionBay2.class.getPackage().getName());
+	public static Logger logger = Logger.getLogger("com.tasnetwork.calibration.conveyor.bay.rejection");
 	private RejectionBayContext rejectionBayStateManager = new RejectionBayContext(); 
 
 	public void run() {
-		Rejection.logger.debug("RejectionBaySingleStateTestRun : Entry");
+		Logger log = (Rejection.logger != null) ? Rejection.logger : logger;
+		log.debug("RejectionBaySingleStateTestRun : Entry");
 		
 		singleStateTestRun();
 	}
 
 	private void singleStateTestRun() {
+		Logger log = (Rejection.logger != null) ? Rejection.logger : logger;
+		log.debug("RejectionBaySingleStateTestRun : singleStateTestRun : Entry");
 
-		Rejection.logger.debug("RejectionBaySingleStateTestRun : singleStateTestRun : Entry");
+		if (StatePlannerController.ref_cmbBxSelectSingleState == null ||
+				StatePlannerController.ref_cmbBxSelectSingleState.getSelectionModel() == null) {
+			log.error("RejectionBaySingleStateTestRun : ref_cmbBxSelectSingleState is null");
+			return;
+		}
 
 		String stateName = StatePlannerController.ref_cmbBxSelectSingleState.getSelectionModel().getSelectedItem();
+		if (stateName == null || stateName.trim().isEmpty() || "Select State".equals(stateName)) {
+			log.error("RejectionBaySingleStateTestRun : No state selected to run");
+			return;
+		}
+		
 		RejectionBayState currentState = RejectionBayState.createState(stateName); 
 		
 		setNextState(currentState);
 
 		BayResponse bayStatus = processCurrentState();
 
-		Rejection.logger.debug("RejectionBaySingleStateTestRun : singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
-		Rejection.logger.debug("RejectionBaySingleStateTestRun : singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
-		Rejection.logger.debug("RejectionBaySingleStateTestRun : singleStateTestRun : Exit");
+		if (bayStatus != null) {
+			log.debug("RejectionBaySingleStateTestRun : singleStateTestRun : bayStatus : Status : " + bayStatus.getStatus());
+			log.debug("RejectionBaySingleStateTestRun : singleStateTestRun : bayStatus : Error Code : " + bayStatus.getErrorCode());
+		}
+		log.debug("RejectionBaySingleStateTestRun : singleStateTestRun : Exit");
 
 	}
 

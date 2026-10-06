@@ -15,15 +15,14 @@ public class QrScannerMessenger {
 
 	// DeviceDataManagerController displayDataObj = new
 	// DeviceDataManagerController();
-	SpmQrScanner pwrSrcSpmObj = new SpmQrScanner();// null;//new
-													// DeviceDataManagerController().getSerialPortManagerPwrSrc_V2();
+	SpmQrScanner pwrSrcSpmObj;
 
 	public QrScannerMessenger(SpmQrScanner qrScannerSerialPort) {
 		this.pwrSrcSpmObj = qrScannerSerialPort;
 	}
 
 	public QrScannerMessenger() {
-
+		this.pwrSrcSpmObj = new SpmQrScanner();
 	}
 	// ==========================================================================================================================
 
