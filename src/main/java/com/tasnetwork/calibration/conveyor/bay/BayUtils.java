@@ -43,6 +43,7 @@ import com.tasnetwork.calibration.conveyor.constant.ProconFeatureEnable;
 // import com.tasnetwork.calibration.conveyor.dashboard.MeterStatus;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorCluster;
 import com.tasnetwork.calibration.conveyor.device.ConveyorDataManager;
@@ -1770,6 +1771,15 @@ public class BayUtils {
 									ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: skipping  : Test type validation: " + e.getTestType());
 								}
 							});
+
+					// Apply centralized bypass forced PASS logic
+					for (Map.Entry<String, Boolean> entry : meterTestTypeResultPresent.entrySet()) {
+						if (!entry.getValue() && ConstantBypassFlags.isTestForcePassedDueToBypass(entry.getKey())) {
+							ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: Test [" + entry.getKey() + "] is forced PASS due to bay bypass configuration");
+							entry.setValue(true);
+							ConstantBypassFlags.ensureBypassedMeterResultRecord(palletMeter, entry.getKey());
+						}
+					}
 
 					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-2 : " + meterTestTypeResultPresent);
 					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo : " + presentMeterSerialNo);

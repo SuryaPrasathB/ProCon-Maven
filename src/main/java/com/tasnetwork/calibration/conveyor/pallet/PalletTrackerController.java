@@ -34,6 +34,7 @@ import com.tasnetwork.calibration.conveyor.ConveyorDebugController;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
 import com.tasnetwork.calibration.conveyor.bay.rejection.S02_qR_Code_Scanning_of_Rejected_Pallet;
 import com.tasnetwork.calibration.conveyor.bay.unloading.S02_qR_Code_Scanning_of_Pallet;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.constant.ConstantLdu;
@@ -1262,7 +1263,9 @@ public class PalletTrackerController implements Initializable {
 		MeterResultSummary meterResultSummary;
 		Map<String, Boolean> meterTestTypeResultTemplate = new HashMap<String, Boolean>();
 		for (String eachTestType : ConstantConveyor.CONV_TEST_TYPE_ALIAS_LIST) {
-			meterTestTypeResultTemplate.put(eachTestType, false);
+			if (!ConstantConveyor.INACTIVE_TEST_TYPE_ALIAS_LIST.contains(eachTestType)) {
+				meterTestTypeResultTemplate.put(eachTestType, false);
+			}
 		}
 		for (int i = 0; i < ref_tvMeterResultSummary.getItems().size(); i++) {
 			meterResultSummary = ref_tvMeterResultSummary.getItems().get(i);
@@ -1288,6 +1291,16 @@ public class PalletTrackerController implements Initializable {
 					ApplicationLauncher.logger.debug("computeMeterOverAllStatus: getPalletMeterResultsList : " + e.getMeterSerialNo() + " : " + e.getTestType());
 					meterTestTypeResultPresent.put(e.getTestType(), true);
 				});
+
+				// Apply centralized bypass forced PASS logic
+				for (Map.Entry<String, Boolean> entry : meterTestTypeResultPresent.entrySet()) {
+					if (!entry.getValue() && ConstantBypassFlags.isTestForcePassedDueToBypass(entry.getKey())) {
+						ApplicationLauncher.logger.debug("computeMeterOverAllStatus: Test [" + entry.getKey() + "] is forced PASS due to bay bypass configuration");
+						entry.setValue(true);
+						ConstantBypassFlags.ensureBypassedMeterResultRecord(palletMeter, entry.getKey());
+					}
+				}
+
 				ApplicationLauncher.logger.debug("computeMeterOverAllStatus: presentMeterSerialNo : " + presentMeterSerialNo);
 
 				meterTestTypeResultPresent.entrySet().stream().forEach(e -> {
