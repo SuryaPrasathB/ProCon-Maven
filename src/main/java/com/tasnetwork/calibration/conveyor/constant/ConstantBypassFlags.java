@@ -124,33 +124,113 @@ public class ConstantBypassFlags {
     }
 
     /**
+     * Extracts the base bay key from a potentially composite bay position key.
+     * For example, STNLD1B-PP1 -> STNLD1B, VERIFICB-PP2 -> VERIFICB, WTNGB-PP3 -> WTNGB.
+     */
+    public static String getBaseBayKey(String bayKey) {
+        if (bayKey == null) {
+            return "";
+        }
+        String trimmed = bayKey.trim();
+        if (trimmed.startsWith(ConstantConveyor.WAITING_BAY_KEY))
+            return ConstantConveyor.WAITING_BAY_KEY;
+        if (trimmed.startsWith(ConstantConveyor.VERIFICATION_BAY_KEY))
+            return ConstantConveyor.VERIFICATION_BAY_KEY;
+        if (trimmed.startsWith(ConstantConveyor.STA_NLD1_BAY_KEY))
+            return ConstantConveyor.STA_NLD1_BAY_KEY;
+        if (trimmed.startsWith(ConstantConveyor.STA_NLD2_BAY_KEY))
+            return ConstantConveyor.STA_NLD2_BAY_KEY;
+        return trimmed;
+    }
+
+    /**
+     * Sets the bypass status for a bay, automatically synchronizing composite base and sub-keys.
+     *
+     * @param bayKey The bay key or sub-key.
+     * @param bypassed True if bypassed, false otherwise.
+     */
+    public static void setBayBypassed(String bayKey, boolean bypassed) {
+        if (bayKey == null || bayKey.trim().isEmpty()) {
+            return;
+        }
+        String trimmed = bayKey.trim();
+        BAY_BYPASS_FLAGS.put(trimmed, bypassed);
+        String baseKey = getBaseBayKey(trimmed);
+        BAY_BYPASS_FLAGS.put(baseKey, bypassed);
+
+        // If composite bay, set all PP1..PP4 flags as well
+        if (baseKey.equals(ConstantConveyor.STA_NLD1_BAY_KEY)
+                || baseKey.equals(ConstantConveyor.STA_NLD2_BAY_KEY)
+                || baseKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)
+                || baseKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
+            for (int i = 1; i <= 4; i++) {
+                BAY_BYPASS_FLAGS.put(baseKey + "-PP" + i, bypassed);
+            }
+        }
+    }
+
+    /**
      * Utility method to check if a specific bay is fully bypassed (skipping most operations).
-     * This checks both the global bypass flag and the individual bay's full bypass flag.
+     * This checks global bypass, exact bay name, base bay key, and composite sub-bay keys.
      *
      * @param bayName The name or identifier of the bay (e.g., ConstantConveyor.HV_BAY_KEY).
      * @return true if the bay is fully bypassed, false otherwise (or if the bay doesn't exist in the map).
      */
     public static boolean isBayFullyBypassed(String bayName) {
-        // If GLOBAL_BAY_BYPASS is true, all bays are bypassed regardless of individual settings.
         if (GLOBAL_BAY_BYPASS) {
             return true;
         }
-        return BAY_BYPASS_FLAGS.getOrDefault(bayName, false);
+        if (bayName == null || bayName.trim().isEmpty()) {
+            return false;
+        }
+        String trimmed = bayName.trim();
+        if (Boolean.TRUE.equals(BAY_BYPASS_FLAGS.get(trimmed))) {
+            return true;
+        }
+        String baseKey = getBaseBayKey(trimmed);
+        if (Boolean.TRUE.equals(BAY_BYPASS_FLAGS.get(baseKey))) {
+            return true;
+        }
+        for (Map.Entry<String, Boolean> entry : BAY_BYPASS_FLAGS.entrySet()) {
+            if (Boolean.TRUE.equals(entry.getValue()) && entry.getKey() != null) {
+                if (entry.getKey().startsWith(baseKey) || getBaseBayKey(entry.getKey()).equals(baseKey)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
      * Utility method to check if mechanical hardware testing is bypassed for a specific bay.
-     * This checks both the global test bypass flag and the individual bay's test bypass flag.
+     * This checks global test bypass, exact bay name, base bay key, and composite sub-bay keys.
      *
      * @param bayName The name or identifier of the bay (e.g., ConstantConveyor.HV_BAY_KEY).
      * @return true if mechanical testing for the bay is bypassed, false otherwise (or if the bay doesn't exist in the map).
      */
     public static boolean isBayTestBypassed(String bayName) {
-        // If GLOBAL_TEST_BYPASS is true, all bay tests are bypassed regardless of individual settings.
         if (GLOBAL_TEST_BYPASS) {
             return true;
         }
-        return BAY_TEST_BYPASS_FLAGS.getOrDefault(bayName, false);
+        if (bayName == null || bayName.trim().isEmpty()) {
+            return false;
+        }
+        String trimmed = bayName.trim();
+        if (Boolean.TRUE.equals(BAY_TEST_BYPASS_FLAGS.get(trimmed))) {
+            return true;
+        }
+        String baseKey = getBaseBayKey(trimmed);
+        if (Boolean.TRUE.equals(BAY_TEST_BYPASS_FLAGS.get(baseKey))) {
+            return true;
+        }
+        for (Map.Entry<String, Boolean> entry : BAY_TEST_BYPASS_FLAGS.entrySet()) {
+            if (Boolean.TRUE.equals(entry.getValue()) && entry.getKey() != null) {
+                if (entry.getKey().startsWith(baseKey) || getBaseBayKey(entry.getKey()).equals(baseKey)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -178,10 +258,39 @@ public class ConstantBypassFlags {
             return false;
         }
         String trimmed = testType.trim();
-        if (!FORCE_PASS_PER_TEST_FLAG.getOrDefault(trimmed, true)) {
+        String upper = trimmed.toUpperCase(Locale.ENGLISH);
+
+        if (!FORCE_PASS_PER_TEST_FLAG.getOrDefault(trimmed, true)
+                && !FORCE_PASS_PER_TEST_FLAG.getOrDefault(upper, true)) {
             return false;
         }
+
         List<String> bayKeys = TEST_TYPE_TO_BAY_KEYS.get(trimmed);
+        if (bayKeys == null) {
+            bayKeys = TEST_TYPE_TO_BAY_KEYS.get(upper);
+        }
+
+        // Canonical alias fallback matching
+        if (bayKeys == null) {
+            if (upper.equals(ConstantConveyor.FT_ALIAS_NAME) || upper.startsWith("FT")) {
+                bayKeys = Arrays.asList(ConstantConveyor.FT_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.HV_ALIAS_NAME) || upper.startsWith("HV")) {
+                bayKeys = Arrays.asList(ConstantConveyor.HV_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.IR_ALIAS_NAME) || upper.startsWith("IR")) {
+                bayKeys = Arrays.asList(ConstantConveyor.IR_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.ACCURACY_ALIAS_NAME) || upper.startsWith("LOE") || upper.contains("ACCURACY")) {
+                bayKeys = Arrays.asList(ConstantConveyor.VERIFICATION_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.CREEP_ALIAS_NAME) || upper.startsWith("NLD") || upper.contains("CREEP")) {
+                bayKeys = Arrays.asList(ConstantConveyor.STA_NLD1_BAY_KEY, ConstantConveyor.STA_NLD2_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.STA_ALIAS_NAME) || upper.startsWith("STA")) {
+                bayKeys = Arrays.asList(ConstantConveyor.STA_NLD1_BAY_KEY, ConstantConveyor.STA_NLD2_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.COMM_ALIAS_NAME) || upper.startsWith("COMM")) {
+                bayKeys = Arrays.asList(ConstantConveyor.COMMUNICATION_BAY_KEY);
+            } else if (upper.equals(ConstantConveyor.CALIB_ALIAS_NAME) || upper.startsWith("CALIB")) {
+                bayKeys = Arrays.asList(ConstantConveyor.CALIBRATION_BAY_KEY);
+            }
+        }
+
         if (bayKeys != null) {
             for (String bayKey : bayKeys) {
                 if (isBayAnyBypassed(bayKey)) {

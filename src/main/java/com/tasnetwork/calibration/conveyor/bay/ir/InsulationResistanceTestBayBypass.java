@@ -21,12 +21,13 @@ public class InsulationResistanceTestBayBypass extends TimerTask {
 	public void run() {
 
 		Ir.logger.debug("InsulationResistanceTestBayBypass : Entry");
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(ConstantConveyor.IR_BAY_KEY, true);
 		tableBypassStatePlanner_HvBay.clear();
 		manageInsulationResistanceTestBayBypassStates2();
 
 		String pathId = "ExR";
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus(
-				ConstantConveyor.HV_BAY_KEY,
+				ConstantConveyor.IR_BAY_KEY,
 				"", // ConstantBayStateManage.Hv_BAY_HP_SEQ_01,
 				"", // ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
 				pathId,

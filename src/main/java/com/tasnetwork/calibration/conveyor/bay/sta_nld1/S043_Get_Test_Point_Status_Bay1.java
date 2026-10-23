@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -227,8 +228,9 @@ public class S043_Get_Test_Point_Status_Bay1 implements STA_NoLoadTestBay1State 
 					dutSerialNo = eachResult.getDut_serial_no();// result.getString("dut_serial_no");
 					testType = testCaseName.startsWith("NLD") ? ConstantConveyor.NLD_RESULT_KEY
 							: ConstantConveyor.STA_RESULT_KEY; // "NLD" : "STA";
+					resultValue = ConstantBypassFlags.getComputedResultValue(testType, resultValue);
 					StaNld_Bay1.logger.info("S043_Get_Test_Point_Status : testCaseName " + testCaseName + "-> testType:"
-							+ testType + ", dutSerialNo: " + dutSerialNo + " ,palletDistinctId:" + palletDistinctId);
+							+ testType + ", resultValue: " + resultValue + ", dutSerialNo: " + dutSerialNo + " ,palletDistinctId:" + palletDistinctId);
 
 					// Determine the correct pallet based on position number
 					// PalletManage selectedPallet = null;

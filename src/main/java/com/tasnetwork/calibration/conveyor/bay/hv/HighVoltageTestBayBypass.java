@@ -19,6 +19,7 @@ public class HighVoltageTestBayBypass extends TimerTask {
 	public void run() {
 
 		Hv.logger.debug("HighVoltageTestBayBypass : Entry");
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(ConstantConveyor.HV_BAY_KEY, true);
 		tableBypassStatePlanner_HvBay.clear();
 		manageHighVoltageTestBayBypassStates2();
 

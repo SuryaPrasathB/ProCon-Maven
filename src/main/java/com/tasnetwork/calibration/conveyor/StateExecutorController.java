@@ -36,6 +36,7 @@ import com.tasnetwork.calibration.conveyor.bay.verific.Verification;
 import com.tasnetwork.calibration.conveyor.bay.verific.VerificationTestBayBypass;
 import com.tasnetwork.calibration.conveyor.bay.verific_waiting.VerificWaiting;
 import com.tasnetwork.calibration.conveyor.constant.ConstantBayPortNameMapping;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.dashboard.BayControlsManager;
 import com.tasnetwork.calibration.conveyor.dashboard.DashboardController;
@@ -539,6 +540,8 @@ public class StateExecutorController
 	public void btnRejectBayBypassOnClick() {
 		Rejection.logger.info("btnRejectBayBypassOnClick : Invoked:");
 
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.REJECTION_BAY_KEY, true);
+
 		// F L A G S
 		Rejection.setStartProcessRequestedRejectionBay(true);
 
@@ -614,6 +617,8 @@ public class StateExecutorController
 	public void btnFtBayBypassOnClick() {
 		Ft.logger.info("btnFtBayBypassOnClick : Invoked:");
 
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.FT_BAY_KEY, true);
+
 		// F L A G S
 		Ft.setStartProcessRequestedFtBay(true);
 
@@ -682,6 +687,8 @@ public class StateExecutorController
 	@FXML
 	public void btnHvtBayBypassOnClick() {
 		Hv.logger.info("btnHvtBayBypassOnClick : Invoked:");
+
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.HV_BAY_KEY, true);
 
 		// F L A G S
 		Hv.setStartProcessRequestedHvtBay(true);
@@ -753,6 +760,8 @@ public class StateExecutorController
 	public void btnIrtBayBypassOnClick() {
 		Ir.logger.info("btnIrtBayBypassOnClick : Invoked:");
 
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.IR_BAY_KEY, true);
+
 		// F L A G S
 		Ir.setStartProcessRequestedIrtBay(true);
 
@@ -823,6 +832,8 @@ public class StateExecutorController
 	public void btnCalibBayBypassOnClick() {
 		Calib.logger.info("btnCalibBayBypassOnClick : Invoked:");
 
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.CALIBRATION_BAY_KEY, true);
+
 		// F L A G S
 		Calib.setStartProcessRequestedCalibBay(true);
 
@@ -892,6 +903,8 @@ public class StateExecutorController
 	public void btnWaitingBayBypassOnClick() {
 		VerificWaiting.logger.info("btnWaitingBayBypassOnClick : Invoked:");
 
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.WAITING_BAY_KEY, true);
+
 		// F L A G S
 		VerificWaiting.setStartProcessRequestedWaitingBay(true);
 
@@ -946,6 +959,8 @@ public class StateExecutorController
 	@FXML
 	public void btnVerificTestBayBypassOnClick() {
 		Verification.logger.info("btnVerificTestBayBypassOnClick : Invoked:");
+
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.VERIFICATION_BAY_KEY, true);
 
 		// F L A G S
 		Verification.setStartProcessRequestedVerificBay(true);
@@ -1017,6 +1032,8 @@ public class StateExecutorController
 	public void btnSctNlt1BayBypassOnClick() {
 		StaNld_Bay1.logger.info("btnSctNlt1BayBypassOnClick : Invoked:");
 
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.STA_NLD1_BAY_KEY, true);
+
 		// F L A G S
 		StaNld_Bay1.setStartProcessRequestedStaNldBay1(true);
 
@@ -1086,6 +1103,8 @@ public class StateExecutorController
 	@FXML
 	public void btnSctNlt2BayBypassOnClick() {
 		StaNld_Bay2.logger.info("btnSctNlt2BayBypassOnClick : Invoked:");
+
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.STA_NLD2_BAY_KEY, true);
 
 		// F L A G S
 		StaNld_Bay2.setStartProcessRequestedStaNldBay2(true);
@@ -1157,6 +1176,8 @@ public class StateExecutorController
 	@FXML
 	public void btnCommTestBayBypassOnClick() {
 		Comm.logger.info("btnCommTestBayBypassOnClick : Invoked:");
+
+		ConstantBypassFlags.setBayBypassed(ConstantConveyor.COMMUNICATION_BAY_KEY, true);
 
 		// F L A G S
 		Comm.setStartProcessRequestedCommBay(true);

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.tasnetwork.calibration.conveyor.ClusterServer;
 import com.tasnetwork.calibration.conveyor.bay.BayResponse;
 import com.tasnetwork.calibration.conveyor.bay.BayUtils;
+import com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyor;
 import com.tasnetwork.calibration.conveyor.constant.ConstantConveyorConfig;
 import com.tasnetwork.calibration.conveyor.database.MySqlServiceManager;
@@ -127,6 +128,7 @@ public class S043_Get_Test_Point_Immediately_Bay1 implements STA_NoLoadTestBay1S
 				String resultStatus = result.getString("test_status").equals("P") ? "Pass" : "Fail";
 				String testCaseName = result.getString("test_case_name");
 				String testType = testCaseName.startsWith("NLD") ? ConstantConveyor.NLD_RESULT_KEY : ConstantConveyor.STA_RESULT_KEY; //"NLD" : "STA";
+				resultValue = ConstantBypassFlags.getComputedResultValue(testType, resultValue);
 
 				// Determine the correct pallet based on position number
 				PalletManage selectedPallet = null;

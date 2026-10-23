@@ -1781,6 +1781,16 @@ public class BayUtils {
 						}
 					}
 
+					// Refresh latestResults to include any newly created bypass forced PASS records
+					latestResults = palletMeter.getPalletMeterResultsList().stream()
+							.filter(e -> e.getMeterSerialNo().equals(presentMeterSerialNo))
+							.collect(Collectors.groupingBy(PalletMeterResults::getTestType,
+									Collectors.maxBy(Comparator.comparing(PalletMeterResults::getId))))
+							.values().stream()
+							.filter(Optional::isPresent)
+							.map(Optional::get)
+							.collect(Collectors.toList());
+
 					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: meterTestTypeResultPresent-2 : " + meterTestTypeResultPresent);
 					ApplicationLauncher.logger.debug("BayUtils: computeMeterOverAllStatus: presentMeterSerialNo : " + presentMeterSerialNo);
 

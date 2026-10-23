@@ -45,6 +45,7 @@ public class BayControlsManager {
     public void handleStart(String bayKey) {
         ApplicationLauncher.logger.info("BayControlsManager: handleStart requested for " + bayKey);
         broadcastUIState(bayKey, true);
+        com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(bayKey, false);
         new BayActionHandler(bayKey).handleActionByBayType(PalletController.BayActionType.BAY_START);
     }
 
@@ -57,6 +58,7 @@ public class BayControlsManager {
     public void handleReset(String bayKey) {
         ApplicationLauncher.logger.info("BayControlsManager: handleReset requested for " + bayKey);
         broadcastUIState(bayKey, false);
+        com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(bayKey, false);
         new BayActionHandler(bayKey).handleActionByBayType(PalletController.BayActionType.BAY_RESET);
     }
 }

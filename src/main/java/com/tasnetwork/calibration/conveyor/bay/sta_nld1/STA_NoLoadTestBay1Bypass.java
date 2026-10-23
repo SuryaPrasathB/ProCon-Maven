@@ -20,6 +20,7 @@ public class STA_NoLoadTestBay1Bypass extends TimerTask {
 	public void run() {
 
 		StaNld_Bay1.logger.debug("STA_NoLoadTestBay1Bypass : Entry");
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(ConstantConveyor.STA_NLD1_BAY_KEY, true);
 		tableBypassStatePlanner_StaBay1.clear();
 		manageSTA_NoLoadTestBay1BypassStates2();
 

@@ -1601,8 +1601,17 @@ public class BayActionHandler {
 
 	private void bypassModeActive() {
 		ApplicationLauncher.logger.warn("bypassModeActive: Entry for " + bayTypeKey);
-		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, true);
+		ConstantBypassFlags.setBayBypassed(bayTypeKey, true);
 		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, true);
+		String baseKey = getBaseBayKey();
+		if (baseKey.equals(ConstantConveyor.STA_NLD1_BAY_KEY)
+				|| baseKey.equals(ConstantConveyor.STA_NLD2_BAY_KEY)
+				|| baseKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)
+				|| baseKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
+			for (int i = 1; i <= 4; i++) {
+				ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(baseKey + "-PP" + i, true);
+			}
+		}
 
 		com.tasnetwork.calibration.conveyor.StateExecutorController sec = com.tasnetwork.calibration.conveyor.StateExecutorController
 				.getInstance();
@@ -1613,8 +1622,17 @@ public class BayActionHandler {
 
 	private void bypassModeInActive() {
 		ApplicationLauncher.logger.warn("bypassModeInActive: Entry for " + bayTypeKey);
-		ConstantBypassFlags.BAY_BYPASS_FLAGS.put(bayTypeKey, false);
+		ConstantBypassFlags.setBayBypassed(bayTypeKey, false);
 		ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(bayTypeKey, false);
+		String baseKey = getBaseBayKey();
+		if (baseKey.equals(ConstantConveyor.STA_NLD1_BAY_KEY)
+				|| baseKey.equals(ConstantConveyor.STA_NLD2_BAY_KEY)
+				|| baseKey.equals(ConstantConveyor.VERIFICATION_BAY_KEY)
+				|| baseKey.equals(ConstantConveyor.WAITING_BAY_KEY)) {
+			for (int i = 1; i <= 4; i++) {
+				ConveyorDataManager.getDashboardObject().getBayIndicatorManager().byPassModeImageDisplayOn(baseKey + "-PP" + i, false);
+			}
+		}
 	}
 
 	private void handleEngineLifecycleActions(PalletController.BayActionType actionType) {

@@ -28,6 +28,7 @@ public class FunctionalTestBayBypass extends TimerTask {
 	public void run() {
 
 		Ft.logger.debug("FunctionalTestBayBypass : Entry");
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(ConstantConveyor.FT_BAY_KEY, true);
 		tableBypassStatePlanner_FtBay.clear();
 		manageFunctionalTestBayBypassStates2();
 

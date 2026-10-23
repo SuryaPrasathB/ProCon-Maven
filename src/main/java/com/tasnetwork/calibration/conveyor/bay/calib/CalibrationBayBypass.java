@@ -20,12 +20,13 @@ public class CalibrationBayBypass extends TimerTask {
 	public void run() {
 
 		Calib.logger.debug("CalibrationBayBypass : Entry");
+		com.tasnetwork.calibration.conveyor.constant.ConstantBypassFlags.setBayBypassed(ConstantConveyor.CALIBRATION_BAY_KEY, true);
 		tableBypassStatePlanner_FtBay.clear();
 		manageCalibrationBayBypassStates2();
 
 		String pathId = "ExR";
 		TestInterfaceStatus testIntefaceStatus = new TestInterfaceStatus(
-				ConstantConveyor.FT_BAY_KEY,
+				ConstantConveyor.CALIBRATION_BAY_KEY,
 				"", // ConstantBayStateManage.FT_BAY_HP_SEQ_01,
 				"", // ConstantConveyor.DEVICE_TYPE_CLUSTER_INPUT,
 				pathId,
